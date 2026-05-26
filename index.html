@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portugal Roadtrip - Complete 7-Day Travel Guide</title>
+    <meta name="description" content="Complete 7-day luxury Portugal roadtrip guide with detailed attractions, practical tips, accommodation recommendations, and insider advice.">
+    <meta name="keywords" content="Portugal, travel guide, roadtrip, Porto, Lisbon, Sintra, wine tasting">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a1a1a;
+            --secondary: #c9a876;
+            --accent: #d4a574;
+            --light: #f5f1ed;
+            --dark: #2d1810;
+            --gold: #b8860b;
+            --border: #e0e0e0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Georgia', 'Garamond', serif;
+            background-color: var(--light);
+            color: var(--primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+            color: var(--light);
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, var(--accent), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav a {
+            color: var(--light);
+            text-decoration: none;
+            margin-left: 2rem;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d1810 50%, #3d2416 100%);
+            color: var(--light);
+            padding: 180px 2rem 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            margin-top: 60px;
+        }
+
+        .hero::before {
+            content: '🇵🇹';
+            position: absolute;
+            top: 50px;
+            right: 5%;
+            font-size: 150px;
+            opacity: 0.08;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            letter-spacing: -2px;
+            line-height: 1.2;
+        }
+
+        .hero .subtitle {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 1rem;
+            color: var(--accent);
+            font-style: italic;
+        }
+
+        .hero .description {
+            font-size: 1rem;
+            color: rgba(245, 241, 237, 0.8);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: var(--primary);
+            position: relative;
+            padding-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--secondary), var(--accent));
+        }
+
+        /* Days Grid */
+        .days-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .day-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 6px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .day-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+        }
+
+        .day-card-header {
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .day-number {
+            font-size: 3rem;
+            font-weight: 700;
+            opacity: 0.3;
+            position: absolute;
+            right: 15px;
+        }
+
+        .day-emoji {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .day-city {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .day-card-body {
+            padding: 2rem;
+        }
+
+        .day-subtitle {
+            color: var(--secondary);
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .attractions-list {
+            list-style: none;
+        }
+
+        .attractions-list li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            color: #666;
+        }
+
+        .attractions-list li:last-child {
+            border-bottom: none;
+        }
+
+        .attractions-list strong {
+            color: var(--primary);
+        }
+
+        /* Day Detail */
+        .day-detail-section {
+            background: white;
+            border-radius: 8px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .day-detail-header {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .day-detail-header h2 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .day-meta {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .meta-item {
+            padding: 0.8rem;
+            background: var(--light);
+            border-radius: 4px;
+        }
+
+        .meta-label {
+            color: var(--secondary);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .meta-value {
+            font-size: 1rem;
+            color: var(--primary);
+            margin-top: 0.3rem;
+        }
+
+        .day-detail-image {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+            border-radius: 8px;
+            height: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        .attractions-detailed {
+            margin-top: 2rem;
+        }
+
+        .attraction-item {
+            background: var(--light);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--secondary);
+        }
+
+        .attraction-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .attraction-description {
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .attraction-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .info-point {
+            padding: 0.5rem 0;
+        }
+
+        .info-point strong {
+            color: var(--secondary);
+        }
+
+        /* Practical Section */
+        .practical-section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .practical-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .practical-card {
+            background: linear-gradient(135deg, rgba(201, 168, 118, 0.1) 0%, rgba(212, 165, 116, 0.1) 100%);
+            padding: 2rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--secondary);
+        }
+
+        .practical-card h4 {
+            color: var(--secondary);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .practical-card p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        /* Budget Table */
+        .budget-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .budget-table th {
+            background: var(--secondary);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .budget-table td {
+            padding: 0.8rem 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .budget-table tr:nth-child(even) {
+            background: var(--light);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: var(--light);
+            padding: 3rem;
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        /* CTA Button */
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            color: white;
+            padding: 1.2rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 2rem;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 35px rgba(201, 168, 118, 0.35);
+        }
+
+        /* Share Section */
+        .share-section {
+            text-align: center;
+            padding: 2.5rem;
+            background: white;
+            border-radius: 8px;
+            margin: 4rem 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .share-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .share-button {
+            padding: 0.9rem 1.8rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .share-button.copy {
+            background: var(--light);
+            color: var(--primary);
+            border-color: var(--secondary);
+        }
+
+        .share-button.copy:hover {
+            background: var(--secondary);
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .day-detail-header {
+                grid-template-columns: 1fr;
+            }
+
+            .day-detail-image {
+                height: 250px;
+            }
+
+            nav a {
+                margin-left: 1rem;
+                font-size: 0.8rem;
+            }
+
+            .day-meta {
+                grid-template-columns: 1fr;
+            }
+
+            .day-detail-section {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--border);
+            flex-wrap: wrap;
+        }
+
+        .tab-button {
+            background: none;
+            border: none;
+            padding: 1rem;
+            cursor: pointer;
+            font-size: 1rem;
+            color: #999;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .tab-button.active {
+            color: var(--secondary);
+            border-bottom-color: var(--secondary);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">Portugal ✨</div>
+            <div>
+                <a href="#overview">Route</a>
+                <a href="#days">Dagen</a>
+                <a href="#practical">Info</a>
+                <a href="#accommodation">Hotels</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <h1>Portugal Roadtrip</h1>
+        <p class="subtitle">The Complete 7-Day Travel Guide</p>
+        <p class="description">From Porto's literary charm to Lisbon's vibrant energy, via wine valleys, medieval towns, and dramatic cliffs. Your complete guide to Portugal's magic.</p>
+    </section>
+
+    <!-- Overview -->
+    <section id="overview">
+        <div class="container">
+            <h2 class="section-title">Your 7-Day Journey Overview</h2>
+            
+            <div style="background: white; padding: 2rem; border-radius: 8px; margin-bottom: 2rem; box-shadow: 0 4px 15px rgba(0,0,0,0.08);">
+                <p style="font-size: 1.05rem; line-height: 1.8; margin-bottom: 1rem;">
+                    <strong>Welcome to Portugal!</strong><br/>
+                    This 7-day itinerary takes you through Portugal's most enchanting destinations. Beginning in Porto, 
+                    a city steeped in history and home to the world's finest port wine, you'll journey through 
+                    terraced vineyards of the Douro Valley, discover colorful coastal villages, explore medieval 
+                    fortified towns, visit romantic mountaintop palaces in misty Sintra, and finish in Lisbon's 
+                    vibrant charm.
+                </p>
+                <p style="color: #666; line-height: 1.7;">
+                    <strong>What Makes This Journey Special:</strong><br/>
+                    ✓ Perfect blend of culture, nature, and gastronomy<br/>
+                    ✓ Boutique hotel accommodations in each region<br/>
+                    ✓ Mix of famous attractions and hidden gems<br/>
+                    ✓ Wine tastings from premier quintas<br/>
+                    ✓ Medieval architecture and UNESCO sites<br/>
+                    ✓ Dramatic coastal scenery<br/>
+                    ✓ World-class food and wine experiences
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Days Overview -->
+    <section id="days">
+        <div class="container">
+            <h2 class="section-title">The 7 Days at a Glance</h2>
+            
+            <div class="days-grid">
+                <div class="day-card">
+                    <div class="day-card-header">
+                        <div class="day-emoji">🏙️</div>
+                        <div class="day-city">Porto</div>
+                        <div class="day-number">1</div>
+                    </div>
+                    <div class="day-card-body">
+                        <div class="day-subtitle">Port Wine & Literary Magic</div>
+                        <p style="color: #666; margin-bottom: 1rem;">30 min from airport | Full day exploration</p>
+                        <ul class="attractions-list">
+                            <li><strong>Livraria Lello</strong> - Beautiful bookstore</li>
+                            <li><strong>Graham's Port Lodge</strong> - Wine tasting</li>
+                            <li><strong>Ribeira</strong> - Medieval old town</li>
+                            <li><strong>Dom Luís Bridge</strong> - Iconic bridge</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="day-card">
+                    <div class="day-card-header">
+                        <div class="day-emoji">🍇</div>
+                        <div class="day-city">Douro Valley</div>
+                        <div class="day-number">2</div>
+                    </div>
+                    <div class="day-card-body">
+                        <div class="day-subtitle">Wine Terraces & Romance</div>
+                        <p style="color: #666; margin-bottom: 1rem;">1.5 hours from Porto | UNESCO site</p>
+                        <ul class="attractions-list">
+                            <li><strong>Quinta do Pôpa</strong> - Wine tasting</li>
+                            <li><strong>Vineyards</strong> - Hiking & views</li>
+                            <li><strong>River Cruise</strong> - Scenic journey</li>
+                            <li><strong>Lamego</strong> - Mountain town</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="day-card">
+                    <div class="day-card-header">
+                        <div class="day-emoji">🏛️</div>
+                        <div class="day-city">Aveiro & Costa Nova</div>
+                        <div class="day-number">3</div>
+                    </div>
+                    <div class="day-card-body">
+                        <div class="day-subtitle">Art & Colorful Coasts</div>
+                        <p style="color: #666; margin-bottom: 1rem;">1.5 hours from Douro | UNESCO urban center</p>
+                        <ul class="attractions-list">
+                            <li><strong>Art Nouveau</strong> - Architecture</li>
+                            <li><strong>Moliceiro Boats</strong> - Canal rides</li>
+                            <li><strong>Costa Nova</strong> - Striped houses</li>
+                            <li><strong>Beaches</strong> - Seafood dining</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="day-card">
+                    <div class="day-card-header">
+                        <div class="day-emoji">🌊</div>
+                        <div class="day-city">Batalha & Nazaré</div>
+                        <div class="day-number">4</div>
+                    </div>
+                    <div class="day-card-body">
+                        <div class="day-subtitle">History & Ocean Drama</div>
+                        <p style="color: #666; margin-bottom: 1rem;">45 min from Costa Nova | Dramatic scenery</p>
+                        <ul class="attractions-list">
+                            <li><strong>Batalha Monastery</strong> - UNESCO site</li>
+                            <li><strong>Farol Lighthouse</strong> - 318m cliffs</li>
+                            <li><strong>Nazaré</strong> - Big waves city</li>
+                            <li><strong>Coastal views</strong> - Spectacular</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="day-card">
+                    <div class="day-card-header">
+                        <div class="day-emoji">👑</div>
+                        <div class="day-city">Óbidos</div>
+                        <div class="day-number">5</div>
+                    </div>
+                    <div class="day-card-body">
+                        <div class="day-subtitle">Medieval Fairytale</div>
+                        <p style="color: #666; margin-bottom: 1rem;">1 hour from Nazaré | Perfectly preserved</p>
+                        <ul class="attractions-list">
+                            <li><strong>Medieval Walls</strong> - Walk circuit</li>
+                            <li><strong>Ginjinha</strong> - Local liqueur</li>
+                            <li><strong>Narrow Streets</strong> - Charming shops</li>
+                            <li><strong>Castle</strong> - Historic heart</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="day-card">
+                    <div class="day-card-header">
+                        <div class="day-emoji">🏰</div>
+                        <div class="day-city">Sintra</div>
+                        <div class="day-number">6</div>
+                    </div>
+                    <div class="day-card-body">
+                        <div class="day-subtitle">Palaces & Mystique</div>
+                        <p style="color: #666; margin-bottom: 1rem;">30 min from Óbidos | UNESCO landscape</p>
+                        <ul class="attractions-list">
+                            <li><strong>Pena Palace</strong> - Romantic palace</li>
+                            <li><strong>Quinta da Regaleira</strong> - Mystical gardens</li>
+                            <li><strong>Moors Castle</strong> - Ancient ruins</li>
+                            <li><strong>Misty Mountains</strong> - Enchanted</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="day-card">
+                    <div class="day-card-header">
+                        <div class="day-emoji">🌃</div>
+                        <div class="day-city">Lisbon</div>
+                        <div class="day-number">7</div>
+                    </div>
+                    <div class="day-card-body">
+                        <div class="day-subtitle">Age of Discovery</div>
+                        <p style="color: #666; margin-bottom: 1rem;">30 min from Sintra | Historic capital</p>
+                        <ul class="attractions-list">
+                            <li><strong>Belém Tower</strong> - Iconic monument</li>
+                            <li><strong>Pastéis de Belém</strong> - Custard tarts</li>
+                            <li><strong>Tram 28</strong> - Historic ride</li>
+                            <li><strong>Sunset Views</strong> - Romantic</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Day Details Summary -->
+    <section style="background: var(--light);">
+        <div class="container">
+            <h2 class="section-title">Day-by-Day Detailed Guide</h2>
+            
+            <p style="text-align: center; color: #666; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                Each day includes detailed information about attractions, opening hours, prices, dining recommendations, and insider tips. 
+                Download the complete PDF guide for the full detailed itinerary.
+            </p>
+
+            <div style="text-align: center;">
+                <a href="#pdf-section" class="cta-button">📄 Download Complete PDF Guide</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Practical Info -->
+    <section id="practical" class="practical-section">
+        <div class="container">
+            <h2 class="section-title">Practical Information</h2>
+
+            <div class="practical-grid">
+                <div class="practical-card">
+                    <h4>📅 Best Time to Visit</h4>
+                    <p><strong>April-May:</strong> Perfect weather 18-24°C, flowers, fewer crowds. Ideal!<br/>
+                    <strong>Sept-Oct:</strong> Warm 20-26°C, sunny, excellent.<br/>
+                    <strong>June-Aug:</strong> Hot 25-32°C, peak season, book ahead.<br/>
+                    <strong>Nov-Mar:</strong> Cool 8-15°C, peaceful, occasional rain.</p>
+                </div>
+
+                <div class="practical-card">
+                    <h4>🚗 Transportation</h4>
+                    <p><strong>Car Rental:</strong> €30-50/day<br/>
+                    <strong>Roads:</strong> Well-maintained, drive right side<br/>
+                    <strong>Speed Limits:</strong> 50 km/h city, 90 regional, 120 motorway<br/>
+                    <strong>Parking:</strong> Good in towns, challenging in cities</p>
+                </div>
+
+                <div class="practical-card">
+                    <h4>💰 Budget Estimates</h4>
+                    <p><strong>Accommodation:</strong> €100-180/night (mid-range)<br/>
+                    <strong>Meals:</strong> €40-80/day<br/>
+                    <strong>Attractions:</strong> €100-150 total<br/>
+                    <strong>7-Day Total:</strong> €1,715-2,870/person</p>
+                </div>
+
+                <div class="practical-card">
+                    <h4>🍷 Food & Wine</h4>
+                    <p><strong>Port Wine:</strong> €5-15/glass<br/>
+                    <strong>Douro Wine:</strong> €8-20/bottle<br/>
+                    <strong>Seafood:</strong> €15-30<br/>
+                    <strong>Lunch:</strong> Better value than dinner</p>
+                </div>
+
+                <div class="practical-card">
+                    <h4>📸 Photography</h4>
+                    <p><strong>Golden Hour:</strong> 1 hour before/after sunrise/sunset<br/>
+                    <strong>Best Locations:</strong> Dom Luís Bridge, Douro terraces, Costa Nova, Pena Palace, Graça viewpoint<br/>
+                    <strong>Early Morning:</strong> Fewer crowds, soft light</p>
+                </div>
+
+                <div class="practical-card">
+                    <h4>✅ Essential Bookings</h4>
+                    <p><strong>3 Months Ahead:</strong> Accommodation, Palácio da Pena<br/>
+                    <strong>2 Weeks Ahead:</strong> Graham's Port Lodge, Quinta do Pôpa<br/>
+                    <strong>1 Week Ahead:</strong> Douro River Cruise</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Budget Table -->
+    <section style="background: white; padding: 60px 0;">
+        <div class="container">
+            <h2 class="section-title" style="margin-bottom: 2rem;">Budget Breakdown</h2>
+            
+            <table class="budget-table">
+                <thead>
+                    <tr>
+                        <th>Expense</th>
+                        <th>Budget Option</th>
+                        <th>Mid-Range</th>
+                        <th>Luxury</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Accommodation/Night</strong></td>
+                        <td>€60-100</td>
+                        <td>€100-180</td>
+                        <td>€150-280</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Meals/Day</strong></td>
+                        <td>€30-50</td>
+                        <td>€50-80</td>
+                        <td>€80-150</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Wine Tastings</strong></td>
+                        <td>€20-30</td>
+                        <td>€30-60</td>
+                        <td>€50-100</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Attractions/Day</strong></td>
+                        <td>€15-25</td>
+                        <td>€25-40</td>
+                        <td>€30-50</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Car Rental/Day</strong></td>
+                        <td>€30-40</td>
+                        <td>€35-50</td>
+                        <td>€40-60</td>
+                    </tr>
+                    <tr style="background: var(--light); font-weight: bold;">
+                        <td>TOTAL/DAY</td>
+                        <td>€165-245</td>
+                        <td>€245-410</td>
+                        <td>€350-640</td>
+                    </tr>
+                    <tr style="background: linear-gradient(90deg, rgba(201, 168, 118, 0.2), rgba(212, 165, 116, 0.2)); font-weight: bold;">
+                        <td>7-DAY TOTAL</td>
+                        <td>€1,155-1,715</td>
+                        <td>€1,715-2,870</td>
+                        <td>€2,450-4,480</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Accommodation -->
+    <section id="accommodation" style="background: var(--light);">
+        <div class="container">
+            <h2 class="section-title">Accommodation Recommendations</h2>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                <div style="background: white; padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--secondary); box-shadow: 0 4px 15px rgba(0,0,0,0.08);">
+                    <h4 style="color: var(--secondary); margin-bottom: 0.5rem;">🏙️ PORTO</h4>
+                    <h3 style="color: var(--primary); margin-bottom: 0.5rem;">Torel Palace Porto</h3>
+                    <p style="color: #666; margin-bottom: 1rem;">⭐⭐⭐⭐⭐ (4.8/5)<br/>€150-250/night</p>
+                    <p style="color: #555;">Boutique palace hotel, each room named after Portuguese cultural figures, exceptional breakfast, prime location near Livraria Lello.</p>
+                </div>
+
+                <div style="background: white; padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--secondary); box-shadow: 0 4px 15px rgba(0,0,0,0.08);">
+                    <h4 style="color: var(--secondary); margin-bottom: 0.5rem;">🍇 DOURO VALLEY</h4>
+                    <h3 style="color: var(--primary); margin-bottom: 0.5rem;">Douro Suites</h3>
+                    <p style="color: #666; margin-bottom: 1rem;">⭐⭐⭐⭐⭐ (4.9/5)<br/>€180-280/night</p>
+                    <p style="color: #555;">Exclusive boutique with private river beaches, spa, luxury suites, mesmerizing vineyard views. Intimate and romantic.</p>
+                </div>
+
+                <div style="background: white; padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--secondary); box-shadow: 0 4px 15px rgba(0,0,0,0.08);">
+                    <h4 style="color: var(--secondary); margin-bottom: 0.5rem;">🏛️ AVEIRO</h4>
+                    <h3 style="color: var(--primary); margin-bottom: 0.5rem;">MS Collection Palacete</h3>
+                    <p style="color: #666; margin-bottom: 1rem;">⭐⭐⭐⭐⭐ (4.9/5)<br/>€140-220/night</p>
+                    <p style="color: #555;">Five-star palace hotel, Michelin-star restaurant on-site, award-winning spa, beautiful pools, Art Nouveau architecture.</p>
+                </div>
+
+                <div style="background: white; padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--secondary); box-shadow: 0 4px 15px rgba(0,0,0,0.08);">
+                    <h4 style="color: var(--secondary); margin-bottom: 0.5rem;">🌊 NAZARÉ</h4>
+                    <h3 style="color: var(--primary); margin-bottom: 0.5rem;">Villamar Style Maison</h3>
+                    <p style="color: #666; margin-bottom: 1rem;">⭐⭐⭐⭐ (4.6/5)<br/>€100-160/night</p>
+                    <p style="color: #555;">Intimate boutique hotel, 5-minute beach walk, cozy pool, friendly staff, charming aesthetic perfect for couples.</p>
+                </div>
+
+                <div style="background: white; padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--secondary); box-shadow: 0 4px 15px rgba(0,0,0,0.08);">
+                    <h4 style="color: var(--secondary); margin-bottom: 0.5rem;">👑 ÓBIDOS</h4>
+                    <h3 style="color: var(--primary); margin-bottom: 0.5rem;">Casa das Senhoras Rainhas</h3>
+                    <p style="color: #666; margin-bottom: 1rem;">⭐⭐⭐⭐ (4.4/5)<br/>€120-180/night</p>
+                    <p style="color: #555;">WITHIN medieval castle walls! Rooms named after Portuguese queens, magical atmosphere, truly unique experience.</p>
+                </div>
+
+                <div style="background: white; padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--secondary); box-shadow: 0 4px 15px rgba(0,0,0,0.08);">
+                    <h4 style="color: var(--secondary); margin-bottom: 0.5rem;">🏰 SINTRA</h4>
+                    <h3 style="color: var(--primary); margin-bottom: 0.5rem;">Cedros Nature House</h3>
+                    <p style="color: #666; margin-bottom: 1rem;">⭐⭐⭐⭐★ (4.7/5)<br/>€130-200/night</p>
+                    <p style="color: #555;">Sintra jewel with palace views, private pool, warm welcome, fantastic breakfast, mountain serenity.</p>
+                </div>
+
+                <div style="background: white; padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--secondary); box-shadow: 0 4px 15px rgba(0,0,0,0.08);">
+                    <h4 style="color: var(--secondary); margin-bottom: 0.5rem;">🌃 LISBON</h4>
+                    <h3 style="color: var(--primary); margin-bottom: 0.5rem;">Sublime Lisboa</h3>
+                    <p style="color: #666; margin-bottom: 1rem;">⭐⭐⭐⭐⭐ (4.8/5)<br/>€160-280/night</p>
+                    <p style="color: #555;">Unique design aesthetic, ginger tea check-in, incredible all-day breakfast, peaceful neighborhood location.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PDF Download -->
+    <section id="pdf-section" style="background: white; padding: 80px 0;">
+        <div class="container" style="text-align: center;">
+            <h2 class="section-title">Complete PDF Travel Guide</h2>
+            
+            <div style="background: linear-gradient(135deg, rgba(201, 168, 118, 0.1), rgba(212, 165, 116, 0.1)); padding: 3rem; border-radius: 12px; max-width: 600px; margin: 0 auto;">
+                <p style="font-size: 1.1rem; color: #666; margin-bottom: 1.5rem; line-height: 1.8;">
+                    <strong>📄 Portugal Roadtrip - Complete Guide</strong><br/>
+                    30+ pages with comprehensive day-by-day itineraries, detailed attraction information, opening hours, prices, dining recommendations, photography tips, budget breakdowns, and insider advice.
+                </p>
+                
+                <a href="Portugal_Roadtrip_Complete_Guide.pdf" download class="cta-button">⬇️ Download PDF</a>
+                
+                <p style="color: #999; font-size: 0.9rem; margin-top: 1rem;">
+                    PDF Format | Print-friendly | Complete & Detailed
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Share -->
+    <section style="background: var(--light);">
+        <div class="container">
+            <div class="share-section">
+                <h3>Share This Guide</h3>
+                <p style="color: #666;">Help your friends discover Portugal</p>
+                <div class="share-buttons">
+                    <button class="share-button copy" onclick="copyToClipboard()">📋 Copy Link</button>
+                    <a href="https://wa.me/?text=Check out this complete Portugal roadtrip guide!" class="share-button" style="background: #25D366; color: white; border: none;">💬 WhatsApp</a>
+                    <a href="mailto:?subject=Portugal Roadtrip Guide" class="share-button" style="background: #EA4335; color: white; border: none;">📧 Email</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p><strong>Portugal Roadtrip - Complete 7-Day Travel Guide</strong></p>
+        <p style="font-size: 0.9rem; margin-top: 1rem; opacity: 0.8;">Made with ❤️ for travelers who want to discover the real Portugal | Last updated: 2024</p>
+        <p style="font-size: 0.85rem; margin-top: 1rem; opacity: 0.6;">🇵🇹 Boa viagem! (Have a good trip!)</p>
+    </footer>
+
+    <script>
+        function copyToClipboard() {
+            const url = window.location.href;
+            navigator.clipboard.writeText(url).then(() => {
+                alert('Link copied to clipboard! Share with your friends.');
+            });
+        }
+    </script>
+</body>
+</html>
