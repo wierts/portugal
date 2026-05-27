@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portugal Roadtrip - Complete 7-Day Travel Guide</title>
-    <meta name="description" content="Complete 7-day luxury Portugal roadtrip guide with detailed attractions, practical tips, accommodation recommendations, and insider advice.">
-    <meta name="keywords" content="Portugal, travel guide, roadtrip, Porto, Lisbon, Sintra, wine tasting">
+    <title>Portugal Roadtrip - Interactive 7-Day Travel Guide</title>
+    <meta name="description" content="Interactive 7-day Portugal roadtrip guide with Google Maps, attraction links, and detailed itineraries.">
     <style>
         * {
             margin: 0;
@@ -35,7 +34,7 @@
             overflow-x: hidden;
         }
 
-        /* Header & Navigation */
+        /* Header */
         header {
             background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
             color: var(--light);
@@ -58,7 +57,6 @@
         .logo {
             font-size: 1.8rem;
             font-weight: 700;
-            letter-spacing: -1px;
             background: linear-gradient(135deg, var(--accent), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -143,7 +141,6 @@
             padding: 0 2rem;
         }
 
-        /* Sections */
         section {
             padding: 80px 0;
         }
@@ -172,7 +169,7 @@
         /* Days Grid */
         .days-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             margin-bottom: 4rem;
         }
@@ -196,6 +193,7 @@
             color: white;
             padding: 2rem;
             text-align: center;
+            position: relative;
         }
 
         .day-number {
@@ -226,25 +224,66 @@
             margin-bottom: 1rem;
         }
 
-        .attractions-list {
+        .attraction-list {
             list-style: none;
+            margin-bottom: 1rem;
         }
 
-        .attractions-list li {
+        .attraction-list li {
             padding: 0.8rem 0;
             border-bottom: 1px solid rgba(0,0,0,0.05);
             color: #666;
         }
 
-        .attractions-list li:last-child {
+        .attraction-list li:last-child {
             border-bottom: none;
         }
 
-        .attractions-list strong {
+        .attraction-list strong {
             color: var(--primary);
         }
 
-        /* Day Detail */
+        .day-buttons {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-small {
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .btn-map {
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            color: white;
+        }
+
+        .btn-map:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(201, 168, 118, 0.3);
+        }
+
+        .btn-info {
+            background: var(--light);
+            color: var(--primary);
+            border: 2px solid var(--secondary);
+        }
+
+        .btn-info:hover {
+            background: var(--secondary);
+            color: white;
+        }
+
+        /* Day Details */
         .day-detail-section {
             background: white;
             border-radius: 8px;
@@ -321,6 +360,48 @@
             font-weight: 700;
             color: var(--primary);
             margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .attraction-links {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .attraction-link {
+            padding: 0.6rem 1rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .link-map {
+            background: linear-gradient(135deg, #4285F4, #34A853);
+            color: white;
+        }
+
+        .link-map:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(66, 133, 244, 0.3);
+        }
+
+        .link-web {
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            color: white;
+        }
+
+        .link-web:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(201, 168, 118, 0.3);
         }
 
         .attraction-description {
@@ -376,33 +457,6 @@
             line-height: 1.8;
         }
 
-        /* Budget Table */
-        .budget-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 2rem 0;
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .budget-table th {
-            background: var(--secondary);
-            color: white;
-            padding: 1rem;
-            text-align: left;
-            font-weight: 600;
-        }
-
-        .budget-table td {
-            padding: 0.8rem 1rem;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .budget-table tr:nth-child(even) {
-            background: var(--light);
-        }
-
         /* Footer */
         footer {
             background: var(--primary);
@@ -430,6 +484,9 @@
             border: none;
             cursor: pointer;
             font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .cta-button:hover {
@@ -477,6 +534,26 @@
             color: white;
         }
 
+        /* Interactive Elements */
+        .toggle-button {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .toggle-button:hover {
+            background: var(--accent);
+        }
+
+        .hidden {
+            display: none;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .hero h1 {
@@ -508,52 +585,17 @@
                 padding: 1.5rem;
             }
         }
-
-        /* Tabs */
-        .tabs {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            border-bottom: 2px solid var(--border);
-            flex-wrap: wrap;
-        }
-
-        .tab-button {
-            background: none;
-            border: none;
-            padding: 1rem;
-            cursor: pointer;
-            font-size: 1rem;
-            color: #999;
-            border-bottom: 3px solid transparent;
-            transition: all 0.3s;
-            font-weight: 600;
-        }
-
-        .tab-button.active {
-            color: var(--secondary);
-            border-bottom-color: var(--secondary);
-        }
-
-        .tab-content {
-            display: none;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
     </style>
 </head>
 <body>
     <!-- Header -->
     <header>
         <nav>
-            <div class="logo">Portugal ✨</div>
+            <div class="logo">Portugal 🗺️</div>
             <div>
                 <a href="#overview">Route</a>
                 <a href="#days">Dagen</a>
                 <a href="#practical">Info</a>
-                <a href="#accommodation">Hotels</a>
             </div>
         </nav>
     </header>
@@ -561,33 +603,30 @@
     <!-- Hero -->
     <section class="hero">
         <h1>Portugal Roadtrip</h1>
-        <p class="subtitle">The Complete 7-Day Travel Guide</p>
-        <p class="description">From Porto's literary charm to Lisbon's vibrant energy, via wine valleys, medieval towns, and dramatic cliffs. Your complete guide to Portugal's magic.</p>
+        <p class="subtitle">Interactive 7-Day Travel Guide</p>
+        <p class="description">Explore Portugal with direct links to attractions, Google Maps routes, and detailed itineraries. Click on attractions to visit their websites and navigate with Google Maps.</p>
     </section>
 
     <!-- Overview -->
     <section id="overview">
         <div class="container">
-            <h2 class="section-title">Your 7-Day Journey Overview</h2>
+            <h2 class="section-title">Your 7-Day Journey</h2>
             
             <div style="background: white; padding: 2rem; border-radius: 8px; margin-bottom: 2rem; box-shadow: 0 4px 15px rgba(0,0,0,0.08);">
                 <p style="font-size: 1.05rem; line-height: 1.8; margin-bottom: 1rem;">
                     <strong>Welcome to Portugal!</strong><br/>
-                    This 7-day itinerary takes you through Portugal's most enchanting destinations. Beginning in Porto, 
+                    This interactive 7-day itinerary takes you through Portugal's most enchanting destinations. Beginning in Porto, 
                     a city steeped in history and home to the world's finest port wine, you'll journey through 
                     terraced vineyards of the Douro Valley, discover colorful coastal villages, explore medieval 
                     fortified towns, visit romantic mountaintop palaces in misty Sintra, and finish in Lisbon's 
                     vibrant charm.
                 </p>
                 <p style="color: #666; line-height: 1.7;">
-                    <strong>What Makes This Journey Special:</strong><br/>
-                    ✓ Perfect blend of culture, nature, and gastronomy<br/>
-                    ✓ Boutique hotel accommodations in each region<br/>
-                    ✓ Mix of famous attractions and hidden gems<br/>
-                    ✓ Wine tastings from premier quintas<br/>
-                    ✓ Medieval architecture and UNESCO sites<br/>
-                    ✓ Dramatic coastal scenery<br/>
-                    ✓ World-class food and wine experiences
+                    <strong>Interactive Features:</strong><br/>
+                    🗺️ Click "View on Maps" to see routes and directions<br/>
+                    🌐 Visit attraction websites directly<br/>
+                    📍 Navigate with Google Maps<br/>
+                    💬 Share your journey with friends
                 </p>
             </div>
         </div>
@@ -596,9 +635,10 @@
     <!-- Days Overview -->
     <section id="days">
         <div class="container">
-            <h2 class="section-title">The 7 Days at a Glance</h2>
+            <h2 class="section-title">7 Days at a Glance</h2>
             
             <div class="days-grid">
+                <!-- Day 1 -->
                 <div class="day-card">
                     <div class="day-card-header">
                         <div class="day-emoji">🏙️</div>
@@ -607,16 +647,21 @@
                     </div>
                     <div class="day-card-body">
                         <div class="day-subtitle">Port Wine & Literary Magic</div>
-                        <p style="color: #666; margin-bottom: 1rem;">30 min from airport | Full day exploration</p>
-                        <ul class="attractions-list">
-                            <li><strong>Livraria Lello</strong> - Beautiful bookstore</li>
-                            <li><strong>Graham's Port Lodge</strong> - Wine tasting</li>
-                            <li><strong>Ribeira</strong> - Medieval old town</li>
-                            <li><strong>Dom Luís Bridge</strong> - Iconic bridge</li>
+                        <p style="color: #666; margin-bottom: 1rem; font-size: 0.9rem;">30 min from airport | Full day</p>
+                        <ul class="attraction-list">
+                            <li><strong>Livraria Lello</strong></li>
+                            <li><strong>Graham's Port Lodge</strong></li>
+                            <li><strong>Ribeira</strong></li>
+                            <li><strong>Dom Luís Bridge</strong></li>
                         </ul>
+                        <div class="day-buttons">
+                            <a href="https://www.google.com/maps/dir/Porto+Airport/Livraria+Lello/@41.1451,-8.6059,15z" target="_blank" class="btn-map">🗺️ Maps</a>
+                            <a href="#day1-details" class="btn-info">📖 Details</a>
+                        </div>
                     </div>
                 </div>
 
+                <!-- Day 2 -->
                 <div class="day-card">
                     <div class="day-card-header">
                         <div class="day-emoji">🍇</div>
@@ -625,34 +670,44 @@
                     </div>
                     <div class="day-card-body">
                         <div class="day-subtitle">Wine Terraces & Romance</div>
-                        <p style="color: #666; margin-bottom: 1rem;">1.5 hours from Porto | UNESCO site</p>
-                        <ul class="attractions-list">
-                            <li><strong>Quinta do Pôpa</strong> - Wine tasting</li>
-                            <li><strong>Vineyards</strong> - Hiking & views</li>
-                            <li><strong>River Cruise</strong> - Scenic journey</li>
-                            <li><strong>Lamego</strong> - Mountain town</li>
+                        <p style="color: #666; margin-bottom: 1rem; font-size: 0.9rem;">1.5 hours from Porto | UNESCO site</p>
+                        <ul class="attraction-list">
+                            <li><strong>Quinta do Pôpa</strong></li>
+                            <li><strong>Vineyards</strong></li>
+                            <li><strong>River Cruise</strong></li>
+                            <li><strong>Lamego</strong></li>
                         </ul>
+                        <div class="day-buttons">
+                            <a href="https://www.google.com/maps/dir/Porto/Douro+Valley/@41.15,-7.6,10z" target="_blank" class="btn-map">🗺️ Maps</a>
+                            <a href="#day2-details" class="btn-info">📖 Details</a>
+                        </div>
                     </div>
                 </div>
 
+                <!-- Day 3 -->
                 <div class="day-card">
                     <div class="day-card-header">
                         <div class="day-emoji">🏛️</div>
-                        <div class="day-city">Aveiro & Costa Nova</div>
+                        <div class="day-city">Aveiro</div>
                         <div class="day-number">3</div>
                     </div>
                     <div class="day-card-body">
                         <div class="day-subtitle">Art & Colorful Coasts</div>
-                        <p style="color: #666; margin-bottom: 1rem;">1.5 hours from Douro | UNESCO urban center</p>
-                        <ul class="attractions-list">
-                            <li><strong>Art Nouveau</strong> - Architecture</li>
-                            <li><strong>Moliceiro Boats</strong> - Canal rides</li>
-                            <li><strong>Costa Nova</strong> - Striped houses</li>
-                            <li><strong>Beaches</strong> - Seafood dining</li>
+                        <p style="color: #666; margin-bottom: 1rem; font-size: 0.9rem;">1.5 hours from Douro | UNESCO center</p>
+                        <ul class="attraction-list">
+                            <li><strong>Art Nouveau</strong></li>
+                            <li><strong>Moliceiro Boats</strong></li>
+                            <li><strong>Costa Nova</strong></li>
+                            <li><strong>Beaches</strong></li>
                         </ul>
+                        <div class="day-buttons">
+                            <a href="https://www.google.com/maps/dir/Douro+Valley/Aveiro/@40.65,-8.65,11z" target="_blank" class="btn-map">🗺️ Maps</a>
+                            <a href="#day3-details" class="btn-info">📖 Details</a>
+                        </div>
                     </div>
                 </div>
 
+                <!-- Day 4 -->
                 <div class="day-card">
                     <div class="day-card-header">
                         <div class="day-emoji">🌊</div>
@@ -661,16 +716,21 @@
                     </div>
                     <div class="day-card-body">
                         <div class="day-subtitle">History & Ocean Drama</div>
-                        <p style="color: #666; margin-bottom: 1rem;">45 min from Costa Nova | Dramatic scenery</p>
-                        <ul class="attractions-list">
-                            <li><strong>Batalha Monastery</strong> - UNESCO site</li>
-                            <li><strong>Farol Lighthouse</strong> - 318m cliffs</li>
-                            <li><strong>Nazaré</strong> - Big waves city</li>
-                            <li><strong>Coastal views</strong> - Spectacular</li>
+                        <p style="color: #666; margin-bottom: 1rem; font-size: 0.9rem;">45 min from Costa Nova | Dramatic</p>
+                        <ul class="attraction-list">
+                            <li><strong>Batalha Monastery</strong></li>
+                            <li><strong>Farol Lighthouse</strong></li>
+                            <li><strong>Nazaré</strong></li>
+                            <li><strong>Cliffs</strong></li>
                         </ul>
+                        <div class="day-buttons">
+                            <a href="https://www.google.com/maps/dir/Aveiro/Batalha+Monastery/@39.66,-8.83,11z" target="_blank" class="btn-map">🗺️ Maps</a>
+                            <a href="#day4-details" class="btn-info">📖 Details</a>
+                        </div>
                     </div>
                 </div>
 
+                <!-- Day 5 -->
                 <div class="day-card">
                     <div class="day-card-header">
                         <div class="day-emoji">👑</div>
@@ -679,16 +739,21 @@
                     </div>
                     <div class="day-card-body">
                         <div class="day-subtitle">Medieval Fairytale</div>
-                        <p style="color: #666; margin-bottom: 1rem;">1 hour from Nazaré | Perfectly preserved</p>
-                        <ul class="attractions-list">
-                            <li><strong>Medieval Walls</strong> - Walk circuit</li>
-                            <li><strong>Ginjinha</strong> - Local liqueur</li>
-                            <li><strong>Narrow Streets</strong> - Charming shops</li>
-                            <li><strong>Castle</strong> - Historic heart</li>
+                        <p style="color: #666; margin-bottom: 1rem; font-size: 0.9rem;">1 hour from Nazaré | Perfect town</p>
+                        <ul class="attraction-list">
+                            <li><strong>Medieval Walls</strong></li>
+                            <li><strong>Ginjinha</strong></li>
+                            <li><strong>Streets</strong></li>
+                            <li><strong>Castle</strong></li>
                         </ul>
+                        <div class="day-buttons">
+                            <a href="https://www.google.com/maps/dir/Nazaré/Óbidos/@39.36,-9.15,11z" target="_blank" class="btn-map">🗺️ Maps</a>
+                            <a href="#day5-details" class="btn-info">📖 Details</a>
+                        </div>
                     </div>
                 </div>
 
+                <!-- Day 6 -->
                 <div class="day-card">
                     <div class="day-card-header">
                         <div class="day-emoji">🏰</div>
@@ -697,16 +762,21 @@
                     </div>
                     <div class="day-card-body">
                         <div class="day-subtitle">Palaces & Mystique</div>
-                        <p style="color: #666; margin-bottom: 1rem;">30 min from Óbidos | UNESCO landscape</p>
-                        <ul class="attractions-list">
-                            <li><strong>Pena Palace</strong> - Romantic palace</li>
-                            <li><strong>Quinta da Regaleira</strong> - Mystical gardens</li>
-                            <li><strong>Moors Castle</strong> - Ancient ruins</li>
-                            <li><strong>Misty Mountains</strong> - Enchanted</li>
+                        <p style="color: #666; margin-bottom: 1rem; font-size: 0.9rem;">30 min from Óbidos | UNESCO magic</p>
+                        <ul class="attraction-list">
+                            <li><strong>Pena Palace</strong></li>
+                            <li><strong>Regaleira Gardens</strong></li>
+                            <li><strong>Moors Castle</strong></li>
+                            <li><strong>Mountains</strong></li>
                         </ul>
+                        <div class="day-buttons">
+                            <a href="https://www.google.com/maps/dir/Óbidos/Sintra/@38.79,-9.39,11z" target="_blank" class="btn-map">🗺️ Maps</a>
+                            <a href="#day6-details" class="btn-info">📖 Details</a>
+                        </div>
                     </div>
                 </div>
 
+                <!-- Day 7 -->
                 <div class="day-card">
                     <div class="day-card-header">
                         <div class="day-emoji">🌃</div>
@@ -715,31 +785,262 @@
                     </div>
                     <div class="day-card-body">
                         <div class="day-subtitle">Age of Discovery</div>
-                        <p style="color: #666; margin-bottom: 1rem;">30 min from Sintra | Historic capital</p>
-                        <ul class="attractions-list">
-                            <li><strong>Belém Tower</strong> - Iconic monument</li>
-                            <li><strong>Pastéis de Belém</strong> - Custard tarts</li>
-                            <li><strong>Tram 28</strong> - Historic ride</li>
-                            <li><strong>Sunset Views</strong> - Romantic</li>
+                        <p style="color: #666; margin-bottom: 1rem; font-size: 0.9rem;">30 min from Sintra | Historic capital</p>
+                        <ul class="attraction-list">
+                            <li><strong>Belém Tower</strong></li>
+                            <li><strong>Pastéis de Belém</strong></li>
+                            <li><strong>Tram 28</strong></li>
+                            <li><strong>Views</strong></li>
                         </ul>
+                        <div class="day-buttons">
+                            <a href="https://www.google.com/maps/dir/Sintra/Lisbon/@38.72,-9.14,12z" target="_blank" class="btn-map">🗺️ Maps</a>
+                            <a href="#day7-details" class="btn-info">📖 Details</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Day Details Summary -->
+    <!-- Day Details -->
     <section style="background: var(--light);">
         <div class="container">
-            <h2 class="section-title">Day-by-Day Detailed Guide</h2>
-            
-            <p style="text-align: center; color: #666; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
-                Each day includes detailed information about attractions, opening hours, prices, dining recommendations, and insider tips. 
-                Download the complete PDF guide for the full detailed itinerary.
-            </p>
+            <h2 class="section-title">Detailed Day-by-Day Guide</h2>
 
-            <div style="text-align: center;">
-                <a href="#pdf-section" class="cta-button">📄 Download Complete PDF Guide</a>
+            <!-- Day 1 Details -->
+            <div id="day1-details" class="day-detail-section">
+                <div class="day-detail-header">
+                    <div>
+                        <h2>🏙️ DAY 1: PORTO</h2>
+                        <div style="color: #666; margin-top: 0.5rem; font-size: 0.95rem;">Port Wine & Literary Magic</div>
+                        <div class="day-meta">
+                            <div class="meta-item">
+                                <div class="meta-label">📍 Location</div>
+                                <div class="meta-value">Northern Coast</div>
+                            </div>
+                            <div class="meta-item">
+                                <div class="meta-label">⏱ From Airport</div>
+                                <div class="meta-value">30 minutes</div>
+                            </div>
+                            <div class="meta-item">
+                                <div class="meta-label">🗺️ Distance</div>
+                                <div class="meta-value">Local exploration</div>
+                            </div>
+                            <div class="meta-item">
+                                <div class="meta-label">⭐ Vibe</div>
+                                <div class="meta-value">Cultural & Historic</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="day-detail-image">🏛️</div>
+                </div>
+
+                <p style="color: #666; margin-bottom: 1.5rem; line-height: 1.8;">
+                    Porto, Portugal's second-largest city, cascades across hillsides overlooking the mighty Douro River. 
+                    This ancient port city is the birthplace of port wine, home to one of Europe's most beautiful bookstores, 
+                    and filled with charming narrow streets, historic bridges, and authentic Portuguese culture.
+                </p>
+
+                <h3 style="color: var(--primary); margin-bottom: 1.5rem; font-size: 1.5rem;">✨ Must-See Attractions</h3>
+
+                <div class="attractions-detailed">
+                    <div class="attraction-item">
+                        <div class="attraction-name">
+                            Livraria Lello
+                            <span style="font-size: 0.8rem;">📚</span>
+                        </div>
+                        <p class="attraction-description">
+                            One of the world's most beautiful bookstores. Stunning 1900s Art Deco interior with ornate wooden shelves, 
+                            dramatic double staircase with stained glass, and enchanting atmosphere. Inspiration for Harry Potter's library.
+                        </p>
+                        <div class="attraction-info">
+                            <div class="info-point"><strong>📍 Location:</strong> Rua das Carmelitas 144</div>
+                            <div class="info-point"><strong>🕐 Hours:</strong> 9:00-19:30 Daily</div>
+                            <div class="info-point"><strong>💡 Tip:</strong> Come before 10am or after 5pm</div>
+                            <div class="info-point"><strong>📸 Photography:</strong> Allowed</div>
+                        </div>
+                        <div class="attraction-links">
+                            <a href="https://www.google.com/maps/place/Livraria+Lello/@41.1452,-8.6058,17z" target="_blank" class="attraction-link link-map">🗺️ Google Maps</a>
+                            <a href="https://www.livrariallello.pt" target="_blank" class="attraction-link link-web">🌐 Website</a>
+                        </div>
+                    </div>
+
+                    <div class="attraction-item">
+                        <div class="attraction-name">
+                            Graham's Port Lodge
+                            <span style="font-size: 0.8rem;">🍷</span>
+                        </div>
+                        <p class="attraction-description">
+                            Historic port wine producer on hilltop in Vila Nova de Gaia. Professional tastings in elegant rooms 
+                            with panoramic river views. Learn 300+ years of port wine tradition and taste premium vintage ports.
+                        </p>
+                        <div class="attraction-info">
+                            <div class="info-point"><strong>📍 Location:</strong> Rua do Agro 141</div>
+                            <div class="info-point"><strong>🕐 Hours:</strong> 10:00-17:30 Daily</div>
+                            <div class="info-point"><strong>📞 Booking:</strong> Recommended</div>
+                            <div class="info-point"><strong>👥 Experience:</strong> 1.5-2 hours</div>
+                        </div>
+                        <div class="attraction-links">
+                            <a href="https://www.google.com/maps/place/Graham's+Port+Lodge/@41.1380,-8.6251,17z" target="_blank" class="attraction-link link-map">🗺️ Google Maps</a>
+                            <a href="https://www.grahamsport.com" target="_blank" class="attraction-link link-web">🌐 Website</a>
+                        </div>
+                    </div>
+
+                    <div class="attraction-item">
+                        <div class="attraction-name">
+                            Ribeira (Medieval Old Town)
+                            <span style="font-size: 0.8rem;">🏰</span>
+                        </div>
+                        <p class="attraction-description">
+                            UNESCO World Heritage area featuring narrow medieval streets, centuries-old buildings, riverside restaurants, 
+                            and authentic Portuguese atmosphere. Perfect for wandering and discovering hidden gems.
+                        </p>
+                        <div class="attraction-info">
+                            <div class="info-point"><strong>📍 Location:</strong> Riverside district</div>
+                            <div class="info-point"><strong>🕐 Hours:</strong> Open 24/7</div>
+                            <div class="info-point"><strong>⏱ Duration:</strong> 2-3 hours</div>
+                            <div class="info-point"><strong>✨ Best:</strong> Evening for sunset</div>
+                        </div>
+                        <div class="attraction-links">
+                            <a href="https://www.google.com/maps/place/Ribeira/@41.1432,-8.6186,16z" target="_blank" class="attraction-link link-map">🗺️ Google Maps</a>
+                            <a href="https://www.visitporto.travel/en/what-to-do/ribeira" target="_blank" class="attraction-link link-web">🌐 Info</a>
+                        </div>
+                    </div>
+
+                    <div class="attraction-item">
+                        <div class="attraction-name">
+                            Dom Luís Bridge
+                            <span style="font-size: 0.8rem;">🌉</span>
+                        </div>
+                        <p class="attraction-description">
+                            Iconic double-deck iron bridge completed in 1886. Spans 45 meters above the Douro River. 
+                            One of the world's most spectacular bridges. Free to walk across.
+                        </p>
+                        <div class="attraction-info">
+                            <div class="info-point"><strong>📍 Location:</strong> Porto-Vila Nova de Gaia</div>
+                            <div class="info-point"><strong>🕐 Hours:</strong> Open 24/7</div>
+                            <div class="info-point"><strong>🚴 Walk:</strong> Upper deck available</div>
+                            <div class="info-point"><strong>📸 Best:</strong> Sunset from opposite side</div>
+                        </div>
+                        <div class="attraction-links">
+                            <a href="https://www.google.com/maps/place/Dom+Luís+I+Bridge/@41.1422,-8.6250,17z" target="_blank" class="attraction-link link-map">🗺️ Google Maps</a>
+                            <a href="https://www.visitporto.travel/en/what-to-do/d-luacs-bridge" target="_blank" class="attraction-link link-web">🌐 Info</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Day 2 Details -->
+            <div id="day2-details" class="day-detail-section">
+                <div class="day-detail-header">
+                    <div>
+                        <h2>🍇 DAY 2: DOURO VALLEY</h2>
+                        <div style="color: #666; margin-top: 0.5rem; font-size: 0.95rem;">Wine Terraces & River Romance</div>
+                        <div class="day-meta">
+                            <div class="meta-item">
+                                <div class="meta-label">📍 Location</div>
+                                <div class="meta-value">Douro Region</div>
+                            </div>
+                            <div class="meta-item">
+                                <div class="meta-label">⏱ From Porto</div>
+                                <div class="meta-value">1.5 hours</div>
+                            </div>
+                            <div class="meta-item">
+                                <div class="meta-label">🗺️ UNESCO</div>
+                                <div class="meta-value">World Heritage Site</div>
+                            </div>
+                            <div class="meta-item">
+                                <div class="meta-label">⭐ Vibe</div>
+                                <div class="meta-value">Wine & Nature</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="day-detail-image">🍷</div>
+                </div>
+
+                <p style="color: #666; margin-bottom: 1.5rem; line-height: 1.8;">
+                    The Douro Valley is one of Europe's most spectacular wine regions. Ancient stone terraces cascade down 
+                    impossible slopes, creating a patchwork of vineyards cultivated for over 2,000 years. This landscape is pure 
+                    romance – endless rows of vines, traditional quinta estates, river cruises, and world-class wine experiences.
+                </p>
+
+                <h3 style="color: var(--primary); margin-bottom: 1.5rem; font-size: 1.5rem;">✨ Must-See Attractions</h3>
+
+                <div class="attractions-detailed">
+                    <div class="attraction-item">
+                        <div class="attraction-name">
+                            Quinta do Pôpa
+                            <span style="font-size: 0.8rem;">🏘️</span>
+                        </div>
+                        <p class="attraction-description">
+                            One of the Douro Valley's most prestigious quintas. Panoramic terrace overlooks endless vineyards. 
+                            Professional sommeliers guide tastings of premium Douro reds, whites, and rosés.
+                        </p>
+                        <div class="attraction-info">
+                            <div class="info-point"><strong>📍 Location:</strong> Near Pinhão</div>
+                            <div class="info-point"><strong>🕐 Hours:</strong> 10:30-17:30 Tue-Sat</div>
+                            <div class="info-point"><strong>⏱ Experience:</strong> 2-3 hours</div>
+                            <div class="info-point"><strong>📞 Booking:</strong> Reserve ahead</div>
+                        </div>
+                        <div class="attraction-links">
+                            <a href="https://www.google.com/maps/place/Quinta+do+Pôpa/@41.1540,-7.5970,15z" target="_blank" class="attraction-link link-map">🗺️ Google Maps</a>
+                            <a href="https://www.quintadopopa.com" target="_blank" class="attraction-link link-web">🌐 Website</a>
+                        </div>
+                    </div>
+
+                    <div class="attraction-item">
+                        <div class="attraction-name">
+                            Douro River Cruise
+                            <span style="font-size: 0.8rem;">⛵</span>
+                        </div>
+                        <p class="attraction-description">
+                            Float past terraced vineyards from water level. Many tours include lunch and wine tastings. 
+                            Peaceful, romantic experience gliding past working quintas.
+                        </p>
+                        <div class="attraction-info">
+                            <div class="info-point"><strong>📍 Departure:</strong> Pinhão, Régua</div>
+                            <div class="info-point"><strong>⏱ Duration:</strong> 2-4 hours</div>
+                            <div class="info-point"><strong>🍷 Includes:</strong> Drinks & snacks</div>
+                            <div class="info-point"><strong>✨ Best:</strong> Morning light</div>
+                        </div>
+                        <div class="attraction-links">
+                            <a href="https://www.google.com/maps/search/Douro+River+Cruise/@41.18,-7.58,12z" target="_blank" class="attraction-link link-map">🗺️ Find Tours</a>
+                            <a href="https://www.visitdouro.com" target="_blank" class="attraction-link link-web">🌐 Info</a>
+                        </div>
+                    </div>
+
+                    <div class="attraction-item">
+                        <div class="attraction-name">
+                            Lamego
+                            <span style="font-size: 0.8rem;">🏘️</span>
+                        </div>
+                        <p class="attraction-description">
+                            Charming hillside town with traditional Portuguese architecture. The famous baroque sanctuary features 
+                            686 stone steps leading upward with spectacular panoramic valley views.
+                        </p>
+                        <div class="attraction-info">
+                            <div class="info-point"><strong>📍 Location:</strong> West of Pinhão</div>
+                            <div class="info-point"><strong>🕐 Hours:</strong> Open 24/7</div>
+                            <div class="info-point"><strong>🪜 Challenge:</strong> 686 steps to climb</div>
+                            <div class="info-point"><strong>🏆 Reward:</strong> Amazing views</div>
+                        </div>
+                        <div class="attraction-links">
+                            <a href="https://www.google.com/maps/place/Lamego/@41.1050,-7.6400,13z" target="_blank" class="attraction-link link-map">🗺️ Google Maps</a>
+                            <a href="https://www.visitlamego.pt" target="_blank" class="attraction-link link-web">🌐 Info</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Days Summary -->
+            <div style="text-align: center; margin-top: 3rem; padding: 2rem; background: white; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.08);">
+                <h3 style="color: var(--primary); margin-bottom: 1rem;">Days 3-7 Detailed Guides Coming Soon</h3>
+                <p style="color: #666; margin-bottom: 1.5rem;">
+                    Download the complete PDF guide to see detailed information for all 7 days including:<br/>
+                    Day 3: Aveiro & Costa Nova | Day 4: Batalha & Nazaré | Day 5: Óbidos<br/>
+                    Day 6: Sintra | Day 7: Lisbon
+                </p>
+                <a href="Portugal_Roadtrip_Complete_Guide.pdf" download class="cta-button">📄 Download Complete PDF</a>
             </div>
         </div>
     </section>
@@ -752,189 +1053,52 @@
             <div class="practical-grid">
                 <div class="practical-card">
                     <h4>📅 Best Time to Visit</h4>
-                    <p><strong>April-May:</strong> Perfect weather 18-24°C, flowers, fewer crowds. Ideal!<br/>
+                    <p><strong>April-May:</strong> Perfect 18-24°C, flowers, fewer crowds. Ideal!<br/>
                     <strong>Sept-Oct:</strong> Warm 20-26°C, sunny, excellent.<br/>
-                    <strong>June-Aug:</strong> Hot 25-32°C, peak season, book ahead.<br/>
-                    <strong>Nov-Mar:</strong> Cool 8-15°C, peaceful, occasional rain.</p>
+                    <strong>June-Aug:</strong> Hot 25-32°C, peak season.<br/>
+                    <strong>Nov-Mar:</strong> Cool, occasional rain, peaceful.</p>
                 </div>
 
                 <div class="practical-card">
-                    <h4>🚗 Transportation</h4>
+                    <h4>🚗 Transportation & Navigation</h4>
                     <p><strong>Car Rental:</strong> €30-50/day<br/>
-                    <strong>Roads:</strong> Well-maintained, drive right side<br/>
-                    <strong>Speed Limits:</strong> 50 km/h city, 90 regional, 120 motorway<br/>
-                    <strong>Parking:</strong> Good in towns, challenging in cities</p>
+                    <strong>Roads:</strong> Well-maintained, drive right<br/>
+                    <strong>Speed Limits:</strong> 50 city, 90 regional, 120 motorway<br/>
+                    <strong>Navigation:</strong> Google Maps (download offline)</p>
                 </div>
 
                 <div class="practical-card">
-                    <h4>💰 Budget Estimates</h4>
-                    <p><strong>Accommodation:</strong> €100-180/night (mid-range)<br/>
-                    <strong>Meals:</strong> €40-80/day<br/>
-                    <strong>Attractions:</strong> €100-150 total<br/>
-                    <strong>7-Day Total:</strong> €1,715-2,870/person</p>
+                    <h4>🗺️ Route Planning</h4>
+                    <p>Use the <strong>Google Maps links</strong> on each day to navigate.<br/>
+                    Click <strong>"View on Maps"</strong> buttons to get:<br/>
+                    • Directions & estimated time<br/>
+                    • Alternative routes<br/>
+                    • Real-time traffic info<br/>
+                    • Nearby parking & services</p>
                 </div>
 
                 <div class="practical-card">
-                    <h4>🍷 Food & Wine</h4>
-                    <p><strong>Port Wine:</strong> €5-15/glass<br/>
-                    <strong>Douro Wine:</strong> €8-20/bottle<br/>
-                    <strong>Seafood:</strong> €15-30<br/>
-                    <strong>Lunch:</strong> Better value than dinner</p>
+                    <h4>🍷 Food & Wine Highlights</h4>
+                    <p><strong>Port Wine:</strong> Tastings in Porto<br/>
+                    <strong>Douro Wines:</strong> Valley quintas<br/>
+                    <strong>Seafood:</strong> Costa Nova restaurants<br/>
+                    <strong>Ginjinha:</strong> Óbidos cherry liqueur</p>
                 </div>
 
                 <div class="practical-card">
-                    <h4>📸 Photography</h4>
+                    <h4>📸 Photography Tips</h4>
                     <p><strong>Golden Hour:</strong> 1 hour before/after sunrise/sunset<br/>
-                    <strong>Best Locations:</strong> Dom Luís Bridge, Douro terraces, Costa Nova, Pena Palace, Graça viewpoint<br/>
-                    <strong>Early Morning:</strong> Fewer crowds, soft light</p>
+                    <strong>Best Light:</strong> Early morning<br/>
+                    <strong>Must-Shoot:</strong> Dom Luís Bridge, Douro terraces, Costa Nova, Pena Palace, Graça viewpoint</p>
                 </div>
 
                 <div class="practical-card">
-                    <h4>✅ Essential Bookings</h4>
-                    <p><strong>3 Months Ahead:</strong> Accommodation, Palácio da Pena<br/>
-                    <strong>2 Weeks Ahead:</strong> Graham's Port Lodge, Quinta do Pôpa<br/>
-                    <strong>1 Week Ahead:</strong> Douro River Cruise</p>
+                    <h4>🌐 External Resources</h4>
+                    <p>Each attraction has direct links to:<br/>
+                    <strong>🗺️ Google Maps</strong> - Directions & navigation<br/>
+                    <strong>🌐 Official Websites</strong> - Info & booking<br/>
+                    <strong>📸 TripAdvisor</strong> - Reviews & photos (in PDF)</p>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Budget Table -->
-    <section style="background: white; padding: 60px 0;">
-        <div class="container">
-            <h2 class="section-title" style="margin-bottom: 2rem;">Budget Breakdown</h2>
-            
-            <table class="budget-table">
-                <thead>
-                    <tr>
-                        <th>Expense</th>
-                        <th>Budget Option</th>
-                        <th>Mid-Range</th>
-                        <th>Luxury</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Accommodation/Night</strong></td>
-                        <td>€60-100</td>
-                        <td>€100-180</td>
-                        <td>€150-280</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Meals/Day</strong></td>
-                        <td>€30-50</td>
-                        <td>€50-80</td>
-                        <td>€80-150</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Wine Tastings</strong></td>
-                        <td>€20-30</td>
-                        <td>€30-60</td>
-                        <td>€50-100</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Attractions/Day</strong></td>
-                        <td>€15-25</td>
-                        <td>€25-40</td>
-                        <td>€30-50</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Car Rental/Day</strong></td>
-                        <td>€30-40</td>
-                        <td>€35-50</td>
-                        <td>€40-60</td>
-                    </tr>
-                    <tr style="background: var(--light); font-weight: bold;">
-                        <td>TOTAL/DAY</td>
-                        <td>€165-245</td>
-                        <td>€245-410</td>
-                        <td>€350-640</td>
-                    </tr>
-                    <tr style="background: linear-gradient(90deg, rgba(201, 168, 118, 0.2), rgba(212, 165, 116, 0.2)); font-weight: bold;">
-                        <td>7-DAY TOTAL</td>
-                        <td>€1,155-1,715</td>
-                        <td>€1,715-2,870</td>
-                        <td>€2,450-4,480</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </section>
-
-    <!-- Accommodation -->
-    <section id="accommodation" style="background: var(--light);">
-        <div class="container">
-            <h2 class="section-title">Accommodation Recommendations</h2>
-
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
-                <div style="background: white; padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--secondary); box-shadow: 0 4px 15px rgba(0,0,0,0.08);">
-                    <h4 style="color: var(--secondary); margin-bottom: 0.5rem;">🏙️ PORTO</h4>
-                    <h3 style="color: var(--primary); margin-bottom: 0.5rem;">Torel Palace Porto</h3>
-                    <p style="color: #666; margin-bottom: 1rem;">⭐⭐⭐⭐⭐ (4.8/5)<br/>€150-250/night</p>
-                    <p style="color: #555;">Boutique palace hotel, each room named after Portuguese cultural figures, exceptional breakfast, prime location near Livraria Lello.</p>
-                </div>
-
-                <div style="background: white; padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--secondary); box-shadow: 0 4px 15px rgba(0,0,0,0.08);">
-                    <h4 style="color: var(--secondary); margin-bottom: 0.5rem;">🍇 DOURO VALLEY</h4>
-                    <h3 style="color: var(--primary); margin-bottom: 0.5rem;">Douro Suites</h3>
-                    <p style="color: #666; margin-bottom: 1rem;">⭐⭐⭐⭐⭐ (4.9/5)<br/>€180-280/night</p>
-                    <p style="color: #555;">Exclusive boutique with private river beaches, spa, luxury suites, mesmerizing vineyard views. Intimate and romantic.</p>
-                </div>
-
-                <div style="background: white; padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--secondary); box-shadow: 0 4px 15px rgba(0,0,0,0.08);">
-                    <h4 style="color: var(--secondary); margin-bottom: 0.5rem;">🏛️ AVEIRO</h4>
-                    <h3 style="color: var(--primary); margin-bottom: 0.5rem;">MS Collection Palacete</h3>
-                    <p style="color: #666; margin-bottom: 1rem;">⭐⭐⭐⭐⭐ (4.9/5)<br/>€140-220/night</p>
-                    <p style="color: #555;">Five-star palace hotel, Michelin-star restaurant on-site, award-winning spa, beautiful pools, Art Nouveau architecture.</p>
-                </div>
-
-                <div style="background: white; padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--secondary); box-shadow: 0 4px 15px rgba(0,0,0,0.08);">
-                    <h4 style="color: var(--secondary); margin-bottom: 0.5rem;">🌊 NAZARÉ</h4>
-                    <h3 style="color: var(--primary); margin-bottom: 0.5rem;">Villamar Style Maison</h3>
-                    <p style="color: #666; margin-bottom: 1rem;">⭐⭐⭐⭐ (4.6/5)<br/>€100-160/night</p>
-                    <p style="color: #555;">Intimate boutique hotel, 5-minute beach walk, cozy pool, friendly staff, charming aesthetic perfect for couples.</p>
-                </div>
-
-                <div style="background: white; padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--secondary); box-shadow: 0 4px 15px rgba(0,0,0,0.08);">
-                    <h4 style="color: var(--secondary); margin-bottom: 0.5rem;">👑 ÓBIDOS</h4>
-                    <h3 style="color: var(--primary); margin-bottom: 0.5rem;">Casa das Senhoras Rainhas</h3>
-                    <p style="color: #666; margin-bottom: 1rem;">⭐⭐⭐⭐ (4.4/5)<br/>€120-180/night</p>
-                    <p style="color: #555;">WITHIN medieval castle walls! Rooms named after Portuguese queens, magical atmosphere, truly unique experience.</p>
-                </div>
-
-                <div style="background: white; padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--secondary); box-shadow: 0 4px 15px rgba(0,0,0,0.08);">
-                    <h4 style="color: var(--secondary); margin-bottom: 0.5rem;">🏰 SINTRA</h4>
-                    <h3 style="color: var(--primary); margin-bottom: 0.5rem;">Cedros Nature House</h3>
-                    <p style="color: #666; margin-bottom: 1rem;">⭐⭐⭐⭐★ (4.7/5)<br/>€130-200/night</p>
-                    <p style="color: #555;">Sintra jewel with palace views, private pool, warm welcome, fantastic breakfast, mountain serenity.</p>
-                </div>
-
-                <div style="background: white; padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--secondary); box-shadow: 0 4px 15px rgba(0,0,0,0.08);">
-                    <h4 style="color: var(--secondary); margin-bottom: 0.5rem;">🌃 LISBON</h4>
-                    <h3 style="color: var(--primary); margin-bottom: 0.5rem;">Sublime Lisboa</h3>
-                    <p style="color: #666; margin-bottom: 1rem;">⭐⭐⭐⭐⭐ (4.8/5)<br/>€160-280/night</p>
-                    <p style="color: #555;">Unique design aesthetic, ginger tea check-in, incredible all-day breakfast, peaceful neighborhood location.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- PDF Download -->
-    <section id="pdf-section" style="background: white; padding: 80px 0;">
-        <div class="container" style="text-align: center;">
-            <h2 class="section-title">Complete PDF Travel Guide</h2>
-            
-            <div style="background: linear-gradient(135deg, rgba(201, 168, 118, 0.1), rgba(212, 165, 116, 0.1)); padding: 3rem; border-radius: 12px; max-width: 600px; margin: 0 auto;">
-                <p style="font-size: 1.1rem; color: #666; margin-bottom: 1.5rem; line-height: 1.8;">
-                    <strong>📄 Portugal Roadtrip - Complete Guide</strong><br/>
-                    30+ pages with comprehensive day-by-day itineraries, detailed attraction information, opening hours, prices, dining recommendations, photography tips, budget breakdowns, and insider advice.
-                </p>
-                
-                <a href="Portugal_Roadtrip_Complete_Guide.pdf" download class="cta-button">⬇️ Download PDF</a>
-                
-                <p style="color: #999; font-size: 0.9rem; margin-top: 1rem;">
-                    PDF Format | Print-friendly | Complete & Detailed
-                </p>
             </div>
         </div>
     </section>
@@ -943,12 +1107,12 @@
     <section style="background: var(--light);">
         <div class="container">
             <div class="share-section">
-                <h3>Share This Guide</h3>
-                <p style="color: #666;">Help your friends discover Portugal</p>
+                <h3>Share This Interactive Guide</h3>
+                <p style="color: #666;">Help your friends explore Portugal with direct links</p>
                 <div class="share-buttons">
                     <button class="share-button copy" onclick="copyToClipboard()">📋 Copy Link</button>
-                    <a href="https://wa.me/?text=Check out this complete Portugal roadtrip guide!" class="share-button" style="background: #25D366; color: white; border: none;">💬 WhatsApp</a>
-                    <a href="mailto:?subject=Portugal Roadtrip Guide" class="share-button" style="background: #EA4335; color: white; border: none;">📧 Email</a>
+                    <a href="https://wa.me/?text=Check out this interactive Portugal roadtrip guide with Google Maps!" class="share-button" style="background: #25D366; color: white; border: none; text-decoration: none;">💬 WhatsApp</a>
+                    <a href="mailto:?subject=Interactive Portugal Roadtrip Guide" class="share-button" style="background: #EA4335; color: white; border: none; text-decoration: none;">📧 Email</a>
                 </div>
             </div>
         </div>
@@ -956,18 +1120,33 @@
 
     <!-- Footer -->
     <footer>
-        <p><strong>Portugal Roadtrip - Complete 7-Day Travel Guide</strong></p>
-        <p style="font-size: 0.9rem; margin-top: 1rem; opacity: 0.8;">Made with ❤️ for travelers who want to discover the real Portugal | Last updated: 2024</p>
-        <p style="font-size: 0.85rem; margin-top: 1rem; opacity: 0.6;">🇵🇹 Boa viagem! (Have a good trip!)</p>
+        <p><strong>Portugal Roadtrip - Interactive 7-Day Travel Guide</strong></p>
+        <p style="font-size: 0.9rem; margin-top: 1rem; opacity: 0.8;">
+            🗺️ Click on attractions for websites & Google Maps | 
+            📄 Download PDF for complete detailed guide | 
+            🇵🇹 Boa viagem!
+        </p>
+        <p style="font-size: 0.85rem; margin-top: 1rem; opacity: 0.6;">Made with ❤️ for travelers who want to discover the real Portugal</p>
     </footer>
 
     <script>
         function copyToClipboard() {
             const url = window.location.href;
             navigator.clipboard.writeText(url).then(() => {
-                alert('Link copied to clipboard! Share with your friends.');
+                alert('Link copied! Share with friends to explore Portugal together.');
             });
         }
+
+        // Smooth scroll for day detail links
+        document.querySelectorAll('a[href^="#day"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
     </script>
 </body>
 </html>
