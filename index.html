@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portugal Roadtrip - Interactieve 7-daagse reizigerskaart</title>
-    <meta name="description" content="Interactieve 7-daagse Portugal roadtrip gids met Google Maps, attractieverwijzingen en gedetailleerde itineraria's.">
+    <title>Portugal Roadtrip - Interactieve 7-daagse Reizigerskaart</title>
+    <meta name="description" content="Interactieve 7-daagse Portugal roadtrip gids met Google Maps, attractielinks en gedetailleerde itineraria's.">
     <style>
         * {
             margin: 0;
@@ -189,177 +189,261 @@
         }
 
         .day-card-header {
-            background: linear-gradient(135deg, var(--primary), var(--dark));
-            color: var(--light);
-            padding: 1.5rem;
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            color: white;
+            padding: 2rem;
             text-align: center;
+            position: relative;
         }
 
         .day-number {
-            font-size: 0.9rem;
-            color: var(--accent);
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
+            font-size: 3rem;
+            font-weight: 700;
+            opacity: 0.3;
+            position: absolute;
+            right: 15px;
         }
 
-        .day-title {
+        .day-emoji {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .day-city {
             font-size: 1.8rem;
-            margin: 0.5rem 0;
             font-weight: 700;
         }
 
-        .day-content {
+        .day-card-body {
             padding: 2rem;
         }
 
-        .day-content p {
-            color: #666;
-            margin-bottom: 1.5rem;
-            line-height: 1.8;
+        .day-subtitle {
+            color: var(--secondary);
+            font-style: italic;
+            margin-bottom: 1rem;
         }
 
-        .day-content strong {
+        .attraction-list {
+            list-style: none;
+            margin-bottom: 1rem;
+        }
+
+        .attraction-list li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            color: #666;
+        }
+
+        .attraction-list li:last-child {
+            border-bottom: none;
+        }
+
+        .attraction-list strong {
             color: var(--primary);
         }
 
-        .day-links {
+        .day-buttons {
             display: flex;
-            gap: 1rem;
+            gap: 0.5rem;
+            margin-top: 1rem;
             flex-wrap: wrap;
         }
 
-        .day-link {
-            padding: 0.8rem 1.5rem;
-            background: linear-gradient(135deg, var(--secondary), var(--accent));
-            color: white;
+        .btn-small {
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
             text-decoration: none;
-            border-radius: 5px;
+            font-size: 0.85rem;
             font-weight: 600;
-            font-size: 0.9rem;
             transition: all 0.3s;
             border: none;
             cursor: pointer;
+            display: inline-block;
         }
 
-        .day-link:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 15px rgba(201, 168, 118, 0.4);
-        }
-
-        /* Detailed Content Section */
-        .detailed-content {
-            background: white;
-            border-radius: 8px;
-            padding: 3rem;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            margin-bottom: 3rem;
-        }
-
-        .detailed-content h2 {
-            color: var(--primary);
-            margin-bottom: 1rem;
-            font-size: 2.2rem;
-        }
-
-        .detailed-content .day-details-intro {
-            font-size: 1.1rem;
-            color: #666;
-            margin-bottom: 2rem;
-            line-height: 1.8;
-        }
-
-        /* Attractions Detailed */
-        .attractions-detailed {
-            display: grid;
-            gap: 2.5rem;
-            margin: 2rem 0;
-        }
-
-        .attraction-item {
-            padding: 2rem;
-            background: #f9f9f9;
-            border-radius: 8px;
-            border-left: 4px solid var(--secondary);
-            transition: all 0.3s;
-        }
-
-        .attraction-item:hover {
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            background: white;
-        }
-
-        .attraction-name {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .attraction-description {
-            color: #666;
-            margin-bottom: 1.5rem;
-            line-height: 1.8;
-        }
-
-        .attraction-info {
-            display: grid;
-            gap: 0.8rem;
-            margin: 1.5rem 0;
-            background: white;
-            padding: 1.5rem;
-            border-radius: 5px;
-        }
-
-        .info-point {
-            color: #555;
-            font-size: 0.95rem;
-        }
-
-        .info-point strong {
-            color: var(--primary);
-        }
-
-        .attraction-links {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            margin-top: 1.5rem;
-        }
-
-        .attraction-link {
-            padding: 0.7rem 1.3rem;
-            border-radius: 5px;
+        .btn-map {
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
             text-decoration: none;
+            font-size: 0.85rem;
             font-weight: 600;
-            font-size: 0.9rem;
             transition: all 0.3s;
             display: inline-block;
         }
 
-        .link-map {
-            background: #4285F4;
-            color: white;
+        .btn-map:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(201, 168, 118, 0.3);
         }
 
-        .link-map:hover {
-            background: #357ae8;
-            transform: scale(1.03);
+        .btn-info {
+            background: var(--light);
+            color: var(--primary);
+            border: 2px solid var(--secondary);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-block;
         }
 
-        .link-web {
+        .btn-info:hover {
             background: var(--secondary);
             color: white;
         }
 
+        /* Day Details */
+        .day-detail-section {
+            background: white;
+            border-radius: 8px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .day-detail-header {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .day-detail-header h2 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .day-meta {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .meta-item {
+            padding: 0.8rem;
+            background: var(--light);
+            border-radius: 4px;
+        }
+
+        .meta-label {
+            color: var(--secondary);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .meta-value {
+            font-size: 1rem;
+            color: var(--primary);
+            margin-top: 0.3rem;
+        }
+
+        .day-detail-image {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+            border-radius: 8px;
+            height: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        .attractions-detailed {
+            margin-top: 2rem;
+        }
+
+        .attraction-item {
+            background: var(--light);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--secondary);
+        }
+
+        .attraction-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .attraction-links {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .attraction-link {
+            padding: 0.6rem 1rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .link-map {
+            background: linear-gradient(135deg, #4285F4, #34A853);
+            color: white;
+        }
+
+        .link-map:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(66, 133, 244, 0.3);
+        }
+
+        .link-web {
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            color: white;
+        }
+
         .link-web:hover {
-            background: #b39363;
-            transform: scale(1.03);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(201, 168, 118, 0.3);
+        }
+
+        .attraction-description {
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .attraction-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .info-point {
+            padding: 0.5rem 0;
+        }
+
+        .info-point strong {
+            color: var(--secondary);
         }
 
         /* Practical Section */
         .practical-section {
-            background: #f9f9f9;
+            padding: 80px 0;
+            background: white;
         }
 
         .practical-grid {
@@ -369,187 +453,194 @@
         }
 
         .practical-card {
-            background: white;
+            background: linear-gradient(135deg, rgba(201, 168, 118, 0.1) 0%, rgba(212, 165, 116, 0.1) 100%);
             padding: 2rem;
             border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            transition: all 0.3s;
-        }
-
-        .practical-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+            border-left: 4px solid var(--secondary);
         }
 
         .practical-card h4 {
-            color: var(--primary);
+            color: var(--secondary);
+            font-size: 1.3rem;
             margin-bottom: 1rem;
-            font-size: 1.2rem;
         }
 
         .practical-card p {
             color: #666;
-            line-height: 1.8;
             font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: var(--light);
+            padding: 3rem;
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        /* CTA Button */
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            color: white;
+            padding: 1.2rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 2rem;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 35px rgba(201, 168, 118, 0.35);
         }
 
         /* Share Section */
         .share-section {
             text-align: center;
-            padding: 3rem;
+            padding: 2.5rem;
             background: white;
             border-radius: 8px;
+            margin: 4rem 0;
             box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-        }
-
-        .share-section h3 {
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-            font-size: 1.8rem;
         }
 
         .share-buttons {
             display: flex;
-            gap: 1rem;
             justify-content: center;
-            flex-wrap: wrap;
+            gap: 1rem;
             margin-top: 1.5rem;
+            flex-wrap: wrap;
         }
 
         .share-button {
             padding: 0.9rem 1.8rem;
-            border-radius: 5px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.9rem;
             font-weight: 600;
-            font-size: 0.95rem;
             transition: all 0.3s;
-            border: none;
             cursor: pointer;
+            border: 2px solid transparent;
         }
 
         .share-button.copy {
+            background: var(--light);
+            color: var(--primary);
+            border-color: var(--secondary);
+        }
+
+        .share-button.copy:hover {
             background: var(--secondary);
             color: white;
         }
 
-        .share-button.copy:hover {
-            background: #b39363;
-            transform: scale(1.05);
-        }
-
-        /* Footer */
-        footer {
-            background: linear-gradient(135deg, var(--primary), var(--dark));
-            color: var(--light);
-            text-align: center;
-            padding: 3rem 2rem;
-        }
-
-        footer p {
-            margin: 0.5rem 0;
-        }
-
-        /* CTA Button */
-        .cta-button {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background: linear-gradient(135deg, var(--secondary), var(--accent));
+        /* Interactive Elements */
+        .toggle-button {
+            background: var(--secondary);
             color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 700;
-            margin-top: 1rem;
-            transition: all 0.3s;
             border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
             cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
         }
 
-        .cta-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 25px rgba(201, 168, 118, 0.4);
+        .toggle-button:hover {
+            background: var(--accent);
+        }
+
+        .hidden {
+            display: none;
         }
 
         /* Responsive */
         @media (max-width: 768px) {
-            nav {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            nav a {
-                margin-left: 0;
-            }
-
             .hero h1 {
                 font-size: 2.2rem;
             }
 
             .section-title {
-                font-size: 2rem;
+                font-size: 1.8rem;
             }
 
-            .detailed-content {
-                padding: 1.5rem;
-            }
-
-            .days-grid {
+            .day-detail-header {
                 grid-template-columns: 1fr;
+            }
+
+            .day-detail-image {
+                height: 250px;
+            }
+
+            nav a {
+                margin-left: 1rem;
+                font-size: 0.8rem;
+            }
+
+            .day-meta {
+                grid-template-columns: 1fr;
+            }
+
+            .day-detail-section {
+                padding: 1.5rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
+    <!-- Header -->
     <header>
         <nav>
-            <div class="logo">🇵🇹 Portugal Roadtrip</div>
+            <div class="logo">Portugal 🗺️</div>
             <div>
-                <a href="#overview">Overzicht</a>
-                <a href="#days">Dagprogramma's</a>
-                <a href="#detailed">Details</a>
-                <a href="#practical">Praktisch</a>
+                <a href="#overview">Route</a>
+                <a href="#days">Dagen</a>
+                <a href="#practical">Info</a>
             </div>
         </nav>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Hero -->
     <section class="hero">
         <h1>Portugal Roadtrip</h1>
-        <p class="subtitle">Ontdek de magie van Portugal in 7 dagen</p>
-        <p class="description">
-            Een volledig interactieve reisroute met Google Maps, attractiebeschrijvingen en gedetailleerde itineraria's 
-            voor de perfecte Portugal-reis. Klik op attracties voor directe kaarten en websites!
-        </p>
+        <p class="subtitle">Interactieve 7-daagse Reizigerskaart</p>
+        <p class="description">Ontdek Portugal met directe links naar attracties, Google Maps-routes en gedetailleerde itineraria's. Klik op attracties om hun websites te bezoeken en navigeer met Google Maps.</p>
     </section>
 
     <!-- Overview -->
     <section id="overview">
         <div class="container">
-            <h2 class="section-title">Je 7-daagse Portugal-avontuur</h2>
-
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 3rem;">
-                <div style="text-align: center; padding: 2rem; background: white; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.08);">
-                    <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">7</div>
-                    <h3 style="color: var(--primary); margin-bottom: 0.5rem;">Dagen</h3>
-                    <p style="color: #666;">Porto, Douro Valley, en meer</p>
-                </div>
-                <div style="text-align: center; padding: 2rem; background: white; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.08);">
-                    <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">5</div>
-                    <h3 style="color: var(--primary); margin-bottom: 0.5rem;">Steden</h3>
-                    <p style="color: #666;">Porto, Douro, Aveiro, Óbidos, Lissabon</p>
-                </div>
-                <div style="text-align: center; padding: 2rem; background: white; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.08);">
-                    <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">50+</div>
-                    <h3 style="color: var(--primary); margin-bottom: 0.5rem;">Attracties</h3>
-                    <p style="color: #666;">Met kaarten en websites</p>
-                </div>
-            </div>
-
-            <div style="background: linear-gradient(135deg, var(--primary), var(--dark)); color: var(--light); padding: 3rem 2rem; border-radius: 8px; text-align: center; margin-bottom: 3rem;">
-                <h3 style="font-size: 1.8rem; margin-bottom: 1rem;">De volledige gids downloaden</h3>
-                <p style="margin-bottom: 1.5rem; font-size: 1.05rem;">
-                    Download de gratis PDF met nog meer details, fotokansen, en praktische tips
+            <h2 class="section-title">Jouw 7-daagse Reis</h2>
+            
+            <div style="background: white; padding: 2rem; border-radius: 8px; margin-bottom: 2rem; box-shadow: 0 4px 15px rgba(0,0,0,0.08);">
+                <p style="font-size: 1.05rem; line-height: 1.8; margin-bottom: 1rem;">
+                    <strong>Welkom in Portugal!</strong><br/>
+                    Deze interactieve 7-daagse reisroute neemt je mee langs de mooiste bestemmingen van Portugal. 
+                    Je begint in Porto, een stad doordrenkt van geschiedenis en thuisbasis van 's werelds beste portwijn. 
+                    Daarna reis je door de terrasvormige wijngaarden van de Douro-vallei, ontdek je kleurrijke kustdorpjes, 
+                    verken je middeleeuwse vestingsteden, bezoek je romantische bergpaleizenin het mistige Sintra, 
+                    en sluit je af in het bruisende Lissabon.
                 </p>
-                <a href="Portugal_Roadtrip_Complete_Guide.pdf" download class="cta-button">📄 Download Volledige Gids (PDF)</a>
+                <p style="color: #666; line-height: 1.7;">
+                    <strong>Interactieve functies:</strong><br/>
+                    🗺️ Klik op "Bekijk op kaart" voor routes en routebeschrijvingen<br/>
+                    🌐 Bezoek attractiewebsites direct<br/>
+                    📍 Navigeer met Google Maps<br/>
+                    💬 Deel je reis met vrienden
+                </p>
             </div>
         </div>
     </section>
@@ -557,47 +648,166 @@
     <!-- Days Overview -->
     <section id="days">
         <div class="container">
-            <h2 class="section-title">Je dagprogramma's</h2>
-
+            <h2 class="section-title">7 Dagen in één oogopslag</h2>
+            
             <div class="days-grid">
+                <!-- Dag 1 -->
                 <div class="day-card">
                     <div class="day-card-header">
-                        <div class="day-number">Dag 1</div>
-                        <div class="day-title">Porto</div>
+                        <div class="day-emoji">🏙️</div>
+                        <div class="day-city">Porto</div>
+                        <div class="day-number">1</div>
                     </div>
-                    <div class="day-content">
-                        <p>Aankomst in Porto, verken de middeleeuwse straatjes, de Dom Luís Bridge, en geniet van Port wine.</p>
-                        <div class="day-links">
-                            <a href="#day1-detailed" class="day-link">Bekijk Details →</a>
-                            <a href="https://www.google.com/maps/place/Porto,+Portugal/" target="_blank" class="day-link">🗺️ Kaart</a>
+                    <div class="day-card-body">
+                        <div class="day-subtitle">Portwijn & Literaire Magie</div>
+                        <p style="color: #666; margin-bottom: 1rem; font-size: 0.9rem;">30 min vanaf luchthaven | Volle dag</p>
+                        <ul class="attraction-list">
+                            <li><strong>Livraria Lello</strong></li>
+                            <li><strong>Graham's Port Lodge</strong></li>
+                            <li><strong>Ribeira</strong></li>
+                            <li><strong>Dom Luís-brug</strong></li>
+                        </ul>
+                        <div class="day-buttons">
+                            <a href="https://www.google.com/maps/dir/Porto+Airport/Livraria+Lello/@41.1451,-8.6059,15z" target="_blank" class="btn-map">🗺️ Kaart</a>
+                            <a href="#day1-details" class="btn-info">📖 Details</a>
                         </div>
                     </div>
                 </div>
 
+                <!-- Dag 2 -->
                 <div class="day-card">
                     <div class="day-card-header">
-                        <div class="day-number">Dag 2</div>
-                        <div class="day-title">Douro Valley</div>
+                        <div class="day-emoji">🍇</div>
+                        <div class="day-city">Douro-vallei</div>
+                        <div class="day-number">2</div>
                     </div>
-                    <div class="day-content">
-                        <p>Rijd naar de pittoreske Douro Valley, proef druiven, en cruise over de rivier met wijngaarden.</p>
-                        <div class="day-links">
-                            <a href="#day2-detailed" class="day-link">Bekijk Details →</a>
-                            <a href="https://www.google.com/maps/place/Douro+Valley,+Portugal/" target="_blank" class="day-link">🗺️ Kaart</a>
+                    <div class="day-card-body">
+                        <div class="day-subtitle">Wijnterrassen & Romantiek</div>
+                        <p style="color: #666; margin-bottom: 1rem; font-size: 0.9rem;">1,5 uur van Porto | UNESCO-erfgoed</p>
+                        <ul class="attraction-list">
+                            <li><strong>Quinta do Pôpa</strong></li>
+                            <li><strong>Wijngaarden</strong></li>
+                            <li><strong>Riviercruise</strong></li>
+                            <li><strong>Lamego</strong></li>
+                        </ul>
+                        <div class="day-buttons">
+                            <a href="https://www.google.com/maps/dir/Porto/Douro+Valley/@41.15,-7.6,10z" target="_blank" class="btn-map">🗺️ Kaart</a>
+                            <a href="#day2-details" class="btn-info">📖 Details</a>
                         </div>
                     </div>
                 </div>
 
+                <!-- Dag 3 -->
                 <div class="day-card">
                     <div class="day-card-header">
-                        <div class="day-number">Dag 3-7</div>
-                        <div class="day-title">Aveiro, Óbidos, Sintra</div>
+                        <div class="day-emoji">🏛️</div>
+                        <div class="day-city">Aveiro</div>
+                        <div class="day-number">3</div>
                     </div>
-                    <div class="day-content">
-                        <p>Aveiro, Nazaré, Óbidos kasteel, Sintra's Pena Paleis, en dynamische Lissabon.</p>
-                        <div class="day-links">
-                            <a href="Portugal_Roadtrip_Complete_Guide.pdf" class="day-link">📄 Volledige Gids</a>
-                            <a href="https://www.google.com/maps/place/Lisbon,+Portugal/" target="_blank" class="day-link">🗺️ Kaart</a>
+                    <div class="day-card-body">
+                        <div class="day-subtitle">Kunst & Kleurrijke Kust</div>
+                        <p style="color: #666; margin-bottom: 1rem; font-size: 0.9rem;">1,5 uur van Douro | UNESCO-centrum</p>
+                        <ul class="attraction-list">
+                            <li><strong>Art Nouveau</strong></li>
+                            <li><strong>Moliceiro-boten</strong></li>
+                            <li><strong>Costa Nova</strong></li>
+                            <li><strong>Stranden</strong></li>
+                        </ul>
+                        <div class="day-buttons">
+                            <a href="https://www.google.com/maps/dir/Douro+Valley/Aveiro/@40.65,-8.65,11z" target="_blank" class="btn-map">🗺️ Kaart</a>
+                            <a href="#day3-details" class="btn-info">📖 Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dag 4 -->
+                <div class="day-card">
+                    <div class="day-card-header">
+                        <div class="day-emoji">🌊</div>
+                        <div class="day-city">Batalha & Nazaré</div>
+                        <div class="day-number">4</div>
+                    </div>
+                    <div class="day-card-body">
+                        <div class="day-subtitle">Geschiedenis & Oceaandrama</div>
+                        <p style="color: #666; margin-bottom: 1rem; font-size: 0.9rem;">45 min van Costa Nova | Dramatisch</p>
+                        <ul class="attraction-list">
+                            <li><strong>Klooster van Batalha</strong></li>
+                            <li><strong>Farol Vuurtoren</strong></li>
+                            <li><strong>Nazaré</strong></li>
+                            <li><strong>Kliffen</strong></li>
+                        </ul>
+                        <div class="day-buttons">
+                            <a href="https://www.google.com/maps/dir/Aveiro/Batalha+Monastery/@39.66,-8.83,11z" target="_blank" class="btn-map">🗺️ Kaart</a>
+                            <a href="#day4-details" class="btn-info">📖 Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dag 5 -->
+                <div class="day-card">
+                    <div class="day-card-header">
+                        <div class="day-emoji">👑</div>
+                        <div class="day-city">Óbidos</div>
+                        <div class="day-number">5</div>
+                    </div>
+                    <div class="day-card-body">
+                        <div class="day-subtitle">Middeleeuws Sprookje</div>
+                        <p style="color: #666; margin-bottom: 1rem; font-size: 0.9rem;">1 uur van Nazaré | Perfecte stad</p>
+                        <ul class="attraction-list">
+                            <li><strong>Middeleeuwse Muren</strong></li>
+                            <li><strong>Ginjinha</strong></li>
+                            <li><strong>Straatjes</strong></li>
+                            <li><strong>Kasteel</strong></li>
+                        </ul>
+                        <div class="day-buttons">
+                            <a href="https://www.google.com/maps/dir/Nazar%C3%A9/%C3%93bidos/@39.36,-9.15,11z" target="_blank" class="btn-map">🗺️ Kaart</a>
+                            <a href="#day5-details" class="btn-info">📖 Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dag 6 -->
+                <div class="day-card">
+                    <div class="day-card-header">
+                        <div class="day-emoji">🏰</div>
+                        <div class="day-city">Sintra</div>
+                        <div class="day-number">6</div>
+                    </div>
+                    <div class="day-card-body">
+                        <div class="day-subtitle">Paleizen & Mystiek</div>
+                        <p style="color: #666; margin-bottom: 1rem; font-size: 0.9rem;">30 min van Óbidos | UNESCO-magie</p>
+                        <ul class="attraction-list">
+                            <li><strong>Pena Paleis</strong></li>
+                            <li><strong>Regaleira-tuinen</strong></li>
+                            <li><strong>Kasteel van de Moren</strong></li>
+                            <li><strong>Bergen</strong></li>
+                        </ul>
+                        <div class="day-buttons">
+                            <a href="https://www.google.com/maps/dir/%C3%93bidos/Sintra/@38.79,-9.39,11z" target="_blank" class="btn-map">🗺️ Kaart</a>
+                            <a href="#day6-details" class="btn-info">📖 Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dag 7 -->
+                <div class="day-card">
+                    <div class="day-card-header">
+                        <div class="day-emoji">🌃</div>
+                        <div class="day-city">Lissabon</div>
+                        <div class="day-number">7</div>
+                    </div>
+                    <div class="day-card-body">
+                        <div class="day-subtitle">Tijdperk van Ontdekking</div>
+                        <p style="color: #666; margin-bottom: 1rem; font-size: 0.9rem;">30 min van Sintra | Historische hoofdstad</p>
+                        <ul class="attraction-list">
+                            <li><strong>Toren van Belém</strong></li>
+                            <li><strong>Pastéis de Belém</strong></li>
+                            <li><strong>Tram 28</strong></li>
+                            <li><strong>Uitzichtpunten</strong></li>
+                        </ul>
+                        <div class="day-buttons">
+                            <a href="https://www.google.com/maps/dir/Sintra/Lisbon/@38.72,-9.14,12z" target="_blank" class="btn-map">🗺️ Kaart</a>
+                            <a href="#day7-details" class="btn-info">📖 Details</a>
                         </div>
                     </div>
                 </div>
@@ -605,98 +815,172 @@
         </div>
     </section>
 
-    <!-- Detailed Day Information -->
-    <section id="detailed">
+    <!-- Day Details -->
+    <section style="background: var(--light);">
         <div class="container">
-            <h2 class="section-title">Gedetailleerde dagprogramma's</h2>
+            <h2 class="section-title">Gedetailleerde Dag-voor-dag Gids</h2>
 
-            <!-- Day 1 Detailed -->
-            <div id="day1-detailed" class="detailed-content">
-                <h2>🌟 Dag 1: Porto - Stad van Charme & Wijn</h2>
-                <p class="day-details-intro">
-                    Porto begroet je met middeleeuwse architectuur, kalmte langs de rivier, en wereld-beroemde Port wijnen. 
-                    Dit is een plaats waar de geschiedenis ademt en elke steeg een verhaal vertelt. Verken de pittoreske 
-                    Ribeira-buurt met kronkelende straatjes, de ikonische Dom Luís-brug, en traditionele wijnhuizen op de linkeroever.
+            <!-- Dag 1 Details -->
+            <div id="day1-details" class="day-detail-section">
+                <div class="day-detail-header">
+                    <div>
+                        <h2>🏙️ DAG 1: PORTO</h2>
+                        <div style="color: #666; margin-top: 0.5rem; font-size: 0.95rem;">Portwijn & Literaire Magie</div>
+                        <div class="day-meta">
+                            <div class="meta-item">
+                                <div class="meta-label">📍 Locatie</div>
+                                <div class="meta-value">Noordkust</div>
+                            </div>
+                            <div class="meta-item">
+                                <div class="meta-label">⏱ Vanaf Luchthaven</div>
+                                <div class="meta-value">30 minuten</div>
+                            </div>
+                            <div class="meta-item">
+                                <div class="meta-label">🗺️ Afstand</div>
+                                <div class="meta-value">Lokale verkenning</div>
+                            </div>
+                            <div class="meta-item">
+                                <div class="meta-label">⭐ Sfeer</div>
+                                <div class="meta-value">Cultureel & Historisch</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="day-detail-image">🏛️</div>
+                </div>
+
+                <p style="color: #666; margin-bottom: 1.5rem; line-height: 1.8;">
+                    Porto, de op één na grootste stad van Portugal, strekt zich uit over heuvels met uitzicht op de machtige Douro-rivier. 
+                    Deze oude havenstad is de geboorteplaats van portwijn, thuisbasis van een van Europa's mooiste boekhandels, 
+                    en vol charmante smalle straatjes, historische bruggen en authentieke Portugese cultuur.
                 </p>
 
-                <h3 style="color: var(--primary); margin-bottom: 1.5rem; font-size: 1.5rem;">✨ Musthave attracties</h3>
+                <h3 style="color: var(--primary); margin-bottom: 1.5rem; font-size: 1.5rem;">✨ Niet te missen Attracties</h3>
 
                 <div class="attractions-detailed">
                     <div class="attraction-item">
                         <div class="attraction-name">
-                            Dom Luís Bridge
-                            <span style="font-size: 0.8rem;">🌉</span>
-                        </div>
-                        <p class="attraction-description">
-                            Een meesterwerk van ambacht - twee niveaus van ijzeren bogen die zich 45 meter boven de Douro uitstrekken. 
-                            Neem de lift naar het bovendek voor adembenemend uitzicht en fotografische kansen.
-                        </p>
-                        <div class="attraction-info">
-                            <div class="info-point"><strong>📍 Locatie:</strong> Ribeira-district</div>
-                            <div class="info-point"><strong>🕐 Uren:</strong> 24/7 (gratis)</div>
-                            <div class="info-point"><strong>⏱ Bezoek:</strong> 1-2 uur</div>
-                            <div class="info-point"><strong>📸 Tips:</strong> Zonsondergang is het beste</div>
-                        </div>
-                        <div class="attraction-links">
-                            <a href="https://www.google.com/maps/place/Ponte+Dom+Lu%C3%ADs/@41.1746,-8.1417,15z" target="_blank" class="attraction-link link-map">🗺️ Google Maps</a>
-                            <a href="https://en.wikipedia.org/wiki/Dom_Lu%C3%ADs_Bridge" target="_blank" class="attraction-link link-web">🌐 Info</a>
-                        </div>
-                    </div>
-
-                    <div class="attraction-item">
-                        <div class="attraction-name">
-                            Livraria Lello (Lello Boekhandel)
+                            Livraria Lello
                             <span style="font-size: 0.8rem;">📚</span>
                         </div>
                         <p class="attraction-description">
-                            Een van de mooiste boekenhandels ter wereld! Adembenemend in rood- en goudtinten met een boeiende 
-                            houten trap. Breng een uur door tussen de klassieke portuaanse architectuur en antieke boeken.
+                            Een van 's werelds mooiste boekhandels. Adembenemend Art Deco-interieur uit 1900 met sierlijke houten 
+                            schappen, dramatische dubbele trap met gebrandschilderd glas en een betoverende sfeer. 
+                            Inspiratiebron voor de bibliotheek van Harry Potter.
                         </p>
                         <div class="attraction-info">
-                            <div class="info-point"><strong>📍 Locatie:</strong> Carmo-plein</div>
-                            <div class="info-point"><strong>🕐 Uren:</strong> 10:00-19:30 dagelijks</div>
-                            <div class="info-point"><strong>⏱ Bezoek:</strong> 45-60 minuten</div>
-                            <div class="info-point"><strong>💰 Entree:</strong> €5 (korting op aankoop)</div>
+                            <div class="info-point"><strong>📍 Locatie:</strong> Rua das Carmelitas 144</div>
+                            <div class="info-point"><strong>🕐 Openingstijden:</strong> 9:00–19:30 dagelijks</div>
+                            <div class="info-point"><strong>💡 Tip:</strong> Kom voor 10:00 of na 17:00</div>
+                            <div class="info-point"><strong>📸 Foto's:</strong> Toegestaan</div>
                         </div>
                         <div class="attraction-links">
-                            <a href="https://www.google.com/maps/place/Livraria+Lello,+Rua+das+Carmelitas,+Porto/@41.1618,-8.1430,17z" target="_blank" class="attraction-link link-map">🗺️ Google Maps</a>
+                            <a href="https://www.google.com/maps/place/Livraria+Lello/@41.1452,-8.6058,17z" target="_blank" class="attraction-link link-map">🗺️ Google Maps</a>
                             <a href="https://www.livrarialello.pt" target="_blank" class="attraction-link link-web">🌐 Website</a>
                         </div>
                     </div>
 
                     <div class="attraction-item">
                         <div class="attraction-name">
-                            Port Wine Tasting
+                            Graham's Port Lodge
                             <span style="font-size: 0.8rem;">🍷</span>
                         </div>
                         <p class="attraction-description">
-                            Ervaar waarom Port wereldwijd geliefd is. Traditionele wijnhuizen aan de linkeroever bieden geleide 
-                            proeverijen met prachtige Douro-vergezichten. Leer over verschillende rijpingsleeftijden en stijlen.
+                            Historische portwijnproducent op een heuvel in Vila Nova de Gaia. Professionele proeverijen in elegante 
+                            ruimtes met panoramisch uitzicht op de rivier. Ontdek meer dan 300 jaar portwijntradities en proef 
+                            premium vintage ports.
                         </p>
                         <div class="attraction-info">
-                            <div class="info-point"><strong>📍 Locatie:</strong> Vila Nova de Gaia</div>
-                            <div class="info-point"><strong>🕐 Uren:</strong> 10:00-18:00 dagelijks</div>
-                            <div class="info-point"><strong>⏱ Proeven:</strong> 45-90 minuten</div>
-                            <div class="info-point"><strong>💰 Kostprijs:</strong> €8-15 per persoon</div>
+                            <div class="info-point"><strong>📍 Locatie:</strong> Rua do Agro 141</div>
+                            <div class="info-point"><strong>🕐 Openingstijden:</strong> 10:00–17:30 dagelijks</div>
+                            <div class="info-point"><strong>📞 Reservering:</strong> Aanbevolen</div>
+                            <div class="info-point"><strong>👥 Ervaring:</strong> 1,5–2 uur</div>
                         </div>
                         <div class="attraction-links">
-                            <a href="https://www.google.com/maps/search/Port+Wine+Cellars,+Vila+Nova+de+Gaia,+Porto/@41.1645,-8.1269,14z" target="_blank" class="attraction-link link-map">🗺️ Kaart</a>
+                            <a href="https://www.google.com/maps/place/Graham%27s+Port+Lodge/@41.1380,-8.6251,17z" target="_blank" class="attraction-link link-map">🗺️ Google Maps</a>
+                            <a href="https://www.grahamsport.com" target="_blank" class="attraction-link link-web">🌐 Website</a>
+                        </div>
+                    </div>
+
+                    <div class="attraction-item">
+                        <div class="attraction-name">
+                            Ribeira (Middeleeuws Oude Stad)
+                            <span style="font-size: 0.8rem;">🏰</span>
+                        </div>
+                        <p class="attraction-description">
+                            UNESCO Werelderfgoed-gebied met smalle middeleeuwse straatjes, eeuwenoude gebouwen, restaurants aan de 
+                            rivier en een authentieke Portugese sfeer. Perfect om door te dwalen en verborgen juweeltjes te ontdekken.
+                        </p>
+                        <div class="attraction-info">
+                            <div class="info-point"><strong>📍 Locatie:</strong> Rivierenwijk</div>
+                            <div class="info-point"><strong>🕐 Openingstijden:</strong> 24/7 open</div>
+                            <div class="info-point"><strong>⏱ Bezoektijd:</strong> 2–3 uur</div>
+                            <div class="info-point"><strong>✨ Beste tijd:</strong> Avond bij zonsondergang</div>
+                        </div>
+                        <div class="attraction-links">
+                            <a href="https://www.google.com/maps/place/Ribeira,+Porto/@41.1432,-8.6186,16z" target="_blank" class="attraction-link link-map">🗺️ Google Maps</a>
+                            <a href="https://www.visitporto.travel" target="_blank" class="attraction-link link-web">🌐 Info</a>
+                        </div>
+                    </div>
+
+                    <div class="attraction-item">
+                        <div class="attraction-name">
+                            Dom Luís-brug
+                            <span style="font-size: 0.8rem;">🌉</span>
+                        </div>
+                        <p class="attraction-description">
+                            Iconische dubbeldeksbrug van ijzer, voltooid in 1886. Overspant 45 meter boven de Douro-rivier. 
+                            Een van de meest spectaculaire bruggen ter wereld. Gratis over te lopen.
+                        </p>
+                        <div class="attraction-info">
+                            <div class="info-point"><strong>📍 Locatie:</strong> Porto – Vila Nova de Gaia</div>
+                            <div class="info-point"><strong>🕐 Openingstijden:</strong> 24/7 open</div>
+                            <div class="info-point"><strong>🚴 Wandelen:</strong> Bovendek beschikbaar</div>
+                            <div class="info-point"><strong>📸 Best:</strong> Zonsondergang vanaf de andere oever</div>
+                        </div>
+                        <div class="attraction-links">
+                            <a href="https://www.google.com/maps/place/Dom+Lu%C3%ADs+I+Bridge/@41.1422,-8.6250,17z" target="_blank" class="attraction-link link-map">🗺️ Google Maps</a>
                             <a href="https://www.visitporto.travel" target="_blank" class="attraction-link link-web">🌐 Info</a>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Day 2 Detailed -->
-            <div id="day2-detailed" class="detailed-content">
-                <h2>🍇 Dag 2: Douro Valley - Wijnland & Terrassen</h2>
-                <p class="day-details-intro">
-                    De Douro Valley is een van Europa's meest spectaculaire wijnregio's. Oude stenen terrassen cascaderen langs 
-                    onmogelijke hellingen en vormen een patchwork van wijngaarden dat meer dan 2000 jaar oud is. Dit landschap is 
-                    puur romantiek – eindeloze rijen druiven, traditionele quinta-landgoederen, riviertochtjes en wereldklasse wijnervaringen.
+            <!-- Dag 2 Details -->
+            <div id="day2-details" class="day-detail-section">
+                <div class="day-detail-header">
+                    <div>
+                        <h2>🍇 DAG 2: DOURO-VALLEI</h2>
+                        <div style="color: #666; margin-top: 0.5rem; font-size: 0.95rem;">Wijnterrassen & Rivierromantiek</div>
+                        <div class="day-meta">
+                            <div class="meta-item">
+                                <div class="meta-label">📍 Locatie</div>
+                                <div class="meta-value">Douro-regio</div>
+                            </div>
+                            <div class="meta-item">
+                                <div class="meta-label">⏱ Vanaf Porto</div>
+                                <div class="meta-value">1,5 uur</div>
+                            </div>
+                            <div class="meta-item">
+                                <div class="meta-label">🗺️ UNESCO</div>
+                                <div class="meta-value">Werelderfgoedsite</div>
+                            </div>
+                            <div class="meta-item">
+                                <div class="meta-label">⭐ Sfeer</div>
+                                <div class="meta-value">Wijn & Natuur</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="day-detail-image">🍷</div>
+                </div>
+
+                <p style="color: #666; margin-bottom: 1.5rem; line-height: 1.8;">
+                    De Douro-vallei is een van de meest spectaculaire wijnregio's van Europa. Eeuwenoude stenen terrassen cascaderen 
+                    langs onmogelijke hellingen en vormen een lappendeken van wijngaarden die al meer dan 2.000 jaar worden bewerkt. 
+                    Dit landschap is pure romantiek – eindeloze rijen wijnstokken, traditionele quinta-landgoederen, riviercruises 
+                    en wijnbelevenissen van wereldklasse.
                 </p>
 
-                <h3 style="color: var(--primary); margin-bottom: 1.5rem; font-size: 1.5rem;">✨ Musthave attracties</h3>
+                <h3 style="color: var(--primary); margin-bottom: 1.5rem; font-size: 1.5rem;">✨ Niet te missen Attracties</h3>
 
                 <div class="attractions-detailed">
                     <div class="attraction-item">
@@ -705,38 +989,38 @@
                             <span style="font-size: 0.8rem;">🏘️</span>
                         </div>
                         <p class="attraction-description">
-                            Een van de meest prestigieuze quinta's in de Douro Valley. Panoramisch terras met uitzicht op eindeloze wijngaarden. 
-                            Professionele sommeliers leiden proeverijen van premium Douro rode, witte en roséwijnen.
+                            Een van de meest prestigieuze quinta's in de Douro-vallei. Panoramisch terras met uitzicht op eindeloze 
+                            wijngaarden. Professionele sommeliers begeleiden proeverijen van premium Douro-rode, -witte en -roséwijnen.
                         </p>
                         <div class="attraction-info">
                             <div class="info-point"><strong>📍 Locatie:</strong> In de buurt van Pinhão</div>
-                            <div class="info-point"><strong>🕐 Uren:</strong> 10:30-17:30 di-za</div>
-                            <div class="info-point"><strong>⏱ Ervaring:</strong> 2-3 uur</div>
-                            <div class="info-point"><strong>📞 Boeking:</strong> Van tevoren reserveren</div>
+                            <div class="info-point"><strong>🕐 Openingstijden:</strong> 10:30–17:30 di–za</div>
+                            <div class="info-point"><strong>⏱ Ervaring:</strong> 2–3 uur</div>
+                            <div class="info-point"><strong>📞 Reservering:</strong> Van tevoren boeken</div>
                         </div>
                         <div class="attraction-links">
-                            <a href="https://www.google.com/maps/place/Quinta+do+P%C3%B4pa,+Pinhão,+Portugal/@41.1540,-7.5970,15z" target="_blank" class="attraction-link link-map">🗺️ Google Maps</a>
+                            <a href="https://www.google.com/maps/place/Quinta+do+P%C3%B4pa/@41.1540,-7.5970,15z" target="_blank" class="attraction-link link-map">🗺️ Google Maps</a>
                             <a href="https://www.quintadopopa.com" target="_blank" class="attraction-link link-web">🌐 Website</a>
                         </div>
                     </div>
 
                     <div class="attraction-item">
                         <div class="attraction-name">
-                            Douro River Cruise
+                            Douro Riviercruise
                             <span style="font-size: 0.8rem;">⛵</span>
                         </div>
                         <p class="attraction-description">
-                            Drijf voorbij terrassed wijngaarden vanuit waterperspectief. Veel rondleidingen omvatten lunch en wijntasting. 
-                            Een vredige, romantische ervaring langs werkende quinta-landgoederen.
+                            Vaar langs terrasvormige wijngaarden op waterhoogte. Veel rondvaarten omvatten lunch en wijnproeverijen. 
+                            Een vredige, romantische beleving langs werkende quinta-landgoederen.
                         </p>
                         <div class="attraction-info">
                             <div class="info-point"><strong>📍 Vertrek:</strong> Pinhão, Régua</div>
-                            <div class="info-point"><strong>⏱ Duur:</strong> 2-4 uur</div>
-                            <div class="info-point"><strong>🍷 Inclusief:</strong> Dranken & hapjes</div>
-                            <div class="info-point"><strong>✨ Best:</strong> Ochtendlicht</div>
+                            <div class="info-point"><strong>⏱ Duur:</strong> 2–4 uur</div>
+                            <div class="info-point"><strong>🍷 Inbegrepen:</strong> Dranken & hapjes</div>
+                            <div class="info-point"><strong>✨ Beste tijd:</strong> Ochtendlicht</div>
                         </div>
                         <div class="attraction-links">
-                            <a href="https://www.google.com/maps/search/Douro+River+Cruise,+Pinhão/@41.1800,-7.5800,12z" target="_blank" class="attraction-link link-map">🗺️ Tours</a>
+                            <a href="https://www.google.com/maps/search/Douro+River+Cruise,+Pinhao/@41.1800,-7.5800,12z" target="_blank" class="attraction-link link-map">🗺️ Vind Tours</a>
                             <a href="https://www.visitdouro.com" target="_blank" class="attraction-link link-web">🌐 Info</a>
                         </div>
                     </div>
@@ -747,14 +1031,14 @@
                             <span style="font-size: 0.8rem;">🏘️</span>
                         </div>
                         <p class="attraction-description">
-                            Charmant stadje op de berghelling met traditioneel Portugese architectuur. Het beroemde barok heiligdom 
-                            heeft 686 stenen trappen omhoog met spectaculair panoramisch uitzicht over de vallei.
+                            Charmant heuvelstadje met traditionele Portugese architectuur. Het beroemde barokke heiligdom telt 
+                            686 stenen treden met spectaculair panoramisch uitzicht over de vallei.
                         </p>
                         <div class="attraction-info">
-                            <div class="info-point"><strong>📍 Locatie:</strong> West van Pinhão</div>
-                            <div class="info-point"><strong>🕐 Uren:</strong> 24/7 geopend</div>
-                            <div class="info-point"><strong>🪜 Uitdaging:</strong> 686 trappen</div>
-                            <div class="info-point"><strong>🏆 Beloning:</strong> Spectaculair uitzicht</div>
+                            <div class="info-point"><strong>📍 Locatie:</strong> Ten westen van Pinhão</div>
+                            <div class="info-point"><strong>🕐 Openingstijden:</strong> 24/7 open</div>
+                            <div class="info-point"><strong>🪜 Uitdaging:</strong> 686 treden te beklimmen</div>
+                            <div class="info-point"><strong>🏆 Beloning:</strong> Geweldig uitzicht</div>
                         </div>
                         <div class="attraction-links">
                             <a href="https://www.google.com/maps/place/Lamego,+Portugal/@41.1050,-7.6400,13z" target="_blank" class="attraction-link link-map">🗺️ Google Maps</a>
@@ -764,15 +1048,471 @@
                 </div>
             </div>
 
-            <!-- Additional Days Summary -->
-            <div style="text-align: center; margin-top: 3rem; padding: 2rem; background: white; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.08);">
-                <h3 style="color: var(--primary); margin-bottom: 1rem;">Dagen 3-7 - Gedetailleerde Gidsen Binnenkort</h3>
-                <p style="color: #666; margin-bottom: 1.5rem;">
-                    Download de volledige PDF-gids om gedetailleerde informatie voor alle 7 dagen te zien, inclusief:<br/>
-                    Dag 3: Aveiro & Costa Nova | Dag 4: Batalha & Nazaré | Dag 5: Óbidos<br/>
-                    Dag 6: Sintra | Dag 7: Lissabon
+            <!-- Dag 3 Details -->
+            <div id="day3-details" class="day-detail-section">
+                <div class="day-detail-header">
+                    <div>
+                        <h2>🏛️ DAG 3: AVEIRO</h2>
+                        <div style="color: #666; margin-top: 0.5rem; font-size: 0.95rem;">Kunst & Kleurrijke Kust</div>
+                        <div class="day-meta">
+                            <div class="meta-item">
+                                <div class="meta-label">📍 Locatie</div>
+                                <div class="meta-value">Centrale kust</div>
+                            </div>
+                            <div class="meta-item">
+                                <div class="meta-label">⏱ Vanaf Douro</div>
+                                <div class="meta-value">1,5 uur</div>
+                            </div>
+                            <div class="meta-item">
+                                <div class="meta-label">🗺️ Bijnaam</div>
+                                <div class="meta-value">Venetië van Portugal</div>
+                            </div>
+                            <div class="meta-item">
+                                <div class="meta-label">⭐ Sfeer</div>
+                                <div class="meta-value">Kunst & Strand</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="day-detail-image">🚣</div>
+                </div>
+
+                <p style="color: #666; margin-bottom: 1.5rem; line-height: 1.8;">
+                    Aveiro wordt ook wel het "Venetië van Portugal" genoemd vanwege de kleurrijke gondels – de moliceiro-boten – 
+                    die door de kanalen varen. De stad staat bekend om haar prachtige Art Nouveau-architectuur en de nabijgelegen 
+                    Costa Nova met zijn opvallende gestreepte vissershuisjes.
                 </p>
-                <a href="Portugal_Roadtrip_Complete_Guide.pdf" download class="cta-button">📄 Download Volledige PDF</a>
+
+                <h3 style="color: var(--primary); margin-bottom: 1.5rem; font-size: 1.5rem;">✨ Niet te missen Attracties</h3>
+
+                <div class="attractions-detailed">
+                    <div class="attraction-item">
+                        <div class="attraction-name">
+                            Moliceiro Kanaaltocht
+                            <span style="font-size: 0.8rem;">🚣</span>
+                        </div>
+                        <p class="attraction-description">
+                            Stap in een traditionele moliceiro-boot en vaar door de kanalen van Aveiro. Deze kleurrijke boten 
+                            waren ooit gebruikt om zeewier te oogsten en zijn nu een icoon van de stad.
+                        </p>
+                        <div class="attraction-info">
+                            <div class="info-point"><strong>📍 Locatie:</strong> Stadscentrum</div>
+                            <div class="info-point"><strong>🕐 Vertrek:</strong> Regelmatig dagelijks</div>
+                            <div class="info-point"><strong>⏱ Duur:</strong> 45 minuten</div>
+                            <div class="info-point"><strong>💰 Prijs:</strong> ca. €15 p.p.</div>
+                        </div>
+                        <div class="attraction-links">
+                            <a href="https://www.google.com/maps/place/Aveiro,+Portugal/@40.6405,-8.6538,14z" target="_blank" class="attraction-link link-map">🗺️ Google Maps</a>
+                            <a href="https://www.visitaveiro.pt" target="_blank" class="attraction-link link-web">🌐 Info</a>
+                        </div>
+                    </div>
+
+                    <div class="attraction-item">
+                        <div class="attraction-name">
+                            Costa Nova
+                            <span style="font-size: 0.8rem;">🏠</span>
+                        </div>
+                        <p class="attraction-description">
+                            Een charmant kustdorpje met iconische gestreepte vissershuisjes in felle kleuren. Ideaal voor 
+                            fotografie en een wandeling langs het strand van de Atlantische Oceaan.
+                        </p>
+                        <div class="attraction-info">
+                            <div class="info-point"><strong>📍 Locatie:</strong> 10 km van Aveiro</div>
+                            <div class="info-point"><strong>🕐 Openingstijden:</strong> 24/7 open</div>
+                            <div class="info-point"><strong>⏱ Bezoektijd:</strong> 1–2 uur</div>
+                            <div class="info-point"><strong>📸 Must-shot:</strong> Gestreepte huisjes</div>
+                        </div>
+                        <div class="attraction-links">
+                            <a href="https://www.google.com/maps/place/Costa+Nova,+Aveiro/@40.6108,-8.7480,14z" target="_blank" class="attraction-link link-map">🗺️ Google Maps</a>
+                            <a href="https://www.visitaveiro.pt" target="_blank" class="attraction-link link-web">🌐 Info</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dag 4 Details -->
+            <div id="day4-details" class="day-detail-section">
+                <div class="day-detail-header">
+                    <div>
+                        <h2>🌊 DAG 4: BATALHA & NAZARÉ</h2>
+                        <div style="color: #666; margin-top: 0.5rem; font-size: 0.95rem;">Geschiedenis & Oceaandrama</div>
+                        <div class="day-meta">
+                            <div class="meta-item">
+                                <div class="meta-label">📍 Locatie</div>
+                                <div class="meta-value">Centraal Portugal</div>
+                            </div>
+                            <div class="meta-item">
+                                <div class="meta-label">⏱ Vanaf Aveiro</div>
+                                <div class="meta-value">1,5 uur</div>
+                            </div>
+                            <div class="meta-item">
+                                <div class="meta-label">🌊 Golf</div>
+                                <div class="meta-value">Wereldrecord golven</div>
+                            </div>
+                            <div class="meta-item">
+                                <div class="meta-label">⭐ Sfeer</div>
+                                <div class="meta-value">Historisch & Dramatisch</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="day-detail-image">🌊</div>
+                </div>
+
+                <p style="color: #666; margin-bottom: 1.5rem; line-height: 1.8;">
+                    Begin de dag met een bezoek aan het majestueuze klooster van Batalha, een meesterwerk van de Gotische architectuur, 
+                    en rij dan verder naar Nazaré – beroemd om zijn enorme golven en levendige visserstradities.
+                </p>
+
+                <h3 style="color: var(--primary); margin-bottom: 1.5rem; font-size: 1.5rem;">✨ Niet te missen Attracties</h3>
+
+                <div class="attractions-detailed">
+                    <div class="attraction-item">
+                        <div class="attraction-name">
+                            Klooster van Batalha
+                            <span style="font-size: 0.8rem;">⛪</span>
+                        </div>
+                        <p class="attraction-description">
+                            Een van de indrukwekkendste Gotische gebouwen van Portugal, gebouwd ter herdenking van de slag bij 
+                            Aljubarrota in 1385. UNESCO Werelderfgoed met prachtige kloostergangen en koninklijke grafkapellen.
+                        </p>
+                        <div class="attraction-info">
+                            <div class="info-point"><strong>📍 Locatie:</strong> Batalha</div>
+                            <div class="info-point"><strong>🕐 Openingstijden:</strong> 9:00–18:00 dagelijks</div>
+                            <div class="info-point"><strong>💰 Entree:</strong> €6 p.p.</div>
+                            <div class="info-point"><strong>⏱ Bezoektijd:</strong> 1,5–2 uur</div>
+                        </div>
+                        <div class="attraction-links">
+                            <a href="https://www.google.com/maps/place/Mosteiro+da+Batalha/@39.6601,-8.8277,16z" target="_blank" class="attraction-link link-map">🗺️ Google Maps</a>
+                            <a href="https://www.mosteirobatalha.gov.pt" target="_blank" class="attraction-link link-web">🌐 Website</a>
+                        </div>
+                    </div>
+
+                    <div class="attraction-item">
+                        <div class="attraction-name">
+                            Nazaré & Sítio Uitzichtpunt
+                            <span style="font-size: 0.8rem;">🌊</span>
+                        </div>
+                        <p class="attraction-description">
+                            Nazaré is wereldberoemd om zijn monstergolven die de grens van 30 meter overschrijden. Neem de 
+                            kabelbaan omhoog naar Sítio voor spectaculair uitzicht over de oceaan en het stadje.
+                        </p>
+                        <div class="attraction-info">
+                            <div class="info-point"><strong>📍 Locatie:</strong> Nazaré</div>
+                            <div class="info-point"><strong>🕐 Openingstijden:</strong> 24/7 open</div>
+                            <div class="info-point"><strong>🌊 Beste golven:</strong> Oktober–maart</div>
+                            <div class="info-point"><strong>📸 Must-shot:</strong> Sítio uitzichtpunt</div>
+                        </div>
+                        <div class="attraction-links">
+                            <a href="https://www.google.com/maps/place/Nazar%C3%A9,+Portugal/@39.6016,-9.0706,14z" target="_blank" class="attraction-link link-map">🗺️ Google Maps</a>
+                            <a href="https://www.visitnazare.pt" target="_blank" class="attraction-link link-web">🌐 Info</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dag 5 Details -->
+            <div id="day5-details" class="day-detail-section">
+                <div class="day-detail-header">
+                    <div>
+                        <h2>👑 DAG 5: ÓBIDOS</h2>
+                        <div style="color: #666; margin-top: 0.5rem; font-size: 0.95rem;">Middeleeuws Sprookje</div>
+                        <div class="day-meta">
+                            <div class="meta-item">
+                                <div class="meta-label">📍 Locatie</div>
+                                <div class="meta-value">Centraal-West Portugal</div>
+                            </div>
+                            <div class="meta-item">
+                                <div class="meta-label">⏱ Vanaf Nazaré</div>
+                                <div class="meta-value">1 uur</div>
+                            </div>
+                            <div class="meta-item">
+                                <div class="meta-label">🏰 Kasteel</div>
+                                <div class="meta-value">Nu een hotel</div>
+                            </div>
+                            <div class="meta-item">
+                                <div class="meta-label">⭐ Sfeer</div>
+                                <div class="meta-value">Middeleeuws & Romantisch</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="day-detail-image">👑</div>
+                </div>
+
+                <p style="color: #666; margin-bottom: 1.5rem; line-height: 1.8;">
+                    Óbidos is een van de best bewaarde middeleeuwse steden van Portugal. Omgeven door hoge vestingmuren loop je 
+                    door witte straatjes versierd met bougainvillea. Vergeet niet een ginjinha te drinken uit een chocoladebekertje!
+                </p>
+
+                <h3 style="color: var(--primary); margin-bottom: 1.5rem; font-size: 1.5rem;">✨ Niet te missen Attracties</h3>
+
+                <div class="attractions-detailed">
+                    <div class="attraction-item">
+                        <div class="attraction-name">
+                            Middeleeuwse Stadsmuren
+                            <span style="font-size: 0.8rem;">🏰</span>
+                        </div>
+                        <p class="attraction-description">
+                            Loop over de volledig intacte middeleeuwse muren rondom de stad voor een onvergetelijk panoramisch 
+                            uitzicht over de wijngaarden en het Portugese landschap.
+                        </p>
+                        <div class="attraction-info">
+                            <div class="info-point"><strong>📍 Locatie:</strong> Óbidos stadscentrum</div>
+                            <div class="info-point"><strong>🕐 Openingstijden:</strong> 24/7 open</div>
+                            <div class="info-point"><strong>💰 Entree:</strong> Gratis</div>
+                            <div class="info-point"><strong>⏱ Wandeling:</strong> 1–1,5 uur</div>
+                        </div>
+                        <div class="attraction-links">
+                            <a href="https://www.google.com/maps/place/%C3%93bidos,+Portugal/@39.3600,-9.1600,14z" target="_blank" class="attraction-link link-map">🗺️ Google Maps</a>
+                            <a href="https://www.obidos.pt" target="_blank" class="attraction-link link-web">🌐 Info</a>
+                        </div>
+                    </div>
+
+                    <div class="attraction-item">
+                        <div class="attraction-name">
+                            Ginjinha in Chocolade
+                            <span style="font-size: 0.8rem;">🍫</span>
+                        </div>
+                        <p class="attraction-description">
+                            Dé lokale delicatesse: ginjinha (kersenlikeur) geserveerd in een eetbaar chocoladebekertje. 
+                            Een unieke Óbidos-traditie die je nergens anders vindt.
+                        </p>
+                        <div class="attraction-info">
+                            <div class="info-point"><strong>📍 Locatie:</strong> Overal in de stad</div>
+                            <div class="info-point"><strong>💰 Prijs:</strong> ca. €1,50</div>
+                            <div class="info-point"><strong>🍫 Tip:</strong> Eet het bekertje op!</div>
+                            <div class="info-point"><strong>✨ Speciaal:</strong> Lokale traditie</div>
+                        </div>
+                        <div class="attraction-links">
+                            <a href="https://www.google.com/maps/search/ginjinha+Obidos/@39.3600,-9.1600,15z" target="_blank" class="attraction-link link-map">🗺️ Vind Winkels</a>
+                            <a href="https://www.obidos.pt" target="_blank" class="attraction-link link-web">🌐 Info</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dag 6 Details -->
+            <div id="day6-details" class="day-detail-section">
+                <div class="day-detail-header">
+                    <div>
+                        <h2>🏰 DAG 6: SINTRA</h2>
+                        <div style="color: #666; margin-top: 0.5rem; font-size: 0.95rem;">Paleizen & Mystiek</div>
+                        <div class="day-meta">
+                            <div class="meta-item">
+                                <div class="meta-label">📍 Locatie</div>
+                                <div class="meta-value">Sintra Gebergte</div>
+                            </div>
+                            <div class="meta-item">
+                                <div class="meta-label">⏱ Vanaf Óbidos</div>
+                                <div class="meta-value">30 minuten</div>
+                            </div>
+                            <div class="meta-item">
+                                <div class="meta-label">🗺️ UNESCO</div>
+                                <div class="meta-value">Cultureel Landschap</div>
+                            </div>
+                            <div class="meta-item">
+                                <div class="meta-label">⭐ Sfeer</div>
+                                <div class="meta-value">Magisch & Romantisch</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="day-detail-image">🏰</div>
+                </div>
+
+                <p style="color: #666; margin-bottom: 1.5rem; line-height: 1.8;">
+                    Sintra is een betoverend UNESCO Werelderfgoedgebied in de mist van de Serra de Sintra. Romantische paleizen, 
+                    mystieke tuinen en middeleeuwse kastelen versieren de met bos bedekte heuvels. Een absoluut hoogtepunt 
+                    van elke Portugal-reis.
+                </p>
+
+                <h3 style="color: var(--primary); margin-bottom: 1.5rem; font-size: 1.5rem;">✨ Niet te missen Attracties</h3>
+
+                <div class="attractions-detailed">
+                    <div class="attraction-item">
+                        <div class="attraction-name">
+                            Pena Paleis
+                            <span style="font-size: 0.8rem;">🏯</span>
+                        </div>
+                        <p class="attraction-description">
+                            Het meest kleurrijke paleis van Portugal! Een explosie van rood, geel en blauw hoog op de bergkam. 
+                            Romantisch gebouw uit de 19e eeuw met panoramisch uitzicht over de hele regio – zelfs tot Lissabon 
+                            en de Atlantische Oceaan op heldere dagen.
+                        </p>
+                        <div class="attraction-info">
+                            <div class="info-point"><strong>📍 Locatie:</strong> Sintra-Bergen</div>
+                            <div class="info-point"><strong>🕐 Openingstijden:</strong> 9:00–19:00 dagelijks</div>
+                            <div class="info-point"><strong>💰 Entree:</strong> €14 p.p.</div>
+                            <div class="info-point"><strong>📞 Reservering:</strong> Online boeken aanbevolen</div>
+                        </div>
+                        <div class="attraction-links">
+                            <a href="https://www.google.com/maps/place/Palace+of+Pena/@38.7879,-9.3906,16z" target="_blank" class="attraction-link link-map">🗺️ Google Maps</a>
+                            <a href="https://www.parquesdesintra.pt" target="_blank" class="attraction-link link-web">🌐 Website</a>
+                        </div>
+                    </div>
+
+                    <div class="attraction-item">
+                        <div class="attraction-name">
+                            Quinta da Regaleira
+                            <span style="font-size: 0.8rem;">🌿</span>
+                        </div>
+                        <p class="attraction-description">
+                            Een mystiek landgoed vol symboliek, verborgen tunnels, omgekeerde torens en weelderige tuinen. 
+                            De beroemde initiatietoren daalt 27 meter de grond in – een unieke en onvergetelijke ervaring.
+                        </p>
+                        <div class="attraction-info">
+                            <div class="info-point"><strong>📍 Locatie:</strong> Sintra centrum</div>
+                            <div class="info-point"><strong>🕐 Openingstijden:</strong> 9:30–20:00 dagelijks</div>
+                            <div class="info-point"><strong>💰 Entree:</strong> €10 p.p.</div>
+                            <div class="info-point"><strong>⏱ Bezoektijd:</strong> 2–3 uur</div>
+                        </div>
+                        <div class="attraction-links">
+                            <a href="https://www.google.com/maps/place/Quinta+da+Regaleira/@38.7972,-9.3936,16z" target="_blank" class="attraction-link link-map">🗺️ Google Maps</a>
+                            <a href="https://www.regaleira.pt" target="_blank" class="attraction-link link-web">🌐 Website</a>
+                        </div>
+                    </div>
+
+                    <div class="attraction-item">
+                        <div class="attraction-name">
+                            Kasteel van de Moren
+                            <span style="font-size: 0.8rem;">🏔️</span>
+                        </div>
+                        <p class="attraction-description">
+                            Middeleeuws Moorse vestingwerk hoog op de rotsen, daterend uit de 8e–9e eeuw. Loop over de 
+                            kasteelmuren voor adembenemend uitzicht over Sintra en de omgeving.
+                        </p>
+                        <div class="attraction-info">
+                            <div class="info-point"><strong>📍 Locatie:</strong> Sintra-Bergen</div>
+                            <div class="info-point"><strong>🕐 Openingstijden:</strong> 9:00–20:00 dagelijks</div>
+                            <div class="info-point"><strong>💰 Entree:</strong> €8 p.p.</div>
+                            <div class="info-point"><strong>👟 Let op:</strong> Stevig schoeisel aanbevolen</div>
+                        </div>
+                        <div class="attraction-links">
+                            <a href="https://www.google.com/maps/place/Castle+of+the+Moors/@38.7932,-9.3895,16z" target="_blank" class="attraction-link link-map">🗺️ Google Maps</a>
+                            <a href="https://www.parquesdesintra.pt" target="_blank" class="attraction-link link-web">🌐 Website</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dag 7 Details -->
+            <div id="day7-details" class="day-detail-section">
+                <div class="day-detail-header">
+                    <div>
+                        <h2>🌃 DAG 7: LISSABON</h2>
+                        <div style="color: #666; margin-top: 0.5rem; font-size: 0.95rem;">Tijdperk van Ontdekking</div>
+                        <div class="day-meta">
+                            <div class="meta-item">
+                                <div class="meta-label">📍 Locatie</div>
+                                <div class="meta-value">Hoofdstad Portugal</div>
+                            </div>
+                            <div class="meta-item">
+                                <div class="meta-label">⏱ Vanaf Sintra</div>
+                                <div class="meta-value">30 minuten</div>
+                            </div>
+                            <div class="meta-item">
+                                <div class="meta-label">🌉 Brug</div>
+                                <div class="meta-value">Ponte 25 de Abril</div>
+                            </div>
+                            <div class="meta-item">
+                                <div class="meta-label">⭐ Sfeer</div>
+                                <div class="meta-value">Historisch & Levendig</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="day-detail-image">🌃</div>
+                </div>
+
+                <p style="color: #666; margin-bottom: 1.5rem; line-height: 1.8;">
+                    Lissabon is een van Europa's meest charmante hoofdsteden. De stad van zeven heuvels heeft een rijke 
+                    maritieme geschiedenis, kleurrijke azulejos-tegels, krakende trams en een bruisend nachtleven. 
+                    Een perfecte afsluiting van je Portugal-avontuur.
+                </p>
+
+                <h3 style="color: var(--primary); margin-bottom: 1.5rem; font-size: 1.5rem;">✨ Niet te missen Attracties</h3>
+
+                <div class="attractions-detailed">
+                    <div class="attraction-item">
+                        <div class="attraction-name">
+                            Toren van Belém
+                            <span style="font-size: 0.8rem;">🗼</span>
+                        </div>
+                        <p class="attraction-description">
+                            Iconisch UNESCO-monument aan de oever van de Taag, gebouwd in de 16e eeuw als verdedigingstoren 
+                            en symbool van de Portugese ontdekkingstijdperk. Een van de meest gefotografeerde gebouwen van Portugal.
+                        </p>
+                        <div class="attraction-info">
+                            <div class="info-point"><strong>📍 Locatie:</strong> Belém, Lissabon</div>
+                            <div class="info-point"><strong>🕐 Openingstijden:</strong> 10:00–17:30 (di–zo)</div>
+                            <div class="info-point"><strong>💰 Entree:</strong> €6 p.p.</div>
+                            <div class="info-point"><strong>⏱ Bezoektijd:</strong> 45–60 minuten</div>
+                        </div>
+                        <div class="attraction-links">
+                            <a href="https://www.google.com/maps/place/Torre+de+Bel%C3%A9m/@38.6916,-9.2159,17z" target="_blank" class="attraction-link link-map">🗺️ Google Maps</a>
+                            <a href="https://www.torrebelem.gov.pt" target="_blank" class="attraction-link link-web">🌐 Website</a>
+                        </div>
+                    </div>
+
+                    <div class="attraction-item">
+                        <div class="attraction-name">
+                            Pastéis de Belém
+                            <span style="font-size: 0.8rem;">🥐</span>
+                        </div>
+                        <p class="attraction-description">
+                            De originele Portugese custardtaartjes – pastéis de nata – worden hier al gemaakt sinds 1837. 
+                            Het geheime recept wordt nog altijd streng bewaard. Een culinaire must-do in Lissabon!
+                        </p>
+                        <div class="attraction-info">
+                            <div class="info-point"><strong>📍 Locatie:</strong> Rua de Belém 84–92</div>
+                            <div class="info-point"><strong>🕐 Openingstijden:</strong> 8:00–23:00 dagelijks</div>
+                            <div class="info-point"><strong>💰 Prijs:</strong> ca. €1,30 per stuk</div>
+                            <div class="info-point"><strong>🍽️ Tip:</strong> Warm met kaneel en suiker</div>
+                        </div>
+                        <div class="attraction-links">
+                            <a href="https://www.google.com/maps/place/Pasteis+de+Belem/@38.6976,-9.2031,17z" target="_blank" class="attraction-link link-map">🗺️ Google Maps</a>
+                            <a href="https://pasteisdebelem.pt" target="_blank" class="attraction-link link-web">🌐 Website</a>
+                        </div>
+                    </div>
+
+                    <div class="attraction-item">
+                        <div class="attraction-name">
+                            Tram 28
+                            <span style="font-size: 0.8rem;">🚃</span>
+                        </div>
+                        <p class="attraction-description">
+                            De beroemde historische tram die door de smalle straatjes van Lissabon kronkelt, langs wijken als 
+                            Alfama, Graça en Estrela. Een iconische en authentieke manier om de stad te verkennen.
+                        </p>
+                        <div class="attraction-info">
+                            <div class="info-point"><strong>📍 Vertrekpunt:</strong> Martim Moniz</div>
+                            <div class="info-point"><strong>🕐 Rijdt:</strong> 7:00–21:00 dagelijks</div>
+                            <div class="info-point"><strong>💰 Ticket:</strong> €3 per rit</div>
+                            <div class="info-point"><strong>💡 Tip:</strong> Vroeg gaan – drukt in de middag</div>
+                        </div>
+                        <div class="attraction-links">
+                            <a href="https://www.google.com/maps/place/Tram+28,+Lisbon/@38.7139,-9.1394,14z" target="_blank" class="attraction-link link-map">🗺️ Google Maps</a>
+                            <a href="https://www.visitlisboa.com" target="_blank" class="attraction-link link-web">🌐 Info</a>
+                        </div>
+                    </div>
+
+                    <div class="attraction-item">
+                        <div class="attraction-name">
+                            Miradouro da Graça
+                            <span style="font-size: 0.8rem;">🌅</span>
+                        </div>
+                        <p class="attraction-description">
+                            Een van de mooiste uitzichtpunten van Lissabon. Panoramisch uitzicht over de daken van de stad, 
+                            de Taag en de Ponte 25 de Abril. Perfect voor zonsondergang met een glas wijn.
+                        </p>
+                        <div class="attraction-info">
+                            <div class="info-point"><strong>📍 Locatie:</strong> Graça, Lissabon</div>
+                            <div class="info-point"><strong>🕐 Openingstijden:</strong> 24/7 open</div>
+                            <div class="info-point"><strong>💰 Entree:</strong> Gratis</div>
+                            <div class="info-point"><strong>🌅 Beste tijd:</strong> Zonsondergang</div>
+                        </div>
+                        <div class="attraction-links">
+                            <a href="https://www.google.com/maps/place/Miradouro+da+Gra%C3%A7a/@38.7181,-9.1317,17z" target="_blank" class="attraction-link link-map">🗺️ Google Maps</a>
+                            <a href="https://www.visitlisboa.com" target="_blank" class="attraction-link link-web">🌐 Info</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -785,51 +1525,51 @@
             <div class="practical-grid">
                 <div class="practical-card">
                     <h4>📅 Beste Reisperiode</h4>
-                    <p><strong>April-Mei:</strong> Perfect 18-24°C, bloemen, minder drukte. Ideaal!<br/>
-                    <strong>Sept-Okt:</strong> Warm 20-26°C, zonnig, uitstekend.<br/>
-                    <strong>Juni-Aug:</strong> Heet 25-32°C, hoogtijdseizoen.<br/>
-                    <strong>Nov-Mrt:</strong> Koel, af en toe regen, rustig.</p>
+                    <p><strong>April–Mei:</strong> Perfect 18–24°C, bloemen, minder drukte. Ideaal!<br/>
+                    <strong>Sept–Okt:</strong> Warm 20–26°C, zonnig, uitstekend.<br/>
+                    <strong>Juni–Aug:</strong> Heet 25–32°C, hoogseizoen.<br/>
+                    <strong>Nov–Mrt:</strong> Koel, af en toe regen, rustig.</p>
                 </div>
 
                 <div class="practical-card">
                     <h4>🚗 Vervoer & Navigatie</h4>
-                    <p><strong>Autoverhuur:</strong> €30-50/dag<br/>
-                    <strong>Wegen:</strong> Goed onderhouden, rij aan de rechterkant<br/>
-                    <strong>Snelheidslimieten:</strong> 50 stad, 90 regional, 120 snelweg<br/>
+                    <p><strong>Autohuur:</strong> €30–50/dag<br/>
+                    <strong>Wegen:</strong> Goed onderhouden, rechts rijden<br/>
+                    <strong>Snelheidslimieten:</strong> 50 stad, 90 regionaal, 120 snelweg<br/>
                     <strong>Navigatie:</strong> Google Maps (offline downloaden)</p>
                 </div>
 
                 <div class="practical-card">
                     <h4>🗺️ Routeplanning</h4>
-                    <p>Gebruik de <strong>Google Maps links</strong> op elke dag om te navigeren.<br/>
-                    Klik op <strong>"View on Maps"</strong> knoppen om te krijgen:<br/>
-                    • Routebeschrijving & geschatte tijd<br/>
+                    <p>Gebruik de <strong>Google Maps-links</strong> bij elke dag voor navigatie.<br/>
+                    Klik op de <strong>"Kaart"</strong>-knoppen voor:<br/>
+                    • Routebeschrijving & reistijd<br/>
                     • Alternatieve routes<br/>
                     • Realtime verkeersinformatie<br/>
-                    • Parkeren in de buurt & services</p>
+                    • Parkeren & diensten in de buurt</p>
                 </div>
 
                 <div class="practical-card">
                     <h4>🍷 Eten & Wijn Hoogtepunten</h4>
-                    <p><strong>Port Wijn:</strong> Proeverijen in Porto<br/>
-                    <strong>Douro Wijnen:</strong> Valley quinta's<br/>
-                    <strong>Zeevruchten:</strong> Costa Nova restaurants<br/>
-                    <strong>Ginjinha:</strong> Óbidos kersenlikeur</p>
+                    <p><strong>Portwijn:</strong> Proeverijen in Porto<br/>
+                    <strong>Douro-wijnen:</strong> Quinta's in de vallei<br/>
+                    <strong>Zeevruchten:</strong> Restaurants in Costa Nova<br/>
+                    <strong>Ginjinha:</strong> Kersenlikeur uit Óbidos</p>
                 </div>
 
                 <div class="practical-card">
                     <h4>📸 Fotografietips</h4>
-                    <p><strong>Gouden uur:</strong> 1 uur voor/na zonsopgang/ondergang<br/>
+                    <p><strong>Gouden uur:</strong> 1 uur voor/na zonsopgang of zonsondergang<br/>
                     <strong>Beste licht:</strong> Vroeg in de ochtend<br/>
-                    <strong>Musthoot:</strong> Dom Luís Bridge, Douro terrassen, Costa Nova, Pena Paleis, Graça uitzicht</p>
+                    <strong>Must-shots:</strong> Dom Luís-brug, Douro-terrassen, Costa Nova, Pena Paleis, Miradouro da Graça</p>
                 </div>
 
                 <div class="practical-card">
-                    <h4>🌐 Externe Hulpbronnen</h4>
+                    <h4>🌐 Externe Bronnen</h4>
                     <p>Elke attractie heeft directe links naar:<br/>
-                    <strong>🗺️ Google Maps</strong> - Routebeschrijving & navigatie<br/>
-                    <strong>🌐 Officiële Websites</strong> - Info & boeking<br/>
-                    <strong>📸 TripAdvisor</strong> - Reviews & foto's (in PDF)</p>
+                    <strong>🗺️ Google Maps</strong> – Routebeschrijving & navigatie<br/>
+                    <strong>🌐 Officiële websites</strong> – Info & reservering<br/>
+                    <strong>📸 TripAdvisor</strong> – Reviews & foto's (in PDF)</p>
                 </div>
             </div>
         </div>
@@ -843,8 +1583,8 @@
                 <p style="color: #666;">Help je vrienden Portugal te ontdekken met directe links</p>
                 <div class="share-buttons">
                     <button class="share-button copy" onclick="copyToClipboard()">📋 Link Kopiëren</button>
-                    <a href="https://wa.me/?text=Bekijk deze interactieve Portugal roadtrip gids met Google Maps!" class="share-button" style="background: #25D366; color: white; border: none; text-decoration: none;">💬 WhatsApp</a>
-                    <a href="mailto:?subject=Interactieve Portugal Roadtrip Gids" class="share-button" style="background: #EA4335; color: white; border: none; text-decoration: none;">📧 E-mail</a>
+                    <a href="https://wa.me/?text=Bekijk+deze+interactieve+Portugal+roadtrip+gids+met+Google+Maps!" class="share-button" style="background: #25D366; color: white; border: none; text-decoration: none;">💬 WhatsApp</a>
+                    <a href="mailto:?subject=Interactieve+Portugal+Roadtrip+Gids&body=Bekijk+deze+handige+reizigerskaart+voor+Portugal!" class="share-button" style="background: #EA4335; color: white; border: none; text-decoration: none;">📧 E-mail</a>
                 </div>
             </div>
         </div>
@@ -852,10 +1592,10 @@
 
     <!-- Footer -->
     <footer>
-        <p><strong>Portugal Roadtrip - Interactieve 7-daagse reizigerskaart</strong></p>
+        <p><strong>Portugal Roadtrip – Interactieve 7-daagse Reizigerskaart</strong></p>
         <p style="font-size: 0.9rem; margin-top: 1rem; opacity: 0.8;">
-            🗺️ Klik op attracties voor websites & Google Maps | 
-            📄 Download PDF voor volledige gedetailleerde gids | 
+            🗺️ Klik op attracties voor websites & Google Maps |
+            📄 Download PDF voor de volledige gedetailleerde gids |
             🇵🇹 Boa viagem!
         </p>
         <p style="font-size: 0.85rem; margin-top: 1rem; opacity: 0.6;">Gemaakt met ❤️ voor reizigers die het echte Portugal willen ontdekken</p>
@@ -869,7 +1609,7 @@
             });
         }
 
-        // Smooth scroll for day detail links
+        // Smooth scroll voor dag-detail links
         document.querySelectorAll('a[href^="#day"]').forEach(link => {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
