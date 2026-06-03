@@ -191,9 +191,34 @@
         .day-card-header {
             background: linear-gradient(135deg, var(--secondary), var(--accent));
             color: white;
-            padding: 2rem;
+            padding: 0;
             text-align: center;
             position: relative;
+            overflow: hidden;
+            height: 180px;
+        }
+
+        .day-card-header img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            opacity: 0.7;
+            transition: transform 0.4s ease;
+        }
+
+        .day-card:hover .day-card-header img {
+            transform: scale(1.07);
+        }
+
+        .day-card-header-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(to bottom, rgba(45,24,16,0.2), rgba(45,24,16,0.55));
         }
 
         .day-number {
@@ -348,13 +373,35 @@
         }
 
         .day-detail-image {
-            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
             border-radius: 8px;
             height: 350px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .day-detail-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .day-detail-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .day-detail-image .img-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.55));
+            color: white;
+            padding: 1.2rem 1rem 0.7rem;
+            font-size: 0.82rem;
+            font-style: italic;
+            opacity: 0.9;
         }
 
         .attractions-detailed {
@@ -651,12 +698,14 @@
             <h2 class="section-title">7 Dagen in één oogopslag</h2>
             
             <div class="days-grid">
-                <!-- Dag 1 -->
                 <div class="day-card">
                     <div class="day-card-header">
-                        <div class="day-emoji">🏙️</div>
-                        <div class="day-city">Porto</div>
-                        <div class="day-number">1</div>
+                        <img src="https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=600&q=75" alt="Porto" loading="lazy">
+                        <div class="day-card-header-overlay">
+                            <div class="day-emoji">🏙️</div>
+                            <div class="day-city">Porto</div>
+                            <div class="day-number">1</div>
+                        </div>
                     </div>
                     <div class="day-card-body">
                         <div class="day-subtitle">Portwijn & Literaire Magie</div>
@@ -677,9 +726,12 @@
                 <!-- Dag 2 -->
                 <div class="day-card">
                     <div class="day-card-header">
-                        <div class="day-emoji">🍇</div>
-                        <div class="day-city">Douro-vallei</div>
-                        <div class="day-number">2</div>
+                        <img src="https://images.unsplash.com/photo-1585208798174-6cedd86e019a?w=600&q=75" alt="Douro-vallei" loading="lazy">
+                        <div class="day-card-header-overlay">
+                            <div class="day-emoji">🍇</div>
+                            <div class="day-city">Douro-vallei</div>
+                            <div class="day-number">2</div>
+                        </div>
                     </div>
                     <div class="day-card-body">
                         <div class="day-subtitle">Wijnterrassen & Romantiek</div>
@@ -700,9 +752,12 @@
                 <!-- Dag 3 -->
                 <div class="day-card">
                     <div class="day-card-header">
-                        <div class="day-emoji">🏛️</div>
-                        <div class="day-city">Aveiro</div>
-                        <div class="day-number">3</div>
+                        <img src="https://images.unsplash.com/photo-1588866308118-72c6c0cfbef2?w=600&q=75" alt="Aveiro" loading="lazy">
+                        <div class="day-card-header-overlay">
+                            <div class="day-emoji">🏛️</div>
+                            <div class="day-city">Aveiro</div>
+                            <div class="day-number">3</div>
+                        </div>
                     </div>
                     <div class="day-card-body">
                         <div class="day-subtitle">Kunst & Kleurrijke Kust</div>
@@ -723,9 +778,12 @@
                 <!-- Dag 4 -->
                 <div class="day-card">
                     <div class="day-card-header">
-                        <div class="day-emoji">🌊</div>
-                        <div class="day-city">Batalha & Nazaré</div>
-                        <div class="day-number">4</div>
+                        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=75" alt="Nazaré" loading="lazy">
+                        <div class="day-card-header-overlay">
+                            <div class="day-emoji">🌊</div>
+                            <div class="day-city">Batalha & Nazaré</div>
+                            <div class="day-number">4</div>
+                        </div>
                     </div>
                     <div class="day-card-body">
                         <div class="day-subtitle">Geschiedenis & Oceaandrama</div>
@@ -746,9 +804,12 @@
                 <!-- Dag 5 -->
                 <div class="day-card">
                     <div class="day-card-header">
-                        <div class="day-emoji">👑</div>
-                        <div class="day-city">Óbidos</div>
-                        <div class="day-number">5</div>
+                        <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&q=75" alt="Óbidos" loading="lazy">
+                        <div class="day-card-header-overlay">
+                            <div class="day-emoji">👑</div>
+                            <div class="day-city">Óbidos</div>
+                            <div class="day-number">5</div>
+                        </div>
                     </div>
                     <div class="day-card-body">
                         <div class="day-subtitle">Middeleeuws Sprookje</div>
@@ -769,9 +830,12 @@
                 <!-- Dag 6 -->
                 <div class="day-card">
                     <div class="day-card-header">
-                        <div class="day-emoji">🏰</div>
-                        <div class="day-city">Sintra</div>
-                        <div class="day-number">6</div>
+                        <img src="https://images.unsplash.com/photo-1558618047-f4e62d617d3e?w=600&q=75" alt="Sintra" loading="lazy">
+                        <div class="day-card-header-overlay">
+                            <div class="day-emoji">🏰</div>
+                            <div class="day-city">Sintra</div>
+                            <div class="day-number">6</div>
+                        </div>
                     </div>
                     <div class="day-card-body">
                         <div class="day-subtitle">Paleizen & Mystiek</div>
@@ -792,9 +856,12 @@
                 <!-- Dag 7 -->
                 <div class="day-card">
                     <div class="day-card-header">
-                        <div class="day-emoji">🌃</div>
-                        <div class="day-city">Lissabon</div>
-                        <div class="day-number">7</div>
+                        <img src="https://images.unsplash.com/photo-1513735492246-483525079686?w=600&q=75" alt="Lissabon" loading="lazy">
+                        <div class="day-card-header-overlay">
+                            <div class="day-emoji">🌃</div>
+                            <div class="day-city">Lissabon</div>
+                            <div class="day-number">7</div>
+                        </div>
                     </div>
                     <div class="day-card-body">
                         <div class="day-subtitle">Tijdperk van Ontdekking</div>
@@ -845,7 +912,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="day-detail-image">🏛️</div>
+                    <div class="day-detail-image">
+                        <img src="https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=800&q=80" alt="Porto – Dom Luís-brug en Ribeira" loading="lazy">
+                        <div class="img-caption">Porto – Ribeira en de Dom Luís-brug</div>
+                    </div>
                 </div>
 
                 <p style="color: #666; margin-bottom: 1.5rem; line-height: 1.8;">
@@ -970,7 +1040,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="day-detail-image">🍷</div>
+                    <div class="day-detail-image">
+                        <img src="https://images.unsplash.com/photo-1585208798174-6cedd86e019a?w=800&q=80" alt="Douro-vallei – terrasvormige wijngaarden" loading="lazy">
+                        <div class="img-caption">Douro-vallei – UNESCO-wijngaardterrassen</div>
+                    </div>
                 </div>
 
                 <p style="color: #666; margin-bottom: 1.5rem; line-height: 1.8;">
@@ -1073,7 +1146,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="day-detail-image">🚣</div>
+                    <div class="day-detail-image">
+                        <img src="https://images.unsplash.com/photo-1588866308118-72c6c0cfbef2?w=800&q=80" alt="Aveiro – kleurrijke moliceiro-boten op het kanaal" loading="lazy">
+                        <div class="img-caption">Aveiro – de kleurrijke moliceiro-boten</div>
+                    </div>
                 </div>
 
                 <p style="color: #666; margin-bottom: 1.5rem; line-height: 1.8;">
@@ -1154,7 +1230,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="day-detail-image">🌊</div>
+                    <div class="day-detail-image">
+                        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" alt="Nazaré – dramatische kliffen en golven" loading="lazy">
+                        <div class="img-caption">Nazaré – kliffen en de oceaan</div>
+                    </div>
                 </div>
 
                 <p style="color: #666; margin-bottom: 1.5rem; line-height: 1.8;">
@@ -1234,7 +1313,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="day-detail-image">👑</div>
+                    <div class="day-detail-image">
+                        <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&q=80" alt="Óbidos – middeleeuwse vestingstad" loading="lazy">
+                        <div class="img-caption">Óbidos – de middeleeuwse vestingmuren</div>
+                    </div>
                 </div>
 
                 <p style="color: #666; margin-bottom: 1.5rem; line-height: 1.8;">
@@ -1314,7 +1396,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="day-detail-image">🏰</div>
+                    <div class="day-detail-image">
+                        <img src="https://images.unsplash.com/photo-1548707309-dcebeab9ea9b?w=800&q=80" alt="Sintra – het kleurrijke Pena Paleis" loading="lazy">
+                        <div class="img-caption">Sintra – het sprookjesachtige Pena Paleis</div>
+                    </div>
                 </div>
 
                 <p style="color: #666; margin-bottom: 1.5rem; line-height: 1.8;">
@@ -1417,7 +1502,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="day-detail-image">🌃</div>
+                    <div class="day-detail-image">
+                        <img src="https://images.unsplash.com/photo-1513735492246-483525079686?w=800&q=80" alt="Lissabon – uitzicht over de stad en de Taag" loading="lazy">
+                        <div class="img-caption">Lissabon – de stad van zeven heuvels</div>
+                    </div>
                 </div>
 
                 <p style="color: #666; margin-bottom: 1.5rem; line-height: 1.8;">
