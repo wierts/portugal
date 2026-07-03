@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hotels — Portugal Roadtrip</title>
+  <meta name="description" content="Boutique hotel suggesties per stop voor de Portugal roadtrip, september 2026.">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .hotels-intro { background: var(--cream); padding: 3rem 0 2rem; text-align: center; }
+    .hotel-grid { display: flex; flex-direction: column; gap: 2rem; margin-top: 2rem; }
+    .hotel-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      transition: box-shadow .2s ease;
+    }
+    .hotel-card:hover { box-shadow: var(--shadow-md); }
+    .hotel-card-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: var(--azul);
+      color: #fff;
+      padding: 1.25rem 1.75rem;
+    }
+    .hotel-dag-badge {
+      background: var(--terra);
+      color: #fff;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      padding: .3rem .75rem;
+      border-radius: 2px;
+      white-space: nowrap;
+    }
+    .hotel-card-header h3 { font-family: var(--serif); font-size: 1.25rem; margin: 0; flex: 1; }
+    .hotel-city-tag { font-size: .85rem; opacity: .8; white-space: nowrap; }
+    .hotel-card-body { padding: 1.5rem 1.75rem; }
+    .hotel-desc { color: var(--text); line-height: 1.7; margin-bottom: 1.25rem; }
+    .hotel-chips { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1.25rem; }
+    .hotel-chip {
+      background: var(--sand);
+      border: 1px solid var(--border);
+      border-radius: 2rem;
+      font-size: .8rem;
+      color: var(--text);
+      padding: .25rem .75rem;
+    }
+    .hotel-btns { display: flex; gap: .75rem; flex-wrap: wrap; }
+    .hotel-highlight {
+      border-left: 4px solid var(--gold);
+      background: var(--sand);
+      padding: .75rem 1rem;
+      border-radius: 0 var(--radius) var(--radius) 0;
+      font-size: .9rem;
+      color: var(--text);
+      margin-bottom: 1.25rem;
+      font-style: italic;
+    }
+    .back-link { display: inline-flex; align-items: center; gap: .4rem; color: var(--azul); font-weight: 600; text-decoration: none; margin-bottom: 2rem; }
+    .back-link:hover { color: var(--terra); }
+    @media (max-width: 600px) {
+      .hotel-card-header { flex-wrap: wrap; }
+      .hotel-btns { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="nav-logo"><a href="index.html" style="color:inherit;text-decoration:none">Portugal 🇵🇹</a></div>
+    <ul class="nav-links">
+      <li><a href="index.html#route">Route</a></li>
+      <li><a href="index.html#reisinfo">Reisinfo</a></li>
+      <li><a href="index.html#days">Dagen</a></li>
+      <li><a href="restaurants.html">🍽️ Restaurants</a></li>
+      <li><a href="hotels.html" style="color:var(--gold)">🏨 Hotels</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="hotels-intro">
+  <div class="container">
+    <h1 class="section-title">Hotels</h1>
+    <p class="section-subtitle">Boutique suggesties per stop · zo 6 – di 15 sep 2026 · 4 personen</p>
+    <a href="index.html" class="back-link">← Terug naar de roadtrip</a>
+  </div>
+</section>
+
+<section style="background: var(--sand); padding-bottom: 4rem;">
+<div class="container">
+<div class="hotel-grid">
+
+  <!-- DAG 1: PORTO - Forte de Gaia -->
+  <div class="hotel-card">
+    <div class="hotel-card-header">
+      <span class="hotel-dag-badge">Dag 1–2</span>
+      <h3>Forte de Gaia, Autograph Collection</h3>
+      <span class="hotel-city-tag">Vila Nova de Gaia · zo 6 – ma 7 sep · 2 nachten</span>
+    </div>
+    <div class="hotel-card-body">
+      <div class="hotel-highlight">
+        "Pal aan de Douro-oever met spectaculair uitzicht op Porto's skyline — en toch aan de stillere, rustiger kant van de rivier."
+      </div>
+      <p class="hotel-desc">
+        5-sterren Marriott Autograph Collection op de Gaia-oever, Rua de Serpa Pinto 60. 119 kamers
+        ontworpen door Nini Andrade Silva, allemaal met Douro-rivierzicht richting Porto. Eigen wijnkelder
+        en proeverijen, restaurant Dona Maria, twee zwembaden. Loopafstand van de portlodges (Ferreira,
+        Cockburn's) en de Dom Luís-brug. Avond 1: Enoteca 1756 op Cais de Gaia (loopafstand).
+        Avond 2: lopen over de Dom Luís-brug naar Taberna dos Mercadores in Porto.
+      </p>
+      <div class="hotel-chips">
+        <span class="hotel-chip">⭐⭐⭐⭐⭐ Autograph Collection</span>
+        <span class="hotel-chip">📍 Vila Nova de Gaia</span>
+        <span class="hotel-chip">🍷 Eigen wijnkelder</span>
+        <span class="hotel-chip">🌊 Douro-rivierzicht op Porto</span>
+        <span class="hotel-chip">🏊 2 zwembaden</span>
+        <span class="hotel-chip">🚶 Portlodges op loopafstand</span>
+      </div>
+      <div class="hotel-btns">
+        <a href="https://www.google.com/maps/search/Forte+de+Gaia+Autograph+Collection+Vila+Nova+de+Gaia" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
+        <a href="https://www.marriott.com/hotels/travel/opolg-forte-de-gaia-autograph-collection" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-web">🌐 Website</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAG 2: AVEIRO -->
+  <div class="hotel-card">
+    <div class="hotel-card-header">
+      <span class="hotel-dag-badge">Dag 2</span>
+      <h3>MS Collection Aveiro — Palacete de Valdemouro</h3>
+      <span class="hotel-city-tag">Aveiro · di 8 sep · 1 nacht</span>
+    </div>
+    <div class="hotel-card-body">
+      <div class="hotel-highlight">
+        "Als ik had geweten hoe fantastisch dit hotel is — en hoe geweldig Aveiro — had ik zeker langer geboekt."
+      </div>
+      <p class="hotel-desc">
+        Gerestaureerd 18e-eeuws stadspaleis, voormalig huis van de beroemde Portugese schrijver Eça de Queiroz.
+        Het eerste 5-sterrenhotel van Aveiro, lid van Small Luxury Hotels of the World. Suites zijn vernoemd
+        naar personages uit zijn romans. Binnen- én buitenzwembad, spa, Moments Spa, restaurant Prosa.
+        Op loopafstand van de moliceiro-pier en het stadscentrum. Reviewers omschrijven het als
+        "één van de beste hotelervaringen in 40 jaar reizen."
+      </p>
+      <div class="hotel-chips">
+        <span class="hotel-chip">⭐⭐⭐⭐⭐ Small Luxury Hotels</span>
+        <span class="hotel-chip">📍 Centrum Aveiro</span>
+        <span class="hotel-chip">🏛️ 18e-eeuws paleis</span>
+        <span class="hotel-chip">💆 Moments Spa</span>
+        <span class="hotel-chip">🏊 Binnen- &amp; buitenzwembad</span>
+        <span class="hotel-chip">🚶 Moliceiro-pier 2 min</span>
+      </div>
+      <div class="hotel-btns">
+        <a href="https://www.google.com/maps/search/MS+Collection+Aveiro+Palacete+Valdemouro" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
+        <a href="https://www.mscollection.com/aveiro" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-web">🌐 Website</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAG 3: DOURO -->
+  <div class="hotel-card">
+    <div class="hotel-card-header">
+      <span class="hotel-dag-badge">Dag 3</span>
+      <h3>The Manor House Celeirós</h3>
+      <span class="hotel-city-tag">Quinta do Portal, Douro · wo 9 – do 10 sep · 2 nachten</span>
+    </div>
+    <div class="hotel-card-body">
+      <div class="hotel-highlight">
+        "Geen rivierzicht maar wél volledig ondergedompeld in de wijnbergen — de Quinta do Portal-wijngaard ligt letterlijk om je heen."
+      </div>
+      <p class="hotel-desc">
+        Boutique landhuis op het terrein van Quinta do Portal, ontworpen door architect Álvaro Siza Vieira.
+        Geen rivierzicht — dat is bewust de keuze: rustiger, intiemer, en aanmerkelijk betaalbaarder dan
+        de riverfront quinta's. Omringd door de wijngaarden van Quinta do Portal met eigen kelder en
+        proeverijen. September is oogstseizoen (vendima) — grote kans dat je de oogst direct vanuit
+        het hotel kunt zien en meemaken. Op 15 minuten rijden van Niepoort Quinta de Nápoles en Pinhão.
+      </p>
+      <div class="hotel-chips">
+        <span class="hotel-chip">⭐⭐⭐⭐ Boutique</span>
+        <span class="hotel-chip">📍 Quinta do Portal, Douro</span>
+        <span class="hotel-chip">🍷 Eigen wijngaard + kelder</span>
+        <span class="hotel-chip">🌿 Wijnberg-uitzicht</span>
+        <span class="hotel-chip">🏛️ Siza Vieira architectuur</span>
+        <span class="hotel-chip">🍇 Sept = oogstseizoen</span>
+        <span class="hotel-chip">💰 Betaalbaarder dan riverfront</span>
+      </div>
+      <div class="hotel-btns">
+        <a href="https://www.google.com/maps/search/Manor+House+Celeiros+Quinta+do+Portal+Douro" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
+        <a href="https://www.quintadoportal.com/en/wine-tourism/accommodation/" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-web">🌐 Website</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAG 4/5: ÓBIDOS -->
+  <div class="hotel-card">
+    <div class="hotel-card-header">
+      <span class="hotel-dag-badge">Dag 4–5</span>
+      <h3>Pousada Castelo de Óbidos</h3>
+      <span class="hotel-city-tag">Óbidos · vr 11 – za 12 sep · 2 nachten</span>
+    </div>
+    <div class="hotel-card-body">
+      <div class="hotel-highlight">
+        "Dit was geen hotelverblijf — het was leven in de geschiedenis. Aankomen terwijl de dagjesmensen weggaan en het dorp magisch stil wordt."
+      </div>
+      <p class="hotel-desc">
+        Slechts 9 kamers — sommige direct in de 14e-eeuwse kasteeltoren, met stenen muren en hemelbed.
+        Onderdeel van de nationale Pousadas-keten die historisch erfgoed beheert. Restaurant van
+        chef Cláudia Santiago met regionale keuken, een van de 7 Wonderen van Portugal. Twee nachten
+        is ideaal: de eerste avond heb je het dorp voor jezelf als de dagjesmensen (na 18:00) weg zijn,
+        de tweede ochtend loop je de muurwandeling bij dageraad. Vroeg reserveren is essentieel —
+        verkoopt ver op voorhand uit, zeker in september.
+      </p>
+      <div class="hotel-chips">
+        <span class="hotel-chip">🏰 Echt 14e-eeuws kasteel</span>
+        <span class="hotel-chip">📍 Binnen de kasteelmuren</span>
+        <span class="hotel-chip">🛏️ Slechts 9 kamers</span>
+        <span class="hotel-chip">🍽️ Restaurant in het kasteel</span>
+        <span class="hotel-chip">⚠️ Vroeg reserveren!</span>
+      </div>
+      <div class="hotel-btns">
+        <a href="https://www.google.com/maps/search/Pousada+Castelo+Obidos" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
+        <a href="https://www.pousadas.pt/en/hotel/pousada-obidos" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-web">🌐 Reserveren</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAG 6: SINTRA -->
+  <div class="hotel-card">
+    <div class="hotel-card-header">
+      <span class="hotel-dag-badge">Dag 6</span>
+      <h3>Casa Holstein</h3>
+      <span class="hotel-city-tag">Sintra · zo 13 sep · 1 nacht</span>
+    </div>
+    <div class="hotel-card-body">
+      <div class="hotel-highlight">
+        "16 kamers in bloemetjesbehang en pasteltinten — voelt meer als verblijven in een zorgvuldig ingericht privéhuis dan een hotel."
+      </div>
+      <p class="hotel-desc">
+        Geconverteerd 19e-eeuws herenhuis met tuinen, zwembad en uitzicht over het kasteel.
+        Op loopafstand van het centrum én het treinstation (handig: shuttle vanuit Lissabon).
+        De esthetiek wordt door reviewers vergeleken met Wes Anderson: vintage meubelen, pastelkleuren,
+        historisch karakter. Complimentaire port bij aankomst en avondsnacks inbegrepen.
+        Beste prijs-karakter verhouding in Sintra. Stiller dan het drukke centrum, maar toch dichtbij.
+      </p>
+      <div class="hotel-chips">
+        <span class="hotel-chip">⭐⭐⭐⭐ Boutique</span>
+        <span class="hotel-chip">📍 Sintra, nabij centrum</span>
+        <span class="hotel-chip">🌳 Tuin &amp; zwembad</span>
+        <span class="hotel-chip">🚶 Loopafstand treinstation</span>
+        <span class="hotel-chip">🍷 Gratis port bij aankomst</span>
+        <span class="hotel-chip">🏰 Kasteelzicht</span>
+      </div>
+      <div class="hotel-btns">
+        <a href="https://www.google.com/maps/search/Casa+Holstein+Sintra" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
+        <a href="https://www.booking.com/hotel/pt/casa-holstein.html" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-web">🌐 Reserveren</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAG 7: LISSABON -->
+  <div class="hotel-card">
+    <div class="hotel-card-header">
+      <span class="hotel-dag-badge">Dag 7</span>
+      <h3>Memmo Príncipe Real</h3>
+      <span class="hotel-city-tag">Lissabon · ma 14 – di 15 sep · 2 nachten</span>
+    </div>
+    <div class="hotel-card-body">
+      <div class="hotel-highlight">
+        "Verstopt door een smal straatje en een kleine tunnel — en dan opeens spectaculair uitzicht over heel Lissabon."
+      </div>
+      <p class="hotel-desc">
+        Het eerste 5-sterren boutique hotel in de Príncipe Real-wijk, nu de trendiest buurt van Lissabon.
+        41 kamers, rooftop pool met panoramisch uitzicht over de stad en de Taag, lid van Design Hotels.
+        Architect Samuel Torres de Carvalho gebruikte Lissabons kalkstee (hetzelfde als in de paleizen)
+        als basis. Café Príncipe Real serveert ontbijt, lichte lunches en cocktails met uitzicht.
+        Loopafstand naar Chiado, Bairro Alto, Miradouro de São Pedro de Alcântara.
+        Terugvlucht KL1586 vertrekt 19:45 — 15 min naar het vliegveld.
+      </p>
+      <div class="hotel-chips">
+        <span class="hotel-chip">⭐⭐⭐⭐⭐ Design Hotels</span>
+        <span class="hotel-chip">📍 Príncipe Real, Lissabon</span>
+        <span class="hotel-chip">🏊 Rooftop pool + panoramauitzicht</span>
+        <span class="hotel-chip">🚶 Chiado 5 min</span>
+        <span class="hotel-chip">✈️ 15 min vliegveld</span>
+        <span class="hotel-chip">🏛️ Rua Dom Pedro V 56J</span>
+      </div>
+      <div class="hotel-btns">
+        <a href="https://www.google.com/maps/search/Memmo+Principe+Real+Lisbon" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
+        <a href="https://www.designhotels.com/hotels/portugal/lisbon/memmo-principe-real/" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-web">🌐 Website</a>
+      </div>
+    </div>
+  </div>
+
+</div><!-- hotel-grid -->
+</div><!-- container -->
+</section>
+
+<footer style="background:var(--dark);color:#fff;padding:2rem;text-align:center;font-size:.85rem;opacity:.8;">
+  Portugal Roadtrip · zo 6 – di 15 sep 2026 · <a href="index.html" style="color:var(--gold)">← Terug naar de route</a>
+</footer>
+
+</body>
+</html>

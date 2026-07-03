@@ -7,7 +7,7 @@
   <meta name="description" content="Interactieve 7-daagse Portugal roadtrip met kaart, Google Maps-links, attractie-info en gedetailleerde dagprogramma's.">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
@@ -19,9 +19,12 @@
     <div class="nav-logo">Portugal 🇵🇹</div>
     <ul class="nav-links">
       <li><a href="#route">Route</a></li>
+      <li><a href="#reisinfo">Reisinfo</a></li>
       <li><a href="#days">Dagen</a></li>
       <li><a href="#details">Details</a></li>
       <li><a href="#practical">Info</a></li>
+      <li><a href="restaurants.html">🍽️ Restaurants</a></li>
+      <li><a href="hotels.html">🏨 Hotels</a></li>
     </ul>
   </nav>
 </header>
@@ -55,9 +58,9 @@
   <div class="route-strip-inner">
     <div class="route-city"><span class="day-badge">Dag 1</span> Porto</div>
     <span class="route-arrow">→</span>
-    <div class="route-city"><span class="day-badge">Dag 2</span> Douro-vallei</div>
+    <div class="route-city"><span class="day-badge">Dag 2</span> Aveiro</div>
     <span class="route-arrow">→</span>
-    <div class="route-city"><span class="day-badge">Dag 3</span> Aveiro</div>
+    <div class="route-city"><span class="day-badge">Dag 3</span> Douro-vallei</div>
     <span class="route-arrow">→</span>
     <div class="route-city"><span class="day-badge">Dag 4</span> Batalha &amp; Nazaré</div>
     <span class="route-arrow">→</span>
@@ -108,9 +111,9 @@
       <div class="route-stops">
         <span class="route-stop"><span class="route-dot">1</span>Porto</span>
         <span class="route-arrow">→</span>
-        <span class="route-stop"><span class="route-dot">2</span>Douro</span>
+        <span class="route-stop"><span class="route-dot">2</span>Aveiro</span>
         <span class="route-arrow">→</span>
-        <span class="route-stop"><span class="route-dot">3</span>Aveiro</span>
+        <span class="route-stop"><span class="route-dot">3</span>Douro</span>
         <span class="route-arrow">→</span>
         <span class="route-stop"><span class="route-dot">4</span>Nazaré</span>
         <span class="route-arrow">→</span>
@@ -123,6 +126,112 @@
       <a href="https://www.google.com/maps/dir/Porto,+Portugal/Douro+Valley,+Portugal/Aveiro,+Portugal/Nazar%C3%A9,+Portugal/%C3%93bidos,+Portugal/Sintra,+Portugal/Lisbon,+Portugal"
          target="_blank" rel="noopener noreferrer" class="btn btn-map route-map-btn">🗺️ Open volledige route in Google Maps</a>
     </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     REISINFO / VLUCHTEN
+═══════════════════════════════════════ -->
+<section id="reisinfo">
+  <div class="container">
+    <h2 class="section-title">Reisinfo</h2>
+    <p class="section-subtitle">Vluchten, data en handige gegevens voor onderweg</p>
+
+    <div class="flights-grid">
+
+      <!-- Heenvlucht -->
+      <div class="flight-card fade-in">
+        <div class="flight-card-top">
+          <span class="flight-badge">✈️ Heenvlucht</span>
+          <span class="flight-date">zo 6 sep 2026</span>
+        </div>
+        <div class="flight-number">KLM · KL1571</div>
+        <div class="flight-route">
+          <div class="flight-point">
+            <span class="flight-code">AMS</span>
+            <span class="flight-city">Amsterdam</span>
+            <span class="flight-time">08:50</span>
+          </div>
+          <div class="flight-line"><span class="flight-plane">✈</span></div>
+          <div class="flight-point">
+            <span class="flight-code">OPO</span>
+            <span class="flight-city">Porto</span>
+            <span class="flight-time">10:30</span>
+          </div>
+        </div>
+        <p class="flight-meta">Non-stop · ±2u40 · daarna direct door naar Dag 1</p>
+        <div class="flight-btns">
+          <a href="https://www.flightradar24.com/data/flights/kl1571" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">📡 Live status</a>
+          <a href="https://www.schiphol.nl/nl/vertrek/KL1571/" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-web">🛫 Schiphol</a>
+        </div>
+      </div>
+
+      <!-- Terugvlucht -->
+      <div class="flight-card fade-in">
+        <div class="flight-card-top">
+          <span class="flight-badge">✈️ Terugvlucht</span>
+          <span class="flight-date">di 15 sep 2026</span>
+        </div>
+        <div class="flight-number">KLM · KL1586</div>
+        <div class="flight-route">
+          <div class="flight-point">
+            <span class="flight-code">LIS</span>
+            <span class="flight-city">Lissabon</span>
+            <span class="flight-time">19:45</span>
+          </div>
+          <div class="flight-line"><span class="flight-plane">✈</span></div>
+          <div class="flight-point">
+            <span class="flight-code">AMS</span>
+            <span class="flight-city">Amsterdam</span>
+            <span class="flight-time">23:40</span>
+          </div>
+        </div>
+        <p class="flight-meta">Non-stop · ±2u55 · na afsluiting in Lissabon</p>
+        <div class="flight-btns">
+          <a href="https://www.flightradar24.com/data/flights/kl1586" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">📡 Live status</a>
+          <a href="https://www.schiphol.nl/nl/aankomst/KL1586/" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-web">🛬 Schiphol</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Snelle reisfeiten -->
+    <div class="travel-facts fade-in">
+      <div class="travel-fact">
+        <span class="travel-fact-icon">📅</span>
+        <span class="travel-fact-label">Reisduur</span>
+        <span class="travel-fact-value">6 – 15 sep 2026 · 10 dagen</span>
+      </div>
+      <div class="travel-fact">
+        <span class="travel-fact-icon">🚗</span>
+        <span class="travel-fact-label">Route</span>
+        <span class="travel-fact-value">Porto → Lissabon · ±500 km</span>
+      </div>
+      <div class="travel-fact">
+        <span class="travel-fact-icon">🕐</span>
+        <span class="travel-fact-label">Tijdzone</span>
+        <span class="travel-fact-value">Portugal: 1 uur vroeger dan NL</span>
+      </div>
+      <div class="travel-fact">
+        <span class="travel-fact-icon">💶</span>
+        <span class="travel-fact-label">Valuta</span>
+        <span class="travel-fact-value">Euro (€) · zoals thuis</span>
+      </div>
+      <div class="travel-fact">
+        <span class="travel-fact-icon">🔌</span>
+        <span class="travel-fact-label">Stopcontact</span>
+        <span class="travel-fact-value">Type F · geen adapter nodig</span>
+      </div>
+      <div class="travel-fact">
+        <span class="travel-fact-icon">🗣️</span>
+        <span class="travel-fact-label">Taal</span>
+        <span class="travel-fact-value">Portugees · Engels breed gesproken</span>
+      </div>
+    </div>
+
+    <p class="flight-disclaimer">
+      Vluchttijden zijn de geplande tijden. Klik op <strong>Live status</strong> voor actuele vertrek-, gate- en vertragingsinfo (opent Flightradar24).
+    </p>
   </div>
 </section>
 
@@ -142,7 +251,7 @@
           <img src="images/porto.jpg" loading="lazy" decoding="async"
                alt="Porto aan de Douro">
           <div class="day-card-img-overlay"></div>
-          <span class="day-number-badge">Dag 1</span>
+          <span class="day-number-badge">Dag 1 · zo 6–7 sep</span>
         </div>
         <div class="day-card-body">
           <div class="day-city-name">Porto</div>
@@ -150,7 +259,7 @@
           <p class="day-meta-row">🚗 30 min van luchthaven · Volle dag</p>
           <ul class="day-highlights">
             <li>Livraria Lello</li>
-            <li>Graham's Port Lodge</li>
+            <li>Caves Ferreira 🇵🇹</li>
             <li>Ribeira &amp; Dom Luís-brug</li>
             <li>Vila Nova de Gaia</li>
           </ul>
@@ -162,39 +271,13 @@
         </div>
       </div>
 
-      <!-- Day 2: Douro -->
-      <div class="day-card fade-in">
-        <div class="day-card-img">
-          <img src="images/douro.jpg" loading="lazy" decoding="async"
-               alt="Douro-vallei wijngaarden">
-          <div class="day-card-img-overlay"></div>
-          <span class="day-number-badge">Dag 2</span>
-        </div>
-        <div class="day-card-body">
-          <div class="day-city-name">Douro-vallei</div>
-          <div class="day-tagline">Wijnterrassen &amp; Romantiek</div>
-          <p class="day-meta-row">🚗 100 km · 1,5 uur van Porto · UNESCO-gebied</p>
-          <ul class="day-highlights">
-            <li>Quinta do Pôpa</li>
-            <li>Wijngaarden op de terrassen</li>
-            <li>Riviercruise over de Douro</li>
-            <li>Lamego</li>
-          </ul>
-          <div class="day-card-btns">
-            <a href="https://www.google.com/maps/dir/Porto/Douro+Valley/@41.15,-7.6,10z"
-               target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Maps</a>
-            <a href="#day2" class="btn btn-sm btn-web">📖 Details</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Day 3: Aveiro -->
+      <!-- Day 2: Aveiro -->
       <div class="day-card fade-in">
         <div class="day-card-img">
           <img src="images/aveiro.jpg" loading="lazy" decoding="async"
                alt="Aveiro grachten en moliceiro boten">
           <div class="day-card-img-overlay"></div>
-          <span class="day-number-badge">Dag 3</span>
+          <span class="day-number-badge">Dag 2 · di 8 sep</span>
         </div>
         <div class="day-card-body">
           <div class="day-city-name">Aveiro</div>
@@ -214,13 +297,39 @@
         </div>
       </div>
 
+      <!-- Day 3: Douro -->
+      <div class="day-card fade-in">
+        <div class="day-card-img">
+          <img src="images/douro.jpg" loading="lazy" decoding="async"
+               alt="Douro-vallei wijngaarden">
+          <div class="day-card-img-overlay"></div>
+          <span class="day-number-badge">Dag 3 · wo 9–10 sep</span>
+        </div>
+        <div class="day-card-body">
+          <div class="day-city-name">Douro-vallei</div>
+          <div class="day-tagline">Wijnterrassen &amp; Romantiek</div>
+          <p class="day-meta-row">🚗 100 km · 1,5 uur van Porto · 2 nachten · UNESCO-gebied</p>
+          <ul class="day-highlights">
+            <li>Niepoort — Quinta de Nápoles 🇳🇱</li>
+            <li>Quinta do Pôpa</li>
+            <li>Riviercruise over de Douro</li>
+            <li>Lamego &amp; wijnterrassen</li>
+          </ul>
+          <div class="day-card-btns">
+            <a href="https://www.google.com/maps/dir/Porto/Douro+Valley/@41.15,-7.6,10z"
+               target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Maps</a>
+            <a href="#day2" class="btn btn-sm btn-web">📖 Details</a>
+          </div>
+        </div>
+      </div>
+
       <!-- Day 4: Batalha & Nazaré -->
       <div class="day-card fade-in">
         <div class="day-card-img">
           <img src="images/nazare.jpg" loading="lazy" decoding="async"
                alt="Nazaré kliffen en golven">
           <div class="day-card-img-overlay"></div>
-          <span class="day-number-badge">Dag 4</span>
+          <span class="day-number-badge">Dag 4 · vr 11 sep</span>
         </div>
         <div class="day-card-body">
           <div class="day-city-name">Batalha &amp; Nazaré</div>
@@ -246,7 +355,7 @@
           <img src="images/obidos.jpg" loading="lazy" decoding="async"
                alt="Óbidos middeleeuwse stad">
           <div class="day-card-img-overlay"></div>
-          <span class="day-number-badge">Dag 5</span>
+          <span class="day-number-badge">Dag 5 · za 12 sep</span>
         </div>
         <div class="day-card-body">
           <div class="day-city-name">Óbidos</div>
@@ -272,7 +381,7 @@
           <img src="images/sintra.jpg" loading="lazy" decoding="async"
                alt="Palácio da Pena in Sintra">
           <div class="day-card-img-overlay"></div>
-          <span class="day-number-badge">Dag 6</span>
+          <span class="day-number-badge">Dag 6 · zo 13 sep</span>
         </div>
         <div class="day-card-body">
           <div class="day-city-name">Sintra</div>
@@ -298,7 +407,7 @@
           <img src="images/lisbon.jpg" loading="lazy" decoding="async"
                alt="Lissabon panorama met tram">
           <div class="day-card-img-overlay"></div>
-          <span class="day-number-badge">Dag 7</span>
+          <span class="day-number-badge">Dag 7 · ma 14–15 sep</span>
         </div>
         <div class="day-card-body">
           <div class="day-city-name">Lissabon</div>
@@ -334,7 +443,7 @@
     <div class="day-detail fade-in" id="day1">
       <div class="day-detail-header">
         <div class="day-detail-info">
-          <span class="day-detail-day">Dag 1</span>
+          <span class="day-detail-day">Dag 1 · zo 6–7 sep</span>
           <h2>Porto</h2>
           <p class="day-detail-tagline">Portwijn &amp; Literaire Magie</p>
           <p class="day-detail-desc">
@@ -350,7 +459,7 @@
             </div>
             <div class="meta-cell">
               <div class="meta-label">Overnachting</div>
-              <div class="meta-value">Porto / Gaia</div>
+              <div class="meta-value">Forte de Gaia, Autograph Collection · 2 nachten</div>
             </div>
             <div class="meta-cell">
               <div class="meta-label">Beste tip</div>
@@ -359,6 +468,10 @@
             <div class="meta-cell">
               <div class="meta-label">Fotomoment</div>
               <div class="meta-value">Dom Luís-brug bij zonsondergang</div>
+            </div>
+            <div class="meta-cell">
+              <div class="meta-label">Lunch tip</div>
+              <div class="meta-value">Adega São Nicolau · arroz de polvo</div>
             </div>
           </div>
         </div>
@@ -395,22 +508,25 @@
 
         <div class="attraction-item-card">
           <div class="attraction-item-top">
-            <div class="attraction-item-name">🍷 Graham's Port Lodge</div>
+            <div class="attraction-item-name">🍷 Caves Ferreira 🇵🇹</div>
           </div>
           <p class="attraction-item-desc">
-            Historische portwijnproducent in Vila Nova de Gaia met spectaculair uitzicht over Porto.
-            De guided tour voert je langs de pipas (vaten) en eindigt met een professionele proeverij
-            van premium portwijn door gecertificeerde sommeliers.
+            Het enige grote porthuis dat door zijn hele geschiedenis volledig Portugees is gebleven —
+            door lokale gidsen het vaakst aanbevolen als je er maar één wilt doen. Opgericht in 1751,
+            met het verhaal van Dona Antónia Adelaide Ferreira, een legendarische zakenvrouw die het
+            bedrijf in 1844 in een mannenwereld overnam en tot een van de grote porthuizen uitbouwde.
+            De rondleiding door de kelders eindigt met een proeverij; ligt aan de rivier in Gaia,
+            geen heuvel op.
           </p>
           <div class="attraction-item-info">
-            <span class="info-chip">📍 Rua do Agro 141, Gaia</span>
-            <span class="info-chip">🕐 10:00–18:00</span>
-            <span class="info-chip">⏱ 1,5–2 uur</span>
+            <span class="info-chip">📍 Av. Ramos Pinto 70, Gaia</span>
+            <span class="info-chip">🇵🇹 100% Portugees porthuis</span>
+            <span class="info-chip">⏱ 1–1,5 uur</span>
             <span class="info-chip">📞 Reserveren aanbevolen</span>
           </div>
           <div class="attraction-item-links">
-            <a href="https://www.google.com/maps/place/Graham's+Port+Lodge/@41.1377,-8.6134,17z" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
-            <a href="https://www.grahamsport.com/en" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-web">🌐 Reserveren</a>
+            <a href="https://www.google.com/maps/search/Caves+Ferreira+Vila+Nova+de+Gaia" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
+            <a href="https://www.sograpevinhos.com/en/winetourism" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-web">🌐 Reserveren</a>
           </div>
         </div>
 
@@ -441,7 +557,59 @@
     <div class="day-detail fade-in" id="day2">
       <div class="day-detail-header">
         <div class="day-detail-info">
-          <span class="day-detail-day">Dag 2</span>
+          <span class="day-detail-day">Dag 2 · di 8 sep</span>
+          <h2>Aveiro</h2>
+          <p class="day-detail-tagline">Art Nouveau &amp; Kleurrijke Kust</p>
+          <p class="day-detail-desc">
+            Aveiro wordt het Venetië van Portugal genoemd, met schilderachtige grachten bevaren
+            door traditionele moliceiro-boten met kleurrijke boegprenten. De stad is ook bekend
+            voor haar prachtige Art Nouveau-architectuur. Op 10 minuten rijden ligt Costa Nova
+            met de beroemde gestreepte visserhuisjes.
+          </p>
+          <div class="day-meta-grid">
+            <div class="meta-cell"><div class="meta-label">Rijafstand</div><div class="meta-value">1,5 uur van Douro</div></div>
+            <div class="meta-cell"><div class="meta-label">Overnachting</div><div class="meta-value">MS Collection Palacete de Valdemouro</div></div>
+            <div class="meta-cell"><div class="meta-label">Specialiteit</div><div class="meta-value">Ovos moles (eigebakjes)</div></div>
+            <div class="meta-cell"><div class="meta-label">Lunch tip</div><div class="meta-value">O Telheiro · enguias + arroz de marisco</div></div>
+            <div class="meta-cell"><div class="meta-label">Fotomoment</div><div class="meta-value">Costa Nova gestreepte huisjes</div></div>
+          </div>
+        </div>
+        <div class="day-detail-photo" style="background:linear-gradient(135deg,#0277bd,#01579b);display:flex;align-items:center;justify-content:center;font-size:5rem;">🚤</div>
+      </div>
+
+      <div class="attractions-list-detail">
+        <div class="attraction-item-card">
+          <div class="attraction-item-name">⛵ Moliceiro-boottocht</div>
+          <p class="attraction-item-desc">Glijd in een traditionele beschilderde boot door de grachten van Aveiro. Duurt ca. 45 minuten en biedt het mooiste uitzicht op de Art Nouveau-gevels.</p>
+          <div class="attraction-item-info">
+            <span class="info-chip">📍 Cais dos Barcos, Aveiro</span>
+            <span class="info-chip">⏱ 45 min</span>
+            <span class="info-chip">💶 ~€10 p.p.</span>
+          </div>
+          <div class="attraction-item-links">
+            <a href="https://www.google.com/maps/place/Aveiro/@40.6405,-8.6538,14z" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
+          </div>
+        </div>
+        <div class="attraction-item-card">
+          <div class="attraction-item-name">🏠 Costa Nova do Prado</div>
+          <p class="attraction-item-desc">Kleurrijke gestreepte vissershuisjes langs de Atlantische kust. Een van de meest gefotografeerde plekken van Portugal, en terecht. Kom vroeg voor weinig volk.</p>
+          <div class="attraction-item-info">
+            <span class="info-chip">📍 10 min van Aveiro</span>
+            <span class="info-chip">💶 Gratis</span>
+            <span class="info-chip">📸 Gouden uur aanbevolen</span>
+          </div>
+          <div class="attraction-item-links">
+            <a href="https://www.google.com/maps/place/Costa+Nova+do+Prado/@40.6175,-8.7505,15z" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── DAYS 4-7: Summary Cards ── -->
+    <div class="day-detail fade-in" id="day3">
+      <div class="day-detail-header">
+        <div class="day-detail-info">
+          <span class="day-detail-day">Dag 3 · wo 9–10 sep</span>
           <h2>Douro-vallei</h2>
           <p class="day-detail-tagline">Wijnterrassen &amp; Romantiek</p>
           <p class="day-detail-desc">
@@ -457,15 +625,19 @@
             </div>
             <div class="meta-cell">
               <div class="meta-label">Overnachting</div>
-              <div class="meta-value">Pinhão of Peso da Régua</div>
+              <div class="meta-value">The Manor House Celeirós · Quinta do Portal</div>
             </div>
             <div class="meta-cell">
               <div class="meta-label">Beste tip</div>
-              <div class="meta-value">Reserveer quinta vooraf</div>
+              <div class="meta-value">Reserveer Niepoort ruim vooraf</div>
             </div>
             <div class="meta-cell">
               <div class="meta-label">Fotomoment</div>
               <div class="meta-value">Zonsopkomst over de terrassen</div>
+            </div>
+            <div class="meta-cell">
+              <div class="meta-label">Lunch tip</div>
+              <div class="meta-value">Cais da Foz · pernil assado</div>
             </div>
           </div>
         </div>
@@ -478,6 +650,30 @@
       <h3 style="font-family:var(--serif);color:var(--dark);margin-bottom:1.5rem;">✨ Attracties</h3>
 
       <div class="attractions-list-detail">
+
+        <div class="attraction-item-card">
+          <div class="attraction-item-top">
+            <div class="attraction-item-name">🍷 Niepoort — Quinta de Nápoles 🇳🇱</div>
+          </div>
+          <p class="attraction-item-desc">
+            Authentieke, intieme wijnervaring bij een Nederlandse familie die al sinds 1842 wijn
+            en port maakt — Dirk van der Niepoort geldt als grondlegger van de moderne Douro. De
+            Quinta de Nápoles ligt midden in de wijnbergen (tussen Régua en Pinhão). Bezoekers
+            roemen juist het persoonlijke, exclusieve karakter — geen toeristische massa-lodge,
+            maar een echte proeverij op de quinta, vaak met een huisgemaakte lunch op het terras.
+            Reserveer ruim vooraf; bezoek is alleen op afspraak.
+          </p>
+          <div class="attraction-item-info">
+            <span class="info-chip">📍 Santo Adrião, Douro</span>
+            <span class="info-chip">🍇 Port én droge Douro-wijnen</span>
+            <span class="info-chip">⏱ 2–3 uur (incl. lunch)</span>
+            <span class="info-chip">📞 Alleen op reservering</span>
+          </div>
+          <div class="attraction-item-links">
+            <a href="https://www.google.com/maps/search/Niepoort+Quinta+de+N%C3%A1poles+Douro" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
+            <a href="https://www.niepoort.pt/en/" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-web">🌐 Website</a>
+          </div>
+        </div>
 
         <div class="attraction-item-card">
           <div class="attraction-item-top">
@@ -546,67 +742,17 @@
     </div>
 
     <!-- ── DAY 3: AVEIRO ── -->
-    <div class="day-detail fade-in" id="day3">
-      <div class="day-detail-header">
-        <div class="day-detail-info">
-          <span class="day-detail-day">Dag 3</span>
-          <h2>Aveiro</h2>
-          <p class="day-detail-tagline">Art Nouveau &amp; Kleurrijke Kust</p>
-          <p class="day-detail-desc">
-            Aveiro wordt het Venetië van Portugal genoemd, met schilderachtige grachten bevaren
-            door traditionele moliceiro-boten met kleurrijke boegprenten. De stad is ook bekend
-            voor haar prachtige Art Nouveau-architectuur. Op 10 minuten rijden ligt Costa Nova
-            met de beroemde gestreepte visserhuisjes.
-          </p>
-          <div class="day-meta-grid">
-            <div class="meta-cell"><div class="meta-label">Rijafstand</div><div class="meta-value">1,5 uur van Douro</div></div>
-            <div class="meta-cell"><div class="meta-label">Overnachting</div><div class="meta-value">Aveiro of Costa Nova</div></div>
-            <div class="meta-cell"><div class="meta-label">Specialiteit</div><div class="meta-value">Ovos moles (eigebakjes)</div></div>
-            <div class="meta-cell"><div class="meta-label">Fotomoment</div><div class="meta-value">Costa Nova gestreepte huisjes</div></div>
-          </div>
-        </div>
-        <div class="day-detail-photo" style="background:linear-gradient(135deg,#0277bd,#01579b);display:flex;align-items:center;justify-content:center;font-size:5rem;">🚤</div>
-      </div>
-
-      <div class="attractions-list-detail">
-        <div class="attraction-item-card">
-          <div class="attraction-item-name">⛵ Moliceiro-boottocht</div>
-          <p class="attraction-item-desc">Glijd in een traditionele beschilderde boot door de grachten van Aveiro. Duurt ca. 45 minuten en biedt het mooiste uitzicht op de Art Nouveau-gevels.</p>
-          <div class="attraction-item-info">
-            <span class="info-chip">📍 Cais dos Barcos, Aveiro</span>
-            <span class="info-chip">⏱ 45 min</span>
-            <span class="info-chip">💶 ~€10 p.p.</span>
-          </div>
-          <div class="attraction-item-links">
-            <a href="https://www.google.com/maps/place/Aveiro/@40.6405,-8.6538,14z" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
-          </div>
-        </div>
-        <div class="attraction-item-card">
-          <div class="attraction-item-name">🏠 Costa Nova do Prado</div>
-          <p class="attraction-item-desc">Kleurrijke gestreepte vissershuisjes langs de Atlantische kust. Een van de meest gefotografeerde plekken van Portugal, en terecht. Kom vroeg voor weinig volk.</p>
-          <div class="attraction-item-info">
-            <span class="info-chip">📍 10 min van Aveiro</span>
-            <span class="info-chip">💶 Gratis</span>
-            <span class="info-chip">📸 Gouden uur aanbevolen</span>
-          </div>
-          <div class="attraction-item-links">
-            <a href="https://www.google.com/maps/place/Costa+Nova+do+Prado/@40.6175,-8.7505,15z" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ── DAYS 4-7: Summary Cards ── -->
     <div class="day-detail fade-in" id="day4">
       <div class="day-detail-header">
         <div class="day-detail-info">
-          <span class="day-detail-day">Dag 4</span>
+          <span class="day-detail-day">Dag 4 · vr 11 sep</span>
           <h2>Batalha &amp; Nazaré</h2>
           <p class="day-detail-tagline">Geschiedenis &amp; Oceaangeweld</p>
           <p class="day-detail-desc">Combineer de indrukwekkende gotische architectuur van het Klooster van Batalha (1385, UNESCO) met de dramatische kliffen en reuzengolven van Nazaré. Het Farol-vuurtoren uitkijkpunt biedt de meest spectaculaire uitzichten op zee.</p>
           <div class="day-meta-grid">
             <div class="meta-cell"><div class="meta-label">Rijafstand</div><div class="meta-value">45 min van Aveiro</div></div>
-            <div class="meta-cell"><div class="meta-label">Overnachting</div><div class="meta-value">Nazaré</div></div>
+            <div class="meta-cell"><div class="meta-label">Overnachting</div><div class="meta-value">Pousada Castelo de Óbidos</div></div>
+            <div class="meta-cell"><div class="meta-label">Lunch Nazaré</div><div class="meta-value">O Casalinho · oesters + cataplana</div></div>
           </div>
         </div>
         <div class="day-detail-photo">
@@ -646,13 +792,15 @@
     <div class="day-detail fade-in" id="day5">
       <div class="day-detail-header">
         <div class="day-detail-info">
-          <span class="day-detail-day">Dag 5</span>
+          <span class="day-detail-day">Dag 5 · za 12 sep</span>
           <h2>Óbidos</h2>
           <p class="day-detail-tagline">Middeleeuws Sprookje</p>
           <p class="day-detail-desc">Óbidos is een volledig bewaarde middeleeuwse stad omringd door imposante vestingmuren. Witte huisjes met blauwe en gele randen, bougainvillea's, kasseienstraatjes — een van Portugal's mooiste dorpjes. Proef de ginjinha (kerslikeur) uit een chocoladebeker.</p>
           <div class="day-meta-grid">
             <div class="meta-cell"><div class="meta-label">Rijafstand</div><div class="meta-value">1 uur van Nazaré</div></div>
-            <div class="meta-cell"><div class="meta-label">Tip</div><div class="meta-value">Loop de hele vestingmuur</div></div>
+            <div class="meta-cell"><div class="meta-label">Tip</div><div class="meta-value">Loop de hele vestingmuur (dagbrekers weg om 18u)</div></div>
+            <div class="meta-cell"><div class="meta-label">Hotel</div><div class="meta-value">Pousada Castelo de Óbidos</div></div>
+            <div class="meta-cell"><div class="meta-label">Lunch tip</div><div class="meta-value">Alcaide · bacalhau com nozes</div></div>
           </div>
         </div>
         <div class="day-detail-photo" style="background:linear-gradient(135deg,#6a1b9a,#4a148c);display:flex;align-items:center;justify-content:center;font-size:5rem;">🏰</div>
@@ -676,13 +824,15 @@
     <div class="day-detail fade-in" id="day6">
       <div class="day-detail-header">
         <div class="day-detail-info">
-          <span class="day-detail-day">Dag 6</span>
+          <span class="day-detail-day">Dag 6 · zo 13 sep</span>
           <h2>Sintra</h2>
           <p class="day-detail-tagline">Paleizen &amp; Mystiek</p>
           <p class="day-detail-desc">Sintra is een UNESCO-werelderfgoedstad waar sprookjespaleizen uit de mist rijzen tussen eeuwenoude dennenbossen. Palácio da Pena met zijn felle kleuren, de raadselachtige Quinta da Regaleira met zijn initiatie-put, en de Moorse kastelen zijn elk apart een dag waard.</p>
           <div class="day-meta-grid">
             <div class="meta-cell"><div class="meta-label">Rijafstand</div><div class="meta-value">30 min van Óbidos</div></div>
             <div class="meta-cell"><div class="meta-label">Tip</div><div class="meta-value">Reserveer tickets Pena online!</div></div>
+            <div class="meta-cell"><div class="meta-label">Hotel</div><div class="meta-value">Casa Holstein, Sintra</div></div>
+            <div class="meta-cell"><div class="meta-label">Lunch tip</div><div class="meta-value">Incomum · arroz de marisco</div></div>
           </div>
         </div>
         <div class="day-detail-photo">
@@ -724,7 +874,7 @@
     <div class="day-detail fade-in" id="day7">
       <div class="day-detail-header">
         <div class="day-detail-info">
-          <span class="day-detail-day">Dag 7</span>
+          <span class="day-detail-day">Dag 7 · ma 14–15 sep</span>
           <h2>Lissabon</h2>
           <p class="day-detail-tagline">Tijdperk van Ontdekkingen</p>
           <p class="day-detail-desc">Lissabon, de oudste hoofdstad van West-Europa, spreidt zich uit over zeven heuvels langs de Taag. Van de historische Toren van Belém tot de kleurrijke straatjes van Alfama, van het ratelen van tram 28 tot de zoete geur van pastéis — Lissabon is onvergetelijk.</p>
@@ -733,6 +883,8 @@
             <div class="meta-cell"><div class="meta-label">Parkeren</div><div class="meta-value">P&amp;R buiten centrum</div></div>
             <div class="meta-cell"><div class="meta-label">Tip</div><div class="meta-value">Vroeg bij Pastéis de Belém</div></div>
             <div class="meta-cell"><div class="meta-label">Afsluiter</div><div class="meta-value">Fado in Alfama</div></div>
+            <div class="meta-cell"><div class="meta-label">Hotel</div><div class="meta-value">Memmo Príncipe Real · 2 nachten</div></div>
+            <div class="meta-cell"><div class="meta-label">Lunch tip</div><div class="meta-value">Pastéis de Belém · custardtaartjes</div></div>
           </div>
         </div>
         <div class="day-detail-photo">

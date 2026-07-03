@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Restaurants — Portugal Roadtrip</title>
+  <meta name="description" content="Lunch restaurant suggesties per stop voor de Portugal roadtrip, september 2026.">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .restaurants-intro { background: var(--cream); padding: 3rem 0 2rem; text-align: center; }
+    .restaurant-grid { display: flex; flex-direction: column; gap: 2rem; margin-top: 2rem; }
+    .restaurant-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      transition: box-shadow .2s ease;
+    }
+    .restaurant-card:hover { box-shadow: var(--shadow-md); }
+    .restaurant-card-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: var(--terra);
+      color: #fff;
+      padding: 1.25rem 1.75rem;
+    }
+    .restaurant-dag-badge {
+      background: rgba(255,255,255,.2);
+      color: #fff;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      padding: .3rem .75rem;
+      border-radius: 2px;
+      white-space: nowrap;
+    }
+    .restaurant-card-header h3 { font-family: var(--serif); font-size: 1.25rem; margin: 0; flex: 1; }
+    .restaurant-city-tag { font-size: .85rem; opacity: .85; white-space: nowrap; }
+    .restaurant-card-body { padding: 1.5rem 1.75rem; }
+    .restaurant-desc { color: var(--text); line-height: 1.7; margin-bottom: 1.25rem; }
+    .restaurant-chips { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1.25rem; }
+    .restaurant-chip {
+      background: var(--sand);
+      border: 1px solid var(--border);
+      border-radius: 2rem;
+      font-size: .8rem;
+      color: var(--text);
+      padding: .25rem .75rem;
+    }
+    .restaurant-btns { display: flex; gap: .75rem; flex-wrap: wrap; }
+    .specialiteit-box {
+      border-left: 4px solid var(--terra);
+      background: #fef5f0;
+      padding: .75rem 1rem;
+      border-radius: 0 var(--radius) var(--radius) 0;
+      margin-bottom: 1.25rem;
+    }
+    .specialiteit-box strong { display: block; font-size: .75rem; text-transform: uppercase; letter-spacing: .05em; color: var(--terra); margin-bottom: .25rem; }
+    .specialiteit-box p { margin: 0; font-size: .95rem; color: var(--text); }
+    .tip-box {
+      border-left: 4px solid var(--gold);
+      background: #fffbf0;
+      padding: .6rem 1rem;
+      border-radius: 0 var(--radius) var(--radius) 0;
+      font-size: .85rem;
+      color: var(--muted);
+      margin-bottom: 1.25rem;
+    }
+    .back-link { display: inline-flex; align-items: center; gap: .4rem; color: var(--azul); font-weight: 600; text-decoration: none; margin-bottom: 2rem; }
+    .back-link:hover { color: var(--terra); }
+    @media (max-width: 600px) {
+      .restaurant-card-header { flex-wrap: wrap; }
+      .restaurant-btns { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="nav-logo"><a href="index.html" style="color:inherit;text-decoration:none">Portugal 🇵🇹</a></div>
+    <ul class="nav-links">
+      <li><a href="index.html#route">Route</a></li>
+      <li><a href="index.html#reisinfo">Reisinfo</a></li>
+      <li><a href="index.html#days">Dagen</a></li>
+      <li><a href="restaurants.html" style="color:var(--gold)">🍽️ Restaurants</a></li>
+      <li><a href="hotels.html">🏨 Hotels</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="restaurants-intro">
+  <div class="container">
+    <h1 class="section-title">Restaurants</h1>
+    <p class="section-subtitle">Lokale lunchsuggesties per stop · altijd reserveren in september · 4 personen</p>
+    <a href="index.html" class="back-link">← Terug naar de roadtrip</a>
+  </div>
+</section>
+
+<section style="background: var(--sand); padding-bottom: 4rem;">
+<div class="container">
+<div class="restaurant-grid">
+
+  <!-- DAG 1: PORTO -->
+  <div class="restaurant-card">
+    <div class="restaurant-card-header">
+      <span class="restaurant-dag-badge">Dag 1 · Porto</span>
+      <h3>Adega São Nicolau</h3>
+      <span class="restaurant-city-tag">Rua de São Nicolau 1, Ribeira</span>
+    </div>
+    <div class="restaurant-card-body">
+      <div class="specialiteit-box">
+        <strong>Specialiteit van de dag</strong>
+        <p>Arroz de polvo — octopusrijst langzaam gekookt in eigen bouillon. Volkomen anders dan de standaard octopus die toeristen krijgen. Rijkdom, diepte, ziel.</p>
+      </div>
+      <p class="restaurant-desc">
+        Kleine, authentieke tasca in de Ribeira die al decennialang hetzelfde doet: eerlijke Portugese
+        gerechten zonder toeristenprijzen, hoewel het midden in de meest toeristische wijk van Porto ligt.
+        Sterk in vis en zeevruchten. Eén van de weinige plekken in de Ribeira waar locals écht komen eten.
+        Geen ambiance-trucjes, gewoon goed eten.
+      </p>
+      <div class="tip-box">
+        💡 Betaal contant — ze kijken je aan met diepe teleurstelling bij een kaart. Wachtrij voor
+        de deur om 11:45 is normaal. Ma–za tot 15:00.
+      </div>
+      <div class="restaurant-chips">
+        <span class="restaurant-chip">🐙 Octopus</span>
+        <span class="restaurant-chip">🐟 Verse vis</span>
+        <span class="restaurant-chip">💵 Contant</span>
+        <span class="restaurant-chip">📍 Ribeira</span>
+        <span class="restaurant-chip">🕐 Ma–Za 12–15u</span>
+        <span class="restaurant-chip">📞 Reserveer of wacht</span>
+      </div>
+      <div class="restaurant-btns">
+        <a href="https://www.google.com/maps/search/Adega+São+Nicolau+Porto+Ribeira" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAG 2: DOURO -->
+  <div class="restaurant-card">
+    <div class="restaurant-card-header">
+      <span class="restaurant-dag-badge">Dag 2 · Douro</span>
+      <h3>Cais da Foz</h3>
+      <span class="restaurant-city-tag">Bij de brug, Pinhão</span>
+    </div>
+    <div class="restaurant-card-body">
+      <div class="specialiteit-box">
+        <strong>Specialiteit van de dag</strong>
+        <p>Pernil assado — langzaam geroosterd varkenspootje dat van het bot valt, krokant van buiten. De aardappelen geroosterd in het braadvet zijn even belangrijk als het vlees zelf.</p>
+      </div>
+      <p class="restaurant-desc">
+        Geen franje, wél eerlijk Douro-eten aan de rivier. Buitenterras pal aan het water, vriendelijk
+        personeel dat uitstekend wijnadvies geeft voor de lokale Douro-reds. Populair bij zowel locals
+        als bezoekers. Onder nieuwe eigenaren met een fris menu, maar de kwaliteit en de authenticiteit
+        zijn gebleven. Eenvoudig van buiten, onvergetelijk van binnen.
+      </p>
+      <div class="tip-box">
+        💡 Reserveren sterk aanbevolen in september. Kies een tafel buiten voor het rivierpanorama.
+        Vraag om een lokale Douro-rode bij het vlees.
+      </div>
+      <div class="restaurant-chips">
+        <span class="restaurant-chip">🐷 Pernil assado</span>
+        <span class="restaurant-chip">🐟 Gegrilde zeebaars</span>
+        <span class="restaurant-chip">🍷 Lokale Douro-reds</span>
+        <span class="restaurant-chip">📍 Pinhão, aan de rivier</span>
+        <span class="restaurant-chip">📞 Reserveer</span>
+      </div>
+      <div class="restaurant-btns">
+        <a href="https://www.google.com/maps/search/Cais+da+Foz+Pinhao+Douro" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAG 3: AVEIRO -->
+  <div class="restaurant-card">
+    <div class="restaurant-card-header">
+      <span class="restaurant-dag-badge">Dag 3 · Aveiro</span>
+      <h3>O Telheiro</h3>
+      <span class="restaurant-city-tag">Praça do Peixe (Vismarkt), Aveiro</span>
+    </div>
+    <div class="restaurant-card-body">
+      <div class="specialiteit-box">
+        <strong>Specialiteiten van de dag</strong>
+        <p>Enguias (gestoofde paling) — uniek voor Aveiro, nergens anders zo vers en vers bereid. Daarna arroz de marisco als je meer trek hebt. Afsluiten met ovos moles bij Confeitaria Peixinho (1856) vlakbij.</p>
+      </div>
+      <p class="restaurant-desc">
+        Al meer dan 30 jaar een begrip bij de lokale bevolking van Aveiro. Rumoerige, gezellige
+        eetkaal aan de Vismarkt, het kloppende hart van de stad. Portugese families aan lange
+        tafels, verse vis van de markt naast de deur, lokale witte wijn. Geen gimmicks, geen Engels
+        menu, gewoon hetgeen op de markt vers was die ochtend.
+      </p>
+      <div class="tip-box">
+        💡 Na de lunch direct naar Confeitaria Peixinho (1856) voor ovos moles — de beschermde
+        Aveiro-lekkernij gemaakt van eigeel en suiker in schelpvorm. Dit mag je niet missen.
+      </div>
+      <div class="restaurant-chips">
+        <span class="restaurant-chip">🐍 Enguias (paling)</span>
+        <span class="restaurant-chip">🦐 Arroz de marisco</span>
+        <span class="restaurant-chip">📍 Vismarkt, centrum</span>
+        <span class="restaurant-chip">👨‍👩‍👧 Lokale families</span>
+        <span class="restaurant-chip">🕐 Lunch 12–14:30u</span>
+      </div>
+      <div class="restaurant-btns">
+        <a href="https://www.google.com/maps/search/O+Telheiro+Aveiro+Praça+Peixe" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- TUSSENSTOP NAZARÉ -->
+  <div class="restaurant-card">
+    <div class="restaurant-card-header">
+      <span class="restaurant-dag-badge">Tussenstop · Nazaré</span>
+      <h3>Restaurante O Casalinho</h3>
+      <span class="restaurant-city-tag">Praça Sousa Oliveira 25, Nazaré</span>
+    </div>
+    <div class="restaurant-card-body">
+      <div class="specialiteit-box">
+        <strong>Specialiteit van de dag</strong>
+        <p>Oestres (oesters) — O Casalinho is dé oesterreferentie van Nazaré, locals bestellen ze nergens anders. Cataplana de tamboril (zeeduivel in de cataplana) voor twee als je doorrijdt naar Óbidos.</p>
+      </div>
+      <p class="restaurant-desc">
+        Op het hoofdplein van Nazaré, terras met directe zeezicht. Lokale aanbeveling voor
+        oesters en dagverse vis. Eén ober werkt er al veertig jaar — dat vertelt je alles over
+        hoe het er loopt. Perfect als lunchstop tussen de vuurtoren bij Praia do Norte en de
+        doorrit naar Óbidos (±45 minuten rijden).
+      </p>
+      <div class="tip-box">
+        💡 Reserveer voor de lunch — zeker op vrijdag en in september. Parkeer buiten het
+        centrum en loop naar het plein (10 min).
+      </div>
+      <div class="restaurant-chips">
+        <span class="restaurant-chip">🦪 Oesters</span>
+        <span class="restaurant-chip">🐟 Dagverse vis</span>
+        <span class="restaurant-chip">🌊 Zeezicht</span>
+        <span class="restaurant-chip">📍 Hoofdplein Nazaré</span>
+        <span class="restaurant-chip">📞 Reserveer</span>
+      </div>
+      <div class="restaurant-btns">
+        <a href="https://www.google.com/maps/search/Restaurante+O+Casalinho+Nazare" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAG 5: ÓBIDOS -->
+  <div class="restaurant-card">
+    <div class="restaurant-card-header">
+      <span class="restaurant-dag-badge">Dag 4–5 · Óbidos</span>
+      <h3>Alcaide</h3>
+      <span class="restaurant-city-tag">Rua Direita, bovenverdieping, Óbidos</span>
+    </div>
+    <div class="restaurant-card-body">
+      <div class="specialiteit-box">
+        <strong>Specialiteit van de dag</strong>
+        <p>Bacalhau com nozes, maçã e queijo — kabeljauw met walnoten, appel en kaas. Een uniek regionaal gerecht dat de lokale West-Portugal producten combineert. Gegrilde octopus als alternatief.</p>
+      </div>
+      <p class="restaurant-desc">
+        Terugkerende bezoekers zweren erbij. Retro-eetkamer op de eerste verdieping van de Rua
+        Direita, de hoofdstraat van de middeleeuwse stad. Uitzicht over de velden buiten de
+        kasteelmuren. Eerlijk geprijsd, vriendelijk personeel, comfortabele sfeer. Na de lunch:
+        een ginja in een chocoladekopje kopen op straat — de iconische Óbidos-lekkernij.
+      </p>
+      <div class="tip-box">
+        💡 Ga na de lunch een ginja (kersenlikeur) drinken uit een chocoladekopje op straat.
+        Dit is de signature-ervaring van Óbidos. Zoek een kraampje op de Rua Direita.
+      </div>
+      <div class="restaurant-chips">
+        <span class="restaurant-chip">🐟 Bacalhau com nozes</span>
+        <span class="restaurant-chip">🐙 Gegrilde octopus</span>
+        <span class="restaurant-chip">📍 Rua Direita, 1e verdiep</span>
+        <span class="restaurant-chip">🏰 Uitzicht kasteelmuren</span>
+        <span class="restaurant-chip">💰 Betaalbaar</span>
+      </div>
+      <div class="restaurant-btns">
+        <a href="https://www.google.com/maps/search/Alcaide+Obidos+Rua+Direita" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAG 6: SINTRA -->
+  <div class="restaurant-card">
+    <div class="restaurant-card-header">
+      <span class="restaurant-dag-badge">Dag 6 · Sintra</span>
+      <h3>Incomum by Luís Santos</h3>
+      <span class="restaurant-city-tag">Bij het treinstation, Sintra</span>
+    </div>
+    <div class="restaurant-card-body">
+      <div class="specialiteit-box">
+        <strong>Specialiteit van de dag</strong>
+        <p>Arroz de marisco, inktvispasta met garnalen, of Iberisch varken. Het lunchemenu (soep/salade, hoofdgerecht, dessert, drankje) voor ±€15 is onverslaanbaar voor deze kwaliteit.</p>
+      </div>
+      <p class="restaurant-desc">
+        Lokale celebrity chef opende dit restaurant in 2014 — inmiddels het beste adres voor
+        creatieve, gegroeide Portugese keuken in Sintra. Klein en knus (12 tafels), altijd vol.
+        Handtekeninggerechten combineren zeevruchten en regionale ingrediënten met een vleugje
+        moderniteit. Na de lunch: queijadas de Sintra kopen bij Piriquita (bakkerij 1862, om de
+        hoek) — het traditionele Sintra-koekje.
+      </p>
+      <div class="tip-box">
+        💡 Altijd van tevoren reserveren — ze zijn snel vol. Na de lunch queijadas de Sintra
+        en travesseiros bij Piriquita halen (loopafstand). Dit zijn de authentieke Sintra-gebakjes.
+      </div>
+      <div class="restaurant-chips">
+        <span class="restaurant-chip">🦐 Arroz de marisco</span>
+        <span class="restaurant-chip">🐷 Iberisch varken</span>
+        <span class="restaurant-chip">💶 Lunchemenu ~€15</span>
+        <span class="restaurant-chip">📍 Bij treinstation</span>
+        <span class="restaurant-chip">📞 Reserveer</span>
+        <span class="restaurant-chip">⭐ Lokale chef</span>
+      </div>
+      <div class="restaurant-btns">
+        <a href="https://www.google.com/maps/search/Incomum+Luis+Santos+Sintra" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
+        <a href="https://www.incomumbyluissantos.pt" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-web">🌐 Reserveren</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAG 7: LISSABON -->
+  <div class="restaurant-card">
+    <div class="restaurant-card-header">
+      <span class="restaurant-dag-badge">Dag 7 · Lissabon</span>
+      <h3>Pastéis de Belém</h3>
+      <span class="restaurant-city-tag">Rua de Belém 84–92, Belém, Lissabon</span>
+    </div>
+    <div class="restaurant-card-body">
+      <div class="specialiteit-box">
+        <strong>Specialiteit van de dag</strong>
+        <p>Pastéis de Belém — bladerdeegbakjes met warme custardvulling, bestrooid met kaneel en poedersuiker. Het originele recept uit 1837, nooit veranderd. Meteen eten terwijl ze warm zijn.</p>
+      </div>
+      <p class="restaurant-desc">
+        Strikt genomen geen lunchtempel maar een onmisbaar onderdeel van elke Lissabon-dag.
+        De originele bakkerij opende in 1837 naast het Jerónimos Klooster — het geheime recept
+        is sindsdien nooit veranderd. Combineer met de Toren van Belém en het Ontdekkingsmonument
+        op dezelfde dag. Daarna voor een echte lunch: de buurt Belém heeft uitstekende tavernes
+        langs de Taag, of keer terug naar het centrum voor een traditionele bacalhau-lunch in Alfama.
+      </p>
+      <div class="tip-box">
+        💡 Vroeg gaan (voor 10:00) of na 14:00 om de langste rijen te vermijden. Bestaan al
+        bijna 200 jaar — er is altijd een rij, maar die gaat snel. Terugvlucht is pas 19:45, dus
+        genoeg tijd voor een volledige Lissabon-dag.
+      </div>
+      <div class="restaurant-chips">
+        <span class="restaurant-chip">🥐 Pastéis de nata</span>
+        <span class="restaurant-chip">📅 Sinds 1837</span>
+        <span class="restaurant-chip">📍 Belém, Lissabon</span>
+        <span class="restaurant-chip">⏰ Vroeg of laat gaan</span>
+        <span class="restaurant-chip">🏛️ Naast Jerónimos Klooster</span>
+      </div>
+      <div class="restaurant-btns">
+        <a href="https://www.google.com/maps/search/Pasteis+de+Belem+Lisboa" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
+        <a href="https://pasteisdebelem.pt" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-web">🌐 Website</a>
+      </div>
+    </div>
+  </div>
+
+</div><!-- restaurant-grid -->
+</div><!-- container -->
+</section>
+
+<footer style="background:var(--dark);color:#fff;padding:2rem;text-align:center;font-size:.85rem;opacity:.8;">
+  Portugal Roadtrip · zo 6 – di 15 sep 2026 · <a href="index.html" style="color:var(--gold)">← Terug naar de route</a>
+</footer>
+
+</body>
+</html>
