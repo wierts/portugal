@@ -4,7 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portugal Roadtrip — Interactieve 7-Daagse Reisroute</title>
-  <meta name="description" content="Interactieve 7-daagse Portugal roadtrip met Google Maps, attractielinks en gedetailleerde dagprogramma's.">
+  <meta name="description" content="Interactieve 7-daagse Portugal roadtrip met kaart, Google Maps-links, attractie-info en gedetailleerde dagprogramma's.">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -95,6 +97,32 @@
         <span class="feature-item">📸 Fotografie-tips</span>
       </div>
     </div>
+
+    <!-- ── Routekaart met alle 7 stops ── -->
+    <div class="route-map-wrap fade-in">
+      <div class="route-map-head">
+        <h3>De Complete Route</h3>
+        <p>Porto → Douro → Aveiro → Nazaré → Óbidos → Sintra → Lissabon · ±500 km</p>
+      </div>
+      <div class="route-map-embed" id="routeMap"></div>
+      <div class="route-stops">
+        <span class="route-stop"><span class="route-dot">1</span>Porto</span>
+        <span class="route-arrow">→</span>
+        <span class="route-stop"><span class="route-dot">2</span>Douro</span>
+        <span class="route-arrow">→</span>
+        <span class="route-stop"><span class="route-dot">3</span>Aveiro</span>
+        <span class="route-arrow">→</span>
+        <span class="route-stop"><span class="route-dot">4</span>Nazaré</span>
+        <span class="route-arrow">→</span>
+        <span class="route-stop"><span class="route-dot">5</span>Óbidos</span>
+        <span class="route-arrow">→</span>
+        <span class="route-stop"><span class="route-dot">6</span>Sintra</span>
+        <span class="route-arrow">→</span>
+        <span class="route-stop"><span class="route-dot">7</span>Lissabon</span>
+      </div>
+      <a href="https://www.google.com/maps/dir/Porto,+Portugal/Douro+Valley,+Portugal/Aveiro,+Portugal/Nazar%C3%A9,+Portugal/%C3%93bidos,+Portugal/Sintra,+Portugal/Lisbon,+Portugal"
+         target="_blank" rel="noopener noreferrer" class="btn btn-map route-map-btn">🗺️ Open volledige route in Google Maps</a>
+    </div>
   </div>
 </section>
 
@@ -111,7 +139,7 @@
       <!-- Day 1: Porto -->
       <div class="day-card fade-in">
         <div class="day-card-img">
-          <img src="images/porto.jpg"
+          <img src="images/porto.jpg" loading="lazy" decoding="async"
                alt="Porto aan de Douro">
           <div class="day-card-img-overlay"></div>
           <span class="day-number-badge">Dag 1</span>
@@ -128,7 +156,7 @@
           </ul>
           <div class="day-card-btns">
             <a href="https://www.google.com/maps/dir/Porto+Airport/Livraria+Lello/@41.1451,-8.6059,15z"
-               target="_blank" class="btn btn-sm btn-map">🗺️ Maps</a>
+               target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Maps</a>
             <a href="#day1" class="btn btn-sm btn-web">📖 Details</a>
           </div>
         </div>
@@ -137,7 +165,7 @@
       <!-- Day 2: Douro -->
       <div class="day-card fade-in">
         <div class="day-card-img">
-          <img src="images/douro.jpg"
+          <img src="images/douro.jpg" loading="lazy" decoding="async"
                alt="Douro-vallei wijngaarden">
           <div class="day-card-img-overlay"></div>
           <span class="day-number-badge">Dag 2</span>
@@ -145,7 +173,7 @@
         <div class="day-card-body">
           <div class="day-city-name">Douro-vallei</div>
           <div class="day-tagline">Wijnterrassen &amp; Romantiek</div>
-          <p class="day-meta-row">🚗 1,5 uur van Porto · UNESCO-gebied</p>
+          <p class="day-meta-row">🚗 100 km · 1,5 uur van Porto · UNESCO-gebied</p>
           <ul class="day-highlights">
             <li>Quinta do Pôpa</li>
             <li>Wijngaarden op de terrassen</li>
@@ -154,7 +182,7 @@
           </ul>
           <div class="day-card-btns">
             <a href="https://www.google.com/maps/dir/Porto/Douro+Valley/@41.15,-7.6,10z"
-               target="_blank" class="btn btn-sm btn-map">🗺️ Maps</a>
+               target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Maps</a>
             <a href="#day2" class="btn btn-sm btn-web">📖 Details</a>
           </div>
         </div>
@@ -163,7 +191,7 @@
       <!-- Day 3: Aveiro -->
       <div class="day-card fade-in">
         <div class="day-card-img">
-          <img src="images/aveiro.jpg"
+          <img src="images/aveiro.jpg" loading="lazy" decoding="async"
                alt="Aveiro grachten en moliceiro boten">
           <div class="day-card-img-overlay"></div>
           <span class="day-number-badge">Dag 3</span>
@@ -171,7 +199,7 @@
         <div class="day-card-body">
           <div class="day-city-name">Aveiro</div>
           <div class="day-tagline">Art Nouveau &amp; Kleurrijke Kust</div>
-          <p class="day-meta-row">🚗 1,5 uur van Douro · Venetië van Portugal</p>
+          <p class="day-meta-row">🚗 ±120 km · 1,5 uur van Douro · Venetië van Portugal</p>
           <ul class="day-highlights">
             <li>Art Nouveau architectuur</li>
             <li>Moliceiro-boottocht</li>
@@ -180,7 +208,7 @@
           </ul>
           <div class="day-card-btns">
             <a href="https://www.google.com/maps/dir/Douro+Valley/Aveiro/@40.65,-8.65,11z"
-               target="_blank" class="btn btn-sm btn-map">🗺️ Maps</a>
+               target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Maps</a>
             <a href="#day3" class="btn btn-sm btn-web">📖 Details</a>
           </div>
         </div>
@@ -189,7 +217,7 @@
       <!-- Day 4: Batalha & Nazaré -->
       <div class="day-card fade-in">
         <div class="day-card-img">
-          <img src="images/nazare.jpg"
+          <img src="images/nazare.jpg" loading="lazy" decoding="async"
                alt="Nazaré kliffen en golven">
           <div class="day-card-img-overlay"></div>
           <span class="day-number-badge">Dag 4</span>
@@ -197,7 +225,7 @@
         <div class="day-card-body">
           <div class="day-city-name">Batalha &amp; Nazaré</div>
           <div class="day-tagline">Geschiedenis &amp; Oceaangeweld</div>
-          <p class="day-meta-row">🚗 45 min van Aveiro · UNESCO-klooster</p>
+          <p class="day-meta-row">🚗 ±110 km · 45 min van Aveiro · UNESCO-klooster</p>
           <ul class="day-highlights">
             <li>Klooster van Batalha (UNESCO)</li>
             <li>Farol-vuurtoren uitkijkpunt</li>
@@ -206,7 +234,7 @@
           </ul>
           <div class="day-card-btns">
             <a href="https://www.google.com/maps/dir/Aveiro/Batalha+Monastery/@39.66,-8.83,11z"
-               target="_blank" class="btn btn-sm btn-map">🗺️ Maps</a>
+               target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Maps</a>
             <a href="#day4" class="btn btn-sm btn-web">📖 Details</a>
           </div>
         </div>
@@ -215,7 +243,7 @@
       <!-- Day 5: Óbidos -->
       <div class="day-card fade-in">
         <div class="day-card-img">
-          <img src="images/obidos.jpg"
+          <img src="images/obidos.jpg" loading="lazy" decoding="async"
                alt="Óbidos middeleeuwse stad">
           <div class="day-card-img-overlay"></div>
           <span class="day-number-badge">Dag 5</span>
@@ -223,7 +251,7 @@
         <div class="day-card-body">
           <div class="day-city-name">Óbidos</div>
           <div class="day-tagline">Middeleeuws Sprookje</div>
-          <p class="day-meta-row">🚗 1 uur van Nazaré · Perfecte vestingstad</p>
+          <p class="day-meta-row">🚗 ±60 km · 1 uur van Nazaré · Perfecte vestingstad</p>
           <ul class="day-highlights">
             <li>Middeleeuwse vestingmuren</li>
             <li>Ginjinha uit een chocoladebeker</li>
@@ -232,7 +260,7 @@
           </ul>
           <div class="day-card-btns">
             <a href="https://www.google.com/maps/dir/Nazaré/Óbidos/@39.36,-9.15,11z"
-               target="_blank" class="btn btn-sm btn-map">🗺️ Maps</a>
+               target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Maps</a>
             <a href="#day5" class="btn btn-sm btn-web">📖 Details</a>
           </div>
         </div>
@@ -241,7 +269,7 @@
       <!-- Day 6: Sintra -->
       <div class="day-card fade-in">
         <div class="day-card-img">
-          <img src="images/sintra.jpg"
+          <img src="images/sintra.jpg" loading="lazy" decoding="async"
                alt="Palácio da Pena in Sintra">
           <div class="day-card-img-overlay"></div>
           <span class="day-number-badge">Dag 6</span>
@@ -249,7 +277,7 @@
         <div class="day-card-body">
           <div class="day-city-name">Sintra</div>
           <div class="day-tagline">Paleizen &amp; Mystiek</div>
-          <p class="day-meta-row">🚗 30 min van Óbidos · UNESCO-bergdorp</p>
+          <p class="day-meta-row">🚗 ±60 km · 30 min van Óbidos · UNESCO-bergdorp</p>
           <ul class="day-highlights">
             <li>Palácio da Pena</li>
             <li>Quinta da Regaleira</li>
@@ -258,7 +286,7 @@
           </ul>
           <div class="day-card-btns">
             <a href="https://www.google.com/maps/dir/Óbidos/Sintra/@38.79,-9.39,11z"
-               target="_blank" class="btn btn-sm btn-map">🗺️ Maps</a>
+               target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Maps</a>
             <a href="#day6" class="btn btn-sm btn-web">📖 Details</a>
           </div>
         </div>
@@ -267,7 +295,7 @@
       <!-- Day 7: Lissabon -->
       <div class="day-card fade-in">
         <div class="day-card-img">
-          <img src="images/lisbon.jpg"
+          <img src="images/lisbon.jpg" loading="lazy" decoding="async"
                alt="Lissabon panorama met tram">
           <div class="day-card-img-overlay"></div>
           <span class="day-number-badge">Dag 7</span>
@@ -275,7 +303,7 @@
         <div class="day-card-body">
           <div class="day-city-name">Lissabon</div>
           <div class="day-tagline">Tijdperk van Ontdekkingen</div>
-          <p class="day-meta-row">🚗 30 min van Sintra · Historische hoofdstad</p>
+          <p class="day-meta-row">🚗 ±30 km · 30 min van Sintra · Historische hoofdstad</p>
           <ul class="day-highlights">
             <li>Toren van Belém</li>
             <li>Pastéis de Belém</li>
@@ -284,7 +312,7 @@
           </ul>
           <div class="day-card-btns">
             <a href="https://www.google.com/maps/dir/Sintra/Lisbon/@38.72,-9.14,12z"
-               target="_blank" class="btn btn-sm btn-map">🗺️ Maps</a>
+               target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Maps</a>
             <a href="#day7" class="btn btn-sm btn-web">📖 Details</a>
           </div>
         </div>
@@ -335,7 +363,7 @@
           </div>
         </div>
         <div class="day-detail-photo">
-          <img src="images/porto.jpg"
+          <img src="images/porto.jpg" loading="lazy" decoding="async"
                alt="Porto skyline">
         </div>
       </div>
@@ -360,8 +388,8 @@
             <span class="info-chip">💶 ~€8 entree</span>
           </div>
           <div class="attraction-item-links">
-            <a href="https://www.google.com/maps/place/Livraria+Lello/@41.1467,-8.6153,17z" target="_blank" class="btn btn-sm btn-map">🗺️ Google Maps</a>
-            <a href="https://www.livrarialello.pt/en" target="_blank" class="btn btn-sm btn-web">🌐 Website</a>
+            <a href="https://www.google.com/maps/place/Livraria+Lello/@41.1467,-8.6153,17z" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
+            <a href="https://www.livrarialello.pt/en" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-web">🌐 Website</a>
           </div>
         </div>
 
@@ -381,8 +409,8 @@
             <span class="info-chip">📞 Reserveren aanbevolen</span>
           </div>
           <div class="attraction-item-links">
-            <a href="https://www.google.com/maps/place/Graham's+Port+Lodge/@41.1377,-8.6134,17z" target="_blank" class="btn btn-sm btn-map">🗺️ Google Maps</a>
-            <a href="https://www.grahamsport.com/en" target="_blank" class="btn btn-sm btn-web">🌐 Reserveren</a>
+            <a href="https://www.google.com/maps/place/Graham's+Port+Lodge/@41.1377,-8.6134,17z" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
+            <a href="https://www.grahamsport.com/en" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-web">🌐 Reserveren</a>
           </div>
         </div>
 
@@ -402,7 +430,7 @@
             <span class="info-chip">📸 Beste licht: gouden uur</span>
           </div>
           <div class="attraction-item-links">
-            <a href="https://www.google.com/maps/place/Dom+Luís+I+Bridge/@41.1403,-8.6094,17z" target="_blank" class="btn btn-sm btn-map">🗺️ Google Maps</a>
+            <a href="https://www.google.com/maps/place/Dom+Luís+I+Bridge/@41.1403,-8.6094,17z" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
           </div>
         </div>
 
@@ -442,7 +470,7 @@
           </div>
         </div>
         <div class="day-detail-photo">
-          <img src="images/douro.jpg"
+          <img src="images/douro.jpg" loading="lazy" decoding="async"
                alt="Douro-vallei wijngaarden">
         </div>
       </div>
@@ -467,8 +495,8 @@
             <span class="info-chip">📞 Reserveren verplicht</span>
           </div>
           <div class="attraction-item-links">
-            <a href="https://www.google.com/maps/place/Quinta+do+Pôpa/@41.1540,-7.5970,15z" target="_blank" class="btn btn-sm btn-map">🗺️ Google Maps</a>
-            <a href="https://www.quintadopopa.com" target="_blank" class="btn btn-sm btn-web">🌐 Website</a>
+            <a href="https://www.google.com/maps/place/Quinta+do+Pôpa/@41.1540,-7.5970,15z" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
+            <a href="https://www.quintadopopa.com" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-web">🌐 Website</a>
           </div>
         </div>
 
@@ -488,8 +516,8 @@
             <span class="info-chip">✨ Beste: ochtendsun</span>
           </div>
           <div class="attraction-item-links">
-            <a href="https://www.google.com/maps/search/Douro+River+Cruise/@41.18,-7.58,12z" target="_blank" class="btn btn-sm btn-map">🗺️ Tochten zoeken</a>
-            <a href="https://www.visitdouro.com" target="_blank" class="btn btn-sm btn-web">🌐 Info</a>
+            <a href="https://www.google.com/maps/search/Douro+River+Cruise/@41.18,-7.58,12z" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Tochten zoeken</a>
+            <a href="https://www.visitdouro.com" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-web">🌐 Info</a>
           </div>
         </div>
 
@@ -509,8 +537,8 @@
             <span class="info-chip">🏆 Adembenemend uitzicht</span>
           </div>
           <div class="attraction-item-links">
-            <a href="https://www.google.com/maps/place/Lamego/@41.1050,-7.6400,13z" target="_blank" class="btn btn-sm btn-map">🗺️ Google Maps</a>
-            <a href="https://www.visitlamego.pt" target="_blank" class="btn btn-sm btn-web">🌐 Info</a>
+            <a href="https://www.google.com/maps/place/Lamego/@41.1050,-7.6400,13z" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
+            <a href="https://www.visitlamego.pt" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-web">🌐 Info</a>
           </div>
         </div>
 
@@ -550,7 +578,7 @@
             <span class="info-chip">💶 ~€10 p.p.</span>
           </div>
           <div class="attraction-item-links">
-            <a href="https://www.google.com/maps/place/Aveiro/@40.6405,-8.6538,14z" target="_blank" class="btn btn-sm btn-map">🗺️ Google Maps</a>
+            <a href="https://www.google.com/maps/place/Aveiro/@40.6405,-8.6538,14z" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
           </div>
         </div>
         <div class="attraction-item-card">
@@ -562,7 +590,7 @@
             <span class="info-chip">📸 Gouden uur aanbevolen</span>
           </div>
           <div class="attraction-item-links">
-            <a href="https://www.google.com/maps/place/Costa+Nova+do+Prado/@40.6175,-8.7505,15z" target="_blank" class="btn btn-sm btn-map">🗺️ Google Maps</a>
+            <a href="https://www.google.com/maps/place/Costa+Nova+do+Prado/@40.6175,-8.7505,15z" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
           </div>
         </div>
       </div>
@@ -582,7 +610,7 @@
           </div>
         </div>
         <div class="day-detail-photo">
-          <img src="images/nazare.jpg"
+          <img src="images/nazare.jpg" loading="lazy" decoding="async"
                alt="Nazaré kliffen">
         </div>
       </div>
@@ -596,8 +624,8 @@
             <span class="info-chip">💶 ~€6</span>
           </div>
           <div class="attraction-item-links">
-            <a href="https://www.google.com/maps/place/Mosteiro+da+Batalha/@39.6595,-8.8248,16z" target="_blank" class="btn btn-sm btn-map">🗺️ Google Maps</a>
-            <a href="https://www.mosteirobatalha.gov.pt" target="_blank" class="btn btn-sm btn-web">🌐 Website</a>
+            <a href="https://www.google.com/maps/place/Mosteiro+da+Batalha/@39.6595,-8.8248,16z" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
+            <a href="https://www.mosteirobatalha.gov.pt" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-web">🌐 Website</a>
           </div>
         </div>
         <div class="attraction-item-card">
@@ -609,7 +637,7 @@
             <span class="info-chip">💶 Gratis</span>
           </div>
           <div class="attraction-item-links">
-            <a href="https://www.google.com/maps/place/Nazaré/@39.6013,-9.0655,14z" target="_blank" class="btn btn-sm btn-map">🗺️ Google Maps</a>
+            <a href="https://www.google.com/maps/place/Nazaré/@39.6013,-9.0655,14z" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
           </div>
         </div>
       </div>
@@ -639,7 +667,7 @@
             <span class="info-chip">⏱ Halve dag</span>
           </div>
           <div class="attraction-item-links">
-            <a href="https://www.google.com/maps/place/Óbidos/@39.3621,-9.1566,15z" target="_blank" class="btn btn-sm btn-map">🗺️ Google Maps</a>
+            <a href="https://www.google.com/maps/place/Óbidos/@39.3621,-9.1566,15z" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
           </div>
         </div>
       </div>
@@ -658,7 +686,7 @@
           </div>
         </div>
         <div class="day-detail-photo">
-          <img src="images/sintra.jpg"
+          <img src="images/sintra.jpg" loading="lazy" decoding="async"
                alt="Palácio da Pena Sintra">
         </div>
       </div>
@@ -673,8 +701,8 @@
             <span class="info-chip">📞 Online reserveren!</span>
           </div>
           <div class="attraction-item-links">
-            <a href="https://www.google.com/maps/place/Palácio+da+Pena/@38.7875,-9.3906,16z" target="_blank" class="btn btn-sm btn-map">🗺️ Google Maps</a>
-            <a href="https://www.parquesdesintra.pt/parques-monumentos-e-pacos/parque-e-palacio-nacional-da-pena/" target="_blank" class="btn btn-sm btn-web">🌐 Reserveren</a>
+            <a href="https://www.google.com/maps/place/Palácio+da+Pena/@38.7875,-9.3906,16z" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
+            <a href="https://www.parquesdesintra.pt/parques-monumentos-e-pacos/parque-e-palacio-nacional-da-pena/" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-web">🌐 Reserveren</a>
           </div>
         </div>
         <div class="attraction-item-card">
@@ -686,8 +714,8 @@
             <span class="info-chip">💶 ~€8</span>
           </div>
           <div class="attraction-item-links">
-            <a href="https://www.google.com/maps/place/Quinta+da+Regaleira/@38.7973,-9.3954,17z" target="_blank" class="btn btn-sm btn-map">🗺️ Google Maps</a>
-            <a href="https://www.regaleira.pt" target="_blank" class="btn btn-sm btn-web">🌐 Website</a>
+            <a href="https://www.google.com/maps/place/Quinta+da+Regaleira/@38.7973,-9.3954,17z" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
+            <a href="https://www.regaleira.pt" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-web">🌐 Website</a>
           </div>
         </div>
       </div>
@@ -708,7 +736,7 @@
           </div>
         </div>
         <div class="day-detail-photo">
-          <img src="images/lisbon.jpg"
+          <img src="images/lisbon.jpg" loading="lazy" decoding="async"
                alt="Lissabon panorama">
         </div>
       </div>
@@ -722,8 +750,8 @@
             <span class="info-chip">💶 ~€6</span>
           </div>
           <div class="attraction-item-links">
-            <a href="https://www.google.com/maps/place/Torre+de+Belém/@38.6916,-9.2160,17z" target="_blank" class="btn btn-sm btn-map">🗺️ Google Maps</a>
-            <a href="https://www.torrebelem.gov.pt" target="_blank" class="btn btn-sm btn-web">🌐 Website</a>
+            <a href="https://www.google.com/maps/place/Torre+de+Belém/@38.6916,-9.2160,17z" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
+            <a href="https://www.torrebelem.gov.pt" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-web">🌐 Website</a>
           </div>
         </div>
         <div class="attraction-item-card">
@@ -735,8 +763,8 @@
             <span class="info-chip">💶 ~€1,30 per taartje</span>
           </div>
           <div class="attraction-item-links">
-            <a href="https://www.google.com/maps/place/Pastéis+de+Belém/@38.6974,-9.2037,17z" target="_blank" class="btn btn-sm btn-map">🗺️ Google Maps</a>
-            <a href="https://www.pasteisdebelem.pt" target="_blank" class="btn btn-sm btn-web">🌐 Website</a>
+            <a href="https://www.google.com/maps/place/Pastéis+de+Belém/@38.6974,-9.2037,17z" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
+            <a href="https://www.pasteisdebelem.pt" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-web">🌐 Website</a>
           </div>
         </div>
         <div class="attraction-item-card">
@@ -748,7 +776,7 @@
             <span class="info-chip">⚠️ Let op zakkenrollers</span>
           </div>
           <div class="attraction-item-links">
-            <a href="https://www.google.com/maps/place/Alfama/@38.7139,-9.1290,15z" target="_blank" class="btn btn-sm btn-map">🗺️ Alfama Maps</a>
+            <a href="https://www.google.com/maps/place/Alfama/@38.7139,-9.1290,15z" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Alfama Maps</a>
           </div>
         </div>
       </div>
@@ -842,7 +870,7 @@
   <div class="share-buttons">
     <button class="share-btn share-btn-copy" onclick="copyLink()">📋 Kopieer link</button>
     <a href="https://wa.me/?text=Bekijk%20deze%20interactieve%20Portugal%20roadtrip!%20https://wierts.github.io/portugal/"
-       class="share-btn share-btn-wa" target="_blank">💬 WhatsApp</a>
+       class="share-btn share-btn-wa" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
     <a href="mailto:?subject=Interactieve%20Portugal%20Roadtrip&body=Bekijk%20deze%20handige%20reisroute:%20https://wierts.github.io/portugal/"
        class="share-btn share-btn-email">📧 E-mail</a>
   </div>
@@ -860,6 +888,9 @@
 <!-- ═══════════════════════════════════════
      JAVASCRIPT
 ═══════════════════════════════════════ -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin=""></script>
 <script>
   // ── Scroll-reveal ──
   const observer = new IntersectionObserver((entries) => {
@@ -872,6 +903,69 @@
   }, { threshold: 0.1 });
 
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // ── Routekaart (Leaflet + OpenStreetMap) ──
+  const routeStops = [
+    { n: 1, naam: 'Porto',    coords: [41.1579, -8.6291] },
+    { n: 2, naam: 'Douro',    coords: [41.1600, -7.7500] },
+    { n: 3, naam: 'Aveiro',   coords: [40.6405, -8.6538] },
+    { n: 4, naam: 'Nazaré',   coords: [39.6010, -9.0700] },
+    { n: 5, naam: 'Óbidos',   coords: [39.3606, -9.1570] },
+    { n: 6, naam: 'Sintra',   coords: [38.7979, -9.3906] },
+    { n: 7, naam: 'Lissabon', coords: [38.7223, -9.1393] }
+  ];
+
+  function routeMapFallback() {
+    const box = document.getElementById('routeMap');
+    if (!box) return;
+    box.classList.add('route-map-fallback');
+    box.innerHTML =
+      '<div class="route-map-fallback-inner">' +
+        '<span class="route-map-fallback-icon">🗺️</span>' +
+        '<p>De interactieve kaart kon niet laden.</p>' +
+        '<a href="https://www.google.com/maps/dir/Porto,+Portugal/Douro+Valley,+Portugal/Aveiro,+Portugal/Nazar%C3%A9,+Portugal/%C3%93bidos,+Portugal/Sintra,+Portugal/Lisbon,+Portugal" ' +
+        'target="_blank" rel="noopener noreferrer" class="btn btn-map">Bekijk de route in Google Maps</a>' +
+      '</div>';
+  }
+
+  function initRouteMap() {
+    const box = document.getElementById('routeMap');
+    if (!box) return;
+    if (typeof L === 'undefined') { routeMapFallback(); return; }
+
+    const map = L.map(box, { scrollWheelZoom: false }).setView([40.0, -8.5], 7);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 18,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>-bijdragers'
+    }).addTo(map);
+
+    // Verbindingslijn tussen de stops
+    const line = routeStops.map(s => s.coords);
+    L.polyline(line, { color: '#c0392b', weight: 3, opacity: 0.8, dashArray: '6 8' }).addTo(map);
+
+    // Genummerde markers
+    routeStops.forEach(s => {
+      const icon = L.divIcon({
+        className: 'route-marker',
+        html: '<span>' + s.n + '</span>',
+        iconSize: [30, 30],
+        iconAnchor: [15, 15]
+      });
+      L.marker(s.coords, { icon })
+        .addTo(map)
+        .bindPopup('<strong>Dag ' + s.n + ': ' + s.naam + '</strong>');
+    });
+
+    // Zoom passend maken op alle stops
+    map.fitBounds(L.latLngBounds(line).pad(0.15));
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initRouteMap);
+  } else {
+    initRouteMap();
+  }
 
   // ── Copy link ──
   function copyLink() {
