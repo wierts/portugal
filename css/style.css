@@ -294,6 +294,8 @@ header nav {
 .btn-map:hover  { opacity:.9; transform:translateY(-2px); box-shadow: var(--shadow-sm); }
 .btn-web  { background: var(--gold); color: var(--dark); border:none; }
 .btn-web:hover  { background: #b8902e; transform:translateY(-2px); }
+.btn-ics  { background: var(--azul); color: #fff; border:none; }
+.btn-ics:hover  { opacity:.9; transform:translateY(-2px); }
 
 /* ─── Route Overview Strip ──────────────── */
 .route-strip {

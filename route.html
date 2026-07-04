@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Route per dag — Portugal Roadtrip</title>
+  <meta name="description" content="Rijinstructies per dag voor de Portugal roadtrip: vertrek, aankomst, afstand, duur en tussenstops onderweg.">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .route-intro { background: var(--cream); padding: 3rem 0 2rem; text-align: center; }
+    .back-link { display: inline-flex; align-items: center; gap: .4rem; color: var(--azul); font-weight: 600; text-decoration: none; margin-bottom: 2rem; }
+    .back-link:hover { color: var(--terra); }
+
+    .leg-list { display: flex; flex-direction: column; gap: 2rem; margin-top: 2rem; }
+
+    .leg-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg, 12px);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+    .leg-card-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: var(--azul);
+      color: #fff;
+      padding: 1.25rem 1.75rem;
+      flex-wrap: wrap;
+    }
+    .leg-dag-badge {
+      background: rgba(255,255,255,.2);
+      color: #fff;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      padding: .3rem .75rem;
+      border-radius: 2px;
+      white-space: nowrap;
+    }
+    .leg-card-header h3 { font-family: var(--serif); font-size: 1.25rem; margin: 0; flex: 1; min-width: 200px; }
+    .leg-date-tag { font-size: .85rem; opacity: .85; white-space: nowrap; }
+
+    .leg-body { padding: 1.5rem 1.75rem; }
+    .leg-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 1.5rem;
+    }
+    @media (max-width: 780px) {
+      .leg-grid { grid-template-columns: 1fr; }
+    }
+
+    .leg-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: .75rem;
+      margin-bottom: 1.25rem;
+    }
+    .leg-meta-cell {
+      background: var(--sand);
+      border-radius: var(--radius, 8px);
+      padding: .6rem .8rem;
+    }
+    .leg-meta-label {
+      font-size: .7rem;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      color: var(--muted, #7a7a7a);
+      margin-bottom: .2rem;
+    }
+    .leg-meta-value { font-size: .9rem; font-weight: 600; color: var(--text); }
+
+    .leg-steps { margin: 0 0 1.25rem; padding-left: 1.1rem; }
+    .leg-steps li { margin-bottom: .5rem; line-height: 1.6; font-size: .95rem; }
+    .leg-steps li strong { color: var(--terra); }
+
+    .leg-waypoint-note {
+      border-left: 4px solid var(--gold, #c9a227);
+      background: #fffbf0;
+      padding: .6rem 1rem;
+      border-radius: 0 var(--radius, 8px) var(--radius, 8px) 0;
+      font-size: .85rem;
+      color: var(--muted, #7a7a7a);
+      margin-bottom: 1.25rem;
+    }
+
+    .leg-btns { display: flex; gap: .75rem; flex-wrap: wrap; }
+
+    .leg-map-wrap { min-height: 220px; }
+    .leg-map-embed {
+      width: 100%;
+      height: 220px;
+      border-radius: var(--radius, 8px);
+      overflow: hidden;
+      background: var(--sand);
+    }
+    .leg-map-fallback {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      text-align: center;
+      padding: 1rem;
+    }
+    .leg-map-fallback-inner { display: flex; flex-direction: column; align-items: center; gap: .6rem; }
+    .leg-map-fallback-icon { font-size: 1.8rem; }
+
+    .rest-day-card {
+      border-style: dashed;
+    }
+    .rest-day-card .leg-card-header { background: var(--muted, #999); }
+
+    .route-marker-waypoint {
+      background: var(--gold, #c9a24a);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      line-height: 1;
+      box-shadow: 0 0 0 2px #fff;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="nav-logo"><a href="index.html" style="color:inherit;text-decoration:none">Portugal 🇵🇹</a></div>
+    <ul class="nav-links">
+      <li><a href="index.html#route">Route</a></li>
+      <li><a href="index.html#reisinfo">Reisinfo</a></li>
+      <li><a href="index.html#days">Dagen</a></li>
+      <li><a href="restaurants.html">🍽️ Restaurants</a></li>
+      <li><a href="hotels.html">🏨 Hotels</a></li>
+      <li><a href="route.html" style="color:var(--gold)">🚗 Rijroute</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="route-intro">
+  <div class="container">
+    <h1 class="section-title">Rijroute per dag</h1>
+    <p class="section-subtitle">Vertrek, aankomst, afstand, rijtijd en tussenstops · elke dag met eigen kaartje en Google Maps-link</p>
+    <a href="index.html" class="back-link">← Terug naar de roadtrip</a>
+  </div>
+</section>
+
+<section style="padding: 1rem 0 4rem;">
+  <div class="container">
+    <div class="leg-list" id="legList">
+
+      <!-- DAG 1-2: PORTO (geen rijdag, aankomst) -->
+      <div class="leg-card rest-day-card">
+        <div class="leg-card-header">
+          <span class="leg-dag-badge">Dag 1–2</span>
+          <h3>Porto — aankomst &amp; verblijf</h3>
+          <span class="leg-date-tag">zo 6 – ma 7 sep</span>
+        </div>
+        <div class="leg-body">
+          <p style="margin:0;">Aankomst op de luchthaven van Porto (Francisco Sá Carneiro), auto ophalen en inchecken bij Forte de Gaia. Geen verdere rijdag — twee nachten om Porto en Vila Nova de Gaia te voet en per boot te verkennen.</p>
+        </div>
+      </div>
+
+      <!-- DAG 2->3: PORTO -> DOURO -->
+      <div class="leg-card" id="leg-dag3">
+        <div class="leg-card-header">
+          <span class="leg-dag-badge">Dag 3</span>
+          <h3>Porto → Douro-vallei</h3>
+          <span class="leg-date-tag">di 8 sep</span>
+        </div>
+        <div class="leg-body">
+          <div class="leg-grid">
+            <div>
+              <div class="leg-meta-grid">
+                <div class="leg-meta-cell"><div class="leg-meta-label">Afstand</div><div class="leg-meta-value">~100 km</div></div>
+                <div class="leg-meta-cell"><div class="leg-meta-label">Rijtijd</div><div class="leg-meta-value">±1u30</div></div>
+                <div class="leg-meta-cell"><div class="leg-meta-label">Route</div><div class="leg-meta-value">N108 langs de rivier</div></div>
+                <div class="leg-meta-cell"><div class="leg-meta-label">Wegtype</div><div class="leg-meta-value">Bochtige rivierweg</div></div>
+              </div>
+              <ol class="leg-steps">
+                <li>Vertrek bij <strong>Vila Nova de Gaia</strong>, richting oosten via de N108 langs de zuidoever van de Douro.</li>
+                <li>De weg volgt de rivier op de voet — reken op bochten en lokaal langzamer verkeer door dorpjes, dus neem de tijd.</li>
+                <li>Bij <strong>Régua</strong> steek je de rivier over (of blijf op de zuidoever, afhankelijk van je quinta) richting de kern van de Douro-vallei.</li>
+                <li>Aankomst bij je quinta/hotel in de <strong>Douro-vallei</strong> (rondom Pinhão) voor de rest van de dag.</li>
+              </ol>
+              <div class="leg-waypoint-note">
+                💡 Neem onderweg gerust een uitkijkpunt mee, zoals São Leonardo de Galafura — een korte omweg met een van de bekendste Douro-panorama's.
+              </div>
+              <div class="leg-btns">
+                <a href="https://www.google.com/maps/dir/Vila+Nova+de+Gaia,+Portugal/Douro+Valley,+Portugal" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
+              </div>
+            </div>
+            <div class="leg-map-wrap">
+              <div class="leg-map-embed" data-leg-map="dag3"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DAG 3 (Douro, geen rijdag) -->
+      <div class="leg-card rest-day-card">
+        <div class="leg-card-header">
+          <span class="leg-dag-badge">Dag 4</span>
+          <h3>Douro-vallei — wijnproeverijen</h3>
+          <span class="leg-date-tag">wo 9 sep</span>
+        </div>
+        <div class="leg-body">
+          <p style="margin:0;">Geen grote rijdag — lokale ritjes tussen quinta's in de Douro-vallei (Quinta de Nápoles, Quinta do Bomfim e.d.), meestal 10–20 minuten per stop. Neem de auto rustig, veel van deze weggetjes zijn smal en onverhard.</p>
+        </div>
+      </div>
+
+      <!-- DAG 4->5: DOURO -> AVEIRO -->
+      <div class="leg-card" id="leg-dag5">
+        <div class="leg-card-header">
+          <span class="leg-dag-badge">Dag 5</span>
+          <h3>Douro-vallei → Aveiro &amp; Costa Nova</h3>
+          <span class="leg-date-tag">do 10 sep</span>
+        </div>
+        <div class="leg-body">
+          <div class="leg-grid">
+            <div>
+              <div class="leg-meta-grid">
+                <div class="leg-meta-cell"><div class="leg-meta-label">Afstand</div><div class="leg-meta-value">~130 km</div></div>
+                <div class="leg-meta-cell"><div class="leg-meta-label">Rijtijd</div><div class="leg-meta-value">±1u45</div></div>
+                <div class="leg-meta-cell"><div class="leg-meta-label">Route</div><div class="leg-meta-value">A24 → A25 (snelweg)</div></div>
+                <div class="leg-meta-cell"><div class="leg-meta-label">Wegtype</div><div class="leg-meta-value">Grotendeels snelweg</div></div>
+              </div>
+              <ol class="leg-steps">
+                <li>Vertrek uit de <strong>Douro-vallei</strong>, terug richting het westen via de A24 (tolweg) naar Vila Real / Amarante.</li>
+                <li>Aansluiten op de <strong>A25</strong> richting Aveiro — deze snelweg is comfortabel en snel, met tol.</li>
+                <li>Bij Aveiro eerst het centrum (kanalen, moliceiro-boten) verkennen, daarna doorrijden naar <strong>Costa Nova</strong> (~15 min) voor de gestreepte huisjes.</li>
+              </ol>
+              <div class="leg-waypoint-note">
+                💡 Let op tolwegen (portagem) op de A24/A25 — zonder Via Verde-transponder in de huurauto reken je met een elektronisch kenteken-systeem; check dit vooraf bij de verhuurder.
+              </div>
+              <div class="leg-btns">
+                <a href="https://www.google.com/maps/dir/Douro+Valley,+Portugal/Aveiro,+Portugal/Costa+Nova,+Portugal" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
+              </div>
+            </div>
+            <div class="leg-map-wrap">
+              <div class="leg-map-embed" data-leg-map="dag5"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DAG 5->6: AVEIRO -> BATALHA -> ALCOBACA -> NAZARE -->
+      <div class="leg-card" id="leg-dag6">
+        <div class="leg-card-header">
+          <span class="leg-dag-badge">Dag 6</span>
+          <h3>Aveiro → Batalha → Alcobaça → Nazaré</h3>
+          <span class="leg-date-tag">vr 11 sep</span>
+        </div>
+        <div class="leg-body">
+          <div class="leg-grid">
+            <div>
+              <div class="leg-meta-grid">
+                <div class="leg-meta-cell"><div class="leg-meta-label">Totale afstand</div><div class="leg-meta-value">~145 km</div></div>
+                <div class="leg-meta-cell"><div class="leg-meta-label">Totale rijtijd</div><div class="leg-meta-value">±1u45 (excl. stops)</div></div>
+                <div class="leg-meta-cell"><div class="leg-meta-label">Route</div><div class="leg-meta-value">A25 → A17 → N-wegen</div></div>
+                <div class="leg-meta-cell"><div class="leg-meta-label">Wegtype</div><div class="leg-meta-value">Snelweg + regionale weg</div></div>
+              </div>
+              <ol class="leg-steps">
+                <li>Vertrek uit <strong>Aveiro</strong> via de A25/A17 zuidwaarts richting Leiria.</li>
+                <li>Tussenstop bij <strong>Batalha</strong> (~1u10 rijden) — bezoek het kloosterklooster (UNESCO).</li>
+                <li>Door naar <strong>Alcobaça</strong> (~15–20 min rijden vanaf Batalha) — tweede UNESCO-klooster, korte tussenstop.</li>
+                <li>Vanaf Alcobaça naar <strong>Nazaré</strong> (~25 min) voor de kuststad en het uitzicht bij Sítio.</li>
+              </ol>
+              <div class="leg-waypoint-note">
+                💡 Batalha en Alcobaça liggen vlak bij elkaar en zijn allebei kloosters van de Cisterciënzer/Dominicaanse orde — reken op 1–1,5 uur per klooster als je binnen wil kijken.
+              </div>
+              <div class="leg-btns">
+                <a href="https://www.google.com/maps/dir/Aveiro,+Portugal/Batalha,+Portugal/Alcoba%C3%A7a,+Portugal/Nazar%C3%A9,+Portugal" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
+              </div>
+            </div>
+            <div class="leg-map-wrap">
+              <div class="leg-map-embed" data-leg-map="dag6"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DAG 6->7: NAZARE -> OBIDOS -->
+      <div class="leg-card" id="leg-dag7">
+        <div class="leg-card-header">
+          <span class="leg-dag-badge">Dag 6 (vervolg)</span>
+          <h3>Nazaré → Óbidos</h3>
+          <span class="leg-date-tag">vr 11 sep, einde middag</span>
+        </div>
+        <div class="leg-body">
+          <div class="leg-grid">
+            <div>
+              <div class="leg-meta-grid">
+                <div class="leg-meta-cell"><div class="leg-meta-label">Afstand</div><div class="leg-meta-value">~60 km</div></div>
+                <div class="leg-meta-cell"><div class="leg-meta-label">Rijtijd</div><div class="leg-meta-value">±1u</div></div>
+                <div class="leg-meta-cell"><div class="leg-meta-label">Route</div><div class="leg-meta-value">A8 (snelweg)</div></div>
+                <div class="leg-meta-cell"><div class="leg-meta-label">Wegtype</div><div class="leg-meta-value">Snelweg</div></div>
+              </div>
+              <ol class="leg-steps">
+                <li>Vertrek vanuit <strong>Nazaré</strong> zuidwaarts via de A8.</li>
+                <li>Aankomst in <strong>Óbidos</strong> — parkeer buiten de vestingmuren (binnen de muren is autovrij) en loop het laatste stuk.</li>
+              </ol>
+              <div class="leg-waypoint-note">
+                💡 Óbidos heeft 2 nachten — check in bij Pousada Castelo de Óbidos en laat de auto rustig staan tot vertrek richting Lissabon.
+              </div>
+              <div class="leg-btns">
+                <a href="https://www.google.com/maps/dir/Nazaré,+Portugal/Óbidos,+Portugal" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
+              </div>
+            </div>
+            <div class="leg-map-wrap">
+              <div class="leg-map-embed" data-leg-map="dag7"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DAG 7 (Obidos, geen rijdag) -->
+      <div class="leg-card rest-day-card">
+        <div class="leg-card-header">
+          <span class="leg-dag-badge">Dag 7</span>
+          <h3>Óbidos — vestingstad te voet</h3>
+          <span class="leg-date-tag">za 12 sep</span>
+        </div>
+        <div class="leg-body">
+          <p style="margin:0;">Geen rijdag. Eventueel een uitstapje naar Caldas da Rainha (~15 min rijden) als er tijd over is.</p>
+        </div>
+      </div>
+
+      <!-- DAG 7->8: OBIDOS -> MAFRA -> SINTRA -> LISSABON -->
+      <div class="leg-card" id="leg-dag8">
+        <div class="leg-card-header">
+          <span class="leg-dag-badge">Dag 8</span>
+          <h3>Óbidos → Mafra → Sintra → Lissabon</h3>
+          <span class="leg-date-tag">zo 13 sep</span>
+        </div>
+        <div class="leg-body">
+          <div class="leg-grid">
+            <div>
+              <div class="leg-meta-grid">
+                <div class="leg-meta-cell"><div class="leg-meta-label">Totale afstand</div><div class="leg-meta-value">~90 km</div></div>
+                <div class="leg-meta-cell"><div class="leg-meta-label">Totale rijtijd</div><div class="leg-meta-value">±1u30 (excl. stops)</div></div>
+                <div class="leg-meta-cell"><div class="leg-meta-label">Route</div><div class="leg-meta-value">N-wegen → A16</div></div>
+                <div class="leg-meta-cell"><div class="leg-meta-label">Wegtype</div><div class="leg-meta-value">Regionale weg + snelweg</div></div>
+              </div>
+              <ol class="leg-steps">
+                <li>Vertrek uit <strong>Óbidos</strong> zuidwaarts via regionale wegen richting Mafra.</li>
+                <li>Tussenstop bij <strong>Mafra</strong> (~50–55 min rijden) — kies ter plekke optie A (korte fotostop) of B (volwaardig bezoek), zie de dagdetails op de hoofdpagina.</li>
+                <li>Van Mafra naar <strong>Sintra</strong> (~30 min) via de A16 — parkeren is druk, kom vroeg of gebruik een van de P+R-terreinen buiten het centrum.</li>
+                <li>Van Sintra naar <strong>Lissabon</strong> (~30–40 min), inchecken bij Memmo Príncipe Real.</li>
+              </ol>
+              <div class="leg-waypoint-note">
+                💡 Dit is de drukste rijdag van de reis met veel te zien onderweg — vertrek zo vroeg mogelijk uit Óbidos om speling te houden.
+              </div>
+              <div class="leg-btns">
+                <a href="https://www.google.com/maps/dir/Óbidos,+Portugal/Palácio+Nacional+de+Mafra/Sintra,+Portugal/Lisbon,+Portugal" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
+              </div>
+            </div>
+            <div class="leg-map-wrap">
+              <div class="leg-map-embed" data-leg-map="dag8"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DAG 8-10: LISSABON (geen rijdag) -->
+      <div class="leg-card rest-day-card">
+        <div class="leg-card-header">
+          <span class="leg-dag-badge">Dag 8–10</span>
+          <h3>Lissabon — verblijf &amp; vertrek</h3>
+          <span class="leg-date-tag">zo 13 – di 15 sep</span>
+        </div>
+        <div class="leg-body">
+          <p style="margin:0;">Geen verdere rijdagen. Lissabon zelf is goed te voet en met tram te verkennen — de huurauto kan blijven staan tot de inlevering bij vertrek (vlucht 19:45 op di 15 sep).</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p><strong>Portugal Roadtrip — Rijroute per dag</strong></p>
+  <p>🗺️ Klik op Google Maps voor live navigatie &nbsp;|&nbsp; 🇵🇹 Boa viagem!</p>
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin=""></script>
+<script>
+  // Per dag: start, eind, optionele tussenstop(pen), en zoom-niveau
+  const legs = {
+    dag3: {
+      points: [
+        { naam: 'Vila Nova de Gaia', coords: [41.1289, -8.6106] },
+        { naam: 'Douro-vallei (Pinhão)', coords: [41.1919, -7.5347] }
+      ]
+    },
+    dag5: {
+      points: [
+        { naam: 'Douro-vallei (Pinhão)', coords: [41.1919, -7.5347] },
+        { naam: 'Aveiro', coords: [40.6405, -8.6538] },
+        { naam: 'Costa Nova', coords: [40.6083, -8.7469] }
+      ]
+    },
+    dag6: {
+      points: [
+        { naam: 'Aveiro', coords: [40.6405, -8.6538] },
+        { naam: 'Batalha', coords: [39.6597, -8.8254] },
+        { naam: 'Alcobaça', coords: [39.5470, -8.9800] },
+        { naam: 'Nazaré', coords: [39.6010, -9.0700] }
+      ]
+    },
+    dag7: {
+      points: [
+        { naam: 'Nazaré', coords: [39.6010, -9.0700] },
+        { naam: 'Óbidos', coords: [39.3606, -9.1570] }
+      ]
+    },
+    dag8: {
+      points: [
+        { naam: 'Óbidos', coords: [39.3606, -9.1570] },
+        { naam: 'Mafra', coords: [38.9376, -9.3327] },
+        { naam: 'Sintra', coords: [38.7979, -9.3906] },
+        { naam: 'Lissabon', coords: [38.7223, -9.1393] }
+      ]
+    }
+  };
+
+  function legMapFallback(el) {
+    el.classList.add('leg-map-fallback');
+    el.innerHTML =
+      '<div class="leg-map-fallback-inner">' +
+        '<span class="leg-map-fallback-icon">🗺️</span>' +
+        '<p style="margin:0;font-size:.85rem;">Kaart kon niet laden</p>' +
+      '</div>';
+  }
+
+  function initLegMap(el, legKey) {
+    const leg = legs[legKey];
+    if (!leg) return;
+    if (typeof L === 'undefined') { legMapFallback(el); return; }
+
+    const map = L.map(el, { scrollWheelZoom: false, zoomControl: false }).setView(leg.points[0].coords, 8);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 18,
+      attribution: '&copy; OpenStreetMap-bijdragers'
+    }).addTo(map);
+
+    const line = leg.points.map(p => p.coords);
+    L.polyline(line, { color: '#c0392b', weight: 3, opacity: 0.8, dashArray: '6 8' }).addTo(map);
+
+    leg.points.forEach((p, i) => {
+      const isEndpoint = (i === 0 || i === leg.points.length - 1);
+      const icon = L.divIcon({
+        className: isEndpoint ? 'route-marker' : 'route-marker route-marker-waypoint',
+        html: isEndpoint ? '<span>' + (i === 0 ? 'A' : 'B') + '</span>' : '<span>•</span>',
+        iconSize: isEndpoint ? [26, 26] : [14, 14],
+        iconAnchor: isEndpoint ? [13, 13] : [7, 7]
+      });
+      L.marker(p.coords, { icon }).addTo(map).bindPopup('<strong>' + p.naam + '</strong>');
+    });
+
+    const bounds = L.latLngBounds(line);
+    map.fitBounds(bounds, { padding: [24, 24] });
+  }
+
+  document.querySelectorAll('[data-leg-map]').forEach(el => {
+    initLegMap(el, el.getAttribute('data-leg-map'));
+  });
+</script>
+</body>
+</html>
