@@ -3,11 +3,44 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portugal Roadtrip — Interactieve 7-Daagse Reisroute</title>
-  <meta name="description" content="Interactieve 7-daagse Portugal roadtrip met kaart, Google Maps-links, attractie-info en gedetailleerde dagprogramma's.">
+  <title>Portugal Roadtrip — Interactieve 10-Daagse Reisroute</title>
+  <meta name="description" content="Interactieve 10-daagse Portugal roadtrip met kaart, Google Maps-links, attractie-info en gedetailleerde dagprogramma's.">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    .extra-tip-card {
+      border: 1px dashed var(--gold, #c9a227);
+      background: #fffdf5;
+      border-radius: var(--radius, 8px);
+      padding: 1.25rem 1.5rem;
+      margin-top: 1rem;
+    }
+    .extra-tip-label {
+      display: inline-block;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      color: var(--gold, #c9a227);
+      background: rgba(201,162,39,0.12);
+      padding: .25rem .75rem;
+      border-radius: 2rem;
+      margin-bottom: .6rem;
+    }
+    .extra-tip-card .attraction-item-name { margin-bottom: .4rem; }
+    .route-marker-waypoint {
+      background: var(--gold, #c9a227);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      line-height: 1;
+      box-shadow: 0 0 0 2px #fff;
+    }
+  </style>
 </head>
 <body>
 
@@ -36,7 +69,7 @@
   <div class="hero-img-fallback"></div>
   <div class="hero-img"></div>
   <div class="hero-content">
-    <span class="hero-eyebrow">zo 6 – di 15 sep 2026 · Porto → Lissabon</span>
+    <span class="hero-eyebrow">zo 6 – di 15 sep 2026 · 10 dagen · 9 nachten · Porto → Lissabon</span>
     <h1>Portugal<br>Roadtrip</h1>
     <p class="hero-subtitle">Ontdek het echte Portugal — van portwijnen tot paleizen</p>
     <p class="hero-desc">
@@ -62,11 +95,11 @@
     <span class="route-arrow">→</span>
     <div class="route-city"><span class="day-badge">Dag 5</span> Aveiro</div>
     <span class="route-arrow">→</span>
-    <div class="route-city"><span class="day-badge">Dag 6</span> Batalha &amp; Nazaré</div>
+    <div class="route-city"><span class="day-badge">Dag 6</span> Batalha, Alcobaça &amp; Nazaré</div>
     <span class="route-arrow">→</span>
     <div class="route-city"><span class="day-badge">Dag 6–7</span> Óbidos</div>
     <span class="route-arrow">→</span>
-    <div class="route-city"><span class="day-badge">Dag 8</span> Sintra (dagtrip)</div>
+    <div class="route-city"><span class="day-badge">Dag 8</span> Mafra &amp; Sintra (dagtrip)</div>
     <span class="route-arrow">→</span>
     <div class="route-city"><span class="day-badge">Dag 8–10</span> Lissabon</div>
   </div>
@@ -108,6 +141,10 @@
         <p>Porto → Douro → Aveiro → Nazaré → Óbidos → Sintra → Lissabon · ±500 km</p>
       </div>
       <div class="route-map-embed" id="routeMap"></div>
+      <p style="font-size:.85rem;color:var(--muted,#7a7a7a);margin:.5rem 0 0;">
+        <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--gold,#c9a227);margin-right:.4rem;vertical-align:middle;"></span>
+        Kleinere gouden stippen = tussenstops onderweg (Alcobaça op dag 6, Mafra op dag 8) — geen overnachting.
+      </p>
       <div class="route-stops">
         <span class="route-stop"><span class="route-dot">1</span>Porto</span>
         <span class="route-arrow">→</span>
@@ -123,7 +160,7 @@
         <span class="route-arrow">→</span>
         <span class="route-stop"><span class="route-dot">7</span>Lissabon</span>
       </div>
-      <a href="https://www.google.com/maps/dir/Porto,+Portugal/Douro+Valley,+Portugal/Aveiro,+Portugal/Nazar%C3%A9,+Portugal/%C3%93bidos,+Portugal/Sintra,+Portugal/Lisbon,+Portugal"
+      <a href="https://www.google.com/maps/dir/Porto,+Portugal/Douro+Valley,+Portugal/Aveiro,+Portugal/Alcoba%C3%A7a,+Portugal/Nazar%C3%A9,+Portugal/%C3%93bidos,+Portugal/Mafra,+Portugal/Sintra,+Portugal/Lisbon,+Portugal"
          target="_blank" rel="noopener noreferrer" class="btn btn-map route-map-btn">🗺️ Open volledige route in Google Maps</a>
     </div>
   </div>
@@ -323,7 +360,7 @@
         </div>
       </div>
 
-      <!-- Day 4: Batalha & Nazaré -->
+      <!-- Day 4: Batalha, Alcobaça & Nazaré -->
       <div class="day-card fade-in">
         <div class="day-card-img">
           <img src="images/nazare.jpg" loading="lazy" decoding="async"
@@ -332,17 +369,17 @@
           <span class="day-number-badge">Dag 6 · vr 11 sep</span>
         </div>
         <div class="day-card-body">
-          <div class="day-city-name">Batalha &amp; Nazaré</div>
+          <div class="day-city-name">Batalha, Alcobaça &amp; Nazaré</div>
           <div class="day-tagline">Geschiedenis &amp; Oceaangeweld</div>
-          <p class="day-meta-row">🚗 ±110 km · 45 min van Aveiro · UNESCO-klooster</p>
+          <p class="day-meta-row">🚗 ±110 km · 45 min van Aveiro · 2 UNESCO-kloosters onderweg</p>
           <ul class="day-highlights">
             <li>Klooster van Batalha (UNESCO)</li>
+            <li>Klooster van Alcobaça (UNESCO) — onderweg</li>
             <li>Farol-vuurtoren uitkijkpunt</li>
             <li>Nazaré surfgolven</li>
-            <li>Visvangstcultuur</li>
           </ul>
           <div class="day-card-btns">
-            <a href="https://www.google.com/maps/dir/Aveiro/Batalha+Monastery/@39.66,-8.83,11z"
+            <a href="https://www.google.com/maps/dir/Aveiro/Batalha+Monastery/Mosteiro+de+Alcoba%C3%A7a/@39.66,-8.83,11z"
                target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Maps</a>
             <a href="#day4" class="btn btn-sm btn-web">📖 Details</a>
           </div>
@@ -375,7 +412,7 @@
         </div>
       </div>
 
-      <!-- Day 6: Sintra -->
+      <!-- Day 6: Mafra & Sintra -->
       <div class="day-card fade-in">
         <div class="day-card-img">
           <img src="images/sintra.jpg" loading="lazy" decoding="async"
@@ -384,17 +421,17 @@
           <span class="day-number-badge">Dag 8 · zo 13 sep · dagtrip</span>
         </div>
         <div class="day-card-body">
-          <div class="day-city-name">Sintra</div>
+          <div class="day-city-name">Mafra &amp; Sintra</div>
           <div class="day-tagline">Paleizen &amp; Mystiek</div>
-          <p class="day-meta-row">🚗 ±60 km · 30 min van Óbidos · dagtrip, door naar Lissabon</p>
+          <p class="day-meta-row">🚗 ±60 km · 50–55 min van Óbidos (via Mafra) · dagtrip, door naar Lissabon</p>
           <ul class="day-highlights">
+            <li>Paleisklooster van Mafra — onderweg</li>
             <li>Palácio da Pena</li>
             <li>Quinta da Regaleira</li>
             <li>Castelo dos Mouros</li>
-            <li>Mistige dennenbossen</li>
           </ul>
           <div class="day-card-btns">
-            <a href="https://www.google.com/maps/dir/Óbidos/Sintra/@38.79,-9.39,11z"
+            <a href="https://www.google.com/maps/dir/Óbidos/Palácio+Nacional+de+Mafra/Sintra/@38.9,-9.3,10z"
                target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Maps</a>
             <a href="#day6" class="btn btn-sm btn-web">📖 Details</a>
           </div>
@@ -550,6 +587,29 @@
           </div>
         </div>
 
+        <div class="attraction-item-card extra-tip-card">
+          <span class="extra-tip-label">⏳ Als je tijd over hebt</span>
+          <div class="attraction-item-top">
+            <div class="attraction-item-name">🏛️ Palácio da Bolsa</div>
+          </div>
+          <p class="attraction-item-desc">
+            Indrukwekkende 19e-eeuwse voormalige beurszaal, gebouwd door Porto's kooplieden.
+            De absolute blikvanger is de Arabische Zaal — een weelderig vergulde ruimte
+            geïnspireerd op het Alhambra in Granada, waar nog altijd staatsbezoeken worden
+            ontvangen. Alleen te bezoeken met een rondleiding (30–45 min).
+          </p>
+          <div class="attraction-item-info">
+            <span class="info-chip">📍 Rua de Ferreira Borges, Porto</span>
+            <span class="info-chip">🕐 9:00–18:30</span>
+            <span class="info-chip">💶 ~€10</span>
+            <span class="info-chip">⏱ 30–45 min rondleiding</span>
+          </div>
+          <div class="attraction-item-links">
+            <a href="https://www.google.com/maps/place/Pal%C3%A1cio+da+Bolsa/@41.1414,-8.6144,17z" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
+            <a href="https://www.palaciodabolsa.com" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-web">🌐 Website</a>
+          </div>
+        </div>
+
       </div>
     </div>
 
@@ -574,6 +634,10 @@
             <div class="meta-cell">
               <div class="meta-label">Overnachting</div>
               <div class="meta-value">The Manor House Celeirós · Quinta do Portal</div>
+            </div>
+            <div class="meta-cell">
+              <div class="meta-label">Restaurants</div>
+              <div class="meta-value">Pinhão / Quinta do Bomfim, ~15 min rijden van het hotel (geen loopafstand)</div>
             </div>
             <div class="meta-cell">
               <div class="meta-label">Beste tip</div>
@@ -686,6 +750,30 @@
           </div>
         </div>
 
+        <div class="attraction-item-card extra-tip-card">
+          <span class="extra-tip-label">⏳ Als je tijd over hebt</span>
+          <div class="attraction-item-top">
+            <div class="attraction-item-name">🚂 Peso da Régua &amp; Museu do Douro</div>
+          </div>
+          <p class="attraction-item-desc">
+            Het historische handelscentrum van de Douro-wijnstreek, waar vroeger de
+            rabelo-boten met vaten port de rivier af voeren naar Porto. Het Museu do Douro,
+            gevestigd in een oud douanegebouw aan de rivier, vertelt de geschiedenis van de
+            wijnstreek en de aanleg van de terrassen. Leuke, compacte stop tussen twee
+            wijnproeverijen door.
+          </p>
+          <div class="attraction-item-info">
+            <span class="info-chip">📍 Peso da Régua</span>
+            <span class="info-chip">🕐 Di–Zo 10:00–18:00</span>
+            <span class="info-chip">💶 ~€6</span>
+            <span class="info-chip">⏱ 1 uur</span>
+          </div>
+          <div class="attraction-item-links">
+            <a href="https://www.google.com/maps/place/Museu+do+Douro/@41.1616,-7.7863,16z" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
+            <a href="https://www.museudodouro.pt" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-web">🌐 Website</a>
+          </div>
+        </div>
+
       </div>
     </div>
 
@@ -739,19 +827,44 @@
             <a href="https://www.google.com/maps/place/Costa+Nova+do+Prado/@40.6175,-8.7505,15z" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
           </div>
         </div>
+
+        <div class="attraction-item-card extra-tip-card">
+          <span class="extra-tip-label">⏳ Als je tijd over hebt</span>
+          <div class="attraction-item-top">
+            <div class="attraction-item-name">🏺 Vista Alegre Porselein</div>
+          </div>
+          <p class="attraction-item-desc">
+            Historische porseleinfabriek, opgericht in 1824 en het oudste nog actieve
+            porseleinmerk van de Iberische wijnstreek. Het museum toont eeuwenoude stukken en
+            de fabrieksrondleiding laat zien hoe het porselein nog steeds grotendeels met de
+            hand wordt beschilderd. De outlet-winkel is populair voor mooie, betaalbare stukken.
+          </p>
+          <div class="attraction-item-info">
+            <span class="info-chip">📍 Ílhavo, ~20 min van Aveiro</span>
+            <span class="info-chip">🕐 9:30–18:00</span>
+            <span class="info-chip">💶 Museum ~€5</span>
+            <span class="info-chip">⏱ 1–1,5 uur</span>
+          </div>
+          <div class="attraction-item-links">
+            <a href="https://www.google.com/maps/place/Vista+Alegre/@40.6027,-8.6193,16z" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
+            <a href="https://www.vistaalegre.com" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-web">🌐 Website</a>
+          </div>
+        </div>
+
       </div>
     </div>
 
-    <!-- ── DAYS 4-7: Summary Cards ── -->
+    <!-- ── DAY 4: BATALHA, ALCOBAÇA & NAZARÉ ── -->
     <div class="day-detail fade-in" id="day4">
       <div class="day-detail-header">
         <div class="day-detail-info">
           <span class="day-detail-day">Dag 6 · vr 11 sep</span>
-          <h2>Batalha &amp; Nazaré</h2>
+          <h2>Batalha, Alcobaça &amp; Nazaré</h2>
           <p class="day-detail-tagline">Geschiedenis &amp; Oceaangeweld</p>
-          <p class="day-detail-desc">Combineer de indrukwekkende gotische architectuur van het Klooster van Batalha (1385, UNESCO) met de dramatische kliffen en reuzengolven van Nazaré. Het Farol-vuurtoren uitkijkpunt biedt de meest spectaculaire uitzichten op zee.</p>
+          <p class="day-detail-desc">Combineer de indrukwekkende gotische architectuur van het Klooster van Batalha (1385, UNESCO) met het rustiger gelegen Klooster van Alcobaça — Portugal's grootste kerk en het eerste puur gotische bouwwerk van het land — vlak onderweg naar Nazaré. Sluit af met de dramatische kliffen en reuzengolven van Nazaré. Het Farol-vuurtoren uitkijkpunt biedt de meest spectaculaire uitzichten op zee.</p>
           <div class="day-meta-grid">
             <div class="meta-cell"><div class="meta-label">Rijafstand</div><div class="meta-value">45 min van Aveiro</div></div>
+            <div class="meta-cell"><div class="meta-label">Onderweg</div><div class="meta-value">Alcobaça · ~15-20 min tussen Batalha en Nazaré</div></div>
             <div class="meta-cell"><div class="meta-label">Overnachting</div><div class="meta-value">Pousada Castelo de Óbidos</div></div>
             <div class="meta-cell"><div class="meta-label">Lunch Nazaré</div><div class="meta-value">O Casalinho · oesters + cataplana</div></div>
           </div>
@@ -775,6 +888,31 @@
             <a href="https://www.mosteirobatalha.gov.pt" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-web">🌐 Website</a>
           </div>
         </div>
+
+        <div class="attraction-item-card">
+          <div class="attraction-item-top">
+            <div class="attraction-item-name">⛪ Klooster van Alcobaça — onderweg</div>
+          </div>
+          <p class="attraction-item-desc">
+            Korte tussenstop tussen Batalha en Nazaré (~15-20 min rijden vanaf Batalha, geen omweg).
+            Dit UNESCO-klooster uit 1153 is de grootste kerk van Portugal en een van de belangrijkste
+            middeleeuwse bouwwerken van het land — indrukwekkend door zijn kale, statige eenvoud in
+            plaats van overdadige versiering. Bekend van de tragische liefdesgeschiedenis van Pedro
+            en Inês, wier graftombes hier tegenover elkaar staan. Rustiger dan Batalha, minder
+            toeristische drukte, en zeker de moeite waard als korte stop onderweg.
+          </p>
+          <div class="attraction-item-info">
+            <span class="info-chip">📍 Alcobaça, tussen Batalha en Nazaré</span>
+            <span class="info-chip">🕐 9:00–18:00</span>
+            <span class="info-chip">💶 ~€6</span>
+            <span class="info-chip">⏱ 45–60 min bezoek</span>
+          </div>
+          <div class="attraction-item-links">
+            <a href="https://www.google.com/maps/place/Mosteiro+de+Alcoba%C3%A7a/@39.5470,-8.9800,16z" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
+            <a href="https://mosteiroalcobaca.gov.pt" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-web">🌐 Website</a>
+          </div>
+        </div>
+
         <div class="attraction-item-card">
           <div class="attraction-item-name">🌊 Nazaré Sítio</div>
           <p class="attraction-item-desc">Het hoog gelegen deel van Nazaré met de beroemde Farol-vuurtoren, van waaruit de beroemde XXL-golven worden gesurft (tot 30 meter hoog in de winter). Het kabeltje brengt je omhoog.</p>
@@ -787,6 +925,29 @@
             <a href="https://www.google.com/maps/place/Nazaré/@39.6013,-9.0655,14z" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
           </div>
         </div>
+
+        <div class="attraction-item-card extra-tip-card">
+          <span class="extra-tip-label">⏳ Als je tijd over hebt</span>
+          <div class="attraction-item-top">
+            <div class="attraction-item-name">🏰 Kasteel van Leiria</div>
+          </div>
+          <p class="attraction-item-desc">
+            Prachtig gerestaureerd middeleeuws kasteel hoog op een heuvel boven de stad Leiria,
+            met een fraai uitzicht over de rivier Lis en de daken van de stad. Leiria ligt
+            praktisch naast Batalha (~10 min rijden), dus dit is een stop zonder enige omweg
+            als er tussen de twee kloosters en Nazaré nog tijd over is.
+          </p>
+          <div class="attraction-item-info">
+            <span class="info-chip">📍 Leiria, vlak bij Batalha</span>
+            <span class="info-chip">🕐 9:30–18:00</span>
+            <span class="info-chip">💶 ~€2,10</span>
+            <span class="info-chip">⏱ 45 min</span>
+          </div>
+          <div class="attraction-item-links">
+            <a href="https://www.google.com/maps/place/Castelo+de+Leiria/@39.7444,-8.8075,16z" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
+          </div>
+        </div>
+
       </div>
     </div>
 
@@ -802,7 +963,7 @@
             <div class="meta-cell"><div class="meta-label">Tip</div><div class="meta-value">Loop de hele vestingmuur (dagbrekers weg om 18u)</div></div>
             <div class="meta-cell"><div class="meta-label">Hotel</div><div class="meta-value">Pousada Castelo de Óbidos · 2 nachten</div></div>
             <div class="meta-cell"><div class="meta-label">Lunch tip</div><div class="meta-value">Alcaide · bacalhau com nozes</div></div>
-            <div class="meta-cell"><div class="meta-label">Diner tip</div><div class="meta-value">Poço dos Sabores · polvo à lagareiro</div></div>
+            <div class="meta-cell"><div class="meta-label">Diner tip (dag 7)</div><div class="meta-value">Poço dos Sabores, Usseira · kort ritje, geen loopafstand vanaf de Pousada</div></div>
           </div>
         </div>
         <div class="day-detail-photo" style="background:linear-gradient(135deg,#6a1b9a,#4a148c);display:flex;align-items:center;justify-content:center;font-size:5rem;">🏰</div>
@@ -820,18 +981,43 @@
             <a href="https://www.google.com/maps/place/Óbidos/@39.3621,-9.1566,15z" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
           </div>
         </div>
+
+        <div class="attraction-item-card extra-tip-card">
+          <span class="extra-tip-label">⏳ Als je tijd over hebt</span>
+          <div class="attraction-item-top">
+            <div class="attraction-item-name">🏺 Caldas da Rainha</div>
+          </div>
+          <p class="attraction-item-desc">
+            Levendige marktstad op zo'n 15 minuten van Óbidos, met een heel ander karakter:
+            minder toeristisch, meer lokaal leven. Beroemd om zijn aardewerk, met name de
+            excentrieke groente- en dierfiguren van Bordallo Pinheiro. De dagelijkse markt bij
+            het Praça da República is de moeite waard, net als het park Parque Dom Carlos I.
+          </p>
+          <div class="attraction-item-info">
+            <span class="info-chip">📍 ~15 min van Óbidos</span>
+            <span class="info-chip">🕐 Markt vooral ochtend</span>
+            <span class="info-chip">💶 Gratis rondlopen</span>
+            <span class="info-chip">⏱ 1–1,5 uur</span>
+          </div>
+          <div class="attraction-item-links">
+            <a href="https://www.google.com/maps/place/Caldas+da+Rainha/@39.4067,-9.1361,14z" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
+          </div>
+        </div>
+
       </div>
     </div>
 
+    <!-- ── DAY 6: MAFRA & SINTRA ── -->
     <div class="day-detail fade-in" id="day6">
       <div class="day-detail-header">
         <div class="day-detail-info">
           <span class="day-detail-day">Dag 8 · zo 13 sep</span>
-          <h2>Sintra</h2>
+          <h2>Mafra &amp; Sintra</h2>
           <p class="day-detail-tagline">Paleizen &amp; Mystiek (dagtrip)</p>
-          <p class="day-detail-desc">Sintra is een UNESCO-werelderfgoedstad waar sprookjespaleizen uit de mist rijzen tussen eeuwenoude dennenbossen. Palácio da Pena met zijn felle kleuren, de raadselachtige Quinta da Regaleira met zijn initiatie-put, en de Moorse kastelen zijn elk apart een dag waard. Sintra wordt als dagtrip bezocht op weg van Óbidos naar Lissabon — geen overnachting.</p>
+          <p class="day-detail-desc">Onderweg van Óbidos naar Sintra ligt Mafra vrijwel exact halverwege — een natuurlijke tussenstop, geen omweg. Daarna gaat de reis verder naar Sintra, een UNESCO-werelderfgoedstad waar sprookjespaleizen uit de mist rijzen tussen eeuwenoude dennenbossen. Palácio da Pena met zijn felle kleuren, de raadselachtige Quinta da Regaleira met zijn initiatie-put, en de Moorse kastelen zijn elk apart een dag waard. Sintra wordt als dagtrip bezocht op weg naar Lissabon — geen overnachting.</p>
           <div class="day-meta-grid">
-            <div class="meta-cell"><div class="meta-label">Rijafstand</div><div class="meta-value">30 min van Óbidos</div></div>
+            <div class="meta-cell"><div class="meta-label">Rijafstand</div><div class="meta-value">50–55 min van Óbidos (via Mafra) · daarna 30 min Mafra–Sintra</div></div>
+            <div class="meta-cell"><div class="meta-label">Onderweg</div><div class="meta-value">Paleisklooster van Mafra</div></div>
             <div class="meta-cell"><div class="meta-label">Tip</div><div class="meta-value">Reserveer tickets Pena online!</div></div>
             <div class="meta-cell"><div class="meta-label">Overnachting</div><div class="meta-value">Geen — door naar Lissabon</div></div>
             <div class="meta-cell"><div class="meta-label">Lunch tip</div><div class="meta-value">Incomum · arroz de marisco</div></div>
@@ -843,6 +1029,31 @@
         </div>
       </div>
       <div class="attractions-list-detail">
+        <div class="attraction-item-card">
+          <div class="attraction-item-top">
+            <div class="attraction-item-name">🏛️ Paleisklooster van Mafra — onderweg</div>
+          </div>
+          <p class="attraction-item-desc">
+            Een van de grootste en meest ambitieuze bouwwerken van Portugal: paleis, klooster,
+            basiliek en één van de grootste bibliotheken van Europa in één complex, gebouwd in
+            de 18e eeuw onder koning João V naar Italiaans voorbeeld. Vaak onderschat doordat het
+            minder bekend is dan Sintra, maar minstens zo indrukwekkend qua schaal — de bibliotheek
+            met zijn 36.000 boeken (en de vleermuizen die 's nachts de boeken beschermen tegen
+            insecten) is een absoluut hoogtepunt. Ligt vrijwel exact op de route tussen Óbidos en
+            Sintra, dus een logische tussenstop zonder omweg.
+          </p>
+          <div class="attraction-item-info">
+            <span class="info-chip">📍 Mafra, tussen Óbidos en Sintra</span>
+            <span class="info-chip">🕐 9:30–17:00 (gesloten di)</span>
+            <span class="info-chip">💶 ~€6</span>
+            <span class="info-chip">⏱ 1–1,5 uur</span>
+          </div>
+          <div class="attraction-item-links">
+            <a href="https://www.google.com/maps/place/Pal%C3%A1cio+Nacional+de+Mafra/@38.9376,-9.3327,16z" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
+            <a href="https://www.palaciomafra.gov.pt" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-web">🌐 Website</a>
+          </div>
+        </div>
+
         <div class="attraction-item-card">
           <div class="attraction-item-name">🏰 Palácio da Pena</div>
           <p class="attraction-item-desc">Het meest kleurrijke paleis van Portugal, hoog boven Sintra. Romantisch neo-manueline architectuur in felle geel, rood en terracottakleuren. Reserveer online — het is razend populair.</p>
@@ -870,6 +1081,29 @@
             <a href="https://www.regaleira.pt" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-web">🌐 Website</a>
           </div>
         </div>
+
+        <div class="attraction-item-card extra-tip-card">
+          <span class="extra-tip-label">⏳ Als je tijd over hebt</span>
+          <div class="attraction-item-top">
+            <div class="attraction-item-name">🌊 Cabo da Roca</div>
+          </div>
+          <p class="attraction-item-desc">
+            Het meest westelijke punt van het Europese vasteland — dramatische kliffen van
+            140 meter hoog die recht in de Atlantische Oceaan vallen, met een iconische
+            vuurtoren. Op ~20 minuten van Sintra, maar wel een kleine omweg (heen én terug),
+            dus alleen inplannen als Pena en Regaleira niet de hele dag vullen.
+          </p>
+          <div class="attraction-item-info">
+            <span class="info-chip">📍 ~20 min van Sintra</span>
+            <span class="info-chip">🕐 Altijd open</span>
+            <span class="info-chip">💶 Gratis</span>
+            <span class="info-chip">⏱ 30–45 min + reistijd</span>
+          </div>
+          <div class="attraction-item-links">
+            <a href="https://www.google.com/maps/place/Cabo+da+Roca/@38.7811,-9.4986,15z" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
+          </div>
+        </div>
+
       </div>
     </div>
 
@@ -936,6 +1170,53 @@
             <a href="https://www.google.com/maps/place/Alfama/@38.7139,-9.1290,15z" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Alfama Maps</a>
           </div>
         </div>
+
+        <div class="attraction-item-card extra-tip-card">
+          <span class="extra-tip-label">⏳ Als je tijd over hebt</span>
+          <div class="attraction-item-top">
+            <div class="attraction-item-name">🎨 LX Factory</div>
+          </div>
+          <p class="attraction-item-desc">
+            Voormalig industrieterrein onder de 25 de Abril-brug, omgetoverd tot creatieve
+            wijk vol conceptwinkels, galerieën, street art en gezellige cafés — waaronder de
+            beroemde boekhandel Ler Devagar in een oude drukkerijhal. Een heel andere sfeer
+            dan het historische centrum, goed te combineren met Belém (dezelfde kant van de stad).
+          </p>
+          <div class="attraction-item-info">
+            <span class="info-chip">📍 Alcântara, bij de brug</span>
+            <span class="info-chip">🕐 Winkels meestal 11:00–20:00</span>
+            <span class="info-chip">💶 Gratis rondlopen</span>
+            <span class="info-chip">⏱ 1,5–2 uur</span>
+          </div>
+          <div class="attraction-item-links">
+            <a href="https://www.google.com/maps/place/LX+Factory/@38.7043,-9.1786,16z" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
+            <a href="https://www.lxfactory.com" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-web">🌐 Website</a>
+          </div>
+        </div>
+
+        <div class="attraction-item-card extra-tip-card">
+          <span class="extra-tip-label">⏳ Als je tijd over hebt</span>
+          <div class="attraction-item-top">
+            <div class="attraction-item-name">✝️ Cristo Rei</div>
+          </div>
+          <p class="attraction-item-desc">
+            Het 110 meter hoge Christusbeeld aan de overkant van de Taag, geïnspireerd op de
+            Christus de Redentor in Rio de Janeiro. Het uitkijkplatform aan de voet van het
+            beeld biedt een van de beste panorama's op Lissabon, de 25 de Abril-brug en de
+            rivier. Bereikbaar per veerboot vanaf Cais do Sodré plus een korte bus, of met de auto.
+          </p>
+          <div class="attraction-item-info">
+            <span class="info-chip">📍 Almada, overkant van de Taag</span>
+            <span class="info-chip">🕐 9:30–18:00</span>
+            <span class="info-chip">💶 ~€8 (lift naar platform)</span>
+            <span class="info-chip">⏱ 1,5–2 uur incl. veerboot</span>
+          </div>
+          <div class="attraction-item-links">
+            <a href="https://www.google.com/maps/place/Cristo+Rei/@38.6786,-9.1725,16z" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
+            <a href="https://www.cristorei.pt" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-web">🌐 Website</a>
+          </div>
+        </div>
+
       </div>
     </div>
 
@@ -1037,7 +1318,7 @@
      FOOTER
 ═══════════════════════════════════════ -->
 <footer>
-  <p><strong>Portugal Roadtrip — Interactieve 7-Daagse Reisroute</strong></p>
+  <p><strong>Portugal Roadtrip — Interactieve 10-Daagse Reisroute</strong></p>
   <p>🗺️ Klik op attracties voor websites &amp; Google Maps &nbsp;|&nbsp; 🇵🇹 Boa viagem!</p>
   <p style="margin-top:1rem;opacity:.5;">Gemaakt met ❤️ voor reizigers die het echte Portugal willen ontdekken</p>
 </footer>
@@ -1072,6 +1353,11 @@
     { n: 7, naam: 'Lissabon', coords: [38.7223, -9.1393] }
   ];
 
+  const waypointStops = [
+    { naam: 'Alcobaça', dag: 6, coords: [39.5470, -8.9800] },
+    { naam: 'Mafra',    dag: 8, coords: [38.9376, -9.3327] }
+  ];
+
   function routeMapFallback() {
     const box = document.getElementById('routeMap');
     if (!box) return;
@@ -1080,7 +1366,7 @@
       '<div class="route-map-fallback-inner">' +
         '<span class="route-map-fallback-icon">🗺️</span>' +
         '<p>De interactieve kaart kon niet laden.</p>' +
-        '<a href="https://www.google.com/maps/dir/Porto,+Portugal/Douro+Valley,+Portugal/Aveiro,+Portugal/Nazar%C3%A9,+Portugal/%C3%93bidos,+Portugal/Sintra,+Portugal/Lisbon,+Portugal" ' +
+        '<a href="https://www.google.com/maps/dir/Porto,+Portugal/Douro+Valley,+Portugal/Aveiro,+Portugal/Alcoba%C3%A7a,+Portugal/Nazar%C3%A9,+Portugal/%C3%93bidos,+Portugal/Mafra,+Portugal/Sintra,+Portugal/Lisbon,+Portugal" ' +
         'target="_blank" rel="noopener noreferrer" class="btn btn-map">Bekijk de route in Google Maps</a>' +
       '</div>';
   }
@@ -1114,8 +1400,22 @@
         .bindPopup('<strong>Dag ' + s.n + ': ' + s.naam + '</strong>');
     });
 
-    // Zoom passend maken op alle stops
-    map.fitBounds(L.latLngBounds(line).pad(0.15));
+    // Kleinere tussenstop-markers (onderweg, geen overnachting)
+    waypointStops.forEach(w => {
+      const icon = L.divIcon({
+        className: 'route-marker route-marker-waypoint',
+        html: '<span>•</span>',
+        iconSize: [16, 16],
+        iconAnchor: [8, 8]
+      });
+      L.marker(w.coords, { icon })
+        .addTo(map)
+        .bindPopup('<strong>Onderweg (dag ' + w.dag + '): ' + w.naam + '</strong>');
+    });
+
+    // Zoom passend maken op alle stops (incl. tussenstops)
+    const allCoords = line.concat(waypointStops.map(w => w.coords));
+    map.fitBounds(L.latLngBounds(allCoords).pad(0.15));
   }
 
   if (document.readyState === 'loading') {
