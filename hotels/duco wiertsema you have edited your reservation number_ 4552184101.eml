@@ -1,94 +1,81 @@
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=wiertsema.net; s=default;
- t=1784454198;
- b=WH+p3MTmoj5Pm8+a29xxkvHj+aM1Rqf3U1YlK5oVprUovyG9FBaqOlc89t5OJGtOqRChB
- EpAOHaDUhKXnMLP2Pd3yZnv98ciQvcwy6PGXrphHlcZQWKz/+dvxy+sobhvIilgWXxrJrrd
- UlnVKmvDBt4TyZIiE1lon0eIANOZbA0=
+ t=1784454515;
+ b=sCuCpW9UXPNbGW2rRh6vKNFZyCuuWM/Y2puHuH4FsgegBfQkg8SYS1lNNvKDWrvqzK7go
+ TcuQzVPo5+JJqoJ602JOKLjOrAID+AOuNaP+n11VIQ+NnY7wWnoMmv1j4UCQ9o9o+5Rvv1Y
+ r3mDEpIhrkRbiONU0MLRRqQ0GMRFOK4=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=wiertsema.net; s=default; t=1784454198; h=date : from : reply-to :
+ d=wiertsema.net; s=default; t=1784454515; h=date : from : reply-to :
  message-id : mime-version : content-type : content-transfer-encoding :
- to : subject : from; bh=5JZqKUjH890VwpO26hVocmWw/3ZYfx5V0QBkshX690U=;
- b=kRj1N3JC4dZcij0/5HjKeCgiej6OqUwNgS9xLZKFQghwFIU2dICHLYbmYLAPay8en8Z+4
- ZctyXEcLHZME0lrj+37ktgj4ot0sCpXHbqloxqTYQ+yVqpwxJOJ/XM3sjCsaNP1K3m9ihhZ
- gMCqLxiCtEOImAUEu+k/PV3VxvmyIeM=
+ to : subject : from; bh=kDTmhGoBa04nX+s+ofmxVx9Oo0k+Dfw7W93UIt2kOYs=;
+ b=EG1Rs8FUAIhHv7lpvChnm59t/oNcngPHdT7sRM88XFB3nYnA9HG2ade5mvCAuqGpcFE6B
+ qzavaQR9VNrvh50NHONchiqy4zOfEbJ/i0Zb5drLhlooAMyAhXVYeInRme+xDb5c4FSrGRS
+ 7L1dU5zIKpfGWsEUa6IiJNTIyGnw8q4=
 ARC-Authentication-Results: i=1; shared80.cloud86-host.nl;
   dkim=pass header.d=guestcentric.net;
   dkim=pass header.d=amazonses.com;
-  spf=pass smtp.mailfrom=0100019f79c2175a-e72617b4-d6e6-4b0a-8c2e-76b98c36ed26-000000@amazonses.com smtp.helo=a48-117.smtp-out.amazonses.com;
-  dkim=pass header.d=guestcentric.net header.b=ZMKSWANJ;
-  dkim=pass header.d=amazonses.com header.b=pMBiUf2L
-Return-Path: <0100019f79c2175a-e72617b4-d6e6-4b0a-8c2e-76b98c36ed26-000000@amazonses.com>
+  spf=pass smtp.mailfrom=0100019f79c6f37a-4d7242f9-290d-4e5a-950f-6a4d9247da41-000000@amazonses.com smtp.helo=a8-77.smtp-out.amazonses.com;
+  dkim=pass header.d=guestcentric.net header.b="uq0xFC+/";
+  dkim=pass header.d=amazonses.com header.b=m3Jysxew
+Return-Path: <0100019f79c6f37a-4d7242f9-290d-4e5a-950f-6a4d9247da41-000000@amazonses.com>
 X-Original-To: duco@wiertsema.net
 Delivered-To: duco@wiertsema.net
-Received: from a48-117.smtp-out.amazonses.com (a48-117.smtp-out.amazonses.com [54.240.48.117])
-	by shared80.cloud86-host.nl (Postfix) with ESMTPS id 0DEE8280F97
-	for <duco@wiertsema.net>; Sun, 19 Jul 2026 11:43:12 +0200 (CEST)
+Received: from a8-77.smtp-out.amazonses.com (a8-77.smtp-out.amazonses.com [54.240.8.77])
+	by shared80.cloud86-host.nl (Postfix) with ESMTPS id 529E3280EA5
+	for <duco@wiertsema.net>; Sun, 19 Jul 2026 11:48:30 +0200 (CEST)
 Authentication-Results: shared80.cloud86-host.nl;
 	dkim=pass header.d=guestcentric.net;
 	dkim=pass header.d=amazonses.com;
-        spf=pass (sender IP is 54.240.48.117) smtp.mailfrom=0100019f79c2175a-e72617b4-d6e6-4b0a-8c2e-76b98c36ed26-000000@amazonses.com smtp.helo=a48-117.smtp-out.amazonses.com
-Received-SPF: pass (shared80.cloud86-host.nl: domain of amazonses.com designates 54.240.48.117 as permitted sender) client-ip=54.240.48.117; envelope-from=0100019f79c2175a-e72617b4-d6e6-4b0a-8c2e-76b98c36ed26-000000@amazonses.com; helo=a48-117.smtp-out.amazonses.com;
+        spf=pass (sender IP is 54.240.8.77) smtp.mailfrom=0100019f79c6f37a-4d7242f9-290d-4e5a-950f-6a4d9247da41-000000@amazonses.com smtp.helo=a8-77.smtp-out.amazonses.com
+Received-SPF: pass (shared80.cloud86-host.nl: domain of amazonses.com designates 54.240.8.77 as permitted sender) client-ip=54.240.8.77; envelope-from=0100019f79c6f37a-4d7242f9-290d-4e5a-950f-6a4d9247da41-000000@amazonses.com; helo=a8-77.smtp-out.amazonses.com;
 X-Virus-Scanned: amavis at cloud86-host.nl
-X-Spam-Flag: NO
-X-Spam-Score: 3.973
-X-Spam-Level: ***
-X-Spam-Status: No, score=3.973 tagged_above=-9999 required=4
+X-Spam-Flag: YES
+X-Spam-Score: 4.197
+X-Spam-Level: ****
+X-Spam-Status: Yes, score=4.197 tagged_above=-9999 required=4
  tests=[BAYES_20=-0.001, DKIM_SIGNED=0.1, DKIM_VALID=-0.1, DKIM_VALID_AU=-0.1,
  DKIM_VALID_EF=-0.1, DMARC_MISSING=1, GB_GEN_REDIR_URL=0.5,
  HEADER_FROM_DIFFERENT_DOMAINS=2, HTML_MESSAGE=0.001, KAM_NUMSUBJECT=0.5,
- RCVD_IN_DNSWL_NONE=-0.0001, RCVD_IN_MSPIKE_H5=0.001, RCVD_IN_MSPIKE_WL=0.001,
- SPF_HELO_NONE=0.001, SPF_PASS=-0.001, TXREP=0.171]
+ MIME_HTML_MOSTLY=0.1, RCVD_IN_DNSWL_NONE=-0.0001, RCVD_IN_MSPIKE_H4=0.001,
+ RCVD_IN_MSPIKE_WL=0.001, SPF_HELO_NONE=0.001, SPF_PASS=-0.001, TXREP=0.295]
  autolearn=no autolearn_force=no
 Authentication-Results: shared80.cloud86-host.nl (amavis);
- dkim=pass (1024-bit key) header.d=guestcentric.net header.b="ZMKSWANJ";
- dkim=pass (1024-bit key) header.d=amazonses.com header.b="pMBiUf2L"
+ dkim=pass (1024-bit key) header.d=guestcentric.net header.b="uq0xFC+/";
+ dkim=pass (1024-bit key) header.d=amazonses.com header.b="m3Jysxew"
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
 	s=6lmbujbywzu7tuccdzmbxrlfhfp2luu2; d=guestcentric.net;
-	t=1784454191;
+	t=1784454509;
 	h=Date:From:Reply-To:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:To:Subject;
-	bh=AGHinaQAX0ZQ/fbxfUut5U/EruM4dOKCXlX35iCxYmI=;
-	b=ZMKSWANJJMFQqFv7ESwmFQZalzvvCydxI54m2ypLFOnX/EncE548lF8+El3MViW0
-	v97ayCwDrK7Jnd+lT8pM1o57kjctEzYOq/ok3d42Q0MdFm6JrFxvKg94V3rDwjLFxTM
-	oRgZ/01ESHIL9jMOtRMt6F+n8nC0sxz+firi7H08=
+	bh=6QLyp69h806/h0KnAIV0FYKamp/imAMR19V2oz1VikY=;
+	b=uq0xFC+/QjHgqisW28MPpGQ4eTr09XIShkK5xdycHbNNZojutvGrnd2bf8/VJAg6
+	eU8i7xabrASbQIzpJa3cGtA72/didK2hDPg5cnRBs7SNvNBBv46/GEhudG53i3o+bIc
+	UBr1D/ENCfvvoQ99XX+k7gkXu40F70jnbegYH+HQ=
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
-	s=224i4yxa5dv7c2xz3womw6peuasteono; d=amazonses.com; t=1784454191;
+	s=224i4yxa5dv7c2xz3womw6peuasteono; d=amazonses.com; t=1784454509;
 	h=Date:From:Reply-To:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:To:Subject:Feedback-ID;
-	bh=AGHinaQAX0ZQ/fbxfUut5U/EruM4dOKCXlX35iCxYmI=;
-	b=pMBiUf2Li7S6qBjzUhYAT+y1emcv+b6U2LrVxArQCmUQAojPaH6jDpLb3Och1xlg
-	WLbFPIl4wtZHzZhddWljEhtjjnZUzJ1xqhz1MfT0DvgXNLMnHqYk6WCh7wN+lx7DLU3
-	RsAC1divrIz8X5qp64Nn1+W9atq8Oa5COvRSmNHU=
-Date: Sun, 19 Jul 2026 09:43:10 +0000
+	bh=6QLyp69h806/h0KnAIV0FYKamp/imAMR19V2oz1VikY=;
+	b=m3JysxewdoOEbqt3lekrnvyP8fXOrkcEY8mqaOeKCqtoy6Ur2wpr6SU1shqsy/it
+	4RysbahhE6spjh0ZfCvxmlFthn4RK3GyIkVaaMGrfkg3SLJUWjBitW6gk/BWeCWdLCG
+	gtx1b5/mf14bRNVEz4xtBJfXcyE1of8D3HBZgx+Y=
+Date: Sun, 19 Jul 2026 09:48:29 +0000
 From: =?UTF-8?Q?Memmo_Pr=C3=ADncipe_Real?= <no-reply@guestcentric.net>
 Reply-To: reservations.preal@memmohotels.com
-Message-ID: <0100019f79c2175a-e72617b4-d6e6-4b0a-8c2e-76b98c36ed26-000000@email.amazonses.com>
+Message-ID: <0100019f79c6f37a-4d7242f9-290d-4e5a-950f-6a4d9247da41-000000@email.amazonses.com>
 X-Priority: 3
 X-Mailer: PHPMailer 5.2.8 (https://github.com/PHPMailer/PHPMailer/)
 MIME-Version: 1.0
 Content-Type: multipart/alternative;
-	boundary="b1_f87f1111f66b100727fb2a685b6ed5d3"
+	boundary="b1_1a65d55c3e103a48338de2eedd0385d4"
 Content-Transfer-Encoding: 8bit
 To: duco@wiertsema.net
-Subject: duco wiertsema your reservation is confirmed. Your Booking number: 4552184101
+Subject: duco wiertsema you have edited your reservation number: 4552184101
 Feedback-ID: ::1.us-east-1.fHOTr0zUIRfH00oW0QnxClXXIOiCtnhmg5rfVi4igoY=:AmazonSES
-X-SES-Outgoing: 2026.07.19-54.240.48.117
+X-SES-Outgoing: 2026.07.19-54.240.8.77
 
---b1_f87f1111f66b100727fb2a685b6ed5d3
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+--b1_1a65d55c3e103a48338de2eedd0385d4
+Content-Type: text/plain; charset=us-ascii
 
-<p style="margin: 0px;">Dear duco wiertsema<br /><br />Thank you for choosing
-the Memmo Príncipe Real. Our staff is ready to make your stay in Lisbon
-unforgettable. Please feel free to contact us for any special requests you may
-have, so we can make all necessary arrangements before your arrival. We wish you
-a good trip and look forward to welcoming you to our hotel soon.<br /><br
-/>Please note that modifications or cancelation of your reservation will only be
-considered if made through our website or directly via email.<br /><br />Please
-note that parking it&#39;s not included in the room rate (30Eur daily
-rate).</p><br />
-<p style="margin: 0px;"><strong><span class="il">City</span> <span
-class="il">Tax</span> Not Included</strong></p><br />
-<br />
-<br />
-<br />
+Dear duco wiertsema<br /><br /> You successfully modified your reservation on
+<strong>Sunday 19 July 2026</strong>.<br />
 <br />
 Your reservation details<br />
 Arrival Date:		%s<br />
@@ -108,12 +95,9 @@ Taxes:					%s<br />
 Fees:					%s<br />
 Total amount to pay:	%s<br />
 <br />
-<br />
-	<br />
-<br />
 
 
---b1_f87f1111f66b100727fb2a685b6ed5d3
+--b1_1a65d55c3e103a48338de2eedd0385d4
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
@@ -362,7 +346,7 @@ Content-Transfer-Encoding: 8bit
                                         <table style="border-spacing: 0; border-collapse: collapse; padding: 0; vertical-align: top; text-align: left; width: 100%;">
                                             <tr style="padding: 0; vertical-align: top; text-align: left;">
                                                 <th style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding: 0; margin: 0; Margin: 0; text-align: left; line-height: 1.3; font-size: 16px;">
-                                                    <center data-parsed style="width: 100%; min-width: 532px;">  <img src="https://secure.guestcentric.net/bin/fcfc11645df5ee21/memmo-principe-real-templatedesignheaderbanner-emails-automaticos-ma-recovered-1-07-3.webp" align="center" class="float-center" style="clear: both; outline: none; -ms-interpolation-mode: bicubic; width: auto; max-width: 100%; text-decoration: none; display: block; margin: 0 auto; Margin: 0 auto; float: none; text-align: center;" border="0" alt="Memmo Príncipe Real" %s> </center>
+                                                    <center data-parsed style="width: 100%; min-width: 532px;">  <img src="https://secure.guestcentric.net/bin/fcfc11645df5ee21/memmo-principe-real-templatedesignheaderbanner-emails-automaticos-ma-recovered-1-07-2.webp" align="center" class="float-center" style="clear: both; outline: none; -ms-interpolation-mode: bicubic; width: auto; max-width: 100%; text-decoration: none; display: block; margin: 0 auto; Margin: 0 auto; float: none; text-align: center;" border="0" alt="Memmo Príncipe Real" %s> </center>
                                                 </th>
                                                 <th class="expander" style="font-weight: normal; font-size: 16px; line-height: 1.3; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; text-align: left; margin: 0; Margin: 0; width: 0; padding: 0; visibility: hidden;"></th>
                                             </tr>
@@ -378,8 +362,7 @@ Content-Transfer-Encoding: 8bit
                                         <table style="border-spacing: 0; border-collapse: collapse; padding: 0; vertical-align: top; text-align: left; width: 100%;">
                                             <tr style="padding: 0; vertical-align: top; text-align: left;">
                                                 <th style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding: 0; margin: 0; Margin: 0; text-align: left; line-height: 1.3; font-size: 16px;">
-                                                    <p style="margin: 0px;">Dear duco wiertsema<br /><br />Thank you for choosing the Memmo Príncipe Real. Our staff is ready to make your stay in Lisbon unforgettable. Please feel free to contact us for any special requests you may have, so we can make all necessary arrangements before your arrival. We wish you a good trip and look forward to welcoming you to our hotel soon.<br /><br />Please note that modifications or cancelation of your reservation will only be considered if made through our website or directly via email.<br /><br />Please note that parking it&#39;s not included in the room rate (30Eur daily rate).</p><br />
-<p style="margin: 0px;"><strong><span class="il">City</span> <span class="il">Tax</span> Not Included</strong></p>
+                                                    Dear duco wiertsema<br /><br /> You successfully modified your reservation on <strong>Sunday 19 July 2026</strong>.
                                                 </th>
                                             </tr>
                                         </table>
@@ -431,11 +414,11 @@ Content-Transfer-Encoding: 8bit
                                             <tbody>
                                             <tr style="padding: 0; vertical-align: top; text-align: left;">
                                                 <td class="small-12 large-6" style="word-wrap: break-word; font-size: 16px; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse; padding: 0; vertical-align: top; text-align: left; line-height: 1.3; -webkit-hyphens: auto; Margin: 0; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; margin: 0; font-weight: normal; padding-right: 0; padding-left: 0; width: 50%;">Arrival Date</td>
-                                                <td class="small-12 large-6" style="font-size: 16px; word-wrap: break-word; hyphens: auto; border-collapse: collapse; padding: 0; vertical-align: top; text-align: left; -moz-hyphens: auto; -webkit-hyphens: auto; line-height: 1.3; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; margin: 0; Margin: 0; padding-bottom: 6px; font-weight: bold; padding-right: 0; padding-left: 0; width: 50%;">2026 Aug 13</td>
+                                                <td class="small-12 large-6" style="font-size: 16px; word-wrap: break-word; hyphens: auto; border-collapse: collapse; padding: 0; vertical-align: top; text-align: left; -moz-hyphens: auto; -webkit-hyphens: auto; line-height: 1.3; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; margin: 0; Margin: 0; padding-bottom: 6px; font-weight: bold; padding-right: 0; padding-left: 0; width: 50%;">2026 Sep 13 ( was 2026 Aug 13)</td>
                                             </tr>
                                             <tr style="padding: 0; vertical-align: top; text-align: left;">
                                                 <td class="small-12 large-6" style="word-wrap: break-word; font-size: 16px; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse; padding: 0; vertical-align: top; text-align: left; line-height: 1.3; -webkit-hyphens: auto; Margin: 0; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; margin: 0; font-weight: normal; padding-right: 0; padding-left: 0; width: 50%;">Departure Date</td>
-                                                <td class="small-12 large-6" style="font-size: 16px; word-wrap: break-word; hyphens: auto; border-collapse: collapse; padding: 0; vertical-align: top; text-align: left; -moz-hyphens: auto; -webkit-hyphens: auto; line-height: 1.3; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; margin: 0; Margin: 0; padding-bottom: 6px; font-weight: bold; padding-right: 0; padding-left: 0; width: 50%;">2026 Aug 15</td>
+                                                <td class="small-12 large-6" style="font-size: 16px; word-wrap: break-word; hyphens: auto; border-collapse: collapse; padding: 0; vertical-align: top; text-align: left; -moz-hyphens: auto; -webkit-hyphens: auto; line-height: 1.3; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; margin: 0; Margin: 0; padding-bottom: 6px; font-weight: bold; padding-right: 0; padding-left: 0; width: 50%;">2026 Sep 15 ( was 2026 Aug 15)</td>
                                             </tr>
                                             <tr style="padding: 0; vertical-align: top; text-align: left;">
                                                 <td class="small-12 large-6" style="word-wrap: break-word; font-size: 16px; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse; padding: 0; vertical-align: top; text-align: left; line-height: 1.3; -webkit-hyphens: auto; Margin: 0; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; margin: 0; font-weight: normal; padding-right: 0; padding-left: 0; width: 50%;">Rooms</td>
@@ -462,16 +445,8 @@ Content-Transfer-Encoding: 8bit
                                         <table class="row" style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; padding: 0; position: relative; width: 100%; display: table;">
                                             <tr style="padding: 0; vertical-align: top; text-align: left;">
                                                 <th style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding: 0; margin: 0; Margin: 0; text-align: left; line-height: 1.3; font-size: 16px;">
-                                                    <b></b>
-                                                </th>
-                                            </tr>
-                                        </table>
-                                        <table class="row" style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; padding: 0; position: relative; width: 100%; display: table;">
-                                            <tr style="padding: 0; vertical-align: top; text-align: left;">
-                                                <th style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding: 0; margin: 0; Margin: 0; text-align: left; line-height: 1.3; font-size: 16px;">
                                                     Notes and special requests<br>
-                                                    <b>can you add my stay to my bonvoy number 135747345<br />
-Check-in Time:   1400</b>
+                                                    <b></b>
                                                 </th>
                                             </tr>
                                         </table>
@@ -479,6 +454,47 @@ Check-in Time:   1400</b>
                                 </tr>
                                 </tbody>
                             </table>
+
+                            <table class="row title" style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; padding: 0; width: 100%; position: relative; display: table;">
+                                <tbody>
+                                <tr style="padding: 0; vertical-align: top; text-align: left;">
+                                    <th class="small-12 large-12 columns first last" style="font-family: Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.3; color: #0a0a0a; font-weight: normal; padding: 0; text-align: left; Margin: 0 auto; margin: 0 auto; width: 564px; padding-bottom: 16px; padding-top: 16px; padding-right: 16px; padding-left: 16px;">
+                                        <b>Add-ons and extras</b>
+                                    </th>
+                                    <th class="expander" style="margin: 0; font-size: 16px; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; line-height: 1.3; Margin: 0; text-align: left; padding-top: 16px; width: 0; padding: 0; visibility: hidden;"></th>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                            <table class="row highlight-content" style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; background: #eeeeee; padding: 0; width: 100%; position: relative; display: table;">
+                                <tbody>
+                                <tr style="padding: 0; vertical-align: top; text-align: left;">
+                                    <th class="small-12 large-12 columns first last" style="color: #0a0a0a; font-size: 16px; line-height: 1.3; text-align: left; padding: 0; font-weight: normal; font-family: Helvetica, Arial, sans-serif; Margin: 0 auto; width: 564px; padding-bottom: 16px; margin: 0 auto; padding-right: 16px; padding-left: 16px;">
+                                        <table class="spacer float-center" style="border-spacing: 0; border-collapse: collapse; padding: 0; vertical-align: top; text-align: center; margin: 0 auto; Margin: 0 auto; float: none; width: 100%;">
+                                            <tbody>
+                                            <tr style="padding: 0; vertical-align: top; text-align: left;">
+                                                <td height="16px" style="vertical-align: top; Margin: 0; word-wrap: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse; padding: 0; margin: 0; text-align: left; font-weight: normal; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; mso-line-height-rule: exactly; line-height: 16px; font-size: 16px;">&#xA0;</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                        <table class="row collapse items-list" style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; padding: 0; position: relative; width: 100%; display: table;">
+                                            <tbody>
+                                            <tr style="padding: 0; vertical-align: top; text-align: left;">
+                                                <td class="small-12 large-6" style="word-wrap: break-word; font-size: 16px; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse; padding: 0; vertical-align: top; text-align: left; line-height: 1.3; -webkit-hyphens: auto; Margin: 0; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; margin: 0; font-weight: normal; padding-right: 0; padding-left: 0; width: 50%;">Add-ons</td>
+                                                <td class="small-12 large-6" style="font-size: 16px; word-wrap: break-word; hyphens: auto; border-collapse: collapse; padding: 0; vertical-align: top; text-align: left; -moz-hyphens: auto; -webkit-hyphens: auto; line-height: 1.3; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; margin: 0; Margin: 0; padding-bottom: 6px; font-weight: bold; padding-right: 0; padding-left: 0; width: 50%;"></td>
+                                            </tr>
+                                            <tr style="padding: 0; vertical-align: top; text-align: left;">
+                                                <td class="small-12 large-6" style="word-wrap: break-word; font-size: 16px; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse; padding: 0; vertical-align: top; text-align: left; line-height: 1.3; -webkit-hyphens: auto; Margin: 0; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; margin: 0; font-weight: normal; padding-right: 0; padding-left: 0; width: 50%;">Extras</td>
+                                                <td class="small-12 large-6" style="font-size: 16px; word-wrap: break-word; hyphens: auto; border-collapse: collapse; padding: 0; vertical-align: top; text-align: left; -moz-hyphens: auto; -webkit-hyphens: auto; line-height: 1.3; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; margin: 0; Margin: 0; padding-bottom: 6px; font-weight: bold; padding-right: 0; padding-left: 0; width: 50%;"></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </th>
+                                </tr>
+                                </tbody>
+                            </table>
+
+
                             <table class="row title" style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; padding: 0; width: 100%; position: relative; display: table;">
                                 <tbody>
                                 <tr style="padding: 0; vertical-align: top; text-align: left;">
@@ -505,17 +521,21 @@ Check-in Time:   1400</b>
                                             <tbody>
                                             <tr style="padding: 0; vertical-align: top; text-align: left;">
                                                 <td class="small-12 large-6" style="word-wrap: break-word; font-size: 16px; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse; padding: 0; vertical-align: top; text-align: left; line-height: 1.3; -webkit-hyphens: auto; Margin: 0; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; margin: 0; font-weight: normal; padding-right: 0; padding-left: 0; width: 50%;">Daily rate</td>
-                                                <td class="small-12 large-6" style="font-size: 16px; word-wrap: break-word; hyphens: auto; border-collapse: collapse; padding: 0; vertical-align: top; text-align: left; -moz-hyphens: auto; -webkit-hyphens: auto; line-height: 1.3; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; margin: 0; Margin: 0; padding-bottom: 6px; font-weight: bold; padding-right: 0; padding-left: 0; width: 50%;">   [2026 Aug 13] => EUR 331.50<br />
-   [2026 Aug 14] => EUR 382.50<br />
+                                                <td class="small-12 large-6" style="font-size: 16px; word-wrap: break-word; hyphens: auto; border-collapse: collapse; padding: 0; vertical-align: top; text-align: left; -moz-hyphens: auto; -webkit-hyphens: auto; line-height: 1.3; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; margin: 0; Margin: 0; padding-bottom: 6px; font-weight: bold; padding-right: 0; padding-left: 0; width: 50%;">   [2026 Sep 13] => EUR 467.50<br />
+   [2026 Sep 14] => EUR 467.50<br />
 </td>
                                             </tr>
                                             <tr style="padding: 0; vertical-align: top; text-align: left;">
-                                                <td class="small-12 large-6" style="word-wrap: break-word; font-size: 16px; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse; padding: 0; vertical-align: top; text-align: left; line-height: 1.3; -webkit-hyphens: auto; Margin: 0; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; margin: 0; font-weight: normal; padding-right: 0; padding-left: 0; width: 50%;">Average Rate per night</td>
-                                                <td class="small-12 large-6" style="font-size: 16px; word-wrap: break-word; hyphens: auto; border-collapse: collapse; padding: 0; vertical-align: top; text-align: left; -moz-hyphens: auto; -webkit-hyphens: auto; line-height: 1.3; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; margin: 0; Margin: 0; padding-bottom: 6px; font-weight: bold; padding-right: 0; padding-left: 0; width: 50%;">EUR 357.00</td>
+                                                <td class="small-12 large-6" style="word-wrap: break-word; font-size: 16px; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse; padding: 0; vertical-align: top; text-align: left; line-height: 1.3; -webkit-hyphens: auto; Margin: 0; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; margin: 0; font-weight: normal; padding-right: 0; padding-left: 0; width: 50%;">Total for your stay</td>
+                                                <td class="small-12 large-6" style="font-size: 16px; word-wrap: break-word; hyphens: auto; border-collapse: collapse; padding: 0; vertical-align: top; text-align: left; -moz-hyphens: auto; -webkit-hyphens: auto; line-height: 1.3; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; margin: 0; Margin: 0; padding-bottom: 6px; font-weight: bold; padding-right: 0; padding-left: 0; width: 50%;">EUR 935.00</td>
                                             </tr>
                                             <tr style="padding: 0; vertical-align: top; text-align: left;">
-                                                <td class="small-12 large-6" style="word-wrap: break-word; font-size: 16px; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse; padding: 0; vertical-align: top; text-align: left; line-height: 1.3; -webkit-hyphens: auto; Margin: 0; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; margin: 0; font-weight: normal; padding-right: 0; padding-left: 0; width: 50%;">Total for your stay</td>
-                                                <td class="small-12 large-6" style="font-size: 16px; word-wrap: break-word; hyphens: auto; border-collapse: collapse; padding: 0; vertical-align: top; text-align: left; -moz-hyphens: auto; -webkit-hyphens: auto; line-height: 1.3; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; margin: 0; Margin: 0; padding-bottom: 6px; font-weight: bold; padding-right: 0; padding-left: 0; width: 50%;">EUR 714.00</td>
+                                                <td class="small-12 large-6" style="word-wrap: break-word; font-size: 16px; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse; padding: 0; vertical-align: top; text-align: left; line-height: 1.3; -webkit-hyphens: auto; Margin: 0; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; margin: 0; font-weight: normal; padding-right: 0; padding-left: 0; width: 50%;">Add-ons total amount</td>
+                                                <td class="small-12 large-6" style="font-size: 16px; word-wrap: break-word; hyphens: auto; border-collapse: collapse; padding: 0; vertical-align: top; text-align: left; -moz-hyphens: auto; -webkit-hyphens: auto; line-height: 1.3; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; margin: 0; Margin: 0; padding-bottom: 6px; font-weight: bold; padding-right: 0; padding-left: 0; width: 50%;">EUR 0.00</td>
+                                            </tr>
+                                            <tr style="padding: 0; vertical-align: top; text-align: left;">
+                                                <td class="small-12 large-6" style="word-wrap: break-word; font-size: 16px; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse; padding: 0; vertical-align: top; text-align: left; line-height: 1.3; -webkit-hyphens: auto; Margin: 0; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; margin: 0; font-weight: normal; padding-right: 0; padding-left: 0; width: 50%;">Extras total amount</td>
+                                                <td class="small-12 large-6" style="font-size: 16px; word-wrap: break-word; hyphens: auto; border-collapse: collapse; padding: 0; vertical-align: top; text-align: left; -moz-hyphens: auto; -webkit-hyphens: auto; line-height: 1.3; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; margin: 0; Margin: 0; padding-bottom: 6px; font-weight: bold; padding-right: 0; padding-left: 0; width: 50%;">EUR 0.00</td>
                                             </tr>
                                             <tr style="padding: 0; vertical-align: top; text-align: left;">
                                                 <td class="small-12 large-6" style="word-wrap: break-word; font-size: 16px; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse; padding: 0; vertical-align: top; text-align: left; line-height: 1.3; -webkit-hyphens: auto; Margin: 0; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; margin: 0; font-weight: normal; padding-right: 0; padding-left: 0; width: 50%;">Taxes</td>
@@ -525,22 +545,14 @@ Check-in Time:   1400</b>
                                                 <td class="small-12 large-6" style="word-wrap: break-word; font-size: 16px; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse; padding: 0; vertical-align: top; text-align: left; line-height: 1.3; -webkit-hyphens: auto; Margin: 0; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; margin: 0; font-weight: normal; padding-right: 0; padding-left: 0; width: 50%;">Fees</td>
                                                 <td class="small-12 large-6" style="font-size: 16px; word-wrap: break-word; hyphens: auto; border-collapse: collapse; padding: 0; vertical-align: top; text-align: left; -moz-hyphens: auto; -webkit-hyphens: auto; line-height: 1.3; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; margin: 0; Margin: 0; padding-bottom: 6px; font-weight: bold; padding-right: 0; padding-left: 0; width: 50%;">EUR 0.00</td>
                                             </tr>
-                                            
-                <tr style="padding: 0; vertical-align: top; text-align: left;">
-                    <td class="small-12 large-6" style="word-wrap: break-word; font-size: 16px; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse; padding: 0; vertical-align: top; text-align: left; line-height: 1.3; -webkit-hyphens: auto; Margin: 0; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; margin: 0; font-weight: normal; padding-right: 0; padding-left: 0; width: 50%;">Addons</td>
-                    <td class="small-12 large-6" style="font-size: 16px; word-wrap: break-word; hyphens: auto; border-collapse: collapse; padding: 0; vertical-align: top; text-align: left; -moz-hyphens: auto; -webkit-hyphens: auto; line-height: 1.3; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; margin: 0; Margin: 0; padding-bottom: 6px; font-weight: bold; padding-right: 0; padding-left: 0; width: 50%;">EUR 0.00</td>
-                </tr>
-            
                                             <tr>
                                     <td class="small-12 large-6" style="word-wrap: break-word; font-size: 16px; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse; padding: 0; vertical-align: top; text-align: left; line-height: 1.3; -webkit-hyphens: auto; Margin: 0; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; margin: 0; font-weight: normal; padding-right: 0; padding-left: 0; width: 50%;">Bed & Breakfast: </td>
                                     <td class="small-12 large-6" style="font-size: 16px; word-wrap: break-word; hyphens: auto; border-collapse: collapse; padding: 0; vertical-align: top; text-align: left; -moz-hyphens: auto; -webkit-hyphens: auto; line-height: 1.3; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; margin: 0; Margin: 0; padding-bottom: 6px; font-weight: bold; padding-right: 0; padding-left: 0; width: 50%;">EUR 0.00</td>
                                 </tr>
                                             <tr style="padding: 0; vertical-align: top; text-align: left;">
                                                 <td class="small-12 large-6" style="word-wrap: break-word; font-size: 16px; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse; padding: 0; vertical-align: top; text-align: left; line-height: 1.3; -webkit-hyphens: auto; Margin: 0; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; margin: 0; font-weight: normal; padding-right: 0; padding-left: 0; width: 50%;">Total amount to pay</td>
-                                                <td class="small-12 large-6" style="font-size: 16px; word-wrap: break-word; hyphens: auto; border-collapse: collapse; padding: 0; vertical-align: top; text-align: left; -moz-hyphens: auto; -webkit-hyphens: auto; line-height: 1.3; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; margin: 0; Margin: 0; padding-bottom: 6px; font-weight: bold; padding-right: 0; padding-left: 0; width: 50%;">EUR 714.00</td>
+                                                <td class="small-12 large-6" style="font-size: 16px; word-wrap: break-word; hyphens: auto; border-collapse: collapse; padding: 0; vertical-align: top; text-align: left; -moz-hyphens: auto; -webkit-hyphens: auto; line-height: 1.3; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; margin: 0; Margin: 0; padding-bottom: 6px; font-weight: bold; padding-right: 0; padding-left: 0; width: 50%;">EUR 935.00</td>
                                             </tr>
-                                            
-                                            
                                             </tbody>
                                         </table>
                                     </th>
@@ -552,7 +564,7 @@ Check-in Time:   1400</b>
                                 <tbody>
                                 <tr style="padding: 0; vertical-align: top; text-align: left;">
                                     <th class="small-12 large-12 columns first last" style="font-family: Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.3; color: #0a0a0a; font-weight: normal; padding: 0; text-align: left; Margin: 0 auto; margin: 0 auto; width: 564px; padding-bottom: 16px; padding-top: 16px; padding-right: 16px; padding-left: 16px;">
-                                        <b>Cancellations and Guarantees</b>
+                                        <b>Cancellation policies</b>
                                     </th>
                                     <th class="expander" style="margin: 0; font-size: 16px; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; line-height: 1.3; Margin: 0; text-align: left; padding-top: 16px; width: 0; padding: 0; visibility: hidden;"></th>
                                 </tr>
@@ -628,16 +640,7 @@ Lisbon, 1250-094 Portugal<br>
                                 </tr>
                                 </tbody>
                             </table>
-                            <table class="row" style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; padding: 0; width: 100%; position: relative; display: table;">
-                                <tbody>
-                                <tr style="padding: 0; vertical-align: top; text-align: left;">
-                                    <th class="small-12 large-12 columns first last" style="color: #0a0a0a; font-size: 16px; line-height: 1.3; text-align: left; padding: 0; font-weight: normal; font-family: Helvetica, Arial, sans-serif; Margin: 0 auto; width: 564px; padding-bottom: 16px; margin: 0 auto; padding-right: 16px; padding-left: 16px;">
-                                        
-                                    </th>
-                                    <th class="expander" style="font-weight: normal; font-size: 16px; line-height: 1.3; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; text-align: left; margin: 0; Margin: 0; width: 0; padding: 0; visibility: hidden;"></th>
-                                </tr>
-                                </tbody>
-                            </table>
+
                             <table class="row highlight-content" style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; background: #eeeeee; padding: 0; width: 100%; position: relative; display: table;">
                                 <tbody>
                                 <tr style="padding: 0; vertical-align: top; text-align: left;">
@@ -660,6 +663,7 @@ Lisbon, 1250-094 Portugal<br>
                                 </tr>
                                 </tbody>
                             </table>
+
                             <table class="row" style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; padding: 0; width: 100%; position: relative; display: table;">
                                 <tbody>
                                 <tr style="padding: 0; vertical-align: top; text-align: left;">
@@ -701,4 +705,4 @@ Lisbon, 1250-094 Portugal<br>
 
 
 
---b1_f87f1111f66b100727fb2a685b6ed5d3--
+--b1_1a65d55c3e103a48338de2eedd0385d4--
