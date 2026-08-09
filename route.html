@@ -8,6 +8,14 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
   <link rel="stylesheet" href="css/style.css">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icons/favicon-32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <meta name="theme-color" content="#1b4f72">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Portugal">
   <style>
     .route-intro { background: var(--cream); padding: 3rem 0 2rem; text-align: center; }
     .back-link { display: inline-flex; align-items: center; gap: .4rem; color: var(--azul); font-weight: 600; text-decoration: none; margin-bottom: 2rem; }
@@ -142,6 +150,7 @@
       <li><a href="route.html" style="color:var(--gold)">🚗 Rijroute</a></li>
       <li><a href="appendix.html">📇 Appendix</a></li>
       <li><a href="confirmations.html">📩 Bevestigingen</a></li>
+      <li><a href="budget.html">🔒 Budget</a></li>
       <li><a href="bronnen.html">🔗 Bronnen</a></li>
       <li><a href="actueel.html">📰 Actueel</a></li>
     </ul>
@@ -158,6 +167,18 @@
 
 <section style="padding: 1rem 0 4rem;">
   <div class="container">
+
+    <div style="max-width:900px; margin:0 auto 2rem; border-left:4px solid var(--gold, #c9a227); background:#fffbf0; padding:1rem 1.25rem; border-radius:0 var(--radius,8px) var(--radius,8px) 0; font-size:.9rem; color:var(--text);">
+      ⚡ <strong>Elektrische huurauto: Polestar 4.</strong> WLTP-actieradius (~495–620 km) is ruim voldoende voor elke etappe (langste rit ±150 km) — laden is dus nooit urgent onderweg, wel iets om elke paar dagen te plannen. Per dag hieronder staat een 🔌 laad-tip. Kort overzicht:
+      <ul style="margin:.5rem 0 0; padding-left:1.2rem;">
+        <li><strong>Porto/Gaia (dag 1–2):</strong> Forte de Gaia heeft geen laadpunt → Tesla Supercharger Matosinhos (250 kW, 24/7, ~20 min rijden).</li>
+        <li><strong>Amarante (dag 3–4):</strong> Casa da Calçada heeft 2× 22 kW laadpunten op locatie — 's nachts opladen.</li>
+        <li><strong>Aveiro (dag 5):</strong> hotel-laadpunt niet bevestigd → plan te laden bij vertrek op dag 6 (Tesla Supercharger Mealhada, onderweg).</li>
+        <li><strong>Óbidos (dag 6–7):</strong> Pousada heeft geen laadpunt → IONITY Óbidos (N8, 350 kW, gratis toegankelijk, vlak bij het kasteel).</li>
+        <li><strong>Lissabon (dag 8–10):</strong> Memmo heeft geen laadpunt (wel betaalde parkeerplek) → check de Tesla-/MOBI.E-app voor een snellader in de stad voor je de auto op dag 10 inlevert.</li>
+      </ul>
+    </div>
+
     <div class="leg-list" id="legList">
 
       <!-- DAG 1-2: PORTO (geen rijdag, aankomst) -->
@@ -168,7 +189,13 @@
           <span class="leg-date-tag">zo 6 – ma 7 sep</span>
         </div>
         <div class="leg-body">
-          <p style="margin:0;">Aankomst op de luchthaven van Porto (Francisco Sá Carneiro), auto ophalen en inchecken bij Forte de Gaia. Geen verdere rijdag — twee nachten om Porto en Vila Nova de Gaia te voet en per boot te verkennen.</p>
+          <p style="margin:0 0 1rem;">Aankomst op de luchthaven van Porto (Francisco Sá Carneiro), auto ophalen en inchecken bij Forte de Gaia. Geen verdere rijdag — twee nachten om Porto en Vila Nova de Gaia te voet en per boot te verkennen.</p>
+          <div class="leg-waypoint-note">
+            🔌 Forte de Gaia heeft geen laadpunt. Plan één keer tijdens dit verblijf een oplaadmoment bij <strong>Tesla Supercharger Matosinhos</strong> (Av. Dr. Óscar Lopes, MAR Shopping, Matosinhos) — 20 stalls tot 250 kW, 24/7 open, ook voor niet-Tesla's via de Tesla-app. Zo'n 20 min rijden.
+          </div>
+          <div class="leg-btns">
+            <a href="https://www.google.com/maps/dir/?api=1&origin=Forte+de+Gaia+Autograph+Collection&destination=Tesla+Supercharger+Matosinhos+Mar+Shopping&travelmode=driving" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🔌 Route naar Supercharger</a>
+          </div>
         </div>
       </div>
 
@@ -196,6 +223,9 @@
               <div class="leg-waypoint-note">
                 💡 Amarante ligt aan de westrand van de Douro-regio — dit is de basis voor de wijnproeverijen op dag 4, niet middenin de wijnvallei zelf.
               </div>
+              <div class="leg-waypoint-note">
+                🔌 Casa da Calçada heeft 2× 22 kW laadpunten op locatie, 24/7 voor gasten. Plug de auto in bij aankomst — 's ochtends weer vol.
+              </div>
               <div class="leg-btns">
                 <a href="https://www.google.com/maps/dir/Vila+Nova+de+Gaia,+Portugal/Amarante,+Portugal" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
               </div>
@@ -215,7 +245,10 @@
           <span class="leg-date-tag">wo 9 sep</span>
         </div>
         <div class="leg-body">
-          <p style="margin:0;">Dagtrip vanuit Amarante de Douro-vallei in, rekening houdend met ~45–60 minuten rijden (heen) naar de quinta's rond Pinhão/Régua (Quinta de Nápoles, Quinta do Bomfim e.d.). Tussen de quinta's onderling meestal 10–20 minuten per stop. Neem de auto rustig, veel van deze weggetjes zijn smal en onverhard — en reken op eenzelfde rit terug naar Amarante 's avonds.</p>
+          <p style="margin:0 0 1rem;">Dagtrip vanuit Amarante de Douro-vallei in, rekening houdend met ~45–60 minuten rijden (heen) naar de quinta's rond Pinhão/Régua (Quinta de Nápoles, Quinta do Bomfim e.d.). Tussen de quinta's onderling meestal 10–20 minuten per stop. Neem de auto rustig, veel van deze weggetjes zijn smal en onverhard — en reken op eenzelfde rit terug naar Amarante 's avonds.</p>
+          <div class="leg-waypoint-note">
+            🔌 Ruim binnen bereik (±150 km retour) — geen laadstop nodig onderweg. 's Avonds gewoon weer aan de lader bij Casa da Calçada.
+          </div>
         </div>
       </div>
 
@@ -242,6 +275,9 @@
               </ol>
               <div class="leg-waypoint-note">
                 💡 Let op tolwegen (portagem) op de A4/A25 — zonder Via Verde-transponder in de huurauto reken je met een elektronisch kenteken-systeem; check dit vooraf bij de verhuurder.
+              </div>
+              <div class="leg-waypoint-note">
+                🔌 Een bevestigd laadpunt bij MS Collection Aveiro hebben we niet kunnen vinden — check dit bij check-in. Geen probleem: met ±100 km op de teller zit je nog ruim boven de helft van de accu, dus laden kan prima wachten tot vertrek op dag 6 (zie Tesla Supercharger Mealhada).
               </div>
               <div class="leg-btns">
                 <a href="https://www.google.com/maps/dir/Amarante,+Portugal/Aveiro,+Portugal/Costa+Nova,+Portugal" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
@@ -271,16 +307,20 @@
                 <div class="leg-meta-cell"><div class="leg-meta-label">Wegtype</div><div class="leg-meta-value">Snelweg + regionale weg</div></div>
               </div>
               <ol class="leg-steps">
-                <li>Vertrek uit <strong>Aveiro</strong> via de A25/A17 zuidwaarts richting Leiria.</li>
-                <li>Tussenstop bij <strong>Batalha</strong> (~1u10 rijden) — bezoek het kloosterklooster (UNESCO).</li>
+                <li>Vertrek uit <strong>Aveiro</strong> via de A25/A1 zuidwaarts.</li>
+                <li>Na ~30 min: laadstop bij <strong>Tesla Supercharger Mealhada</strong> (Casal Comba) — 40 stalls tot 250 kW, 24/7, kleine omweg via de A1.</li>
+                <li>Verder via A17/N-wegen naar <strong>Batalha</strong> (totaal ~1u10 vanaf Aveiro incl. laadstop) — bezoek het kloosterklooster (UNESCO).</li>
                 <li>Door naar <strong>Alcobaça</strong> (~15–20 min rijden vanaf Batalha) — tweede UNESCO-klooster, korte tussenstop.</li>
                 <li>Vanaf Alcobaça naar <strong>Nazaré</strong> (~25 min) voor de kuststad en het uitzicht bij Sítio.</li>
               </ol>
               <div class="leg-waypoint-note">
                 💡 Batalha en Alcobaça liggen vlak bij elkaar en zijn allebei kloosters van de Cisterciënzer/Dominicaanse orde — reken op 1–1,5 uur per klooster als je binnen wil kijken.
               </div>
+              <div class="leg-waypoint-note">
+                🔌 Laad hier tot ruim boven wat je nodig hebt voor de rest van de dag plus de rit naar Óbidos morgen — de volgende zekere laadplek is pas bij Óbidos zelf (IONITY).
+              </div>
               <div class="leg-btns">
-                <a href="https://www.google.com/maps/dir/Aveiro,+Portugal/Batalha,+Portugal/Alcoba%C3%A7a,+Portugal/Nazar%C3%A9,+Portugal" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
+                <a href="https://www.google.com/maps/dir/?api=1&origin=Aveiro,+Portugal&destination=Nazar%C3%A9,+Portugal&waypoints=Tesla+Supercharger+Mealhada|Batalha,+Portugal|Alcoba%C3%A7a,+Portugal&travelmode=driving" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps (incl. laadstop)</a>
               </div>
             </div>
             <div class="leg-map-wrap">
@@ -308,13 +348,17 @@
               </div>
               <ol class="leg-steps">
                 <li>Vertrek vanuit <strong>Nazaré</strong> zuidwaarts via de A8.</li>
+                <li>Onderweg/bij aankomst: laadstop bij <strong>IONITY Óbidos</strong> (N8) — 6 stalls tot 350 kW, gratis toegankelijk, vlak bij de vestingmuren.</li>
                 <li>Aankomst in <strong>Óbidos</strong> — parkeer buiten de vestingmuren (binnen de muren is autovrij) en loop het laatste stuk.</li>
               </ol>
               <div class="leg-waypoint-note">
                 💡 Óbidos heeft 2 nachten — check in bij Pousada Castelo de Óbidos en laat de auto rustig staan tot vertrek richting Lissabon.
               </div>
+              <div class="leg-waypoint-note">
+                🔌 De Pousada zelf heeft geen laadpunt. IONITY Óbidos is de handigste optie voor deze 2 nachten — laad hier bij aankomst of vlak voor vertrek naar Lissabon op dag 8.
+              </div>
               <div class="leg-btns">
-                <a href="https://www.google.com/maps/dir/Nazaré,+Portugal/Óbidos,+Portugal" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
+                <a href="https://www.google.com/maps/dir/?api=1&origin=Nazar%C3%A9,+Portugal&destination=Pousada+Castelo+de+Obidos&waypoints=IONITY+Obidos+N8&travelmode=driving" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps (incl. laadstop)</a>
               </div>
             </div>
             <div class="leg-map-wrap">
@@ -332,7 +376,10 @@
           <span class="leg-date-tag">za 12 sep</span>
         </div>
         <div class="leg-body">
-          <p style="margin:0;">Geen rijdag. Eventueel een uitstapje naar Caldas da Rainha (~15 min rijden) als er tijd over is.</p>
+          <p style="margin:0 0 1rem;">Geen rijdag. Eventueel een uitstapje naar Caldas da Rainha (~15 min rijden) als er tijd over is.</p>
+          <div class="leg-waypoint-note">
+            🔌 Caldas da Rainha staat op Tesla's uitbreidingslijst voor een nieuwe Supercharger — nog niet bevestigd operationeel; check de Tesla-app ter plekke. IONITY Óbidos (zie dag 6) blijft de zekere optie.
+          </div>
         </div>
       </div>
 
@@ -361,6 +408,9 @@
               <div class="leg-waypoint-note">
                 💡 Dit is de drukste rijdag van de reis met veel te zien onderweg — vertrek zo vroeg mogelijk uit Óbidos om speling te houden.
               </div>
+              <div class="leg-waypoint-note">
+                🔌 Nog niet geladen bij IONITY Óbidos tijdens het verblijf? Doe dat vlak vóór vertrek — daarna is er geen bevestigde snellader meer tot Lissabon, maar met ±90 km is dat ruimschoots haalbaar.
+              </div>
               <div class="leg-btns">
                 <a href="https://www.google.com/maps/dir/Óbidos,+Portugal/Palácio+Nacional+de+Mafra/Sintra,+Portugal/Lisbon,+Portugal" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
               </div>
@@ -380,7 +430,10 @@
           <span class="leg-date-tag">zo 13 – di 15 sep</span>
         </div>
         <div class="leg-body">
-          <p style="margin:0;">Geen verdere rijdagen. Lissabon zelf is goed te voet en met tram te verkennen — de huurauto kan blijven staan tot de inlevering bij vertrek (vlucht 19:45 op di 15 sep).</p>
+          <p style="margin:0 0 1rem;">Geen verdere rijdagen. Lissabon zelf is goed te voet en met tram te verkennen — de huurauto kan blijven staan tot de inlevering bij vertrek (vlucht 19:45 op di 15 sep).</p>
+          <div class="leg-waypoint-note">
+            🔌 Memmo Príncipe Real heeft geen laadpunt (wel betaalde parkeerplek, €30/dag). Er is nog geen bevestigde Tesla Supercharger binnen Lissabon zelf (wel in de omgeving, netwerk breidt uit) — gebruik de Tesla-app of MOBI.E-app om de dichtstbijzijnde snellader te vinden. Laad in elk geval op <strong>dag 10 vóór het inleveren</strong>: Hertz vraagt terug te geven op minimaal hetzelfde laadniveau als bij ophalen, anders volgt een bijlaadkosten.
+          </div>
         </div>
       </div>
 
@@ -478,6 +531,13 @@
   document.querySelectorAll('[data-leg-map]').forEach(el => {
     initLegMap(el, el.getAttribute('data-leg-map'));
   });
+</script>
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script src="onesignal-init.js" defer></script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => { navigator.serviceWorker.register('sw.js').catch(() => {}); });
+}
 </script>
 </body>
 </html>

@@ -1,0 +1,31 @@
+name: Stuur pushmelding bij site-update
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '**.html'
+      - 'manifest.json'
+      - 'sw.js'
+      - 'onesignal-init.js'
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verstuur OneSignal pushmelding
+        run: |
+          if [ -z "${{ secrets.ONESIGNAL_APP_ID }}" ] || [ -z "${{ secrets.ONESIGNAL_REST_API_KEY }}" ]; then
+            echo "ONESIGNAL_APP_ID of ONESIGNAL_REST_API_KEY secret ontbreekt nog — sla melding over. Zie README-pushmeldingen.md."
+            exit 0
+          fi
+          curl -s -X POST https://onesignal.com/api/v1/notifications \
+            -H "Authorization: Key ${{ secrets.ONESIGNAL_REST_API_KEY }}" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "app_id": "${{ secrets.ONESIGNAL_APP_ID }}",
+              "included_segments": ["Subscribed Users"],
+              "headings": {"en": "Portugal Roadtrip bijgewerkt"},
+              "contents": {"en": "Er is iets veranderd in de reisgids — tik om te bekijken."},
+              "url": "https://wierts.github.io/portugal/"
+            }'

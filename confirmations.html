@@ -6,6 +6,14 @@
   <title>Bevestigingen — Portugal Roadtrip</title>
   <meta name="description" content="Boekingsbevestigingen van de hotels voor de Portugal roadtrip, september 2026.">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icons/favicon-32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <meta name="theme-color" content="#1b4f72">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Portugal">
   <style>
     .conf-intro { background: var(--cream); padding: 3rem 0 2rem; text-align: center; }
     .conf-grid { display: flex; flex-direction: column; gap: 2rem; margin-top: 2rem; }
@@ -94,6 +102,7 @@
       <li><a href="route.html">🚗 Rijroute</a></li>
       <li><a href="appendix.html">📇 Appendix</a></li>
       <li><a href="confirmations.html" style="color:var(--gold)">📩 Bevestigingen</a></li>
+      <li><a href="budget.html">🔒 Budget</a></li>
       <li><a href="bronnen.html">🔗 Bronnen</a></li>
       <li><a href="actueel.html">📰 Actueel</a></li>
     </ul>
@@ -183,9 +192,9 @@
             <td style="padding:.6rem .75rem;">zo 13 – di 15 sep (dag 8–10)</td>
           </tr>
           <tr style="border-bottom:1px solid var(--border); background:var(--sand);">
-            <td style="padding:.6rem .75rem;">Hertz huurauto — Nissan Qashqai of gelijksoortig</td>
+            <td style="padding:.6rem .75rem;">Hertz huurauto — Polestar 4 (elektrisch) of gelijksoortig</td>
             <td style="padding:.6rem .75rem;"><span class="conf-number">L675E46C0C7</span></td>
-            <td style="padding:.6rem .75rem;">(E0) Nissan Qashqai of gelijksoortig</td>
+            <td style="padding:.6rem .75rem;">(P6) Polestar 4 of gelijksoortig</td>
             <td style="padding:.6rem .75rem;">zo 6 – di 15 sep (dag 1–10)</td>
           </tr>
         </tbody>
@@ -395,12 +404,13 @@
         <div class="conf-card-body">
           <table class="conf-table">
             <tr><td>Bevestigingsnummer</td><td><span class="conf-number">L675E46C0C7</span></td></tr>
-            <tr><td>Auto</td><td>(E0) Nissan Qashqai of gelijksoortig</td></tr>
+            <tr><td>Auto</td><td>(P6) Polestar 4 of gelijksoortig — elektrisch</td></tr>
             <tr><td>Ophalen</td><td>Porto Airport (Francisco Sá Carneiro) · zo 6 sep 2026, 15:00</td></tr>
             <tr><td>Inleveren</td><td>Lisbon Airport (Gen. Humberto Delgado) · di 15 sep 2026, 15:00</td></tr>
-            <tr><td>Totaalprijs</td><td>EUR 459,88 (incl. Theft Protection)</td></tr>
+            <tr><td>Totaalprijs</td><td>EUR 460,15 (incl. Theft Protection)</td></tr>
           </table>
           <div class="conf-note">
+            ⚡ Gewijzigd naar elektrische auto (was Nissan Qashqai) — houd rekening met laadstops onderweg, zie de rijroute-pagina.<br>
             Meenemen bij ophalen: rijbewijs, creditcard, paspoort/ID.
           </div>
         </div>
@@ -414,5 +424,12 @@
   Portugal Roadtrip · zo 6 – di 15 sep 2026 · <a href="index.html" style="color:var(--gold)">← Terug naar de route</a>
 </footer>
 
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script src="onesignal-init.js" defer></script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => { navigator.serviceWorker.register('sw.js').catch(() => {}); });
+}
+</script>
 </body>
 </html>
