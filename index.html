@@ -90,8 +90,30 @@
       <a href="#days" class="btn btn-outline">📅 Alle bestemmingen</a>
       <button id="notif-btn" onclick="vraagMeldingenAan()" class="btn btn-outline" type="button">🔔 Zet meldingen aan</button>
     </div>
+    <p id="last-updated" style="margin-top:1rem; font-size:.8rem; opacity:.75;"></p>
   </div>
 </section>
+
+<script>
+  // Toont de datum/tijd van de laatste commit op GitHub, zodat je altijd ziet
+  // wanneer de reisgids voor het laatst is bijgewerkt.
+  (function () {
+    const el = document.getElementById('last-updated');
+    if (!el) return;
+    fetch('https://api.github.com/repos/wierts/portugal/commits?per_page=1')
+      .then((r) => (r.ok ? r.json() : Promise.reject(r.status)))
+      .then((commits) => {
+        const dateStr = commits && commits[0] && commits[0].commit && commits[0].commit.committer.date;
+        if (!dateStr) return;
+        const d = new Date(dateStr);
+        const formatted = d.toLocaleString('nl-NL', {
+          day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit'
+        });
+        el.textContent = '🕓 Laatst bijgewerkt: ' + formatted;
+      })
+      .catch(() => { /* geen internet of rate limit — laat leeg */ });
+  })();
+</script>
 
 <div class="route-strip">
   <div class="route-strip-inner">
