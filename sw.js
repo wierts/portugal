@@ -21,6 +21,8 @@ const PRECACHE_URLS = [
   './actueel.html',
   './manifest.json',
   './css/style.css',
+  './nav.js',
+  './install-prompt.js',
   './icons/icon-192.png',
   './icons/icon-512.png',
   './icons/apple-touch-icon.png',

@@ -55,6 +55,7 @@
 <header>
   <nav>
     <div class="nav-logo">Portugal 🇵🇹</div>
+    <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Menu" aria-expanded="false">☰</button>
     <ul class="nav-links">
       <li><a href="#route">Route</a></li>
       <li><a href="#reisinfo">Reisinfo</a></li>
@@ -89,6 +90,7 @@
       <a href="#route" class="btn btn-primary">🗺️ Bekijk de route</a>
       <a href="#days" class="btn btn-outline">📅 Alle bestemmingen</a>
       <button id="notif-btn" onclick="vraagMeldingenAan()" class="btn btn-outline" type="button">🔔 Zet meldingen aan</button>
+      <button id="install-btn" class="btn btn-outline" type="button" style="display:none;">📲 Installeer de app</button>
     </div>
     <p id="last-updated" style="margin-top:1rem; font-size:.8rem; opacity:.75;"></p>
   </div>
@@ -1735,6 +1737,8 @@
   }, { passive: true });
 </script>
 
+<script src="nav.js" defer></script>
+<script src="install-prompt.js" defer></script>
 <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
 <script src="onesignal-init.js" defer></script>
 <script>
