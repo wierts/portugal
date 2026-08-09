@@ -82,6 +82,12 @@
     .link-tag.official { background: var(--azul); color: #fff; }
     .link-tag.blog { background: var(--gold); color: #fff; }
 
+    .forecast-table { width: 100%; border-collapse: collapse; font-size: .88rem; margin: 1.5rem 0; }
+    .forecast-table th, .forecast-table td { padding: .6rem .7rem; border-bottom: 1px solid var(--border); text-align: center; }
+    .forecast-table th { background: var(--azul); color: #fff; font-weight: 600; }
+    .forecast-table td:first-child, .forecast-table th:first-child { text-align: left; font-weight: 600; }
+    .forecast-table tr:nth-child(even) td { background: var(--sand); }
+
     .disclaimer-box {
       background: var(--cream);
       border: 1px solid var(--border);
@@ -143,6 +149,66 @@
     <div class="actueel-text">
       <p>September is normaal een droge en zonnige maand in Portugal: dagtemperaturen tussen de 24–30°C, nachten rond 16–19°C, gemiddeld zo'n 9 zonuren per dag. In Lissabon regent het gemiddeld 6 dagen in de maand (±26 mm in totaal).</p>
       <p>Voor september 2026 is er geen specifieke hittegolf voorspeld — de verwachte temperaturen liggen binnen de normale bandbreedte voor het seizoen. Begin september kan nog warm zijn; een korte hittegolf is dus niet uitgesloten.</p>
+      <p><strong>5-daagse temperatuurverwachting</strong> (max/min °C) voor de plaatsen op onze route — let op: dit is de actuele verwachting van nu (begin augustus), niet specifiek voor onze reisweek in september. Handig om de trend te volgen, maar check de forecast-links hierboven nog even vlak vóór vertrek voor een betrouwbare septemberverwachting.</p>
+      <div style="overflow-x:auto;">
+        <table class="forecast-table">
+          <thead>
+            <tr>
+              <th>Plaats</th>
+              <th>Zo 9 aug</th>
+              <th>Ma 10 aug</th>
+              <th>Di 11 aug</th>
+              <th>Wo 12 aug</th>
+              <th>Do 13 aug</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Porto / Vila Nova de Gaia</td>
+              <td>26° / 20°</td>
+              <td>25° / 19°</td>
+              <td>26° / 19°</td>
+              <td>26° / 20°</td>
+              <td>27° / 20°</td>
+            </tr>
+            <tr>
+              <td>Amarante</td>
+              <td>33° / 14°</td>
+              <td>37° / 15°</td>
+              <td>39° / 16°</td>
+              <td>42° / 17°</td>
+              <td>42° / 18°</td>
+            </tr>
+            <tr>
+              <td>Aveiro</td>
+              <td>26° / 16°</td>
+              <td>28° / 17°</td>
+              <td>28° / 18°</td>
+              <td>29° / 18°</td>
+              <td>28° / 17°</td>
+            </tr>
+            <tr>
+              <td>Óbidos / Nazaré</td>
+              <td>28° / 19°</td>
+              <td>27° / 21°</td>
+              <td>27° / 21°</td>
+              <td>27° / 20°</td>
+              <td>27° / 20°</td>
+            </tr>
+            <tr>
+              <td>Lissabon</td>
+              <td>29° / 22°</td>
+              <td>29° / 21°</td>
+              <td>30° / 20°</td>
+              <td>31° / 20°</td>
+              <td>31° / 20°</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="disclaimer-box">
+        🌡️ Bron: Weather2Travel (Porto, Lissabon) en AccuWeather (Amarante, Aveiro, Óbidos), opgehaald op 9 augustus 2026. Amarante ligt landinwaarts in het Douro-binnenland en kan flink warmer uitpakken dan de kust — houd daar rekening mee bij het inpakken en plannen van buitenactiviteiten.
+      </div>
     </div>
     <div class="link-grid">
       <a class="link-card" href="https://www.ipma.pt/pt/" target="_blank" rel="noopener noreferrer">
