@@ -8,6 +8,7 @@ on:
       - 'manifest.json'
       - 'sw.js'
       - 'onesignal-init.js'
+  workflow_dispatch: {}
 
 jobs:
   notify:
