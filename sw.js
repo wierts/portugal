@@ -6,7 +6,7 @@
 // en README-pushmeldingen.md voor de eenmalige setup-stappen).
 importScripts('https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.sw.js');
 
-const CACHE_VERSION = 'portugal-roadtrip-v1';
+const CACHE_VERSION = 'portugal-roadtrip-v2';
 
 const PRECACHE_URLS = [
   './',
@@ -63,10 +63,31 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
 
-  // Alleen same-origin requests cachen (niet Google Maps/YouTube/externe links)
+  // Alleen same-origin requests cachen (niet Google Maps/YouTube/GitHub API/externe links)
   const url = new URL(event.request.url);
   if (url.origin !== self.location.origin) return;
 
+  const isHTMLPage = event.request.mode === 'navigate'
+    || (event.request.headers.get('accept') || '').includes('text/html');
+
+  if (isHTMLPage) {
+    // Pagina's: network-first. Zo krijg je bij elk bezoek altijd de laatste versie
+    // zolang er internet is — de cache is puur een offline-vangnet.
+    event.respondWith(
+      fetch(event.request)
+        .then((response) => {
+          if (response && response.status === 200) {
+            const clone = response.clone();
+            caches.open(CACHE_VERSION).then((cache) => cache.put(event.request, clone));
+          }
+          return response;
+        })
+        .catch(() => caches.match(event.request))
+    );
+    return;
+  }
+
+  // Overige assets (CSS/JS/afbeeldingen): cache-first met achtergrond-update.
   event.respondWith(
     caches.match(event.request).then((cached) => {
       const network = fetch(event.request)
