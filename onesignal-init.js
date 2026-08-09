@@ -16,26 +16,39 @@ OneSignalDeferred.push(async function (OneSignal) {
     console.info('OneSignal: nog geen App ID ingevuld in onesignal-init.js — pushmeldingen staan uit.');
     return;
   }
-  await OneSignal.init({
-    appId: ONESIGNAL_APP_ID,
-    notifyButton: { enable: false },
-    allowLocalhostAsSecureOrigin: true,
-    // Deze site heeft al een eigen service worker (sw.js, voor offline-gebruik als
-    // PWA) met "importScripts('.../OneSignalSDK.sw.js')" erin verwerkt. Zonder deze
-    // twee regels zoekt OneSignal standaard naar een apart bestand
-    // "OneSignalSDKWorker.js" dat hier niet bestaat — de browser-toestemming wordt
-    // dan wel verleend, maar er komt nooit een subscription in het OneSignal-
-    // dashboard terecht. Door hier expliciet naar sw.js te wijzen, gebruikt
-    // OneSignal de bestaande worker in plaats van een eigen bestand te zoeken.
-    serviceWorkerPath: 'sw.js',
-    serviceWorkerParam: { scope: '/portugal/' },
-  });
+  try {
+    await OneSignal.init({
+      appId: ONESIGNAL_APP_ID,
+      notifyButton: { enable: false },
+      allowLocalhostAsSecureOrigin: true,
+      // Deze site heeft al een eigen service worker (sw.js, voor offline-gebruik als
+      // PWA) met "importScripts('.../OneSignalSDK.sw.js')" erin verwerkt. Zonder deze
+      // twee regels zoekt OneSignal standaard naar een apart bestand
+      // "OneSignalSDKWorker.js" dat hier niet bestaat — de browser-toestemming wordt
+      // dan wel verleend, maar er komt nooit een subscription in het OneSignal-
+      // dashboard terecht. Door hier expliciet naar sw.js te wijzen, gebruikt
+      // OneSignal de bestaande worker in plaats van een eigen bestand te zoeken.
+      serviceWorkerPath: 'sw.js',
+      serviceWorkerParam: { scope: '/portugal/' },
+    });
+    console.info('OneSignal: init geslaagd.');
+  } catch (e) {
+    console.error('OneSignal: init mislukt —', e);
+    window.__onesignalInitError = e;
+    return;
+  }
 
   // Werkt de "Zet meldingen aan"-knop bij als de gebruiker al is aangemeld
   const btn = document.getElementById('notif-btn');
   if (btn) {
-    const optedIn = await OneSignal.User.PushSubscription.optedIn;
-    updateNotifButton(btn, optedIn);
+    try {
+      const optedIn = await OneSignal.User.PushSubscription.optedIn;
+      const id = await OneSignal.User.PushSubscription.id;
+      console.info('OneSignal: huidige status —', { optedIn, subscriptionId: id });
+      updateNotifButton(btn, optedIn);
+    } catch (e) {
+      console.error('OneSignal: status ophalen mislukt —', e);
+    }
   }
 });
 
@@ -69,17 +82,44 @@ async function resetMeldingen() {
   location.reload();
 }
 
-// Aangeroepen door de "Zet meldingen aan"-knop op index.html
+// Aangeroepen door de "Zet meldingen aan"-knop op index.html.
+// Toont expliciet wat er gebeurd is (i.p.v. stil te falen), zodat je dit kunt
+// doorgeven als het toch niet lukt — zonder dat er devtools/console nodig zijn.
 function vraagMeldingenAan() {
   const btn = document.getElementById('notif-btn');
   if (!ONESIGNAL_APP_ID || ONESIGNAL_APP_ID.indexOf('VUL-HIER') === 0) {
     alert('Pushmeldingen zijn nog niet ingesteld. Zie README-pushmeldingen.md voor de setup-stappen.');
     return;
   }
+  if (window.__onesignalInitError) {
+    alert('OneSignal kon niet initialiseren: ' + (window.__onesignalInitError.message || window.__onesignalInitError));
+    return;
+  }
+  if (typeof Notification === 'undefined') {
+    alert('Deze browser/omgeving ondersteunt geen webmeldingen (Notification API ontbreekt). Op iPhone: zorg dat je de site via het icoon op je beginscherm opent, niet via Safari zelf, en dat je op iOS 16.4 of hoger zit.');
+    return;
+  }
   window.OneSignalDeferred = window.OneSignalDeferred || [];
   OneSignalDeferred.push(async function (OneSignal) {
-    await OneSignal.Notifications.requestPermission();
-    const optedIn = await OneSignal.User.PushSubscription.optedIn;
-    if (btn) updateNotifButton(btn, optedIn);
+    try {
+      await OneSignal.Notifications.requestPermission();
+      const browserPermission = Notification.permission;
+      const optedIn = await OneSignal.User.PushSubscription.optedIn;
+      const id = await OneSignal.User.PushSubscription.id;
+      console.info('OneSignal: na aanmelden —', { browserPermission, optedIn, subscriptionId: id });
+      if (btn) updateNotifButton(btn, optedIn);
+      if (!optedIn || !id) {
+        alert(
+          'Status na aanmelden:\n' +
+          '- Browser-toestemming: ' + browserPermission + '\n' +
+          '- OneSignal opted-in: ' + optedIn + '\n' +
+          '- Subscription ID: ' + (id || '(geen)') + '\n\n' +
+          'Er is dus (nog) geen geldige OneSignal-subscription aangemaakt. Geef deze regels door zodat we verder kunnen zoeken.'
+        );
+      }
+    } catch (e) {
+      console.error('OneSignal: aanmelden mislukt —', e);
+      alert('Aanmelden voor meldingen is mislukt: ' + (e && e.message ? e.message : e));
+    }
   });
 }
