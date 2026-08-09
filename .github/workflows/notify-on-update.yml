@@ -17,10 +17,11 @@ jobs:
       - name: Verstuur OneSignal pushmelding
         run: |
           if [ -z "${{ secrets.ONESIGNAL_APP_ID }}" ] || [ -z "${{ secrets.ONESIGNAL_REST_API_KEY }}" ]; then
-            echo "ONESIGNAL_APP_ID of ONESIGNAL_REST_API_KEY secret ontbreekt nog — sla melding over. Zie README-pushmeldingen.md."
-            exit 0
+            echo "::error::ONESIGNAL_APP_ID of ONESIGNAL_REST_API_KEY secret ontbreekt nog — sla melding over. Zie README-pushmeldingen.md."
+            exit 1
           fi
-          curl -s -X POST https://onesignal.com/api/v1/notifications \
+
+          response=$(curl -s -w "\n%{http_code}" -X POST https://onesignal.com/api/v1/notifications \
             -H "Authorization: Key ${{ secrets.ONESIGNAL_REST_API_KEY }}" \
             -H "Content-Type: application/json" \
             -d '{
@@ -29,4 +30,24 @@ jobs:
               "headings": {"en": "Portugal Roadtrip bijgewerkt"},
               "contents": {"en": "Er is iets veranderd in de reisgids — tik om te bekijken."},
               "url": "https://wierts.github.io/portugal/"
-            }'
+            }')
+
+          http_code=$(echo "$response" | tail -n1)
+          body=$(echo "$response" | sed '$d')
+
+          echo "HTTP status: $http_code"
+          echo "Response body: $body"
+
+          # OneSignal geeft soms HTTP 200 terug met een "errors"-veld (bijv. geen
+          # abonnees, ongeldige app_id) — dat moet ook als mislukking gelden, niet
+          # als stille succesmelding.
+          if [ "$http_code" -ge 400 ] || echo "$body" | grep -q '"errors"'; then
+            echo "::error::OneSignal-melding is niet (volledig) verstuurd — zie response body hierboven."
+            exit 1
+          fi
+
+          recipients=$(echo "$body" | grep -o '"recipients":[0-9]*' | grep -o '[0-9]*')
+          echo "Aantal ontvangers: ${recipients:-onbekend}"
+          if [ "${recipients:-0}" -eq 0 ]; then
+            echo "::warning::Melding verstuurd maar 0 ontvangers — waarschijnlijk nog niemand geabonneerd (tik op 'Zet meldingen aan' op de site)."
+          fi
