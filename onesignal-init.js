@@ -20,6 +20,15 @@ OneSignalDeferred.push(async function (OneSignal) {
     appId: ONESIGNAL_APP_ID,
     notifyButton: { enable: false },
     allowLocalhostAsSecureOrigin: true,
+    // Deze site heeft al een eigen service worker (sw.js, voor offline-gebruik als
+    // PWA) met "importScripts('.../OneSignalSDK.sw.js')" erin verwerkt. Zonder deze
+    // twee regels zoekt OneSignal standaard naar een apart bestand
+    // "OneSignalSDKWorker.js" dat hier niet bestaat — de browser-toestemming wordt
+    // dan wel verleend, maar er komt nooit een subscription in het OneSignal-
+    // dashboard terecht. Door hier expliciet naar sw.js te wijzen, gebruikt
+    // OneSignal de bestaande worker in plaats van een eigen bestand te zoeken.
+    serviceWorkerPath: 'sw.js',
+    serviceWorkerParam: { scope: '/portugal/' },
   });
 
   // Werkt de "Zet meldingen aan"-knop bij als de gebruiker al is aangemeld
