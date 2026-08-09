@@ -94,6 +94,7 @@
     <div class="nav-logo"><a href="index.html" style="color:inherit;text-decoration:none">Portugal 🇵🇹</a></div>
     <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Menu" aria-expanded="false">☰</button>
     <ul class="nav-links">
+      <li><a href="actueel.html">📰 Actueel</a></li>
       <li><a href="index.html#route">Route</a></li>
       <li><a href="index.html#reisinfo">Reisinfo</a></li>
       <li><a href="index.html#days">Dagen</a></li>
@@ -104,7 +105,6 @@
       <li><a href="confirmations.html">📩 Bevestigingen</a></li>
       <li><a href="budget.html" style="color:var(--gold)">🔒 Budget</a></li>
       <li><a href="bronnen.html">🔗 Bronnen</a></li>
-      <li><a href="actueel.html">📰 Actueel</a></li>
     </ul>
   </nav>
 </header>
@@ -137,12 +137,12 @@
 
       <div class="budget-summary-grid">
         <div class="budget-summary-cell">
-          <div class="budget-summary-value">€6.624,41</div>
-          <div class="budget-summary-label">Totaal (hotels + auto)</div>
+          <div class="budget-summary-value">€7.345,05</div>
+          <div class="budget-summary-label">Totaal bekend (hotels + auto + vluchten cash)</div>
         </div>
         <div class="budget-summary-cell">
           <div class="budget-summary-value">€1.656,10</div>
-          <div class="budget-summary-label">Per persoon (4 pers.)</div>
+          <div class="budget-summary-label">Hotels + auto per persoon (4 pers.)</div>
         </div>
         <div class="budget-summary-cell">
           <div class="budget-summary-value">9</div>
@@ -207,6 +207,44 @@
         </table>
       </div>
 
+      <h3 style="font-family:var(--serif); color:var(--dark); margin-bottom:1rem;">✈️ Vluchten</h3>
+      <div style="overflow-x:auto;">
+        <table class="budget-table">
+          <thead>
+            <tr>
+              <th>Vlucht</th>
+              <th>Passagier</th>
+              <th class="num">Bedrag</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>KLM KL1571 + KL1586 (heen &amp; terug, 4 pers.)</td>
+              <td>Duco, Maria, Maartje &amp; Wilhelmus</td>
+              <td class="num">€720,64</td>
+              <td>Betaald met American Express</td>
+            </tr>
+            <tr>
+              <td>KLM KL1571 + KL1586 (heen &amp; terug, 4 pers.)</td>
+              <td>Duco, Maria, Maartje &amp; Wilhelmus</td>
+              <td class="num">22.400 miles</td>
+              <td>Betaald met Flying Blue miles (≈ €100,00)</td>
+            </tr>
+            <tr class="total-row">
+              <td colspan="2">Subtotaal vluchten (cash-deel, 4 van 4 tickets)</td>
+              <td class="num">€720,64</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="budget-note">
+        ℹ️ Eén boeking (YZFQIJ) voor alle 4 reizigers, beide vluchten. Totaalprijs €820,64,
+        waarvan €720,64 betaald met American Express en de rest (≈ €100,00) met 22.400
+        Flying Blue miles.
+      </div>
+
       <h3 style="font-family:var(--serif); color:var(--dark); margin-bottom:1rem;">🚗 Vervoer</h3>
       <div style="overflow-x:auto;">
         <table class="budget-table">
@@ -246,12 +284,20 @@
               <td>Huurauto (9 dagen)</td>
               <td class="num">€460,15</td>
             </tr>
+            <tr>
+              <td>Vluchten (cash-deel, 4 personen)</td>
+              <td class="num">€720,64</td>
+            </tr>
             <tr class="total-row">
-              <td>Totaal bevestigde boekingen</td>
-              <td class="num">€6.624,41</td>
+              <td>Totaal bekende bedragen (cash)</td>
+              <td class="num">€7.345,05</td>
             </tr>
             <tr>
-              <td>Per persoon (4 personen)</td>
+              <td>Plus: betaald met Flying Blue miles</td>
+              <td class="num">22.400 miles</td>
+            </tr>
+            <tr>
+              <td>Hotels + auto per persoon (4 personen)</td>
               <td class="num">€1.656,10</td>
             </tr>
           </tbody>
@@ -259,10 +305,11 @@
       </div>
 
       <div class="budget-note">
-        Dit overzicht bevat alleen de <strong>bevestigde boekingen</strong> (hotels + huurauto)
-        rechtstreeks uit de reserveringsmails. Vluchten, eten, activiteiten, tolwegen en
-        parkeren zijn hier niet in meegenomen — zie de "Praktische Informatie" op de
-        hoofdpagina voor indicatieve richtprijzen daarvoor.
+        Dit overzicht bevat de <strong>bevestigde boekingen</strong> (hotels + huurauto +
+        vluchten voor alle 4 personen) rechtstreeks uit de reserveringsmails. De
+        "per persoon"-regel is alleen op hotels + auto gebaseerd, niet op vluchten. Eten,
+        activiteiten, tolwegen en parkeren zijn hier niet in meegenomen — zie de "Praktische
+        Informatie" op de hoofdpagina voor indicatieve richtprijzen daarvoor.
       </div>
 
     </div>

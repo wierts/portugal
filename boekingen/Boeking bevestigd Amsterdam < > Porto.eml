@@ -1,0 +1,2977 @@
+Return-path: <v-bophapl_cjhhpekhp_lbbodpgc_lbbodpgc_a-1@bounce.mail.infos-klm.com>
+Original-recipient: rfc822;dwiertsema@me.com
+Received: from p00-icloudmta-smtpin-us-west-1a-100-percent-6 by p169-mailgateway-smtp-6948d97c44-5tfkr (mailgateway 2624B114)
+	with SMTP id 5fb58589-6abd-44f8-ae54-72a8ec62e4d6 
+	for <dwiertsema@me.com>; Mon, 22 Jun 2026 13:41:54 GMT
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: MOVE_TO_FOLDER/INBOX
+X-Apple-UUID: 5fb58589-6abd-44f8-ae54-72a8ec62e4d6
+Received: from mail8793.mail.infos-klm.com (mail8793.mail.infos-klm.com [129.41.167.97])
+	by p00-icloudmta-smtpin-us-west-1a-100-percent-6 (Postfix) with ESMTPS id 1C5CA1800605
+	for <dwiertsema@me.com>; Mon, 22 Jun 2026 13:41:47 +0000 (UTC)
+X-ICL-Info: GAtbRVYDBVFFSlVFSgQEUFUKE0oWX1gHVQoPB0UBBFtbTVdZSQYBTExORhIcDUBPFxYWHxlAWj0WEw4fCFVdCgUmChUaX1ISEho5GxpSWQYFHgUoGR0HIhcWExkbVRgPFBAKWRFeUA0GVA0bFR5VDRhZABNFW1oPWBAIERceVQ0YWRQURVRBCxALEgQdXVciGBxIFBddFgoQFQlKFVFfDk1OX0RWXVcLGVcPGR5fRU8eFQtZG19bQgUNFEoVUV8OTU5fRFZdVwsZVw8ZHl9FTx4VC1kbX1tCER1bHBRdGwsbHwlZG19bQhgQAkpEBwdaQ0BTQk4CGFRDSl9HSwEBWkdIVUJPAAZaQ0BIPRlGVy8UEApZGUBGIhQJHgNOBRsBFFQDFEkeRhAaHUgWD0NGEEs=
+X-ICL-Score: 2.33303322422
+Authentication-Results: bimi.icloud.com; bimi=none
+X-ARC-Info: policy=fail; arc=none; r1=-20; r2=0
+Authentication-Results: arc.icloud.com; arc=none
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=klm-info.com
+X-DMARC-Policy: v=DMARC1; p=reject; fo=1; rua=mailto:dmarc_rua@emaildefense.proofpoint.com; ruf=mailto:dmarc_ruf@emaildefense.proofpoint.com
+X-DMARC-Info: pass=pass; dmarc-policy=reject; s=r0; d=r1; pdomain=klm-info.com
+Authentication-Results: dkim-verifier.icloud.com; dkim=pass header.d=klm-info.com header.i=klm@klm-info.com header.b=MxVV0ZB2
+Received-SPF: pass (spf.icloud.com: domain of v-bophapl_cjhhpekhp_lbbodpgc_lbbodpgc_a-1@bounce.mail.infos-klm.com designates 129.41.167.97 as permitted sender) receiver=spf.icloud.com; client-ip=129.41.167.97; helo=mail8793.mail.infos-klm.com; envelope-from=v-bophapl_cjhhpekhp_lbbodpgc_lbbodpgc_a-1@bounce.mail.infos-klm.com
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of v-bophapl_cjhhpekhp_lbbodpgc_lbbodpgc_a-1@bounce.mail.infos-klm.com designates 129.41.167.97 as permitted sender) smtp.mailfrom=v-bophapl_cjhhpekhp_lbbodpgc_lbbodpgc_a-1@bounce.mail.infos-klm.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; s=spop2048; d=klm-info.com;
+ h=Date:From:Reply-To:To:Message-ID:Subject:MIME-Version:Content-Type:
+ X-CSA-Complaints; i=KLM@klm-info.com;
+ bh=0KQC0Ce3c52hi3J54iYuuK06dsXZPd/+8QpeFeAM1KA=;
+ b=MxVV0ZB2ZQpiau+YQNkQagy23TlwF1nYuApmvuh4cM/WL0Ux6jjww9z2mPrVJPoS6Xzca4KoSreB
+   m7noMo+TtUVGAowXaK5OBK7D8HjMD0Ll1AeD0AIlUP0LeOghyd5MDpVoP6B+Lb3rcFPYzgcCVBip
+   5KQE7zXRUXRDRRd6MBAnLxf4ot6Z9xn8sQy5f/hw0AEKmNVZZ7t+PCF3JuUPTJ/yB1K1nddfCrIt
+   /FSqaBQoG+YPTUev9uZrvep8COtdV6vBNlP/py2M2oXQTk4GYiXYdZy7ybqRl42SE/gMX3fkNIXJ
+   VpVineXKj4tg4DDpAX8M0de92sbnNnNzh8uDBg==
+Received: by bg62-ca-ec1.prod.awspr id h74tpm3ain0c for <dwiertsema@me.com>; Mon, 22 Jun 2026 13:41:40 +0000 (envelope-from <v-bophapl_cjhhpekhp_lbbodpgc_lbbodpgc_a-1@bounce.mail.infos-klm.com>)
+Date: Mon, 22 Jun 2026 13:41:40 +0000 (UTC)
+From: KLM <KLM@klm-info.com>
+Reply-To: KLM@klm-info.com
+To: dwiertsema@me.com
+Message-ID: <718695562.6639031782135700869.JavaMail.app@apxt65-ca-ec1.prod.awspr>
+Subject: Boeking bevestigd Amsterdam < > Porto
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_386873_630989460.1782135700842"
+x-mid: 32469243
+X-CSA-Complaints: whitelist-complaints@eco.de
+x-rpcampaign: sp32469243
+x-job: 32469243
+x-transactionId: f823af5a-9dad-44df-a455-20a4b57b
+x-orgId: 25082
+X-MANTSH: 1TFkXGx4dEQpZRBdhWXxETBNoekt8GBEKWU0XZEVETxEKWUkXGnEaEBp3BhsYHXE
+ bEh0SEBsaGncGGBoGGhEKWV4XbGx5EQpDThcdUB5OREEHSHhtE2saa1pNck5JHxp/b25fRWNMd
+ UBMBxEKWFwXGQQaBB8SBRsaGgQdGwQbHBoEExsQGx4aHxoRCl5ZF0JIX2seEQpNXBcbHRIRCkx
+ aF3htTU1NEQpFWRdvEQpMXxd6BQUFBQUFBQUFQxEKTEYXTWsRCkNaFxsYEwQeGwQbHB0EEx0RC
+ kJeFxsRCkJcFxsRCl5OFxsRCkJLF29yXmtJYUdAZxJfEQpCSRdvcl5rSWFHQGcSXxEKQkUXemd
+ IE0lGWH97TRoRCkJOF29yXmtJYUdAZxJfEQpCTBdnflJARRJgek9sXREKQmwXZkZEWV9LZGRMX
+ VkRCkJAF21jf1JCG0tsb0NiEQpCWBdsYh1gTU0eREtISxEKQngXa2FNUlJYSV14QB4RCk1eFxs
+ RCnBoF2xaQWZ4fHlIe1t/EBkaEQpwaBdsYxJeZGxtQEkbQxAaEQpwaBdrW3BbBWlAG2FwWxAZG
+ hEKcGgXZW5iQlpJe0EZEnoQGhEKcGgXaFtbRE8ZWEFhYEMQGhEKcGgXel1fWmFIem1eE18QGhE
+ KcGgXaUlLWmlwY01MRW4QGhEKcGgXaVpsQnNDWnpTRksQGhEKcH8XaWJQWX5/S0dmQ0MQHhIRC
+ nBfF2sFa0MbGnMFQwEcEB4aEQpwfRdlHx5AQ2dPGn4BSRAaEQpwfxdhZm1FSEQSBWRCHRAfHhE
+ KcF8XbFhFRB9YR0hvbhoQHRoRCnB9F2Z4WE1/XRp4SE1tEBoRCnB/F2JJQWhkTWJNRXpFEB4SE
+ QpwXxdrXxJjcxJmblt4GxAZGhEKcH0XY05EZXwYGVsfQEkQHRoRCnB9F2F/ZGwcYxlYGWVhEBo
+ RCnBfF25fQ2ZZWmAdBWFlEB0aEQpwfRdpbkNyGUdcHR5FQxAdGhEKcF8XZk0SExN/QXtMZx8QG
+ hEKcH0XaVBLfUxzGEFMHB8QGhEKcH8XZGZ7TF96fkUdZFsQHhIRCnBfF2J5HUhNZlNmG0IeEB4
+ SEQpwfRdmGG1JRUEYZ05oBRAdGhEKcH0XZhhtSUVBGGdOaAUQHRoRCnB9F2YYbUlFQRhnTmgFE
+ B0aEQpwfRdmGG1JRUEYZ05oBRAdGhEKcH0XZhhtSUVBGGdOaAUQHRoRCnB9F2YYbUlFQRhnTmg
+ FEB0aEQpwfRdmGG1JRUEYZ05oBRAdGhEKcH0XZhhtSUVBGGdOaAUQHRoRCnB9F2YYbUlFQRhnT
+ mgFEB0aEQpwfRdmGG1JRUEYZ05oBRAdGhEKcH0XZhhtSUVBGGdOaAUQHRoRCnB/F2BSX0VeR2N
+ BZl1tEBsSEQpwXxdmSWVlBRxaGVxiSRAeGREKcH0Xa00TW2the0tOZHMQHBoRCnB/F20SXXxIY
+ XBrbU4eEB4SEQpwXxdlbh1lbhsTUk9TWBAaEQpwfRdjeGBnYV5BHgVDWxAaEQpwfRdlQFIBGmV
+ AH0JaXBAcGhEKcH0XZhhtSUVBGGdOaAUQHRoRCnB9F2VCHlBLSUwcRm97EBIfEQpwXxdlb1B6Q
+ lwFcFx7ZxAeGhEKcH0XY2F4HWRuH2ATS34QHRoRCnBfF2FoSWhsH2hfT0FLEBwaEQpwfRdrZn1
+ OZlNORR8TXhAcGhEKcF8XbmlbBWETf2JHfhMQHBoRCnB9F2lmaHhiYX8fAW94EBwaEQpwXxdlQ
+ 0JzSGl8c0tlTxAaEQpwfRdkYl5+XkJhX25naxAaEQpwbBdtTh1kYxlbWl9kfBAYHhEKbX4XGxE
+ KWE0XSxE=
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjIyMDEzNiBTYWx0ZWRfX4xnK1g2ghrED
+ q8j6Yp0qw4Slba8LZR5SHUPYhvQSOwvb1nUocjtI6IzA46oKYtUV8FBIgeyVSVW5RlvVV6eiCA+
+ pYi+tsFKEIDOwOEIfg3ksmez7/TZs4uriWbiLiSDg/C5ScF8RCaeE/6OBknSPC4Lj+uyqmvpykC
+ srGx/loXybM0jBzV+EZkCVy+FfvfrieB19bCMUgsWAr4R83yNGb1WRugvq3TqJ2XkC14o8bioZ6
+ GsIysI/sT1FHbeYZP0lr7pJt0QOusHDma7xB9TC+qFrgcus/EDWLtUmgD56jXMbOQRo7CpRXoQ9
+ XdqRZRxrcMBwbTnDXcoxVL0ZyGAeTCvo9XPnRM//RJfgpp5eWDEqrv1u9cu4mv5Ao29haprnK7c
+ +/jUzGOh29d7eCRh2wc9b4EMgDzGuk+wX0MUMw5q3KXWqPZu9qg=
+X-Proofpoint-GUID: 7z4dnk-bRG9A0ApgXdc50UEDuoIf_jf-
+X-Authority-Info: v=2.4 cv=dc2NHHXe c=1 sm=1 tr=0 ts=6a393b9d b=1
+ cx=c_apl:c_pps a=uBuEMNG4z1KcjWkywRRbuA==:117 a=uBuEMNG4z1KcjWkywRRbuA==:17
+ a=KqOhe5OoNmIA:10 a=FelO9ux0wxsA:10 a=NgMes0_ViHcA:10 a=HOefRI1BAAAA:8
+ a=TaXBz6LRAAAA:8 a=FHixlZpOAAAA:8 a=T6bVDmifAAAA:8 a=wAbkKDhjAAAA:8
+ a=AskqfCO_AAAA:8 a=QPONxdt3AAAA:8 a=GKFiKox9AAAA:8 a=R6Sr8Po-AAAA:8
+ a=SSmOFEACAAAA:8 a=4iQqreXiqAZyDih_kZgA:9 a=ViMIwx-TBZrHV9km:21
+ a=gKO2Hq4RSVkA:10 a=_W_S_7VecoQA:10 a=QEXdDO2ut3YA:10
+ a=WmVTiCyuxqgg3mnwYu6p:22 a=fBJShO47mbq5XseFek-U:22 a=b8FkXM660h81DjwAOsCp:22
+ a=PAC2GwUU4_nZ5gd0Qq-D:22 a=FrpWbka1UhF2nSJ8jBIA:22 a=2msL-7rb05BIct9FRxQO:22
+ a=6oyM_bUv5RzgRXvoIBnZ:22 a=ItQQZIxPsFhSTfBWBDJ0:22 a=tCcQUvO30dkniZ5-0dJ2:22
+ a=WhmWJvKzJHAsuCbLpyj-:22
+X-Proofpoint-ORIG-GUID: 7z4dnk-bRG9A0ApgXdc50UEDuoIf_jf-
+X-JNJ: AAAAAAABPH2okglEOLYXATnxHL5ex6Lnh3lNBFHjK1LuNtTDgYs2l4NbIA4Z69GHV7WeGX+mWJ4sy+THr4wiRQQHt4ZpR/bLRsPZfD3/xiUSIluMBwfdqpgsLPlBY75YhNwWAasUma6VzfCNcDsK7pJPX4VWSaT8BVxuqVPBMwerVPzC+ZvisWrRDAWvqisRyuV4ry1aFKZ1n2tfMP6NOhIy/s6jsp+bxNW+enJU1Ab8i3i0XyCacy6nO/QFEL/3FJ1csS0MTKLnHcerqZLkDJxOx45sYpJ2t54LYQ6xc0GG6buy+R8fzIcfOZmimDCER/4GtCc6OYgt5SmZZWGAta8QsLj8NYYzQyw41JAUd44Ngj1OsxmGJ/kJeLrGGEqKXpZXOkb0LCRROs0+E80q9MzLa68o381Vo78/q/63q5cTC5BS7bkBRYhZEs2u6SjCwomAZsiHtnUN9dWEPjLnC7Gsqy4cQfXz0NSlUKtSJU8Hyg+RNF2i8qF++WnM4aV+3fiDutafYLfE6lpom3l6GTIcu04WJcmguybxTbeDMRbgvANCAlMzWxYsJBNp1CmPTQU//53EpM2NHANLehQWBnf70KV1r0T1uPxjEZU0RLolalFVCgkEnCVzA5qxeesydOKnPjQJYhOM+aIHIgQhCxdKDH3vRXqAHlS9EW0r78tB8m9wE8KXk7crFKie/g2cxOf9aQ/KqXEouo4QmbpPzFthnvUK4UYlNTS85cU4NKRKjAgXlat+KSYcxw57F1DEGjNHXFLThZ/OpI4S8RnplBd+gER9z4nfN+7sQ457FbB9X8Z9DVl4QpF9vATc9EO9n4MJfjdTH6QSPjw2tdna+7JFo0lHxLvJb1+hqL5SpmCrvx+thKs8qim76iX1GGk177KqjHwAfz8rSUZkEMGzwYmuSNR0u+JWESRsehoB6st6uA6KEqTBS81r
+
+------=_Part_386873_630989460.1782135700842
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html xmlns=3D"http://www.w3.org/1999/xhtml" lang=3D"en" xml:lang=3D"en" xm=
+lns:v=3D"urn:schemas-microsoft-com:vml"
+  xmlns:o=3D"urn:schemas-microsoft-com:office:office">
+
+<head xmlns=3D"http://www.w3.org/1999/xhtml" xmlns:v=3D"urn:schemas-microso=
+ft-com:vml"
+  xmlns:o=3D"urn:schemas-microsoft-com:office:office">
+  <meta http-equiv=3D"X-UA-Compatible" content=3D"IE=3D9; IE=3D8; IE=3D7; I=
+E=3DEDGE"/>
+  <meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=3D=
+1.0"/>
+  <title>Email one KLM</title>
+  <style>
+     .background {
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center center;
+    }
+   =20
+    #headerDisplay2 {
+      box-shadow: #DCDCDC(0, 0, 0, 0.24) 0px 3px 8px;
+      border-radius: 0px;
+
+
+    }
+
+    body {
+      width: 100% !important;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background-color: #eef7fc;
+      -webkit-font-smoothing: antialiased;
+      -webkit-text-size-adjust: 100% !important;
+      -ms-text-size-adjust: 100% !important;
+      text-size-adjust: 100% !important;
+    }
+    .body_police {
+        font-family: Roboto, sans-serif;=20
+        font-weight:normal;
+        font-size:14px;
+        line-height:22px;
+        color:#003145;
+      }   =20
+  </style> =20
+  <style>
+    @media only screen and (max-width:640px) {
+
+      /* gmail fix */
+      u+.body {
+        width: 100% !important;
+        /* width: 100vw !important;*/
+      }
+
+      div>u+.body {
+        width: 100% !important;
+      }
+
+      div>u+.body .gmail-fontsize-fix {
+        font-size: 32px;
+        height: 0px;
+        overflow-y: hidden;
+        white-space: nowrap;
+        display: block !important;
+      }
+     =20
+
+      /* general styles */   =20
+
+      .paddingtop295 {
+        padding-top: 295px !important;
+      }
+
+      table td {
+        border-collapse: separate !important;
+      }
+
+      .fullwidth {
+        width: 100% !important;
+        /*  max-width: 100% !important;
+  min-width: 100% !important;*/
+        min-width: 360px !important;
+        max-width: 360px !important;
+      }
+
+      .halfwidth {
+        width: 50% !important;
+      }
+
+      .widthauto {
+        width: auto !important;
+      }
+
+      .centercontent {
+        margin-left: auto !important;
+        margin-right: auto !important;
+        float: none !important;
+        text-align: center !important;
+        width: 100% !important;
+      }
+
+      .heightauto {
+        height: auto !important;
+      }
+
+      .floatright {
+        float: right !important;
+        text-align: right !important;
+      }
+
+      .floatleft {
+        float: left !important;
+        text-align: left !important;
+      }
+
+      .hide {
+        display: none !important;
+      }
+
+      .show {
+        display: block !important;
+        max-height: none !important;
+        width: 100% !important;
+        min-width: 100% !important;
+      }
+
+      .stack {
+        display: block !important;
+        width: 100% !important;
+      }
+
+      .two-column .column {
+        width: 100% !important;
+        max-width: 100% !important;
+        display: inline-block;
+        vertical-align: top;
+      }
+
+      /* specific styles */
+      .btnblue,
+      .btnorange {
+        border-radius: 20px !important;
+      }
+
+      .btnblue {
+        background-color: #00A1DE !important;
+      }
+
+      .btnorange {
+        background-color: #e37222 !important;
+      }
+
+      .fullwidth-bgopacity1-borderradius0 {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 100% !important;
+        background-color: rgba(0, 161, 222, 1) !important;
+        border-radius: 0 !important;
+      }
+
+      .nobackground {
+        background: none !important;
+      }
+
+      .background-ffffff {
+        background: #ffffff !important;
+      }
+
+      .min-margin {
+        margin-top: -50px !important;
+        position: relative !important;
+      }
+
+      .width32height32 {
+        width: 32px !important;
+        height: 32px !important;
+      }
+
+      .height32 {
+        height: 32px !important;
+      }
+
+      .width15 {
+        width: 15px !important;
+      }
+
+      .width100 {
+        min-width: 100px !important;
+        width: 100px !important;
+      }
+
+      .width208 {
+        width: 208px !important;
+      }
+
+      .font22 {
+        font-size: 22px !important;
+        line-height: 24px !important;
+        letter-spacing: -1.2px !important;
+      }
+
+      .font20 {
+        font-size: 20px !important;
+        line-height: 22px !important;
+        letter-spacing: -0.6px !important;
+      }
+
+      .line-height38 {
+        line-height: 38px !important;
+      }
+
+      .padding15 {
+        padding: 15px !important;
+      }
+
+      .paddingleft8 {
+        padding-left: 8px !important;
+      }
+
+      .paddingtop0 {
+        padding-top: 0px !important;
+      }
+
+      .width36 {
+        width: 36px !important;
+      }
+
+      .width51 {
+        width: 51px !important;
+      }
+
+      .width88 {
+        min-width: 88px !important;
+        width: 88px !important;
+      }
+
+      .width103 {
+        min-width: 103px !important;
+        width: 103px !important;
+      }
+
+      .width30p {
+        width: 30% !important;
+      }
+
+      .width70p {
+        width: 70% !important;
+      }
+
+      .width152 {
+        min-width: 152px !important;
+        width: 152px !important;
+      }
+
+      .width168 {
+        min-width: 168px !important;
+        width: 168px !important;
+      }
+
+      .menumarge {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        width: auto !important;
+      }
+    }
+
+ =20
+  </style>
+  <style>
+@media only screen and (max-width:640px) {
+/* gmail fix */
+u + .body {
+  width: 100% !important;
+ /* width: 100vw !important;*/
+}
+div > u + .body {
+  width: 100% !important;
+}
+div > u + .body .gmail-fontsize-fix {
+    font-size:32px;
+    height:0px;
+    overflow-y:hidden;
+    white-space:nowrap;
+    display:block !important;
+}=20
+
+=20
+.paddingtop295 {
+  padding-top: 295px !important;
+  height: auto !important;
+}
+table td {
+  border-collapse: separate !important;
+}
+.fullwidth {
+  width: 100% !important;
+/*  max-width: 100% !important;
+  min-width: 100% !important;*/
+  min-width: 360px !important;
+  max-width: 360px !important;
+}
+.halfwidth {
+  width: 50% !important;
+}
+.widthauto {
+  width: auto !important;
+}
+.centercontent {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  float: none !important;
+  text-align: center !important;
+  width: 100% !important;
+}
+.heightauto {
+  height: auto !important;
+}
+.floatright {
+  float: right !important;
+  text-align: right !important;
+}
+.floatleft {
+  float: left !important;
+  text-align: left !important;
+}
+.hide {
+  display: none !important;
+}
+.show {
+  display: block !important;
+  max-height: none !important;
+  width: 100% !important;
+  min-width: 100% !important;
+}
+.stack {
+  display: block !important;
+  width: 100% !important;
+}
+.two-column .column {
+  width: 100% !important;
+  max-width: 100% !important;
+  display: inline-block;
+  vertical-align: top;
+}
+/* specific styles */
+.btnblue, .btnorange {
+  border-radius: 20px !important;
+}
+.btnblue {
+  background-color: #00A1DE !important;
+}
+.btnorange {
+  background-color: #e37222 !important;
+}
+.fullwidth-bgopacity1-borderradius0 {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 100% !important;
+  background-color: rgba(0, 161, 222, 1) !important;
+  border-radius: 0 !important;
+}
+.nobackground {
+  background: none !important;
+}
+.background-ffffff {
+  background: #ffffff !important;
+}
+.min-margin {
+  margin-top: -50px !important;
+  position: relative !important;
+}
+.width32height32 {
+  width: 32px !important;
+  height: 32px !important;
+}
+.height32 {
+  height: 32px !important;
+}
+.width15 {
+  width: 15px !important;
+}
+.width100 {
+  min-width: 100px !important;
+  width: 100px !important;
+}
+.width208 {
+  width: 208px !important;
+}
+.font22 {
+  font-size: 22px !important;
+  line-height: 24px !important;
+  letter-spacing: -1.2px !important;
+}
+.font20 {
+  font-size: 20px !important;
+  line-height: 22px !important;
+  letter-spacing: -0.6px !important;
+}
+.line-height38 {
+  line-height: 38px !important;
+}
+.padding15 {
+  padding: 15px !important;
+}
+.paddingleft8 {
+  padding-left: 8px !important;
+}
+.paddingtop0 {
+  padding-top: 0px !important;
+}
+.width36 {
+  width: 36px !important;
+}
+.width51 {
+  width: 51px !important;
+}
+.width88 {
+  min-width: 88px !important;
+  width: 88px !important;
+}
+.width103 {
+  min-width: 103px !important;
+  width: 103px !important;
+}
+.width30p {
+  width: 30% !important;
+}
+.width70p {
+  width: 70% !important;
+}
+.width152 {
+  min-width: 152px !important;
+  width: 152px !important;
+}
+.width168 {
+  min-width: 168px !important;
+  width: 168px !important;
+}
+.menumarge {
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+  width: auto !important;
+}
+}
+
+@media only screen and (max-width:360px) {
+.mq360-width20 {
+  width: 20px !important;
+}
+.menumarge {
+  width: auto !important;
+  padding: 0 !important;
+}
+}
+@media only screen {
+.noalight {
+  font-family:  'Roboto', 'Calibri', sans-serif!important;
+}
+}
+  </style>
+
+<!--[if gte mso 9]><xml>
+<o:OfficeDocumentSettings>
+<o:AllowPNG/>
+<o:PixelsPerInch>96</o:PixelsPerInch>
+</o:OfficeDocumentSettings>
+</xml>
+<style>
+.noaheading{font-size: 110% !important; }
+.paddingtop295{padding-top:185px !important;}
+</style>
+<![endif]-->
+
+
+
+</head>
+
+<body class=3D"body"><CENTER><FONT SIZE=3D"1" COLOR=3D"#000000" FACE=3D"ARI=
+AL">If you are unable to see the message below, <A href=3D"https://links.ma=
+il.infos-klm.com/servlet/MailView?ms=3DMzI0NjkyNDMS1&r=3DLTExMTMxNjM2MzUxS0=
+&j=3DMjk3MTU0OTUzOAS2&mt=3D1&rt=3D0">click here to view</A>.</FONT><font fa=
+ce=3D"ARIAL" color=3D"#808080" size=3D"2"><br></font></CENTER>
+  <!-- logo en view online blok -->
+  <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"width:10=
+0%;" bgcolor=3D"#eef7fc">
+    <tr>
+      <td>
+        <table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" align=3D"ce=
+nter" bgcolor=3D"#ffffff">
+          <tr>
+            <td style=3D"width: 640px; max-width: 640px;">
+              <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=
+=3D"width:100%;" bgcolor=3D"#eef7fc">
+                <tr>
+                  <td>
+                    <table border=3D"0" cellspacing=3D"0" cellpadding=3D"0"=
+ align=3D"center" bgcolor=3D"#ffffff">
+                      <tr>
+                        <td style=3D"width: 640px; max-width: 640px;" bgcol=
+or=3D"#ffffff">
+                          <table width=3D"100%" border=3D"0" cellspacing=3D=
+"0" cellpadding=3D"0">
+                            <tr>
+                              <td align=3D"left" valign=3D"top" style=3D"pa=
+dding:17px" bgcolor=3D"#ffffff">
+                                <a href=3D"http://links.airfranceklm.mkt947=
+6.com/ctt?m=3D32469243&r=3DLTExMTMxNjM2MzUxS0&b=3D0&j=3DMjk3MTU0OTUzOAS2&k=
+=3DKLM_New_Logo&kx=3D1&kt=3D12&kd=3Dhttps://www.klm.nl/exchange/deeplink?co=
+untry=3DNL%26language=3DNL%26target=3D/"  name=3D"links_airfranceklm_mkt947=
+6_com_ctt__3">
+                                  <img src=3D"https://img.static-kl.com/tra=
+nsform/036e3929-f58b-47de-921f-8a5906105dfa/Travel-well-logo?format=3Djpg" =
+alt=3D"KLM Royal Dutch Airlines"   width=3D"80" height=3D"64" border=3D"0">
+                                  =09=09=09=09=09=09=09=09                <=
+/a>=20
+=09=09=09=09=09=09=09                </td>
+                              <td align=3D"right" valign=3D"middle" style=
+=3D"padding:17px" width=3D"50%" bgcolor=3D"#ffffff"><!--fb_member-->=20
+                                <a href=3D"http://links.airfranceklm.mkt947=
+6.com/ctt?m=3D32469243&r=3DLTExMTMxNjM2MzUxS0&b=3D0&j=3DMjk3MTU0OTUzOAS2&k=
+=3DFB_Member&kx=3D1&kt=3D12&kd=3Dhttps://www.klm.com/ams/exchange%3Fcountry=
+%3DNL%26language%3DNL%26target%3D/profile"  name=3D"links_airfranceklm_mkt9=
+476_com_ctt__4"> <img src=3D"https://img.static-kl.com/transform/cc262d19-2=
+c8b-4d94-8c58-b0c0e8a1ff1a/logo_flyingblue-KLM_RGB_colour_transp-bg?format=
+=3Djpg" alt=3D"Flying Blue For Me"  width=3D"135" style=3D"display: block;"=
+ border=3D"0" align=3D"right"></a></td>
+                              <!--Einde FB logo -->=20
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  <!-- einde logo en view online blok -->
+
+  <!-- v header_intro_bottom v -->
+
+  <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"width:10=
+0%;" bgcolor=3D"#eef7fc">  =20
+    <tr>
+      <td>
+        <!-----------------------------------------------------------------=
+-------------------- Introduction Block -----------------------------------=
+----------------------------------------------------------------->
+        <table class=3D"fullwidth" cellpadding=3D"0" cellspacing=3D"0" bord=
+er=3D"0" style=3D"width:640px; max-width:640px; margin: 0 auto;" align=3D"c=
+enter">
+          <tr>
+           =20
+                                   =20
+                  <td valign=3D"top" height=3D"400" name=3D"Cont_0" bgcolor=
+=3D"#ffffff" style=3D"background-color: #ffffff; background-repeat: no-repe=
+at; background-size: 640px; background-image: url(https://img.static-kl.com=
+/transform/71d24ef4-590c-45d8-b8be-beea98f91e63/OPO?format=3Djpg);">
+                  <!--[if gte mso 9]>               =20
+                  <v:image xmlns:v=3D"urn:schemas-microsoft-com:vml" fill=
+=3D"true" stroke=3D"false" style=3D" border: 0;display: inline-block; margi=
+n: 0 auto;  width: 640px; height: 400px;" src=3D"https://img.static-kl.com/=
+transform/71d24ef4-590c-45d8-b8be-beea98f91e63/OPO?format=3Djpg" />
+                  <![endif]--> =20
+                <!--[if gte mso 9]>=20
+                <v:image xmlns:v=3D"urn:schemas-microsoft-com:vml" fill=3D"=
+true" stroke=3D"false" style=3D" border: 0;display: inline-block; margin: 0=
+ auto; width: 640px; height: 400px;" src=3D"http://images.direct-email.nl/k=
+lm/ici/template/spacer.gif" />=09=09
+                <v:image xmlns:v=3D"urn:schemas-microsoft-com:vml" fill=3D"=
+true" stroke=3D"false" style=3D" border: 0;display: inline-block; margin: 0=
+ auto; width: 640px; height: 400px;" src=3D"http://images.direct-email.nl/k=
+lm/ici/template/spacer.gif" />=09
+                <![endif]-->
+                    <!--[if gte mso 9]>=20
+                    <v:image xmlns:v=3D"urn:schemas-microsoft-com:vml" fill=
+=3D"true" stroke=3D"false" style=3D" border: 0;display: inline-block; margi=
+n: 0 auto; width: 640px; height:400px ;" src=3D"http://images.direct-email.=
+nl/klm/ici/template/spacer.gif" />=09
+                    <v:image xmlns:v=3D"urn:schemas-microsoft-com:vml" fill=
+=3D"true" stroke=3D"false" style=3D" border: 0;display: inline-block; margi=
+n: 0 auto; width: 640px; height: 400px;" src=3D"http://images.direct-email.=
+nl/klm/ici/template/spacer.gif" />=09
+                    <v:rect xmlns:v=3D"urn:schemas-microsoft-com:vml" fill=
+=3D"true" stroke=3D"false" style=3D" border: 0;display: inline-block; margi=
+n: 0 auto; position: absolute; width: 640px; height:580px; top: 100px">
+                    <v:fill  opacity=3D"0%" color=3D"#ffffff"  />
+                    <v:textbox inset=3D"0,0,0,0">=09=09=09=09=09=09=09    =
+=20
+                    <![endif]-->=20
+                            <div>
+                <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" wid=
+th=3D"100%" align=3D"center">
+                  <tr>
+                    <td width=3D"24">&nbsp;</td>
+                    <td class=3D"paddingtop295" style=3D"padding-top:300px;=
+min-width: 280px;" align=3D"center">
+                      <table cellpadding=3D"0" cellspacing=3D"0" border=3D"=
+0" width=3D"100%" bgcolor=3D"#ffffff"  >                      =20
+                          <tr>
+                            <td width=3D"24"> <img  src=3D"http://images.di=
+rect-email.nl/klm/ici/template/spacer.gif"
+                                width=3D"24"> </td>
+                              <td style=3D"text-align:left;padding-bottom:2=
+0px;padding-top:30px; width:100%;">
+                                <span style=3D"font-family:  Roboto,Arial, =
+sans-serif; font-weight:normal;font-size:24px;line-height:32px;color:#00a1d=
+e;">
+                                 =20
+                                 =20
+                                    Hartelijk dank voor uw boeking bij ons
+                                                                           =
+                           </span>
+                                 <br> <br>
+                                <span class=3D"body_police" style=3D"paddin=
+g-top: 5px;">Beste Duco Wiertsema, <br> <br>
+                                        Hartelijk dank voor uw vertrouwen i=
+n KLM! De betaling voor uw boeking is gelukt. We sturen de tickets naar u t=
+oe in een afzonderlijke e-mail. In de boekingsbevestiging leest u meer over=
+: <br><br>
+                                        <li>uw vluchtgegevens, passagiers e=
+n extra opties </li>
+                                        <li>uw betalingsbevestiging</li>
+                                        <li>informatie ter voorbereiding op=
+ uw reis</li>
+                                        <li>veelgestelde vragen</li>       =
+                                =20
+                                                                           =
+                               </span>
+                              </td>
+                              <td width=3D"24"> <img  src=3D"http://images.=
+direct-email.nl/klm/ici/template/spacer.gif"
+                                width=3D"24"> </td>
+                          </tr>=20
+                         =20
+                          <tr>
+                            <td width=3D"24"> <img  src=3D"http://images.di=
+rect-email.nl/klm/ici/template/spacer.gif"
+                                width=3D"24"> </td>
+                            <td style=3D" font-family: 'Roboto', sans-serif=
+;font-weight:normal;font-size:14px;line-height:22px;color:#003145;text-alig=
+n:left;padding-bottom:2px; width:100%;">
+                              <span class=3D"body_police" style=3D"font-siz=
+e: 12px;">
+                                Boekingscode
+                                                                </span>
+                            </td>
+                            <td width=3D"24"> <img  src=3D"http://images.di=
+rect-email.nl/klm/ici/template/spacer.gif"
+                                width=3D"24"> </td>
+                          </tr>                        =20
+                          <tr>
+                            <td width=3D"24"> <img  src=3D"http://images.di=
+rect-email.nl/klm/ici/template/spacer.gif"
+                                width=3D"24"> </td>
+                            <td>                                           =
+                                  =20
+                                <table width=3D"100%" cellpadding=3D"0" cel=
+lspacing=3D"0" border=3D"0">
+                                    <tr>  =20
+                                      <td  align=3D"left" width=3D"30%" sty=
+le=3D" height:40px; border: 2px solid #c2deea;">  <span class=3D"body_polic=
+e" style=3D" text-align: center; font-size: 12px;">&nbsp; &nbsp; &nbsp; YZF=
+QIJ</span></td> =20
+                                      <td width=3D"70%"> &nbsp;</td>
+                                    </tr>
+                                </table>                                   =
+           =20
+                            =20
+                            </td>
+                            <td width=3D"24"> <img  src=3D"http://images.di=
+rect-email.nl/klm/ici/template/spacer.gif"
+                                width=3D"24"> </td>
+                          </tr>
+                      </table>
+                    </td>
+                    <td width=3D"24">&nbsp;</td>
+                  </tr>
+                </table>=20
+              </div>
+              <!--[if gte mso 9]>
+                 </v:textbox>
+                 </v:fill>
+                 </v:rect>
+                 </v:image>
+                 <![endif]-->  =20
+                  <div>                  =20
+                    <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0"=
+ width=3D"100%" align=3D"center">
+                        <tr>
+                        <td width=3D"24">&nbsp;</td>
+                        <td style=3D"min-width: 280px;" align=3D"center">
+                            <table cellpadding=3D"0" cellspacing=3D"0" bord=
+er=3D"0" width=3D"100%" bgcolor=3D"#ffffff"  >  =20
+                            <tr>
+                                <td width=3D"24" style=3D"padding-top: 15px=
+; padding-bottom: 20px;"> <img  src=3D"http://images.direct-email.nl/klm/ic=
+i/template/spacer.gif"
+                                    width=3D"24"> </td>
+                                <td style=3D"width:100%;  padding-top: 15px=
+; padding-bottom: 20px;">
+                                        <!-- v button orange v -->         =
+                                          =20
+                                  <table class=3D"btnorange" cellpadding=3D=
+"0" cellspacing=3D"0" border=3D"0" align=3D"left">
+                                      <tr>
+                                          <td align=3D"right" style=3D" fon=
+t-size:0;"><a href=3D""  target=3D"_blank" name=3D"__DEEPLIINK___1"><img   =
+src=3D"https://image.klm-mail.com/lib/fe9615707360037877/m/7/new_template_b=
+tn_orange_left.png" width=3D"30" height=3D"40" border=3D"0" style=3D"displa=
+y: block;" alt=3D"" /></a></td>
+                                          <td height=3D"40" valign=3D"middl=
+e" class=3D"body_police" style=3D"color:#ffffff;text-align:center;backgroun=
+d-color:#e37222; ">                               =20
+                                            <a href=3D"https://www.klm.nl/c=
+/apg_qVifQSy7Vqhy-9jG9A" title=3D"VisitMyTrip" name=3D"VisitMyTrip" target=
+=3D"_blank"  style=3D"color: #FFFFFF; text-decoration: none !important;">
+                                              Ga naar Mijn Reis
+                                                                           =
+               </a>
+                                          </td>
+                                          <td align=3D"left" style=3D"font-=
+size:0;"><a href=3D""  target=3D"_blank" name=3D"__DEEPLIINK___2_1"><img   =
+src=3D"https://image.klm-mail.com/lib/fe9615707360037877/m/7/new_template_b=
+tn_orange_right.png" width=3D"30" height=3D"40" border=3D"0" style=3D"displ=
+ay: block;" alt=3D"" /></a></td>
+                                      </tr>
+                                  </table> <!-- ^ button orange ^ -->
+                                </td>
+                                <td width=3D"24" style=3D"padding-top: 15px=
+; padding-bottom:20px; "> <img  src=3D"http://images.direct-email.nl/klm/ic=
+i/template/spacer.gif"
+                                    width=3D"24">=20
+                                </td>
+                            </tr>=20
+                            </table>
+                        </td>
+                        <td width=3D"24">&nbsp;</td>
+                        </tr>=20
+                        <tr> =20
+                        <td width=3D"24">&nbsp;</td>       =20
+                        <td height=3D"25"  align=3D"center"><img   src=3D"h=
+ttps://image.klm-mail.com/lib/fe9615707360037877/m/7/new_template_beeld_sha=
+dow-white.png" border=3D"0" style=3D"display: block; width: 100%; max-width=
+: 590px;" alt=3D"" /></td>
+                        <td width=3D"24">&nbsp;</td>
+                        </tr>                                  =20
+                    </table>
+                    </div>
+                      =20
+              =20
+            </td>
+          </tr>
+         =20
+        </table>
+         <!----------------------------------------------------------------=
+-------------------- Introduction Block -----------------------------------=
+---------------------------------------------------------------------->
+      </td>
+    </tr>
+  </table>
+   <!-- v header_intro_bottom v -->
+  <!-- Email body -->
+  <!-----------------------------------------------------------------------=
+-------------------------------- begin complete yout payment block --------=
+---------------------------------------------------------------------------=
+-------------> =20
+  <!-----------------------------------------------------------------------=
+-------------------------------------- END complete yout payment block ----=
+----------------------------------------------------------->
+  <!-----------------------------------------------------------------------=
+-----------------------------------------Begin Prepare for your trip ------=
+------------------------------------------------>=20
+ =20
+
+
+
+ =20
+
+
+
+
+  <!-------------------------------------------------------------End of pre=
+pare for your trip block --------------------------------------------------=
+----------------------> =20
+  <!--------------------------------------------------------------Begin of =
+check your booking---------------------------------------------------------=
+---------------------->
+  <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" width=3D"100%" bg=
+color=3D"#eef7fc"  >
+    <tr>
+      <td width=3D"100%"> &nbsp; </td>
+    </tr>
+    <tr>
+      <td>
+        <table align=3D"center" cellpadding=3D"0" cellspacing=3D"0" border=
+=3D"0">
+          <tr>
+            <td style=3D"width:640px; max-width:640px;" bgcolor=3D"#00a1de"=
+ >
+              <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" align=
+=3D"center" width=3D"100%" class=3D"fullwidth" >
+                <tr>
+                  <td style=3D"padding: 24px 20px 24px 24px;"><img=20
+                      src=3D"https://img.static-kl.com/transform/d64bbff1-6=
+bb0-4ec2-aeb3-78196974ce07/Icon3" width=3D"30"
+                      border=3D"0" style=3D"width: 30px; height: 30px;" /><=
+/td>
+                  <td
+                    style=3D"font-family:'Roboto', 'Arial', sans-serif; fon=
+t-weight:normal;font-size:24px;line-height:32px;color:#ffffff;  width:100%;=
+ font-weight: 300; padding: 12px 30px 12px 0px " >
+                    Controleer uw boeking zorgvuldig
+                                       </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" width=3D"100%" bg=
+color=3D"#eef7fc">
+    <tr>
+      <td>
+        <table style=3D"width:640px; max-width:640px;" cellpadding=3D"0" ce=
+llspacing=3D"0" border=3D"0" align=3D"center" bgcolor=3D"#ffffff" class=3D"=
+fullwidth">
+          <tr>
+            <td style=3D"width:640px; max-width:640px;">
+              <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" align=
+=3D"left" width=3D"100%" class=3D"fullwidth">
+                <tr>
+                  <td width=3D"24">&nbsp;</td> =20
+                  <td class=3D"mediafont"
+                    style=3D"font-family:'Roboto', 'Arial', sans-serif; fon=
+t-weight:normal;font-size:20px;line-height:28px;color:#00A1DE;font-weight: =
+300; padding-top: 12px; padding-bottom: 12px;" valign=3D"top">
+                    Uw vluchten
+                                      </td>
+                  <td width=3D"24">&nbsp;</td> =20
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td style=3D"width:640px; max-width:640px;">
+              <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=
+=3D"width:100%;">
+                <tr>
+                  <td width=3D"24">&nbsp;</td>
+                  <td style=3D"padding:0px 24px 0px 0px">
+                    <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0"=
+ style=3D"width:100%;">
+                      <tr>
+                        <td colspan=3D"2" align=3D"center" valign=3D"bottom=
+" style=3D"color:#0210dd"><img=20
+                            src=3D"https://img.static-kl.com/transform/598b=
+0395-c095-4d0a-9dca-efe36eee9273/Ellipse-28"
+                            valign=3D"bottom" alt=3D"">  </td>
+                        <td valign=3D"bottom"
+                          style=3D"font-family: 'Roboto', 'Segoe UI', sans-=
+serif; font-weight:normal;font-size:14px;line-height:22px;color:#003145;">
+                         =20
+                          zondag 6 september 2026 - 09:10=20
+
+                        </td>
+                      </tr>
+
+
+                      <tr>
+                        <td width=3D"15" style=3D"border-right: 1px solid #=
+02a0dd">&nbsp;</td>
+                        <td width=3D"15" style=3D"border-left: 1px solid #0=
+2a0dd">&nbsp;</td>
+                        <!-- <td colspan=3D"2" align=3D"center" valign=3D"b=
+ottom" style=3D"color:#0210dd"><img=20
+                            src=3D"https://img.static-kl.com/transform/b725=
+9c6f-00af-49b4-ba0d-0989dcfc3597/Line-52"
+                            valign=3D"bottom" alt=3D"">
+                        </td> -->
+                        <td valign=3D"top">
+                          <table cellpadding=3D"0" cellspacing=3D"0" border=
+=3D"0" style=3D"width:100%;">
+                            <tr>
+                              <td valign=3D"top"
+                                style=3D"font-family: 'Roboto', 'Segoe UI',=
+ sans-serif; font-weight:normal;font-size:14px;line-height:22px;color:#0031=
+45;">
+                                <strong>Amsterdam,&nbsp;Schiphol Airport&nb=
+sp;(AMS)</strong>
+                              </td>
+                            </tr>
+                            <tr>                             =20
+                              <td valign=3D"middle" style=3D"font-family: '=
+Roboto', 'Segoe UI', sans-serif; font-weight:normal;font-size:14px;line-hei=
+ght:22px;color:#003145; padding:8px 0px 8px 24px ">
+                                  <table  class=3D"body_police" valign=3D"m=
+iddle">
+                                    <tr>
+                                        <td class=3D"body_police">
+                                          KL1571                           =
+    =20
+                                          &nbsp;| Uitgevoerd door
+                                                                           =
+         <span class=3D"body_police"> KLM  </span>  <br> =20
+                                        Economy Class <br>
+                                        </td>
+                                        <!-- <td class=3D"body_police">
+                                          KLM  <br> &nbsp;
+                                          <br> &nbsp;
+                                        </td> -->
+                                    </tr>                                  =
+ =20
+                                  </table>=20
+                              </td>
+                            </tr>
+                            <tr>
+                              <td valign=3D"bottom"
+                                style=3D"font-family: 'Roboto', 'Segoe UI',=
+ sans-serif; font-weight:normal;font-size:14px;line-height:22px;color:#0031=
+45;">
+                                10:55  </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                     =20
+
+
+                      <tr>
+                        <td colspan=3D"2" align=3D"center" valign=3D"top" s=
+tyle=3D"color:#0210dd"> <img=20
+                            src=3D"https://img.static-kl.com/transform/0c6d=
+337c-211e-49ed-b20d-a34fc2fa3bc3/Ellipse-42"
+                            valign=3D"top" alt=3D""> </td>
+                        <td valign=3D"top"
+                          style=3D"padding-bottom:15px ; font-family: 'Robo=
+to', 'Segoe UI', sans-serif; font-weight:normal;font-size:14px;color:#00314=
+5;">
+                          <strong>Porto,&nbsp;Porto Airport
+                            (OPO)  </strong>=20
+                        </td>
+                      </tr>
+                     =20
+                     =20
+                    </table>
+
+                  </td>
+                  <td width=3D"24">&nbsp;</td>
+                </tr>              =20
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td style=3D"width:640px; max-width:640px;">
+              <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=
+=3D"width:100%;">
+                <tr>
+                  <td width=3D"24">&nbsp;</td>
+                  <td style=3D"padding:0px 24px 0px 0px">
+                    <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0"=
+ style=3D"width:100%;">
+                      <tr>
+                        <td colspan=3D"2" align=3D"center" valign=3D"bottom=
+" style=3D"color:#0210dd"><img=20
+                            src=3D"https://img.static-kl.com/transform/598b=
+0395-c095-4d0a-9dca-efe36eee9273/Ellipse-28"
+                            valign=3D"bottom" alt=3D"">  </td>
+                        <td valign=3D"bottom"
+                          style=3D"font-family: 'Roboto', 'Segoe UI', sans-=
+serif; font-weight:normal;font-size:14px;line-height:22px;color:#003145;">
+                         =20
+                          dinsdag 15 september 2026 - 19:45=20
+
+                        </td>
+                      </tr>
+
+
+                      <tr>
+                        <td width=3D"15" style=3D"border-right: 1px solid #=
+02a0dd">&nbsp;</td>
+                        <td width=3D"15" style=3D"border-left: 1px solid #0=
+2a0dd">&nbsp;</td>
+                        <!-- <td colspan=3D"2" align=3D"center" valign=3D"b=
+ottom" style=3D"color:#0210dd"><img=20
+                            src=3D"https://img.static-kl.com/transform/b725=
+9c6f-00af-49b4-ba0d-0989dcfc3597/Line-52"
+                            valign=3D"bottom" alt=3D"">
+                        </td> -->
+                        <td valign=3D"top">
+                          <table cellpadding=3D"0" cellspacing=3D"0" border=
+=3D"0" style=3D"width:100%;">
+                            <tr>
+                              <td valign=3D"top"
+                                style=3D"font-family: 'Roboto', 'Segoe UI',=
+ sans-serif; font-weight:normal;font-size:14px;line-height:22px;color:#0031=
+45;">
+                                <strong>Lissabon,&nbsp;Lisboa Airport&nbsp;=
+(LIS)</strong>
+                              </td>
+                            </tr>
+                            <tr>                             =20
+                              <td valign=3D"middle" style=3D"font-family: '=
+Roboto', 'Segoe UI', sans-serif; font-weight:normal;font-size:14px;line-hei=
+ght:22px;color:#003145; padding:8px 0px 8px 24px ">
+                                  <table  class=3D"body_police" valign=3D"m=
+iddle">
+                                    <tr>
+                                        <td class=3D"body_police">
+                                          KL1586                           =
+    =20
+                                          &nbsp;| Uitgevoerd door
+                                                                           =
+         <span class=3D"body_police"> KLM  </span>  <br> =20
+                                        Economy Class <br>
+                                        </td>
+                                        <!-- <td class=3D"body_police">
+                                          KLM  <br> &nbsp;
+                                          <br> &nbsp;
+                                        </td> -->
+                                    </tr>                                  =
+ =20
+                                  </table>=20
+                              </td>
+                            </tr>
+                            <tr>
+                              <td valign=3D"bottom"
+                                style=3D"font-family: 'Roboto', 'Segoe UI',=
+ sans-serif; font-weight:normal;font-size:14px;line-height:22px;color:#0031=
+45;">
+                                23:40  </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                     =20
+
+
+                      <tr>
+                        <td colspan=3D"2" align=3D"center" valign=3D"top" s=
+tyle=3D"color:#0210dd"> <img=20
+                            src=3D"https://img.static-kl.com/transform/0c6d=
+337c-211e-49ed-b20d-a34fc2fa3bc3/Ellipse-42"
+                            valign=3D"top" alt=3D""> </td>
+                        <td valign=3D"top"
+                          style=3D"padding-bottom:15px ; font-family: 'Robo=
+to', 'Segoe UI', sans-serif; font-weight:normal;font-size:14px;color:#00314=
+5;">
+                          <strong>Amsterdam,&nbsp;Schiphol Airport
+                            (AMS)  </strong>=20
+                        </td>
+                      </tr>
+                     =20
+                     =20
+                    </table>
+
+                  </td>
+                  <td width=3D"24">&nbsp;</td>
+                </tr>              =20
+              </table>
+            </td>
+          </tr>
+
+          <tr>
+            <td align=3D"center" valign=3D"bottom" style=3D"width: 640px; m=
+ax-width: 640px;">
+              <table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=
+=3D"width:644px; max-width: 644px"
+                class=3D"full-width">
+                <!-- begin separateur block-->
+               =20
+               =20
+                <!---------------------------------------------------------=
+------------------- END separateur block-----------------------------------=
+--------------------------->
+                <!---------------------------------------------------------=
+------------------- begin yellow block-------------------------------------=
+---------------------------->
+                <tr>
+                  <td width=3D"24">&nbsp;</td>                 =20
+                  <td style=3D"padding: 20px 0px 20px 0px;">
+                    <table width=3D"100%" border=3D"0" cellspacing=3D"0" ce=
+llpadding=3D"0" bgcolor=3D"#fef5e9">
+                      <tr>
+                        <td align=3D"left">
+                          <table>
+                            <tr>
+                              <td style=3D"padding: 10px 10px 8px 10px " va=
+lign=3D"middle" align=3D"left">
+                                <img=20
+                                src=3D"https://images.direct-email.nl/klm/b=
+ooking_conf/icon-info.png" width=3D"20" align=3D"center" valign=3D"bottom">
+                              </td>
+                              <td align=3D"left" valign=3D"middle" style=3D=
+"font-family: Roboto, sans-serif; font-weight:normal; font-size:14px; color=
+:#003145;">
+                                Is uw boeking onjuist? Neem dan <a href=3D"=
+https://www.klm.nl/exchange/deeplink?country=3DNL&language=3DNL&target=3D/c=
+ontact" title=3D"contactus" name=3D"mybooking_1" target=3D"_blank"  class=
+=3D"body_police">contact met ons op.</a>
+                                                              </td>
+                            </tr>
+                          </table> =20
+                        </td> =20
+                      </tr>
+                    </table>
+                  </td>
+                  <td width=3D"24">&nbsp;</td>
+                </tr> =20
+                <!---------------------------------------------------------=
+-------------------------- END yellow block--------------------------------=
+------------------------->
+                <!---------------------------------------------------------=
+-------------------------- begin gray line---------------------------------=
+------------------------->
+                <tr>
+                  <td width=3D"24">&nbsp;</td>  =20
+                  <td>
+                    <table  width=3D"100%" border=3D"0" cellspacing=3D"0" c=
+ellpadding=3D"0">
+                      <tr>
+                        <td style=3D"border-top: 2px solid #c2deea">
+                          &nbsp;
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                  <td width=3D"24">&nbsp;</td>                =20
+                </tr>
+                <!---------------------------------------------------------=
+--------------- END gray line----------------------------------------------=
+---------------------------->
+                <!---------------------------------------------------------=
+------------------ begin passenger information bloc------------------------=
+---------------------------->
+
+              </table>
+            </td>
+          </tr>
+        </table>
+        <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" width=3D"10=
+0%" bgcolor=3D"#eef7fc">
+          <tr>
+            <td>
+              <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" align=
+=3D"center" bgcolor=3D"#ffffff">
+                <tr>
+                  <td style=3D"width:640px; max-width:640px;">
+                    <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0"=
+ align=3D"left" width=3D"100%">
+                      <tr>
+                        <td width=3D"24">&nbsp;</td> =20
+                        <td class=3D"mediafont"
+                          style=3D"font-family:'Roboto', 'Segoe UI', sans-s=
+erif; font-weight:normal;font-size:20px;line-height:28px;color:#00A1DE;font=
+-weight: 300; padding: 0px 0px 12px 0px; "
+                          valign=3D"top"> =09 =09 =09 =09 =09 =09 =09 =09 =
+=09 =09 =09 =09 =09 =09 =09 =09 =09 =09 =09 =09
+                          Passagiersinformatie
+                                                  </td>
+                        <td width=3D"24">&nbsp;</td> =20
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" width=3D"10=
+0%" style=3D"border-collapse:collapse;">
+          <tr>
+            <td align=3D"center">
+              <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" bgcol=
+or=3D"#ffffff" style=3D"border-collapse:collapse;">
+                <tr>
+                  <td align=3D"center" valign=3D"bottom" style=3D"width: 64=
+0px; max-width: 640px;">
+                    <table border=3D"0" cellspacing=3D"0" cellpadding=3D"0"=
+ style=3D"width:644px; max-width: 644px" class=3D"full-width">
+                      <tr>
+                        <td width=3D"24">&nbsp;</td> =20
+                        <td align=3D"left" border=3D"0" cellspacing=3D"0" c=
+ellpadding=3D"0"
+                          style=3D"  font-family: 'Roboto', 'Segoe UI', san=
+s-serif; font-weight:normal;font-size:14px;line-height:22px;color:#003145">
+                          Controleer of de onderstaande namen van de passag=
+iers overeenkomen met de namen in het paspoort.
+                                                  </td>
+                        <td width=3D"24">&nbsp;</td> =20
+                      </tr>
+                      <tr>
+                        <td width=3D"24">&nbsp;</td> =20
+                        <td>
+                          <table width=3D"100%" border=3D"0" cellspacing=3D=
+"0" cellpadding=3D"0"
+                            style=3D"padding:0px 0px 0px 40px">
+                            <tr>
+                              <td align=3D"left"                           =
+   =20
+                                style=3D"font-family: 'Roboto', 'Segoe UI',=
+ sans-serif; font-weight:normal;font-size:14px;line-height:22px;color:#0031=
+45;  ">
+                                <table>
+                                  <tr>
+                                    <td valign=3D"button">
+                                      <img  =20
+                                        src=3D"https://img.static-kl.com/tr=
+ansform/5bd0477b-1abb-4b66-82d1-18544355d6fd/Blue-arrow" width=3D"15" >
+                                    </td>
+                                    <td class=3D"body_police" style=3D"padd=
+ing-left: 8px;">  <strong>Duco&nbsp;Wiertsema</strong>  </td>
+                                  </tr>
+                                </table>    =20
+                              </td>
+                              =20
+                              <td align=3D"right"
+                                style=3D"font-family: 'Roboto', 'Segoe UI',=
+ sans-serif; font-weight:normal;font-size:14px;line-height:22px;color:#0031=
+45;  ">
+                                <strong>802 Miles</strong>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                        <td width=3D"24">&nbsp;</td> =20
+                      </tr>
+                      <tr>
+                        <td width=3D"24">&nbsp;</td> =20
+                        <td>
+                          <table width=3D"100%" border=3D"0" cellspacing=3D=
+"0" cellpadding=3D"0"
+                            style=3D"padding:0px 0px 0px 40px">
+                            <tr>
+                              <td align=3D"left"                           =
+   =20
+                                style=3D"font-family: 'Roboto', 'Segoe UI',=
+ sans-serif; font-weight:normal;font-size:14px;line-height:22px;color:#0031=
+45;  ">
+                                <table>
+                                  <tr>
+                                    <td valign=3D"button">
+                                      <img  =20
+                                        src=3D"https://img.static-kl.com/tr=
+ansform/5bd0477b-1abb-4b66-82d1-18544355d6fd/Blue-arrow" width=3D"15" >
+                                    </td>
+                                    <td class=3D"body_police" style=3D"padd=
+ing-left: 8px;">  <strong>Maria&nbsp;Van Haperenvan As</strong>  </td>
+                                  </tr>
+                                </table>    =20
+                              </td>
+                              =20
+                              <td align=3D"right"
+                                style=3D"font-family: 'Roboto', 'Segoe UI',=
+ sans-serif; font-weight:normal;font-size:14px;line-height:22px;color:#0031=
+45;  ">
+                                <strong>401 Miles</strong>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                        <td width=3D"24">&nbsp;</td> =20
+                      </tr>
+                      <tr>
+                        <td width=3D"24">&nbsp;</td> =20
+                        <td>
+                          <table width=3D"100%" border=3D"0" cellspacing=3D=
+"0" cellpadding=3D"0"
+                            style=3D"padding:0px 0px 0px 40px">
+                            <tr>
+                              <td align=3D"left"                           =
+   =20
+                                style=3D"font-family: 'Roboto', 'Segoe UI',=
+ sans-serif; font-weight:normal;font-size:14px;line-height:22px;color:#0031=
+45;  ">
+                                <table>
+                                  <tr>
+                                    <td valign=3D"button">
+                                      <img  =20
+                                        src=3D"https://img.static-kl.com/tr=
+ansform/5bd0477b-1abb-4b66-82d1-18544355d6fd/Blue-arrow" width=3D"15" >
+                                    </td>
+                                    <td class=3D"body_police" style=3D"padd=
+ing-left: 8px;">  <strong>Maartje&nbsp;Van Haperen</strong>  </td>
+                                  </tr>
+                                </table>    =20
+                              </td>
+                              =20
+                              <td align=3D"right"
+                                style=3D"font-family: 'Roboto', 'Segoe UI',=
+ sans-serif; font-weight:normal;font-size:14px;line-height:22px;color:#0031=
+45;  ">
+                                <strong>802 Miles</strong>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                        <td width=3D"24">&nbsp;</td> =20
+                      </tr>
+                      <tr>
+                        <td width=3D"24">&nbsp;</td> =20
+                        <td>
+                          <table width=3D"100%" border=3D"0" cellspacing=3D=
+"0" cellpadding=3D"0"
+                            style=3D"padding:0px 0px 0px 40px">
+                            <tr>
+                              <td align=3D"left"                           =
+   =20
+                                style=3D"font-family: 'Roboto', 'Segoe UI',=
+ sans-serif; font-weight:normal;font-size:14px;line-height:22px;color:#0031=
+45;  ">
+                                <table>
+                                  <tr>
+                                    <td valign=3D"button">
+                                      <img  =20
+                                        src=3D"https://img.static-kl.com/tr=
+ansform/5bd0477b-1abb-4b66-82d1-18544355d6fd/Blue-arrow" width=3D"15" >
+                                    </td>
+                                    <td class=3D"body_police" style=3D"padd=
+ing-left: 8px;">  <strong>Wilhelmus&nbsp;Van Haperen</strong>  </td>
+                                  </tr>
+                                </table>    =20
+                              </td>
+                              =20
+                              <td align=3D"right"
+                                style=3D"font-family: 'Roboto', 'Segoe UI',=
+ sans-serif; font-weight:normal;font-size:14px;line-height:22px;color:#0031=
+45;  ">
+                                <strong>401 Miles</strong>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                        <td width=3D"24">&nbsp;</td> =20
+                      </tr>
+                      <tr>
+                        <td width=3D"24">&nbsp;</td>                 =20
+                        <td style=3D"padding: 20px 0px 20px 0px;">
+                          <table width=3D"100%" border=3D"0" cellspacing=3D=
+"0" cellpadding=3D"0" bgcolor=3D"#fef5e9">
+                            <tr>
+                              <td align=3D"left">
+                                <table>
+                                  <tr>
+                                    <td style=3D"padding: 10px 10px 8px 10p=
+x " valign=3D"middle" align=3D"left">
+                                      <img=20
+                                      src=3D"https://images.direct-email.nl=
+/klm/booking_conf/icon-info.png" width=3D"20" align=3D"center" valign=3D"bo=
+ttom">
+                                    </td>
+                                    <td align=3D"left" valign=3D"middle" st=
+yle=3D"font-family: Roboto, sans-serif; font-weight:normal; font-size:14px;=
+ color:#003145;">
+                                      Heeft u een spelfout ontdekt in de na=
+am/namen op uw ticket?
+                                                                           =
+ <a href=3D"https://www.klm.nl/exchange/deeplink?country=3DNL&language=3DNL=
+&target=3D/information/manage-booking/correcting-typo-name"
+                                        title=3D"Request_a_correction" name=
+=3D"mybooking_2" target=3D"_blank"  class=3D"body_police">
+                                         Vraag een correctie aan.
+                                                                           =
+   </a> =20
+                                    </td>
+                                  </tr>
+                                </table> =20
+                              </td> =20
+                            </tr>
+                          </table>
+                        </td>
+                        <td width=3D"24">&nbsp;</td>
+                      </tr>  =20
+                    =20
+                    </table>
+                    <!-- END passenger information bloc-->
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <br>
+      </td>
+    </tr>
+  </table>
+  <!-----------------------------------------------------------------------=
+--------------END of check your booking------------------------------------=
+-------------------------------->
+  <!-----------------------------------------------------------------------=
+------------- Begin Your flight options -----------------------------------=
+-------------------------------->
+ =20
+
+  <!-----------------------------------------------------------------------=
+----------- begin Price specification block -------------------------------=
+----------------------------------------------------->
+  <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" width=3D"100%" bg=
+color=3D"#eef7fc">
+    <tr>
+      <td width=3D"100%"> &nbsp; </td>
+    </tr>
+    <tr>
+      <td>
+        <table align=3D"center" cellpadding=3D"0" cellspacing=3D"0" border=
+=3D"0">
+          <tr>
+            <td style=3D"width:640px; max-width:640px;" bgcolor=3D"#00a1de"=
+>
+              <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" align=
+=3D"center" width=3D"100%" class=3D"fullwidth">
+                <tr>
+                  <td style=3D"padding: 24px 20px 24px 24px"><img=20
+                      src=3D"https://img.static-kl.com/transform/26beea76-f=
+f02-4137-ac8e-d59967a68191/Icon2" width=3D"30"
+                      border=3D"0" style=3D"width: 30px; height: 20px;" /><=
+/td>
+                  <td
+                    style=3D"font-family:'Roboto', 'Arial', sans-serif; fon=
+t-weight:normal;font-size:24px;line-height:32px;color:#ffffff; width:100%; =
+font-weight: 300; padding: 12px 30px 12px 0px"
+                    color=3D"color:#ffffff !important;">
+                    Prijsspecificatie
+                                      </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" width=3D"100%" st=
+yle=3D"border-collapse:collapse;" bgcolor=3D"#eef7fc">
+    <tr>
+      <td align=3D"center">
+        <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" bgcolor=3D"=
+#ffffff" style=3D"border-collapse:collapse;" class=3D"fullwidth">
+          <tr>
+            <td align=3D"left" valign=3D"bottom" style=3D"width: 640px; max=
+-width: 640px;">
+              <table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=
+=3D"width:644px; max-width: 644px;"
+                class=3D"full-width">
+
+                <tr>
+                  <td width=3D"24">&nbsp;</td>
+                  <td align=3D"left"
+                    style=3D"padding-top: 12px; padding-bottom: 15px;" clas=
+s=3D"body_police" >
+                    U vindt hier de totaalprijs van uw boeking. Bekijk in=
+=20
+                                        <a href=3D"https://www.klm.nl/c/apg=
+_qVifQSy7Vqhy-9jG9A"
+                    title=3D"CONTACTUS" name=3D"CONTACTUS_2" target=3D"_bla=
+nk"  >
+                    <span class=3D"body_police">=20
+                      Mijn Reis
+                                          </span>                          =
+        =20
+                    </a>
+                     de gedetailleerde prijsspecificatie.=20
+                    <br>
+                  </td>
+                  <td width=3D"24">&nbsp;</td>
+                </tr>
+
+                <tr>
+                  <td width=3D"24">&nbsp;</td>
+                  <td>
+                    <table width=3D"100%" border=3D"0" cellspacing=3D"0" ce=
+llpadding=3D"0">
+                      <tr>
+                        <td align=3D"left" class=3D"body_police" style=3D" =
+border-bottom: 2px solid #c2deea; padding-bottom: 5px;" >
+                          <strong>Totaalprijs
+                            </strong>
+                        </td>
+                        <td align=3D"right" class=3D"body_police" style=3D"=
+border-bottom: 2px solid #c2deea; padding-bottom: 5px;" >
+                          <span class=3D"body_police"  align=3D"right ">  E=
+UR 820.64</span>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                  <td width=3D"24">&nbsp;</td>
+                </tr>
+              =20
+                <tr>
+                  <td width=3D"24">&nbsp;</td>
+                  <td>
+                    <table width=3D"100%" border=3D"0" cellspacing=3D"0" ce=
+llpadding=3D"0">
+                      <tr>
+
+                        <td align=3D"left" class=3D"body_police" style=3D"p=
+adding-top: 5px;"  >
+                          Betaalmethode:
+                                                  </td>
+                        <td>&nbsp;</td>
+
+                      </tr>
+                      <!--Start voucher part-->
+                      <tr>
+                        <td align=3D"left" class=3D"body_police" style=3D" =
+padding:  0px 0px 0px 10px;">
+                          American Express =20
+                        </td>
+                        <td align=3D"right" class=3D"body_police">
+                          <strong>                            EUR 720.64
+                            </strong>
+                        </td>
+                      </tr>
+                      <!--Start voucher part-->
+                      <tr>
+                        <td align=3D"left" class=3D"body_police" style=3D" =
+padding:  0px 0px 0px 10px;">
+                          Flying Blue =20
+                        </td>
+                        <td align=3D"right" class=3D"body_police">
+                          <strong>                            MLS 22400.00
+                            </strong>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                  <td width=3D"24">&nbsp;</td>
+                </tr>
+               =20
+                <tr>
+                  <td width=3D"24">&nbsp;</td>
+                </tr>
+
+                            =20
+                <tr>=20
+                  <td width=3D"24">&nbsp;</td>
+                  <td>
+                    <table align=3D"center" cellspacing=3D"0" cellpadding=
+=3D"0">
+                      <tr>
+                        <td width=3D"20" height=3D"20" align=3D"left" valig=
+n=3D"top"><img   src=3D"https://images.direct-email.nl/klm/booking_conf/btn=
+2-top-left.png" width=3D"20" style=3D"display: block !important; border: no=
+ne;"></td>
+                        <td rowspan=3D"2" align=3D"center" valign=3D"middle=
+" style=3D"width: 180px; max-width: 180px; font-family:Verdana, Arial, sans=
+-serif; font-size:14px; color:#0fb0e1; border-top: 1px solid #c2dfeb; borde=
+r-bottom: 1px solid #c2dfeb;" class=3D"mediafont"> <a href=3D"https://www.k=
+lm.nl/c/apg_qVifQSy7Vqhy-9jG9A" title=3D"Subscribe to our news and offers" =
+name=3D"subscription" target=3D"_blank"  style=3D"color: #0fb0e1; font-fami=
+ly: sans-serif; text-align: center; text-decoration: none; display: block; =
+font-weight: bold;"> <strong style=3D"font-weight: normal;">
+                          Ga naar Mijn Reis
+                           </strong></a> </td>
+                        <td width=3D"20" height=3D"20" align=3D"right" vali=
+gn=3D"top"><a href=3D"https://www.klm.nl/c/apg_qVifQSy7Vqhy-9jG9A" title=3D=
+"Subscribe to our news and offers" name=3D"subscription" target=3D"_blank" =
+><img   src=3D"https://images.direct-email.nl/klm/booking_conf/btn2-top-rig=
+ht.png" width=3D"20" style=3D"display: block !important; border: none;"></a=
+></td>
+                      </tr>
+                      <tr>
+                        <td width=3D"20" height=3D"20" align=3D"left" valig=
+n=3D"bottom"><a href=3D"https://www.klm.nl/c/apg_qVifQSy7Vqhy-9jG9A" title=
+=3D"Subscribe to our news and offers" name=3D"subscription" target=3D"_blan=
+k" ><img   src=3D"https://images.direct-email.nl/klm/booking_conf/btn2-bott=
+om-left.png" width=3D"20" style=3D"display: block !important; border: none;=
+"></a></td>
+                        <td width=3D"20" height=3D"20" align=3D"right" vali=
+gn=3D"bottom"><a href=3D"https://www.klm.nl/c/apg_qVifQSy7Vqhy-9jG9A" title=
+=3D"Subscribe to our news and offers" name=3D"subscription" target=3D"_blan=
+k" ><img   src=3D"https://images.direct-email.nl/klm/booking_conf/btn2-bott=
+om-right.png" width=3D"20" style=3D"display: block !important; border: none=
+;"></a></td>
+                      </tr>
+                    </table>
+                  </td>
+                  <td width=3D"24">&nbsp;</td>
+                </tr>
+             =20
+               =20
+            =20
+                <tr>
+                  <td width=3D"24">&nbsp;</td>
+                  <td height=3D"30px">  &nbsp;</td>
+                  <td width=3D"24">&nbsp;</td>
+                </tr>
+              =20
+
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  <!-----------------------------------------------------------------------=
+----------- END Price specification block ---------------------------------=
+------------------------------------------->
+  <!-----------------------------------------------------------------------=
+------------begin before you go -------------------------------------------=
+-------------------------------------------->=20
+  <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" width=3D"100%" bg=
+color=3D"#eef7fc"  >
+    <tr>
+      <td> &nbsp; </td>
+    </tr>
+    <tr>
+      <td>
+        <table align=3D"center" cellpadding=3D"0" cellspacing=3D"0" border=
+=3D"0">
+          <tr>
+            <td style=3D"width:640px; max-width:640px;" bgcolor=3D"#00a1de"=
+>
+              <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" align=
+=3D"center" width=3D"100%" class=3D"fullwidth">
+                <tr>
+                  <td style=3D"padding: 24px 20px 24px 24px;"><img=20
+                      src=3D"https://img.static-kl.com/transform/e1233d72-0=
+9eb-4ea4-bc6b-49c5f02fa5ae/Icon5" width=3D"30"
+                      border=3D"0" style=3D"width: 30px; height: 30px;" /><=
+/td>
+                  <td style=3D"font-family:'Roboto', 'Arial', sans-serif; f=
+ont-weight:normal;font-size:24px;line-height:32px;color:#ffffff;  width:100=
+%; font-weight: 300; padding: 12px 30px 12px 0px">
+                    Voor uw vertrek
+                                      </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" width=3D"100%" st=
+yle=3D"border-collapse:collapse;" bgcolor=3D"#eef7fc" class=3D"fullwidth">
+    <tr>     =20
+      <td align=3D"center">
+        <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" bgcolor=3D"=
+#ffffff" style=3D"border-collapse:collapse; width: 640px; max-width: 640px;=
+" >
+          <tr>
+            <td width=3D"24" height=3D"30px">&nbsp;</td>=20
+            <td height=3D"30px"> &nbsp;</td>
+            <td width=3D"24" height=3D"30px">&nbsp;</td>=20
+          </tr>
+          <tr>=20
+            <td width=3D"24">&nbsp;</td>                                   =
+         =20
+            <td  align=3D"center" valign=3D"bottom" >
+              <table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadd=
+ing=3D"0" >               =20
+                <tr>  =20
+                  <td>
+                    <table align=3D"center" border=3D"0" cellspacing=3D"0" =
+cellpadding=3D"0"
+                      style=3D"  background-color:#ffffff; border: 2px soli=
+d #c2deea">
+                     =20
+                      <tr>                       =20
+                          <td width=3D"100%" align=3D"center"><a href=3D"ht=
+tps://www.klm.nl/c/apg_qVifQSy7Vqhy-9jG9A&action=3Dvalidpassport" title=3D"=
+Seat Options"
+                              name=3D"SeatOptions_1" target=3D"_blank" >
+                              <img=20
+                                src=3D"https://img.static-kl.com/transform/=
+fdaed82d-14ee-47f5-ab66-3a6dc1959b5a/BC1"
+                                alt=3D""   /></a>
+                          </td>
+                      </tr> =20
+                      <tr>                           =20
+                          <td width=3D"100%" class=3D"body_police"         =
+                     =20
+                            align=3D"center" valign=3D"top">
+                            <a href=3D"https://www.klm.nl/c/apg_qVifQSy7Vqh=
+y-9jG9A&action=3Dvalidpassport" title=3D"Seat Options" name=3D"SeatOptions_=
+2"
+                              target=3D"_blank" style=3D"text-decoration: n=
+one;color: #003145" >
+                              <strong>Geldig paspoort
+                                                              </strong><br>
+                              Voeg uw paspoort toe <br> details >
+                              <br> &nbsp;
+                            </a>
+                          </td>                        =20
+                      </tr>                    =20
+                    </table>
+                  </td>  =20
+                  <!-- ancillary block 2 -->
+                  <td>
+                    <table align=3D"center" border=3D"0" cellspacing=3D"0" =
+cellpadding=3D"0"
+                      style=3D" border: 2px solid #c2deea; background-color=
+:#ffffff">
+                     =20
+                      <tr>                       =20
+                          <td align=3D"center"><a href=3D"https://www.klm.n=
+l/c/apg_qVifQSy7Vqhy-9jG9A&action=3Dseat" title=3D"Seat Options"
+                              name=3D"SeatOptions_1_1" target=3D"_blank" ><=
+img=20
+                                src=3D"https://img.static-kl.com/transform/=
+7071a3c8-aa49-4ec9-a44c-c3948b3c0e64/BC2"
+                                alt=3D"" /></a>
+                          </td>
+                      </tr> =20
+                      <tr>                           =20
+                          <td width=3D"100%" class=3D"body_police"         =
+                     =20
+                            align=3D"center" valign=3D"top">
+                            <a href=3D"https://www.klm.nl/c/apg_qVifQSy7Vqh=
+y-9jG9A&action=3Dseat" title=3D"Seat Options" name=3D"SeatOptions_2_1"
+                              target=3D"_blank" style=3D"text-decoration: n=
+one;color: #003145" >
+                              <strong>
+                                Reisdocumenten=20
+                                                              </strong><br>
+                                 Bereid uw reisdocumenten <br> voor >=20
+                                                                <br> &nbsp;
+                            </a>
+                          </td>                        =20
+                      </tr>
+                     =20
+                    </table>
+                  </td>   =20
+                  <!-- end of ancillary block 2 -->
+
+                  <!-- ancillary block 3 -->
+                  <td>
+                    <table align=3D"center" border=3D"0" cellspacing=3D"0" =
+cellpadding=3D"0"
+                      style=3D" border: 2px solid #c2deea;  background-colo=
+r:#ffffff">
+                    =20
+                      <tr>                       =20
+                          <td align=3D"center"><a href=3D"https://www.klm.n=
+l/exchange/deeplink?country=3DNL&language=3DNL&target=3D/information/update=
+s/app" title=3D"Seat Options"
+                              name=3D"SeatOptions_1_2" target=3D"_blank" ><=
+img=20
+                                src=3D"https://img.static-kl.com/transform/=
+f307cd98-07d3-4ee3-bfdd-72b04bb277e7/BC3"
+                                alt=3D"" /></a>
+                          </td>
+                      </tr> =20
+                      <tr>                           =20
+                          <td width=3D"100%" class=3D"body_police"         =
+                     =20
+                            align=3D"center" valign=3D"top">
+                            <a href=3D"https://www.klm.nl/exchange/deeplink=
+?country=3DNL&language=3DNL&target=3D/information/updates/app" title=3D"Sea=
+t Options" name=3D"SeatOptions_2_2"
+                              target=3D"_blank" style=3D"text-decoration: n=
+one;color: #003145" >
+                              <strong>
+                                Download de app=20
+                                                                </strong><b=
+r>
+                                Download de app voor <br> uw vluchtgegevens=
+ >
+                                                              <br> &nbsp;
+                            </a>
+                          </td>                        =20
+                      </tr>                     =20
+                      </table>
+                  </td>                =20
+                  <!-- end of ancillary block 3 --> =20
+                 =20
+                </tr>
+               =20
+              </table>
+                 <!-- end of extra options block -->
+            </td>
+            <td width=3D"24">&nbsp;</td>
+          </tr>
+          <tr>
+            <td width=3D"24" height=3D"30px">&nbsp;</td>=20
+            <td height=3D"30px"> &nbsp;</td>
+            <td width=3D"24" height=3D"30px">&nbsp;</td>=20
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  <!-----------------------------------------------------------------------=
+-----------------------------------End before you go ----------------------=
+------------------------------------------->
+  <!-----------------------------------------------------------------------=
+-----------------------------------begin important to know bloc -----------=
+-------------------------------------> =20
+  <!-----------------------------------------------------------------------=
+------------------------------END important to know bloc ------------------=
+------------------------------------->
+  <!-----------------------------------------------------------------------=
+------------------------------begin of Questions bloc----------------------=
+-------------------------------------> =20
+    <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" width=3D"100%" =
+bgcolor=3D"#eef7fc"  >
+      <tr>
+        <td> &nbsp; </td>
+      </tr>
+      <tr>
+      <td>
+        <table align=3D"center" cellpadding=3D"0" cellspacing=3D"0" border=
+=3D"0">
+          <tr>
+            <td style=3D"width:640px; max-width:640px;" bgcolor=3D"#00a1de"=
+>
+              <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" align=
+=3D"center" width=3D"100%" class=3D"fullwidth">
+                <tr>
+                  <td style=3D"padding: 24px 20px 24px 24px;"><img=20
+                      src=3D"https://img.static-kl.com/transform/d124bd9a-0=
+025-4959-a153-9e4a8593d985/Icon7" width=3D"30"
+                      border=3D"0" style=3D"width: 30px; height: 30px;" /><=
+/td>
+                  <td
+                    style=3D"font-family:'Roboto', 'Arial', sans-serif; fon=
+t-weight:normal;font-size:24px;line-height:32px;color:#ffffff; width:100%; =
+font-weight: 300; padding: 12px 30px 12px 0px">
+                    Vragen?
+                                      </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" width=3D"100%" st=
+yle=3D"border-collapse:collapse;" bgcolor=3D"#eef7fc">
+    <tr>     =20
+      <td align=3D"center">
+        <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" bgcolor=3D"=
+#ffffff" style=3D"border-collapse:collapse;" class=3D"fullwidth">
+          <tr> =20
+                   =20
+            <td id=3D"headerDisplay2" align=3D"center" valign=3D"bottom" st=
+yle=3D"width: 640px; max-width: 640px;" class=3D"fullwidth">
+              <table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadd=
+ing=3D"0" class=3D"fullwidth" >
+                <tr>=20
+                  <td width=3D"24">&nbsp;</td>               =20
+                  <td align=3D"left"  class=3D"body_police" style=3D"paddin=
+g: 20px 0px; border-bottom: 2px solid #c2deea">
+                    <strong>=20
+                      Ik heb mijn ticket(s) nog niet ontvangen. Wat moet ik=
+ doen? =20
+                                          </strong> <br>=20
+                    We sturen uw ticket(s) via e-mail binnen 24 uur na uw b=
+oekingsbevestiging. Controleer uw map met spamberichten als u nog niets hee=
+ft ontvangen. Uw e-ticketnummer is ook te vinden op=20
+                                        <a href=3D"https://www.klm.nl/c/apg=
+_qVifQSy7Vqhy-9jG9A"
+                  title=3D"CONTACTUS" name=3D"CONTACTUS_3" target=3D"_blank=
+"  >
+                  <span class=3D"body_police">
+                    Mijn Reis
+                                      </span>                              =
+  =20
+                  </a>.
+                  Heeft u verder nog assistentie nodig?=20
+                                    <a href=3D"https://www.klm.nl/exchange/=
+deeplink?country=3DNL&language=3DNL&target=3D/contact"
+                    title=3D"CONTACTUS" name=3D"CONTACTUS" target=3D"_blank=
+"  >
+                    <span class=3D"body_police">
+                      neem contact met ons op
+                                          </span>
+                  </a>.
+                  </td>
+                  <td width=3D"24">&nbsp;</td>
+                </tr>
+               =20
+               =20
+     =20
+                <tr>
+                  <td width=3D"24">&nbsp;</td>
+                  <td align=3D"left"  style=3D"padding: 20px 0px ; border-b=
+ottom: 2px solid #c2deea" class=3D"body_police" >
+                    <strong>
+                      Hoe kan ik mijn boeking wijzigen?
+                                          </strong>  <br>
+                    Het wijzigen van uw boeking hangt af van uw ticketvoorw=
+aarden. Controleer de voorwaarden onderaan deze e-mail om te bevestigen of =
+u uw boeking mag wijzigen.=20
+                    <br><br>
+                    <u>Mijn Reis
+                    </u><br>
+                    Als uw ticket gewijzigd mag worden, kunt u zelf uw vluc=
+ht online veranderen in <a  style=3D"color:#003145 !important; text-decorat=
+ion: none ! important;" href=3D"https://www.klm.nl/c/apg_qVifQSy7Vqhy-9jG9A=
+" name=3D"My_Trip_Link">Mijn Reis .</a>=20
+                    <br><br>
+                    <u>
+                      <a href=3D"https://www.klm.nl/exchange/deeplink?count=
+ry=3DNL&language=3DNL&target=3D/contact"
+                      title=3D"CONTACTUS" name=3D"CONTACTUS" target=3D"_bla=
+nk"  >
+                      <span class=3D"body_police">
+                         Met onze assistentie
+                                              </span>                      =
+            =20
+                      </a>.
+                    </u><br>
+                    We staan 24 uur per dag voor u klaar. Let op: de admini=
+stratiekosten bedragen =E2=82=AC 15,00. Deze kosten zijn niet van toepassin=
+g op fully flexible tickets of als u =E2=80=98Flexibility=E2=80=99 apart on=
+line heeft gekocht.<a href=3D"https://www.klm.nl/exchange/deeplink?country=
+=3DNL&language=3DNL&target=3D/contact" title=3D"CONTACTUS" name=3D"CONTACTU=
+S" target=3D"_blank"  >
+                      <span class=3D"body_police"> Neem contact met ons</sp=
+an></a> op voor assistentie.
+                                      </td>
+                  <td width=3D"24">&nbsp;</td>
+                </tr>
+               =20
+                <tr>
+                  <td width=3D"24">&nbsp;</td>
+                  <td align=3D"left"
+                    style=3D"padding: 20px 0px; border-bottom: 2px solid #c=
+2deea" class=3D"body_police" >
+                    <strong>
+                      Hoeveel bagage mag ik meenemen?
+                                          </strong> <br>
+                    De toegestane afmeting en gewicht van bagage kan vari=
+=C3=ABren. Kijk op uw e-ticket of log in op <a  style=3D"color:#003145 !imp=
+ortant; text-decoration: none ! important;" href=3D"https://www.klm.nl/c/ap=
+g_qVifQSy7Vqhy-9jG9A" name=3D"My_Trip_Link">Mijn Reis</a> om te zien hoevee=
+l handbagage en ruimbagage u mag meenemen.
+                                      </td>
+                  <td width=3D"24">&nbsp;</td>
+                </tr>              =20
+                <tr>
+                  <td width=3D"24">&nbsp;</td>
+                  <td align=3D"left"  style=3D"padding: 20px 0px;border-bot=
+tom: 2px solid #c2deea" class=3D"body_police" >
+                    <strong>
+                      Wanneer kan ik inchecken?
+                                          </strong> <br>
+                    Online check-in begint 30 uur voor vertrek. Voor vlucht=
+en van en naar de Verenigde Staten 24 uur voor vertrek. We sturen u een her=
+innering per e-mail.
+                                      </td>
+                  <td width=3D"24">&nbsp;</td>
+                </tr>
+                <tr>
+                  <td width=3D"24">&nbsp;</td>
+                  <td height=3D"30px">  &nbsp;</td>
+                  <td width=3D"24">&nbsp;</td>
+                </tr>
+                <tr>
+                  <td width=3D"24">&nbsp;</td>
+                  <td>
+                    <table align=3D"center" cellspacing=3D"0" cellpadding=
+=3D"0">
+                      <tr>
+                        <td width=3D"20" height=3D"20" align=3D"left" valig=
+n=3D"top"><img   src=3D"https://images.direct-email.nl/klm/booking_conf/btn=
+2-top-left.png" width=3D"20" style=3D"display: block !important; border: no=
+ne;"></td>
+                        <td rowspan=3D"2" align=3D"center" valign=3D"middle=
+" style=3D"width: 150px; max-width: 150px; font-family:Verdana, Arial, sans=
+-serif; font-size:14px; color:#0fb0e1; border-top: 1px solid #c2dfeb; borde=
+r-bottom: 1px solid #c2dfeb;" class=3D"mediafont"> <a href=3D"https://www.k=
+lm.nl/exchange/deeplink?country=3DNL&language=3DNL&target=3D/contact" title=
+=3D"Subscribe to our news and offers" name=3D"subscription_1" target=3D"_bl=
+ank"  style=3D"color: #0fb0e1; font-family: sans-serif; text-align: center;=
+ text-decoration: none; display: block; font-weight: bold;"> <strong style=
+=3D"font-weight: normal;">
+                            Neem contact met ons op
+                                                      </strong></a> </td>
+                        <td width=3D"20" height=3D"20" align=3D"right" vali=
+gn=3D"top"><a href=3D"https://www.klm.nl/c/apg_qVifQSy7Vqhy-9jG9A" title=3D=
+"Subscribe to our news and offers" name=3D"subscription" target=3D"_blank" =
+><img   src=3D"https://images.direct-email.nl/klm/booking_conf/btn2-top-rig=
+ht.png" width=3D"20" style=3D"display: block !important; border: none;"></a=
+></td>
+                      </tr>
+                      <tr>
+                        <td width=3D"20" height=3D"20" align=3D"left" valig=
+n=3D"bottom"><a href=3D"https://www.klm.nl/c/apg_qVifQSy7Vqhy-9jG9A" title=
+=3D"Subscribe to our news and offers" name=3D"subscription" target=3D"_blan=
+k" ><img   src=3D"https://images.direct-email.nl/klm/booking_conf/btn2-bott=
+om-left.png" width=3D"20" style=3D"display: block !important; border: none;=
+"></a></td>
+                        <td width=3D"20" height=3D"20" align=3D"right" vali=
+gn=3D"bottom"><a href=3D"https://www.klm.nl/c/apg_qVifQSy7Vqhy-9jG9A" title=
+=3D"Subscribe to our news and offers" name=3D"subscription" target=3D"_blan=
+k" ><img   src=3D"https://images.direct-email.nl/klm/booking_conf/btn2-bott=
+om-right.png" width=3D"20" style=3D"display: block !important; border: none=
+;"></a></td>
+                      </tr>
+                    </table>
+                  </td>
+                  <td width=3D"24">&nbsp;</td>
+                </tr>
+                <tr>
+                  <td width=3D"24">&nbsp;</td>
+                  <td height=3D"30px">  &nbsp;</td>
+                  <td width=3D"24">&nbsp;</td>
+                </tr>
+              =20
+              </table>
+            </td>
+         =20
+          </tr>
+
+        </table>
+      </td>
+     =20
+    </tr>
+  </table>
+  <!-----------------------------------------------------------------------=
+--------------------------------END of questions bloc----------------------=
+------------------------------------------------>
+  <!-----------------------------------------------------------------------=
+---------------------------------begin of ticket conditions ---------------=
+-------------------------------------------------> =20
+  <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" width=3D"100%" bg=
+color=3D"#eef7fc" >
+    <tr>
+      <td width=3D"100%"> &nbsp; </td>
+    </tr>
+    <tr>
+      <td>
+        <table align=3D"center" cellpadding=3D"0" cellspacing=3D"0" border=
+=3D"0">
+          <tr>
+            <td style=3D"width:640px; max-width:640px;" bgcolor=3D"#00a1de"=
+>
+              <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" align=
+=3D"center" width=3D"100%" class=3D"fullwidth">
+                <tr>
+                  <td style=3D"padding: 24px 20px 24px 24px;"><img=20
+                      src=3D"https://img.static-kl.com/transform/acd2ac32-6=
+f5c-48a8-8822-afac923b6f1c/Icon8" width=3D"15"
+                      border=3D"0" style=3D"width: 20px; " /></td>
+                  <td
+                    style=3D"font-family:'Roboto', 'Arial', sans-serif; fon=
+t-weight:normal;font-size:24px;line-height:32px;color:#ffffff;  width:100%;=
+ font-weight: 300; padding: 12px 30px 12px 0px">
+                    Ticketvoorwaarden
+                                      </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" width=3D"100%" st=
+yle=3D"border-collapse:collapse;"bgcolor=3D"#eef7fc">
+    <tr>
+      <td align=3D"center">
+        <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" bgcolor=3D"=
+#ffffff" style=3D"border-collapse:collapse;" class=3D"fullwidth">
+          <tr>
+            <td id=3D"headerDisplay2" align=3D"center" valign=3D"bottom" st=
+yle=3D"width: 640px; max-width: 640px;">
+              <table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadd=
+ing=3D"0" class=3D"fullwidth">
+                <tr>
+                  <td width=3D"24">&nbsp;</td>
+                  <td align=3D"left"
+                    style=3D"padding: 20px 0px 0px 0px; " class=3D"body_pol=
+ice">
+                    <strong>Amsterdam - Porto</strong> <br> <br>
+                   =20
+                     =20
+                     =20
+                   =20
+                     =20
+                                              <strong>=20
+                          Minimumverblijf:
+                                                  </strong> <br>           =
+        =20
+                        <li>
+                          Er geldt een minimumverblijf van 3 dag(en), of de=
+ terugvlucht begint op zaterdag,zondag.
+                           <br><br>
+                        </li>
+                      <strong>
+                        Maximumverblijf:
+                         <br>
+                      </strong>
+                      <li> Er geldt een maximum verblijf van 12 maand(en).
+                         <br><br>
+                      </li>
+                    <strong>=20
+                      Wijzigingen:
+                                          </strong> <br> <br>
+                    <strong>
+                      Voor vertrek
+                      :&nbsp;</strong>
+                        V=C3=B3=C3=B3r vertrek van uw eerste uitgaande vluc=
+ht is het niet toegestaan om uw ticket te wijzigen.=20
+                         <br> <br>
+                    <strong>
+                      Na vertrek
+                      :&nbsp;</strong>
+                      Na vertrek van uw eerste uitgaande vlucht is het niet=
+ toegestaan om uw ticket te wijzigen.=20
+                      <br><br>
+                    <strong>=20
+                       Annulering
+                      : </strong> <br> <br>
+                    <strong>
+                      Voor vertrek
+                      :&nbsp;</strong>
+                      Als u uw reis annuleert voordat uw eerste vlucht vert=
+rekt, ontvangt u alleen een terugbetaling voor overheidsbelastingen en -toe=
+slagen, in overeenstemming met de geldende regelgeving.
+                       <br> <br>
+                    <strong>Na vertrek
+                      :&nbsp;</strong>
+                    Als u uw reis annuleert nadat uw eerste vlucht is vertr=
+okken, ontvangt u alleen een terugbetaling voor overheidsbelastingen en -to=
+eslagen, in overeenstemming met de geldende regelgeving.
+                     <br> <br>
+                    Als u uw ticket verandert naar een ander tarief, blijve=
+n de niet-restitueerbare delen van uw oorspronkelijke tickets nog steeds ni=
+et restitueerbaar.
+                     <br> <br>
+                  </td>
+                  <td width=3D"24">&nbsp;</td>
+                </tr>
+                =20
+              <tr>=20
+                <td width=3D"24">&nbsp;</td>               =20
+                <td align=3D"left" class=3D"body_police" style=3D" border-b=
+ottom: 2px solid #c2deea"></td>
+                <td width=3D"24">&nbsp;</td>
+              </tr>
+              <tr>
+                <td width=3D"24">&nbsp;</td>                 =20
+                <td align=3D"left"  class=3D"body_police" style=3D"padding:=
+ 10px 0px 0px 0px;mso-line-height-rule: exactly;">
+                  <strong>No show:
+                                      </strong> <br>
+                 =20
+                   =20
+                  <li>               =20
+                    Als u niet aanwezig bent voor check-in en boarding, kom=
+t u niet in aanmerking voor omboeken.
+                                         =20
+ </li><br>=20
+                 =20
+                   =20
+                    <li>
+                      Geen terugbetaling mogelijk voor dit ticket.=20
+                                          </li> <br>
+ <br>
+                     =20
+                    <strong>
+                      Gebruik van tickets=20
+                      :
+                    </strong> <br>
+                      <li>Dit tarief is van toepassing op een volledig gebr=
+uikt ticket dat in aansluitende volgorde wordt gebruikt voor de betreffende=
+ reis en op de aangegeven data. Zoals uiteengezet in de <a href=3D"https://=
+www.klm.nl/exchange/deeplink?country=3DNL&language=3DNL&target=3D/informati=
+on/legal/conditions-carriage" name=3D"conditions-carriage" target=3D"_blank=
+"  style=3D"color:#003145">Algemene Vervoersvoorwaarden</a> leidt elk afwij=
+kend gebruik bekend gemaakt op de dag van vertrek (bijvoorbeeld als de Pass=
+agier geen gebruik maakt van de eerste Coupon of als Coupons niet worden ge=
+bruikt in de volgorde van uitgifte) tot de betalingsverplichting van een va=
+ste toeslag op het moment van inchecken voor de aansluitende Coupon (vanaf =
+30 uur voorafgaand aan vertrek) bij het callcenter, een Ticketkantoor of op=
+ de luchthaven, ten bedrage van: 150 EUR voor vluchten binnen Europa in de =
+Economy Class, 300 EUR voor vluchten binnen Europa in de Business Class, 50=
+0 EUR voor intercontinentale vluchten in de Economy of Premium Comfort Clas=
+s, 1500 EUR voor intercontinentale vluchten in de Business Class of La Prem=
+i=C3=A8re (of het equivalent daarvan in de lokale valuta).<br><br>
+                      Mogelijk zijn er andere regels van toepassing in het =
+land of de regio waar u uw ticket hebt geboekt. Controleer daarom altijd de=
+ toepasselijke <a href=3D"https://www.klm.nl/exchange/deeplink?country=3DNL=
+&language=3DNL&target=3D/information/legal/special-conditions" name=3D"spec=
+ial-conditions" target=3D"_blank"  style=3D"color:#003145">Bijzondere Voorw=
+aarden</a>.
+                                          </li>
+                    <br> <br>
+                    <strong>
+                      Kosten en toeslagen
+                                          </strong>
+                    <li>Let op: boekingskosten worden alleen gerestitueerd =
+als uw oorspronkelijke vlucht door KLM werd geannuleerd of meer dan vijf uu=
+r vertraagd was en als u weigerde om omgeboekt te worden. Tenzij uw ticketv=
+oorwaarden restitutie toestaan, komen toeslagen die door de vervoerder zijn=
+ opgelegd niet in aanmerking voor restitutie. Indien de wijziging of restit=
+utie van uw ticket wordt behandeld door een reisagent of reisbureau, dan ku=
+nnen er extra servicekosten aan worden toegevoegd. Eventuele kosten worden =
+in de lokale valuta in rekening gebracht en berekend op basis van de dageli=
+jkse wisselkoers.
+                                          </li> <br> <br>
+                  </td>
+                <td width=3D"24">&nbsp;</td>
+              </tr>=20
+                <tr>
+                  <td width=3D"24">&nbsp;</td>
+                  <td align=3D"left"
+                    style=3D"padding: 20px 0px 0px 0px; " class=3D"body_pol=
+ice">
+                    <strong>Lissabon - Amsterdam</strong> <br> <br>
+                   =20
+                     =20
+                     =20
+                   =20
+                     =20
+                                              <strong>=20
+                          Minimumverblijf:
+                                                  </strong> <br>           =
+        =20
+                        <li>
+                          Er geldt een minimumverblijf van 3 dag(en), of de=
+ terugvlucht begint op zaterdag,zondag.
+                           <br><br>
+                        </li>
+                      <strong>
+                        Maximumverblijf:
+                         <br>
+                      </strong>
+                      <li> Er geldt een maximum verblijf van 12 maand(en).
+                         <br><br>
+                      </li>
+                    <strong>=20
+                      Wijzigingen:
+                                          </strong> <br> <br>
+                    <strong>
+                      Voor vertrek
+                      :&nbsp;</strong>
+                        V=C3=B3=C3=B3r vertrek van uw eerste uitgaande vluc=
+ht is het niet toegestaan om uw ticket te wijzigen.=20
+                         <br> <br>
+                    <strong>
+                      Na vertrek
+                      :&nbsp;</strong>
+                      Na vertrek van uw eerste uitgaande vlucht is het niet=
+ toegestaan om uw ticket te wijzigen.=20
+                      <br><br>
+                    <strong>=20
+                       Annulering
+                      : </strong> <br> <br>
+                    <strong>
+                      Voor vertrek
+                      :&nbsp;</strong>
+                      Als u uw reis annuleert voordat uw eerste vlucht vert=
+rekt, ontvangt u alleen een terugbetaling voor overheidsbelastingen en -toe=
+slagen, in overeenstemming met de geldende regelgeving.
+                       <br> <br>
+                    <strong>Na vertrek
+                      :&nbsp;</strong>
+                    Als u uw reis annuleert nadat uw eerste vlucht is vertr=
+okken, ontvangt u alleen een terugbetaling voor overheidsbelastingen en -to=
+eslagen, in overeenstemming met de geldende regelgeving.
+                     <br> <br>
+                    Als u uw ticket verandert naar een ander tarief, blijve=
+n de niet-restitueerbare delen van uw oorspronkelijke tickets nog steeds ni=
+et restitueerbaar.
+                     <br> <br>
+                  </td>
+                  <td width=3D"24">&nbsp;</td>
+                </tr>
+                =20
+              <tr>=20
+                <td width=3D"24">&nbsp;</td>               =20
+                <td align=3D"left" class=3D"body_police" style=3D" border-b=
+ottom: 2px solid #c2deea"></td>
+                <td width=3D"24">&nbsp;</td>
+              </tr>
+              <tr>
+                <td width=3D"24">&nbsp;</td>                 =20
+                <td align=3D"left"  class=3D"body_police" style=3D"padding:=
+ 10px 0px 0px 0px;mso-line-height-rule: exactly;">
+                  <strong>No show:
+                                      </strong> <br>
+                 =20
+                   =20
+                  <li>               =20
+                    Als u niet aanwezig bent voor check-in en boarding, kom=
+t u niet in aanmerking voor omboeken.
+                                         =20
+ </li><br>=20
+                 =20
+                   =20
+                    <li>
+                      Geen terugbetaling mogelijk voor dit ticket.=20
+                                          </li> <br>
+ <br>
+                     =20
+                    <strong>
+                      Gebruik van tickets=20
+                      :
+                    </strong> <br>
+                      <li>Dit tarief is van toepassing op een volledig gebr=
+uikt ticket dat in aansluitende volgorde wordt gebruikt voor de betreffende=
+ reis en op de aangegeven data. Zoals uiteengezet in de <a href=3D"https://=
+www.klm.nl/exchange/deeplink?country=3DNL&language=3DNL&target=3D/informati=
+on/legal/conditions-carriage" name=3D"conditions-carriage" target=3D"_blank=
+"  style=3D"color:#003145">Algemene Vervoersvoorwaarden</a> leidt elk afwij=
+kend gebruik bekend gemaakt op de dag van vertrek (bijvoorbeeld als de Pass=
+agier geen gebruik maakt van de eerste Coupon of als Coupons niet worden ge=
+bruikt in de volgorde van uitgifte) tot de betalingsverplichting van een va=
+ste toeslag op het moment van inchecken voor de aansluitende Coupon (vanaf =
+30 uur voorafgaand aan vertrek) bij het callcenter, een Ticketkantoor of op=
+ de luchthaven, ten bedrage van: 150 EUR voor vluchten binnen Europa in de =
+Economy Class, 300 EUR voor vluchten binnen Europa in de Business Class, 50=
+0 EUR voor intercontinentale vluchten in de Economy of Premium Comfort Clas=
+s, 1500 EUR voor intercontinentale vluchten in de Business Class of La Prem=
+i=C3=A8re (of het equivalent daarvan in de lokale valuta).<br><br>
+                      Mogelijk zijn er andere regels van toepassing in het =
+land of de regio waar u uw ticket hebt geboekt. Controleer daarom altijd de=
+ toepasselijke <a href=3D"https://www.klm.nl/exchange/deeplink?country=3DNL=
+&language=3DNL&target=3D/information/legal/special-conditions" name=3D"spec=
+ial-conditions" target=3D"_blank"  style=3D"color:#003145">Bijzondere Voorw=
+aarden</a>.
+                                          </li>
+                    <br> <br>
+                    <strong>
+                      Kosten en toeslagen
+                                          </strong>
+                    <li>Let op: boekingskosten worden alleen gerestitueerd =
+als uw oorspronkelijke vlucht door KLM werd geannuleerd of meer dan vijf uu=
+r vertraagd was en als u weigerde om omgeboekt te worden. Tenzij uw ticketv=
+oorwaarden restitutie toestaan, komen toeslagen die door de vervoerder zijn=
+ opgelegd niet in aanmerking voor restitutie. Indien de wijziging of restit=
+utie van uw ticket wordt behandeld door een reisagent of reisbureau, dan ku=
+nnen er extra servicekosten aan worden toegevoegd. Eventuele kosten worden =
+in de lokale valuta in rekening gebracht en berekend op basis van de dageli=
+jkse wisselkoers.
+                                          </li> <br> <br>
+                  </td>
+                <td width=3D"24">&nbsp;</td>
+              </tr>=20
+            </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  <!-----------------------------------------------------------------------=
+---------------------------- End of ticket conditions----------------------=
+------------------------------------------------------->
+
+
+  <!-----------------------------------------------------------------------=
+-----------------------------Mopinion begin--------------------------------=
+------------------------------------------------------->
+
+ =20
+
+       =20
+
+ =20
+ =20
+ =20
+ =20
+ =20
+
+  <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" width=3D"100%" st=
+yle=3D"border-collapse:collapse;" bgcolor=3D"#eef7fc">
+    <tr>     =20
+      <td  align=3D"center" style=3D"padding-bottom: 5px;padding-top: 10px;=
+">
+        <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0"bgcolor=3D"#=
+eef7fc" style=3D"border-collapse:collapse;"  style=3D"width: 640px; max-wid=
+th: 640px;" class=3D"fullwidth">=09=09=09
+          <tr>=20
+            <td width=3D"175px" align=3D"center" style=3D"padding-bottom: 5=
+px;padding-top: 10px;padding-right: 10px;" >
+              <hr size=3D"2" width=3D"100%" color=3D"#00a1de">=20
+            </td>
+            <td width=3D"270px" style=3D"padding-bottom: 5px; padding-top: =
+10px;"  align=3D"center">
+            <a href=3D"https://airfranceklm.mopinion.com/survey/public/take=
+-survey/cc59c002d761ef428ec25e3a214783959962db17?lang=3Dnl&Source=3DAFKLUni=
+ca&Department=3DKLMDM&CampaignType=3DAlwaysOn&CampaignGoal=3DService&Campai=
+gnName=3DBOOKING&Market=3DNL&Language=3DNL&utm_campaign=3DBOOKING&AUDIENCE_=
+ID=3D1475191348&CAMPAIGN_KEYWORD=3D" style=3D" font-size: 15px;color:#00a1d=
+e;text-decoration:none"   name=3D"feedback_mopinion_com_index_html_id">=20
+             Wat is uw beoordeling van deze e-mail?
+                       =20
+              </a>
+              </td>
+            <td  align=3D"center" width=3D"175" style=3D"padding-top: 10px;=
+ padding-left: 10px; " >
+              <hr size=3D"2" width=3D"100%" color=3D"#00a1de">=20
+            </td>=20
+          </tr>=20
+        </table>
+        <table align=3D"center" style=3D"border-collapse: separate; border-=
+spacing: 0px 0; padding: 0px;" >=20
+          <tr>
+              <td align=3D"center" style=3D"width: 60px; height: 40px;" >
+              <a href=3D"https://airfranceklm.mopinion.com/survey/public/ta=
+ke-survey/cc59c002d761ef428ec25e3a214783959962db17?lang=3Dnl&Source=3DAFKLU=
+nica&Department=3DKLMDM&CampaignType=3DAlwaysOn&CampaignGoal=3DService&Camp=
+aignName=3DBOOKING&Market=3DNL&Language=3DNL&utm_campaign=3DBOOKING&AUDIENC=
+E_ID=3D1475191348&CAMPAIGN_KEYWORD=3D&rating_5042=3D1" width=3D"60px" heigh=
+t=3D"40" style=3D"display: block ; border: 0px ;color:#007CB1 ;"  name=3D"f=
+eedback_mopinion_com_index_html_id_2">
+
+              <img   src=3D"https://images.direct-email.nl/klm/icons/Smiley=
+1.png?extent=3Dtrue" width=3D"60" height=3D"40" alt=3D"1" border=3D"0" styl=
+e=3D"display: block ; width: 60px ; height: 40px ;"/> </a>=20
+
+              </td>
+              <td align=3D"center" style=3D"width: 60px; height: 40px;" >=
+=20
+              <a href=3D"https://airfranceklm.mopinion.com/survey/public/ta=
+ke-survey/cc59c002d761ef428ec25e3a214783959962db17?lang=3Dnl&Source=3DAFKLU=
+nica&Department=3DKLMDM&CampaignType=3DAlwaysOn&CampaignGoal=3DService&Camp=
+aignName=3DBOOKING&Market=3DNL&Language=3DNL&utm_campaign=3DBOOKING&AUDIENC=
+E_ID=3D1475191348&CAMPAIGN_KEYWORD=3D&rating_5042=3D2" width=3D"60px" heigh=
+t=3D"40" style=3D"display: block ; border: 0px ;color:#007CB1 ;"  name=3D"f=
+eedback_mopinion_com_index_html_id_3">=20
+
+              <img   src=3D"https://images.direct-email.nl/klm/icons/Smiley=
+2.png?extent=3Dtrue" width=3D"60" height=3D"40" alt=3D"2" border=3D"0" styl=
+e=3D"display: block ; width: 60px ; height: 40px ;"/> </a>=20
+
+            </td>=20
+              <td align=3D"center" style=3D"width: 60px; height: 40px;" >
+              <a href=3D"https://airfranceklm.mopinion.com/survey/public/ta=
+ke-survey/cc59c002d761ef428ec25e3a214783959962db17?lang=3Dnl&Source=3DAFKLU=
+nica&Department=3DKLMDM&CampaignType=3DAlwaysOn&CampaignGoal=3DService&Camp=
+aignName=3DBOOKING&Market=3DNL&Language=3DNL&utm_campaign=3DBOOKING&AUDIENC=
+E_ID=3D1475191348&CAMPAIGN_KEYWORD=3D&rating_5042=3D3" width=3D"60px" heigh=
+t=3D"40" style=3D"display: block ; border: 0px ;color:#007CB1 ;"  name=3D"f=
+eedback_mopinion_com_index_html_id_4">=20
+
+            <img   src=3D"https://images.direct-email.nl/klm/icons/Smiley3.=
+png?extent=3Dtrue" width=3D"60" height=3D"40" alt=3D"3" border=3D"0" style=
+=3D"display: block ; width: 60px ; height: 40px ;"/> </a>
+
+            </td>=20
+              <td  align=3D"center" style=3D"width: 60px; height: 40px;" >=
+=20
+              <a href=3D"https://airfranceklm.mopinion.com/survey/public/ta=
+ke-survey/cc59c002d761ef428ec25e3a214783959962db17?lang=3Dnl&Source=3DAFKLU=
+nica&Department=3DKLMDM&CampaignType=3DAlwaysOn&CampaignGoal=3DService&Camp=
+aignName=3DBOOKING&Market=3DNL&Language=3DNL&utm_campaign=3DBOOKING&AUDIENC=
+E_ID=3D1475191348&CAMPAIGN_KEYWORD=3D&rating_5042=3D4" width=3D"60px" heigh=
+t=3D"40" style=3D"display: block ;  border: 0px ;color:#007CB1 ;"  name=3D"=
+feedback_mopinion_com_index_html_id_5">=20
+
+            <img   src=3D"https://images.direct-email.nl/klm/icons/Smiley4.=
+png?extent=3Dtrue" width=3D"60" height=3D"40" alt=3D"4" border=3D"0" style=
+=3D"display: block ; width: 60px ; height: 40px ;"/> </a>=20
+
+              </td>=20
+              <td  align=3D"center" style=3D"width: 60px; height: 40px;" >=
+=20
+              <a href=3D"https://airfranceklm.mopinion.com/survey/public/ta=
+ke-survey/cc59c002d761ef428ec25e3a214783959962db17?lang=3Dnl&Source=3DAFKLU=
+nica&Department=3DKLMDM&CampaignType=3DAlwaysOn&CampaignGoal=3DService&Camp=
+aignName=3DBOOKING&Market=3DNL&Language=3DNL&utm_campaign=3DBOOKING&AUDIENC=
+E_ID=3D1475191348&CAMPAIGN_KEYWORD=3D&rating_5042=3D5" width=3D"60px" heigh=
+t=3D"40" style=3D"display: block ; border: 0px ;color:#007CB1 ;"  name=3D"f=
+eedback_mopinion_com_index_html_id_6">=20
+
+              <img   src=3D"https://images.direct-email.nl/klm/icons/Smiley=
+5.png?extent=3Dtrue" alt=3D"5" border=3D"0" width=3D"60" height=3D"40" styl=
+e=3D"display: block ; width: 60px ; height:40px ;"/> </a>=20
+              </td>=20
+          </tr>=20
+        </table>
+      </td>
+    </tr>
+  </table>
+ =20
+  <!-----------------------------------------------------------------------=
+-------------------- Mopinion block End -----------------------------------=
+------------------------------------------>
+
+
+  <!-- footer -begin -->
+ =20
+  <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" width=3D"100%" st=
+yle=3D"border-collapse:collapse;" bgcolor=3D"#eef7fc">
+    <tr>
+      <td> &nbsp; </td>
+    </tr>
+   =20
+    <tr>     =20
+      <td align=3D"center">
+        <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" bgcolor=3D"=
+#ffffff" style=3D"border-collapse:collapse;">
+          <tr>                     =20
+            <td id=3D"headerDisplay2" align=3D"center" valign=3D"bottom" st=
+yle=3D"width: 640px; max-width: 640px;">
+              <table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadd=
+ing=3D"0" > =20
+                <tr>
+                    <td width=3D"24">&nbsp;</td>
+                    <td>
+                      <!-- snippet -->
+                      <!-- v header v -->
+                          <table cellpadding=3D"0" cellspacing=3D"0" style=
+=3D"width:640px; min-width:640px; max-width:640px; " border=3D"0" align=3D"=
+center" class=3D"fullwidth" bgcolor=3D"#ffffff" >
+                              <tr>
+                                  <!-- content -->
+                                  <td class=3D"fullwidth" width=3D"640"
+                                      style=3D"width:640px; min-width:640px=
+; max-width:640px; padding:10px 0 10px 0;" align=3D"center" bgcolor=3D"#fff=
+fff">
+                                      <table cellpadding=3D"0" cellspacing=
+=3D"0" border=3D"0" style=3D"width:100%; text-align: center">
+                                          <tr>
+                                              <td bgcolor=3D"#edf9fd" style=
+=3D"background-color: #EEF7FC"> </td>
+                                          </tr>
+                                      </table>
+                                  </td>
+                              </tr>
+                          </table>
+                    </td>
+                    <td width=3D"24">&nbsp;</td>
+                </tr>        =20
+                <tr>
+                    <td width=3D"24">&nbsp;</td>
+                    <td bgcolor=3D"#ffffff" align=3D"center" valign=3D"top"=
+ height=3D"100">
+                        <table border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0"style=3D"width:640px; min-width:640px; max-width:640px; " >          =
+ =20
+                        <tr>
+                            <td  style=3D"width: 600px; max-width: 600px; "
+                            valign=3D"bottom">
+                            <table border=3D"0" cellspacing=3D"0" cellpaddi=
+ng=3D"0" align=3D"left">
+                                <tr>
+                                <td style=3D"width: 130px; max-width: 130px=
+;" valign=3D"bottom">
+                                    <!--zone_icon_logo-->
+                                    <table border=3D"0" cellspacing=3D"0" c=
+ellpadding=3D"0" align=3D"left">
+                                    <tr>
+                                        <td style=3D"padding: 20px;" valign=
+=3D"bottom" height=3D"72">
+                                         =20
+                                          <a
+                                            href=3D"http://links.airfrancek=
+lm.mkt9476.com/ctt?m=3D32469243&r=3DLTExMTMxNjM2MzUxS0&b=3D0&j=3DMjk3MTU0OT=
+UzOAS2&k=3DKLM_NewLogo_btn&kx=3D1&kt=3D12&kd=3Dhttps://www.klm.nl/exchange/=
+deeplink?country=3DNL%26language=3DNL%26target=3D/"
+                                             name=3D"links_airfranceklm_mkt=
+9476_com_ctt__144">
+                                            <img  src=3D"https://img.static=
+-kl.com/transform/036e3929-f58b-47de-921f-8a5906105dfa/Travel-well-logo?for=
+mat=3Djpg" alt=3D"KLM Royal Dutch Airlines" width=3D"80" height=3D"64" bord=
+er=3D"0">
+                                                                           =
+           </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td height=3D"22"></td>
+                                    </tr>
+                                    </table>
+                                </td>
+                                </tr>
+                            </table>
+                            <table border=3D"0" cellspacing=3D"0" cellpaddi=
+ng=3D"0" align=3D"right">
+                                <tr>
+                                <td>
+                                    <table border=3D"0" cellspacing=3D"0" c=
+ellpadding=3D"0">
+                                    <tr>
+                                        <td width=3D"110" align=3D"left" va=
+lign=3D"bottom"
+                                        style=3D"color: #00a1de; font-famil=
+y: 'Roboto', 'Segoe UI', sans-serif; font-weight:normal;font-size:14px;line=
+-height:22px;"
+                                        height=3D"20">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td height=3D"32" align=3D"center" =
+valign=3D"middle">
+                                        <table border=3D"0" cellspacing=3D"=
+0" cellpadding=3D"0" align=3D"right">
+                                            <tr>
+                                            <td style=3D"padding: 20px;"> <=
+img=20
+                                                src=3D"http://images.direct=
+-email.nl/klm/ici/template/airfrance-klm-logo.gif"
+                                                width=3D"120" border=3D"0">=
+</td>
+                                            </tr>
+                                        </table>
+                                        </td>
+                                    </tr>
+                                    </table>
+                                </td>
+                                </tr>
+                            </table>
+                            </td>
+                        </tr>
+                        </table>
+                    </td>
+                    <td width=3D"24">&nbsp;</td>
+                </tr>      =20
+                <tr>      =20
+                    <td  width=3D"24" >&nbsp;</td>      =20
+                    <td  bgcolor=3D"#ffffff">
+                      <table align=3D"center" style=3D"width: 600px; max-wi=
+dth: 600px" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" bgcolor=3D"#ff=
+ffff">
+                        <tr>                       =20
+                          <td height=3D"20" style=3D"border-top: 2px solid =
+#c2deea;">
+                            &nbsp;
+                          </td>                       =20
+                        </tr>
+                      </table>
+                    </td>
+                    <td width=3D"24">&nbsp;</td>
+                </tr>=20
+                   =20
+                <tr>
+                 =20
+                   =20
+                    <td width=3D"24">&nbsp;</td>
+                    <td valign=3D"top"  bgcolor=3D"#ffffff">
+                        <table align=3D"center" cellpadding=3D"0" cellspaci=
+ng=3D"0" border=3D"0" style=3D"width: 600px; max-width: 600px; padding-top:=
+0px" align=3D"center" role=3D"presentation" bgcolor=3D"#ffffff">
+                          <tr>=20
+                              <td align=3D"center" width=3D"25%">
+                                  <a href=3D"https://www.klm.nl/exchange/de=
+eplink?country=3DNL&language=3DNL&target=3D/contact" target=3D"_blank" name=
+=3D"www_klm_nl_exchange_deeplink_countr" ><img style=3D"display: block; mar=
+gin:0 auto" border=3D"0"   src=3D"https://images.direct-email.nl/klm/icons/=
+contact_50x50.png" width=3D"45"></a>
+                              </td>
+                              <td align=3D"center" width=3D"25%">
+                                  <a href=3D"https://www.klm.nl/c/apg_qVifQ=
+Sy7Vqhy-9jG9A" target=3D"_blank" name=3D"__DEEPLINK___1" ><img style=3D"dis=
+play: block; margin:0 auto" border=3D"0"   src=3D"https://images.direct-ema=
+il.nl/klm/icons/flight_50x50.png" width=3D"45">
+                                  </a>
+                              </td>
+                             =20
+                              <td align=3D"center" width=3D"25%">
+                                  <a href=3D"https://www.klm.nl/exchange/de=
+eplink?country=3DNL&language=3DNL&target=3D/information/updates/app" style=
+=3D"font-family: 'Roboto Regular', 'Segoe UI', sans-serif; font-weight: 400=
+; font-size:13px; line-height:18px; color:#005b82; text-align:center"  targ=
+et=3D"_blank" name=3D"apps_apple_com_app_apple_store_id39" >=09
+                                      <img style=3D"display: block; margin:=
+0 auto" border=3D"0"   src=3D"https://images.direct-email.nl/klm/icons/app_=
+50x50.png" width=3D"45">
+                                  </a>
+                              </td>
+                             =20
+                              <td align=3D"center" width=3D"25%">
+                                  <a href=3D"https://www.klm.nl/c/apg_qVifQ=
+Sy7Vqhy-9jG9A" target=3D"_blank" name=3D"__DEEPLINK___2" ><img style=3D"dis=
+play: block; margin:0 auto" border=3D"0"  =20
+                                    src=3D"https://images.direct-email.nl/k=
+lm/icons/Upsell_100x100.png" width=3D"45">
+                                  </a>
+                              </td>=09
+                          </tr>                   =20
+                          <tr>    =20
+                            <td  style=3D"font-family: 'Roboto Regular', 'S=
+egoe UI', sans-serif; font-weight: 400; font-size:14px; line-height:16px; c=
+olor:#005b82; text-align:center;padding-top:5px;padding-bottom:5px;">
+                              <a href=3D"https://www.klm.nl/exchange/deepli=
+nk?country=3DNL&language=3DNL&target=3D/contact" target=3D"_blank" name=3D"=
+__DEEPLINK___3" style=3D"text-decoration:none;font-family: 'Roboto Regular'=
+, 'Segoe UI', sans-serif; font-weight: 400; font-size:14px; line-height:16p=
+x; color:#005b82; text-align:center;" >
+                                <strong>    Vragen?
+                                  </strong>=20
+                              </a>
+                          </td>
+                            <td  style=3D"font-family: 'Roboto Regular', 'S=
+egoe UI', sans-serif; font-weight: 400; font-size:14px; line-height:16px; c=
+olor:#005b82; text-align:center;padding-top:5px;padding-bottom:5px;">
+                                <a href=3D"https://www.klm.nl/c/apg_qVifQSy=
+7Vqhy-9jG9A" target=3D"_blank" name=3D"__DEEPLINK___3_1" style=3D"text-deco=
+ration:none;font-family: 'Roboto Regular', 'Segoe UI', sans-serif; font-wei=
+ght: 400; font-size:14px; line-height:16px; color:#005b82; text-align:cente=
+r;" >
+                                    <strong>
+                                      Mijn Reis
+                                                                          <=
+/strong>=20
+                                </a>
+                            </td>
+                            <td  style=3D"font-family: 'Roboto Regular', 'S=
+egoe UI', sans-serif; font-weight: 400; font-size:14px; line-height:16px; c=
+olor:#005b82; text-align:center;padding-top:5px;padding-bottom:5px;">
+                                <a href=3D"https://www.klm.nl/exchange/deep=
+link?country=3DNL&language=3DNL&target=3D/information/updates/app" style=3D=
+"text-decoration:none;font-family: 'Roboto Regular', 'Segoe UI', sans-serif=
+; font-weight: 400; font-size:14px; line-height:16px; color:#005b82; text-a=
+lign:center;" target=3D"_blank" name=3D"apps_apple_com_app_apple_store_id39=
+" >=09
+                                    <strong>
+                                       KLM app
+                                                                          <=
+/strong>
+                                </a>=20
+                            </td>
+                            <td  style=3D"font-family: 'Roboto Regular', 'S=
+egoe UI', sans-serif; font-weight: 400; font-size:14px; line-height:16px; c=
+olor:#005b82; text-align:center;padding-top:5px;padding-bottom:5px;">
+                                <a href=3D"https://www.klm.nl/c/apg_qVifQSy=
+7Vqhy-9jG9A" target=3D"_blank" name=3D"__DEEPLINK___2" style=3D"text-decora=
+tion:none;font-family: 'Roboto Regular', 'Segoe UI', sans-serif; font-weigh=
+t: 400; font-size:14px; line-height:16px; color:#005b82; text-align:center;=
+" >
+                                    <strong>
+                                      Extra opties
+                                                                          <=
+/strong>=20
+                                </a>=20
+                            </td>              =20
+                          </tr>
+                          <tr>                  =20
+                            <td style=3D"text-decoration:none; font-family:=
+ 'Roboto Regular', 'Segoe UI', sans-serif; font-weight: 400; font-size:14px=
+; line-height:16px; color:#005b82; text-align:center;padding-top:5px;paddin=
+g-bottom:5px;">
+                               We helpen u graag!
+                                                          </td>
+                            <td  style=3D"font-family: 'Roboto Regular', 'S=
+egoe UI', sans-serif; font-weight: 400; font-size:14px; line-height:16px; c=
+olor:#005b82; text-align:center;padding-top:5px;padding-bottom:5px;">
+                               Bereid u voor op =20
+                              <br> uw vlucht
+                                                          </td>
+                            <td style=3D"font-family: 'Roboto Regular', 'Se=
+goe UI', sans-serif; font-weight: 400; font-size:14px; line-height:16px; co=
+lor:#005b82; text-align:center;padding-top:5px;padding-bottom:5px;">
+                               Download iOS
+                              <br>=20
+                               Download voor Android
+                                                          </td>
+                            <td  style=3D"font-family: 'Roboto Regular', 'S=
+egoe UI', sans-serif; font-weight: 400; font-size:14px; line-height:16px; c=
+olor:#005b82; text-align:center;padding-top:5px;padding-bottom:5px;">
+                              Extra opties aan uw
+                              <br>=20
+                              toekomstige <br> reis toevoegen
+                                                          </td>            =
+ =20
+                          </tr>
+                        </table>
+                    </td>
+                    <td width=3D"24">&nbsp;</td>
+                </tr> =20
+                <tr>
+                 =20
+                    <td width=3D"24">&nbsp;</td>      =20
+                    <td  bgcolor=3D"#ffffff">
+                      <table align=3D"center" style=3D"width: 600px; max-wi=
+dth: 600px" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" bgcolor=3D"#ff=
+ffff">
+                        <tr>                       =20
+                          <td height=3D"20" style=3D"border-bottom: 2px sol=
+id #c2deea;">
+                            &nbsp;
+                          </td>                       =20
+                        </tr>
+                      </table>
+                    </td>
+                    <td width=3D"24">&nbsp;</td>
+                </tr>     =20
+                <tr>
+                    <td width=3D"24">&nbsp;</td>
+                    <td align=3D"center" valign=3D"top"  bgcolor=3D"#ffffff=
+">
+                        <table align=3D"center" border=3D"0" cellpadding=3D=
+"0" cellspacing=3D"0"  bgcolor=3D"#ffffff">
+                            <tr>
+                                <td style=3D"width: 600px; max-width: 600px=
+; color: #00a1de; font-size: 11px; font-family: Verdana, Arial, sans-serif,=
+ Helvetica;" align=3D"left" valign=3D"bottom">
+                                    <br>
+                                    Wij nemen uw privacy serieus. Uw persoo=
+nsgegevens worden altijd verwerkt in overeenstemming met de toepasselijke w=
+etgeving inzake gegevensbescherming. Lees onze <a href=3D"http://links.airf=
+ranceklm.mkt9476.com/ctt?m=3D32469243&r=3DLTExMTMxNjM2MzUxS0&b=3D0&j=3DMjk3=
+MTU0OTUzOAS2&k=3DKLM_Privacy_Policy&kx=3D1&kt=3D12&kd=3Dhttps://www.klm.nl/=
+exchange/deeplink?country=3DNL%26language=3DNL%26target=3D/information/lega=
+l/privacy-policy" target=3D"_blank" style=3D"text-decoration: underline; fo=
+nt-weight: bold; color: #00a1de;"  name=3D"links_airfranceklm_mkt9476_com_c=
+tt__151">KLM-privacyverklaring</a> voor meer informatie over hoe we uw gege=
+vens verwerken en delen.<br><br>
+                                    <a href=3D"http://links.airfranceklm.mk=
+t9476.com/ctt?m=3D32469243&r=3DLTExMTMxNjM2MzUxS0&b=3D0&j=3DMjk3MTU0OTUzOAS=
+2&k=3DKLM_Royal_Dutch_Airlines_btn&kx=3D1&kt=3D12&kd=3Dhttps://www.klm.nl/e=
+xchange/deeplink?country=3DNL%26language=3DNL%26target=3D/" target=3D"_blan=
+k" style=3D"text-decoration: underline; font-weight: bold; color: #00a1de;"=
+  name=3D"links_airfranceklm_mkt947_2">
+                                      =C2=A92025 KLM Koninklijke Luchtvaart=
+ Maatschappij</a> is geregistreerd in Amstelveen, Nederland - Kamer van Koo=
+phandel Amsterdam nummer 33014286.                                         =
+                             </td>                    =09=09=09
+                            </tr>=20
+                        </table>
+                    </td>
+                    <td width=3D"24">&nbsp;</td>
+                </tr>=20
+                <tr>
+                    <td width=3D"24">&nbsp;</td>
+                  <td>
+                    <!-- snippet -->
+                    <!-- v header v -->
+                        <table cellpadding=3D"0" cellspacing=3D"0" width=3D=
+"640" border=3D"0" align=3D"center" class=3D"fullwidth" bgcolor=3D"#ffffff"
+                            style=3D"width:600px; max-width:600px; margin: =
+0 auto;">
+                            <tr>
+                                <!-- content -->
+                                <td class=3D"fullwidth" width=3D"640"
+                                    style=3D"width:640px; min-width:640px; =
+max-width:640px; padding:10px 0 10px 0;" align=3D"center" bgcolor=3D"#fffff=
+f">
+                                    <table cellpadding=3D"0" cellspacing=3D=
+"0" border=3D"0" style=3D"width:100%; text-align: center">
+                                        <tr>
+                                            <td bgcolor=3D"#edf9fd" style=
+=3D"background-color: #EEF7FC"> </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td width=3D"24">&nbsp;</td>
+                </tr> =20
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+=20
+
+
+
+
+
+
+
+
+
+
+<IMG src=3D"https://open.mkt61.net/open/log/32469243/LTExMTMxNjM2MzUxS0/0/M=
+jk3MTU0OTUzOAS2/1/0" style=3D"display: none"></body>
+<br>
+<br>
+<!-- footer -end -->
+
+</html>
+
+
+------=_Part_386873_630989460.1782135700842--
+
