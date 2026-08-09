@@ -1,0 +1,1538 @@
+Return-path: <bounce-3RT7MJFHSFPELHAUWCMC7C2OK4.70252@bounce.emails.hertz.com>
+Original-recipient: rfc822;dwiertsema@me.com
+Received: from p00-icloudmta-smtpin-us-east-2d-60-percent-16 by p169-mailgateway-smtp-6bdbb996b5-n97jp (mailgateway 2630B114)
+	with SMTP id c92399d5-656b-479a-a2c2-dc9547b22478 
+	for <dwiertsema@me.com>; Sun, 9 Aug 2026 11:56:55 GMT
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: MOVE_TO_FOLDER/INBOX
+X-Apple-UUID: c92399d5-656b-479a-a2c2-dc9547b22478
+Received: from mta2.emails.hertz.com (mta2.emails.hertz.com [13.111.15.198])
+	by p00-icloudmta-smtpin-us-east-2d-60-percent-16 (Postfix) with ESMTPS id 6BAEFC0008A
+	for <dwiertsema@me.com>; Sun, 09 Aug 2026 11:56:50 +0000 (UTC)
+X-ICL-RepId: 019fe662-013c-7929-b6b2-d4f70169d99d
+X-ICL-Info: GAtbRVYDBVFFSlVHSgQEUVUKE0oWX1gHVQoPB0UBBUxESFdZSQUYU0xBRhIcDVQNABcFElUDZDZCNCwxMGNwMjA1LjYtZ3UvNk4lRTd7AkxCSVRCSnBUDQAXBRJWVVsDHBUVWRBVRBYPVwUYFRBQBkgcCxYRXEVMHRwUAwIeVQ0YWRQURVRBCxALEgQdXVciGBxIFBddFgoQFQlKFURXUFscCxYRXEVMHRwUAwIeVQ0YWRYDCg1bFhRLSBIVUV8OBlcOEgpETEwWFgtXHFQLBxgYDxsLHl4HBw0cWRtfW1kGTkgOVl1VTAYYChILVlkQFhxIFBddFg8cHVtLSAUAA0AaXxNVCQYGEVRSQU1UG1tDSlVaGlZQABNIB0VMVARRNRgSG0lDBlUYDQdHSgkGTA0NSBsXU1cOSw==
+X-ICL-Score: 2.33303302423
+Authentication-Results: bimi.icloud.com; bimi=none
+X-ARC-Info: policy=fail; arc=none; r1=-20; r2=0
+Authentication-Results: arc.icloud.com; arc=none
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=emails.hertz.com
+X-DMARC-Policy: v=DMARC1; p=quarantine; fo=1; rua=mailto:dmarc_rua@emaildefense.proofpoint.com,mailto:dmarc_rua@hertz.com; ruf=mailto:dmarc_ruf@emaildefense.proofpoint.com,mailto:dmarc_ruf@hertz.com
+X-DMARC-Info: pass=pass; dmarc-policy=quarantine; s=r1; d=r1; pdomain=emails.hertz.com
+Authentication-Results: dkim-verifier.icloud.com; dkim=pass header.d=emails.hertz.com header.i=reservations@emails.hertz.com header.b=SZKs/PWw
+Authentication-Results: dkim-verifier.icloud.com; dkim=pass header.d=s7.y.mc.salesforce.com header.i=@s7.y.mc.salesforce.com header.b=dtXcMfbN
+Received-SPF: pass (spf.icloud.com: domain of bounce-3RT7MJFHSFPELHAUWCMC7C2OK4.70252@bounce.emails.hertz.com designates 13.111.15.198 as permitted sender) receiver=spf.icloud.com; client-ip=13.111.15.198; helo=mta2.emails.hertz.com; envelope-from=bounce-3RT7MJFHSFPELHAUWCMC7C2OK4.70252@bounce.emails.hertz.com
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of bounce-3RT7MJFHSFPELHAUWCMC7C2OK4.70252@bounce.emails.hertz.com designates 13.111.15.198 as permitted sender) smtp.mailfrom=bounce-3RT7MJFHSFPELHAUWCMC7C2OK4.70252@bounce.emails.hertz.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; s=200608; d=emails.hertz.com;
+ h=From:To:Subject:Date:List-Help:MIME-Version:Reply-To:Message-ID:Content-Type;
+ i=reservations@emails.hertz.com;
+ bh=3seUlJPpn1ZAXwh46z2R0RZwCfolTDh5Z8wsPXk3lAE=;
+ b=SZKs/PWwsj8Y4GWLRT9YCqvZI7ygMN1rL52GRo2DHxSsYWwL4sV7k8/nxWed7zz1AdKl9Rzr7fVg
+   QUQUIAnr0eILuCbgCqmz21iwajdb/KlAa4aB07LvRIAIfHMQsQ9mQh9gegnUmwNPBQtIFNS+kZRJ
+   qyBp+qgJE/rAyfcC5hs=
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; s=fbldkim7; d=s7.y.mc.salesforce.com;
+ h=From:To:Subject:Date:List-Help:MIME-Version:Reply-To:Message-ID:Content-Type;
+ bh=3seUlJPpn1ZAXwh46z2R0RZwCfolTDh5Z8wsPXk3lAE=;
+ b=dtXcMfbNtBXQ6UAKyogDdzAEFKrNSEOfDfnJOq5/BwyFyl++JbWQn5EgtaxUh6VX5MSrpt8wChpu
+   WmEwJuXJizPLUpK3E40j+GV1NmjwPSQ4rCSSTma9iCtfdKYX6xYK3uogNJiQUNBR4OJLOjT9iUI/
+   lNYBDm/1bg/w5unST3zMneFvbDUTAk8FAOgqojW74q8QDX+XS0/v5CNRXvBex8+dI5u0EhE4URO9
+   PgGlfltmOjmrvHikVrSRV1FeEeGan2K3WhDHoUS0XExE1JUleDfjFFnHAczbNMv0g8OsA3phnj50
+   7X2++UWPNA6Ec0JrRzUYGvD9fvopDuUxLQUbuQ==
+Received: by mta2.emails.hertz.com id hf1lg039mjcp for <dwiertsema@me.com>; Sun, 9 Aug 2026 11:56:48 +0000 (envelope-from <bounce-3RT7MJFHSFPELHAUWCMC7C2OK4.70252@bounce.emails.hertz.com>)
+From: "Hertz" <reservations@emails.hertz.com>
+To: <dwiertsema@me.com>
+Subject: Mijn Hertz Reservering L675E46C0C7
+Date: Sun, 09 Aug 2026 05:56:41 -0600
+List-Help: <https://click.emails.hertz.com/subscription_center.aspx?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtaWQiOiI3MjU3NjYzIiwicyI6IjI1MDk3MTIzOSIsImxpZCI6IjIwIiwiaiI6Ijg5MDE2OCIsImpiIjoiMzUyMDQiLCJkIjoiNzAyNTIifQ.k7D6gC__UK8rwQHo0f5SvnVnnb15k44s06SBBTOnoRM>
+MIME-Version: 1.0
+Reply-To: "Hertz" <reply-RNKUWM3PJVCETANLYRXCJ3VK3I.70252@emails.hertz.com>
+X-SFMC-Stack: 7
+x-job: 7257663_890168
+Message-ID: <056a5c9d-90dd-465d-9633-bffbf1a24d23@atl1s07mta0290.xt.local>
+Content-Type: multipart/alternative;
+	boundary="ou7UD0vGcj6G=_?:"
+X-MANTSH: 1TFkXGxsaGREKWUQXekBTGBt6ekR5eFkRCllNF2JLRxEKX1kXGR8cEQpfTRdkRUR
+ PEQpZSRcacRoQGncGHhhxHxMYEBgYHHcGGBoGGhEKWV4XbGx5EQpDThdCaFITbEtQQV5YGUd6X
+ 2lAa3hTfl5Ie3xZU0tuTktifxEKWFwXGQQaBB8SBRsaBBscHwQYGAQYHxoQGx4aHxoRCl5ZF0J
+ YTQFMEQpNXBcdGBwRCkxaF2loZV1BXREKTEYXY01rEQpDWhcbGQQbGxsEGx8EGxMSEQpCXhcbE
+ QpZRRcZEQpFSRcbEQpFZhcbEQpCRhdlGXBoSEdoYUcSehEKQkcXbWBdHmxuXX1yehMRCkJcFxs
+ RCkJLF25rXXBPRVhJTUUFEQpCSRd6Wx9HTBxcQ2hbXBEKQkUXek9taFgFW39YTXwRCkJOF3pbH
+ 0dMHFxDaFtcEQpCTBdmaBtOZGReb0JpHxEKQmwXbUcfZRtOYnxYT3MRCkJAF2JEXl9nUklwWhg
+ dEQpCWBdsYh1gTU0eREtISxEKQngXa2FNUlJYSV14QB4RClpYFxsRCnBnF2Bfem8ZZ1wdSH15E
+ BoRCnBoF2xLRHxeTlIFblNHEBoRCnBoF2RSZ0VzT1oeHlt7EB4SEQpwaBdmf2l/SV1iHUxwexA
+ aEQpwaBdoXX5Da0EeHHNsWhAaEQpwaBdpRmNlfF9sZ0tFZRAaEQpwaBdpG0RHQGNpTF9SXxAZG
+ hEKcGgXb1kaQGsafG1EWGgQGhEKcGgXYGdPE3wZTUNrbBwQGhEKcH8XY0VbBRgcbEJaTHsQGx4
+ RCnBfF25MaXoaWntrTH96EAcbEhEKcH0XY0kBTGQTbE1pUh4QGhEKcH0XaW96X2AcaG9lXnsQG
+ hEKcH0Xa21vGRNIW2EbZkcQGhEKcH0XYGtocmdMf0F/bkIQGhEKcH0XYGVwRwFHaVttZ0MQGhE
+ KcH0XbGtyRH8feQFyYBIQGhEKcH0XZ09fSVkfXh1BbUAQGhEKcH0Xa1xFR0ZQS35MYU4QGhEKc
+ H0XYk4eGVNYR2JGQEIQGhEKcH0XbmVuX2MbcGZGUFgQGhEKcH0XY30bYX0ecBISRVkQGhEKcGw
+ XYgVAXltobQFBckYQGB4RCm1+FxoRClhNF0sR
+X-Authority-Info: v=2.4 cv=Q57fIo2a c=1 sm=1 tr=0 ts=6a786b04 b=1
+ cx=c_apl:c_pps a=zE/DDdO9HuazNnhWthjppw==:117 a=zE/DDdO9HuazNnhWthjppw==:17
+ a=Sv0fKeRqtYgA:10 a=djPo9VM-N2oA:10 a=eYfgnkKj-fMA:10 a=ZKS8Kw3IVw4A:10
+ a=g8TUdU_LZmEA:10 a=r77TgQKjGQsHNAKrUKIA:9 a=6eRUuU5XAAAA:8 a=HHGDD-5mAAAA:8
+ a=DaMyKB7cilVow8W0eH0A:9 a=eX5ijQWavG8LYhCh:21 a=3ZKOabzyN94A:10
+ a=QEXdDO2ut3YA:10 a=pj0szM6hAAAA:8 a=nxCB09-KAAAA:8 a=vOBds45XAAAA:8
+ a=sczdfvx6AAAA:8 a=SSmOFEACAAAA:8 a=3g80flMcAAAA:8 a=9E5Z0ilCdyazIA0xEXgA:9
+ a=SFh4N4V2ho_uO4ut:21 a=gKO2Hq4RSVkA:10 a=frz4AuCg-hUA:10 a=_W_S_7VecoQA:10
+ a=wV5OLaK4SeUvgb2ma2Kq:22 a=_wQptUBN1NRyDuxeoxGm:22 a=FNVtxEddtvD5lV4A_L-9:22
+ a=UivmOvdtk12qcaUGkqQ_:22 a=optMUodCbv_xEcM_j-ao:22 a=3urWGuTZa-U-TZ_dHwj2:22
+ a=5yU3S35YU4bGjq-dph-N:22 a=Bho9c0fBagfJEIQBS7DQ:22 cc=ntf
+X-Proofpoint-GUID: hBx9Fazktr3mPuCjARyTtbQVsyaDdaHU
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwODA5MDEwNiBTYWx0ZWRfX78SeQ0Ls/fqk
+ 1CZWMdvNKL68mxonXk/aILW61kAOh8vrPYsPNPkStrEs5AnyjBAx43jOVYsVnFzsl53Zn9y/2BX
+ vkEKaP1lW05je7+msGLxA7m7RxCSf5x5Znu+Zb+BrwjgSvMvVDvwHQKqXAo2+RgyMnlyHgEc6rv
+ l9eIHKrJ2FyvC3aoF0FSlwVr6NTmdMxbSzRWsP9X5mCjU2ZCBhA8/8xPfqVK9z6N1z23GQ5OtAh
+ xN7rclTkKc8AcSf6m8K4s6LnbAjh6RrAP4Y6wq9fPbY4FsIwNBfAv3EDghoFG+jxOkSqYLevxg+
+ Y/JvX928D++WwIVzmkt55kOqH0jt/YmtLXT3YP8YfzIAgc+QE6IeWOnP6HyenhxWZa0yGfAmPkB
+ uU/aB4KcjE1vzycJSSSx/yKmeGEo5/2wczcNrRExpvWM3yKuEg/442aHPmJ6eQsgwpcBPO24
+X-Proofpoint-ORIG-GUID: hBx9Fazktr3mPuCjARyTtbQVsyaDdaHU
+X-JNJ: AAAAAAABbi9s5oFiiCMSgCrFuwKkk2BECv81Lw3Q4YxdSNRTwYeG6EMH6mx0CH6UiDpmHZkDyhkAIHC0JxDmtz7BPnVMpoVPJmwHneFFJvbns/9Vh4dFOtiIWXczCIM50CgH4e1pnLgG6U77zFCQz9gcjx6+t85JNKMk6vtfERi8LXCU8QQwzZYl22rJLi42OD9sbvgPCnB+o59hoEmxx/U4FQkQGa2FIy9wSX24yi5Kec6C9pSdsfKEkadnulDskYtANggRWQ2DKs/u1FAj8IVFpP18SgbUY3Bdoplq+MvqiMvflpF7P6VWdtHX3y8ZmEU7AXlO2ufzGxvra1bCPHXzaPuY0nJA6U8rFEMIosV5hE01uVbD1sCAtwNJmD6YGGclUeSR96zrSq3/KK0mWL5ckdImGB7PaVk/SpGOBre8d+QNvxGNdrL1QQDhNneFNNTKI/ozD/t16ZBuu/Q1veg5xHCBsHmBtlsCttqU503RBqAvm84myxOuB/YpHvDfECDwqhVOHZ1Iw2K7yV9Sh2cjlb0RqhJQ6PLEHJgXKGNBcIQlyTVb744c1ANHtHmgmItrbnzm5YdA2BsUrSYx8kKkMYZzv9lTa1/M0HzP8vyF2/XHBpSusoLiXNJ+R9wNPoX/4G5aIwUz6akjle7/Oif5ceaw1hfTcBX2q8vlq9+ujL0UepGI/5PnBs8c7hnnw9ZGkA2oTS1gHYqIJwmWMl2rUfGjbzCWc+jH+jYhW9Ot9klad7xXRqyDFvIHKcq5EDDossE9O5E0SDpVVr+EiYprtguzyg==
+
+This is a multi-part message in MIME format.
+
+--ou7UD0vGcj6G=_?:
+Content-Type: text/plain;
+	charset="utf-8"
+Content-Transfer-Encoding: 8bit
+
+
+
+
+
+
+
+Mijn Hertz Reservering 
+ Problemen met weergeven?
+  
+https://click.emails.hertz.com/?qs=ABB7InYiOjEsImQiOjQ5NjN9AAcAAAAABQmB8zqJ4M9EcN4YH94Jqhjn8t6cDFW15_3s-I6s1-21p_Mj6wO7C_S87xwBCWdLapCdOXKo23uAGsCmNPm5LWgMKkyYBoc6K2cvbT01Xg-g_w 
+
+ Bekijk in browser
+  
+
+https://click.emails.hertz.com/?qs=ABB7InYiOjEsImQiOjQ5NjN9AAcAAAAABQmB8zqKJwdsvWfOMuy2dnk92u_q61X5hYXKnJqL4a4y-hYS3AXG3flNhBXEHRS2VQS2fblp0HS2LmGSGNzsN8w7scNfe3cn4ZVFfQNyWlAOIw 
+
+ 
+ 
+ 
+
+ Bevestigingsnummer
+ 
+
+https://click.emails.hertz.com/?qs=ABB7InYiOjEsImQiOjQ5NjN9AAcAAAAABQmB8zqLSTb4Gca6oUy1_hUAaParLUu86HdueAQSpQMX8hG6LPRVvPW8ruQMQRRAteLkjL48QkvcEmaEls24WuJ7epv9PTqPo8iawBGyH3tQOg 
+L675E46C0C7
+
+
+ 
+ 
+ 
+ Hallo,
+ Duco Wiertsema!
+ 
+ 
+
+ 
+ Bedankt voor je reservering bij Hertz. We hopen dat je geniet van een fijne huurervaring. Hieronder staan jouw reserveringsgegevens.
+ 
+ 
+
+ 
+ 
+https://click.emails.hertz.com/?qs=ABB7InYiOjEsImQiOjQ5NjN9AAcAAAAABQmB8zqMDWAYPt_G6MVFcBYi79nPY-gdQ4J03Mu50835XPNz-wsQ1OSE4yls3WezZvX6Dz2jV5RBfD7zH52I-7mNxREA-qsc7FxwlONrZHlrTQ 
+
+ Mijn gehuurde auto wijzigen of annuleren
+  
+
+
+ 
+ 
+
+ (P6) Polestar 4 
+ 
+ of gelijksoortig 
+ 
+ 
+
+
+ Reisplan
+ 
+
+ OPHAALLOCATIE
+ 
+
+ Oporto Airport
+ 
+
+ Francisco Sa Carneiro 
+
+ 
+ Oporto,
+ 
+ PT
+ 4470-588
+ +351 21 942 6300
+ 
+ 
+
+
+ OPHAALDATUM & -TIJD
+ 
+
+ zo, sep 06, 2026, 3:00 p.m.
+ 
+
+ Openingstijden
+ 
+
+ Mo-Su 0600-2400
+ 
+ 
+ 
+
+
+ Inleverlocatie
+ 
+
+ Lisbon Airport
+ 
+ 
+
+ Gen Humberto Delgado Airport
+
+ 
+ Lisbon,
+ 
+ PT
+ 1700-111
+ +351 21 942 6300
+ 
+ 
+ 
+
+
+ INLEVERDATUM & -TIJD
+ 
+di, sep 15, 2026, 3:00 p.m.
+
+ Openingstijden
+ 
+
+ Mo-Su 0600-2400
+ 
+ 
+ 
+ 
+
+https://click.emails.hertz.com/?qs=ABB7InYiOjEsImQiOjQ5NjN9AAcAAAAABQmB8zqNIbKD7iymi2mtQ8lE0p--bhjOefF0ZUTJCuiUYqho_W1rpTLyoM-jOpynC9pBz_XUNAUCSkHCOc5jZFMdq4dqhXtaKcyu-Xr6sD3-UA 
+
+  
+ Mijn gehuurde auto wijzigen of annuleren
+  
+
+
+ 
+ 
+
+
+  
+ 
+ Graag deze documenten meenemen bij het ophalen:
+ 
+
+
+ Rijbewijs
+ 
+
+
+ Credit Card
+ 
+
+ 
+ Paspoort (of ID)
+ 
+
+ 
+ 
+
+
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+
+
+ Tijd besparen tijdens het ophalen
+ 
+ 
+ https://click.emails.hertz.com/?qs=ABB7InYiOjEsImQiOjQ5NjN9AAcAAAAABQmB8zqO1FduW91ZJDXhzEBB4fG4ZDcjlbgazq3nypTnhzDbIRzIR6McKWrg8AjTovO_r4AKXkEyo137T44r6YrcWREAAUP3cL6RhzlgPgCVWQ 
+
+ Nu inchecken
+ 
+ 
+ 
+ 
+
+
+ 
+
+ 
+ 
+ 
+
+ Totaal
+  
+ 
+ 460.15 EUR
+ 
+
+
+
+
+ (P6) Polestar 4 
+ 
+ of gelijksoortig 
+ 
+ 
+ <span style="font-size: 16px; font-weight: normal; color: #434244;">203.64 EUR</span><br><span class="mobileFontSize-12px">1 Week 203.64 EUR</span><br><span style="font-size: 16px; font-weight: normal; color: #434244;">57.00 EUR</span><br><span class="mobileFontSize-12px">2 Extra Day 28.50 EUR per Extr</span><br>
+ 
+
+
+ <tr><td style="width: 100%; padding-bottom: 30px; font-family: Open Sans, Arial, Helvetica, sans-serif;"><table align="center" cellspacing="0" cellpadding="0" style="width: 100%;"><tr><td style="width: 50%; text-align: left; font-size: 20px; font-weight: normal; color: #434244;"><span class="mobileFontSize-18px">Theft Protection</span></td><td align="right" style="width: 50%; text-align: right; font-size: 16px; font-weight: normal; color:#000000;"><span>18.00 EUR</span></td></tr><tr><td style="width: 100%; text-align: left; font-size: 14px; font-weight: normal;"></td></tr></table></td></tr><tr><td style="width: 100%; padding-bottom: 30px; font-family: Open Sans, Arial, Helvetica, sans-serif;"><table align="center" cellspacing="0" cellpadding="0" style="width: 100%;"><tr><td style="width: 50%; text-align: left; font-size: 20px; font-weight: normal; color: #434244;"><span class="mobileFontSize-18px">COLLISION DAMAGE WAIVER</span></td>
+<td align="right" style="width: 50%; text-align: right; font-size: 16px; font-weight: normal; color:#000000;"><span>18.00 EUR</span></td></tr><tr><td style="width: 100%; text-align: left; font-size: 14px; font-weight: normal;"></td></tr></table></td></tr>
+ 
+ 
+ Subtotaal
+ 
+
+ 260.64 EUR
+ 
+
+ 
+ 
+ 
+ Korting
+ 
+
+ AF KLM NL AMEX PLATINUM CARD<br>
+ 
+ 
+
+ <tr><td valign="middle" style="width: 100%; text-align: left; padding-bottom: 10px; font-family: Open Sans, Arial, Helvetica, sans-serif; font-size: 16px; font-weight: bold; color: #434244;">Inbegrepen</td></tr><tr><td valign="middle" style="width: 100%; text-align: left; padding-bottom: 30px; font-family: Open Sans, Arial, Helvetica, sans-serif; font-size: 16px; font-weight: normal; color: #434244;">UNLIMITED kms per WEEK.</td></tr>
+ 
+ 
+ <td valign="middle" style="width: 50%; text-align: left; padding-right: 3px; font-family: Open Sans, Arial, Helvetica, sans-serif; font-size: 16px; font-weight: bold; color: #434244;">Kosten en toeslagen</td><td valign="middle" style="width: 50%; text-align: left; padding-left: 3px; border-left: 3px solid #EEEEEE;"><span style="font-family: Open Sans, Arial, Helvetica, sans-serif; font-size: 14px; font-weight: normal; color: #355AD8;">
+ 
+ </span></td>
+ 
+
+
+ <tr><td align="left" style="padding-bottom: 30px; width: 50%; text-align: left; font-family: Open Sans, Arial, Helvetica, sans-serif; font-size: 16px; font-weight: normal; color: #434244;">ROAD TAX FEE</td><td valign="top" align="right" style="text-align: right; padding-bottom: 30px; font-family: Open Sans, Arial, sans-serif; font-size: 16px;color:#444242">31.50 EUR</td></tr><tr><td align="left" style="padding-bottom: 30px; width: 50%; text-align: left; font-family: Open Sans, Arial, Helvetica, sans-serif; font-size: 16px; font-weight: normal; color: #434244;">LOCATION SERVICE CHARGE</td><td valign="top" align="right" style="text-align: right; padding-bottom: 30px; font-family: Open Sans, Arial, sans-serif; font-size: 16px;color:#444242">45.94 EUR</td></tr>
+ 
+ 
+ Belastingen
+ 
+
+
+ Omzetbelasting
+ 
+ 86.05 EUR
+ 
+
+ 
+ 
+ 
+ 
+
+ 
+ 
+
+ Te betalen bij het ophalen van de huurauto:
+ 
+  460.15 EUR
+ 
+
+  460.15 EUR
+ 
+
+
+ 
+ 
+ 
+ 
+
+
+ 
+ 
+
+ 
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Opmerking:
+ 
+ Er kunnen verschillen zijn tussen de bedragen van de kosten en de totalen. De totaalbedragen zijn correct.
+ 
+
+ 
+ 
+ 
+ 
+ HUURVOORWAARDEN EN CONDITIES
+ 
+
+
+  
+ <tr><td style="font-family: Open Sans, Arial, sans-serif; font-weight: normal; text-align: left; font-size: 11px; color: #808285;"><span class="mobileFontSize-11px"></span></td></tr>
+ 
+ 
+ <table class="mobileFontSize-11px" cellpadding="0" cellspacing="0" style="font-family: Open Sans, Arial, sans-serif; font-size: 11px; color:#808285;"><tr><td style=" text-align:left; font-weight:bold;"><span>Portugal - New Motorway Tolls Hertz cars rented from pickup locations in Portugal are fitted with electronic devices for paying the motor way tolls.<br><br>The options and method of payment of Portuguese road tolls will be described to you when you collect your vehicle.</span></td></tr></table>
+ 
+
+  
+ 
+https://click.emails.hertz.com/?qs=ABB7InYiOjEsImQiOjQ5NjN9AAcAAAAABQmB8zqPfGBtXYegYy9jza7YASgfKYHXNp-8H8Rmuz88ggBMkpMZHRw-RssvV6N-mbdZPqTDPnJl5mzoKQQWaZRMPuccagFJyO4G6u4ZCGcP9A 
+
+
+ lidmaatschapsnummer:
+ 63246793
+
+ 
+ 
+ 
+ 
+
+
+ 
+ 
+ https://click.emails.hertz.com/?qs=ABB7InYiOjEsImQiOjQ5NjN9AAcAAAAABQmB8zqQ_70UrhYi49F1qfa5XUbriR1TjII-t3igRvVjRQWnOM0GWyuLp-pIW_R10G5r4QJWPLq8fBWxYfQWPYqNGsA1JiWa3uFmzMVlTu7l9g 
+
+https://click.emails.hertz.com/?qs=ABB7InYiOjEsImQiOjQ5NjN9AAcAAAAABQmB8zqR2_tvFwhSa4Zh3Eydfw6gRZ6iofFK4zAaM9nWpUAFqF7OaBZwtlHrOx3XQsqSxmU_E5oLVP3n2e0FoB0ha-hn4KiDZM-3r5LStpdHjQ 
+
+https://click.emails.hertz.com/?qs=ABB7InYiOjEsImQiOjQ5NjN9AAcAAAAABQmB8zqSGhAZJkvYsM8IgOEnTp-g74xHvsPt9a_rP5xYH30n1jhVrmNSWqDA_2pyH96c5WNCnaSSWzUG09GJJq60Y8n-wWrU2eXCR-6VBJcaZQ 
+
+https://click.emails.hertz.com/?qs=ABB7InYiOjEsImQiOjQ5NjN9AAcAAAAABQmB8zqTohUM7kG0oNQAjD2c7AqMaXryelYG9fErH766-1dVSfMMXh_tTqBKJ3uK03CQG9zMC_3v-ll__-tO_IK29rcyfOJiSAv6XBI3Wvzlvg 
+
+
+ 
+ 
+
+
+ This message was sent to dwiertsema@me.com. Dit elektronische bericht bevat vertrouwelijke informatie die alleen bestemd is voor gebruik door de genoemde persoon of entiteit. Indien de lezer van dit bericht niet de beoogde ontvanger is, wordt de lezer er hierbij van in kennis gesteld dat elke verspreiding, distributie, kopie of ander gebruik van dit bericht strikt verboden is en wordt hij/zij hierbij geïnstrueerd deze kopie van dit bericht te retourneren of te vernietigen.
+ 
+
+ ©2026 The Hertz Corporation. All rights reserved
+8501 Williams Rd
+Estero, FL 33928 U.S.A
+ 
+
+
+
+--ou7UD0vGcj6G=_?:
+Content-Type: text/html;
+	charset="utf-8"
+Content-Transfer-Encoding: 8bit
+
+
+
+
+
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml"       xmlns:o="urn:schemas-microsoft-com:office:office">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="text/html; charset=UTF-8">
+    <title>Mijn Hertz Reservering</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400;1,600&display=swap');
+    </style>
+    <style type="text/css"> 
+      .your-vehicle-confirmaiton-car-img {
+        width: 152px !important;
+        height: auto !important;
+        max-width: 152px !important;
+      }
+      a:visited {
+        color: #000000;
+      }
+      .Extras {
+        display: block;
+      }
+      .NoShowRules tr:nth-of-type(odd) {
+        background-color: #F5F5F5;
+      }
+      @media only screen and (min-width: 481px){
+        .deskTop-hidden{
+          display: none !important;
+        }
+      }
+      @media only screen and (max-width: 480px) {
+        .w100P {
+          width:100% !important;
+        }
+        .fltResponsiveTd {
+          width: 100% !important;
+          display: block !important;
+          border: none !important;
+          padding-right: 0px !important;
+        }
+        .fltPaddingTop {
+          padding-top: 16px !important;
+        }
+        .JoinLink{
+          width: 70% !important;
+          padding-right: 0px !important;
+        }
+        .Total{
+          padding-right: 10px !important;
+          width: 50% !important;
+        }
+        .alignLT {
+          text-align: left !important;
+        }
+        .left-section{
+          width: 40% !important;
+        }
+        .middle-section{
+          width: 10% !important;
+        }
+        .right-section{
+          width: 40% !important;
+        }
+        .mobile-hidden {
+          display: none !important;
+        }
+        .noLTRTPadding {
+          padding-left: 0px !important;
+          padding-right: 0px !important;
+        }
+        .addBTPadding {
+          padding-bottom: 20px !important;
+        }
+        .noPadding {
+          padding: 0px !important;
+        }
+        .responsive-td {
+          width: 100% !important;
+          display: block !important;
+          border: none !important;
+        }
+        .l-t {
+          padding-bottom: 20px;
+          border-bottom: 3px solid #EEEEEE;
+        }
+        .addTPPadding {
+          padding-top: 10px !important;
+        }
+        span, td {
+          font-size: 14px !important;
+        }
+        .mobileFontSize-22px {
+          font-size: 22px !important;
+        }
+        .mobileFontSize-38px {
+          font-size: 38px !important;
+        }
+        .mobileFontSize-18px {
+          font-size: 18px !important;
+        }
+        .mobileFontSize-11px {
+          font-size: 11px !important;
+        }
+        .mobileFontSize-12px {
+          font-size: 12px !important;
+        }
+        .mobileLineHeight-18px {
+          line-height: 18px !important;
+        }
+      }
+    </style>
+    <!--[if mso]> <style type="text/css"> .mso-addLtPadding { padding-left: 20px !important; } </style> <![endif]--> 
+    <!--[if mso]> <style type="text/css"> .no-mso-Padding { padding: 0px !important; } </style> <![endif]--> 
+    <!--[if mso]> <style type="text/css"> body, table, td, a, span {font-family: Arial, Helvetica, sans-serif !important;} </style> <![endif]-->
+  </head>
+  <body bgcolor="#ffffff" text="#000000" style="background-color: #F5F5F5; color: #000000; padding: 0px; -webkit-text-size-adjust:none; font-size: 16px; font-family:arial,helvetica,sans-serif;">
+    <img src="https://beacon.krxd.net/1x1_usermatch.gif?partner=L8Pijb6F_sfmc_7257663_sha256&partner_uid=d5b7d8682d51b9983215dc5abdc54bd267e84157add58434b7f4a31fe8740c8f" width=0 height=0 style="display:none" /> 
+<img src="https://beacon.krxd.net/1x1_usermatch.gif?partner=L8Pijb6F_sfmc_7257663_subid&partner_uid=250971239" width=0 height=0 style="display:none" /> 
+<img src="https://beacon.krxd.net/1x1_ad_impression.gif?confid=s6iu815js&advertiserid=7257663&campaignid=GENERAL_RES_CONFIRMATION_v70.5" width=0 height=0 style="display:none;" />
+    <img src="https://click.emails.hertz.com/open.aspx?BUB5T67ZJ7OEZIVQ5DXJCEYGWQ.70252&d=70252&bmt=0" width="1" height="1" alt="">
+    <img alt="Confirmation" width="1" height="1" border="0" style="display: none;"          src="https://438-ct.c3tag.com/c3metrics-438.js?c3_type=2&c3_transaction=L675E46C0C7&account_id=L675E46C0C7" />
+    <div align="center">
+      <table class="stylingblock-content-wrapper" cellspacing="0" cellpadding="0" background="#F5F5F5" role="presentation" style="background-color: #F5F5F5; width:100%; min-width: 100%;">
+        <tr>
+          <td>
+            <table style="border-spacing:0;font-family: 'Open Sans', Arial, sans-serif; color:#58595b;width:100%;font-size: 16px;text-align:left;">
+              <tr>
+                <td align="center">
+                  <table cellpadding="0" cellspacing="0" align="center" class="w100P" style="width: 700; max-width: 700px;">
+                    <tr>
+                      <td align="center">
+                        <table cellspacing="0" cellpadding="0" align="right" width="100%">
+                          <tr align="right">
+                            <td align="center">
+                              <table cellspacing="0" cellpadding="0" border="0" align="center" style="width: 100%;">
+                                <tr>
+                                  <td align="center" class="mobile-hidden" style="padding-bottom: 20px;">
+                                    <table cellspacing="0" cellpadding="0" width="100%">
+                                      <tr>
+                                        <td align="right">
+                                          <span style="font-family: 'Ride', Arial, Helvetica, sans-serif; font-size: 11px;"><span style="color: #808285;">                   
+                                            Problemen met weergeven?
+                                            </span>&nbsp;<a  href="https://click.emails.hertz.com/?qs=ABB7InYiOjEsImQiOjQ5NjN9AAcAAAAABQmB8zp-XEg8WgcYj4uBOFRFaCr-yLQ9R5cjxZlLUrFA_insopbeRaAGR8GsHG4_l02XLtNr8wFUsU_boXKPOS7VFAwW943tkbSGnC78-qDXUQ" title="View in Browser" style="color: #434244; text-decoration: underline; font-weight: bold;">
+                                            Bekijk in browser
+                                            </a>
+                                          </span>
+                                        </td>
+                                      </tr>
+                                    </table>
+                                  </td>
+                                </tr>
+                              </table>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td style="width: 100%; padding-top: 10px; padding-left: 15px; padding-right: 15px; padding-bottom: 20px;">
+                              <table cellspacing="0" cellpadding="0" border="0" align="center" style="width: 100%;">
+                                <!-- HEADER -->
+                                <tr>
+                                  <td class="header">
+                                    <table cellspacing="0" cellpadding="0" class="no-pad" style="border-collapse: collapse; width: 100%;">
+                                      <tr>
+                                        <!-- HERTZ LOGO -->
+                                        <td align="left">
+                                          <table>
+                                            <tr>
+                                              <td>
+                                                <a  title="Hertz" href="https://click.emails.hertz.com/?qs=ABB7InYiOjEsImQiOjQ5NjN9AAcAAAAABQmB8zp_LP0XSW81GfXqLHSPKlW6UdbjA8TuCQVqn0rOTL8ooNMS5WAXHuiCQgUyfcg6bw5txclZvUJ26cGQprqJeGBiMPU2wWo3obj6PDewqQ" target="_blank">
+                                                  <img src="http://image.emails.hertz.com/lib/fe8e1372736d057876/m/1/3669fa11-b344-4c62-b7f2-62dc4f0ecd6f.png" alt="Hertz" height="40" width="115" style="border: none; display: block; outline: 0;">
+                                                  
+                                                  
+                                                </a>
+                                              </td>
+                                            </tr>
+                                          </table>
+                                        </td>
+                                        <!--HEADER.R INFO -->
+                                        <td align="right">
+                                          <table cellspacing="0" cellpadding="0" class="no-pad" style="border-collapse: collapse;">
+                                            <tr>
+                                              <td height="38" width="12" style="display: block; outline: 0; padding-right: 10px;">
+                                                <img alt="header seperator" src="https://image.emails.hertz.com/lib/fe8b13727063027b76/m/4/3689cca7-3086-4b3b-8dc2-ebf7ec95d7cb.png" height="38" width="12" style="display: block; outline: 0; padding-right: 10px;">
+                                              </td>
+                                              <td align="right" style="text-align: right;">
+                                                <table cellspacing="0" cellpadding="0" class="no-pad" style="border-collapse: collapse;">
+                                                  <tr>
+                                                    <td align="right" style="padding-bottom: 2px; text-align: right; color: #808285; font-family: 'Open Sans', Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; text-transform: uppercase;">
+                                                      <span class="mobileFontSize-12px">
+                                                        Bevestigingsnummer
+                                                      </span>
+                                                    </td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td align="right" style="text-align: right; color: #434244; font-family: 'Open Sans', Arial, Helvetica, sans-serif; font-size: 18px; font-weight: bold; text-decoration: none;">
+                                                      <span class="mobileFontSize-16px" style="text-align: right; color: #434244; font-family: 'Open Sans', Arial, Helvetica, sans-serif; font-size: 18px; font-weight: bold; text-decoration: none;">
+                                                        <a target="_blank" href="https://click.emails.hertz.com/?qs=ABB7InYiOjEsImQiOjQ5NjN9AAcAAAAABQmB8zqAWPr_SEGHBfjPQY_w_2ll8DMF0BVTcVFcuJtdq4WdHgYLxmm1mVGaFpMZfl7V0xPpCQ2mRX4oPRynWKU316XBtb1sl1wgxqQYVadEHA"  title="topResNumber" alt="topResNumber" style="text-decoration: none; color:#000000;"><b>L675E46C0C7</b></a>
+                                                      </span>
+                                                    </td>
+                                                  </tr>
+                                                </table>
+                                              </td>
+                                            </tr>
+                                          </table>
+                                        </td>
+                                      </tr>
+                                    </table>
+                                  </td>
+                                </tr>
+                              </table>
+                            </td>
+                          </tr>
+                        </table>                        
+                      </td>
+                    </tr>
+                    <tr>
+                      <td align="center" style="border-top: 4px solid #FFCC00;">
+                        <table cellpadding="0" cellspacing="0" align="center" style="width: 100%; max-width: 700px;">
+                          
+                          
+                          <tr align="center">
+                            <td style="padding-bottom: 20px">
+                              <table cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" style="background-color: #FFFFFF; width: 100%;border-bottom: solid 4px #FFCC00;">
+                                <tr>
+                                  <td class="container content-sub" style="padding: 30px;">
+                                    <table cellspacing="0" cellpadding="0" width="100%;">
+                                      <tr>
+                                        <th class="responsive-td no-mso-Padding noPadding" valign="top" style="padding-right: 20px; padding-bottom: 3px; border-right: 3px solid #EEEEEE; width: 50%; font-weight: normal;">
+                                          <table cellpadding="0" cellspacing="0" style="width: 100%;">
+                                            <!-- Greeting -->
+                                            <tr>
+                                              <td align="left" style="padding-bottom: 20px;">
+                                                <span class="mobileFontSize-22px" style="color: #434244; font-family: 'Open Sans', Arial, Helvetica, sans-serif; font-size: 24px; padding-bottom: 20px;">
+                                                  Hallo,
+                                                  Duco&nbsp;Wiertsema!
+                                                  
+                                                </span>
+                                              </td>
+                                            </tr>
+                                            <!-- MESSAGE START -->
+                                            <tr>
+                                              <td align="left" class="content-sub" style="padding-bottom: 20px;">
+                                                <span class="mobileLineHeight-18px" style="font-family: 'Open Sans', Arial, Helvetica, sans-serif; line-height: 24px; font-size: 16px; color: #434244;">
+                                                  
+                                                  Bedankt voor je reservering bij Hertz. We hopen dat je geniet van een fijne huurervaring. Hieronder staan jouw reserveringsgegevens.
+                                                  
+                                                </span>
+                                              </td>
+                                            </tr>
+                                            
+                                            <!-- Modify Rental Button [commented out for button move test. Button placed in the Itinerary section ]-->
+                                            <tr>
+                                              <td align="left" style="padding-bottom: 20px;">
+                                                <span class="data-info mobileFontSize-14px">
+                                                  <a  title="Modify Rental" alt="Modify Rental" href="https://click.emails.hertz.com/?qs=ABB7InYiOjEsImQiOjQ5NjN9AAcAAAAABQmB8zqBSH4fmtTY7KrrJZ1Bdqca3j-lX56IRP03lYuZSqwCsA0mYywP21DHkapMXC-LRqj6koDJXhiAwzQhB3ydqo1X4vFAi16tQ7Wc7TL0KQ" target="_blank" style="font-family:'Open Sans', Arial, Helvetica, sans-serif; color: #355AD8; text-decoration: none; font-weight: normal;">
+                                                    Mijn gehuurde auto wijzigen of annuleren
+                                                  </a>
+                                                </span>
+                                              </td>
+                                            </tr>
+                                          </table>
+                                        </th>
+                                        <!-- Right -->
+                                        <th class="responsive-td noPadding" valign="bottom" style="padding-left: 30px; padding-bottom: 3px; font-weight: normal;">
+                                          <table cellpadding="0" cellspacing="0" width="100%">
+                                            <!-- Car image -->
+                                            <tr>
+                                              <td align="left" valign="middle" style="padding-bottom: 20px;">
+                                                <table cellpadding="0" cellspacing="0" style="width: 100%;">
+                                                  <tr>
+                                                    <td valgin="middle" align="center">
+                                                      <img src="https://www.hertz.com/content/dam/hertz/pt/vehicles/PFAC.rendition.vlarge.png" alt="" width="260" hieght="150" style="display: block;">
+                                                    </td>
+                                                  </tr>
+                                                </table>
+                                              </td>
+                                            </tr>
+                                            <tr>
+                                              <td align="left" valign="middle" style="width: 100%;">
+                                                <span class="mobileFontSize-18px" style="font-family: 'Open Sans', Arial, Helvetica, sans-serif; font-size: 20px; font-weight: normal; color: #434244;">
+                                                  
+                                                </span>
+                                              </td>
+                                            </tr>
+                                            <tr>
+                                              <td align="left" valign="middle" style="width: 100%;">
+                                                <span class="mobileFontSize-12px" style="font-family: 'Open Sans', Arial, Helvetica, sans-serif; font-size: 14px; font-weight: normal; color: #434244;">
+                                                  (P6) Polestar 4 
+                                                  
+                                                  of gelijksoortig 
+                                                  
+                                                </span>
+                                              </td>
+                                            </tr>
+                                          </table>
+                                        </th>
+                                      </tr>
+                                    </table>
+                                  </td>
+                                </tr>
+                              </table>
+                            </td>
+                          </tr>
+                          <!-- MAP IMAGE-->
+                          <tr>
+                            <td>
+                              <img alt="location" width="700" src="https://image.s7.sfmc-content.com/lib/fe8f13727261067871/m/1/514972c3-6217-43fd-9bf6-cb13bb7ee5a4.png" style="display: block; max-width: 700px; outline: 0; width: 100%; height: auto;">
+                            </td>
+                          </tr>
+                          <!-- INFO -->
+                          <tr align="center">
+                            <td style="padding-bottom: 15px;">
+                              <table bgcolor="#FFFFFF" style="background-color: #FFFFFF; width: 100%;">
+                                <tr>
+                                  <td style="padding-left: 30px; padding-top: 30px; padding-right: 30px;">
+                                    <table bgcolor="#FFFFFF" style="background-color: #FFFFFF; width: 100%;">
+                                      <!-- HEADING -->
+                                      <tr>
+                                        <td style="font-size: 24px; padding-bottom: 20px;">
+                                          <span class="mobileFontSize-22px" style="color: #434244; font-family: 'Open Sans', Arial, Helvetica, sans-serif;">
+                                            Reisplan
+                                          </span>
+                                        </td>
+                                      </tr>
+                                    </table>
+                                    <!-- TRIP INFORMATION -->
+                                    <table bgcolor="#FFFFFF" style="background-color: #FFFFFF; width: 100%;">
+                                      <tr>
+                                        <!-- LEFT -->                                  
+                                        <td class="left-section noLTRTPadding" style="width: 50%; padding-right: 10px;">
+                                          <table cellpadding="0" cellspacing="0" style="width: 100%;">     
+                                            <tr>
+                                              <!-- PICKUP LOCATION -->   
+                                              <td style="padding-bottom: 20px;">
+                                                <table cellpadding="0" cellspacing="0" style="width: 100%;">
+                                                  <tr>
+                                                    <td>
+                                                      <span style="color: #808285; font-family: 'Open Sans', Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; text-transform: uppercase;">
+                                                        OPHAALLOCATIE
+                                                      </span>
+                                                      <br>
+                                                      <span style="color: #434244; font-family: 'Open Sans', Arial, Helvetica, sans-serif; font-size: 16px; font-weight: bold; text-decoration: none;">
+                                                        Oporto Airport
+                                                      </span>
+                                                    </td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td>
+                                                      <span style="color: #434244; font-family: 'Open Sans', Arial, Helvetica, sans-serif; font-size: 16px; font-weight: bold; text-decoration: none;">
+                                                        Francisco Sa Carneiro <br>
+                                                        
+                                                        Oporto,
+                                                        
+                                                        PT
+                                                        4470-588
+                                                        <br>+351 21 942 6300
+                                                        
+                                                      </span>
+                                                    </td>
+                                                  </tr>
+                                                </table>
+                                              </td>
+                                            </tr>
+                                            <tr>
+                                              <!-- PICKUP DATETIME -->
+                                              <td style="padding-bottom: 20px;">
+                                                <span style="color: #808285; font-family: 'Open Sans', Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; text-transform: uppercase;">
+                                                  OPHAALDATUM & -TIJD
+                                                </span>
+                                                <br>
+                                                <span style="color: #434244; font-family: 'Open Sans', Arial, Helvetica, sans-serif; font-size: 16px; font-weight: bold; text-decoration: none;">
+                                                  zo, sep 06, 2026, 3:00 p.m.
+                                                </span>
+                                              </td>
+                                            </tr>
+                                            <tr>
+                                              <!-- PICKUP LOCATION HOURS -->
+                                              <td style="padding-bottom: 20px;">
+                                                <span style="color: #808285; font-family: 'Open Sans', Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; text-transform: uppercase;">
+                                                  Openingstijden
+                                                </span>
+                                                <br>
+                                                <span style="color: #434244; font-family: 'Open Sans', Arial, Helvetica, sans-serif; font-size: 16px; font-weight: bold; text-decoration: none;text-transform: none;">
+                                                  Mo-Su 0600-2400
+                                                </span>
+                                              </td>
+                                              
+                                            </tr>
+                                          </table>
+                                        </td>
+                                        <td class="middle-section noLTRTPadding" style="width: 0%">
+                                          <table cellpadding="0" cellspacing="0" style="width: 100%;">
+                                            <tr>
+                                              <td>
+                                                <!--Empty-->
+                                              </td>
+                                            </tr>
+                                          </table>
+                                        </td>
+                                        <!-- RIGHT -->
+                                        <td class="right-section noLTRTPadding" style="width: 50%; padding-left: 10px;">
+                                          <table cellpadding="0" cellspacing="0" style="width: 100%;">
+                                            <tr>
+                                              <!-- DROP OFF LOCATION -->
+                                              <td style="padding-bottom: 20px;">
+                                                <table cellpadding="0" cellspacing="0" style="width: 100%;">
+                                                  <tr>
+                                                    <td>
+                                                      <span style="color: #808285; font-family: 'Open Sans', Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; text-transform: uppercase;">
+                                                        Inleverlocatie
+                                                      </span>
+                                                      <br>
+                                                      <span style="color: #434244; font-family: 'Open Sans', Arial, Helvetica, sans-serif; font-size: 16px; font-weight: bold; text-decoration: none;">
+                                                        Lisbon Airport
+                                                        
+                                                      </span>
+                                                    </td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td>
+                                                      <span style="color: #434244; font-family: 'Open Sans', Arial, Helvetica, sans-serif; font-size: 16px; font-weight: bold; text-decoration: none;">
+                                                        Gen Humberto Delgado Airport<br>
+                                                        
+                                                        Lisbon,
+                                                        
+                                                        PT
+                                                        1700-111
+                                                        <br>+351 21 942 6300
+                                                        
+                                                        
+                                                      </span>
+                                                    </td>
+                                                  </tr>                                    
+                                                </table>
+                                              </td>
+                                            </tr>
+                                            <tr>
+                                              <!-- DROP-OFF DATETIME -->
+                                              <td style="padding-bottom: 20px;">
+                                                <span style="color: #808285; font-family: 'Open Sans', Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; text-transform: uppercase;">
+                                                  INLEVERDATUM & -TIJD
+                                                </span>
+                                                <br>
+                                                <span style="color: #434244; font-family: 'Open Sans', Arial, Helvetica, sans-serif; font-size: 16px; font-weight: bold; text-decoration: none; text-transform: none;">di, sep 15, 2026, 3:00 p.m.</span>
+                                              </td>
+                                            </tr>
+                                            <tr>
+                                              <!-- DROP-OFF LOCATION HOURS -->
+                                              <td style="padding-bottom: 20px;">
+                                                <span style="color: #808285; font-family: 'Open Sans', Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; text-transform: uppercase;">
+                                                  Openingstijden
+                                                </span>
+                                                <br>
+                                                <span style="color: #434244; font-family: 'Open Sans', Arial, Helvetica, sans-serif; font-size: 16px; font-weight: bold; text-decoration: none; text-transform: none;">
+                                                  Mo-Su 0600-2400
+                                                  
+                                                </span>
+                                              </td>
+                                              
+                                            </tr>
+                                          </table>
+                                        </td>
+                                      </tr>
+                                    </table>
+                                  </td>
+                                </tr>
+                                <!-- Modify Rental Button -->
+                                <tr>
+                                  <td align="left">
+                                    <table cellpadding="0" cellspacing="0">
+                                      <tr>
+                                        <td style="padding-left: 31px;padding-bottom:10px;">  
+                                          <span class="data-info mobileFontSize-14px">
+                                            <a  title="ModifyCancel" alt="ModifyCancel" href="https://click.emails.hertz.com/?qs=ABB7InYiOjEsImQiOjQ5NjN9AAcAAAAABQmB8zqCAJg2k4LLrZ_SSmQehSccSbHvyqVIUq7veAFTVwSJPho6L4kraV814pboTpTwbGE6cy-l16DkOocBPisQ7lw1v4xYK48R3cY5tQdWOg" target="_blank" style="font-family:'Open Sans', Arial, Helvetica, sans-serif; color: #355AD8; text-decoration: none; font-weight: normal;">
+                                                
+                                              Mijn gehuurde auto wijzigen of annuleren
+                                            </a>
+                                          </span>
+                                        </td>
+                                      </tr>
+                                    </table>
+                                  </td>
+                                </tr>
+                                <!--   <tr> <td align="left"> <table cellpadding="0" cellspacing="0"> <tr> <td style="padding-left: 31px;"> <a alias="ReserveAnotherButton" href="https://www.hertz.com/nl/nl/location?utm_source=sfmc&utm_term=&utm_content=70525&utm_id=e3bc670f-4338-4aff-80c1-751116c1ba61&sfmc_activityid=3142d6da-409f-4f72-84c2-00ee95616a33&utm_medium=email"  style="display: block; width: 100%; font-family:'Open Sans', Arial, Helvetica, sans-serif; color: #355AD8; text-decoration: none; font-weight: normal;"> Maak een nieuwe reservering </a> </td> </tr> </table> </td> </tr> -->
+                                <tr>
+                                  <td style="width: 100%; padding-left: 30px; padding-bottom: 30px; padding-right: 30px;">
+                                    
+                                  </td>
+                                </tr>
+                              </table>
+                            </td>
+                          </tr>
+                            
+                          
+                          <tr>
+                            <td>
+                              <!-- IMPORTANT DOCUMENTS SECTION -->
+                              <table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper">
+                                <tr>
+                                  <td class="stylingblock-content-wrapper camarker-inner">
+                                    <!---->
+                                    <!-- DOCUMENTS REMINDER -->
+                                    <table cellpadding="0" cellspacing="0" width="100%">
+                                      <tr align="center">
+                                        <td style="padding-bottom: 20px">
+                                          <table cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" style="background-color: #FFFFFF; width: 100%; border-top: solid 4px #FFCC00">
+                                            <tr>
+                                              <td class="container content-sub" style="padding: 30px;">
+                                                <table cellspacing="0" cellpadding="0" width="100%;">
+                                                  <tr>
+                                                    <!-- LEFT -->
+                                                    <td class="id-icons" style="width: 100%; display: block; ">
+                                                      <table cellpadding="0" cellspacing="0" style="width: 100%;">
+                                                        <tr>
+                                                          <td align="center" style="padding-bottom: 15px;"  >
+                                                            <span class="data-info mobileFontSize-16px" style="color: #434244; font-family: 'Open Sans', Arial, Helvetica, sans-serif; font-size: 18px; font-weight: bold;">Graag deze documenten meenemen bij het ophalen:
+                                                            </span>
+                                                          </td>
+                                                        </tr>
+                                                      </table>
+                                                    </td>
+                                                    <!-- RIGHT -->
+                                                    <td class="id-icons" style="width: 100%; display: block; ">
+                                                      <table cellpadding="0" cellspacing="0" width="100%">
+                                                        <tr>
+                                                          <td>
+                                                            <table cellpading="0" cellspacing="0" width="100%">
+                                                              <tr>
+                                                                <!-- LICENSE -->
+                                                                <td class="id-icons"  align="center" width="20%">
+                                                                  <table cellpading="0" cellspacing="0">
+                                                                    <tr>
+                                                                      <td align="center">
+                                                                        <img alt="License" src="https://image.emails.hertz.com/lib/fe8b13727063027b76/m/1/de55d07e-e756-42a8-aa77-5e5af219dfb0.png" height="40" width="57" style="display: block;">
+                                                                      </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                      <td align="center" style="padding-top: 5px;">
+                                                                        <span class="mobileFontSize-10px" style="color: #808285; font-family: 'Open Sans', Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; text-transform: uppercase;">
+                                                                          Rijbewijs
+                                                                        </span>
+                                                                      </td>
+                                                                    </tr>
+                                                                  </table>
+                                                                </td>
+                                                                <!-- CREDIT CARD -->
+                                                                <td class="id-icons"  align="center" width="20%">
+                                                                  <table cellpading="0" cellspacing="0">
+                                                                    <tr>
+                                                                      <td align="center">
+                                                                        <img alt="Credit Card" src="https://image.emails.hertz.com/lib/fe8b13727063027b76/m/1/ba9f4934-31c0-4c5a-b6c2-559755c76539.png" height="40" width="57" style="display: block;">
+                                                                      </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                      <td align="center" style="padding-top: 5px;">
+                                                                        <span class="mobileFontSize-10px" style="color: #808285; font-family: 'Open Sans', Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; text-transform: uppercase;">
+                                                                          Credit Card
+                                                                        </span>
+                                                                      </td>
+                                                                    </tr>
+                                                                  </table>
+                                                                </td>
+                                                                <!-- PASSPORT -->
+                                                                
+                                                                <td class="id-icons"  align="center" width="20%">
+                                                                  <table cellpading="0" cellspacing="0">
+                                                                    <tr>
+                                                                      <td align="center">
+                                                                        <img alt="Passport" src="https://image.emails.hertz.com/lib/fe8b13727063027b76/m/1/ff77f25a-216b-4e63-824b-b0e566f62432.png" height="auto" width="40" style="display: block;">
+                                                                      </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                      <td align="center" style="padding-top: 5px;">
+                                                                        <span class="mobileFontSize-10px" style="color: #808285; font-family: 'Open Sans', Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; text-transform: uppercase;">
+                                                                          Paspoort (of ID)
+                                                                        </span>
+                                                                      </td>
+                                                                    </tr>
+                                                                  </table>
+                                                                </td>
+                                                                
+                                                              </tr>
+                                                            </table>
+                                                          </td>
+                                                        </tr>
+                                                      </table>
+                                                    </td>
+                                                  </tr>
+                                                </table>
+                                              </td>
+                                            </tr>
+                                          </table>
+                                        </td>
+                                      </tr>
+                                    </table>
+                                  </td>
+                                </tr>
+                              </table>
+                              <!-- IMPORTANT DOCUMENTS SECTION END -->   
+                            </td>
+                          </tr>
+                          
+                          
+                        </table>
+                      </td>
+                    </tr>
+                    <!--Flight Banner-->
+                    
+                    <!--Flight Banner END-->
+                    <!-- ConRAC Location Alert Content STARTS-->
+                    
+                    <!-- ConRAC Location Alert Content ENDS-->
+                    <!-- NonUS International WebCheckIn -->
+                    <tr>
+                      <td align="center" style="padding-bottom: 20px;">
+                        <table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner">
+<table cellpadding="0" cellspacing="0" width="100%">
+  <tr>
+    <td style="width: 100%; text-align: center; background-color: #FFFFFF;">
+      <table align="center" border="0" cellpadding="0" cellspacing="0" style="font-family: 'Open Sans', Arial, Helvetica, sans-serif; font-size: 11px; margin:0 auto;border-top: 4px solid #FFCC00;" width="100%">
+
+        <tr>
+          <td align="center" style="padding-top: 24px; padding-left: 24px; padding-right: 24px; padding-bottom: 24px; width: 100%;">
+            <table align="center" cellpadding="0" cellspacing="0" width="100%">
+              <tr>
+                <td valign="middle" style="width: 5%; padding-right: 10px;">
+                  <table valign="middle" align="left" cellpadding="0" cellspacing="0" width="100%">
+                    <tr>
+                      <td align="left" style="padding-left: 0px; width: 41px; height: auto;">
+                        <img alt="Web Check-in" height="40" src="https://image.emails.hertz.com/lib/fe8b13727063027b76/m/6/9e121e41-9fcc-464f-8655-9713c6fe9f2f.png" style="max-width: 41px; height: auto;">
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+                <td style="width: 95%;">
+                  <table valign="middle" cellpadding="0" cellspacing="0" width="100%">
+                    <tr>
+                      <th class="responsive-td" align="left" valign="middle" style="padding-left: 0px; padding-right: 16px; width: 70%;">
+                        <span style="font-size: 16px; font-family: 'Open Sans', Arial, sans-serif; line-height: 18px; font-weight: bold; color:#00000;">
+                          Tijd besparen tijdens het ophalen
+                          
+                        </span>
+                      </th>
+                      <th class="responsive-td addTPPadding" align="center" style="padding-left: 0px; padding-right: 0px; width: 30%;">
+                        <table align="center" cellpadding="0" cellspacing="0" width="100%">
+                          <tr>
+                            <td align="center" style="width: 30%;  background-color: #FFCC00;  border-radius: 25px;">
+                              <a  title="CheckInNow" alt="CheckInNow" href="https://click.emails.hertz.com/?qs=ABB7InYiOjEsImQiOjQ5NjN9AAcAAAAABQmB8zqDOc_8gktTecG0n9iPXCIeuQg4PrnoHnwNTlvGMsqDnfIeMVlSjKRVuHZ7PnIU8PGWSIXr4f6zrTqFx0e69FVjWCfIAXSVP9HRzSU-iQ" id="CheckInNow" style="display: block; font-size: 16px; font-family: 'Open Sans', Arial, Helvetica, sans-serif; line-height: 18px; font-weight: bold; text-decoration: none; color:#000000; background-color: #00000; padding: 15px; width: auto; border-radius: 5px; mso-padding-alt: 0; text-underline-color: #FFCC00;" target="_blank">
+                                <!--[if mso]><span style="margin: 0px; padding: 0px; mso-padding-alt: 20px; border: 1px solid #FFCC00;"><![endif]-->
+                                Nu inchecken
+                                
+                                <!--[if mso]></span><![endif]-->
+                              </a>
+                              
+                            </td>
+                          </tr>
+                        </table>
+                      </th>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table></td></tr></table>
+                      </td>
+                    </tr>
+                    
+                    <!-- NonUS International WebCheckIn End -->
+                    <tr>
+                      <td align="center" style="padding-bottom: 20px;">
+                        <table cellpadding="0" cellspacing="0" align="center" style="width: 100%; max-width: 700px; background-color: #FFFFFF;border-top: solid 4px #FFCC00">
+                          <tr>
+                            <td align="center" style="padding-top: 30px;">
+                              <table cellpadding="0" cellspacing="0" style="width: 100%;">
+                                <tr>
+                                  <td align="center" style="padding-left: 30px; padding-right: 30px;">
+                                    <table cellpadding="0" cellspacing="0" style="width: 100%;">
+                                      <tr>
+                                        <td align="left" colspan="2">
+                                          <span class="mobileFontSize-22px" style="color: #434244; font-family: 'Open Sans', Arial, Helvetica, sans-serif; font-size: 24px; padding-bottom: 0px;">
+                                          </span>
+                                        </td>  
+                                      </tr> 
+                                      <tr>
+                                        <td style=" padding-bottom: 30px; border-bottom: 3px solid #EEEEEE;">
+                                          <table cellpadding="0" cellspacing="0" align="center" style="width: 100%;">   
+                                            <tr>
+                                              <!--Print Total Title Left-->
+                                              <!--Double Check This Logic-->
+                                              <td valign="top" style="padding-right:20px; width: 50%; text-align: left;">
+                                                <span class="mobileFontSize-38px" style="font-family: 'Open Sans', Arial, Helvetica, sans-serif; font-size: 40px; font-weight: bold; color: #434244;">
+                                                  Totaal
+                                                </span>
+                                              </td>&nbsp;
+                                              <!--Print Total's Value and Currency Type Right-->
+                                              <td valign="top" style="width: 50%; text-align: right;">
+                                                <span class="mobileFontSize-38px" style="font-family: 'Open Sans', Arial, Helvetica, sans-serif; font-size: 40px; font-weight: bold; color: #434244;">
+                                                  460.15&nbsp;EUR
+                                                </span>
+                                              </td>
+                                            </tr>
+                                          </table>
+                                          <table cellpadding="0" cellspacing="0" align="center" style="width: 100%;">      
+                                            <tr>
+                                              <td colspan="2" style=" text-align: right;">
+                                                <span style="font-family: 'Open Sans', Arial, Helvetica, sans-serif; font-size: 16px; font-weight: bold; color: #434244;"><em></em></span> 
+                                              </td>  
+                                            </tr> 
+                                          </table>  
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td style="padding-top: 30px;">
+                                          <table cellpadding="0" cellspacing="0" align="center" style="width: 100%;">
+                                            <tr>
+                                              <!--Display Car/Vehicle Description Info Left-->
+                                              <td style="width: 100%; text-align: left;">
+                                                <table cellpadding="0" cellspacing="0" align="left" style="width: 100%; padding-bottom: 30px;">
+                                                  <tr>
+                                                    <td style="width: 50%;">
+                                                      <span style="font-family: 'Open Sans', Arial, Helvetica, sans-serif; font-size: 20px; font-weight: normal; color: #434244;"></span>
+                                                      <br>
+                                                      <span style="font-family: 'Open Sans', Arial, Helvetica, sans-serif; font-size: 16px; font-weight: normal; color: #434244;">
+                                                        (P6) Polestar 4 
+                                                        
+                                                        of gelijksoortig 
+                                                        
+                                                      </span>
+                                                    </td>
+                                                    <td style="width: 50%; text-align: right; text-transform:uppercase; font-family: 'Open Sans', Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; color: #808285;">
+                                                      <span style="font-size: 16px; font-weight: normal; color: #434244;">203.64&nbsp;EUR</span><br><span class="mobileFontSize-12px">1&nbsp;Week&nbsp;203.64&nbsp;EUR</span><br><span style="font-size: 16px; font-weight: normal; color: #434244;">57.00&nbsp;EUR</span><br><span class="mobileFontSize-12px">2&nbsp;Extra Day&nbsp;28.50&nbsp;EUR&nbsp;per&nbsp;Extr</span><br>
+                                                    </td>
+                                                  </tr>
+                                                </table>
+                                              </td>
+                                            </tr>
+                                            <tr><td style="width: 100%; padding-bottom: 30px; font-family: Open Sans, Arial, Helvetica, sans-serif;"><table align="center" cellspacing="0" cellpadding="0" style="width: 100%;"><tr><td style="width: 50%; text-align: left; font-size: 20px; font-weight: normal; color: #434244;"><span class="mobileFontSize-18px">Theft Protection</span></td><td align="right" style="width: 50%; text-align: right; font-size: 16px; font-weight: normal; color:#000000;"><span>18.00&nbsp;EUR</span></td></tr><tr><td style="width: 100%; text-align: left; font-size: 14px; font-weight: normal;"></td></tr></table></td></tr><tr><td style="width: 100%; padding-bottom: 30px; font-family: Open Sans, Arial, Helvetica, sans-serif;"><table align="center" cellspacing="0" cellpadding="0" style="width: 100%;"><tr><td style="width: 50%; text-align: left; font-size: 20px; font-weight: normal; color: #434244;">
+<span class="mobileFontSize-18px">COLLISION DAMAGE WAIVER</span></td><td align="right" style="width: 50%; text-align: right; font-size: 16px; font-weight: normal; color:#000000;"><span>18.00&nbsp;EUR</span></td></tr><tr><td style="width: 100%; text-align: left; font-size: 14px; font-weight: normal;"></td></tr></table></td></tr>
+                                            
+                                          </table>
+                                          <!-- Subtotal -->
+                                          <table cellpadding="0" cellspacing="0" align="center" style="width: 100%; border-top: 3px solid #EEEEEE;">
+                                            <tr>
+                                              <!--Subtotal Label Left-->
+                                              <!--Needs Dialect Ampscript Variable Name Here-->
+                                              <td style="width: 50%; text-align: left; padding-top: 30px; padding-bottom: 30px;">
+                                                <span style="font-family: 'Open Sans', Arial, Helvetica, sans-serif; font-size: 16px; font-weight: bold; color: #434244;">
+                                                  Subtotaal
+                                                </span>
+                                                <br>
+                                              </td>
+                                              <!--Subtotal of Rate Section -->
+                                              <td style="width: 50%; text-align: right; padding-top: 30px; padding-bottom: 30px;">
+                                                <span style="font-family: 'Open Sans', Arial, Helvetica, sans-serif; font-size: 16px; font-weight: bold; color: #434244;">
+                                                  260.64&nbsp;EUR
+                                                </span>
+                                              </td>
+                                              <!--Print The New Subtotal Variable That Only Contains The Rental Details Prices (Pay Now)-->
+                                              <!--Hide If With The Correct If Statements For Pay Now-->
+                                            </tr>
+                                          </table>
+                                          <!-- Discounts -->
+                                          
+                                          
+                                          <table cellpadding="0" cellspacing="0" align="center" width="100%">
+                                            <tr>
+                                              <td style="padding-bottom: 30px; width: 100%">
+                                                <table cellpadding="0" cellspacing="0" style="width: 100%;">
+                                                  <tr>
+                                                    <!--Discount Label Printed Left-->
+                                                    <!--Double Check This Dialect And Make Sure There Is No Alternative-->
+                                                    <td valign="top" style="width: 50%; text-align: left;">
+                                                      <span style="font-family: 'Open Sans', Arial, Helvetica, sans-serif; font-size: 16px; font-weight: normal; color: #434244;">
+                                                        Korting
+                                                      </span>
+                                                      <br>
+                                                    </td>
+                                                    <!--Discount Code Printed Right-->
+                                                    <td style="width: 50%; text-align: right;">
+                                                      <span style="font-family: 'Open Sans', Arial, Helvetica, sans-serif; font-size: 16px; font-weight: normal; color: #434244;">
+                                                        AF KLM NL AMEX PLATINUM CARD<br>
+                                                      </span>
+                                                    </td>
+                                                  </tr>
+                                                </table>
+                                              </td>
+                                            </tr>
+                                          </table>
+                                          
+                                          
+                                          <table cellspacing="0" cellpadding="0" align="center" width="100%">
+                                            <tr>
+                                              <td style="padding-bottom: 30px; border-top: 3px solid #EEEEEE; width: 100%;">
+                                              </td>
+                                            </tr>
+                                          </table>
+                                          <table cellpadding="0" cellspacing="0" align="center" style="width: 100%;">
+                                            <tr><td valign="middle" style="width: 100%; text-align: left; padding-bottom: 10px; font-family: Open Sans, Arial, Helvetica, sans-serif; font-size: 16px; font-weight: bold; color: #434244;">Inbegrepen</td></tr><tr><td valign="middle" style="width: 100%; text-align: left; padding-bottom: 30px; font-family: Open Sans, Arial, Helvetica, sans-serif; font-size: 16px; font-weight: normal; color: #434244;">UNLIMITED kms per WEEK.</td></tr>
+                                          </table>
+                                          
+                                          <!--Fees and Surcharges-->
+                                          <table cellpadding="0" cellspacing="0" align="center" style="width: 100%;">
+                                            <tr>
+                                              <td style="padding-bottom: 30px;">
+                                                <table cellpadding="0" cellspacing="0" align="left">
+                                                  <tr>
+                                                    <td valign="middle" style="width: 50%; text-align: left; padding-right: 3px; font-family: Open Sans, Arial, Helvetica, sans-serif; font-size: 16px; font-weight: bold; color: #434244;">Kosten en toeslagen</td><td valign="middle" style="width: 50%; text-align: left; padding-left: 3px; border-left: 3px solid #EEEEEE;"><span style="font-family: Open Sans, Arial, Helvetica, sans-serif; font-size: 14px; font-weight: normal; color: #355AD8;">
+                                                    
+                                                    </span></td>
+                                                  </tr>
+                                                </table>
+                                              </td>
+                                            </tr>
+                                          </table>
+                                          <table cellpadding="0" cellspacing="0" align="center" style="width: 100%;">
+                                            <tr><td align="left" style="padding-bottom: 30px; width: 50%; text-align: left; font-family: Open Sans, Arial, Helvetica, sans-serif; font-size: 16px; font-weight: normal; color: #434244;">ROAD TAX FEE</td><td valign="top" align="right" style="text-align: right; padding-bottom: 30px; font-family: Open Sans, Arial, sans-serif; font-size: 16px;color:#444242">31.50&nbsp;EUR</td></tr><tr><td align="left" style="padding-bottom: 30px; width: 50%; text-align: left; font-family: Open Sans, Arial, Helvetica, sans-serif; font-size: 16px; font-weight: normal; color: #434244;">LOCATION SERVICE CHARGE</td><td valign="top" align="right" style="text-align: right; padding-bottom: 30px; font-family: Open Sans, Arial, sans-serif; font-size: 16px;color:#444242">45.94&nbsp;EUR</td></tr>
+                                          </table>
+                                          
+                                          <table cellpadding="0" cellspacing="0" align="center" style="width: 100%;">
+                                            <tr>
+                                              <td style="width: 50%; text-align: left;">
+                                                <table cellpadding="0" cellspacing="0" align="left">
+                                                  <tr>
+                                                    <td valign="middle" style="padding-bottom: 10px; font-family: 'Open Sans', Arial, Helvetica, sans-serif; font-size: 16px; font-weight: bold; color: #434244;">
+                                                      Belastingen
+                                                    </td>
+                                                  </tr>
+                                                </table>
+                                              </td>
+                                            </tr>
+                                            <tr>
+                                              <!--Needs Dialect Ampscript Variable Name Here-->
+                                              <td style="width: 50%; text-align: left; padding-bottom: 30px;">
+                                                <span style="font-family: 'Open Sans', Arial, Helvetica, sans-serif; font-size: 16px; font-weight: normal; color: #434244;">
+                                                  Omzetbelasting
+                                                </span>
+                                              </td>
+                                              <!--Sales Tax Price Right-->
+                                              <!--Double Check This Logic (Important)-->
+                                              <td style="width: 50%; text-align: right; padding-bottom: 30px;">
+                                                <span style="font-family: 'Open Sans', Arial, Helvetica, sans-serif; font-size: 16px; font-weight: normal; color: #434244;">
+                                                  86.05&nbsp;EUR
+                                                </span>
+                                              </td>
+                                            </tr>
+                                          </table>
+                                          
+                                          <table cellpadding="0" cellspacing="0" align="center" style="width: 100%; border-top: 3px solid #EEEEEE;">
+                                            
+                                            <tr>
+                                              <td style="width: 50%; text-align: left; padding-top: 30px; padding-bottom: 30px;">
+                                                <table cellpadding="0" cellspacing="0" align="left">
+                                                  <tr>
+                                                    <!--Credit Card Dynamic Content Block Path: Shared Content\Emails\Hertz\Content Blocks\CreditCardContentBlock -->
+                                                    
+  
+
+                                                    
+                                                  </tr>
+                                                </table>
+                                              </td>
+                                              <!--Replace The Above Credit Card Info With This Section (Pay Later)-->
+                                              <!--Use If Statement Logic-->
+                                              <td style="width: 50%; text-align: right; padding-top: 30px; padding-bottom: 30px;">
+                                                <table width="100%" cellpadding="0" cellspacing="0">
+                                                  <tr>
+                                                    <td align="right" style="width: 70%;">
+                                                      <span style="font-family: Open sans, Arial, Helvetica, sans-serif; font-size: 16px; font-weight: bold; color: #DC143C;">
+                                                        Te betalen bij het ophalen van de huurauto:
+                                                      </span>
+                                                    </td>
+                                                    <td class="mobile-hidden" align="right" style="width: 30%;">
+                                                      <span style="font-family: Open Sans, Arial, Helvetica, sans-serif; font-size: 16px; font-weight: bold; color: #DC143C;">
+                                                        &nbsp;460.15&nbsp;EUR
+                                                      </span>
+                                                    </td>
+                                                  </tr>
+                                                  <tr>
+                                                    <!--[if !mso]><!-->
+                                                    <td class="deskTop-hidden" align="right" style="width: 30%;">
+                                                      <span style="font-family: Open Sans, Arial, Helvetica, sans-serif; font-size: 16px; font-weight: bold; color: #DC143C;">
+                                                        &nbsp;460.15&nbsp;EUR
+                                                      </span>
+                                                    </td>
+                                                    <!--<![endif]-->
+                                                  </tr>
+                                                </table>
+                                              </td>
+                                            </tr>
+                                            
+                                          </table>
+                                          
+                                        </td>
+                                      </tr>
+                                    </table>
+                                  </td>
+                                </tr>
+                              </table>
+                            </td>
+                          </tr>
+                          <!-- Pay Later Half -->
+                          
+                        </table>
+                      </td>
+                    </tr>
+                    <!--Personal Insurance Capture Banner-->
+                    
+
+
+                    <!--Personal Insurance Capture Banner END-->
+                    
+                    <!-- FPO AND TESLA BANNER    -->
+                    
+                    <!-- Terms and Conditions -->
+                    <tr>
+                      <td style="padding-top: 20px; padding-left: 5px; padding-right: 5px;">
+                        <table cellpadding="0" cellspacing="0" align="center" style="width: 100%; max-width: 700px">
+                          <!--EV_OR_ICE_WARNING-->
+                          
+                          
+                          
+                          <tr>
+                            <td style="padding-bottom: 10px;">
+                              <span class="mobileFontSize-11px" style="line-height: 13px; text-transform: uppercase; font-family: 'Open Sans', Arial, Helvetica, sans-serif; font-size: 11px; font-weight: bold; color: #808285">
+                                Opmerking:
+                              </span>
+                              <span class="mobileFontSize-11px" style="line-height: 13px; font-family: 'Open Sans', Arial, Helvetica, sans-serif; font-size: 11px; color: #808285">
+                                Er kunnen verschillen zijn tussen de bedragen van de kosten en de totalen. De totaalbedragen zijn correct.
+                              </span>
+                            </td>
+                          </tr>
+                          
+                          <tr>
+                            <td style="border-top: 3px solid #EEEEEE;">
+                              <table cellpadding="0" cellspacing="0" width="100%">
+                                
+                                <tr>
+                                  <td style="font-family: 'Open Sans', Arial, sans-serif; font-weight:bold; padding-top:30px; text-align:left; font-size: 11px;  color:#808285; width: 100%;">                
+                                    <span class="mobileFontSize-11px">
+                                      HUURVOORWAARDEN EN CONDITIES
+                                    </span>
+                                  </td>
+                                </tr>
+                              </table>
+                            </td>
+                          </tr>
+                                                        
+                          <tr><td style="font-family: Open Sans, Arial, sans-serif; font-weight: normal; text-align: left; font-size: 11px; color: #808285;"><span class="mobileFontSize-11px"></span></td></tr>
+                          <tr>
+                            <td style="font-family: 'Open Sans', Arial, sans-serif; font-weight: normal; padding-top: 15px; padding-bottom: 30px; text-align:left;font-size: 11px;color:#808285;">
+                              
+                              <table class="mobileFontSize-11px" cellpadding="0" cellspacing="0" style="font-family: Open Sans, Arial, sans-serif; font-size: 11px; color:#808285;"><tr><td style=" text-align:left; font-weight:bold;"><span>Portugal - New Motorway Tolls Hertz cars rented from pickup locations in Portugal are fitted with electronic devices for paying the motor way tolls.<br><br>The options and method of payment of Portuguese road tolls will be described to you when you collect your vehicle.</span></td></tr></table>
+                            </td>
+                          </tr>
+                           
+                          <!-- Footer -->
+                          <tr>
+                            <td align="center" style="padding-bottom: 20px; padding-top: 20px; border-top: 3px solid #eeeeee; ">
+                              <table cellpadding="0" cellspacing="0" style="width: 100%;">
+                                <tr>
+                                  <td valign="middle" style="width: 40%; padding-right: 3px; padding-bottom: 10px;">
+                                    <table cellpadding="0" cellspacing="0" width="100%" style="min-width: 100%;">
+                                      <tr>
+                                        <td>
+                                          <table width="100%" cellspacing="0" cellpadding="0">
+                                            <tr>
+                                              <td align="left">
+                                                <table cellpadding="0" cellspacing="0">
+                                                  <tr>
+                                                    <td>
+                                                      <a  href="https://click.emails.hertz.com/?qs=ABB7InYiOjEsImQiOjQ5NjN9AAcAAAAABQmB8zqE2QQZWEArUEUqugxStvjPO8WPcCNkgCIuUpr2Vex-3m72LPfv7HAmR205g63O_DKQgWxFj_NB2utUr77aSXg2Mf42ef35Heu0cDlBrQ" target="_blank" title="Hertz" data-linkto="https://"><img data-assetid="21270" src="https://image.emails.hertz.com/lib/fe8b13727063027b76/m/4/a09aaa5c-2766-43d6-8dde-3807a694057a.png" alt="Hertz" height="25" width="75" style="display: block; padding: 0px; text-align: left; height: 25px; width: 75px; border: 0px"></a>
+                                                    </td>
+                                                  </tr>
+                                                </table>
+                                              </td>
+                                              <td>
+                                                <table style="width: 100%;" cellspacing="0" cellpadding="0">
+                                                  <tr>
+                                                    <td style="text-align: right; font-family: 'Open Sans', Arial, Helvetica, sans-serif;  font-size: 12px; font-weight: normal; color: #808285; text-transform: uppercase;">
+                                                      <span class="mobileFontSize-12px">
+                                                        lidmaatschapsnummer:
+                                                      </span>
+                                                      <span class="mobileFontSize-12px" style="font-weight: bold;  color: #434244;">63246793</span>
+                                                    </td>
+                                                  </tr>
+                                                  <!-- Come back to implement this after release. Loyalty Tier is within Program membership -->
+                                                  <!-- <tr> <td style="text-align: right; font-family: 'Open Sans', Arial, Helvetica, sans-serif;  font-size: 12px; font-weight: normal; color: #808285;"> <span>Loyaliteitsniveau:</span> <span style="font-weight: bold; color: #434244;">President's Circle</span> </td> </tr> -->
+                                                </table>
+                                              </td>
+                                              
+                                              
+                                              
+                                            </tr>
+                                          </table>
+                                        </td>
+                                      </tr>
+                                    </table>
+                                  </td>
+                                </tr>
+                              </table>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td align="left" style="border-bottom: 3px solid #eeeeee;">
+                              <table cellpadding="0" cellspacing="0">
+                                <tr>
+                                  
+                                  
+                                  <td class="responsive-td" style="text-align: left; padding-bottom: 10px;">
+                                    <table cellpadding="0" cellspacing="0">
+                                      <tr>
+                                        <td width="25%" style="-webkit-text-size-adjust: none; padding: 0px 20px 0px 0px">
+                                          <a  title="Facebook" href="https://click.emails.hertz.com/?qs=ABB7InYiOjEsImQiOjQ5NjN9AAcAAAAABQmB8zqFweeOch6BwhCf82rU96XsezmexJUx7pQNP2akn5vurLtmFXgNIHvZpr5E0KJe34EPiWeBoZ-1XwOAZWY8Y-QgwXYMgnBWkGQ2HtSXWQ" style="-webkit-text-size-adjust: none; border-radius: 3px; color: #034ea2; text-decoration: underline" target="_blank">
+                                            <img alt="Facebook" border="0" height="26" src="https://image.emails.hertz.com/lib/fe8b13727063027b76/m/4/13745df2-328d-458a-99c8-d7e92c3af517.png" style="border: 0; display: inline-block; border: none; height: 26px; width: auto">
+                                          </a>
+                                        </td>
+                                        <td align="center" width="25%" style="-webkit-text-size-adjust: none; padding: 0px 20px 0px 0px">
+                                          <a  title="Twitter" href="https://click.emails.hertz.com/?qs=ABB7InYiOjEsImQiOjQ5NjN9AAcAAAAABQmB8zqG6_a4-ZrBEUKINvIh98K3zIocHpEQ59SLTbc8NC-kEmj2Uvy8U-QnpyJmbCW9YWM7f07xiP6aJOwovlR4g0nHPRwyoYquohQ2L1rzcQ" style="-webkit-text-size-adjust: none; border-radius: 3px; color: #034ea2; text-decoration: underline" target="_blank">
+                                            <img alt="Twitter" border="0" height="26" src="https://image.emails.thrifty.com/lib/fe8913727063027b70/m/1/b7082ab2-398a-4232-8e1e-0e260c0ee3d9.png" style="border: 0; display: inline-block; border: none; height: 26px; width: auto">
+                                          </a>
+                                        </td>
+                                        <td align="center" width="25%" style="-webkit-text-size-adjust: none; padding: 0px 20px 0px 0px">
+                                          <a  title="Instagram" href="https://click.emails.hertz.com/?qs=ABB7InYiOjEsImQiOjQ5NjN9AAcAAAAABQmB8zqHe1Dp9_Sc_GCZ3ZyZjuaPRWffT6nnvNsaEBHWa9jC7-KpojpzpNeNNg1SvMrtkyLNSyW3smWcFY-nmE60gEEo5RWAGxA3fRI3sb6PpA" style="-webkit-text-size-adjust: none; border-radius: 3px; color: #034ea2; text-decoration: underline" target="_blank">
+                                            <img alt="Instagram" border="0" height="26" src="https://image.emails.hertz.com/lib/fe8b13727063027b76/m/4/c3a34fa1-d6a0-4d8a-aaf1-8ea91c83b6ef.png" style="border: 0; display: inline-block; border: none; height: 26px; width: auto">
+                                          </a>
+                                        </td>
+                                        <td align="center" width="25%" style="-webkit-text-size-adjust: none; padding: 0px 0px 0px 0px">
+                                          <a  href="https://click.emails.hertz.com/?qs=ABB7InYiOjEsImQiOjQ5NjN9AAcAAAAABQmB8zqIvKzuX9bNuDgV9AK53z_ee0bpGfWbM-kFmmFavAOohkQ7fzFg4r-1YY19EO0CzA5VpHcFH-Dpeic_0xGLL_eyTPK3m4iRSuWJZHbv-g" style="-webkit-text-size-adjust: none; border-radius: 3px; color: #034ea2; text-decoration: underline" target="_blank">
+                                            <img alt="Youtube" title="Youtube" border="0" height="26" src="https://image.emails.hertz.com/lib/fe8b13727063027b76/m/4/004072f2-2d01-4390-9a38-4ecd971e745c.png" style="border: 0; display: inline-block; border: none; height: 26px; width: auto">
+                                          </a>
+                                        </td>
+                                      </tr>
+                                    </table>
+                                  </td>
+                                  
+                                </tr>
+                              </table>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td style="padding-top: 30px; padding-bottom: 30px;">
+                              <table cellpadding="0" cellspacing="0" style="width: 100%">
+                                <tr>
+                                  <td style="padding-right: 20px">
+                                    <table cellpadding="0" cellspacing="0" style="width: 100%">
+                                      <tr>
+                                        <td align="left" style="padding-bottom: 20px">
+                                          <span class="mobileFontSize-11px" style="line-height: 13px; font-family: 'Open Sans', Arial, Helvetica, sans-serif; font-size: 11px; color: #808285">
+                                            This message was sent to dwiertsema@me.com. Dit elektronische bericht bevat vertrouwelijke informatie die alleen bestemd is voor gebruik door de genoemde persoon of entiteit. Indien de lezer van dit bericht niet de beoogde ontvanger is, wordt de lezer er hierbij van in kennis gesteld dat elke verspreiding, distributie, kopie of ander gebruik van dit bericht strikt verboden is en wordt hij/zij hierbij geïnstrueerd deze kopie van dit bericht te retourneren of te vernietigen.
+                                          </span>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td align="left">
+                                          <span class="mobileFontSize-11px" style="line-height: 13px; font-family: 'Open Sans', Arial, Helvetica, sans-serif; font-size: 11px; color: #808285">
+                                            ©2026 The Hertz Corporation. All rights reserved<br>8501 Williams Rd<br>Estero, FL 33928 U.S.A
+                                          </span>
+                                        </td>
+                                      </tr>
+                                    </table>
+                                  </td>
+                                </tr>
+                              </table>
+                            </td>
+                          </tr>
+                          <!-- End of Footer -->
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <img src="https://click.emails.hertz.com/open.aspx?BUB5T67ZJ7OEZIVQ5DXJCEYGWQ.70252&d=70252&bmt=0" width="1" height="1" alt="">
+  </body>
+</html>
+
+--ou7UD0vGcj6G=_?:--
+

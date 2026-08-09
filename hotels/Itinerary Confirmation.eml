@@ -1,0 +1,275 @@
+Delivered-To: duco.wiertsema@gmail.com
+Received: by 2002:a05:7022:2086:b0:13c:ce06:ee62 with SMTP id u6csp1812261dlu;
+        Sun, 9 Aug 2026 03:25:37 -0700 (PDT)
+X-Received: by 2002:a05:620a:4bc2:b0:92e:e2f4:e652 with SMTP id af79cd13be357-93649160496mr2521358885a.16.1786271136820;
+        Sun, 09 Aug 2026 03:25:36 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1786271136; cv=none;
+        d=google.com; s=arc-20260327;
+        b=q8iUwN7KppEnFAEqcfWLNvIDJHGkgehk6bGeSKppioXqim5A/BD5pBkgfa/oToPZVJ
+         yCBopGmc0eKK8zdVL24UhMGcBdhk+L90BxrsmJVlFtgyu0LxrsBpuSQrPltRi9UuQTYO
+         4kt7OArvxyqORBfMEdltFwt07C+WJplkboDu6gKzmxDyXxjxtYFtm0G7LFln6b5XyWdW
+         b6np7SVqfcn5hf+CYpLe1wNOOFCi94r2uA54nxSRb2h8xQ/4YoHDcxMj8OLuMVmU1Amv
+         jrmcZiQPZzrC24Wpn77tZdro5HCBZYAqu9mnEXCV2ZpDXPAvKP/aFDKYsSRCXtZE75dS
+         YIRg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=dkim-signature:list-unsubscribe-post:list-unsubscribe:message-id
+         :content-transfer-encoding:subject:date:cc:to:from:mime-version
+         :feedback-id;
+        bh=61kB7b4Wk/EuQcLtrzBWkXuXtvJmh/JMMkNixFhPhsU=;
+        fh=b4HYm/VSCGQT3FzEe5QrUJ+vYgt6DC8nNLYn0O3x1vo=;
+        b=W0PaeCMOrPwwznh7e2iKm1aP0eTV8L8DoDg42FaPGXrjqm2jcmyGG8BRO5rdU5/EGA
+         VHxf35X807Oz9nUJLQetE+qPAqc94tP4LFJ3ArwqqPnnj8xwChLA59cWlEljnn+pNJA/
+         sIHvoOadJDhCgat4SWunL9/3Gj7cmSDjkKZjkTpTcRlBHgtCqO1m8eatGjfq4/saJYv9
+         0+92H1svnNvCZymot+zxw+jqPCj2SceECp2RZE4DY7Y7cWPccwNapi2LcCv2+xOPQBJL
+         7Gkl5VrjA/wh5RL8O01uNA99+JkJjyKr9xgGr7kyO+s1LrkYSEG6gu4O58O1o+Ya5XlE
+         R+ng==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@smtpmessage.com header.s=smtpcustomer header.b=pZqjgV0W;
+       spf=pass (google.com: domain of reservation@relaischateaux.com designates 74.91.92.121 as permitted sender) smtp.mailfrom=reservation@relaischateaux.com
+Return-Path: <reservation@relaischateaux.com>
+Received: from mailer121.gate92.rs.smtp.com (mailer121.gate92.rs.smtp.com. [74.91.92.121])
+        by mx.google.com with ESMTPS id af79cd13be357-9366e3b08c2si631130685a.348.2026.08.09.03.25.36
+        for <duco.wiertsema@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 09 Aug 2026 03:25:36 -0700 (PDT)
+Received-SPF: pass (google.com: domain of reservation@relaischateaux.com designates 74.91.92.121 as permitted sender) client-ip=74.91.92.121;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@smtpmessage.com header.s=smtpcustomer header.b=pZqjgV0W;
+       spf=pass (google.com: domain of reservation@relaischateaux.com designates 74.91.92.121 as permitted sender) smtp.mailfrom=reservation@relaischateaux.com
+X-Report-Abuse: SMTP.com is an email service provider. Our abuse team cares
+ about your feedback. Please contact abuse@smtp.com for further investigation.
+Received: from [10.0.16.71] (unknown [10.138.12.189])
+	by mtl-stage5-out3 (Halon) with ESMTP
+	id ee11f453-ce39-4c69-ae6b-dc97c501e08c;
+	Sun, 09 Aug 2026 10:25:36 +0000 (UTC)
+Received: Received from 10.138.12.169 by Caffeine
+ (s0-aws-app2-swarm-manager-1) with SMTP id
+ 02a27647-52cf-42bc-9baf-2b6e93c009bf  for duco.wiertsema@gmail.com;
+  Sun, 09 Aug 2026 10:25:16 +0000 (UTC)
+Feedback-ID: 9200361:SMTPCOM
+Return-Path: <reservation@relaischateaux.com>
+Received: from gcp-prodpci.synxis.com (unknown [34.9.200.15])
+	by s0-aws-app2-mta-in-2 (Halon) with ESMTPSA
+	id 02a27647-52cf-42bc-9baf-2b6e93c009bf;
+	Sun, 09 Aug 2026 10:25:16 +0000 (UTC)
+Received: from hp1nisvrem-0001 (unknown [10.64.8.162])
+	by gcp-prodpci.synxis.com (Postfix) with ESMTP id 87AB46000A7;
+	Sun,  9 Aug 2026 10:25:16 +0000 (UTC)
+MIME-Version: 1.0
+From: "Relais & Chateaux" <reservation@relaischateaux.com>
+To: duco.wiertsema@Gmail.com
+Cc: noreply@relaischateaux.com
+Date: 9 Aug 2026 10:25:16 +0000
+Subject: Itinerary Confirmation
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <20260809102516.87AB46000A7@gcp-prodpci.synxis.com>
+X-SMTPCOM-Sender-ID: 9200361
+X-SMTPCOM-Tracking-Number: 02a27647-52cf-42bc-9baf-2b6e93c009bf
+X-SMTPCOM-Message-ID: 087c6d61-1c72-48a0-bd40-ba5840c9c106
+X-SMTPCOM-Payload: 
+ lNJykzgX1V6sJIROhcHL0qa9MkqZNzXOoDYL9f8qJWiyWgW7J9eW4UCEymk7tn4QWsq21Jj_SbDvb2fYHKTWk7KRAd7Acc1EIHNCvx7sZJ4yJw4kS2E6vBQ9tpuGLlm50JhoHgygl0K2oCPdDq3MWT8P1kxLGTdTWM_dsI08uKEA0kOGyqpgczfjfLsUUldY
+List-Unsubscribe: 
+ <mailto:abuse-pro@smtp.com?subject=MailStop&body=087c6d61-1c72-48a0-bd40-ba5840c9c106_9200361>,
+ <https://s0-api.smtp.com/v4/unsubscribe?mid=087c6d61-1c72-48a0-bd40-ba5840c9c106&sid=9200361>
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=smtpmessage.com;
+ i=@smtpmessage.com; q=dns/txt; s=smtpcustomer; t=1786271128;
+ h=feedback-id : mime-version : from : to : cc : date : subject :
+ content-type : content-transfer-encoding : message-id :
+ list-unsubscribe : list-unsubscribe-post : from : to : cc : date :
+ subject; bh=0GCDOIGXLvrHhCAD0hE0cNZgcyh0uPN6cBwHL/zlCf4=;
+ b=pZqjgV0W/FGChtSOrG5Fja0jKehfMQlJdHp8kJnzqX66Dmanm05CH6OP5TAh+XECHdyd2
+ r6zmW71MLonjoiBzFl7VwEw+U3KX/bOIva2O9C5yKfxLvDBuCMrajwgO9uZMQVW40F3bioF
+ w4muJGCE2Bp0dCnuzlQ7Tj6nPHLpwUahtUdDmOG5lvFqRM4/y6CDBws5yieYiQlqD9VYjQY
+ jgkgHsZj/8fHh33g3dYWJvf4lS9Kga87bz+Rmco3iJup277ptqyFoa2tUsnRJHK87SvSMyG
+ r7lXwr+Ym4HEIi0GtgXXtgN1S3rd6wpUesu8/c6CuqewsjzPUmLInhS5cAJg==
+
+<!doctype html>=0D=0A=0D=0A<html>=0D=0A=0D=0A<head>=0D=0A=0D=0A<t=
+itle>Relais &amp; Ch=C3=A2teaux</title>=0D=0A=0D=0A<meta http-equ=
+iv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8" />=0D=0A=
+=0D=0A</head>=0D=0A=0D=0A<body style=3D"background-color: #f0f0f0=
+;">=0D=0A<table style=3D"background-color: #ffffff;" border=3D"0"=
+ width=3D"630" cellspacing=3D"0" cellpadding=3D"0" align=3D"cente=
+r">=0D=0A<tbody>=0D=0A<tr>=0D=0A<td style=3D"background-color: #f=
+fffff; height: 10px;" colspan=3D"3">=C2=A0</td>=0D=0A</tr>=0D=0A<=
+tr>=0D=0A<td style=3D"width: 10px; background-color: #ffffff;">=C2=
+=A0</td>=0D=0A<td style=3D"width: 600px; text-align: center; padd=
+ing: 10px;"><a href=3D"http://www.relaischateaux.com/en/?xtor=3DE=
+PR-32280612&amp;utm_source=3Denews&amp;utm_medium=3De-mail&amp;ut=
+m_content=3Dlogo&amp;utm_campaign=3Dreservation_confirmation_en" =
+target=3D"_blank" rel=3D"noopener"><img style=3D"display: block; =
+border-width: 0px; border-style: solid; margin: auto;" src=3D"htt=
+ps://static.relaischateaux.com/data/misc/faq/logo_ligne.png" alt=3D=
+"" width=3D"300" /></a></td>=0D=0A<td style=3D"width: 10px; backg=
+round-color: #ffffff;">=C2=A0</td>=0D=0A</tr>=0D=0A<tr>=0D=0A<td =
+style=3D"background-color: #ffffff;">=C2=A0</td>=0D=0A<td style=3D=
+"font-family: jost, arial, helvetica, sans-serif; font-size: 14px=
+; color: #1c1c1b; vertical-align: middle; padding: 10px;"><br />=0D=0A=
+<p style=3D"border-bottom: 1px solid #1C1C1B;">We are pleased to =
+confirm your itinerary below for <strong>Mr. duco wiertsema</stro=
+ng>. <br /><br />Your itinerary number is:=C2=A0<strong><span sty=
+le=3D"font-family: jost, arial, helvetica, sans-serif; color: #ae=
+9764; vertical-align: middle; text-align: center;">8565B13579642<=
+/span></strong><br /><br /><br /><br /></p>=0D=0A<p><br /><!DOCTY=
+PE html>=0D=0A=0D=0A<html>=0D=0A=0D=0A<head>=0D=0A=0D=0A</head>=0D=0A=
+=0D=0A<body>=0D=0A<table style=3D"width: 100%; font-family: arial=
+, helvetica,sans-serif; font-size: 14px;">=0D=0A<tbody>=0D=0A<tr>=
+=0D=0A<td colspan=3D"2">Your reservation number is: <span style=3D=
+"font-family: arial, helvetica, sans-serif; color: #ae9764;"><str=
+ong>22692SG007205</strong></span><br /><br /><strong>Casa da Calc=
+ada</strong><br />Largo do Paco 6  <br />Amarante - P-4600-017 - =
+<br />Portugal<br />Telephone: 351-255-410830<br />calcada@relais=
+chateaux.com<br /><br /></td>=0D=0A</tr>=0D=0A<tr>=0D=0A<td><stro=
+ng>Arrival Date: </strong>Tuesday, September 8, 2026</td>=0D=0A<t=
+d style=3D"border-left: 50px solid white; border-bottom: 1px soli=
+d white;"><strong>Number of rooms: </strong>1</td>=0D=0A</tr>=0D=0A=
+<tr>=0D=0A<td><strong>Departure Date: </strong>Thursday, Septembe=
+r 10, 2026</td>=0D=0A<td style=3D"border-left: 50px solid white; =
+border-bottom: 1px solid white;"><strong>Number of persons*: </st=
+rong>2</td>=0D=0A</tr>=0D=0A<tr>=0D=0A<td style=3D"border-bottom:=
+ 1px solid #1C1C1B; width: 100%;" colspan=3D"2"><br /><strong>Arr=
+ival after: </strong>15:00 (3:00 PM)<br /><strong>Departure: </st=
+rong>12:00 (12:00 PM)<br /><br /><strong>Room &amp; Rate: </stron=
+g>Classic Room - Non Refundable Offer<br /><br /><strong>Daily Ra=
+te:</strong><br />Tuesday, September 8, 2026  EUR 227.00<br/>Wedn=
+esday, September 9, 2026  EUR 227.00<br/><br /><br /><strong>Taxe=
+s/Service: </strong>EUR 8.00<br /><strong>Fees: </strong>EUR 0.00=
+<br /><br /><strong>Extras:</strong><br /><br /><br /><br /><stro=
+ng>Total Stay: </strong>EUR 462.00<br /><br /><strong>Guarantee p=
+olicy: </strong>Full prepayment including tax is required at time=
+ of booking.<br /><br /><strong>Cancellation policy: </strong>Thi=
+s reservation is non-refundable. Cancellations or changes made at=
+ any time are subject to a 100% charge.<br /><br /><br /><span st=
+yle=3D"color: #1c1c1b;"><strong>Rate details: </strong><ul>=0D=0A=
+<li>Accommodation</li>=0D=0A<li>Buffet breakfast</li>=0D=0A<li>Fr=
+ee Wi-Fi</li> =0D=0A<li>Free Parking</li>=0D=0A</ul><br /><br /><=
+strong>Room details: </strong><ul>=0A<li>1 Queen Bed or 2 Twin Be=
+ds (subject to availability)</li>=0A<li>Room size: 23sqm/247sqft<=
+/li>=0A<li>Desk</li>=0A<li>En-suite bathroom with shower =E2=80=93=
+ Double vanities =E2=80=93 Makeup mirror =E2=80=93 Hairdryer =E2=80=
+=93 Bathrobes and slippers =E2=80=93 =E2=80=98Guerlain=E2=80=99 b=
+athroom amenities</li>=0A<li>Complimentary WIFI =E2=80=93 Televis=
+ion =E2=80=93 Telephone</li>=0A<li>Minibar =E2=80=93 Safe =E2=80=93=
+ Air conditioning</li><li>Access to the indoor and outdoor pools,=
+ gym, gardens and vineyards =E2=80=93 Parking included</li>=0A<li=
+>No extra bed possible =E2=80=93 2 Persons maximum</li>=0A</ul></=
+span><br /><br /><strong>Special information: </strong><br /><br =
+/><strong>Comment: </strong><br /><br /><br /></td>=0D=0A</tr>=0D=0A=
+</tbody>=0D=0A</table>=0D=0A</body>=0D=0A=0D=0A</html><br/><!DOCT=
+YPE html>=0D=0A=0D=0A<html>=0D=0A=0D=0A<head>=0D=0A=0D=0A</head>=0D=0A=
+=0D=0A<body>=0D=0A<table style=3D"width: 100%; font-family: arial=
+, helvetica,sans-serif; font-size: 14px;">=0D=0A<tbody>=0D=0A<tr>=
+=0D=0A<td colspan=3D"2">Your reservation number is: <span style=3D=
+"font-family: arial, helvetica, sans-serif; color: #ae9764;"><str=
+ong>22692SG007206</strong></span><br /><br /><strong>Casa da Calc=
+ada</strong><br />Largo do Paco 6  <br />Amarante - P-4600-017 - =
+<br />Portugal<br />Telephone: 351-255-410830<br />calcada@relais=
+chateaux.com<br /><br /></td>=0D=0A</tr>=0D=0A<tr>=0D=0A<td><stro=
+ng>Arrival Date: </strong>Tuesday, September 8, 2026</td>=0D=0A<t=
+d style=3D"border-left: 50px solid white; border-bottom: 1px soli=
+d white;"><strong>Number of rooms: </strong>1</td>=0D=0A</tr>=0D=0A=
+<tr>=0D=0A<td><strong>Departure Date: </strong>Thursday, Septembe=
+r 10, 2026</td>=0D=0A<td style=3D"border-left: 50px solid white; =
+border-bottom: 1px solid white;"><strong>Number of persons*: </st=
+rong>2</td>=0D=0A</tr>=0D=0A<tr>=0D=0A<td style=3D"border-bottom:=
+ 1px solid #1C1C1B; width: 100%;" colspan=3D"2"><br /><strong>Arr=
+ival after: </strong>15:00 (3:00 PM)<br /><strong>Departure: </st=
+rong>12:00 (12:00 PM)<br /><br /><strong>Room &amp; Rate: </stron=
+g>Classic Room - Non Refundable Offer<br /><br /><strong>Daily Ra=
+te:</strong><br />Tuesday, September 8, 2026  EUR 227.00<br/>Wedn=
+esday, September 9, 2026  EUR 227.00<br/><br /><br /><strong>Taxe=
+s/Service: </strong>EUR 8.00<br /><strong>Fees: </strong>EUR 0.00=
+<br /><br /><strong>Extras:</strong><br /><br /><br /><br /><stro=
+ng>Total Stay: </strong>EUR 462.00<br /><br /><strong>Guarantee p=
+olicy: </strong>Full prepayment including tax is required at time=
+ of booking.<br /><br /><strong>Cancellation policy: </strong>Thi=
+s reservation is non-refundable. Cancellations or changes made at=
+ any time are subject to a 100% charge.<br /><br /><br /><span st=
+yle=3D"color: #1c1c1b;"><strong>Rate details: </strong><ul>=0D=0A=
+<li>Accommodation</li>=0D=0A<li>Buffet breakfast</li>=0D=0A<li>Fr=
+ee Wi-Fi</li> =0D=0A<li>Free Parking</li>=0D=0A</ul><br /><br /><=
+strong>Room details: </strong><ul>=0A<li>1 Queen Bed or 2 Twin Be=
+ds (subject to availability)</li>=0A<li>Room size: 23sqm/247sqft<=
+/li>=0A<li>Desk</li>=0A<li>En-suite bathroom with shower =E2=80=93=
+ Double vanities =E2=80=93 Makeup mirror =E2=80=93 Hairdryer =E2=80=
+=93 Bathrobes and slippers =E2=80=93 =E2=80=98Guerlain=E2=80=99 b=
+athroom amenities</li>=0A<li>Complimentary WIFI =E2=80=93 Televis=
+ion =E2=80=93 Telephone</li>=0A<li>Minibar =E2=80=93 Safe =E2=80=93=
+ Air conditioning</li><li>Access to the indoor and outdoor pools,=
+ gym, gardens and vineyards =E2=80=93 Parking included</li>=0A<li=
+>No extra bed possible =E2=80=93 2 Persons maximum</li>=0A</ul></=
+span><br /><br /><strong>Special information: </strong><br /><br =
+/><strong>Comment: </strong><br /><br /><br /></td>=0D=0A</tr>=0D=0A=
+</tbody>=0D=0A</table>=0D=0A</body>=0D=0A=0D=0A</html><br/><br />=
+<br /></p>=0D=0A<p><strong>Thank you for your booking and we wish=
+ you a pleasant stay.</strong></p>=0D=0A</td>=0D=0A<td style=3D"b=
+ackground-color: #ffffff;">=C2=A0</td>=0D=0A</tr>=0D=0A<tr>=0D=0A=
+<td style=3D"background-color: #ffffff;">=C2=A0</td>=0D=0A<td sty=
+le=3D"text-align: center;"><a href=3D"https://www.relaischateaux.=
+com/us/account/profile/" target=3D"_blank" rel=3D"noopener"><img =
+style=3D"border: 1px solid #E5E5E5;" src=3D"https://static.relais=
+chateaux.com/data/editorial/hospitality/emails/banner/avis/ABG_RE=
+LAIS_CHATEAUX_375x180_EN.jpg" alt=3D"AVIS X RELAIS &amp; CHATEAUX=
+" width=3D"375" height=3D"180" /></a></td>=0D=0A<td style=3D"back=
+ground-color: #ffffff;">=C2=A0</td>=0D=0A</tr>=0D=0A<tr>=0D=0A<td=
+ style=3D"background-color: #ffffff;">=C2=A0</td>=0D=0A<td style=3D=
+"font-family: jost, arial, helvetica, sans-serif; font-size: 12px=
+; vertical-align: middle; text-align: center; padding-top: 30px; =
+padding-bottom: 30px;"><span style=3D"font-size: 13px; color: #00=
+0000;">Should you need to cancel your reservation, please, <a sty=
+le=3D"color: #ae9764;" href=3D"https://be.synxis.com/signin?&amp;=
+chain=3D8565&amp;configcode=3Dshared&amp;level=3Dchain&amp;locale=
+=3Den-US&amp;themecode=3Dshared" target=3D"_blank" rel=3D"noopene=
+r">click here</a>.<br />For further information or should you nee=
+d to modify your reservation, please call our <a style=3D"color: =
+#ae9764;" href=3D"https://www.relaischateaux.com/us/discover/cont=
+act" target=3D"_blank" rel=3D"noopener">central reservation offic=
+es</a></span>.</td>=0D=0A<td style=3D"background-color: #ffffff;"=
+>=C2=A0</td>=0D=0A</tr>=0D=0A<tr>=0D=0A<td style=3D"background-co=
+lor: #f0f0f0;">=C2=A0</td>=0D=0A<td style=3D"font-family: jost, a=
+rial, helvetica, sans-serif; font-size: 14px; color: #1c1c1b; ver=
+tical-align: middle; background-color: #f0f0f0;" align=3D"center"=
+><br /><strong>Find your booking on the Relais &amp; Ch=C3=A2teau=
+x app</strong><br /><br /></td>=0D=0A<td style=3D"background-colo=
+r: #f0f0f0;">=C2=A0</td>=0D=0A</tr>=0D=0A<tr>=0D=0A<td style=3D"h=
+eight: 60px; background-color: #f0f0f0;" colspan=3D"3" align=3D"c=
+enter"><a href=3D"http://instagram.com/relaischateaux" target=3D"=
+_blank" rel=3D"noopener"><img style=3D"border-width: 0px; border-=
+style: solid;" src=3D"http://static.relaischateaux.com/data/edito=
+rial/newsletters/common/classic/insta.png" alt=3D"" width=3D"42" =
+height=3D"42" /></a> =C2=A0 <a href=3D"https://twitter.com/Relais=
+Chateaux" target=3D"_blank" rel=3D"noopener"><img style=3D"border=
+-width: 0px; border-style: solid;" src=3D"http://static.relaischa=
+teaux.com/data/editorial/newsletters/common/classic/twitter.png" =
+alt=3D"" width=3D"42" height=3D"42" /></a> =C2=A0 <a href=3D"http=
+s://www.facebook.com/RelaisAndChateaux" target=3D"_blank" rel=3D"=
+noopener"><img style=3D"border-width: 0px; border-style: solid;" =
+src=3D"http://static.relaischateaux.com/data/editorial/newsletter=
+s/common/classic/facebook.png" alt=3D"" width=3D"42" height=3D"42=
+" /></a> =C2=A0 <a href=3D"https://play.google.com/store/apps/det=
+ails?id=3Dcom.relaischateaux.android" target=3D"_blank" rel=3D"no=
+opener"><img style=3D"border-width: 0px; border-style: solid;" sr=
+c=3D"http://static.relaischateaux.com/data/editorial/newsletters/=
+common/classic/google_play_en.png" alt=3D"" width=3D"121" height=3D=
+"42" /></a> =C2=A0 <a href=3D"https://itunes.apple.com/us/app/gui=
+de-relais-chateaux/id346844763?mt=3D8" target=3D"_blank" rel=3D"n=
+oopener"><img style=3D"border-width: 0px; border-style: solid;" s=
+rc=3D"http://static.relaischateaux.com/data/editorial/newsletters=
+/common/classic/app_store_en_2.png" alt=3D"" width=3D"121" height=
+=3D"42" /></a></td>=0D=0A</tr>=0D=0A<tr>=0D=0A<td style=3D"font-f=
+amily: jost, arial, helvetica, sans-serif; font-size: 11px; color=
+: #1c1c1b; vertical-align: middle; height: 60px; background-color=
+: #f0f0f0;" colspan=3D"3" align=3D"center">* Number of persons =3D=
+ Total number of persons arriving at the hotel to stay in the num=
+ber of rooms booked.<br /><br />Photos copyright: Relais &amp; Ch=
+=C3=A2teaux media library.<br /><br />If your booking was made th=
+rough Relais &amp; Ch=C3=A2teaux, we invite you to download and s=
+ave the <a href=3D"https://static.relaischateaux.com/neo/legal/cg=
+r_yield_en.pdf" target=3D"_blank" rel=3D"noopener">Relais &amp; C=
+h=C3=A2teaux=E2=80=99s Booking Terms and Conditions</a>, applicab=
+le to this reservation. Please note that these Terms and Conditio=
+ns are not applicable if you made your reservation directly with =
+the hotel.<br /><br /></td>=0D=0A</tr>=0D=0A</tbody>=0D=0A</table=
+>=0D=0A</body>=0D=0A=0D=0A</html>

@@ -1,0 +1,2155 @@
+Delivered-To: duco.wiertsema@gmail.com
+Received: by 2002:a05:7022:2086:b0:13c:ce06:ee62 with SMTP id u6csp1781700dlu;
+        Sun, 9 Aug 2026 02:39:25 -0700 (PDT)
+X-Forwarded-Encrypted: i=4; AHgh+Rp5Be8AHBI8DymlcTASmCdTp7ZtPPeERrbIVsSm12giHV36+mYRi+83vmiTcdslavnHMuo6x3vPgnocyHngvA==@gmail.com
+X-Received: by 2002:a05:6102:3594:b0:631:7781:fe91 with SMTP id ada2fe7eead31-764e72c3161mr3623717137.9.1786268365645;
+        Sun, 09 Aug 2026 02:39:25 -0700 (PDT)
+ARC-Seal: i=3; a=rsa-sha256; t=1786268365; cv=pass;
+        d=google.com; s=arc-20260327;
+        b=MyTNEoTUeibDgoVh4Rm9BxcLEo5h07IXRgT5RtwuiHSKbgwQeSY7SUjqKW2lv3M6Jr
+         vnlX0R4rZ88GLeBmpb89IfVBt9hzhNm9IF0mNoGtZ/4XboCtCKe2iRpHMC8URzcrqQVO
+         Nl1X+JWnyCPYddZUuUbheGBJjSfi4vc+umcpDEDiWXsANwaeuDa42PPT3thM1V8VFJVO
+         hvlP1FsXfDZEw09U6VRNayq3E5IRbCAQzk37/cJuefnZ2mYkYiBH5CQ/dNtPdAx8iUTz
+         T4cKBti4ThYzuTkypsZcDCzvcSpQFcwbsIgvRmlx5uM1aOOgHQ1OAiK26+3VXTx3ia7B
+         QlRg==
+ARC-Message-Signature: i=3; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=mime-version:feedback-id:to:reply-to:message-id:subject:date:from
+         :dkim-signature:dkim-signature:delivered-to;
+        bh=/oI3EIjYhw3FOrLWLigv4/Rrzz8AMPRb8HDqHBOphCM=;
+        fh=1yILjO8Yvx7KJZwHJOTRZVk3zKqtTkpeD1ETsXV1hH4=;
+        b=egg+mDQmDXa0NmpgtkA7/D7OY8TCYnQVGG0DTiRNgCZfcVzXdEOKdgZVwoMQRSKT20
+         uZtJO8xIH3qBxMK/K/QoOnWnUypNDB/U4rrtQ6OqBLaz5d7RGYhN8HtbkopHcQL2q80w
+         XI1ZhLl8rM1r+0YpU6CrdhrP0phqIsvw3ol7qOtP8Krz37iZJTE5kjkyHbgEdHvWx8aS
+         vZnIQD8nAi4yiWRvpOzI0MvCR3vvZtmF4kyn6MwcVHHO9v7BZ1uNH2vd1cKK1MiKNukn
+         UoZdZ3WE93CBuVay7wiCoy7s7/4+Yd4ILAVeQIC4346dh44zdZAMqYlx0il8PepJYYpH
+         /l+w==;
+        dara=google.com
+ARC-Authentication-Results: i=3; mx.google.com;
+       dkim=pass header.i=@pm.mtasv.net header.s=pm20250806 header.b=epNOYWnB;
+       dkim=pass header.i=@paraty.es header.s=20130605152128.pm header.b=YkiRta2Z;
+       arc=pass (i=2 spf=pass spfdomain=pm-bounces.paraty.es dkim=pass dkdomain=pm.mtasv.net dkim=pass dkdomain=paraty.es);
+       spf=pass (google.com: domain of wierts+caf_=duco.wiertsema=googlemail.com@googlemail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom="wierts+caf_=duco.wiertsema=googlemail.com@googlemail.com";
+       dara=pass header.i=@gmail.com
+Return-Path: <wierts+caf_=duco.wiertsema=googlemail.com@googlemail.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id a1e0cc1a2514c-979f3bd4880sor1684894241.0.2026.08.09.02.39.25
+        for <duco.wiertsema@gmail.com>
+        (Google Transport Security);
+        Sun, 09 Aug 2026 02:39:25 -0700 (PDT)
+Received-SPF: pass (google.com: domain of wierts+caf_=duco.wiertsema=googlemail.com@googlemail.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@pm.mtasv.net header.s=pm20250806 header.b=epNOYWnB;
+       dkim=pass header.i=@paraty.es header.s=20130605152128.pm header.b=YkiRta2Z;
+       arc=pass (i=2 spf=pass spfdomain=pm-bounces.paraty.es dkim=pass dkdomain=pm.mtasv.net dkim=pass dkdomain=paraty.es);
+       spf=pass (google.com: domain of wierts+caf_=duco.wiertsema=googlemail.com@googlemail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom="wierts+caf_=duco.wiertsema=googlemail.com@googlemail.com";
+       dara=pass header.i=@gmail.com
+ARC-Seal: i=2; a=rsa-sha256; t=1786268365; cv=pass;
+        d=google.com; s=arc-20260327;
+        b=r+Pnkmkfi7thD1ruroaSkpKNxkBmbDDL6Y8MCiAIhPXuQnJ1gWfGH8K5DH8sEzU/bD
+         DBioe7v6RlPvECh0bGyaCRs17fmeQH57YmqOtr9Nm91iqVU/XfW/kxQom98KP/BHlyUk
+         35qZuJYYEPjKbmM74LYSNjcdyF6rli5LEO2s8zbAjb71NTzez0y7hggkmHHO9+nroE/T
+         KIJUu5Rfm3jfcpO8HV7JJu7UhUrYX/vyR07hOCtq22hsFMPg0zEodmJsn6QLCl0NqneS
+         AUT0f1u7tnXkuGugM30my6GH4WhsPm/mw9a28vPxhA9IG3zcd3fmyNIuWWb2hkw5Fv6U
+         ib4g==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=mime-version:feedback-id:to:reply-to:message-id:subject:date:from
+         :dkim-signature:dkim-signature:delivered-to;
+        bh=/oI3EIjYhw3FOrLWLigv4/Rrzz8AMPRb8HDqHBOphCM=;
+        fh=1yILjO8Yvx7KJZwHJOTRZVk3zKqtTkpeD1ETsXV1hH4=;
+        b=JKzsUU/ACPiSgRwq0L5MfQVUtKF9WFM/tBQujywROzyFWvnYBwH1qCUXY43VjTO1la
+         HPsnnn9jIE//E9hjpKkZu736VrCwEWszXW5J53pqMmWq/u37jwpnXgW/iwTqFhd+tJ6d
+         d5/upLeTRPolIbUyHPsU1vNNN7Eu4EMgfJNdM9iEl90LHqSabbIE6cKBJMsG6OBskRMN
+         2nyvhuUmkkPs590HJKewazSe62uBKC5Czpe6jcTVIAnSzyI0BKwKmqzM5FwqfMqiACQI
+         mipiVMpyknMPezGMuwGAvRRrmc+3xyvHl2vXi3m6PEqZbM6KIq6Kyi6PA9hhTRHxpkU5
+         K+lg==;
+        dara=google.com
+ARC-Authentication-Results: i=2; mx.google.com;
+       dkim=pass header.i=@pm.mtasv.net header.s=pm20250806 header.b=epNOYWnB;
+       dkim=pass header.i=@paraty.es header.s=20130605152128.pm header.b=YkiRta2Z;
+       spf=pass (google.com: domain of pm_bounces@pm-bounces.paraty.es designates 104.245.209.212 as permitted sender) smtp.mailfrom=pm_bounces@pm-bounces.paraty.es
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1786268365; x=1786873165;
+        h=content-type:mime-version:feedback-id:to:reply-to:message-id
+         :subject:date:from:dkim-signature:dkim-signature:delivered-to
+         :x-forwarded-for:x-forwarded-to:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=/oI3EIjYhw3FOrLWLigv4/Rrzz8AMPRb8HDqHBOphCM=;
+        b=Ln+NhCI9n07lSLUXpvtVO7qNSYRDWXnjndW/K2EGAnR1GXkGc/04Z8TWJy74XHvZkG
+         buEPrhAN63EU0RVjFK4xijqhZ4HtchuSq73wmbN7oco7+4XtRjwtHy+hpxdkDwYGPrAA
+         2wzFzyhXsS+F1k/vqayiKOJGdTADlpvR8xIwPxKmzAW0MTQhNvKIfrMWepEJ3eblpWH2
+         UDlkMDL5gSAtcGg6d5WLL87a7hfzLURrB4Gsj9ZAIi1KjeQQb4VU3JErZ6ZZo8D5Wfzd
+         o2tIk+QrT+ozTaXYC8rfHXgAs7Qdvf1C32lYInfjYpAm2dNELIT2qTSzGt07Y/edR+V/
+         ZBZw==
+X-Forwarded-Encrypted: i=2; AHgh+RoUuCssK4awmI0eOq7n7ej5eu5XvP8ivkIXcqhH6FzILQbWKpKnM+5n7EmcgDNcYXyN+5hsjJA8zKBe0A05Vg==@googlemail.com
+X-Gm-Message-State: AOJu0YxgF8Mr+v44cf38UV3gzFLQIndCl0upX3iAm8i9SgG1wgghpcxF
+	Ks7Rhd8/mkqa50gDZUlW/4kOyn728j1nJsORXjV7G+PlunfofGhzFbg+zJ+qMYe3FQkfuX0jm9h
+	BSaRQHamV+W0sDQFWSgOemdgGt7ESxA7JkAnEXvKBsBrNS/zxmarKZ2pD6XHGBg==
+X-Received: by 2002:a05:6102:390f:b0:744:d1a6:b11d with SMTP id ada2fe7eead31-764e4f2985dmr3615577137.3.1786268365239;
+        Sun, 09 Aug 2026 02:39:25 -0700 (PDT)
+X-Forwarded-To: duco.wiertsema@googlemail.com
+X-Forwarded-For: wierts@googlemail.com duco.wiertsema@googlemail.com
+Delivered-To: wierts@gmail.com
+Received: by 2002:ab0:2617:0:b0:966:7ea2:fa4c with SMTP id c23csp1626422uao;
+        Sun, 9 Aug 2026 02:39:24 -0700 (PDT)
+X-Received: by 2002:a05:6102:578b:b0:737:5c42:858b with SMTP id ada2fe7eead31-764e72c3a27mr3485555137.11.1786268363929;
+        Sun, 09 Aug 2026 02:39:23 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1786268363; cv=none;
+        d=google.com; s=arc-20260327;
+        b=H0k5cbkGquPPXe4R/TLvmIPIbUmPhfvHQgx0VagSvbUHqmHHUm6lKVa6R95bfA8JOI
+         HyVo8eEsBTdJzdbZhA1Q2k3F2eaY+/gjBfC+7tLfS0h6VtOFUgnLyiE2sWyS4I+I8HqW
+         5o8MwRiwuYAfjWsnbYfTsbcbj4RcFVYh39BZnoX3zPTxH0rwfoxV75gUD1JKcVDbo+cc
+         eaTmgjpxBHyCKyP7FMt/1S3xYZ6ooBp1aV26jFZGTz30FtiOqGAslHhmkbvQ/QnR0iVY
+         m2EUsXmXF/GZGQ0NDC0eUPZUKPS7UcuLzDBxMwOaMjtwVIn1jhW3zZr1AWYxjfRSXjL/
+         mxmw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=mime-version:feedback-id:to:reply-to:message-id:subject:date:from
+         :dkim-signature:dkim-signature;
+        bh=/oI3EIjYhw3FOrLWLigv4/Rrzz8AMPRb8HDqHBOphCM=;
+        fh=OzEPqevkYqfXd8sxf71cLCxDJAPorBtAIWzctpVS4Bk=;
+        b=nsNz/kWGGBSsV8vrfNwq9rvfPIuCn5Zm6KBZX1DNnH1q3+bau8Ap6A3IeOzC2JDwY9
+         kAFjdFQ4NFmy+ocGCMbYF9TFsfS2CoRcylnXdEhEsPM1QwgbRVQ6rJ7teP+I2k6e9OmH
+         W/k3/VbEtCG40j6SNBGjj/ekFTxZwT9q+chdRnFcDMv0ViXxoUmvP/12grl/B59lYuGL
+         EsiqgneTOc5715MwqXKPtlppSiTyR/C0OvFN87ONASOoyjWxt9/MusJabxWfsI5DLfBb
+         XxTIZK+ME14uMeaChNOCjSEuyLr51ylIRaYJn3dbfwkjM9jAnXHeK6b4S7j0T7D0lPQp
+         COCw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@pm.mtasv.net header.s=pm20250806 header.b=epNOYWnB;
+       dkim=pass header.i=@paraty.es header.s=20130605152128.pm header.b=YkiRta2Z;
+       spf=pass (google.com: domain of pm_bounces@pm-bounces.paraty.es designates 104.245.209.212 as permitted sender) smtp.mailfrom=pm_bounces@pm-bounces.paraty.es
+Return-Path: <pm_bounces@pm-bounces.paraty.es>
+Received: from mta212a-ord.mtasv.net (mta212a-ord.mtasv.net. [104.245.209.212])
+        by mx.google.com with ESMTPS id a1e0cc1a2514c-979f320e308si422002241.195.2026.08.09.02.39.23
+        for <wierts@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 09 Aug 2026 02:39:23 -0700 (PDT)
+Received-SPF: pass (google.com: domain of pm_bounces@pm-bounces.paraty.es designates 104.245.209.212 as permitted sender) client-ip=104.245.209.212;
+X-KumoRef: eyJfQF8iOiJcXF8vIiwicmVjaXBpZW50Ijoid2llcnRzQGdtYWlsLmNvbSJ9
+DKIM-Signature: v=1; a=rsa-sha256; d=pm.mtasv.net; s=pm20250806; c=relaxed/relaxed;
+	bh=/oI3EIjYhw3FOrLWLigv4/Rrzz8AMPRb8HDqHBOphCM=;
+	h=from:to:subject:date:mime-version:content-type:sender:cc:date:message-id;
+	t=1786268363; x=1786873163;
+	b=epNOYWnBkEuAe+cg4vXiF+8/PUye3S589JkqFdH6LkW49+d8eoldzxpDxizj6E9Wr/cr9rjKu
+	GnAOvO4acK8PoiYXEp2q9XngpJVrvA+s/AdbwIsyJAdp2+5GFh6WLV51NZNH7ogyP/VbqGsA3TR
+	MI5c0XUKuP1R9JIC40exOyBfjBmeK8Mq8w5I8ApBH1BDMn509t+2L0jP2zEvXTuVy4mWQT1xbKZ
+	0cz3NimVRoOZ5nqcVabfDY+DGn1Epv/VtaNLFF9mY6ZrAp8m8NkBcviY7Io5l/ZNpvxQgavzS9I
+	aid0D0BEkH+PoHyr1D9rpzXTm6VUdglAvFEyf94QlXLw==;
+Received: from ip-172-26-23-14.us-east-2.compute.internal (172.26.23.14)
+  by production-pmta-useast2.internal.postmarkapp.com (KumoMTA 10.97.242.143) 
+  with ESMTP id 3474ad6393d611f1a89e0295c12d1bd1 for <wierts@gmail.com>;
+  Sun, 9 Aug 2026 09:39:23 +0000
+DKIM-Signature: v=1; a=rsa-sha256; d=paraty.es; s=20130605152128.pm;
+	c=relaxed/relaxed; i=reservas@paraty.es; t=1786268363; x=1786441163;
+	h=date:date:from:from:message-id:reply-to:reply-to:sender:subject:subject:to:
+	to:cc:feedback-id:mime-version:content-type;
+	bh=/oI3EIjYhw3FOrLWLigv4/Rrzz8AMPRb8HDqHBOphCM=;
+	b=YkiRta2ZMBwjjiiCHv48KDXxwWoxoClaYScj4M8sqtB053tLpRrsKSKjkY4YTaO/YP+qnZL5+W8
+	2b2/ZDCj9x9oOCdXhJ0iR+x29280F9ioPhVIzDrvSZQjzrk2q2QfvyDhAYpQGMSxQVTCSnWV85Tdm
+	+d/NFq/9jPstcLoOOc8=
+From: =?utf-8?q?MS_Collection_Aveiro_=E2=80=93_Palacete_de_Valdemouro?=
+	<reservas@paraty.es>
+Date: Sun, 09 Aug 2026 09:39:23 +0000
+Subject: Booking confirmation 17876799
+Message-Id: <3778fef8-e76e-45ad-8445-48c95287d494@mtasv.net>
+Reply-To: =?utf-8?q?MS_Collection_Aveiro_=E2=80=93_Palacete_de_Valdemouro?=
+	<aveiro.reservations@mscollection.pt>
+To: wierts@gmail.com
+Feedback-ID: s16905841-_:s16905841:a44139:postmark
+X-Complaints-To: abuse@postmarkapp.com
+X-Job: 44139_16905841
+X-PM-Message-Id: 3778fef8-e76e-45ad-8445-48c95287d494
+X-PM-RCPT: |bTB8NDQxMzl8MTY5MDU4NDF8d2llcnRzQGdtYWlsLmNvbQ==|
+X-PM-Message-Options: v1;1.9R-Uqa7rsYpoJNFKiDh4Jg.tSjIhTAyhg2uxI8xQhA7kf5B1ZoQ2QQBeevuaknSK1-08FAtdidWKg6yKRSfXDUDW3WDkVkBlrKl450oYqxgpF7U3iC7mT8jK5nPm6njxkvOPwUfMWcNpz5tFRa1LnyxF3t_04kaYAAfxeuxfqYRDHqZeSvrZTdGyUgKzxpq0zTEyrF4RcWEzR7voA9W_2-R
+MIME-Version: 1.0
+X-virtual-MTA: ord-104-245-209-212
+X-PM-MTA-Pool: transactional-2
+Content-Type: multipart/alternative;
+	boundary=mk3-b2342224aafc4a329b2b51503c31615e; charset=UTF-8
+
+--mk3-b2342224aafc4a329b2b51503c31615e
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div itemscope itemtype=3D"http://schema.org/LodgingReservation">
+  <meta itemprop=3D"reservationNumber" content=3D"17876799"/>
+  <link itemprop=3D"reservationStatus" href=3D"http://schema.org/Confirmed"=
+/>
+  <div itemprop=3D"underName" itemscope itemtype=3D"http://schema.org/Perso=
+n">
+    <meta itemprop=3D"name" content=3D"duco wiertsema"/>
+  </div>
+  <div itemprop=3D"reservationFor" itemscope itemtype=3D"http://schema.org/=
+LodgingBusiness">
+    <meta itemprop=3D"name" content=3D""/>
+    <div itemprop=3D"address" itemscope itemtype=3D"http://schema.org/Posta=
+lAddress">
+      <meta itemprop=3D"streetAddress" content=3D"R. Jos=C3=A9 Estev=C3=A3o=
+ 50"/>
+      <meta itemprop=3D"addressLocality" content=3D"Aveiro"/>
+      <meta itemprop=3D"addressRegion" content=3D"Aveiro"/>
+      <meta itemprop=3D"postalCode" content=3D"3800-201"/>
+      <meta itemprop=3D"addressCountry" content=3D"Portugal"/>
+    </div>
+    <meta itemprop=3D"telephone" content=3D"234 245 630"/>
+  </div>
+  <meta itemprop=3D"checkinDate" content=3D"2026-09-10T00:00:00"/>
+  <meta itemprop=3D"checkoutDate" content=3D"2026-09-11T00:00:00"/>
+</div>
+
+
+<link href=3D"https://fonts.googleapis.com/css2?family=3DOpen+Sans:ital,wgh=
+t@0,300;0,400;0,600;0,700;1,300;1,400;1,700&display=3Dswap"
+   rel=3D"stylesheet">
+
+<script>window.__prevJQ =3D window.jQuery;</script>
+<script src=3D"https://code.jquery.com/jquery-3.6.0.min.js" crossorigin=3D"=
+anonymous" integrity=3D"sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u=
+1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=3D=3D"></script>
+<script>
+    if (window.__prevJQ) { jQuery.noConflict(true); }
+</script>
+<style>
+   #reservation {
+   padding: 20px;
+   font-size: 15px;
+   width: 600px;
+   margin: auto;
+   display: block;
+   font-weight: 300;
+   margin-top: 40px;
+   font-family: 'Open Sans', sans-serif;
+   }
+   a {
+   text-decoration: none;
+   }
+   .header_table {
+   width: 100%;
+   height: 70px;
+   background: white;
+   box-shadow: -2px 7px 11px rgba(0, 0, 0, .3)
+   }
+   .header_table .header_text {
+   color: #00257a;
+   font-style: italic;
+   font-weight: bold;
+   font-size: 22px;
+   padding: 10px 14px !important;
+   }
+   .header_table img {
+   display: block;
+   }
+   .prestay_image img {
+   width: 100%;
+   }
+   .booking_description {
+   width: calc(100% - 50px);
+   background: white;
+   border: 1px solid lightgrey;
+   -webkit-box-sizing: content-box;
+   -moz-box-sizing: content-box;
+   box-sizing: content-box;
+   }
+   .main_title_block {
+   font-size: 24px;
+   margin-top: 20px;
+   margin-bottom: 20px;
+   display: block;
+   font-style: italic;
+   font-weight: bold;
+   color: #00257a;
+   }
+   .booking_information {
+   width: 100%;
+   border: 1px solid lightgrey;
+   background: white;
+   padding: 6px;
+   border-collapse: collapse;
+   }
+   .booking_information tr {
+   border-bottom: 1px solid lightgrey;
+   display: block;
+   margin: 0 15px;
+   }
+   .booking_information tr:last-of-type {
+   border-bottom: 0;
+   }
+   .booking_information tr td {
+   padding: 40px 0px 40px 20px;
+   min-height: 85px;
+   display: inline-block;
+   box-sizing: content-box;
+   }
+   .booking_information tr td:first-of-type {
+   padding: 40px 20px 40px 0;
+   }
+   .booking_information .label_booking_summary {
+   font-weight: bold;
+   margin-bottom: 2px;
+   display: block;
+   color: #393939;
+   font-size: 16px;
+   }
+   .booking_information .label_booking_summary b {
+   color: #4f4f4f;
+   }
+   .booking_information .value_booking {
+   font-weight: 300;
+   font-style: italic;
+   font-size: 15px;
+   line-height: 18px;
+   color: #4f4f4f;
+   text-transform: capitalize;
+   }
+   .contact_table {
+   width: 100%;
+   font-size: 13px;
+   }
+   .contact_label {
+   display: block;
+   color: #3a3a3a;
+   font-weight: bold;
+   letter-spacing: 1px;
+   }
+   .icon_contact, .contact_value {
+   display: inline-block;
+   vertical-align: middle;
+   }
+   .contact_value {
+   font-weight: 500;
+   color: #1c78c5;
+   }
+   .icon_contact {
+   margin-right: 4px;
+   }
+   .location_table {
+   width: 100%;
+   }
+   .location_content {
+   font-size: 14px;
+   width: 55%;
+   line-height: 17px;
+   color: #414141;
+   }
+   .legal_text_wrapper {
+   border-top: 1px solid lightgray;
+   width: 100%;
+   padding: 20px 20px 0;
+   display: block;
+   font-weight: 400;
+   font-size: 15px;
+   color: #a2a3a9;
+   text-align: center;
+   }
+   .booking_information .price {
+   float: right;
+   }
+   .booking_information .row {
+   padding-right: 15px;
+   }
+   .regimen_extra_content {
+   font-size: 12px;
+   line-height: 18px;
+   color: #3366cc;
+   }
+   .rate_conditions {
+   font-size: 11px;
+   padding-top: 15px;
+   line-height: 15px;
+   font-family: 'Open Sans', sans-serif;
+   text-align: justify;
+   }
+   .rate_conditions strong {
+   color: #B99E87;
+   font-weight: 700;
+   }
+   .booking-button.booking-button--confirmed-booking {
+   background: #F7BB1E;
+   border-radius: 0;
+   font-family: 'Open Sans', sans-serif;
+   font-size: 18px;
+   font-weight: bold;
+   letter-spacing: 0;
+   width: 245px;
+   margin-top: 10px;
+   border: none;
+   padding: 6px;
+   }
+   a.booking-button.booking-button--confirmed-booking {
+      margin-left: 0 !important;
+   }
+   .my_reservation_button {
+   border: 1px solid #00257a;
+   background: transparent;
+   padding: 15px 50px;
+   color: #00257a;
+   font-weight: bold;
+   letter-spacing: 1px;
+   cursor: grab;
+   }
+   .my_reservation_button:hover {
+   background-color: #00257a;
+   color: white;
+   }
+   .booking_information tbody tr:last-child td{
+      border-bottom: none!important;
+   }
+
+   @media(max-width: 450px) {
+      .contact_label_phone {
+         font-size: 10px !important;
+         height: 28px;
+      }
+      .contact_label_email {
+         font-size: 10px !important;
+         height: 28px;
+      }
+      .location_table {
+         tr td img {
+            max-width: 260px !important;
+         }
+      }
+   }
+</style>
+
+
+<a class=3D"link_external_view" target=3D"_blank"
+   href=3D"https://www.mscollection.pt/send-confirmation/?data=3D55WNYLyLlo=
+e4Jz3N1JHzql_0N9d4a3X6Z7n5UrV6zZ1mAXCrkcQEpOixuIV7gpmEXbQiIspxcWBDDRqfJBIWR=
+ePlwqkYaS3DcD6-eCtE8JYlQn7CTSvqRlzDE0oyyJRCWNEH&fh=3D55WNYLyLloe4Jz3N1JHzql=
+_0N9d4a3X6Z7n5UrV6zZ1mAXCrkcQEpOixuIV7gpmEXbQiIspxcWBDDRqfJBIWRePlwqkYaS3Dc=
+D6-eCtE8JYlQn7CTSvqRlzDE0oyyJRCWNEH&namespace=3Dmscol-palacete"
+   style=3D"display: block;text-align: center;margin-bottom:20px;color:blac=
+k;text-decoration: underline;font-size: 13px;font-family: 'Open Sans', sans=
+-serif;">If you can&#x27;t see correctly this e-mail, click here</a>
+
+
+
+
+<div width=3D"650" style=3D"background-color: white;width: 650px;max-width:=
+ calc(100% - 20px);box-sizing: content-box;margin: 20px auto;font-family: '=
+Open Sans', sans-serif;padding: 0;font-size: 15px;display: block;font-weigh=
+t: 400;text-align:center;"
+      id=3D"reservation">
+     =20
+     =20
+      <table class=3D"header_table" width=3D"650" height=3D"70" style=3D"wi=
+dth: 100%;height: 70px;background: white;box-shadow: -2px 7px 11px rgba(0,0=
+,0,.3);filter: drop-shadow(6px 4px 11px rgba(0,0,0,.2));text-align:center;"=
+>
+         <tr>
+            <td class=3D"header_logo" style=3D"position: relative;margin-to=
+p: 90px;background-size: 90%;padding: 0;height: 70px;vertical-align: middle=
+;">
+               <a href=3D"https://www.mscollection.pt/en" target=3D"_blank"
+                  style=3D"text-decoration: none; display: inline-block; ma=
+x-width: 120px; width: 100%; ">
+               <img src=3D"https://cdn2.paraty.es/mscol-palacete/images/f72=
+20b95fb88092=3Ds200" style=3D"display: block;margin:8px;max-width:100%;">
+                 =20
+               </a>
+            </td>
+           =20
+              =20
+                  <td class=3D"header_text" style=3D"color: #00257a;font-st=
+yle: italic;font-weight: bold;font-size: 20px; vertical-align: middle; text=
+-align:center; color: #B79269;color: #B79269;">
+                     Ready for your stay?
+                  </td>
+              =20
+           =20
+         </tr>
+      </table>
+     =20
+     =20
+        <div class=3D"prestay_image">
+           =20
+                <img width=3D"650" src=3D"https://cdn2.paraty.es/mscol-pala=
+cete/images/abda266880fcd99=3Ds700" alt=3D"" style=3D"width: 100%; max-widt=
+h: 650px;">
+           =20
+        </div>
+     =20
+     =20
+     =20
+         <div style=3D"padding: 20px 0 0">
+        =20
+        =20
+        =20
+        =20
+        =20
+         <table width=3D"650" style=3D"width:100%;text-align:left;color:#42=
+4242;">
+            <tr>
+               <td style=3D"color:#424242;">
+                 =20
+                  <div style=3D"text-align:center;">
+<b>Thank you for choosing MS Collection Aveiro =E2=80=93 Palacete de Valdem=
+ouro</b>.<br><br>=20
+We send you all the details of your confirmed booking.</div><br><br>=20
+
+
+                 =20
+               </td>
+            </tr>
+         </table>
+        =20
+        =20
+        =20
+        =20
+        =20
+        =20
+         <!-- Booking description -->
+        =20
+            <table class=3D"booking_description ordinary_table" width=3D"60=
+0"
+         style=3D"max-width: calc(100% - 40px);width:100%;text-align:center=
+;background: white;margin: 0 auto; border:none;">
+         <tr>
+            <td>
+               <p class=3D"main_title_block"
+                  style=3D"font-size: 24px;text-align: center;margin:25px a=
+uto;display: block;font-style: italic;font-weight: bold;color: #00257a;font=
+-family: 'Open Sans', sans-serif;color: #B79269;;">Details of your booking<=
+/p>
+            </td>
+         </tr>
+        =20
+         <tr>
+            <td>
+               <table class=3D"booking_information" width=3D"600"
+                  style=3D"width:100%;max-width:100%; border-collapse: coll=
+apse;padding: 0;background: white;margin: auto;border-spacing: 0; border:no=
+ne;
+                  ">
+                  <!-- Booking and identifier -->
+                 =20
+                  <tr style=3D"border:none; margin:0; display: table;width:=
+ 100%;">
+                     <td style=3D"padding: 30px 20px;min-height: 50px;displ=
+ay: table-cell;width:50%;box-sizing: content-box;border: 1px solid #e3e3e3;=
+text-align:left;">
+                        <label class=3D"label_booking_summary"
+                           style=3D"font-weight: bold;margin-bottom: 2px;di=
+splay: block;color: #393939;font-size: 14px;font-family: 'Open Sans', sans-=
+serif;">Name and Surname</label>
+                        <div class=3D"value_booking"
+                           style=3D"font-weight: 400;font-style: italic;fon=
+t-size: 16px;line-height: 20px;color: #4f4f4f;font-family: 'Open Sans', san=
+s-serif;text-transform: capitalize;">
+                           duco=20
+                           wiertsema=20
+                        </div>
+                     </td>
+                     <td style=3D"padding: 30px 20px;min-height: 50px;displ=
+ay: table-cell;width:50%;box-sizing: content-box;border: 1px solid #e3e3e3;=
+text-align:left;">
+                        <label class=3D"label_booking_summary"
+                           style=3D"font-weight: bold;margin-bottom: 2px;di=
+splay: block;color: #393939;font-size: 14px;font-family: 'Open Sans', sans-=
+serif;">Booking reference</label>
+                        <div class=3D"value_booking"
+                           style=3D"font-weight: 400;font-style: italic;fon=
+t-size: 16px;line-height: 20px;color: #4f4f4f;font-family: 'Open Sans', san=
+s-serif;text-transform: capitalize;">
+                          =20
+                           17876799
+                          =20
+                        </div>
+                     </td>
+                  </tr>
+                  <tr style=3D"border:none; margin:0; display: table;width:=
+ 100%;">
+                     <td style=3D"padding: 30px 20px;min-height: 50px;displ=
+ay: table-cell;width:50%;box-sizing: content-box;border: 1px solid #e3e3e3;=
+text-align:left; word-break: break-word;">
+                        <label class=3D"label_booking_summary"
+                           style=3D"font-weight: bold;margin-bottom: 2px;di=
+splay: block;color: #393939;font-size: 14px;font-family: 'Open Sans', sans-=
+serif;">Email address</label>
+                        <div class=3D"value_booking"
+                           style=3D"word-wrap: break-word; font-weight: 400=
+;font-style: italic;font-size: 16px;line-height: 20px;color: #4f4f4f;font-f=
+amily: 'Open Sans', sans-serif;text-transform: capitalize;">
+                           wierts@gmail.com
+                        </div>
+                     </td>
+                     <td style=3D"padding: 30px 20px;min-height: 50px;displ=
+ay: table-cell;width:50%;box-sizing: content-box;border: 1px solid #e3e3e3;=
+text-align:left;">
+                        <label class=3D"label_booking_summary"
+                           style=3D"font-weight: bold;margin-bottom: 2px;di=
+splay: block;color: #393939;font-size: 14px;font-family: 'Open Sans', sans-=
+serif;">Your booking</label>
+                        <div class=3D"value_booking"
+                           style=3D"font-weight: 400;font-style: italic;fon=
+t-size: 16px;line-height: 20px;color: #4f4f4f;font-family: 'Open Sans', san=
+s-serif;text-transform: capitalize;">
+                           1
+                           night,
+                           2
+                          =20
+                           rooms
+                        </div>
+                     </td>
+                  </tr>
+                 =20
+                  <!-- Rooms and occupancy -->
+                 =20
+                  <tr style=3D"border:none; margin:0; display: table;width:=
+ 100%;">
+                     <td style=3D"padding: 30px 20px;min-height: 50px;displ=
+ay: table-cell;width:50%;box-sizing: content-box;border: 1px solid #e3e3e3;=
+text-align:left;">
+                        <label class=3D"label_booking_summary"
+                           style=3D"font-weight: bold;margin-bottom: 2px;di=
+splay: block;color: #393939;font-size: 14px;font-family: 'Open Sans', sans-=
+serif;">Room</label>
+                        <div class=3D"value_booking"
+                           style=3D"font-weight: 400;font-style: italic;fon=
+t-size: 16px;line-height: 20px;color: #4f4f4f;font-family: 'Open Sans', san=
+s-serif;text-transform: capitalize;">
+                          =20
+                           Superior Room || Superior Room
+                          =20
+                          =20
+                        </div>
+                     </td>
+                     <td style=3D"padding: 30px 20px;min-height: 50px;displ=
+ay: table-cell;width:50%;box-sizing: content-box;border: 1px solid #e3e3e3;=
+text-align:left;">
+                        <label class=3D"label_booking_summary"
+                           style=3D"font-weight: bold;margin-bottom: 2px;di=
+splay: block;color: #393939;font-size: 14px;font-family: 'Open Sans', sans-=
+serif;">Occupancy</label>
+                        <div class=3D"value_booking"
+                           style=3D"font-weight: 400;font-style: italic;fon=
+t-size: 16px;line-height: 20px;color: #4f4f4f;font-family: 'Open Sans', san=
+s-serif;text-transform: capitalize;">
+                          =20
+                           4 Adults
+                          =20
+                        </div>
+                       =20
+
+                     </td>
+                  </tr>
+                 =20
+                 =20
+                  <!-- Entry and departure -->
+                  <tr style=3D"border:none; margin:0; display: table;width:=
+ 100%;">
+                     <td style=3D"padding: 30px 20px;min-height: 50px;displ=
+ay: table-cell;width:50%;box-sizing: content-box;border: 1px solid #e3e3e3;=
+text-align:left;">
+                        <label class=3D"label_booking_summary"
+                           style=3D"font-weight: bold;margin-bottom: 2px;di=
+splay: block;color: #393939;font-size: 14px;font-family: 'Open Sans', sans-=
+serif;">Check-In</label>
+                        <div class=3D"value_booking"
+                           style=3D"font-weight: 400;font-style: italic;fon=
+t-size: 16px;line-height: 20px;color: #4f4f4f;font-family: 'Open Sans', san=
+s-serif;text-transform: capitalize;">
+                           Thursday, 10 September 2026
+                           <br>After 3 PM
+                        </div>
+                     </td>
+                     <td style=3D"padding: 30px 20px;min-height: 50px;displ=
+ay: table-cell;width:50%;box-sizing: content-box;border: 1px solid #e3e3e3;=
+text-align:left;">
+                        <label class=3D"label_booking_summary"
+                           style=3D"font-weight: bold;margin-bottom: 2px;di=
+splay: block;color: #393939;font-size: 14px;font-family: 'Open Sans', sans-=
+serif;">Check-Out</label>
+                        <div class=3D"value_booking"
+                           style=3D"font-weight: 400;font-style: italic;fon=
+t-size: 16px;line-height: 20px;color: #4f4f4f;font-family: 'Open Sans', san=
+s-serif;text-transform: capitalize;">
+                           Friday, 11 September 2026
+                           <br>Before 12 PM
+                        </div>
+                     </td>
+                  </tr>
+                  <!-- Promocode -->
+                 =20
+                  <!-- Additional services and board -->
+                 =20
+                  <tr style=3D"border:none; margin:0; display: table;width:=
+ 100%;">
+                     <td style=3D"padding: 30px 20px;min-height: 50px;displ=
+ay: table-cell;width:50%;box-sizing: content-box;border: 1px solid #e3e3e3;=
+text-align:left;">
+                        <label class=3D"label_booking_summary"
+                           style=3D"font-weight: bold;margin-bottom: 2px;di=
+splay: block;color: #393939;font-size: 14px;font-family: 'Open Sans', sans-=
+serif;">Additional Services</label>
+                        <div class=3D"value_booking"
+                           style=3D"font-weight: 400;font-style: italic;fon=
+t-size: 16px;line-height: 20px;color: #4f4f4f;font-family: 'Open Sans', san=
+s-serif;text-transform: capitalize;">
+                          =20
+                              =20
+                                    No selected service
+                              =20
+                          =20
+                        </div>
+                       =20
+                     </td>
+                    =20
+                     <td style=3D"padding: 30px 20px;min-height: 50px;displ=
+ay: table-cell;width:50%;box-sizing: content-box;border: 1px solid #e3e3e3;=
+text-align:left;">
+                        <label class=3D"label_booking_summary"
+                           style=3D"font-weight: bold;margin-bottom: 2px;di=
+splay: block;color: #393939;font-size: 14px;font-family: 'Open Sans', sans-=
+serif;">Board basis</label>
+                        <div class=3D"value_booking"
+                           style=3D"font-weight: 400;font-style: italic;fon=
+t-size: 16px;line-height: 20px;color: #4f4f4f;font-family: 'Open Sans', san=
+s-serif;text-transform: capitalize;">Bed and Breakfast</div>
+                       =20
+                       =20
+                     </td>
+                    =20
+                  </tr>
+                 =20
+                 =20
+                  <!-- Package info -->
+                 =20
+                  <!-- Total prices and selected rate -->
+                 =20
+                 =20
+                  <tr style=3D"border:none; margin:0; display: table;width:=
+ 100%;">
+                     <td style=3D"padding: 30px 20px;min-height: 50px;displ=
+ay: table-cell;width:50%;box-sizing: content-box;border: 1px solid #e3e3e3;=
+text-align:left;">
+                       =20
+                       =20
+                       =20
+                       =20
+                        <div class=3D"row" style=3D"padding-right: 15px;mar=
+gin-bottom:20px;">
+                           <label class=3D"label_booking_summary"
+                              style=3D"font-weight: bold;margin-bottom: 2px=
+;display: table;width:100%; color: #393939;font-size: 14px;font-family: 'Op=
+en Sans', sans-serif;">
+                         <span style=3D"display:table-cell;width:50%">  <b =
+style=3D"color: #333333;">Total price</b>
+                           </span>
+                           <span class=3D"price"
+                              style=3D"float: none;display: table-cell; wid=
+th: 50%;text-align: right;font-size: 15px;margin-top:2px;font-family: 'Open=
+ Sans', sans-serif;"><b
+                              style=3D"color: #333333;">
+                          =20
+                           730.8=E2=82=AC
+                          =20
+                           </b></span>
+                           </label>
+                        </div>
+                       =20
+                        <div class=3D"row" style=3D"padding-right: 15px;mar=
+gin-bottom:20px;">
+                           <label class=3D"label_booking_summary"
+                              style=3D"font-weight: 300;margin-bottom: 2px;=
+display: table;width:100%;color: black;font-size: 18px;line-height: 14px;fo=
+nt-family: 'Open Sans', sans-serif;">
+                           <b style=3D"display:table-cell; width:50%; font-=
+size: 12px;color: #347cbb;font-family: 'Open Sans', sans-serif;">
+                               Amount paid:=20
+                           </b>
+                           <span class=3D"price"
+                              style=3D"float: none;display: table-cell; wid=
+th: 50%;text-align: right;font-size: 15px;margin-top:2px;font-family: 'Open=
+ Sans', sans-serif;"><b
+                              style=3D"font-size: 12px;font-weight: bold;li=
+ne-height: 18px;color: #347cbb;">730.8
+                          =20
+                           =E2=82=AC</b></span>
+                           </label>
+                        </div>
+                       =20
+                       =20
+                       =20
+                       =20
+                       =20
+                       =20
+                       =20
+                       =20
+                       =20
+                     </td>
+                    =20
+                     <td style=3D"padding: 30px 20px;min-height: 50px;displ=
+ay: table-cell;width:50%;box-sizing: content-box;border: 1px solid #e3e3e3;=
+text-align:left;vertical-align: top;">
+                       =20
+                        <label class=3D"label_booking_summary"
+                           style=3D"font-weight: bold;margin-bottom: 2px;di=
+splay: block;color: #393939;font-size: 14px;font-family: 'Open Sans', sans-=
+serif;">Rate</label>
+                        <div class=3D"value_booking"
+                           style=3D"font-weight: 400;font-style: italic;fon=
+t-size: 14px;line-height: 17px;padding-top: 10px;color: #347cbb;font-family=
+: 'Open Sans', sans-serif;color: #B79269;text-transform: capitalize;">Non-R=
+efundable Fee | Club</div>
+                       =20
+                     </td>
+                    =20
+                  </tr>
+                 =20
+                  <tr style=3D"border:none; margin:0; display: table;width:=
+ 100%;">
+                     <td style=3D"padding: 30px 20px;min-height: 50px;displ=
+ay: table-cell;width:100% !important;box-sizing: content-box;border: 1px so=
+lid #e3e3e3;text-align:left;">
+                        <label class=3D"label_booking_summary"
+                           style=3D"font-weight: bold;margin-bottom: 2px;di=
+splay: block;color: #393939;font-size: 14px;font-family: 'Open Sans', sans-=
+serif;">Rate conditions</label>
+                        <div class=3D"value_booking"
+                           style=3D"font-weight: 400;font-style: italic;fon=
+t-size: 14px;line-height: 17px;color: #4f4f4f;font-family: 'Open Sans', san=
+s-serif;text-transform: capitalize;">Non-Refundable Fee | Club</div>
+                       =20
+                        <div class=3D"rate_conditions"
+                           style=3D"font-size: 11px;padding-top: 15px;line-=
+height: 15px;color: #4f4f4f;font-family: 'Open Sans', sans-serif;">
+                           <strong>Non-Refundable Rate Conditions</strong><=
+br>
+The total amount of the reservation will be charged at the time of booking =
+using the credit card provided for payment.<br><br>
+
+In case of cancellation, modification, or no-show, the reservation amount w=
+ill not be refunded.<br>
+One modification to the reservation is permitted up to 5 days before the ar=
+rival date, except for reservations from 12/30 to 01/03.<br>
+<br><div><b>
+    Obvious pricing errors</b></div><div>
+    The hotel reserves the right to cancel any reservation whose price is a=
+ffected by a technical or human error clearly identifiable as an unrealisti=
+c or manifestly disproportionate amount. In such cases, the client will be =
+duly informed and, whenever possible, offered an alternative adjusted to th=
+e correct rate.
+</div>
+                        </div>
+                       =20
+                       =20
+                     </td>
+                  </tr>
+                 =20
+                 =20
+                 =20
+                 =20
+                  <!-- Book Comments -->
+                 =20
+                  <tr class=3D"comments" style=3D"border:none; margin:0; di=
+splay: table;width: 100%; ">
+                     <td style=3D"padding: 30px 20px;min-height: 50px;displ=
+ay: table-cell;width:100%;box-sizing: content-box;border: 1px solid #e3e3e3=
+;text-align:left;">
+                        <label class=3D"label_booking_summary"
+                           style=3D"font-weight: bold;margin-bottom: 2px;di=
+splay: block;color: #393939;font-size: 14px;font-family: 'Open Sans', sans-=
+serif;">Comments</label>
+                        <div class=3D"value_booking"
+                           style=3D"font-weight: 400;font-style: italic;fon=
+t-size: 16px;line-height: 20px;color: #4f4f4f;font-family: 'Open Sans', san=
+s-serif;overflow-wrap: anywhere;text-transform: capitalize;">
+                          =20
+                          =20
+                        </div>
+                     </td>
+                  </tr>
+                 =20
+                  <!-- Currency conversion price -->
+                 =20
+                  <!-- Accommodation taxes -->
+                 =20
+                  <!-- Custom Taxes -->
+                 =20
+               </table>
+            </td>
+         </tr>
+         <!-- Additional services with calendar dates -->
+         <tr style=3D"border:none; margin:0; display: table;width: 100%;">
+            <td style=3D"padding: 30px 20px;min-height: 50px;display: table=
+-cell;width:100%;box-sizing: content-box;border: none;">
+              =20
+               <!--- Fin Additional services with calendar dates -->
+               <!---->
+              =20
+              =20
+            </td>
+         </tr>
+      </table>
+        =20
+           =20
+
+           =20
+
+           =20
+
+           =20
+            <table>
+               <tr>
+                  <td>
+                     <!-- Privacy policies info -->
+                    =20
+                    =20
+                  </td>
+               </tr>
+            </table>
+            <!--[if mso]>
+            <table>
+               <tr>
+                  <td height=3D"50"></td>
+               </tr>
+            </table>
+         <![endif]-->
+
+        =20
+
+         =20
+
+         =20
+
+        =20
+
+        =20
+        =20
+
+        =20
+
+        =20
+
+        =20
+
+        =20
+        =20
+         <!-- Contact wrapper -->
+         <table width=3D"100%" class=3D"contact_wrapper" style=3D"max-width=
+: calc(100% - 40px);width:100%;margin:50px auto 0;text-align:left;border-bo=
+ttom: 1px solid lightgrey;">
+            <tr style=3D"width:100%">
+               <td colspan=3D"2" style=3D"border-top: 1px solid lightgrey;p=
+adding:20px 25px 0 0;">
+                  <p class=3D"main_title_block"
+                     style=3D"font-size: 24px;margin-bottom: 20px;margin-to=
+p: 0;display: block;font-weight: 700;color: #00257a;font-style: italic;font=
+-family: 'Open Sans', sans-serif;color: #B79269;">
+                    =20
+                     Contact
+                  </p>
+               </td>
+            </tr>
+            <tr class=3D"contact_table" style=3D"width: auto;font-size: 13p=
+x;border-bottom: 1px solid lightgrey;">
+              =20
+               <td style=3D"padding: 10px 10px 20px; width: 45%; vertical-a=
+lign: top;">
+                  <a href=3D"tel:(+351) 234 245 630"
+                     style=3D"text-decoration: none;font-size: 16px;color:#=
+393939;">
+                    =20
+                        <table style=3D"text-align:left;">
+                           <tr>
+                              <td colspan=3D"2" style=3D"padding-bottom: 20=
+px;">
+                                =20
+                                 <label width=3D"100%" class=3D"contact_lab=
+el contact_label_phone"
+                                    style=3D"display: block;font-size: 13px=
+;color: #3a3a3a;font-weight: bold;letter-spacing: 1px;font-family: 'Open Sa=
+ns', sans-serif;">
+                                =20
+                                 Phone
+                                 </label>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <img class=3D"icon_contact" src=3D"https:/=
+/lh3.googleusercontent.com/wGsEa3cshfm_6Etc_gZXF0MHiMK4Gg42G2J6cwjmY4MAlm3F=
+5eOXRStSteBiokgIMBvjwPO9UK3MJH-j4cf-8FjykyRiCg" style=3D"display: inline-bl=
+ock;vertical-align: middle;margin-right: 4px;">
+                              </td>
+                              <td>
+                                 <div class=3D"contact_value" style=3D"disp=
+lay: inline-block;vertical-align: middle;font-size:13px;font-weight: bold;c=
+olor:  color: #000000;;font-family: 'Open Sans', sans-serif;color: #B79269;=
+;">
+                                    (+351) 234 245 630
+                                     | Call to portuguese fixed network.
+                                 </div>
+                              </td>
+                           </tr>
+                        </table>
+
+                       =20
+                    =20
+                  </a>
+               </td>
+              =20
+               <td style=3D"padding: 10px 10px 20px; width: 55%; vertical-a=
+lign: top;">
+                  <a target=3D"_blank" href=3D"mailto:aveiro.reservations@m=
+scollection.pt"
+                     style=3D"text-decoration: none;font-size: 16px;color:#=
+393939;">
+                    =20
+                        <table style=3D"text-align:left;">
+                           <tr>
+                              <td colspan=3D"2" style=3D"padding-bottom: 20=
+px;">
+                                 <label width=3D"100%" class=3D"contact_lab=
+el contact_label_email"
+                                    style=3D"display: block;color: #3a3a3a;=
+font-weight: bold;font-size: 13px;letter-spacing: 1px;font-family: 'Open Sa=
+ns', sans-serif;">
+                                =20
+                                 E-mail</label>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td >
+                                 <img class=3D"icon_contact" src=3D"https:/=
+/lh3.googleusercontent.com/e1tr-tg6adIHAoC2uQhDQJHrVEIu3Kdk7bZw3_uRHRAWmB_o=
+9gctWhReNqwoqbwtwEcACPGGk9HbVWZkRQL4AYMG-K_LhJA"
+                                    style=3D"display: inline-block;vertical=
+-align: middle;margin-right: 4px;">
+                              </td>
+                              <td style=3D"color: #1c78c5;">
+                                 <div class=3D"contact_value"
+                                    style=3D"display: inline-block;vertical=
+-align: middle;line-break: anywhere;font-size:13px;font-weight: bold;color:=
+  color: #000000;;
+                                    color: #B79269;;font-family: 'Open Sans=
+', sans-serif;">aveiro.reservations@mscollection.pt</div>
+                              </td>
+                           </tr>
+                        </table>
+
+                       =20
+                    =20
+                  </a>
+               </td>
+            </tr>
+         </table>
+        =20
+        =20
+        =20
+        =20
+         <!-- Location wrapper -->
+         <table width=3D"650" class=3D"location_wrapper" style=3D"max-width=
+: calc(100% - 40px);width:100%;margin:30px auto;">
+            <tr>
+               <td>
+                  <table class=3D"location_table" style=3D"width: 100%;text=
+-align:left;">
+                     <tr>
+                        <td style=3D"display: block; vertical-align: top; w=
+idth: 200px; ">
+                           <a href=3D"https://maps.app.goo.gl/s1jn1fNM3JxGK=
+vNt7" target=3D"_blank"
+                              style=3D"text-decoration: none;">
+                           </a>
+                           <p class=3D"main_title_block"
+                              style=3D"font-size: 24px;margin-bottom: 20px;=
+margin-top: 0;display: block;font-weight: 700;color: #00257a;font-style: it=
+alic;font-family: 'Open Sans', sans-serif;color: #B79269; ">
+                             =20
+                                  How to get here
+                             =20
+                           </p>
+                          =20
+                           <div class=3D"location_content"
+                              style=3D"font-size: 14px;width: 100%;line-hei=
+ght: 17px;color: #414141;font-family: 'Open Sans', sans-serif; padding-righ=
+t: 10px;">
+                              <b>MS Collection Palacete de Valdemouro</b><b=
+r>
+Rua Jos=C3=A9 Estev=C3=A3o, n=C2=BA50<br>
+3800-201 Aveiro<br>
+                           </div>
+                          =20
+                        </td>
+                        <td style =3D"vertical-align: middle; text-align: r=
+ight;">
+                           <a href=3D"https://maps.app.goo.gl/s1jn1fNM3JxGK=
+vNt7" target=3D"_blank"
+                              style=3D"text-decoration: none;"><img
+                              src=3D"https://cdn2.paraty.es/mscol-palacete/=
+images/c27333b57d4423c=3Ds600" width=3D"100%"
+                              height=3D"auto"
+                              style=3D"max-width: 330px;"></a>
+                        </td>
+                     </tr>
+                  </table>
+               </td>
+            </tr>
+         </table>
+        =20
+
+        =20
+
+        =20
+      </div>
+      <div width=3D"650" style=3D"background-color: white;max-width: calc(1=
+00% - 40px);width:100%;margin: 0 auto;">
+        =20
+        =20
+        =20
+        =20
+        =20
+        =20
+        =20
+        =20
+   <!-- Banner Club -->
+     =20
+
+     =20
+
+     =20
+        =20
+         <div class=3D"email_footer" style=3D"width: 100%; max-width: calc(=
+100% - 40px); margin:0 auto">
+            <!-- Email footer -->
+            <br>
+<h3 style=3D"clear:both;font-size:14px;"><b>NOTES</b></h3>
+<b>Pets:</b> Not allowed.<br><br>
+<b>Credit card / Guarantee/ Payment information</b><br>
+You have now confirmed and guaranteed your booking by credit card. Your boo=
+king has not been paid yet.<br>
+All payments are to be made at the hotel on arrival, unless otherwise state=
+d in the hotel policies or in the room conditions.<br>
+Please note that your credit card may be pre-authorised prior to your arriv=
+al.<br>
+<b>Accepted Credit Cards:</b> Visa, Euro/Mastercard, Maestro.<br><br>
+Special requests cannot be guaranteed and may incur additional charges.<br>
+We make every effort to offer the information contained in the website in a=
+ truthful manner and without typographical errors. In the event that at any=
+ time there is an error of this type, at all times outside the will of the =
+Hotel, we will proceed to correct such mistake as soon as possible, and we =
+will provide the user with the information and options established in the c=
+urrent legislation. Upon arrival at the hotel, the same credit card used in=
+ your reservation will be required and must be presented together with your=
+ ID.
+         </div>
+        =20
+        =20
+        =20
+        =20
+         =20
+        =20
+        =20
+        =20
+        =20
+        =20
+        =20
+        =20
+        =20
+        =20
+        =20
+
+
+        =20
+        =20
+        =20
+        =20
+      </div>
+</div>
+
+--mk3-b2342224aafc4a329b2b51503c31615e
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div itemscope itemtype=3D"http://schema.org/LodgingReservation">
+  <meta itemprop=3D"reservationNumber" content=3D"17876799"/>
+  <link itemprop=3D"reservationStatus" href=3D"http://schema.org/Confirmed"=
+/>
+  <div itemprop=3D"underName" itemscope itemtype=3D"http://schema.org/Perso=
+n">
+    <meta itemprop=3D"name" content=3D"duco wiertsema"/>
+  </div>
+  <div itemprop=3D"reservationFor" itemscope itemtype=3D"http://schema.org/=
+LodgingBusiness">
+    <meta itemprop=3D"name" content=3D""/>
+    <div itemprop=3D"address" itemscope itemtype=3D"http://schema.org/Posta=
+lAddress">
+      <meta itemprop=3D"streetAddress" content=3D"R. Jos=C3=A9 Estev=C3=A3o=
+ 50"/>
+      <meta itemprop=3D"addressLocality" content=3D"Aveiro"/>
+      <meta itemprop=3D"addressRegion" content=3D"Aveiro"/>
+      <meta itemprop=3D"postalCode" content=3D"3800-201"/>
+      <meta itemprop=3D"addressCountry" content=3D"Portugal"/>
+    </div>
+    <meta itemprop=3D"telephone" content=3D"234 245 630"/>
+  </div>
+  <meta itemprop=3D"checkinDate" content=3D"2026-09-10T00:00:00"/>
+  <meta itemprop=3D"checkoutDate" content=3D"2026-09-11T00:00:00"/>
+</div>
+
+
+<link href=3D"https://fonts.googleapis.com/css2?family=3DOpen+Sans:ital,wgh=
+t@0,300;0,400;0,600;0,700;1,300;1,400;1,700&display=3Dswap"
+   rel=3D"stylesheet">
+
+<script>window.__prevJQ =3D window.jQuery;</script>
+<script src=3D"https://code.jquery.com/jquery-3.6.0.min.js" crossorigin=3D"=
+anonymous" integrity=3D"sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u=
+1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=3D=3D"></script>
+<script>
+    if (window.__prevJQ) { jQuery.noConflict(true); }
+</script>
+<style>
+   #reservation {
+   padding: 20px;
+   font-size: 15px;
+   width: 600px;
+   margin: auto;
+   display: block;
+   font-weight: 300;
+   margin-top: 40px;
+   font-family: 'Open Sans', sans-serif;
+   }
+   a {
+   text-decoration: none;
+   }
+   .header_table {
+   width: 100%;
+   height: 70px;
+   background: white;
+   box-shadow: -2px 7px 11px rgba(0, 0, 0, .3)
+   }
+   .header_table .header_text {
+   color: #00257a;
+   font-style: italic;
+   font-weight: bold;
+   font-size: 22px;
+   padding: 10px 14px !important;
+   }
+   .header_table img {
+   display: block;
+   }
+   .prestay_image img {
+   width: 100%;
+   }
+   .booking_description {
+   width: calc(100% - 50px);
+   background: white;
+   border: 1px solid lightgrey;
+   -webkit-box-sizing: content-box;
+   -moz-box-sizing: content-box;
+   box-sizing: content-box;
+   }
+   .main_title_block {
+   font-size: 24px;
+   margin-top: 20px;
+   margin-bottom: 20px;
+   display: block;
+   font-style: italic;
+   font-weight: bold;
+   color: #00257a;
+   }
+   .booking_information {
+   width: 100%;
+   border: 1px solid lightgrey;
+   background: white;
+   padding: 6px;
+   border-collapse: collapse;
+   }
+   .booking_information tr {
+   border-bottom: 1px solid lightgrey;
+   display: block;
+   margin: 0 15px;
+   }
+   .booking_information tr:last-of-type {
+   border-bottom: 0;
+   }
+   .booking_information tr td {
+   padding: 40px 0px 40px 20px;
+   min-height: 85px;
+   display: inline-block;
+   box-sizing: content-box;
+   }
+   .booking_information tr td:first-of-type {
+   padding: 40px 20px 40px 0;
+   }
+   .booking_information .label_booking_summary {
+   font-weight: bold;
+   margin-bottom: 2px;
+   display: block;
+   color: #393939;
+   font-size: 16px;
+   }
+   .booking_information .label_booking_summary b {
+   color: #4f4f4f;
+   }
+   .booking_information .value_booking {
+   font-weight: 300;
+   font-style: italic;
+   font-size: 15px;
+   line-height: 18px;
+   color: #4f4f4f;
+   text-transform: capitalize;
+   }
+   .contact_table {
+   width: 100%;
+   font-size: 13px;
+   }
+   .contact_label {
+   display: block;
+   color: #3a3a3a;
+   font-weight: bold;
+   letter-spacing: 1px;
+   }
+   .icon_contact, .contact_value {
+   display: inline-block;
+   vertical-align: middle;
+   }
+   .contact_value {
+   font-weight: 500;
+   color: #1c78c5;
+   }
+   .icon_contact {
+   margin-right: 4px;
+   }
+   .location_table {
+   width: 100%;
+   }
+   .location_content {
+   font-size: 14px;
+   width: 55%;
+   line-height: 17px;
+   color: #414141;
+   }
+   .legal_text_wrapper {
+   border-top: 1px solid lightgray;
+   width: 100%;
+   padding: 20px 20px 0;
+   display: block;
+   font-weight: 400;
+   font-size: 15px;
+   color: #a2a3a9;
+   text-align: center;
+   }
+   .booking_information .price {
+   float: right;
+   }
+   .booking_information .row {
+   padding-right: 15px;
+   }
+   .regimen_extra_content {
+   font-size: 12px;
+   line-height: 18px;
+   color: #3366cc;
+   }
+   .rate_conditions {
+   font-size: 11px;
+   padding-top: 15px;
+   line-height: 15px;
+   font-family: 'Open Sans', sans-serif;
+   text-align: justify;
+   }
+   .rate_conditions strong {
+   color: #B99E87;
+   font-weight: 700;
+   }
+   .booking-button.booking-button--confirmed-booking {
+   background: #F7BB1E;
+   border-radius: 0;
+   font-family: 'Open Sans', sans-serif;
+   font-size: 18px;
+   font-weight: bold;
+   letter-spacing: 0;
+   width: 245px;
+   margin-top: 10px;
+   border: none;
+   padding: 6px;
+   }
+   a.booking-button.booking-button--confirmed-booking {
+      margin-left: 0 !important;
+   }
+   .my_reservation_button {
+   border: 1px solid #00257a;
+   background: transparent;
+   padding: 15px 50px;
+   color: #00257a;
+   font-weight: bold;
+   letter-spacing: 1px;
+   cursor: grab;
+   }
+   .my_reservation_button:hover {
+   background-color: #00257a;
+   color: white;
+   }
+   .booking_information tbody tr:last-child td{
+      border-bottom: none!important;
+   }
+
+   @media(max-width: 450px) {
+      .contact_label_phone {
+         font-size: 10px !important;
+         height: 28px;
+      }
+      .contact_label_email {
+         font-size: 10px !important;
+         height: 28px;
+      }
+      .location_table {
+         tr td img {
+            max-width: 260px !important;
+         }
+      }
+   }
+</style>
+
+
+<a class=3D"link_external_view" target=3D"_blank"
+   href=3D"https://www.mscollection.pt/send-confirmation/?data=3D55WNYLyLlo=
+e4Jz3N1JHzql_0N9d4a3X6Z7n5UrV6zZ1mAXCrkcQEpOixuIV7gpmEXbQiIspxcWBDDRqfJBIWR=
+ePlwqkYaS3DcD6-eCtE8JYlQn7CTSvqRlzDE0oyyJRCWNEH&fh=3D55WNYLyLloe4Jz3N1JHzql=
+_0N9d4a3X6Z7n5UrV6zZ1mAXCrkcQEpOixuIV7gpmEXbQiIspxcWBDDRqfJBIWRePlwqkYaS3Dc=
+D6-eCtE8JYlQn7CTSvqRlzDE0oyyJRCWNEH&namespace=3Dmscol-palacete"
+   style=3D"display: block;text-align: center;margin-bottom:20px;color:blac=
+k;text-decoration: underline;font-size: 13px;font-family: 'Open Sans', sans=
+-serif;">If you can&#x27;t see correctly this e-mail, click here</a>
+
+
+
+
+<div width=3D"650" style=3D"background-color: white;width: 650px;max-width:=
+ calc(100% - 20px);box-sizing: content-box;margin: 20px auto;font-family: '=
+Open Sans', sans-serif;padding: 0;font-size: 15px;display: block;font-weigh=
+t: 400;text-align:center;"
+      id=3D"reservation">
+     =20
+     =20
+      <table class=3D"header_table" width=3D"650" height=3D"70" style=3D"wi=
+dth: 100%;height: 70px;background: white;box-shadow: -2px 7px 11px rgba(0,0=
+,0,.3);filter: drop-shadow(6px 4px 11px rgba(0,0,0,.2));text-align:center;"=
+>
+         <tr>
+            <td class=3D"header_logo" style=3D"position: relative;margin-to=
+p: 90px;background-size: 90%;padding: 0;height: 70px;vertical-align: middle=
+;">
+               <a href=3D"https://www.mscollection.pt/en" target=3D"_blank"
+                  style=3D"text-decoration: none; display: inline-block; ma=
+x-width: 120px; width: 100%; ">
+               <img src=3D"https://cdn2.paraty.es/mscol-palacete/images/f72=
+20b95fb88092=3Ds200" style=3D"display: block;margin:8px;max-width:100%;">
+                 =20
+               </a>
+            </td>
+           =20
+              =20
+                  <td class=3D"header_text" style=3D"color: #00257a;font-st=
+yle: italic;font-weight: bold;font-size: 20px; vertical-align: middle; text=
+-align:center; color: #B79269;color: #B79269;">
+                     Ready for your stay?
+                  </td>
+              =20
+           =20
+         </tr>
+      </table>
+     =20
+     =20
+        <div class=3D"prestay_image">
+           =20
+                <img width=3D"650" src=3D"https://cdn2.paraty.es/mscol-pala=
+cete/images/abda266880fcd99=3Ds700" alt=3D"" style=3D"width: 100%; max-widt=
+h: 650px;">
+           =20
+        </div>
+     =20
+     =20
+     =20
+         <div style=3D"padding: 20px 0 0">
+        =20
+        =20
+        =20
+        =20
+        =20
+         <table width=3D"650" style=3D"width:100%;text-align:left;color:#42=
+4242;">
+            <tr>
+               <td style=3D"color:#424242;">
+                 =20
+                  <div style=3D"text-align:center;">
+<b>Thank you for choosing MS Collection Aveiro =E2=80=93 Palacete de Valdem=
+ouro</b>.<br><br>=20
+We send you all the details of your confirmed booking.</div><br><br>=20
+
+
+                 =20
+               </td>
+            </tr>
+         </table>
+        =20
+        =20
+        =20
+        =20
+        =20
+        =20
+         <!-- Booking description -->
+        =20
+            <table class=3D"booking_description ordinary_table" width=3D"60=
+0"
+         style=3D"max-width: calc(100% - 40px);width:100%;text-align:center=
+;background: white;margin: 0 auto; border:none;">
+         <tr>
+            <td>
+               <p class=3D"main_title_block"
+                  style=3D"font-size: 24px;text-align: center;margin:25px a=
+uto;display: block;font-style: italic;font-weight: bold;color: #00257a;font=
+-family: 'Open Sans', sans-serif;color: #B79269;;">Details of your booking<=
+/p>
+            </td>
+         </tr>
+        =20
+         <tr>
+            <td>
+               <table class=3D"booking_information" width=3D"600"
+                  style=3D"width:100%;max-width:100%; border-collapse: coll=
+apse;padding: 0;background: white;margin: auto;border-spacing: 0; border:no=
+ne;
+                  ">
+                  <!-- Booking and identifier -->
+                 =20
+                  <tr style=3D"border:none; margin:0; display: table;width:=
+ 100%;">
+                     <td style=3D"padding: 30px 20px;min-height: 50px;displ=
+ay: table-cell;width:50%;box-sizing: content-box;border: 1px solid #e3e3e3;=
+text-align:left;">
+                        <label class=3D"label_booking_summary"
+                           style=3D"font-weight: bold;margin-bottom: 2px;di=
+splay: block;color: #393939;font-size: 14px;font-family: 'Open Sans', sans-=
+serif;">Name and Surname</label>
+                        <div class=3D"value_booking"
+                           style=3D"font-weight: 400;font-style: italic;fon=
+t-size: 16px;line-height: 20px;color: #4f4f4f;font-family: 'Open Sans', san=
+s-serif;text-transform: capitalize;">
+                           duco=20
+                           wiertsema=20
+                        </div>
+                     </td>
+                     <td style=3D"padding: 30px 20px;min-height: 50px;displ=
+ay: table-cell;width:50%;box-sizing: content-box;border: 1px solid #e3e3e3;=
+text-align:left;">
+                        <label class=3D"label_booking_summary"
+                           style=3D"font-weight: bold;margin-bottom: 2px;di=
+splay: block;color: #393939;font-size: 14px;font-family: 'Open Sans', sans-=
+serif;">Booking reference</label>
+                        <div class=3D"value_booking"
+                           style=3D"font-weight: 400;font-style: italic;fon=
+t-size: 16px;line-height: 20px;color: #4f4f4f;font-family: 'Open Sans', san=
+s-serif;text-transform: capitalize;">
+                          =20
+                           17876799
+                          =20
+                        </div>
+                     </td>
+                  </tr>
+                  <tr style=3D"border:none; margin:0; display: table;width:=
+ 100%;">
+                     <td style=3D"padding: 30px 20px;min-height: 50px;displ=
+ay: table-cell;width:50%;box-sizing: content-box;border: 1px solid #e3e3e3;=
+text-align:left; word-break: break-word;">
+                        <label class=3D"label_booking_summary"
+                           style=3D"font-weight: bold;margin-bottom: 2px;di=
+splay: block;color: #393939;font-size: 14px;font-family: 'Open Sans', sans-=
+serif;">Email address</label>
+                        <div class=3D"value_booking"
+                           style=3D"word-wrap: break-word; font-weight: 400=
+;font-style: italic;font-size: 16px;line-height: 20px;color: #4f4f4f;font-f=
+amily: 'Open Sans', sans-serif;text-transform: capitalize;">
+                           wierts@gmail.com
+                        </div>
+                     </td>
+                     <td style=3D"padding: 30px 20px;min-height: 50px;displ=
+ay: table-cell;width:50%;box-sizing: content-box;border: 1px solid #e3e3e3;=
+text-align:left;">
+                        <label class=3D"label_booking_summary"
+                           style=3D"font-weight: bold;margin-bottom: 2px;di=
+splay: block;color: #393939;font-size: 14px;font-family: 'Open Sans', sans-=
+serif;">Your booking</label>
+                        <div class=3D"value_booking"
+                           style=3D"font-weight: 400;font-style: italic;fon=
+t-size: 16px;line-height: 20px;color: #4f4f4f;font-family: 'Open Sans', san=
+s-serif;text-transform: capitalize;">
+                           1
+                           night,
+                           2
+                          =20
+                           rooms
+                        </div>
+                     </td>
+                  </tr>
+                 =20
+                  <!-- Rooms and occupancy -->
+                 =20
+                  <tr style=3D"border:none; margin:0; display: table;width:=
+ 100%;">
+                     <td style=3D"padding: 30px 20px;min-height: 50px;displ=
+ay: table-cell;width:50%;box-sizing: content-box;border: 1px solid #e3e3e3;=
+text-align:left;">
+                        <label class=3D"label_booking_summary"
+                           style=3D"font-weight: bold;margin-bottom: 2px;di=
+splay: block;color: #393939;font-size: 14px;font-family: 'Open Sans', sans-=
+serif;">Room</label>
+                        <div class=3D"value_booking"
+                           style=3D"font-weight: 400;font-style: italic;fon=
+t-size: 16px;line-height: 20px;color: #4f4f4f;font-family: 'Open Sans', san=
+s-serif;text-transform: capitalize;">
+                          =20
+                           Superior Room || Superior Room
+                          =20
+                          =20
+                        </div>
+                     </td>
+                     <td style=3D"padding: 30px 20px;min-height: 50px;displ=
+ay: table-cell;width:50%;box-sizing: content-box;border: 1px solid #e3e3e3;=
+text-align:left;">
+                        <label class=3D"label_booking_summary"
+                           style=3D"font-weight: bold;margin-bottom: 2px;di=
+splay: block;color: #393939;font-size: 14px;font-family: 'Open Sans', sans-=
+serif;">Occupancy</label>
+                        <div class=3D"value_booking"
+                           style=3D"font-weight: 400;font-style: italic;fon=
+t-size: 16px;line-height: 20px;color: #4f4f4f;font-family: 'Open Sans', san=
+s-serif;text-transform: capitalize;">
+                          =20
+                           4 Adults
+                          =20
+                        </div>
+                       =20
+
+                     </td>
+                  </tr>
+                 =20
+                 =20
+                  <!-- Entry and departure -->
+                  <tr style=3D"border:none; margin:0; display: table;width:=
+ 100%;">
+                     <td style=3D"padding: 30px 20px;min-height: 50px;displ=
+ay: table-cell;width:50%;box-sizing: content-box;border: 1px solid #e3e3e3;=
+text-align:left;">
+                        <label class=3D"label_booking_summary"
+                           style=3D"font-weight: bold;margin-bottom: 2px;di=
+splay: block;color: #393939;font-size: 14px;font-family: 'Open Sans', sans-=
+serif;">Check-In</label>
+                        <div class=3D"value_booking"
+                           style=3D"font-weight: 400;font-style: italic;fon=
+t-size: 16px;line-height: 20px;color: #4f4f4f;font-family: 'Open Sans', san=
+s-serif;text-transform: capitalize;">
+                           Thursday, 10 September 2026
+                           <br>After 3 PM
+                        </div>
+                     </td>
+                     <td style=3D"padding: 30px 20px;min-height: 50px;displ=
+ay: table-cell;width:50%;box-sizing: content-box;border: 1px solid #e3e3e3;=
+text-align:left;">
+                        <label class=3D"label_booking_summary"
+                           style=3D"font-weight: bold;margin-bottom: 2px;di=
+splay: block;color: #393939;font-size: 14px;font-family: 'Open Sans', sans-=
+serif;">Check-Out</label>
+                        <div class=3D"value_booking"
+                           style=3D"font-weight: 400;font-style: italic;fon=
+t-size: 16px;line-height: 20px;color: #4f4f4f;font-family: 'Open Sans', san=
+s-serif;text-transform: capitalize;">
+                           Friday, 11 September 2026
+                           <br>Before 12 PM
+                        </div>
+                     </td>
+                  </tr>
+                  <!-- Promocode -->
+                 =20
+                  <!-- Additional services and board -->
+                 =20
+                  <tr style=3D"border:none; margin:0; display: table;width:=
+ 100%;">
+                     <td style=3D"padding: 30px 20px;min-height: 50px;displ=
+ay: table-cell;width:50%;box-sizing: content-box;border: 1px solid #e3e3e3;=
+text-align:left;">
+                        <label class=3D"label_booking_summary"
+                           style=3D"font-weight: bold;margin-bottom: 2px;di=
+splay: block;color: #393939;font-size: 14px;font-family: 'Open Sans', sans-=
+serif;">Additional Services</label>
+                        <div class=3D"value_booking"
+                           style=3D"font-weight: 400;font-style: italic;fon=
+t-size: 16px;line-height: 20px;color: #4f4f4f;font-family: 'Open Sans', san=
+s-serif;text-transform: capitalize;">
+                          =20
+                              =20
+                                    No selected service
+                              =20
+                          =20
+                        </div>
+                       =20
+                     </td>
+                    =20
+                     <td style=3D"padding: 30px 20px;min-height: 50px;displ=
+ay: table-cell;width:50%;box-sizing: content-box;border: 1px solid #e3e3e3;=
+text-align:left;">
+                        <label class=3D"label_booking_summary"
+                           style=3D"font-weight: bold;margin-bottom: 2px;di=
+splay: block;color: #393939;font-size: 14px;font-family: 'Open Sans', sans-=
+serif;">Board basis</label>
+                        <div class=3D"value_booking"
+                           style=3D"font-weight: 400;font-style: italic;fon=
+t-size: 16px;line-height: 20px;color: #4f4f4f;font-family: 'Open Sans', san=
+s-serif;text-transform: capitalize;">Bed and Breakfast</div>
+                       =20
+                       =20
+                     </td>
+                    =20
+                  </tr>
+                 =20
+                 =20
+                  <!-- Package info -->
+                 =20
+                  <!-- Total prices and selected rate -->
+                 =20
+                 =20
+                  <tr style=3D"border:none; margin:0; display: table;width:=
+ 100%;">
+                     <td style=3D"padding: 30px 20px;min-height: 50px;displ=
+ay: table-cell;width:50%;box-sizing: content-box;border: 1px solid #e3e3e3;=
+text-align:left;">
+                       =20
+                       =20
+                       =20
+                       =20
+                        <div class=3D"row" style=3D"padding-right: 15px;mar=
+gin-bottom:20px;">
+                           <label class=3D"label_booking_summary"
+                              style=3D"font-weight: bold;margin-bottom: 2px=
+;display: table;width:100%; color: #393939;font-size: 14px;font-family: 'Op=
+en Sans', sans-serif;">
+                         <span style=3D"display:table-cell;width:50%">  <b =
+style=3D"color: #333333;">Total price</b>
+                           </span>
+                           <span class=3D"price"
+                              style=3D"float: none;display: table-cell; wid=
+th: 50%;text-align: right;font-size: 15px;margin-top:2px;font-family: 'Open=
+ Sans', sans-serif;"><b
+                              style=3D"color: #333333;">
+                          =20
+                           730.8=E2=82=AC
+                          =20
+                           </b></span>
+                           </label>
+                        </div>
+                       =20
+                        <div class=3D"row" style=3D"padding-right: 15px;mar=
+gin-bottom:20px;">
+                           <label class=3D"label_booking_summary"
+                              style=3D"font-weight: 300;margin-bottom: 2px;=
+display: table;width:100%;color: black;font-size: 18px;line-height: 14px;fo=
+nt-family: 'Open Sans', sans-serif;">
+                           <b style=3D"display:table-cell; width:50%; font-=
+size: 12px;color: #347cbb;font-family: 'Open Sans', sans-serif;">
+                               Amount paid:=20
+                           </b>
+                           <span class=3D"price"
+                              style=3D"float: none;display: table-cell; wid=
+th: 50%;text-align: right;font-size: 15px;margin-top:2px;font-family: 'Open=
+ Sans', sans-serif;"><b
+                              style=3D"font-size: 12px;font-weight: bold;li=
+ne-height: 18px;color: #347cbb;">730.8
+                          =20
+                           =E2=82=AC</b></span>
+                           </label>
+                        </div>
+                       =20
+                       =20
+                       =20
+                       =20
+                       =20
+                       =20
+                       =20
+                       =20
+                       =20
+                     </td>
+                    =20
+                     <td style=3D"padding: 30px 20px;min-height: 50px;displ=
+ay: table-cell;width:50%;box-sizing: content-box;border: 1px solid #e3e3e3;=
+text-align:left;vertical-align: top;">
+                       =20
+                        <label class=3D"label_booking_summary"
+                           style=3D"font-weight: bold;margin-bottom: 2px;di=
+splay: block;color: #393939;font-size: 14px;font-family: 'Open Sans', sans-=
+serif;">Rate</label>
+                        <div class=3D"value_booking"
+                           style=3D"font-weight: 400;font-style: italic;fon=
+t-size: 14px;line-height: 17px;padding-top: 10px;color: #347cbb;font-family=
+: 'Open Sans', sans-serif;color: #B79269;text-transform: capitalize;">Non-R=
+efundable Fee | Club</div>
+                       =20
+                     </td>
+                    =20
+                  </tr>
+                 =20
+                  <tr style=3D"border:none; margin:0; display: table;width:=
+ 100%;">
+                     <td style=3D"padding: 30px 20px;min-height: 50px;displ=
+ay: table-cell;width:100% !important;box-sizing: content-box;border: 1px so=
+lid #e3e3e3;text-align:left;">
+                        <label class=3D"label_booking_summary"
+                           style=3D"font-weight: bold;margin-bottom: 2px;di=
+splay: block;color: #393939;font-size: 14px;font-family: 'Open Sans', sans-=
+serif;">Rate conditions</label>
+                        <div class=3D"value_booking"
+                           style=3D"font-weight: 400;font-style: italic;fon=
+t-size: 14px;line-height: 17px;color: #4f4f4f;font-family: 'Open Sans', san=
+s-serif;text-transform: capitalize;">Non-Refundable Fee | Club</div>
+                       =20
+                        <div class=3D"rate_conditions"
+                           style=3D"font-size: 11px;padding-top: 15px;line-=
+height: 15px;color: #4f4f4f;font-family: 'Open Sans', sans-serif;">
+                           <strong>Non-Refundable Rate Conditions</strong><=
+br>
+The total amount of the reservation will be charged at the time of booking =
+using the credit card provided for payment.<br><br>
+
+In case of cancellation, modification, or no-show, the reservation amount w=
+ill not be refunded.<br>
+One modification to the reservation is permitted up to 5 days before the ar=
+rival date, except for reservations from 12/30 to 01/03.<br>
+<br><div><b>
+    Obvious pricing errors</b></div><div>
+    The hotel reserves the right to cancel any reservation whose price is a=
+ffected by a technical or human error clearly identifiable as an unrealisti=
+c or manifestly disproportionate amount. In such cases, the client will be =
+duly informed and, whenever possible, offered an alternative adjusted to th=
+e correct rate.
+</div>
+                        </div>
+                       =20
+                       =20
+                     </td>
+                  </tr>
+                 =20
+                 =20
+                 =20
+                 =20
+                  <!-- Book Comments -->
+                 =20
+                  <tr class=3D"comments" style=3D"border:none; margin:0; di=
+splay: table;width: 100%; ">
+                     <td style=3D"padding: 30px 20px;min-height: 50px;displ=
+ay: table-cell;width:100%;box-sizing: content-box;border: 1px solid #e3e3e3=
+;text-align:left;">
+                        <label class=3D"label_booking_summary"
+                           style=3D"font-weight: bold;margin-bottom: 2px;di=
+splay: block;color: #393939;font-size: 14px;font-family: 'Open Sans', sans-=
+serif;">Comments</label>
+                        <div class=3D"value_booking"
+                           style=3D"font-weight: 400;font-style: italic;fon=
+t-size: 16px;line-height: 20px;color: #4f4f4f;font-family: 'Open Sans', san=
+s-serif;overflow-wrap: anywhere;text-transform: capitalize;">
+                          =20
+                          =20
+                        </div>
+                     </td>
+                  </tr>
+                 =20
+                  <!-- Currency conversion price -->
+                 =20
+                  <!-- Accommodation taxes -->
+                 =20
+                  <!-- Custom Taxes -->
+                 =20
+               </table>
+            </td>
+         </tr>
+         <!-- Additional services with calendar dates -->
+         <tr style=3D"border:none; margin:0; display: table;width: 100%;">
+            <td style=3D"padding: 30px 20px;min-height: 50px;display: table=
+-cell;width:100%;box-sizing: content-box;border: none;">
+              =20
+               <!--- Fin Additional services with calendar dates -->
+               <!---->
+              =20
+              =20
+            </td>
+         </tr>
+      </table>
+        =20
+           =20
+
+           =20
+
+           =20
+
+           =20
+            <table>
+               <tr>
+                  <td>
+                     <!-- Privacy policies info -->
+                    =20
+                    =20
+                  </td>
+               </tr>
+            </table>
+            <!--[if mso]>
+            <table>
+               <tr>
+                  <td height=3D"50"></td>
+               </tr>
+            </table>
+         <![endif]-->
+
+        =20
+
+         =20
+
+         =20
+
+        =20
+
+        =20
+        =20
+
+        =20
+
+        =20
+
+        =20
+
+        =20
+        =20
+         <!-- Contact wrapper -->
+         <table width=3D"100%" class=3D"contact_wrapper" style=3D"max-width=
+: calc(100% - 40px);width:100%;margin:50px auto 0;text-align:left;border-bo=
+ttom: 1px solid lightgrey;">
+            <tr style=3D"width:100%">
+               <td colspan=3D"2" style=3D"border-top: 1px solid lightgrey;p=
+adding:20px 25px 0 0;">
+                  <p class=3D"main_title_block"
+                     style=3D"font-size: 24px;margin-bottom: 20px;margin-to=
+p: 0;display: block;font-weight: 700;color: #00257a;font-style: italic;font=
+-family: 'Open Sans', sans-serif;color: #B79269;">
+                    =20
+                     Contact
+                  </p>
+               </td>
+            </tr>
+            <tr class=3D"contact_table" style=3D"width: auto;font-size: 13p=
+x;border-bottom: 1px solid lightgrey;">
+              =20
+               <td style=3D"padding: 10px 10px 20px; width: 45%; vertical-a=
+lign: top;">
+                  <a href=3D"tel:(+351) 234 245 630"
+                     style=3D"text-decoration: none;font-size: 16px;color:#=
+393939;">
+                    =20
+                        <table style=3D"text-align:left;">
+                           <tr>
+                              <td colspan=3D"2" style=3D"padding-bottom: 20=
+px;">
+                                =20
+                                 <label width=3D"100%" class=3D"contact_lab=
+el contact_label_phone"
+                                    style=3D"display: block;font-size: 13px=
+;color: #3a3a3a;font-weight: bold;letter-spacing: 1px;font-family: 'Open Sa=
+ns', sans-serif;">
+                                =20
+                                 Phone
+                                 </label>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <img class=3D"icon_contact" src=3D"https:/=
+/lh3.googleusercontent.com/wGsEa3cshfm_6Etc_gZXF0MHiMK4Gg42G2J6cwjmY4MAlm3F=
+5eOXRStSteBiokgIMBvjwPO9UK3MJH-j4cf-8FjykyRiCg" style=3D"display: inline-bl=
+ock;vertical-align: middle;margin-right: 4px;">
+                              </td>
+                              <td>
+                                 <div class=3D"contact_value" style=3D"disp=
+lay: inline-block;vertical-align: middle;font-size:13px;font-weight: bold;c=
+olor:  color: #000000;;font-family: 'Open Sans', sans-serif;color: #B79269;=
+;">
+                                    (+351) 234 245 630
+                                     | Call to portuguese fixed network.
+                                 </div>
+                              </td>
+                           </tr>
+                        </table>
+
+                       =20
+                    =20
+                  </a>
+               </td>
+              =20
+               <td style=3D"padding: 10px 10px 20px; width: 55%; vertical-a=
+lign: top;">
+                  <a target=3D"_blank" href=3D"mailto:aveiro.reservations@m=
+scollection.pt"
+                     style=3D"text-decoration: none;font-size: 16px;color:#=
+393939;">
+                    =20
+                        <table style=3D"text-align:left;">
+                           <tr>
+                              <td colspan=3D"2" style=3D"padding-bottom: 20=
+px;">
+                                 <label width=3D"100%" class=3D"contact_lab=
+el contact_label_email"
+                                    style=3D"display: block;color: #3a3a3a;=
+font-weight: bold;font-size: 13px;letter-spacing: 1px;font-family: 'Open Sa=
+ns', sans-serif;">
+                                =20
+                                 E-mail</label>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td >
+                                 <img class=3D"icon_contact" src=3D"https:/=
+/lh3.googleusercontent.com/e1tr-tg6adIHAoC2uQhDQJHrVEIu3Kdk7bZw3_uRHRAWmB_o=
+9gctWhReNqwoqbwtwEcACPGGk9HbVWZkRQL4AYMG-K_LhJA"
+                                    style=3D"display: inline-block;vertical=
+-align: middle;margin-right: 4px;">
+                              </td>
+                              <td style=3D"color: #1c78c5;">
+                                 <div class=3D"contact_value"
+                                    style=3D"display: inline-block;vertical=
+-align: middle;line-break: anywhere;font-size:13px;font-weight: bold;color:=
+  color: #000000;;
+                                    color: #B79269;;font-family: 'Open Sans=
+', sans-serif;">aveiro.reservations@mscollection.pt</div>
+                              </td>
+                           </tr>
+                        </table>
+
+                       =20
+                    =20
+                  </a>
+               </td>
+            </tr>
+         </table>
+        =20
+        =20
+        =20
+        =20
+         <!-- Location wrapper -->
+         <table width=3D"650" class=3D"location_wrapper" style=3D"max-width=
+: calc(100% - 40px);width:100%;margin:30px auto;">
+            <tr>
+               <td>
+                  <table class=3D"location_table" style=3D"width: 100%;text=
+-align:left;">
+                     <tr>
+                        <td style=3D"display: block; vertical-align: top; w=
+idth: 200px; ">
+                           <a href=3D"https://maps.app.goo.gl/s1jn1fNM3JxGK=
+vNt7" target=3D"_blank"
+                              style=3D"text-decoration: none;">
+                           </a>
+                           <p class=3D"main_title_block"
+                              style=3D"font-size: 24px;margin-bottom: 20px;=
+margin-top: 0;display: block;font-weight: 700;color: #00257a;font-style: it=
+alic;font-family: 'Open Sans', sans-serif;color: #B79269; ">
+                             =20
+                                  How to get here
+                             =20
+                           </p>
+                          =20
+                           <div class=3D"location_content"
+                              style=3D"font-size: 14px;width: 100%;line-hei=
+ght: 17px;color: #414141;font-family: 'Open Sans', sans-serif; padding-righ=
+t: 10px;">
+                              <b>MS Collection Palacete de Valdemouro</b><b=
+r>
+Rua Jos=C3=A9 Estev=C3=A3o, n=C2=BA50<br>
+3800-201 Aveiro<br>
+                           </div>
+                          =20
+                        </td>
+                        <td style =3D"vertical-align: middle; text-align: r=
+ight;">
+                           <a href=3D"https://maps.app.goo.gl/s1jn1fNM3JxGK=
+vNt7" target=3D"_blank"
+                              style=3D"text-decoration: none;"><img
+                              src=3D"https://cdn2.paraty.es/mscol-palacete/=
+images/c27333b57d4423c=3Ds600" width=3D"100%"
+                              height=3D"auto"
+                              style=3D"max-width: 330px;"></a>
+                        </td>
+                     </tr>
+                  </table>
+               </td>
+            </tr>
+         </table>
+        =20
+
+        =20
+
+        =20
+      </div>
+      <div width=3D"650" style=3D"background-color: white;max-width: calc(1=
+00% - 40px);width:100%;margin: 0 auto;">
+        =20
+        =20
+        =20
+        =20
+        =20
+        =20
+        =20
+        =20
+   <!-- Banner Club -->
+     =20
+
+     =20
+
+     =20
+        =20
+         <div class=3D"email_footer" style=3D"width: 100%; max-width: calc(=
+100% - 40px); margin:0 auto">
+            <!-- Email footer -->
+            <br>
+<h3 style=3D"clear:both;font-size:14px;"><b>NOTES</b></h3>
+<b>Pets:</b> Not allowed.<br><br>
+<b>Credit card / Guarantee/ Payment information</b><br>
+You have now confirmed and guaranteed your booking by credit card. Your boo=
+king has not been paid yet.<br>
+All payments are to be made at the hotel on arrival, unless otherwise state=
+d in the hotel policies or in the room conditions.<br>
+Please note that your credit card may be pre-authorised prior to your arriv=
+al.<br>
+<b>Accepted Credit Cards:</b> Visa, Euro/Mastercard, Maestro.<br><br>
+Special requests cannot be guaranteed and may incur additional charges.<br>
+We make every effort to offer the information contained in the website in a=
+ truthful manner and without typographical errors. In the event that at any=
+ time there is an error of this type, at all times outside the will of the =
+Hotel, we will proceed to correct such mistake as soon as possible, and we =
+will provide the user with the information and options established in the c=
+urrent legislation. Upon arrival at the hotel, the same credit card used in=
+ your reservation will be required and must be presented together with your=
+ ID.
+         </div>
+        =20
+        =20
+        =20
+        =20
+         =20
+        =20
+        =20
+        =20
+        =20
+        =20
+        =20
+        =20
+        =20
+        =20
+        =20
+
+
+        =20
+        =20
+        =20
+        =20
+      </div>
+</div>
+
+--mk3-b2342224aafc4a329b2b51503c31615e--
