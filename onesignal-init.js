@@ -108,7 +108,9 @@ function vraagMeldingenAan() {
       const id = await OneSignal.User.PushSubscription.id;
       console.info('OneSignal: na aanmelden —', { browserPermission, optedIn, subscriptionId: id });
       if (btn) updateNotifButton(btn, optedIn);
-      if (!optedIn || !id) {
+      if (optedIn && id) {
+        toonMeldingenSuccesPopup();
+      } else {
         alert(
           'Status na aanmelden:\n' +
           '- Browser-toestemming: ' + browserPermission + '\n' +
@@ -122,4 +124,58 @@ function vraagMeldingenAan() {
       alert('Aanmelden voor meldingen is mislukt: ' + (e && e.message ? e.message : e));
     }
   });
+}
+
+// Toont een gestileerde bevestigingspop-up na een succesvolle OneSignal-
+// subscription. Bevat een korte visuele stappenherhaling (met iconen, geen
+// echte screenshots) zodat je dit later kunt terugvinden op een ander toestel
+// zonder opnieuw te moeten zoeken hoe het werkte.
+function toonMeldingenSuccesPopup() {
+  if (document.getElementById('meldingen-succes-overlay')) return;
+
+  const overlay = document.createElement('div');
+  overlay.id = 'meldingen-succes-overlay';
+  overlay.className = 'meldingen-popup-overlay';
+
+  overlay.innerHTML = `
+    <div class="meldingen-popup" role="dialog" aria-modal="true" aria-labelledby="meldingen-popup-titel">
+      <button type="button" class="meldingen-popup-close" aria-label="Sluiten">&times;</button>
+      <div class="meldingen-popup-check">✅</div>
+      <h3 id="meldingen-popup-titel">Meldingen staan aan!</h3>
+      <p class="meldingen-popup-intro">Je krijgt vanaf nu updates over de Portugal-roadtrip. Zo werkte het (handig om te onthouden voor een ander toestel):</p>
+      <div class="meldingen-popup-stappen">
+        <div class="meldingen-stap">
+          <span class="meldingen-stap-icon">📱</span>
+          <span class="meldingen-stap-tekst">Open de site in <strong>Safari</strong> (op iPhone/iPad verplicht)</span>
+        </div>
+        <div class="meldingen-stap-pijl">→</div>
+        <div class="meldingen-stap">
+          <span class="meldingen-stap-icon">📤</span>
+          <span class="meldingen-stap-tekst">Tik op het <strong>deel-icoon</strong> onderin</span>
+        </div>
+        <div class="meldingen-stap-pijl">→</div>
+        <div class="meldingen-stap">
+          <span class="meldingen-stap-icon">➕</span>
+          <span class="meldingen-stap-tekst">Kies <strong>"Zet op beginscherm"</strong></span>
+        </div>
+        <div class="meldingen-stap-pijl">→</div>
+        <div class="meldingen-stap">
+          <span class="meldingen-stap-icon">🔔</span>
+          <span class="meldingen-stap-tekst">Open de site <strong>vanaf dat icoon</strong> en zet meldingen aan</span>
+        </div>
+      </div>
+      <button type="button" class="meldingen-popup-ok">Begrepen</button>
+    </div>
+  `;
+
+  document.body.appendChild(overlay);
+  document.body.style.overflow = 'hidden';
+
+  const sluit = () => {
+    overlay.remove();
+    document.body.style.overflow = '';
+  };
+  overlay.querySelector('.meldingen-popup-close').addEventListener('click', sluit);
+  overlay.querySelector('.meldingen-popup-ok').addEventListener('click', sluit);
+  overlay.addEventListener('click', (e) => { if (e.target === overlay) sluit(); });
 }

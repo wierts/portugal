@@ -1059,3 +1059,109 @@ footer p { margin-bottom: .5rem; font-size: .875rem; }
   text-align: center;
   font-style: italic;
 }
+
+/* ─── Meldingen succes-popup (OneSignal) ────── */
+.meldingen-popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(26, 20, 16, .55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  z-index: 9999;
+  animation: meldingenFadeIn .18s ease-out;
+}
+@keyframes meldingenFadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.meldingen-popup {
+  position: relative;
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  max-width: 460px;
+  width: 100%;
+  padding: 2rem 1.75rem 1.75rem;
+  text-align: center;
+}
+
+.meldingen-popup-close {
+  position: absolute;
+  top: .75rem;
+  right: .75rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--muted);
+  cursor: pointer;
+  padding: .25rem;
+}
+.meldingen-popup-close:hover { color: var(--terra); }
+
+.meldingen-popup-check { font-size: 2.5rem; margin-bottom: .5rem; }
+
+.meldingen-popup h3 {
+  font-family: var(--serif);
+  color: var(--azul);
+  font-size: 1.4rem;
+  margin-bottom: .5rem;
+}
+
+.meldingen-popup-intro {
+  color: var(--text);
+  font-size: .9rem;
+  margin-bottom: 1.25rem;
+  line-height: 1.5;
+}
+
+.meldingen-popup-stappen {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.meldingen-stap {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: .6rem .75rem;
+  flex: 1 1 100%;
+}
+
+.meldingen-stap-icon { font-size: 1.3rem; flex-shrink: 0; }
+.meldingen-stap-tekst { font-size: .82rem; color: var(--text); line-height: 1.35; }
+.meldingen-stap-tekst strong { color: var(--azul); }
+
+.meldingen-stap-pijl {
+  color: var(--gold);
+  font-size: 1.1rem;
+  align-self: center;
+  transform: rotate(90deg);
+}
+
+@media (min-width: 520px) {
+  .meldingen-stap-pijl { transform: none; }
+}
+
+.meldingen-popup-ok {
+  background: var(--azul);
+  color: var(--white);
+  border: none;
+  border-radius: var(--radius);
+  padding: .7rem 1.75rem;
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: .9rem;
+  cursor: pointer;
+  transition: background .15s ease;
+}
+.meldingen-popup-ok:hover { background: var(--terra); }
