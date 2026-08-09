@@ -44,6 +44,31 @@ function updateNotifButton(btn, optedIn) {
   btn.disabled = !!optedIn;
 }
 
+// Aangeroepen door de "🔄 Opnieuw aanmelden voor meldingen"-knop op index.html.
+// Nodig omdat een oude, kapotte service worker-registratie (van vóór de
+// serviceWorkerPath-fix hierboven) kan blijven "hangen" zonder dat er ooit een
+// echte OneSignal-subscription is aangemaakt. Deze knop breekt dat schoon af:
+// alle service workers en caches worden gewist, waarna de pagina herlaadt met
+// een verse registratie van de (nu gecorrigeerde) sw.js.
+async function resetMeldingen() {
+  const btn = document.getElementById('notif-reset-btn');
+  if (btn) { btn.disabled = true; btn.textContent = '🔄 Bezig met resetten…'; }
+  try {
+    if ('serviceWorker' in navigator) {
+      const regs = await navigator.serviceWorker.getRegistrations();
+      await Promise.all(regs.map((reg) => reg.unregister()));
+    }
+    if (window.caches) {
+      const keys = await caches.keys();
+      await Promise.all(keys.map((k) => caches.delete(k)));
+    }
+  } catch (e) {
+    console.warn('Reset van meldingen niet volledig gelukt:', e);
+  }
+  alert('Klaar! De pagina wordt opnieuw geladen — tik daarna nogmaals op "🔔 Zet meldingen aan".');
+  location.reload();
+}
+
 // Aangeroepen door de "Zet meldingen aan"-knop op index.html
 function vraagMeldingenAan() {
   const btn = document.getElementById('notif-btn');
