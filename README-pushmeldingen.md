@@ -57,6 +57,28 @@ gepusht (dat kan ik zelf niet vanuit hier). Commit en push zoals je gewend bent.
 Vanaf dat moment krijg je automatisch een melding — ook als de app dicht is — zodra
 er iets aan de reisgids verandert en dat gepusht wordt naar GitHub.
 
+## 7. Bosbrand-alert bij de route (optioneel, ±5 minuten)
+Naast meldingen bij site-updates kan de site ook automatisch waarschuwen zodra er
+een bosbrand wordt gedetecteerd binnen 30 km van een van de routeplaatsen — via de
+gratis **NASA FIRMS**-satellietdata, elke 12 uur gecheckt.
+
+1. Vraag een gratis MAP_KEY aan op https://firms.modaps.eosdis.nasa.gov/api/map_key/
+   (alleen een e-mailadres nodig, geen creditcard).
+2. Zet 'm als GitHub-secret (zelfde plek als de OneSignal-secrets hierboven):
+
+   | Secret name | Value |
+   |---|---|
+   | `FIRMS_MAP_KEY` | de sleutel die je van FIRMS kreeg |
+
+3. Klaar — de workflow (`.github/workflows/fire-alert.yml`) gebruikt verder dezelfde
+   `ONESIGNAL_APP_ID` en `ONESIGNAL_REST_API_KEY` als hierboven, dus daar hoef je niets
+   voor aan te passen. Zonder `FIRMS_MAP_KEY` slaat de check zichzelf gewoon over
+   (geen foutmelding).
+
+Kanttekening: dit zijn ruwe satelliet-hitte-detecties (VIIRS), geen bevestigde
+brandmeldingen — een enkele detectie kan soms ook een andere hittebron zijn
+(bijv. industrie). Check bij een melding altijd even fogos.pt voor bevestiging.
+
 ## Kanttekeningen
 - Werkt vanaf **iOS 16.4+**, en alleen als de site als app op het beginscherm staat
   (niet gewoon in Safari).

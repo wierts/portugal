@@ -1,0 +1,37 @@
+name: Bosbrand-alert bij de route
+
+on:
+  schedule:
+    # 07:00 en 19:00 UTC = ±08:00/09:00 en ±20:00/21:00 in Portugal, afhankelijk van zomertijd
+    - cron: '0 7,19 * * *'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check op bosbranden bij de route en verstuur eventueel een melding
+        env:
+          FIRMS_MAP_KEY: ${{ secrets.FIRMS_MAP_KEY }}
+          ONESIGNAL_APP_ID: ${{ secrets.ONESIGNAL_APP_ID }}
+          ONESIGNAL_REST_API_KEY: ${{ secrets.ONESIGNAL_REST_API_KEY }}
+          ALERT_RADIUS_KM: '30'
+        run: python3 scripts/check_fire_alerts.py
+
+      - name: Commit bijgewerkte state (indien gewijzigd)
+        run: |
+          if git diff --quiet -- data/fire-alert-state.json; then
+            echo "Geen wijzigingen in state-bestand."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/fire-alert-state.json
+          git commit -m "Bijwerken bosbrand-alert state [skip ci]"
+          git push
