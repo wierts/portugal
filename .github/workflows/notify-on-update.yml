@@ -8,6 +8,7 @@ on:
       - 'manifest.json'
       - 'sw.js'
       - 'onesignal-init.js'
+      - '.github/workflows/notify-on-update.yml'
   workflow_dispatch: {}
 
 jobs:
@@ -51,9 +52,18 @@ jobs:
             exit 1
           fi
 
-          recipients=$(echo "$body" | grep -o '"recipients":[0-9]*' | grep -o '[0-9]*')
-          echo "Aantal ontvangers: ${recipients:-onbekend}"
-          if [ "${recipients:-0}" -eq 0 ]; then
-            echo "::error::Melding verstuurd maar 0 ontvangers — controleer of er nog abonnees zijn."
+          if ! echo "$body" | grep -q '"id"'; then
+            echo "::error::Geen id in de response — melding is waarschijnlijk niet verstuurd."
             exit 1
+          fi
+
+          if echo "$body" | grep -q '"recipients"'; then
+            recipients=$(echo "$body" | grep -o '"recipients":[0-9]*' | grep -o '[0-9]*')
+            echo "Aantal ontvangers: $recipients"
+            if [ "$recipients" -eq 0 ]; then
+              echo "::error::Melding verstuurd maar 0 ontvangers — controleer of er nog abonnees zijn."
+              exit 1
+            fi
+          else
+            echo "Melding verstuurd (geen 'recipients'-veld in de response, aantal ontvangers onbekend)."
           fi
