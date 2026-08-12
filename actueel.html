@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Actueel — Portugal Roadtrip</title>
   <meta name="description" content="Actuele situatie voor de Portugal roadtrip: weer, bosbranden en reisadvies, september 2026.">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
   <link rel="stylesheet" href="css/style.css">
   <link rel="manifest" href="manifest.json">
   <link rel="icon" href="icons/favicon-32.png" sizes="32x32">
@@ -99,6 +101,49 @@
       display: flex;
       gap: .7rem;
       align-items: flex-start;
+    }
+
+    .fire-map-wrap { min-height: 320px; margin: 1.5rem 0; }
+    .fire-map-embed {
+      width: 100%;
+      height: 320px;
+      border-radius: var(--radius, 8px);
+      overflow: hidden;
+      background: var(--sand);
+    }
+    .fire-map-fallback {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      text-align: center;
+      padding: 1rem;
+    }
+    .fire-map-fallback-inner { display: flex; flex-direction: column; align-items: center; gap: .6rem; }
+    .fire-map-fallback-icon { font-size: 1.8rem; }
+    .fire-map-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: .82rem;
+      color: var(--muted);
+      margin-top: .6rem;
+    }
+    .fire-map-legend span { display: inline-flex; align-items: center; gap: .35rem; }
+    .fire-map-legend .dot {
+      width: 10px; height: 10px; border-radius: 50%; display: inline-block;
+      background: #e74c3c; box-shadow: 0 0 0 2px #fff, 0 0 0 3px #e74c3c;
+    }
+    .route-waypoint-marker {
+      background: var(--azul, #1b4f72);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .8rem;
+      line-height: 1;
+      box-shadow: 0 0 0 2px #fff;
     }
 
     @media (max-width: 600px) {
@@ -236,10 +281,17 @@
 <section class="bronnen-section" id="bosbranden">
   <div class="container">
     <h2 class="bronnen-section-title">🔥 Bosbranden</h2>
-    <p class="bronnen-section-sub">Stand van zaken begin augustus 2026.</p>
+    <p class="bronnen-section-sub">Stand van zaken medio augustus 2026.</p>
     <div class="actueel-text">
-      <p>Het bosbrandenseizoen 2026 verloopt tot nu toe relatief mild: ongeveer 52.000 hectare is verbrand, zo'n 51% onder het 20-jaars gemiddelde, en duidelijk minder dan in buurlanden Spanje en Frankrijk. Portugal heeft zelfs brandweerlieden en blusvliegtuigen naar Spanje en Frankrijk gestuurd.</p>
-      <p>Eind juli 2026 waren er wel branden in Noord-Portugal, rond Valpaços, Pínzio en Vilarandelo (richting de Spaanse grens) — niet direct op de route, maar wel in de bredere regio rond de Douro-vallei. Zomers in Portugal kunnen bij droogte en wind snel omslaan, dus dit blijft de moeite waard om vlak voor vertrek nog even te checken.</p>
+      <p>Het bosbrandenseizoen 2026 is dit jaar juist zwaarder dan gemiddeld: eind juli/begin augustus was er al zo'n 53.000–58.000 hectare verbrand, ongeveer 58% boven het 10-jaars gemiddelde — het op twee na slechtste jaar sinds 2016. Vooral het binnenland en noorden zijn getroffen (Vila Real, Viseu, Guarda, Bragança); kuststeden als Porto en Lissabon blijven grotendeels buiten schot.</p>
+      <p><strong>Relevant voor onze Douro-dagtrip vanuit Amarante:</strong> de gemeente Alijó (Vila Real-district, hart van de wijnstreek) is zwaar getroffen, met gevolgen voor het wijntoerisme in de regio. Half augustus stond vrijwel het hele Vila Real-district op maximaal brandgevaar. Dat speelt vooral ten oosten van onze route (richting Peso da Régua/Pinhão), niet in Amarante zelf, maar zomers kunnen bij droogte en wind snel omslaan — check daarom vlak voor vertrek fogos.pt en de actuele status van de quinta's die je van plan bent te bezoeken.</p>
+      <p><strong>Kaart met actuele brandhaarden</strong> — de rode stippen zijn hitte-detecties van NASA-satellieten (VIIRS), meerdere keren per dag bijgewerkt. De blauwe cijfers zijn onze routeplaatsen, ter oriëntatie.</p>
+      <div class="fire-map-wrap">
+        <div class="fire-map-embed" id="fire-map"></div>
+      </div>
+      <div class="fire-map-legend">
+        <span><span class="dot"></span> Actieve hitte-detectie (laatste ~24-48u, VIIRS-satellieten)</span>
+      </div>
     </div>
     <div class="link-grid">
       <a class="link-card" href="https://fogos.pt/" target="_blank" rel="noopener noreferrer">
@@ -271,7 +323,7 @@
       </a>
     </div>
     <div class="disclaimer-box">
-      ℹ️ Deze pagina is samengesteld op 6 augustus 2026. Check de links hierboven nog een keer in de dagen vóór vertrek (6 september) voor de laatste stand van zaken.
+      ℹ️ Deze pagina is samengesteld op 6 augustus 2026, bosbranden-sectie bijgewerkt op 12 augustus 2026. Check de links hierboven nog een keer in de dagen vóór vertrek (6 september) voor de laatste stand van zaken.
     </div>
   </div>
 </section>
@@ -280,6 +332,71 @@
   Portugal Roadtrip · zo 6 – di 15 sep 2026 · <a href="index.html" style="color:var(--gold)">← Terug naar de route</a>
 </footer>
 
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin=""></script>
+<script>
+  // Kaart met actuele bosbrand-hitte-detecties (NASA FIRMS/GIBS, VIIRS-satellieten,
+  // meerdere keren per dag bijgewerkt, geen API-key nodig) + onze routeplaatsen
+  // ter oriëntatie.
+  (function () {
+    const el = document.getElementById('fire-map');
+    if (!el) return;
+
+    function fireMapFallback() {
+      el.classList.add('fire-map-fallback');
+      el.innerHTML =
+        '<div class="fire-map-fallback-inner">' +
+          '<span class="fire-map-fallback-icon">🗺️</span>' +
+          '<p style="margin:0;font-size:.85rem;">Kaart kon niet laden — check ' +
+          '<a href="https://fogos.pt/" target="_blank" rel="noopener noreferrer">fogos.pt</a> rechtstreeks.</p>' +
+        '</div>';
+    }
+
+    if (typeof L === 'undefined') { fireMapFallback(); return; }
+
+    const routePunten = [
+      { naam: 'Porto', coords: [41.1579, -8.6291] },
+      { naam: 'Amarante', coords: [41.2694, -8.0785] },
+      { naam: 'Aveiro', coords: [40.6405, -8.6538] },
+      { naam: 'Nazaré', coords: [39.6010, -9.0700] },
+      { naam: 'Óbidos', coords: [39.3606, -9.1570] },
+      { naam: 'Sintra', coords: [38.7979, -9.3906] },
+      { naam: 'Lissabon', coords: [38.7223, -9.1393] }
+    ];
+
+    try {
+      const map = L.map(el, { scrollWheelZoom: false }).setView([39.8, -8.3], 7);
+
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 18,
+        attribution: '&copy; OpenStreetMap-bijdragers'
+      }).addTo(map);
+
+      // NASA GIBS WMS — "best available" hitte-detecties, geen TIME-parameter
+      // nodig: de server geeft dan automatisch de meest recente data terug.
+      L.tileLayer.wms('https://gibs.earthdata.nasa.gov/wms/epsg3857/best/wms.cgi', {
+        layers: 'VIIRS_SNPP_Thermal_Anomalies_375m_All,VIIRS_NOAA20_Thermal_Anomalies_375m_All',
+        format: 'image/png',
+        transparent: true,
+        attribution: 'Hitte-detecties: NASA FIRMS/GIBS (VIIRS)'
+      }).addTo(map);
+
+      routePunten.forEach((p, i) => {
+        const icon = L.divIcon({
+          className: 'route-waypoint-marker',
+          html: '<span>' + (i + 1) + '</span>',
+          iconSize: [22, 22],
+          iconAnchor: [11, 11]
+        });
+        L.marker(p.coords, { icon }).addTo(map).bindPopup('<strong>' + p.naam + '</strong>');
+      });
+    } catch (e) {
+      console.error('Bosbrand-kaart laden mislukt —', e);
+      fireMapFallback();
+    }
+  })();
+</script>
 <script src="nav.js" defer></script>
 <script src="weer-forecast.js" defer></script>
 <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
