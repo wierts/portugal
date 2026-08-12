@@ -1,21 +1,49 @@
 name: Stuur pushmelding bij site-update
 
+# Triggert pas als de GitHub Pages-deployment ("pages-build-deployment") succesvol
+# is afgerond — niet meteen bij de push zelf. Zo staat de nieuwe site al echt live
+# op het moment dat de melding (met link) verstuurd wordt.
 on:
-  push:
-    branches: [main]
-    paths:
-      - '**.html'
-      - 'manifest.json'
-      - 'sw.js'
-      - 'onesignal-init.js'
-      - '.github/workflows/notify-on-update.yml'
+  workflow_run:
+    workflows: ["pages-build-deployment"]
+    types: [completed]
   workflow_dispatch: {}
 
 jobs:
   notify:
     runs-on: ubuntu-latest
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      github.event.workflow_run.conclusion == 'success'
     steps:
+      - name: Checkout
+        if: github.event_name == 'workflow_run'
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
+          fetch-depth: 2
+
+      - name: Check of relevante bestanden zijn gewijzigd
+        if: github.event_name == 'workflow_run'
+        id: filter
+        run: |
+          # workflow_run kent geen ingebouwde paths-filter (die bestond bij de oude
+          # push-trigger wel). Dit vergelijkt daarom de laatste commit van de push
+          # met zijn parent. Bij een push van meerdere commits tegelijk wordt dus
+          # niet elke tussenliggende commit los gecontroleerd — in de praktijk
+          # (kleine, losse pushes) is dat voldoende; in het ergste geval blijft een
+          # melding een keer uit en kan die alsnog handmatig via "Run workflow".
+          changed=$(git diff --name-only HEAD^ HEAD || echo "")
+          echo "Gewijzigde bestanden:"
+          echo "$changed"
+          if echo "$changed" | grep -Eq '\.html$|^manifest\.json$|^sw\.js$|^onesignal-init\.js$|^\.github/workflows/notify-on-update\.yml$'; then
+            echo "relevant=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "relevant=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Verstuur OneSignal pushmelding
+        if: github.event_name == 'workflow_dispatch' || steps.filter.outputs.relevant == 'true'
         run: |
           if [ -z "${{ secrets.ONESIGNAL_APP_ID }}" ] || [ -z "${{ secrets.ONESIGNAL_REST_API_KEY }}" ]; then
             echo "::error::ONESIGNAL_APP_ID of ONESIGNAL_REST_API_KEY secret ontbreekt nog — sla melding over. Zie README-pushmeldingen.md."
@@ -44,9 +72,6 @@ jobs:
             exit 1
           fi
 
-          # OneSignal geeft soms HTTP 200 terug met een "errors"-veld (bijv. geen
-          # abonnees, ongeldige app_id) — dat moet ook als mislukking gelden, niet
-          # als stille succesmelding.
           if echo "$body" | grep -q '"errors"'; then
             echo "::error::OneSignal-melding is niet (volledig) verstuurd — zie response body hierboven."
             exit 1
