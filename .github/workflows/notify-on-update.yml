@@ -43,21 +43,17 @@ jobs:
             exit 1
           fi
 
-          # OneSignal geeft soms HTTP 200 terug met een "errors"-veld. Bij "All
-          # included players are not subscribed" is dat geen harde fout (gewoon
-          # 0 ontvangers voor dit verzoek) — bij andere fouten (bijv. ongeldige
-          # key/app_id) laten we de job nog wel als mislukt tellen.
+          # OneSignal geeft soms HTTP 200 terug met een "errors"-veld (bijv. geen
+          # abonnees, ongeldige app_id) — dat moet ook als mislukking gelden, niet
+          # als stille succesmelding.
           if echo "$body" | grep -q '"errors"'; then
-            if echo "$body" | grep -q "All included players are not subscribed"; then
-              echo "::warning::OneSignal meldt 0 abonnees voor dit verzoek — geen harde fout, maar controleer of dit klopt."
-            else
-              echo "::error::OneSignal-melding is niet (volledig) verstuurd — zie response body hierboven."
-              exit 1
-            fi
-          else
-            recipients=$(echo "$body" | grep -o '"recipients":[0-9]*' | grep -o '[0-9]*')
-            echo "Aantal ontvangers: ${recipients:-onbekend}"
-            if [ "${recipients:-0}" -eq 0 ]; then
-              echo "::warning::Melding verstuurd maar 0 ontvangers — waarschijnlijk nog niemand geabonneerd (tik op 'Zet meldingen aan' op de site)."
-            fi
+            echo "::error::OneSignal-melding is niet (volledig) verstuurd — zie response body hierboven."
+            exit 1
+          fi
+
+          recipients=$(echo "$body" | grep -o '"recipients":[0-9]*' | grep -o '[0-9]*')
+          echo "Aantal ontvangers: ${recipients:-onbekend}"
+          if [ "${recipients:-0}" -eq 0 ]; then
+            echo "::error::Melding verstuurd maar 0 ontvangers — controleer of er nog abonnees zijn."
+            exit 1
           fi
