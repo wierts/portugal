@@ -26,7 +26,7 @@ jobs:
             -H "Content-Type: application/json" \
             -d '{
               "app_id": "${{ secrets.ONESIGNAL_APP_ID }}",
-              "included_segments": ["Subscribed Users"],
+              "included_segments": ["Total Subscriptions"],
               "headings": {"en": "Portugal Roadtrip bijgewerkt"},
               "contents": {"en": "Er is iets veranderd in de reisgids — tik om te bekijken."},
               "url": "https://wierts.github.io/portugal/"
