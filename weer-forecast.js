@@ -12,6 +12,7 @@
     { naam: 'Douro-vallei / Pinhão', lat: 41.19, lon: -7.55 },
     { naam: 'Aveiro', lat: 40.64, lon: -8.65 },
     { naam: 'Óbidos / Nazaré', lat: 39.60, lon: -9.07 },
+    { naam: 'Mafra', lat: 38.94, lon: -9.33 },
     { naam: 'Sintra', lat: 38.80, lon: -9.38 },
     { naam: 'Lissabon', lat: 38.72, lon: -9.14 },
   ];
@@ -72,7 +73,7 @@
           `🌡️ Bron: <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo</a> — ` +
           `automatisch opgehaald op ${tijdstip}. Amarante en de Douro-vallei liggen landinwaarts en kunnen flink ` +
           `warmer uitpakken dan de kust — houd daar rekening mee bij het inpakken en plannen van buitenactiviteiten. ` +
-          `Sintra ligt juist beduidend koeler en mistiger door de heuvels — neem ook daar een extra laag mee.`;
+          `Sintra en Mafra liggen juist beduidend koeler en mistiger door de heuvels — neem ook daar een extra laag mee.`;
       }
     } catch (e) {
       console.error('Weersvoorspelling ophalen mislukt —', e);
