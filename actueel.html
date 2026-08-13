@@ -146,6 +146,29 @@
       box-shadow: 0 0 0 2px #fff;
     }
 
+    .fun-facts {
+      background: var(--sand);
+      border-left: 4px solid var(--gold);
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: .8rem 0 1.6rem;
+    }
+    .fun-facts-title {
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: .5rem;
+      font-size: .92rem;
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+    }
+    .fun-facts ul { margin: 0; padding-left: 1.2rem; }
+    .fun-facts li { margin-bottom: .4rem; font-size: .92rem; line-height: 1.55; color: var(--text); }
+    .fun-facts li:last-child { margin-bottom: 0; }
+
+    .city-block { margin-bottom: 2rem; }
+    .city-block:last-child { margin-bottom: 0; }
+
     @media (max-width: 600px) {
       .bronnen-nav { gap: .5rem; }
     }
@@ -179,11 +202,106 @@
     <p class="section-subtitle">Weer, bosbranden &amp; reisadvies · zo 6 – di 15 sep 2026</p>
     <a href="index.html" class="back-link">← Terug naar de roadtrip</a>
     <div class="bronnen-nav">
+      <a href="#stadsnieuws">Nieuws per stad</a>
       <a href="#weer">Weer</a>
       <a href="#surf">Surfen Nazaré</a>
       <a href="#bosbranden">Bosbranden</a>
-      <a href="#stadsnieuws">Nieuws per stad</a>
       <a href="#reisadvies">Reisadvies</a>
+    </div>
+  </div>
+</section>
+
+<section class="bronnen-section" id="stadsnieuws">
+  <div class="container">
+    <h2 class="bronnen-section-title">📰 Nieuws per stad &amp; wetenswaardigheden</h2>
+    <p class="bronnen-section-sub">Actueel voor de vijf plekken waar we overnachten, plus een paar leuke feitjes · bijgewerkt 13 augustus 2026.</p>
+    <div class="actueel-text">
+
+      <div class="city-block">
+        <h3 style="font-family:var(--serif); color:var(--azul); margin:0 0 .5rem; font-size:1.15rem;">🍷 Porto <span style="font-weight:400;color:var(--muted);font-size:.8rem;">— dag 1–2, zo 6 – ma 7 sep</span></h3>
+        <p>De grote uitbreiding van de Porto Metro loopt vertraging op: de nieuwe Rosa-lijn zou dit jaar opengaan, maar de opening is verschoven naar begin 2027 — rond de bouwplaatsen (Rosa en Ruby) kunnen dus nog wegwerkzaamheden en omleidingen zijn, check vlak voor vertrek Google Maps als je met de auto het centrum in wilt. Positiever nieuws: de nieuwe Porto Metrobus-lijn is sinds april 2026 officieel operationeel. Verder verhoogde buurgemeente Vila Nova de Gaia (aan de overkant van de Douro, waar veel wijnkelders zitten) de toeristenbelasting van €2,50 naar €3,00 per nacht — dit geldt nu het hele jaar door, zonder lager winterseizoenstarief.</p>
+        <div class="fun-facts">
+          <div class="fun-facts-title">✨ Wist je dat...?</div>
+          <ul>
+            <li>Porto's Romeinse naam "Portus Cale" de oorsprong is van de naam Portugal zelf.</li>
+            <li>de beroemde Dom Luís I-brug vaak aan Gustave Eiffel wordt toegeschreven, maar eigenlijk is ontworpen door zijn leerling Théophile Seyrig.</li>
+            <li>boekhandel Livraria Lello vaak wordt genoemd als inspiratie voor Zweinsteins Wegisweg uit Harry Potter — J.K. Rowling woonde er begin jaren '90, al ontkent ze zelf een directe link.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="city-block">
+        <h3 style="font-family:var(--serif); color:var(--azul); margin:0 0 .5rem; font-size:1.15rem;">🍑 Amarante <span style="font-weight:400;color:var(--muted);font-size:.8rem;">— dag 3–4, di 8 – wo 9 sep</span></h3>
+        <p>Mooi bijpassend nieuws: <strong>Largo do Paço</strong>, het restaurant ín jullie hotel Casa da Calçada, kreeg in de Michelin Guide Portugal 2026 (maart) zijn eerste Michelin-ster — precies waar het diner op dag 3 gepland staat. De tweejaarlijkse Bienal de Artes Performativas de Amarante liep dit jaar van 21 tot 30 augustus, dus die is net voorbij tegen de tijd dat jullie aankomen.</p>
+        <div class="fun-facts">
+          <div class="fun-facts-title">✨ Wist je dat...?</div>
+          <ul>
+            <li>Amarante bekendstaat om de fallusvormige "bolos de São Gonçalo", traditionele liefdesgebakjes die teruggaan op een 13e-eeuwse heilige?</li>
+            <li>deze gebakjes tijdens de dictatuur (1926–1974) zelfs verboden waren als "aanstootgevend", maar stiekem toch werden gemaakt en geruild?</li>
+            <li>het stadje aan de Tâmega-rivier ligt en al eeuwen geldt als de poort naar de Douro-vallei?</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="city-block">
+        <h3 style="font-family:var(--serif); color:var(--azul); margin:0 0 .5rem; font-size:1.15rem;">🛶 Aveiro <span style="font-weight:400;color:var(--muted);font-size:.8rem;">— dag 5, do 10 sep</span></h3>
+        <p>De jaarlijkse Feira do Livro (boekenmarkt) loopt dit jaar van 28 augustus tot 13 september, met tentoonstellingen en workshops — dat overlapt dus met het bezoek op 10 september. Het Festival dos Canais (lichtshow op de kanalen) vond dit jaar al plaats van 15–19 juli en is dus voorbij; verder geen bijzonder nieuws voor Aveiro op dit moment.</p>
+        <div class="fun-facts">
+          <div class="fun-facts-title">✨ Wist je dat...?</div>
+          <ul>
+            <li>Aveiro bekendstaat als "Venetië van Portugal", vanwege de kanalen en kleurrijke moliceiro-boten die oorspronkelijk zeewier oogstten?</li>
+            <li>de stad beroemd is om ovos moles, eierdooier-zoetigheden vaak verpakt in schelp- of visvormpjes, van oorsprong gemaakt door nonnen?</li>
+            <li>de zoutpannen rond Aveiro al sinds de middeleeuwen in gebruik zijn voor zoutwinning?</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="city-block">
+        <h3 style="font-family:var(--serif); color:var(--azul); margin:0 0 .5rem; font-size:1.15rem;">🏰 Óbidos <span style="font-weight:400;color:var(--muted);font-size:.8rem;">— dag 6–7, vr 11 – za 12 sep</span></h3>
+        <p>De jaarlijkse Mercado Medieval liep dit jaar van 19 juli tot 12 augustus — dus die is net afgelopen als jullie aankomen, en het dorp is dan weer rustig. Het Internationaal Chocoladefestival valt normaal in het voorjaar en dus ook buiten deze periode. Het nieuwe surfpark net buiten Óbidos (Wavegarden/Surfers Cove, circa €25–30 miljoen investering) is nog in aanbouw met opening beoogd in 2026 — mogelijk wat bouwactiviteit in de omgeving, maar niet in het historische centrum zelf.</p>
+        <div class="fun-facts">
+          <div class="fun-facts-title">✨ Wist je dat...?</div>
+          <ul>
+            <li>Óbidos sinds 1282 eeuwenlang het traditionele bruidsgeschenk was van de Portugese koning aan zijn koningin?</li>
+            <li>de lokale ginjinha (kersenlikeur) traditioneel wordt geserveerd in een eetbaar chocoladekopje?</li>
+            <li>het stadje 14 kerkjes telt binnen de goed bewaarde middeleeuwse stadsmuur, en volledig autovrij is?</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="city-block">
+        <h3 style="font-family:var(--serif); color:var(--azul); margin:0 0 .5rem; font-size:1.15rem;">🚋 Lissabon <span style="font-weight:400;color:var(--muted);font-size:.8rem;">— dag 8–10, zo 13 – di 15 sep</span></h3>
+        <p><strong>Correctie t.o.v. eerdere versie:</strong> bij het opnieuw uitzoeken bleek de eerder hier genoemde metrostaking van 9 en 11 september 2025 te zijn geweest — een jaar te vroeg gedateerd. Voor september 2026 staat op dit moment (13 augustus) geen nieuwe stakingsdatum gepland, al kende de Lissabonse metro dit jaar al meerdere stakingsrondes door hetzelfde arbeidsconflict (o.a. 9 en 14 april, waarvan de tweede werd afgeblazen, en een landelijke algemene staking op 3 juni). Check dus vlak voor en tijdens het verblijf (13–15 sep) nog even de actuele status via metrolisboa.pt — vakbonden geven aan dat een nieuwe staking er snel kan komen als het overleg vastloopt. Bredere achtergrond: heel Portugal kende dit jaar meerdere stakingsgolven in het openbaar vervoer, mede door onrust rond de privatisering van nationale luchtvaartmaatschappij TAP.</p>
+        <div class="fun-facts">
+          <div class="fun-facts-title">✨ Wist je dat...?</div>
+          <ul>
+            <li>Lissabon een van de oudste steden van West-Europa is, ouder dan zowel Rome als Londen?</li>
+            <li>de stad, net als Rome, op zeven heuvels is gebouwd?</li>
+            <li>de 25 de Abril-brug over de Taag zo op de Golden Gate Bridge lijkt omdat hetzelfde bedrijf (American Bridge Company) hem bouwde?</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+    <div class="link-grid">
+      <a class="link-card" href="https://www.metrolisboa.pt/" target="_blank" rel="noopener noreferrer">
+        <span class="link-tag official">Officieel</span>
+        <div class="link-card-title">Metro de Lisboa</div>
+        <div class="link-card-desc">Actuele status en eventuele stakingsmeldingen voor de Lissabonse metro.</div>
+      </a>
+      <a class="link-card" href="https://theportugalpost.com/" target="_blank" rel="noopener noreferrer">
+        <span class="link-tag blog">Nieuws</span>
+        <div class="link-card-title">The Portugal Post</div>
+        <div class="link-card-desc">Engelstalig nieuws over stakingen, verkeer en actuele ontwikkelingen in Portugal.</div>
+      </a>
+      <a class="link-card" href="https://www.theportugalnews.com/" target="_blank" rel="noopener noreferrer">
+        <span class="link-tag blog">Nieuws</span>
+        <div class="link-card-title">The Portugal News</div>
+        <div class="link-card-desc">Portugees nieuws in het Engels, met ook een Nederlandstalige sectie.</div>
+      </a>
+    </div>
+    <div class="disclaimer-box">
+      📰 Deze sectie is opnieuw nagetrokken en bijgewerkt op 13 augustus 2026. Check vlak voor vertrek (6 september) nog een keer, met name de metro-status voor Lissabon.
     </div>
   </div>
 </section>
@@ -329,46 +447,6 @@
         <div class="link-card-title">Current Wildfires — Portugal</div>
         <div class="link-card-desc">Engelstalig overzicht van actieve branden en verbrand oppervlak per regio.</div>
       </a>
-    </div>
-  </div>
-</section>
-
-<section class="bronnen-section" id="stadsnieuws">
-  <div class="container">
-    <h2 class="bronnen-section-title">📰 Nieuws per stad</h2>
-    <p class="bronnen-section-sub">Actueel voor de vier plekken waar we overnachten · bijgewerkt 13 augustus 2026.</p>
-    <div class="actueel-text">
-      <h3 style="font-family:var(--serif); color:var(--azul); margin:1.5rem 0 .5rem; font-size:1.15rem;">🍷 Porto <span style="font-weight:400;color:var(--muted);font-size:.8rem;">— dag 1–2, zo 6 – ma 7 sep</span></h3>
-      <p>De grote uitbreiding van de Porto Metro loopt vertraging op: de nieuwe Rosa-lijn zou dit jaar opengaan, maar de opening is verschoven naar begin 2027. Rond de bouwplaatsen van de nieuwe lijnen (Rosa en Ruby) kunnen dus nog wegwerkzaamheden en omleidingen zijn — check vlak voor vertrek Google Maps als je met de auto het centrum in wilt. Daarnaast is er een internationale aanbesteding gestart voor de exploitatie van het lightrail-netwerk vanaf 2027 (contractwaarde €690 miljoen) — puur achtergrondnieuws, geen directe impact op onze dagen in Porto.</p>
-
-      <h3 style="font-family:var(--serif); color:var(--azul); margin:1.5rem 0 .5rem; font-size:1.15rem;">🛶 Aveiro <span style="font-weight:400;color:var(--muted);font-size:.8rem;">— dag 5, do 10 sep</span></h3>
-      <p>Geen bijzonder nieuws voor Aveiro op dit moment. Het jaarlijkse Festival dos Canais (lichtshow op de kanalen) vond dit jaar plaats van 15–19 juli — dus dat is alweer voorbij tegen de tijd dat wij er zijn. Een rustige periode, zonder extra drukte door grote evenementen.</p>
-
-      <h3 style="font-family:var(--serif); color:var(--azul); margin:1.5rem 0 .5rem; font-size:1.15rem;">🏰 Óbidos <span style="font-weight:400;color:var(--muted);font-size:.8rem;">— dag 6–7, vr 11 – za 12 sep</span></h3>
-      <p>De jaarlijkse Mercado Medieval, het middeleeuwse markt-festival waar Óbidos bekend om staat, liep dit jaar van 19 juli tot 12 augustus — dus die is net afgelopen als wij aankomen, en het dorp is dan weer rustig. Het Internationaal Chocoladefestival, het andere grote Óbidos-evenement, valt normaal in het voorjaar (maart–mei) en dus ook buiten onze periode. Verder in het nieuws: vlak bij Óbidos is een investering van €25 miljoen aangekondigd voor een nieuw surfpark — dat project loopt in 2026, mogelijk met wat bouwactiviteit in de omgeving, maar niet in het historische centrum zelf.</p>
-
-      <h3 style="font-family:var(--serif); color:var(--azul); margin:1.5rem 0 .5rem; font-size:1.15rem;">🚋 Lissabon <span style="font-weight:400;color:var(--muted);font-size:.8rem;">— dag 8–10, zo 13 – di 15 sep</span></h3>
-      <p>Het belangrijkste om in de gaten te houden: de Lissabon-metro kende deze zomer meerdere stakingsacties, met vroege ochtendsluitingen (alle 4 lijnen dicht tot ±10:30) op 9 en 11 september. Personeel voerde actie over een vastgelopen carrièretraject, de 37,5-urige werkweek en vakantie-/maaltijdvergoedingen — vooral spelend op de Rode Lijn. Op het moment van schrijven staan er geen nieuwe stakingen gepland na 11 september, maar vakbonden waarschuwen dat een mislukking van de onderhandelingen kan leiden tot langere of zelfs hele dagen staking later dit najaar. Check dus vlak voor en tijdens ons verblijf (13–15 sep) de actuele status via de metro-app of het laatste nieuws. Bredere achtergrond: heel Portugal kende dit jaar meerdere stakingsgolven in het openbaar vervoer en op luchthavens, mede door de aanhoudende onrust rond de privatisering van nationale luchtvaartmaatschappij TAP — eind juli dienden Air France-KLM en Lufthansa hun bindende biedingen in voor een belang van 44,9%.</p>
-    </div>
-    <div class="link-grid">
-      <a class="link-card" href="https://www.metrolisboa.pt/" target="_blank" rel="noopener noreferrer">
-        <span class="link-tag official">Officieel</span>
-        <div class="link-card-title">Metro de Lisboa</div>
-        <div class="link-card-desc">Actuele status en eventuele stakingsmeldingen voor de Lissabonse metro.</div>
-      </a>
-      <a class="link-card" href="https://theportugalpost.com/" target="_blank" rel="noopener noreferrer">
-        <span class="link-tag blog">Nieuws</span>
-        <div class="link-card-title">The Portugal Post</div>
-        <div class="link-card-desc">Engelstalig nieuws over stakingen, verkeer en actuele ontwikkelingen in Portugal.</div>
-      </a>
-      <a class="link-card" href="https://www.theportugalnews.com/" target="_blank" rel="noopener noreferrer">
-        <span class="link-tag blog">Nieuws</span>
-        <div class="link-card-title">The Portugal News</div>
-        <div class="link-card-desc">Portugees nieuws in het Engels, met ook een Nederlandstalige sectie.</div>
-      </a>
-    </div>
-    <div class="disclaimer-box">
-      📰 Deze sectie is samengesteld op 13 augustus 2026 op basis van actuele nieuwsberichten. Check vlak voor vertrek (6 september) nog een keer, met name de metro-status voor Lissabon.
     </div>
   </div>
 </section>
