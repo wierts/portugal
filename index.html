@@ -48,6 +48,39 @@
       line-height: 1;
       box-shadow: 0 0 0 2px #fff;
     }
+    ul.checklist { list-style: none; margin: 0; padding: 0; }
+    ul.checklist li { margin-bottom: .55rem; }
+    ul.checklist label {
+      display: flex;
+      align-items: flex-start;
+      gap: .6rem;
+      cursor: pointer;
+      line-height: 1.5;
+    }
+    ul.checklist input[type="checkbox"] {
+      margin-top: .2rem;
+      width: 1.1rem;
+      height: 1.1rem;
+      flex-shrink: 0;
+      accent-color: var(--terra, #c1440e);
+      cursor: pointer;
+    }
+    ul.checklist input[type="checkbox"]:checked + span {
+      color: var(--muted, #7a7a7a);
+      text-decoration: line-through;
+      text-decoration-color: var(--terra, #c1440e);
+    }
+    .checklist-progress {
+      font-size: .8rem;
+      font-weight: 700;
+      color: var(--terra, #c1440e);
+      margin-bottom: .75rem;
+      letter-spacing: .02em;
+    }
+    .checklist-card { grid-column: span 2; }
+    @media (max-width: 700px) {
+      .checklist-card { grid-column: span 1; }
+    }
   </style>
 </head>
 <body>
@@ -66,6 +99,7 @@
       <li><a href="restaurants.html">🍽️ Restaurants</a></li>
       <li><a href="hotels.html">🏨 Hotels</a></li>
       <li><a href="route.html">🚗 Rijroute</a></li>
+      <li><a href="kaart.html">🗺️ Kaart</a></li>
       <li><a href="appendix.html">📇 Appendix</a></li>
       <li><a href="confirmations.html">📩 Bevestigingen</a></li>
       <li><a href="budget.html">🔒 Budget</a></li>
@@ -1535,15 +1569,39 @@
 
       <div class="practical-card fade-in">
         <h4>🧳 Paklijst september</h4>
-        <p>
-          <strong>Weer:</strong> 20–26°C overdag, koeler 's avonds (~15°C) — laagjes kleding<br>
-          <strong>Schoeisel:</strong> Comfortabele wandelschoenen (kasseien in Porto,
-          Óbidos en Sintra) + iets voor 's avonds<br>
-          <strong>Mee:</strong> Lichte regenjas (kans op buien), zonnebrand, adapter
-          niet nodig (type F, zelfde als NL)<br>
-          <strong>Douro-vallei:</strong> Kan overdag warmer zijn dan de kust — extra
-          zonbescherming voor wijnproeverijen buiten
+        <p style="margin-bottom:.75rem; color: var(--muted);">
+          20–26°C overdag, koeler 's avonds (~15°C) · geen adapter nodig (type F, zelfde als NL).
+          Vink af wat ingepakt is — blijft bewaard op dit toestel.
         </p>
+        <div class="checklist-progress" data-checklist-progress="paklijst"></div>
+        <ul class="checklist" data-checklist="paklijst">
+          <li><label><input type="checkbox" data-item="kleding-laagjes"><span>Kleding in laagjes (warm overdag, koeler 's avonds)</span></label></li>
+          <li><label><input type="checkbox" data-item="wandelschoenen"><span>Comfortabele wandelschoenen (kasseien in Porto, Óbidos, Sintra)</span></label></li>
+          <li><label><input type="checkbox" data-item="avondkleding"><span>Iets warmers voor 's avonds buiten eten</span></label></li>
+          <li><label><input type="checkbox" data-item="regenjas"><span>Lichte regenjas (kans op buien)</span></label></li>
+          <li><label><input type="checkbox" data-item="zonnebrand"><span>Zonnebrand (ook voor wijnproeverijen buiten in de Douro-vallei)</span></label></li>
+          <li><label><input type="checkbox" data-item="zwemkleding"><span>Zwemkleding (Costa Nova, Nazaré-strand)</span></label></li>
+          <li><label><input type="checkbox" data-item="statief"><span>Klein statiefje voor avondopnames (optioneel)</span></label></li>
+        </ul>
+      </div>
+
+      <div class="practical-card fade-in checklist-card">
+        <h4>✅ Pre-vertrek-checklist</h4>
+        <p style="margin-bottom:.75rem; color: var(--muted);">
+          Wat er voor zondag 6 sep nog geregeld moet worden. Ieders eigen toestel onthoudt
+          de eigen voortgang.
+        </p>
+        <div class="checklist-progress" data-checklist-progress="voorvertrek"></div>
+        <ul class="checklist" data-checklist="voorvertrek">
+          <li><label><input type="checkbox" data-item="via-verde"><span>Via Verde-tolpakket/transponder geregeld bij de autoverhuurder (Hertz)</span></label></li>
+          <li><label><input type="checkbox" data-item="reisverzekering"><span>Reisverzekering afgesloten — check dekking huurauto-schade, medische kosten, bagage</span></label></li>
+          <li><label><input type="checkbox" data-item="documenten-geldig"><span>Paspoort/ID en rijbewijs gecontroleerd op geldigheid</span></label></li>
+          <li><label><input type="checkbox" data-item="documenten-kopie"><span>Digitale kopieën gemaakt van paspoort, rijbewijs en verzekeringspolis</span></label></li>
+          <li><label><input type="checkbox" data-item="offline-maps"><span>Google Maps offline gedownload (Porto–Lissabon regio)</span></label></li>
+          <li><label><input type="checkbox" data-item="app-homescreen"><span>Site als app op het beginscherm gezet + pushmeldingen aangezet</span></label></li>
+          <li><label><input type="checkbox" data-item="reserveringen"><span>Restaurantreserveringen bevestigd (zie 🍽️ Restaurants voor welke nodig zijn)</span></label></li>
+          <li><label><input type="checkbox" data-item="boekingen-offline"><span>Bevestigingen/boekingen offline opgeslagen of geprint</span></label></li>
+        </ul>
       </div>
 
     </div>
@@ -1787,6 +1845,32 @@
         ? 'var(--gold)' : '';
     });
   }, { passive: true });
+
+  // Aanvinkbare checklists (paklijst, pre-vertrek) — status per toestel bewaard
+  document.querySelectorAll('[data-checklist]').forEach(list => {
+    const key = 'portugal-checklist-' + list.dataset.checklist;
+    let saved = {};
+    try { saved = JSON.parse(localStorage.getItem(key)) || {}; } catch (e) { saved = {}; }
+    const boxes = list.querySelectorAll('input[type="checkbox"][data-item]');
+    const progressEl = document.querySelector('[data-checklist-progress="' + list.dataset.checklist + '"]');
+
+    function updateProgress() {
+      if (!progressEl) return;
+      const total = boxes.length;
+      const done = list.querySelectorAll('input[type="checkbox"]:checked').length;
+      progressEl.textContent = done + ' / ' + total + ' afgevinkt';
+    }
+
+    boxes.forEach(box => {
+      if (saved[box.dataset.item]) box.checked = true;
+      box.addEventListener('change', () => {
+        saved[box.dataset.item] = box.checked;
+        try { localStorage.setItem(key, JSON.stringify(saved)); } catch (e) {}
+        updateProgress();
+      });
+    });
+    updateProgress();
+  });
 </script>
 
 <script src="nav.js" defer></script>
