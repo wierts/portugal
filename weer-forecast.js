@@ -11,9 +11,14 @@
     { naam: 'Amarante', lat: 41.27, lon: -8.08 },
     { naam: 'Douro-vallei / Pinhão', lat: 41.19, lon: -7.55 },
     { naam: 'Aveiro', lat: 40.64, lon: -8.65 },
+    { naam: 'Batalha', lat: 39.66, lon: -8.82 },
+    { naam: 'Alcobaça', lat: 39.55, lon: -8.98 },
+    { naam: 'Leiria', lat: 39.74, lon: -8.81 },
     { naam: 'Óbidos / Nazaré', lat: 39.60, lon: -9.07 },
+    { naam: 'Caldas da Rainha', lat: 39.41, lon: -9.14 },
     { naam: 'Mafra', lat: 38.94, lon: -9.33 },
     { naam: 'Sintra', lat: 38.80, lon: -9.38 },
+    { naam: 'Cabo da Roca', lat: 38.78, lon: -9.50 },
     { naam: 'Lissabon', lat: 38.72, lon: -9.14 },
   ];
 
@@ -73,7 +78,7 @@
           `🌡️ Bron: <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo</a> — ` +
           `automatisch opgehaald op ${tijdstip}. Amarante en de Douro-vallei liggen landinwaarts en kunnen flink ` +
           `warmer uitpakken dan de kust — houd daar rekening mee bij het inpakken en plannen van buitenactiviteiten. ` +
-          `Sintra en Mafra liggen juist beduidend koeler en mistiger door de heuvels — neem ook daar een extra laag mee.`;
+          `Sintra, Mafra en Cabo da Roca liggen juist beduidend koeler en mistiger door de heuvels/kust — neem ook daar een extra laag mee.`;
       }
     } catch (e) {
       console.error('Weersvoorspelling ophalen mislukt —', e);
