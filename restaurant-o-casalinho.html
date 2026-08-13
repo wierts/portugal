@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Restaurante O Casalinho — Portugal Roadtrip</title>
+  <meta name="description" content="Restaurante O Casalinho, Nazaré — beschrijving, praktische info en recensies.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icons/favicon-32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <meta name="theme-color" content="#1b4f72">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Portugal">
+  <style>
+    .rdetail-intro { background: var(--cream); padding: 2.5rem 0 2rem; }
+    .back-link { display: inline-flex; align-items: center; gap: .4rem; color: var(--azul); font-weight: 600; text-decoration: none; margin-bottom: 1.25rem; }
+    .back-link:hover { color: var(--terra); }
+    .rdetail-header {
+      display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+    }
+    .rdetail-dag-badge {
+      background: var(--terra); color: #fff; font-size: .75rem; font-weight: 700;
+      letter-spacing: .05em; text-transform: uppercase; padding: .35rem .85rem; border-radius: 2px;
+    }
+    .rdetail-header h1 { font-family: var(--serif); font-size: 2.1rem; color: var(--dark); margin: 0; }
+    .rdetail-city { color: var(--muted); font-size: .95rem; margin-top: .35rem; }
+
+    .rdetail-body { padding: 2.5rem 0 4rem; }
+    .rdetail-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 2.5rem; align-items: start; }
+    @media (max-width: 860px) { .rdetail-grid { grid-template-columns: 1fr; } }
+
+    .specialiteit-box {
+      border-left: 4px solid var(--terra); background: #fef5f0; padding: .9rem 1.1rem;
+      border-radius: 0 var(--radius) var(--radius) 0; margin-bottom: 1.5rem;
+    }
+    .specialiteit-box strong { display: block; font-size: .75rem; text-transform: uppercase; letter-spacing: .05em; color: var(--terra); margin-bottom: .3rem; }
+    .specialiteit-box p { margin: 0; font-size: .97rem; color: var(--text); }
+    .rdetail-desc { color: var(--text); line-height: 1.75; margin-bottom: 1.5rem; font-size: 1rem; }
+    .tip-box {
+      border-left: 4px solid var(--gold); background: #fffbf0; padding: .75rem 1.1rem;
+      border-radius: 0 var(--radius) var(--radius) 0; font-size: .9rem; color: var(--muted); margin-bottom: 1.5rem;
+    }
+    .rdetail-chips { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1.75rem; }
+    .rdetail-chip {
+      background: var(--sand); border: 1px solid var(--border); border-radius: 2rem;
+      font-size: .8rem; color: var(--text); padding: .3rem .85rem;
+    }
+    .rdetail-btns { display: flex; gap: .75rem; flex-wrap: wrap; }
+
+    .review-card {
+      background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm); padding: 1.75rem;
+    }
+    .review-card h2 {
+      font-family: var(--serif); font-size: 1.2rem; color: var(--dark); margin: 0 0 1rem 0;
+      display: flex; align-items: center; gap: .5rem;
+    }
+    .review-score {
+      display: flex; align-items: baseline; gap: .5rem; margin-bottom: .25rem;
+    }
+    .review-score .num { font-family: var(--serif); font-size: 2.2rem; color: var(--terra); font-weight: 700; }
+    .review-score .max { font-size: 1rem; color: var(--muted); }
+    .review-meta { font-size: .82rem; color: var(--muted); margin-bottom: 1.1rem; }
+    .review-summary { font-size: .92rem; line-height: 1.65; color: var(--text); margin-bottom: 1.25rem; }
+    .review-source-note { font-size: .78rem; color: var(--muted); margin-top: 1rem; font-style: italic; }
+    .review-unavailable { font-size: .9rem; color: var(--muted); font-style: italic; margin-bottom: 1rem; }
+    .review-warning {
+      border-left: 4px solid var(--terra); background: #fef5f0; padding: .7rem .9rem;
+      border-radius: 0 var(--radius) var(--radius) 0; font-size: .82rem; color: var(--text); margin-bottom: 1.1rem;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="nav-logo"><a href="index.html" style="color:inherit;text-decoration:none">Portugal 🇵🇹</a></div>
+    <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Menu" aria-expanded="false">☰</button>
+    <ul class="nav-links">
+      <li><a href="actueel.html">📰 Actueel</a></li>
+      <li><a href="reisinfo.html">✈️ Reisinfo</a></li>
+      <li><a href="restaurants.html" style="color:var(--gold)">🍽️ Restaurants</a></li>
+      <li><a href="hotels.html">🏨 Hotels</a></li>
+      <li><a href="route.html">🚗 Rijroute</a></li>
+      <li><a href="kaart.html">🗺️ Kaart</a></li>
+      <li><a href="activiteiten.html">✨ Activiteiten</a></li>
+      <li><a href="checklist.html">✅ Checklists</a></li>
+      <li><a href="confirmations.html">📩 Bevestigingen</a></li>
+      <li><a href="budget.html">🔒 Budget</a></li>
+      <li><a href="bronnen.html">🔗 Bronnen</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="rdetail-intro">
+  <div class="container">
+    <a href="restaurants.html" class="back-link">← Terug naar Restaurants</a>
+    <div class="rdetail-header">
+      <span class="rdetail-dag-badge">Dag 6 · Tussenstop Nazaré · Lunch</span>
+      <h1>Restaurante O Casalinho</h1>
+    </div>
+    <p class="rdetail-city">📍 Praça Sousa Oliveira 25, Nazaré</p>
+  </div>
+</section>
+
+<section class="rdetail-body">
+  <div class="container">
+    <div class="rdetail-grid">
+      <div>
+        <div class="specialiteit-box">
+          <strong>Specialiteit van de dag</strong>
+          <p>Oestres (oesters) — O Casalinho is dé oesterreferentie van Nazaré, locals bestellen ze nergens anders. Cataplana de tamboril (zeeduivel in de cataplana) voor twee als je doorrijdt naar Óbidos.</p>
+        </div>
+        <p class="rdetail-desc">Op het hoofdplein van Nazaré, terras met directe zeezicht. Lokale aanbeveling voor oesters en dagverse vis. Eén ober werkt er al veertig jaar — dat vertelt je alles over hoe het er loopt. Perfect als lunchstop tussen de vuurtoren bij Praia do Norte en de doorrit naar Óbidos (±45 minuten rijden).</p>
+        <div class="tip-box">💡 Reserveer voor de lunch — zeker op vrijdag en in september. Parkeer buiten het centrum en loop naar het plein (10 min).</div>
+        <div class="rdetail-chips">
+        <span class="rdetail-chip">🦪 Oesters</span>
+        <span class="rdetail-chip">🐟 Dagverse vis</span>
+        <span class="rdetail-chip">🌊 Zeezicht</span>
+        <span class="rdetail-chip">📍 Hoofdplein Nazaré</span>
+        <span class="rdetail-chip">📞 Reserveer</span>
+        </div>
+        <div class="rdetail-btns">
+        <a href="https://www.google.com/maps/search/Restaurante+O+Casalinho+Nazare" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
+        <a href="tel:+351262551328" class="btn btn-sm btn-tel">📞 +351 262 551 328</a>
+        </div>
+      </div>
+      <div class="review-card">
+        <h2>⭐ Recensies</h2>
+        <div class="review-score">
+        <span class="num">4,2</span><span class="max">/5</span>
+      </div>
+      <p class="review-meta">806 recensies · Tripadvisor</p>
+      <p class="review-summary">Bezoekers omschrijven de zeevruchten meestal als vers en goed bereid, met gegrilde schaaldieren en kokkels als favorieten bij deze marisqueira aan het hoofdplein van Nazaré. De bediening wordt meestal vriendelijk gevonden, al melden sommigen wisselende consistentie tijdens drukke momenten, en de eetzaal kan behoorlijk luidruchtig worden als lokale gasten de zaak vullen. Een klein aantal recensenten meldt af en toe wisselende kwaliteit of moeite met specifieke dieetwensen.</p>
+      <p class="review-source-note">Bron: <a href="https://www.tripadvisor.com/Restaurant_Review-g315902-d1061524-Reviews-or15-Restaurante_Marisqueira_O_Casalinho-Nazare_Leiria_District_Central_Portugal.html" target="_blank" rel="noopener noreferrer">Tripadvisor — Restaurante O Casalinho</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer style="background:var(--dark);color:#fff;padding:2rem;text-align:center;font-size:.85rem;opacity:.8;">
+  Portugal Roadtrip · zo 6 – di 15 sep 2026 · <a href="index.html" style="color:var(--gold)">← Terug naar de route</a>
+</footer>
+
+<script src="nav.js" defer></script>
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script src="onesignal-init.js" defer></script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => { navigator.serviceWorker.register('sw.js').catch(() => {}); });
+}
+</script>
+</body>
+</html>

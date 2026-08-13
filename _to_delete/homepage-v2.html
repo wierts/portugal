@@ -3,21 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Porto → Lissabon — Portugal Roadtrip</title>
-  <meta name="description" content="Een roadtrip in zeven hoofdstukken, van Porto naar Lissabon. September 2026.">
+  <title>Porto → Lissabon — Portugal Roadtrip 2.0 (voorbeeld)</title>
+  <meta name="description" content="Een roadtrip in tien hoofdstukken, van Porto naar Lissabon. September 2026.">
   <link rel="stylesheet" href="css/style.css">
-  <link rel="manifest" href="manifest.json">
   <link rel="icon" href="icons/favicon-32.png" sizes="32x32">
-  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
-  <meta name="theme-color" content="#1b4f72">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="Portugal">
   <style>
     /* ============================================
        2.0 — reismagazine-laag bovenop style.css
        ============================================ */
+    .proto-banner {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: 950;
+      background: var(--dark);
+      color: var(--sand);
+      font-family: var(--sans);
+      font-size: .8rem;
+      text-align: center;
+      padding: .6rem 1rem;
+      border-top: 2px solid var(--gold);
+    }
+    .proto-banner strong { color: var(--gold); }
+
     /* Cinematischere hero */
     .mag-hero {
       margin-top: 64px;
@@ -233,7 +240,7 @@
     <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Menu" aria-expanded="false">☰</button>
     <ul class="nav-links">
       <li><a href="actueel.html">📰 Actueel</a></li>
-      <li><a href="reisinfo.html">✈️ Reisinfo</a></li>
+      <li><a href="homepage-v2.html" style="color:var(--gold)">Home 2.0</a></li>
       <li><a href="restaurants.html">🍽️ Restaurants</a></li>
       <li><a href="hotels.html">🏨 Hotels</a></li>
       <li><a href="route.html">🚗 Rijroute</a></li>
@@ -260,13 +267,6 @@
       <span>🚗 <strong>±500 km</strong></span>
       <span>👥 <strong>4 personen</strong></span>
     </div>
-    <div class="hero-cta-group" style="margin-top:2rem; justify-content:flex-start;">
-      <button id="notif-btn" onclick="vraagMeldingenAan()" class="btn btn-outline" type="button">🔔 Zet meldingen aan</button>
-      <button id="notif-reset-btn" onclick="resetMeldingen()" class="btn btn-outline" type="button">🔄 Opnieuw aanmelden voor meldingen</button>
-      <button id="install-btn" class="btn btn-outline" type="button" style="display:none;">📲 Installeer de app</button>
-    </div>
-    <!-- LAST-UPDATED: deze regel wordt handmatig bijgewerkt bij elke aanpassing aan de site -->
-    <p id="last-updated" style="margin-top:1rem; font-size:.8rem; color:rgba(250,247,242,.7);">🕓 Laatst bijgewerkt: 13 augustus 2026</p>
   </div>
 </section>
 
@@ -299,7 +299,7 @@
         Nova de Gaia voor de meest indrukwekkende panorama's.
       </p>
       <div class="chapter-links">
-        <a class="chapter-link" href="reisinfo.html#day1">🗺️ Route &amp; activiteiten</a>
+        <a class="chapter-link" href="index.html#day01">🗺️ Route &amp; activiteiten</a>
         <a class="chapter-link" href="hotels.html">🏨 Hotel</a>
         <a class="chapter-link" href="restaurants.html">🍽️ Restaurants</a>
       </div>
@@ -426,7 +426,7 @@
         is onvergetelijk. Hier sluit de reis af.
       </p>
       <div class="chapter-links">
-        <a class="chapter-link" href="reisinfo.html#day7">🗺️ Route &amp; activiteiten</a>
+        <a class="chapter-link" href="index.html#day07">🗺️ Route &amp; activiteiten</a>
         <a class="chapter-link" href="hotels.html">🏨 Hotel</a>
         <a class="chapter-link" href="restaurants.html">🍽️ Restaurants</a>
       </div>
@@ -442,11 +442,6 @@
     <p class="section-subtitle">Alle praktische info op één plek</p>
   </div>
   <div class="explore-grid">
-    <a class="explore-card" href="reisinfo.html">
-      <span class="icon">✈️</span>
-      <h4>Reisinfo</h4>
-      <p>Vluchten, complete route, dag-details &amp; agenda-export</p>
-    </a>
     <a class="explore-card" href="kaart.html">
       <span class="icon">🗺️</span>
       <h4>Overzichtskaart</h4>
@@ -496,18 +491,13 @@
 </section>
 
 <footer style="background:var(--dark);color:#fff;padding:2rem;text-align:center;font-size:.85rem;opacity:.8;">
-  <p><strong>Portugal Roadtrip — zo 6 – di 15 sep 2026</strong></p>
-  <p>🗺️ Klik op attracties voor websites &amp; Google Maps &nbsp;|&nbsp; 🇵🇹 Boa viagem!</p>
+  Portugal Roadtrip · zo 6 – di 15 sep 2026 · <a href="index.html" style="color:var(--gold)">← Huidige homepage</a>
 </footer>
 
+<div class="proto-banner">
+  🧪 <strong>Prototype — website 2.0</strong>. Dit is nog niet de live homepage. Laat weten wat je ervan vindt, dan stem ik de rest van de site hierop af.
+</div>
+
 <script src="nav.js" defer></script>
-<script src="install-prompt.js" defer></script>
-<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
-<script src="onesignal-init.js" defer></script>
-<script>
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => { navigator.serviceWorker.register('sw.js').catch(() => {}); });
-}
-</script>
 </body>
 </html>
