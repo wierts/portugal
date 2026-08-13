@@ -1183,6 +1183,7 @@ footer p { margin-bottom: .5rem; font-size: .875rem; }
 table.trip-table {
   width: 100%;
   border-collapse: collapse;
+  table-layout: fixed;
   font-size: .9rem;
 }
 table.trip-table th {
@@ -1200,6 +1201,7 @@ table.trip-table td {
   padding: .75rem 1rem;
   border-bottom: 1px solid var(--border);
   vertical-align: top;
+  word-break: break-word;
 }
 table.trip-table tr:last-child td { border-bottom: none; }
 table.trip-table tbody tr:nth-child(even) td { background: var(--cream); }
@@ -1215,6 +1217,28 @@ table.trip-table a.trip-table-link:hover { color: var(--terra); }
 table.trip-table--azul a.trip-table-link:hover { color: var(--azul); }
 table.trip-table td.trip-table-muted { color: var(--muted); }
 
+/* Kolom-uitlijning: Dag-kolom (1e) gecentreerd met dagcijfer-badge, Datum-kolom (2e) breekt niet af */
+table.trip-table th:first-child,
+table.trip-table td:first-child { text-align: center; white-space: nowrap; }
+table.trip-table td:nth-child(2) { white-space: nowrap; }
+table.trip-table--azul th:last-child,
+table.trip-table--azul td:last-child { text-align: center; white-space: nowrap; }
+
+.day-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.65rem;
+  height: 1.65rem;
+  border-radius: 50%;
+  background: var(--terra);
+  color: #fff;
+  font-weight: 700;
+  font-size: .78rem;
+  line-height: 1;
+}
+table.trip-table--azul .day-badge { background: var(--azul); }
+
 @media (max-width: 720px) {
   table.trip-table, table.trip-table thead, table.trip-table tbody,
   table.trip-table th, table.trip-table td, table.trip-table tr { display: block; }
@@ -1223,6 +1247,8 @@ table.trip-table td.trip-table-muted { color: var(--muted); }
   table.trip-table tbody tr:nth-child(even) { background: var(--cream); }
   table.trip-table tbody tr:nth-child(even) td { background: transparent; }
   table.trip-table td { border-bottom: none; padding: .3rem 1rem; }
+  table.trip-table td:first-child,
+  table.trip-table--azul td:last-child { text-align: left; white-space: normal; }
   table.trip-table td:before {
     content: attr(data-label);
     display: block;
