@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Enoteca 1756 — Portugal Roadtrip</title>
-  <meta name="description" content="Enoteca 1756, Cais de Gaia, Vila Nova de Gaia — beschrijving, praktische info en recensies.">
+  <title>Cervejaria Trindade — Portugal Roadtrip</title>
+  <meta name="description" content="Cervejaria Trindade, Chiado, Lissabon — beschrijving, praktische info en recensies.">
   <link rel="stylesheet" href="css/style.css">
   <link rel="manifest" href="manifest.json">
   <link rel="icon" href="icons/favicon-32.png" sizes="32x32">
@@ -88,7 +88,6 @@
       <li><a href="kaart.html">🗺️ Kaart</a></li>
       <li><a href="activiteiten.html">✨ Activiteiten</a></li>
       <li><a href="checklist.html">✅ Checklists</a></li>
-      <li><a href="todo.html">📝 To-do</a></li>
       <li><a href="confirmations.html">📩 Bevestigingen</a></li>
       <li><a href="budget.html">🔒 Budget</a></li>
       <li><a href="bronnen.html">🔗 Bronnen</a></li>
@@ -100,10 +99,10 @@
   <div class="container">
     <a href="restaurants.html" class="back-link">← Terug naar Restaurants</a>
     <div class="rdetail-header">
-      <span class="rdetail-dag-badge">Dag 1 · Porto · Avond</span>
-      <h1>Enoteca 1756</h1>
+      <span class="rdetail-dag-badge">Dag 10 · Lissabon · Lunch · Afsluiter</span>
+      <h1>Cervejaria Trindade</h1>
     </div>
-    <p class="rdetail-city">📍 Cais de Gaia, Vila Nova de Gaia</p>
+    <p class="rdetail-city">📍 Rua Nova da Trindade 20C, Chiado, Lissabon</p>
   </div>
 </section>
 
@@ -112,31 +111,33 @@
     <div class="rdetail-grid">
       <div>
         <div class="specialiteit-box">
-          <strong>Specialiteit van het huis</strong>
-          <p>Portugese wijnkaart met focus op Douro- en Vinho Verde-wijnen, gecombineerd met petiscos en lichte gerechten.</p>
+          <strong>Specialiteit van de dag</strong>
+          <p>Verse vis van de dag, geserveerd in een unieke setting. Sluit af met de chocolademousse — volgens vaste gasten de lekkerste van de stad.</p>
         </div>
-        <p class="rdetail-desc">Wijnbar-restaurant op het Cais de Gaia, op loopafstand van Forte de Gaia. Uitstekende Portugese wijnkaart met een focus op Douro- en Vinho Verde-wijnen, gecombineerd met petiscos en lichte gerechten. Een ontspannen eerste avond na aankomst, met uitzicht op de rivier en Porto's skyline aan de overkant.</p>
-                <div class="rdetail-chips">
-        <span class="rdetail-chip">🍷 Portugese wijnkaart</span>
-        <span class="rdetail-chip">📍 Cais de Gaia</span>
-        <span class="rdetail-chip">🚶 Loopafstand Forte de Gaia</span>
-        <span class="rdetail-chip">🌊 Uitzicht op de Douro</span>
-        <span class="rdetail-chip">📞 Reserveren mogelijk (SevenRooms)</span>
+        <p class="rdetail-desc">De perfecte afsluiter: dit restaurant is gevestigd in een eeuwenoud voormalig klooster, met prachtige azulejo-tegels aan de muren en een serene sfeer, zelfs als het druk is. Bediening in kloosterpij en zachte monnikenzang op de achtergrond maken dit tot een gedenkwaardige laatste maaltijd voor de terugvlucht van 19:45.</p>
+        <div class="tip-box">💡 Reserveer vooraf, zeker voor een tafel op de laatste dag. Neem rustig de tijd — er is tot de vlucht van 19:45 nog volop ruimte in het programma.</div>
+        <div class="rdetail-chips">
+        <span class="rdetail-chip">🏛️ Voormalig klooster</span>
+        <span class="rdetail-chip">🐟 Verse vis</span>
+        <span class="rdetail-chip">🍫 Chocolademousse</span>
+        <span class="rdetail-chip">📍 Chiado, centrum</span>
+        <span class="rdetail-chip">✈️ Voor de terugvlucht</span>
         </div>
         <div class="rdetail-btns">
-        <a href="https://www.google.com/maps/search/Enoteca+1756+Cais+de+Gaia+Vila+Nova+de+Gaia" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
-        <a href="tel:+351222448500" class="btn btn-sm btn-tel">📞 +351 222 448 500</a>
-        <a href="https://enoteca1756.pt/" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-web">🌐 Website</a>
+        <a href="https://www.google.com/maps/search/Cervejaria+Trindade+Lisboa" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
+        <a href="tel:+351213423506" class="btn btn-sm btn-tel">📞 +351 213 423 506</a>
+        <a href="mailto:ct.chiado@cervejariatrindade.pt" class="btn btn-sm btn-mail">✉️ E-mail</a>
+        <a href="http://www.cervejariatrindade.pt/" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-web">🌐 Website</a>
         </div>
       </div>
       <div class="review-card">
         <h2>⭐ Recensies</h2>
         <div class="review-score">
-        <span class="num">3,9</span><span class="max">/5</span>
+        <span class="num">3,5</span><span class="max">/5</span>
       </div>
-      <p class="review-meta">408 recensies · Tripadvisor</p>
-      <p class="review-summary">Gasten zijn overwegend positief over het eten, met name de sushi, steaks en desserts, al vinden sommigen bepaalde gerechten aan de prijzige kant. De bediening is het vaakst bekritiseerd: een aantal gasten meldt trage of ongeorganiseerde service, lange wachttijden tussen gangen en het gevoel gehaast te worden ondanks de hoge prijzen. Het terras aan de rivier, het moderne interieur en het uitzicht over de Douro worden consequent als sterke punten genoemd.</p>
-      <p class="review-source-note">Bron: <a href="https://www.tripadvisor.com/Restaurant_Review-g580268-d15147345-Reviews-Enoteca_17_56-Vila_Nova_de_Gaia_Porto_District_Northern_Portugal.html" target="_blank" rel="noopener noreferrer">Tripadvisor — Enoteca 1756</a></p>
+      <p class="review-meta">4.126 recensies · Tripadvisor</p>
+      <p class="review-summary">Meningen over het eten lopen uiteen: veel recensenten genieten van de traditionele Portugese gerechten en zeevruchten, maar anderen melden wisselende kwaliteit, kleine porties (met name de mosselen), een weinig veranderend menu en prijzen die hoog aanvoelen voor wat er wordt geserveerd. Ook de bediening wordt heel verschillend beoordeeld, van lof voor attent, meertalig personeel tot klachten over trage, onderbezette service tijdens piekuren en reserveringen die niet stipt werden gehonoreerd. De historische, voormalige kloostersetting met handgeschilderde tegelwanden wordt vrijwel unaniem bewonderd als het grootste sterke punt, al kan de hoofdzaal luidruchtig en druk worden.</p>
+      <p class="review-source-note">Bron: <a href="https://www.tripadvisor.com/Restaurant_Review-g189158-d794412-Reviews-Cervejaria_Trindade-Lisbon_Lisbon_District_Central_Portugal.html" target="_blank" rel="noopener noreferrer">Tripadvisor — Cervejaria Trindade</a></p>
       </div>
     </div>
   </div>

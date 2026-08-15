@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Enoteca 1756 — Portugal Roadtrip</title>
-  <meta name="description" content="Enoteca 1756, Cais de Gaia, Vila Nova de Gaia — beschrijving, praktische info en recensies.">
+  <title>Restaurante Poço dos Sabores — Portugal Roadtrip</title>
+  <meta name="description" content="Restaurante Poço dos Sabores, Usseira, Óbidos — beschrijving, praktische info en recensies.">
   <link rel="stylesheet" href="css/style.css">
   <link rel="manifest" href="manifest.json">
   <link rel="icon" href="icons/favicon-32.png" sizes="32x32">
@@ -88,7 +88,6 @@
       <li><a href="kaart.html">🗺️ Kaart</a></li>
       <li><a href="activiteiten.html">✨ Activiteiten</a></li>
       <li><a href="checklist.html">✅ Checklists</a></li>
-      <li><a href="todo.html">📝 To-do</a></li>
       <li><a href="confirmations.html">📩 Bevestigingen</a></li>
       <li><a href="budget.html">🔒 Budget</a></li>
       <li><a href="bronnen.html">🔗 Bronnen</a></li>
@@ -100,10 +99,10 @@
   <div class="container">
     <a href="restaurants.html" class="back-link">← Terug naar Restaurants</a>
     <div class="rdetail-header">
-      <span class="rdetail-dag-badge">Dag 1 · Porto · Avond</span>
-      <h1>Enoteca 1756</h1>
+      <span class="rdetail-dag-badge">Dag 7 · Óbidos (Usseira) · Avond</span>
+      <h1>Restaurante Poço dos Sabores</h1>
     </div>
-    <p class="rdetail-city">📍 Cais de Gaia, Vila Nova de Gaia</p>
+    <p class="rdetail-city">📍 Rua Principal 85B, Usseira (bij Óbidos)</p>
   </div>
 </section>
 
@@ -112,31 +111,31 @@
     <div class="rdetail-grid">
       <div>
         <div class="specialiteit-box">
-          <strong>Specialiteit van het huis</strong>
-          <p>Portugese wijnkaart met focus op Douro- en Vinho Verde-wijnen, gecombineerd met petiscos en lichte gerechten.</p>
+          <strong>Specialiteit van de dag</strong>
+          <p>Polvo à Lagareiro — een van de sterdisgerechten, in de perfecte gaarpunt. Ook de bekroonde chocoladetaart van chef Paula (1e prijs op het Óbidos Chocoladefestival) is een vaste favoriet.</p>
         </div>
-        <p class="rdetail-desc">Wijnbar-restaurant op het Cais de Gaia, op loopafstand van Forte de Gaia. Uitstekende Portugese wijnkaart met een focus op Douro- en Vinho Verde-wijnen, gecombineerd met petiscos en lichte gerechten. Een ontspannen eerste avond na aankomst, met uitzicht op de rivier en Porto's skyline aan de overkant.</p>
-                <div class="rdetail-chips">
-        <span class="rdetail-chip">🍷 Portugese wijnkaart</span>
-        <span class="rdetail-chip">📍 Cais de Gaia</span>
-        <span class="rdetail-chip">🚶 Loopafstand Forte de Gaia</span>
-        <span class="rdetail-chip">🌊 Uitzicht op de Douro</span>
-        <span class="rdetail-chip">📞 Reserveren mogelijk (SevenRooms)</span>
+        <p class="rdetail-desc">Sfeervol, rustiek restaurant in het dorpje Usseira, op korte rijafstand van Óbidos. Van buiten een eenvoudig stenen huisje, van binnen een knusse eetkamer met hout, steen en keramiek. Traditionele Portugese keuken, gerund door een gastvrij echtpaar, met een opvallend uitgebreide wijnkaart en genereuze porties.</p>
+        <div class="tip-box">💡 Reserveer ruim van tevoren — klein en populair. Vraag naar de soep van de dag en vermeld dieetwensen, het team is flexibel met aanpassingen.</div>
+        <div class="rdetail-chips">
+        <span class="rdetail-chip">🐙 Polvo à Lagareiro</span>
+        <span class="rdetail-chip">🍫 Bekroonde chocoladetaart</span>
+        <span class="rdetail-chip">📍 Usseira, bij Óbidos</span>
+        <span class="rdetail-chip">🍷 Uitgebreide wijnkaart</span>
+        <span class="rdetail-chip">📞 Reserveer!</span>
         </div>
         <div class="rdetail-btns">
-        <a href="https://www.google.com/maps/search/Enoteca+1756+Cais+de+Gaia+Vila+Nova+de+Gaia" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
-        <a href="tel:+351222448500" class="btn btn-sm btn-tel">📞 +351 222 448 500</a>
-        <a href="https://enoteca1756.pt/" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-web">🌐 Website</a>
+        <a href="https://www.google.com/maps/search/Restaurante+Poço+dos+Sabores+Usseira+Obidos" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
+        <a href="tel:+351262950086" class="btn btn-sm btn-tel">📞 +351 262 950 086</a>
         </div>
       </div>
       <div class="review-card">
         <h2>⭐ Recensies</h2>
         <div class="review-score">
-        <span class="num">3,9</span><span class="max">/5</span>
+        <span class="num">4,9</span><span class="max">/5</span>
       </div>
-      <p class="review-meta">408 recensies · Tripadvisor</p>
-      <p class="review-summary">Gasten zijn overwegend positief over het eten, met name de sushi, steaks en desserts, al vinden sommigen bepaalde gerechten aan de prijzige kant. De bediening is het vaakst bekritiseerd: een aantal gasten meldt trage of ongeorganiseerde service, lange wachttijden tussen gangen en het gevoel gehaast te worden ondanks de hoge prijzen. Het terras aan de rivier, het moderne interieur en het uitzicht over de Douro worden consequent als sterke punten genoemd.</p>
-      <p class="review-source-note">Bron: <a href="https://www.tripadvisor.com/Restaurant_Review-g580268-d15147345-Reviews-Enoteca_17_56-Vila_Nova_de_Gaia_Porto_District_Northern_Portugal.html" target="_blank" rel="noopener noreferrer">Tripadvisor — Enoteca 1756</a></p>
+      <p class="review-meta">238 recensies · Tripadvisor, 2025 Travelers' Choice</p>
+      <p class="review-summary">Dit rustieke restaurant in het dorpje Usseira bij Óbidos krijgt bijna unaniem lof voor zorgvuldig bereide gerechten, waarbij varkenswangen, octopus en het dessertaanbod vaak als hoogtepunten worden genoemd; het draagt een 2025 Travelers' Choice-erkenning. Recensenten omschrijven de bediening consequent als warm, persoonlijk en attent, en de setting als knus en gastvrij. Klachten zijn minimaal, op één geïsoleerde opmerking over een tijdelijk betalingsprobleem na.</p>
+      <p class="review-source-note">Bron: <a href="https://www.tripadvisor.com/Restaurant_Review-g3513842-d2270330-Reviews-Poco_dos_Sabores-Usseira_Obidos_Leiria_District_Central_Portugal.html" target="_blank" rel="noopener noreferrer">Tripadvisor — Restaurante Poço dos Sabores</a></p>
       </div>
     </div>
   </div>

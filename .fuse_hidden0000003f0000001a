@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Enoteca 1756 — Portugal Roadtrip</title>
-  <meta name="description" content="Enoteca 1756, Cais de Gaia, Vila Nova de Gaia — beschrijving, praktische info en recensies.">
+  <title>Salpoente — Portugal Roadtrip</title>
+  <meta name="description" content="Salpoente, Aveiro — beschrijving, praktische info en recensies.">
   <link rel="stylesheet" href="css/style.css">
   <link rel="manifest" href="manifest.json">
   <link rel="icon" href="icons/favicon-32.png" sizes="32x32">
@@ -88,7 +88,6 @@
       <li><a href="kaart.html">🗺️ Kaart</a></li>
       <li><a href="activiteiten.html">✨ Activiteiten</a></li>
       <li><a href="checklist.html">✅ Checklists</a></li>
-      <li><a href="todo.html">📝 To-do</a></li>
       <li><a href="confirmations.html">📩 Bevestigingen</a></li>
       <li><a href="budget.html">🔒 Budget</a></li>
       <li><a href="bronnen.html">🔗 Bronnen</a></li>
@@ -100,10 +99,10 @@
   <div class="container">
     <a href="restaurants.html" class="back-link">← Terug naar Restaurants</a>
     <div class="rdetail-header">
-      <span class="rdetail-dag-badge">Dag 1 · Porto · Avond</span>
-      <h1>Enoteca 1756</h1>
+      <span class="rdetail-dag-badge">Dag 5 · Aveiro · Avond</span>
+      <h1>Salpoente</h1>
     </div>
-    <p class="rdetail-city">📍 Cais de Gaia, Vila Nova de Gaia</p>
+    <p class="rdetail-city">📍 Cais de São Roque 83, Aveiro</p>
   </div>
 </section>
 
@@ -112,31 +111,33 @@
     <div class="rdetail-grid">
       <div>
         <div class="specialiteit-box">
-          <strong>Specialiteit van het huis</strong>
-          <p>Portugese wijnkaart met focus op Douro- en Vinho Verde-wijnen, gecombineerd met petiscos en lichte gerechten.</p>
+          <strong>Specialiteit van de dag</strong>
+          <p>Bacalhau — Salpoente noemt zich specialist in kabeljauw en biedt zowel "O Bacalhau" als "Bacalhau Contemporâneo". Ook de gerookte paling met bietenemulsie is een aanrader.</p>
         </div>
-        <p class="rdetail-desc">Wijnbar-restaurant op het Cais de Gaia, op loopafstand van Forte de Gaia. Uitstekende Portugese wijnkaart met een focus op Douro- en Vinho Verde-wijnen, gecombineerd met petiscos en lichte gerechten. Een ontspannen eerste avond na aankomst, met uitzicht op de rivier en Porto's skyline aan de overkant.</p>
-                <div class="rdetail-chips">
-        <span class="rdetail-chip">🍷 Portugese wijnkaart</span>
-        <span class="rdetail-chip">📍 Cais de Gaia</span>
-        <span class="rdetail-chip">🚶 Loopafstand Forte de Gaia</span>
-        <span class="rdetail-chip">🌊 Uitzicht op de Douro</span>
-        <span class="rdetail-chip">📞 Reserveren mogelijk (SevenRooms)</span>
+        <p class="rdetail-desc">Gevestigd in twee gerestaureerde 19e-eeuwse zoutpakhuizen aan het Canal de São Roque, een van de laatste van dit type in Aveiro. Elegante, rustige ambiance met uitzicht op de Ria de Aveiro en de langsvarende moliceiros. Moderne Portugese keuken gebaseerd op producten uit de streek, met een à la carte kaart, een 6-gangen proeverij en een vegetarisch menu.</p>
+        <div class="tip-box">💡 Reserveren is aan te raden, vooral in het weekend. Vraag om een tafel met zicht op het kanaal.</div>
+        <div class="rdetail-chips">
+        <span class="rdetail-chip">🐟 Bacalhau-specialist</span>
+        <span class="rdetail-chip">🏛️ Historisch zoutpakhuis</span>
+        <span class="rdetail-chip">🌊 Uitzicht op de Ria</span>
+        <span class="rdetail-chip">🍽️ 6-gangen proeverij</span>
+        <span class="rdetail-chip">📞 Reserveer</span>
         </div>
         <div class="rdetail-btns">
-        <a href="https://www.google.com/maps/search/Enoteca+1756+Cais+de+Gaia+Vila+Nova+de+Gaia" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
-        <a href="tel:+351222448500" class="btn btn-sm btn-tel">📞 +351 222 448 500</a>
-        <a href="https://enoteca1756.pt/" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-web">🌐 Website</a>
+        <a href="https://www.google.com/maps/search/Salpoente+Aveiro" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
+        <a href="tel:+351234382674" class="btn btn-sm btn-tel">📞 +351 234 382 674</a>
+        <a href="mailto:salpoente@salpoente.pt" class="btn btn-sm btn-mail">✉️ E-mail</a>
+        <a href="https://salpoente.pt/en/" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-web">🌐 Website</a>
         </div>
       </div>
       <div class="review-card">
         <h2>⭐ Recensies</h2>
         <div class="review-score">
-        <span class="num">3,9</span><span class="max">/5</span>
+        <span class="num">4,6</span><span class="max">/5</span>
       </div>
-      <p class="review-meta">408 recensies · Tripadvisor</p>
-      <p class="review-summary">Gasten zijn overwegend positief over het eten, met name de sushi, steaks en desserts, al vinden sommigen bepaalde gerechten aan de prijzige kant. De bediening is het vaakst bekritiseerd: een aantal gasten meldt trage of ongeorganiseerde service, lange wachttijden tussen gangen en het gevoel gehaast te worden ondanks de hoge prijzen. Het terras aan de rivier, het moderne interieur en het uitzicht over de Douro worden consequent als sterke punten genoemd.</p>
-      <p class="review-source-note">Bron: <a href="https://www.tripadvisor.com/Restaurant_Review-g580268-d15147345-Reviews-Enoteca_17_56-Vila_Nova_de_Gaia_Porto_District_Northern_Portugal.html" target="_blank" rel="noopener noreferrer">Tripadvisor — Enoteca 1756</a></p>
+      <p class="review-meta">1.840 recensies · Tripadvisor</p>
+      <p class="review-summary">Gasten prijzen consequent de moderne Portugese keuken om presentatie en creatieve smaakcombinaties, met name kabeljauw- en zeevruchtengerechten, in een stijlvolle setting in het voormalige zoutpakhuis. De bedieningskwaliteit wordt wisselend beschreven — sommigen ervaren attente zorg, anderen vinden het personeel gehaast — en meerdere recensies noemen wisselvallige omgang met dieetwensen en wijnservice. Sommige bezoekers noemen ook de wat rustige, afgelegen ligging aan het water en stellen de prijs-kwaliteitverhouding ten opzichte van de portiegrootte ter discussie, al blijft de culinaire reputatie sterk.</p>
+      <p class="review-source-note">Bron: <a href="https://www.tripadvisor.com/Restaurant_Review-g189140-d3952744-Reviews-Salpoente-Aveiro_Aveiro_District_Northern_Portugal.html" target="_blank" rel="noopener noreferrer">Tripadvisor — Salpoente</a></p>
       </div>
     </div>
   </div>

@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Enoteca 1756 — Portugal Roadtrip</title>
-  <meta name="description" content="Enoteca 1756, Cais de Gaia, Vila Nova de Gaia — beschrijving, praktische info en recensies.">
+  <title>Incomum by Luís Santos — Portugal Roadtrip</title>
+  <meta name="description" content="Incomum by Luís Santos, Sintra — beschrijving, praktische info en recensies.">
   <link rel="stylesheet" href="css/style.css">
   <link rel="manifest" href="manifest.json">
   <link rel="icon" href="icons/favicon-32.png" sizes="32x32">
@@ -88,7 +88,6 @@
       <li><a href="kaart.html">🗺️ Kaart</a></li>
       <li><a href="activiteiten.html">✨ Activiteiten</a></li>
       <li><a href="checklist.html">✅ Checklists</a></li>
-      <li><a href="todo.html">📝 To-do</a></li>
       <li><a href="confirmations.html">📩 Bevestigingen</a></li>
       <li><a href="budget.html">🔒 Budget</a></li>
       <li><a href="bronnen.html">🔗 Bronnen</a></li>
@@ -100,10 +99,10 @@
   <div class="container">
     <a href="restaurants.html" class="back-link">← Terug naar Restaurants</a>
     <div class="rdetail-header">
-      <span class="rdetail-dag-badge">Dag 1 · Porto · Avond</span>
-      <h1>Enoteca 1756</h1>
+      <span class="rdetail-dag-badge">Dag 8 · Sintra · Lunch</span>
+      <h1>Incomum by Luís Santos</h1>
     </div>
-    <p class="rdetail-city">📍 Cais de Gaia, Vila Nova de Gaia</p>
+    <p class="rdetail-city">📍 Bij het treinstation, Sintra</p>
   </div>
 </section>
 
@@ -112,31 +111,34 @@
     <div class="rdetail-grid">
       <div>
         <div class="specialiteit-box">
-          <strong>Specialiteit van het huis</strong>
-          <p>Portugese wijnkaart met focus op Douro- en Vinho Verde-wijnen, gecombineerd met petiscos en lichte gerechten.</p>
+          <strong>Specialiteit van de dag</strong>
+          <p>Arroz de marisco, inktvispasta met garnalen, of Iberisch varken. Het lunchemenu (soep/salade, hoofdgerecht, dessert, drankje) voor ±€15 is onverslaanbaar voor deze kwaliteit.</p>
         </div>
-        <p class="rdetail-desc">Wijnbar-restaurant op het Cais de Gaia, op loopafstand van Forte de Gaia. Uitstekende Portugese wijnkaart met een focus op Douro- en Vinho Verde-wijnen, gecombineerd met petiscos en lichte gerechten. Een ontspannen eerste avond na aankomst, met uitzicht op de rivier en Porto's skyline aan de overkant.</p>
-                <div class="rdetail-chips">
-        <span class="rdetail-chip">🍷 Portugese wijnkaart</span>
-        <span class="rdetail-chip">📍 Cais de Gaia</span>
-        <span class="rdetail-chip">🚶 Loopafstand Forte de Gaia</span>
-        <span class="rdetail-chip">🌊 Uitzicht op de Douro</span>
-        <span class="rdetail-chip">📞 Reserveren mogelijk (SevenRooms)</span>
+        <p class="rdetail-desc">Lokale celebrity chef opende dit restaurant in 2014 — inmiddels het beste adres voor creatieve, gegroeide Portugese keuken in Sintra. Klein en knus (12 tafels), altijd vol. Handtekeninggerechten combineren zeevruchten en regionale ingrediënten met een vleugje moderniteit. Na de lunch: queijadas de Sintra kopen bij Piriquita (bakkerij 1862, om de hoek) — het traditionele Sintra-koekje.</p>
+        <div class="tip-box">💡 Altijd van tevoren reserveren — ze zijn snel vol. Na de lunch queijadas de Sintra en travesseiros bij Piriquita halen (loopafstand). Dit zijn de authentieke Sintra-gebakjes.</div>
+        <div class="rdetail-chips">
+        <span class="rdetail-chip">🦐 Arroz de marisco</span>
+        <span class="rdetail-chip">🐷 Iberisch varken</span>
+        <span class="rdetail-chip">💶 Lunchemenu ~€15</span>
+        <span class="rdetail-chip">📍 Bij treinstation</span>
+        <span class="rdetail-chip">📞 Reserveer</span>
+        <span class="rdetail-chip">⭐ Lokale chef</span>
         </div>
         <div class="rdetail-btns">
-        <a href="https://www.google.com/maps/search/Enoteca+1756+Cais+de+Gaia+Vila+Nova+de+Gaia" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
-        <a href="tel:+351222448500" class="btn btn-sm btn-tel">📞 +351 222 448 500</a>
-        <a href="https://enoteca1756.pt/" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-web">🌐 Website</a>
+        <a href="https://www.google.com/maps/search/Incomum+Luis+Santos+Sintra" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
+        <a href="tel:+351219243719" class="btn btn-sm btn-tel">📞 +351 219 243 719</a>
+        <a href="mailto:restaurante@incomumbyluissantos.pt" class="btn btn-sm btn-mail">✉️ E-mail</a>
+        <a href="https://www.incomumbyluissantos.pt" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-web">🌐 Website</a>
         </div>
       </div>
       <div class="review-card">
         <h2>⭐ Recensies</h2>
         <div class="review-score">
-        <span class="num">3,9</span><span class="max">/5</span>
+        <span class="num">4,6</span><span class="max">/5</span>
       </div>
-      <p class="review-meta">408 recensies · Tripadvisor</p>
-      <p class="review-summary">Gasten zijn overwegend positief over het eten, met name de sushi, steaks en desserts, al vinden sommigen bepaalde gerechten aan de prijzige kant. De bediening is het vaakst bekritiseerd: een aantal gasten meldt trage of ongeorganiseerde service, lange wachttijden tussen gangen en het gevoel gehaast te worden ondanks de hoge prijzen. Het terras aan de rivier, het moderne interieur en het uitzicht over de Douro worden consequent als sterke punten genoemd.</p>
-      <p class="review-source-note">Bron: <a href="https://www.tripadvisor.com/Restaurant_Review-g580268-d15147345-Reviews-Enoteca_17_56-Vila_Nova_de_Gaia_Porto_District_Northern_Portugal.html" target="_blank" rel="noopener noreferrer">Tripadvisor — Enoteca 1756</a></p>
+      <p class="review-meta">3.387 recensies · Tripadvisor</p>
+      <p class="review-summary">Dit restaurant van een bekende lokale chef, vlak bij het treinstation van Sintra, wordt breed geprezen om creatieve, vakkundig bereide gerechten, met zeevruchten en risotto als vaak genoemde hoogtepunten, en om de royale degustatiemenu's die als goede prijs-kwaliteitverhouding worden gezien. De bediening wordt attent genoemd en houdt rekening met dieetwensen zonder opdringerig te zijn, en de sfeer wordt warm en comfortabel chic genoemd. Een minderheid van de recensenten noemt wisselende desserts of minder indrukwekkende vegetarische opties als belangrijkste minpunt.</p>
+      <p class="review-source-note">Bron: <a href="https://www.tripadvisor.com/Restaurant_Review-g189164-d7282813-Reviews-Incomum_by_Luis_Santos-Sintra_Sintra_Municipality_Lisbon_District_Central_Portuga.html" target="_blank" rel="noopener noreferrer">Tripadvisor — Incomum by Luís Santos</a></p>
       </div>
     </div>
   </div>

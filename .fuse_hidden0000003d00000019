@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Enoteca 1756 — Portugal Roadtrip</title>
-  <meta name="description" content="Enoteca 1756, Cais de Gaia, Vila Nova de Gaia — beschrijving, praktische info en recensies.">
+  <title>Taberna da Rua das Flores — Portugal Roadtrip</title>
+  <meta name="description" content="Taberna da Rua das Flores, Chiado, Lissabon — beschrijving, praktische info en recensies.">
   <link rel="stylesheet" href="css/style.css">
   <link rel="manifest" href="manifest.json">
   <link rel="icon" href="icons/favicon-32.png" sizes="32x32">
@@ -88,7 +88,6 @@
       <li><a href="kaart.html">🗺️ Kaart</a></li>
       <li><a href="activiteiten.html">✨ Activiteiten</a></li>
       <li><a href="checklist.html">✅ Checklists</a></li>
-      <li><a href="todo.html">📝 To-do</a></li>
       <li><a href="confirmations.html">📩 Bevestigingen</a></li>
       <li><a href="budget.html">🔒 Budget</a></li>
       <li><a href="bronnen.html">🔗 Bronnen</a></li>
@@ -100,10 +99,10 @@
   <div class="container">
     <a href="restaurants.html" class="back-link">← Terug naar Restaurants</a>
     <div class="rdetail-header">
-      <span class="rdetail-dag-badge">Dag 1 · Porto · Avond</span>
-      <h1>Enoteca 1756</h1>
+      <span class="rdetail-dag-badge">Dag 8 · Lissabon · Avond</span>
+      <h1>Taberna da Rua das Flores</h1>
     </div>
-    <p class="rdetail-city">📍 Cais de Gaia, Vila Nova de Gaia</p>
+    <p class="rdetail-city">📍 Rua das Flores 103, Chiado, Lissabon</p>
   </div>
 </section>
 
@@ -112,31 +111,31 @@
     <div class="rdetail-grid">
       <div>
         <div class="specialiteit-box">
-          <strong>Specialiteit van het huis</strong>
-          <p>Portugese wijnkaart met focus op Douro- en Vinho Verde-wijnen, gecombineerd met petiscos en lichte gerechten.</p>
+          <strong>Specialiteit van de dag</strong>
+          <p>Geen vaste kaart — het menu wisselt dagelijks met wat vers is, opgeschreven op een groot krijtbord. Verse tonijn in sesam en de klassieke chocolademousse met kersen zijn vaste publiekslievelingen.</p>
         </div>
-        <p class="rdetail-desc">Wijnbar-restaurant op het Cais de Gaia, op loopafstand van Forte de Gaia. Uitstekende Portugese wijnkaart met een focus op Douro- en Vinho Verde-wijnen, gecombineerd met petiscos en lichte gerechten. Een ontspannen eerste avond na aankomst, met uitzicht op de rivier en Porto's skyline aan de overkant.</p>
-                <div class="rdetail-chips">
-        <span class="rdetail-chip">🍷 Portugese wijnkaart</span>
-        <span class="rdetail-chip">📍 Cais de Gaia</span>
-        <span class="rdetail-chip">🚶 Loopafstand Forte de Gaia</span>
-        <span class="rdetail-chip">🌊 Uitzicht op de Douro</span>
-        <span class="rdetail-chip">📞 Reserveren mogelijk (SevenRooms)</span>
+        <p class="rdetail-desc">Kleine, sfeervolle taberna van chef André Magalhães, vlak bij Largo do Chiado. Tegelvloer, marmeren tafeltjes en vitrinekasten vol old-school serviesgoed geven het de sfeer van een ouderwets Portugees huis. Petiscos om te delen, huiswijn in lage glazen — precies de informele, authentieke sfeer die bij de laatste dagen van de reis past.</p>
+        <div class="tip-box">💡 Geen reserveringen mogelijk — vroeg komen en eventueel op de wachtlijst zetten. Alleen contant betalen.</div>
+        <div class="rdetail-chips">
+        <span class="rdetail-chip">🍽️ Dagmenu op krijtbord</span>
+        <span class="rdetail-chip">🐟 Verse tonijn sesam</span>
+        <span class="rdetail-chip">📍 Chiado, centrum</span>
+        <span class="rdetail-chip">💵 Alleen contant</span>
+        <span class="rdetail-chip">🚶 Geen reserveren</span>
         </div>
         <div class="rdetail-btns">
-        <a href="https://www.google.com/maps/search/Enoteca+1756+Cais+de+Gaia+Vila+Nova+de+Gaia" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
-        <a href="tel:+351222448500" class="btn btn-sm btn-tel">📞 +351 222 448 500</a>
-        <a href="https://enoteca1756.pt/" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-web">🌐 Website</a>
+        <a href="https://www.google.com/maps/search/Taberna+da+Rua+das+Flores+Lisboa" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
+        <a href="tel:+351213479418" class="btn btn-sm btn-tel">📞 +351 213 479 418</a>
         </div>
       </div>
       <div class="review-card">
         <h2>⭐ Recensies</h2>
         <div class="review-score">
-        <span class="num">3,9</span><span class="max">/5</span>
+        <span class="num">4,2</span><span class="max">/5</span>
       </div>
-      <p class="review-meta">408 recensies · Tripadvisor</p>
-      <p class="review-summary">Gasten zijn overwegend positief over het eten, met name de sushi, steaks en desserts, al vinden sommigen bepaalde gerechten aan de prijzige kant. De bediening is het vaakst bekritiseerd: een aantal gasten meldt trage of ongeorganiseerde service, lange wachttijden tussen gangen en het gevoel gehaast te worden ondanks de hoge prijzen. Het terras aan de rivier, het moderne interieur en het uitzicht over de Douro worden consequent als sterke punten genoemd.</p>
-      <p class="review-source-note">Bron: <a href="https://www.tripadvisor.com/Restaurant_Review-g580268-d15147345-Reviews-Enoteca_17_56-Vila_Nova_de_Gaia_Porto_District_Northern_Portugal.html" target="_blank" rel="noopener noreferrer">Tripadvisor — Enoteca 1756</a></p>
+      <p class="review-meta">1.784 recensies · Tripadvisor</p>
+      <p class="review-summary">Gasten omschrijven het eten consequent als vindingrijk en goed uitgevoerd, met zeevruchten- en vleesgerechtjes om te delen als uitschieters, gemaakt van verse, marktgestuurde ingrediënten. Het personeel wordt over het algemeen warm en kundig gevonden, en licht graag het krijtbordmenu toe, al melden een paar bezoekers tragere afrekening op drukke momenten. De kleine taberna zonder reserveringen is voor de meesten charmant maar voor sommigen krap, en het grootste terugkerende punt van kritiek is de lange wachttijd voor een tafel, samen met kleine porties voor de prijs.</p>
+      <p class="review-source-note">Bron: <a href="https://www.tripadvisor.com/Restaurant_Review-g189158-d3384492-Reviews-Taberna_da_Rua_das_Flores-Lisbon_Lisbon_District_Central_Portugal.html" target="_blank" rel="noopener noreferrer">Tripadvisor — Taberna da Rua das Flores</a></p>
       </div>
     </div>
   </div>

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-do — Portugal Roadtrip</title>
+  <meta name="description" content="Wat er voor de Portugal roadtrip nog geregeld moet worden: reserveringen, tickets en overige voorbereiding.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icons/favicon-32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <meta name="theme-color" content="#1b4f72">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Portugal">
+  <style>
+    .todo-intro { background: var(--cream); padding: 3rem 0 2rem; text-align: center; }
+    .back-link { display: inline-flex; align-items: center; gap: .4rem; color: var(--azul); font-weight: 600; text-decoration: none; margin-bottom: 2rem; }
+    .back-link:hover { color: var(--terra); }
+
+    .todo-done-box {
+      max-width: 900px; margin: 0 auto 2.5rem;
+      border-left: 4px solid #2e7d32; background: #f0f7f0;
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 1rem 1.25rem; font-size: .9rem; color: var(--text);
+    }
+    .todo-done-box strong { display: block; margin-bottom: .35rem; color: #2e7d32; }
+
+    .todo-section { max-width: 900px; margin: 0 auto 3rem; }
+    .todo-section h2 {
+      font-family: var(--serif); font-size: 1.4rem; color: var(--dark);
+      display: flex; align-items: center; gap: .6rem; margin-bottom: .35rem;
+    }
+    .todo-section > p.todo-sub { color: var(--muted); font-size: .9rem; margin-bottom: 1.25rem; }
+
+    .todo-progress-wrap { display: flex; align-items: center; gap: .75rem; margin-bottom: 1.25rem; }
+    .todo-progress-bar { flex: 1; height: 8px; background: var(--sand); border-radius: 4px; overflow: hidden; }
+    .todo-progress-fill { height: 100%; border-radius: 4px; transition: width .3s ease; width: 0%; }
+    .todo-progress-fill.needed { background: linear-gradient(90deg, var(--terra), var(--gold)); }
+    .todo-progress-fill.advised { background: linear-gradient(90deg, var(--azul), #7fa8c9); }
+    .todo-progress { font-size: .8rem; font-weight: 700; white-space: nowrap; }
+    .todo-progress.needed { color: var(--terra); }
+    .todo-progress.advised { color: var(--azul); }
+
+    ul.todo-list { list-style: none; margin: 0; padding: 0; }
+    ul.todo-list li {
+      background: var(--white); border: 1px solid var(--border); border-radius: var(--radius);
+      box-shadow: var(--shadow-sm); padding: .9rem 1.1rem; margin-bottom: .75rem;
+    }
+    ul.todo-list label { display: flex; align-items: flex-start; gap: .7rem; cursor: pointer; line-height: 1.5; }
+    ul.todo-list input[type="checkbox"] {
+      margin-top: .25rem; width: 1.15rem; height: 1.15rem; flex-shrink: 0; accent-color: var(--terra); cursor: pointer;
+    }
+    ul.todo-list input[type="checkbox"]:checked + span .todo-title {
+      color: var(--muted); text-decoration: line-through; text-decoration-color: var(--terra);
+    }
+    .todo-title { font-weight: 700; color: var(--dark); display: block; margin-bottom: .2rem; }
+    .todo-meta { font-size: .85rem; color: var(--muted); line-height: 1.5; }
+    .todo-meta a { color: var(--azul); }
+    .todo-badge {
+      display: inline-block; font-size: .72rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .04em; background: var(--sand); border: 1px solid var(--border);
+      border-radius: 2rem; padding: .1rem .6rem; margin-right: .4rem; color: var(--text);
+    }
+    .todo-reset {
+      margin-top: .5rem; background: none; border: 1px solid var(--border); color: var(--muted);
+      font-family: var(--sans); font-size: .8rem; padding: .5rem 1rem; border-radius: var(--radius); cursor: pointer;
+    }
+    .todo-reset:hover { border-color: var(--terra); color: var(--terra); }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="nav-logo"><a href="index.html" style="color:inherit;text-decoration:none">Portugal 🇵🇹</a></div>
+    <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Menu" aria-expanded="false">☰</button>
+    <ul class="nav-links">
+      <li><a href="actueel.html">📰 Actueel</a></li>
+      <li><a href="reisinfo.html">✈️ Reisinfo</a></li>
+      <li><a href="restaurants.html">🍽️ Restaurants</a></li>
+      <li><a href="hotels.html">🏨 Hotels</a></li>
+      <li><a href="route.html">🚗 Rijroute</a></li>
+      <li><a href="kaart.html">🗺️ Kaart</a></li>
+      <li><a href="activiteiten.html">✨ Activiteiten</a></li>
+      <li><a href="checklist.html">✅ Checklists</a></li>
+      <li><a href="todo.html" style="color:var(--gold)">📝 To-do</a></li>
+      <li><a href="confirmations.html">📩 Bevestigingen</a></li>
+      <li><a href="budget.html">🔒 Budget</a></li>
+      <li><a href="bronnen.html">🔗 Bronnen</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="todo-intro">
+  <div class="container">
+    <h1 class="section-title">To-do</h1>
+    <p class="section-subtitle">Wat er nog geregeld moet worden vóór vertrek · vink af wat klaar is, blijft bewaard op dit toestel</p>
+    <a href="index.html" class="back-link">← Terug naar de roadtrip</a>
+  </div>
+</section>
+
+<section style="padding-bottom: 2rem;">
+  <div class="container">
+
+    <div class="todo-done-box">
+      <strong>✅ Al geregeld</strong>
+      Vluchten (KLM, boekingscode YZFQIJ), alle 5 hotels en de huurauto (Hertz) zijn bevestigd —
+      zie <a href="confirmations.html">📩 Bevestigingen</a> voor alle details. Ook de reservering bij
+      <a href="restaurant-largo-do-paco.html">Largo do Paço</a> (di 8 sep, 20:30, 4 personen,
+      reserveringsnr. 3K7TBR32KAUN) staat vast.
+    </div>
+
+    <!-- MOET NOG GEBEUREN -->
+    <div class="todo-section">
+      <h2>🔴 Moet nog gebeuren</h2>
+      <p class="todo-sub">Restaurants die zelf expliciet vermelden dat reserveren nodig is, plus de operafestival-tickets.</p>
+      <div class="todo-progress-wrap">
+        <div class="todo-progress-bar"><div class="todo-progress-fill needed" data-todo-fill="needed"></div></div>
+        <div class="todo-progress needed" data-todo-progress="needed"></div>
+      </div>
+      <ul class="todo-list" data-todo="needed">
+        <li><label><input type="checkbox" data-item="taberna-memorias"><span>
+          <span class="todo-title">Taberna Memórias reserveren</span>
+          <span class="todo-meta"><span class="todo-badge">Dag 3 · Amarante · lunch</span>alleen dinsdag 11:00–15:00 open — reserveer via e-mail <a href="mailto:reservastabernamemorias@gmail.com">reservastabernamemorias@gmail.com</a> of tel. 255 073 236. <a href="restaurant-taberna-memorias.html">Meer info →</a></span>
+        </span></label></li>
+        <li><label><input type="checkbox" data-item="cozinha-da-clara"><span>
+          <span class="todo-title">Cozinha da Clara reserveren</span>
+          <span class="todo-meta"><span class="todo-badge">Dag 4 · Douro · lunch</span>wijnproeverij-lunch bij Quinta de la Rosa, vooraf boeken (zeker in september). <a href="restaurant-cozinha-da-clara.html">Meer info →</a></span>
+        </span></label></li>
+        <li><label><input type="checkbox" data-item="nova-casa-de-ramiro"><span>
+          <span class="todo-title">A Nova Casa de Ramiro reserveren</span>
+          <span class="todo-meta"><span class="todo-badge">Dag 6 · Óbidos · avond</span>populair bij gasten én locals, zeker in het weekend. <a href="restaurant-nova-casa-de-ramiro.html">Meer info →</a></span>
+        </span></label></li>
+        <li><label><input type="checkbox" data-item="o-casalinho"><span>
+          <span class="todo-title">Restaurante O Casalinho reserveren</span>
+          <span class="todo-meta"><span class="todo-badge">Dag 6 · Nazaré · lunch</span>tussenstop-lunch, zeker reserveren op vrijdag/in september. <a href="restaurant-o-casalinho.html">Meer info →</a></span>
+        </span></label></li>
+        <li><label><input type="checkbox" data-item="poco-dos-sabores"><span>
+          <span class="todo-title">Poço dos Sabores reserveren</span>
+          <span class="todo-meta"><span class="todo-badge">Dag 7 · Óbidos (Usseira) · avond</span>klein en populair — ruim van tevoren reserveren, dieetwensen gelijk doorgeven. <a href="restaurant-poco-dos-sabores.html">Meer info →</a></span>
+        </span></label></li>
+        <li><label><input type="checkbox" data-item="incomum"><span>
+          <span class="todo-title">Incomum by Luís Santos reserveren</span>
+          <span class="todo-meta"><span class="todo-badge">Dag 8 · Sintra · lunch</span>altijd van tevoren reserveren — zit snel vol. <a href="restaurant-incomum.html">Meer info →</a></span>
+        </span></label></li>
+        <li><label><input type="checkbox" data-item="cervejaria-trindade"><span>
+          <span class="todo-title">Cervejaria Trindade reserveren</span>
+          <span class="todo-meta"><span class="todo-badge">Dag 10 · Lissabon · lunch, afsluiter</span>reserveer vooraf, zeker voor een tafel op de laatste dag. <a href="restaurant-cervejaria-trindade.html">Meer info →</a></span>
+        </span></label></li>
+        <li><label><input type="checkbox" data-item="obidos-opera-tickets"><span>
+          <span class="todo-title">Festival de Ópera de Óbidos — tickets kopen (indien gewenst)</span>
+          <span class="todo-meta"><span class="todo-badge">Dag 6–7 · Óbidos</span>voorstellingen op 11 en 12 sep vallen precies in het verblijf. Prijzen waren op 14 aug nog niet gepubliceerd — dichter bij vertrek checken via <a href="https://festivaloperaobidos.pt/bilhetes/" target="_blank" rel="noopener noreferrer">festivaloperaobidos.pt/bilhetes</a> of kopen via <a href="https://blueticket.meo.pt" target="_blank" rel="noopener noreferrer">Meo Blueticket</a>. <a href="actueel.html">Meer info →</a></span>
+        </span></label></li>
+      </ul>
+      <button class="todo-reset" data-todo-reset="needed" type="button">Reset deze lijst</button>
+    </div>
+
+    <!-- GEADVISEERD MAAR NIET NODIG -->
+    <div class="todo-section">
+      <h2>🟡 Geadviseerd, maar niet noodzakelijk</h2>
+      <p class="todo-sub">Reserveren of vooraf boeken wordt aangeraden, maar is niet strikt verplicht — vaak lukt het ook ter plekke.</p>
+      <div class="todo-progress-wrap">
+        <div class="todo-progress-bar"><div class="todo-progress-fill advised" data-todo-fill="advised"></div></div>
+        <div class="todo-progress advised" data-todo-progress="advised"></div>
+      </div>
+      <ul class="todo-list" data-todo="advised">
+        <li><label><input type="checkbox" data-item="enoteca-belem"><span>
+          <span class="todo-title">Enoteca de Belém reserveren</span>
+          <span class="todo-meta"><span class="todo-badge">Dag 9 · Lissabon · lunch</span>reserveren aanbevolen. <strong>Let op:</strong> status van de zaak zelf niet 100% geverifieerd — voor vertrek bellen (+351 213 631 511) wordt aangeraden. <a href="restaurant-enoteca-de-belem.html">Meer info →</a></span>
+        </span></label></li>
+        <li><label><input type="checkbox" data-item="quinta-da-lama"><span>
+          <span class="todo-title">Quinta da Lama reserveren</span>
+          <span class="todo-meta"><span class="todo-badge">Dag 4 · Vila Meã · avond</span>open woensdag 19:00–21:30, reserveren aan te raden. <a href="restaurant-quinta-da-lama.html">Meer info →</a></span>
+        </span></label></li>
+        <li><label><input type="checkbox" data-item="salpoente"><span>
+          <span class="todo-title">Salpoente reserveren</span>
+          <span class="todo-meta"><span class="todo-badge">Dag 5 · Aveiro · avond</span>aan te raden, vooral in het weekend — vraag om een tafel met zicht op het kanaal. <a href="restaurant-salpoente.html">Meer info →</a></span>
+        </span></label></li>
+        <li><label><input type="checkbox" data-item="pena-tickets"><span>
+          <span class="todo-title">Palácio da Pena — tijdslot online boeken</span>
+          <span class="todo-meta"><span class="todo-badge">Dag 8 · Sintra</span>niet verplicht, maar in september vaak lange rijen — vooraf online een tijdslot boeken bespaart wachttijd. <a href="https://www.parquesdesintra.pt/parques-monumentos-e-pacos/parque-e-palacio-nacional-da-pena/" target="_blank" rel="noopener noreferrer">Reserveren →</a></span>
+        </span></label></li>
+        <li><label><input type="checkbox" data-item="caves-ferreira"><span>
+          <span class="todo-title">Caves Ferreira portwijnkelder — tour boeken</span>
+          <span class="todo-meta"><span class="todo-badge">Dag 1–2 · Porto</span>optioneel, alleen nodig als jullie een kelderproeverij willen inplannen. <a href="https://www.sograpevinhos.com/en/winetourism" target="_blank" rel="noopener noreferrer">Reserveren →</a></span>
+        </span></label></li>
+        <li><label><input type="checkbox" data-item="douro-cruise"><span>
+          <span class="todo-title">Douro-riviercruise boeken</span>
+          <span class="todo-meta"><span class="todo-badge">Dag 3–4 · Douro</span>optioneel, alleen als jullie een boottocht willen toevoegen aan het programma. <a href="https://www.visitdouro.com" target="_blank" rel="noopener noreferrer">Info →</a></span>
+        </span></label></li>
+        <li><label><input type="checkbox" data-item="gidsen"><span>
+          <span class="todo-title">Begeleide wandeling boeken (Porto en/of Lissabon)</span>
+          <span class="todo-meta"><span class="todo-badge">Optioneel</span>Nederlandstalige gidsen beschikbaar in Porto en Lissabon — alleen boeken als gewenst. <a href="activiteiten.html#act-gidsen">Aanbieders & contact →</a></span>
+        </span></label></li>
+        <li><label><input type="checkbox" data-item="algemene-voorbereiding"><span>
+          <span class="todo-title">Overige pre-vertrek-voorbereiding</span>
+          <span class="todo-meta"><span class="todo-badge">Algemeen</span>reisverzekering, Via Verde-tolpakket, geldigheid documenten, offline kaarten — volledige lijst en losse voortgang per apparaat op <a href="checklist.html">✅ Checklists</a>.</span>
+        </span></label></li>
+      </ul>
+      <button class="todo-reset" data-todo-reset="advised" type="button">Reset deze lijst</button>
+    </div>
+
+  </div>
+</section>
+
+<footer style="background:var(--dark);color:#fff;padding:2rem;text-align:center;font-size:.85rem;opacity:.8;">
+  Portugal Roadtrip · zo 6 – di 15 sep 2026 · <a href="index.html" style="color:var(--gold)">← Terug naar de route</a>
+</footer>
+
+<script src="nav.js" defer></script>
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script src="onesignal-init.js" defer></script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => { navigator.serviceWorker.register('sw.js').catch(() => {}); });
+}
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('[data-todo]').forEach(list => {
+    const key = 'portugal-todo-' + list.dataset.todo;
+    let saved = {};
+    try { saved = JSON.parse(localStorage.getItem(key)) || {}; } catch (e) { saved = {}; }
+    const boxes = list.querySelectorAll('input[type="checkbox"][data-item]');
+    const progressEl = document.querySelector('[data-todo-progress="' + list.dataset.todo + '"]');
+    const fillEl = document.querySelector('[data-todo-fill="' + list.dataset.todo + '"]');
+    const resetBtn = document.querySelector('[data-todo-reset="' + list.dataset.todo + '"]');
+
+    function updateProgress() {
+      const total = boxes.length;
+      const done = list.querySelectorAll('input[type="checkbox"]:checked').length;
+      if (progressEl) progressEl.textContent = done + ' / ' + total + ' geregeld';
+      if (fillEl) fillEl.style.width = (total ? (done / total * 100) : 0) + '%';
+    }
+
+    boxes.forEach(box => {
+      if (saved[box.dataset.item]) box.checked = true;
+      box.addEventListener('change', () => {
+        saved[box.dataset.item] = box.checked;
+        try { localStorage.setItem(key, JSON.stringify(saved)); } catch (e) {}
+        updateProgress();
+      });
+    });
+    updateProgress();
+
+    if (resetBtn) {
+      resetBtn.addEventListener('click', () => {
+        if (!confirm('Weet je zeker dat je deze lijst wilt resetten?')) return;
+        boxes.forEach(box => { box.checked = false; });
+        saved = {};
+        try { localStorage.setItem(key, JSON.stringify(saved)); } catch (e) {}
+        updateProgress();
+      });
+    }
+  });
+});
+</script>
+</body>
+</html>

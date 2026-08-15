@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Enoteca 1756 — Portugal Roadtrip</title>
-  <meta name="description" content="Enoteca 1756, Cais de Gaia, Vila Nova de Gaia — beschrijving, praktische info en recensies.">
+  <title>Quinta da Lama — Portugal Roadtrip</title>
+  <meta name="description" content="Quinta da Lama, Vila Meã, Amarante — beschrijving, praktische info en recensies.">
   <link rel="stylesheet" href="css/style.css">
   <link rel="manifest" href="manifest.json">
   <link rel="icon" href="icons/favicon-32.png" sizes="32x32">
@@ -88,7 +88,6 @@
       <li><a href="kaart.html">🗺️ Kaart</a></li>
       <li><a href="activiteiten.html">✨ Activiteiten</a></li>
       <li><a href="checklist.html">✅ Checklists</a></li>
-      <li><a href="todo.html">📝 To-do</a></li>
       <li><a href="confirmations.html">📩 Bevestigingen</a></li>
       <li><a href="budget.html">🔒 Budget</a></li>
       <li><a href="bronnen.html">🔗 Bronnen</a></li>
@@ -100,10 +99,10 @@
   <div class="container">
     <a href="restaurants.html" class="back-link">← Terug naar Restaurants</a>
     <div class="rdetail-header">
-      <span class="rdetail-dag-badge">Dag 1 · Porto · Avond</span>
-      <h1>Enoteca 1756</h1>
+      <span class="rdetail-dag-badge">Dag 4 · Vila Meã · Avond</span>
+      <h1>Quinta da Lama</h1>
     </div>
-    <p class="rdetail-city">📍 Cais de Gaia, Vila Nova de Gaia</p>
+    <p class="rdetail-city">📍 Rua Caminho da Rua Real, Vila Meã (±10 min rijden vanaf hotel)</p>
   </div>
 </section>
 
@@ -112,31 +111,32 @@
     <div class="rdetail-grid">
       <div>
         <div class="specialiteit-box">
-          <strong>Specialiteit van het huis</strong>
-          <p>Portugese wijnkaart met focus op Douro- en Vinho Verde-wijnen, gecombineerd met petiscos en lichte gerechten.</p>
+          <strong>Specialiteit van de dag</strong>
+          <p>Bacalhau assado (gebakken kabeljauw) en steak — eerlijke, verse regionale keuken met een Rota do Românico-kwaliteitskeurmerk.</p>
         </div>
-        <p class="rdetail-desc">Wijnbar-restaurant op het Cais de Gaia, op loopafstand van Forte de Gaia. Uitstekende Portugese wijnkaart met een focus op Douro- en Vinho Verde-wijnen, gecombineerd met petiscos en lichte gerechten. Een ontspannen eerste avond na aankomst, met uitzicht op de rivier en Porto's skyline aan de overkant.</p>
-                <div class="rdetail-chips">
-        <span class="rdetail-chip">🍷 Portugese wijnkaart</span>
-        <span class="rdetail-chip">📍 Cais de Gaia</span>
-        <span class="rdetail-chip">🚶 Loopafstand Forte de Gaia</span>
-        <span class="rdetail-chip">🌊 Uitzicht op de Douro</span>
-        <span class="rdetail-chip">📞 Reserveren mogelijk (SevenRooms)</span>
+        <p class="rdetail-desc">Landelijk restaurant net buiten Amarante, in Vila Meã — geen rit terug naar Pinhão nodig na twee dagen Douro. Warme, gastvrije sfeer en verse, regionale gerechten. Een mooie, rustige afsluiter van het Douro-verblijf, dicht bij het hotel.</p>
+        <div class="tip-box">💡 Open woensdag 19:00–21:30 (bevestigd voor 9 sep). Reserveren aan te raden.</div>
+        <div class="rdetail-chips">
+        <span class="rdetail-chip">🏅 Rota do Românico keurmerk</span>
+        <span class="rdetail-chip">🐟 Bacalhau assado</span>
+        <span class="rdetail-chip">🥩 Steak</span>
+        <span class="rdetail-chip">🚗 ±10 min van hotel</span>
+        <span class="rdetail-chip">📞 Reserveer aan te raden</span>
         </div>
         <div class="rdetail-btns">
-        <a href="https://www.google.com/maps/search/Enoteca+1756+Cais+de+Gaia+Vila+Nova+de+Gaia" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
-        <a href="tel:+351222448500" class="btn btn-sm btn-tel">📞 +351 222 448 500</a>
-        <a href="https://enoteca1756.pt/" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-web">🌐 Website</a>
+        <a href="https://www.google.com/maps/search/Quinta+da+Lama+Vila+Mea+Amarante" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Google Maps</a>
+        <a href="tel:+351255733548" class="btn btn-sm btn-tel">📞 +351 255 733 548</a>
+        <a href="mailto:quintadalama@hotmail.com" class="btn btn-sm btn-mail">✉️ E-mail</a>
         </div>
       </div>
       <div class="review-card">
         <h2>⭐ Recensies</h2>
         <div class="review-score">
-        <span class="num">3,9</span><span class="max">/5</span>
+        <span class="num">4,5</span><span class="max">/5</span>
       </div>
-      <p class="review-meta">408 recensies · Tripadvisor</p>
-      <p class="review-summary">Gasten zijn overwegend positief over het eten, met name de sushi, steaks en desserts, al vinden sommigen bepaalde gerechten aan de prijzige kant. De bediening is het vaakst bekritiseerd: een aantal gasten meldt trage of ongeorganiseerde service, lange wachttijden tussen gangen en het gevoel gehaast te worden ondanks de hoge prijzen. Het terras aan de rivier, het moderne interieur en het uitzicht over de Douro worden consequent als sterke punten genoemd.</p>
-      <p class="review-source-note">Bron: <a href="https://www.tripadvisor.com/Restaurant_Review-g580268-d15147345-Reviews-Enoteca_17_56-Vila_Nova_de_Gaia_Porto_District_Northern_Portugal.html" target="_blank" rel="noopener noreferrer">Tripadvisor — Enoteca 1756</a></p>
+      <p class="review-meta">116 recensies · Tripadvisor</p>
+      <p class="review-summary">De meeste bezoekers omschrijven authentieke, huisgemaakte traditionele Portugese gerechten met royale porties en eerlijke prijzen, in een sfeervol, rustiek verbouwd boerderij-/molengebouw. Het personeel wordt meestal vriendelijk en attent genoemd, al beschrijft minstens één uitgebreide recensie trage service en slechte coördinatie tijdens een drukke periode. Een minderheid van de recensies noemt wisselende bereiding of onvolledige gerechten, maar de algemene toon is positief, met de landelijke ligging als terugkerend hoogtepunt.</p>
+      <p class="review-source-note">Bron: <a href="https://www.tripadvisor.com/Restaurant_Review-g315900-d6779616-Reviews-Quinta_Da_Lama-Amarante_Porto_District_Northern_Portugal.html" target="_blank" rel="noopener noreferrer">Tripadvisor — Quinta da Lama</a></p>
       </div>
     </div>
   </div>
