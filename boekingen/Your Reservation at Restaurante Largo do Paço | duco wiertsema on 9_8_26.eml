@@ -1,0 +1,771 @@
+Delivered-To: duco.wiertsema@gmail.com
+Received: by 2002:a05:7022:5e0d:b0:13c:ce06:ee62 with SMTP id pn13csp1208307dlb;
+        Sat, 15 Aug 2026 11:58:13 -0700 (PDT)
+X-Forwarded-Encrypted: i=4; AHgh+RqaQuKblFT32bLPhVsd0pZI0P0cngHcCa3UNxQRkHX5u8IsQ063nnzLu+V8jZ0pAf6sVAuPBE9tQX8WcfYmeQ==@gmail.com
+X-Received: by 2002:a05:6102:5713:b0:74a:b948:d16b with SMTP id ada2fe7eead31-76f2bb1c42amr3501548137.3.1786820293329;
+        Sat, 15 Aug 2026 11:58:13 -0700 (PDT)
+ARC-Seal: i=3; a=rsa-sha256; t=1786820293; cv=pass;
+        d=google.com; s=arc-20260327;
+        b=KObUUlrNT1icm5/1Z2D+iB0c11q4D4esaarxgNmWWFUHsm2dE3tDnThXuH4MXHeGIj
+         IgEzuJmbkBRq20h5UJ/VQcBFPmBsJc0CapYMQ3vRe47xQCnDfFpG+WHRWsKpz0dglZLP
+         wtPsVcZNBdtYAC3H57JUflTWTyRI6pHJO9th0CYNaAmMA9pSfZsIl9A3vS8cA8ahJthB
+         X9C0RJ7RHNjRCEQtzT2FEM55r5+Bb3Xak6Xy2nLmeL8sn1XXqJrYnYNMy4yObVcUyDGQ
+         AmUlIbCWiARU8TFwsYB2yhPN9D85OTWSoJ0ekPVSqGUtJ7IRhip/XhuQAWfzpN73lVZS
+         OTMQ==
+ARC-Message-Signature: i=3; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=feedback-id:message-id:date:to:from:subject:mime-version
+         :dkim-signature:dkim-signature:delivered-to;
+        bh=knaDg4FafIjDIFanS/7vyzsti9vBkCyZ0NVLXIDGJMU=;
+        fh=WW7Vcdfn9DuwfNbmMOXBXFXuQsHK5pJIlX9YOO9IkIo=;
+        b=D/kz1GgJlDrWH2umujyBbQg3UYPKQRKfdUbXmRKH2J6iL+vcaZwOUW0YJyoZawdz0E
+         zC5Rx460kUna+Q6wtbPiRlS1MQlrkB1XVYHCRgjYugmvX8ss/dVotdRRgq02mzpZb1kc
+         Tsl/J//n4a+sgw2ZbcF0dhX/d459wdhhKTjR1+A/NS2FT9LkvTdDTc8PEfgd4NzfCCLq
+         amvf3hkC1W507ArCnhxWVHc9yGVPSB5Rv0QGvxAb9a0YoIWwTws5RPeUOK8SZgiSc8vl
+         updZhDuAXeYkeCDe3QdkSe5OCcKzOVSTlyNnamfkSCFG+gbFSVyNlUFXoaivyFzSv06n
+         XoXw==;
+        dara=google.com
+ARC-Authentication-Results: i=3; mx.google.com;
+       dkim=pass header.i=@message.sevenrooms.com header.s=c32bfbut75vnu7wpxtwuwjfp633ye76c header.b=JJ2279CJ;
+       dkim=pass header.i=@amazonses.com header.s=hsbnp7p3ensaochzwyq5wwmceodymuwv header.b=y15T1K6E;
+       arc=pass (i=2 spf=pass spfdomain=outbound.message.sevenrooms.com dkim=pass dkdomain=message.sevenrooms.com dkim=pass dkdomain=amazonses.com dmarc=pass fromdomain=sevenrooms.com);
+       spf=pass (google.com: domain of wierts+caf_=duco.wiertsema=googlemail.com@googlemail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom="wierts+caf_=duco.wiertsema=googlemail.com@googlemail.com";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=sevenrooms.com;
+       dara=pass header.i=@gmail.com
+Return-Path: <wierts+caf_=duco.wiertsema=googlemail.com@googlemail.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id ada2fe7eead31-76efbf78fccsor1544504137.11.2026.08.15.11.58.13
+        for <duco.wiertsema@gmail.com>
+        (Google Transport Security);
+        Sat, 15 Aug 2026 11:58:13 -0700 (PDT)
+Received-SPF: pass (google.com: domain of wierts+caf_=duco.wiertsema=googlemail.com@googlemail.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@message.sevenrooms.com header.s=c32bfbut75vnu7wpxtwuwjfp633ye76c header.b=JJ2279CJ;
+       dkim=pass header.i=@amazonses.com header.s=hsbnp7p3ensaochzwyq5wwmceodymuwv header.b=y15T1K6E;
+       arc=pass (i=2 spf=pass spfdomain=outbound.message.sevenrooms.com dkim=pass dkdomain=message.sevenrooms.com dkim=pass dkdomain=amazonses.com dmarc=pass fromdomain=sevenrooms.com);
+       spf=pass (google.com: domain of wierts+caf_=duco.wiertsema=googlemail.com@googlemail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom="wierts+caf_=duco.wiertsema=googlemail.com@googlemail.com";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=sevenrooms.com;
+       dara=pass header.i=@gmail.com
+ARC-Seal: i=2; a=rsa-sha256; t=1786820293; cv=pass;
+        d=google.com; s=arc-20260327;
+        b=EwNTQ1PnyMxMq/EJxCcFcrasPs/Lm/lNpU8WiKKq87RyI29bAYRXqU9xnTGcSgluvu
+         80bbN8bk6cxVkVo7AMjbH/R7BUZPt6slOxpNvtMX1tw90++8gyijS9axeBOsy/xSdk7H
+         RMLQ+j7xCjE2bC9oq6nA67l9v4ELK04pN2FmRV362HjguzdJ5n2IwpYQB5ddR4xxdYc2
+         SYx3rzQQttqurA3ykXuTUbh26+hyRHxiDOJ4tNc4nR0/oT2GUG3qxirJPUii6s0e/7Ek
+         lT74P8aNyXmA50jcbgZGWNmGDd+RFgokjkX1IEBqGWLsT8t+dLw1ULnr8xHTFElvXcqL
+         ljMg==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=feedback-id:message-id:date:to:from:subject:mime-version
+         :dkim-signature:dkim-signature:delivered-to;
+        bh=knaDg4FafIjDIFanS/7vyzsti9vBkCyZ0NVLXIDGJMU=;
+        fh=WW7Vcdfn9DuwfNbmMOXBXFXuQsHK5pJIlX9YOO9IkIo=;
+        b=ZRPugLOMNvQxgqy+6C71rS0R/CQoKxYD1Sz9qctFZxS9PDjGIo26Qy3arShdvntQbo
+         VWcLc+sFZBl6Nf+D5FE4/isjVX1fi6NrwYa7DZL/CpjA9U6itCcumVs5+5rZJI4W/ZSf
+         ski5REvuv8YEhM5R4fTxB3rZ+IRmuMUAKhCfDnPfFh3lrDsM39AnxxuL0/201DZarw6B
+         Gs5MsaSjmE9qRv7UDO3lOVudMW6Q9EhDko8lkqVNU80DclhKJADN+rcFxqMj5RXVrof+
+         eic4bTyXoF1RlpC9EKn3Ifoi9kkx2wuDWLj0B32NCcXlfPvPebjGBI/E+v9YHpabHfn8
+         obrA==;
+        dara=google.com
+ARC-Authentication-Results: i=2; mx.google.com;
+       dkim=pass header.i=@message.sevenrooms.com header.s=c32bfbut75vnu7wpxtwuwjfp633ye76c header.b=JJ2279CJ;
+       dkim=pass header.i=@amazonses.com header.s=hsbnp7p3ensaochzwyq5wwmceodymuwv header.b=y15T1K6E;
+       spf=pass (google.com: domain of 010101a006c9e7a6-30329f76-2df6-49cc-983b-4292407f54cf-000000@outbound.message.sevenrooms.com designates 54.240.62.2 as permitted sender) smtp.mailfrom=010101a006c9e7a6-30329f76-2df6-49cc-983b-4292407f54cf-000000@outbound.message.sevenrooms.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=sevenrooms.com
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1786820293; x=1787425093;
+        h=feedback-id:message-id:date:to:from:subject:mime-version
+         :content-type:dkim-signature:dkim-signature:delivered-to
+         :x-forwarded-for:x-forwarded-to:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=knaDg4FafIjDIFanS/7vyzsti9vBkCyZ0NVLXIDGJMU=;
+        b=FLbyxbnYZuoWvHHDqjwT37/TYJBJGiwYxKSy6qYWTrp8hKK4RUNn4K8zOGMbi7DBfT
+         q/SUXzoweXQIfO7O5YO1ouBZIEadwzeim7F+/8PU2S/9h6eDOKCuRGJ+vxiJ8mp3acqs
+         xGHTCW7hPXMIe+LO+Z2J9V/fhekFNShsSUnI4rJIteMVyZzIUfggoTzI/EpZG4S9OinZ
+         UqTHDeaRQdwyzHDc3zblPAfCs2o8LGgZNyJCH5qWIwxqOpz5n+aWOarD4Z/hHaQNyjaG
+         qEflLIMBE8kpdGpN++/mCDFSa/77DT/2se0pMJpaNHN8uI2l3wY9SyRPgMGK8cPO5ixG
+         WzSQ==
+X-Forwarded-Encrypted: i=2; AHgh+RqnST0sftYz8iCGigZz2yos479WrZ33BUCky1ckUpMsnE/EvxAxaBd+L1J59SLC1JzUllnZcXbxuARahrbbVQ==@googlemail.com
+X-Gm-Message-State: AOJu0YydcMhVOaLxCjRcTcj1OPkUzNYLRhwt6Z8NK2s3go1xBnv/KLO5
+	Z7UuQLxjnBOM6AxYT3D5koS9xxVMhY4RSIgs1DyLmPw6bQ66tsbjF4PTvRfm2/KID/GS+cHD8Kz
+	N1xSI0w+s19z3MtXL80tDH0+SwNpk8pVl8BvZoZ3XtLW1NhH/xunA6/2EJhU63A==
+X-Received: by 2002:a05:6102:8002:b0:6c5:d55d:c093 with SMTP id ada2fe7eead31-76f2cd6bb24mr3027144137.8.1786820292910;
+        Sat, 15 Aug 2026 11:58:12 -0700 (PDT)
+X-Forwarded-To: duco.wiertsema@googlemail.com
+X-Forwarded-For: wierts@googlemail.com duco.wiertsema@googlemail.com
+Delivered-To: wierts@gmail.com
+Received: by 2002:ab0:30f6:0:b0:966:7ea2:fa4c with SMTP id d22csp1003806uam;
+        Sat, 15 Aug 2026 11:58:11 -0700 (PDT)
+X-Received: by 2002:a05:6a20:7486:b0:3c3:7cfe:b337 with SMTP id adf61e73a8af0-3cc720506c2mr14895006637.30.1786820291186;
+        Sat, 15 Aug 2026 11:58:11 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1786820291; cv=none;
+        d=google.com; s=arc-20260327;
+        b=TAFCSqGKGWzoGweYVbHXwYZUWO+k+pP4emw9WlIH+7OtQ5JT62iSElKI8QRRdw0s5E
+         KoCK+/Mqbz6TwVHgfGpNsIpjsRC8oBeMkrG/yt41JFisQ+SFnFVe//U174u1PXmBoRhf
+         JkBWUZVysmMTZpUH4NWV0ic7Ye/jqf2skyzbLqms2ZR9va7KmDg+c6lZ21xOJkF1wMFc
+         XF30dnx23i8ixjQ6ESxQFkVlj80mS2LYvupvM+5524/Oyg4GsAS4tmSOvJXDpacTb1zq
+         YNBMCcuOqZWns5hUJymIdAWV9Su/aK3HyOC9krLaCS7zzZdZlx3qYIPTjSdOfykxuW+V
+         c6jw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=feedback-id:message-id:date:to:from:subject:mime-version
+         :dkim-signature:dkim-signature;
+        bh=knaDg4FafIjDIFanS/7vyzsti9vBkCyZ0NVLXIDGJMU=;
+        fh=OzEPqevkYqfXd8sxf71cLCxDJAPorBtAIWzctpVS4Bk=;
+        b=SO6MtKhqPUpwj+ITov+vN2nEVkUdsruDvYlAnyp/ZeFyR+o+TdEYB2XCsP8JGB7J69
+         UNYiTJWhginuAJAH3nvDlKeRh0XVERZqGUoQ22rKZUPnMbnSaHjUFVYAA7RzDJL7m7R3
+         QrVkZ37moleB5MGNLucif+BXZuSKVIDYQVIhew/V9oOPiJLdsAUoRifpDP7pbfI1505N
+         Em+glVP+Avt2qcW5IDLycNad6NLR1ChW9N/cKBOj/SDjo/kgcg4jERn4hyk5JiQ+CmjN
+         iUjn9vH+YLdv8DEteIlm3Vy2QFRkxKpoHqFfo+R9LkDw2Vq4BxpI0VPjJBzulCZ7cMXI
+         ICIw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@message.sevenrooms.com header.s=c32bfbut75vnu7wpxtwuwjfp633ye76c header.b=JJ2279CJ;
+       dkim=pass header.i=@amazonses.com header.s=hsbnp7p3ensaochzwyq5wwmceodymuwv header.b=y15T1K6E;
+       spf=pass (google.com: domain of 010101a006c9e7a6-30329f76-2df6-49cc-983b-4292407f54cf-000000@outbound.message.sevenrooms.com designates 54.240.62.2 as permitted sender) smtp.mailfrom=010101a006c9e7a6-30329f76-2df6-49cc-983b-4292407f54cf-000000@outbound.message.sevenrooms.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=sevenrooms.com
+Return-Path: <010101a006c9e7a6-30329f76-2df6-49cc-983b-4292407f54cf-000000@outbound.message.sevenrooms.com>
+Received: from a62-2.smtp-out.us-west-2.amazonses.com (a62-2.smtp-out.us-west-2.amazonses.com. [54.240.62.2])
+        by mx.google.com with ESMTPS id 41be03b00d2f7-cc11c9a6bc4si5315294a12.150.2026.08.15.11.58.11
+        for <wierts@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 15 Aug 2026 11:58:11 -0700 (PDT)
+Received-SPF: pass (google.com: domain of 010101a006c9e7a6-30329f76-2df6-49cc-983b-4292407f54cf-000000@outbound.message.sevenrooms.com designates 54.240.62.2 as permitted sender) client-ip=54.240.62.2;
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=c32bfbut75vnu7wpxtwuwjfp633ye76c; d=message.sevenrooms.com;
+	t=1786820290;
+	h=Content-Type:MIME-Version:Subject:From:To:Date:Message-ID;
+	bh=83F60TilxXxPCY2v7iR2R2pAytFOH+v8kedeujhq0bY=;
+	b=JJ2279CJM9LcpDvmfZ+PuGhPhPy+5D8Y+3p9ikxRHZk8oFRoO7ZLuTLABnKUO9Dz
+	jwEOyeB2GkefUgOwRtA7IBJIXMQp5UKssBbOrTXC3EhIHISt77KKCvAHwrSBQXE8yHw
+	ZE8EuAFMnmBZFqodqe9kBQOQglifZeUAwytdGkNMlTMmSi52kAZbvDuZGWH3GVmGxFy
+	46kr5IhieDbzgBDaj6QdIM9LJ2860bnq8FmAKSqnZMUop2LikBDJzxfoyF/bZXT2/Qp
+	7sDK75UCUJG0LlxgFtoBFMan+cqxPyvAy0nuiUWZYhVqqSDz5kGZOR0YruWewCXiTkN
+	LQo9BejIcw==
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=hsbnp7p3ensaochzwyq5wwmceodymuwv; d=amazonses.com; t=1786820290;
+	h=Content-Type:MIME-Version:Subject:From:To:Date:Message-ID:Feedback-ID;
+	bh=83F60TilxXxPCY2v7iR2R2pAytFOH+v8kedeujhq0bY=;
+	b=y15T1K6Eyxo4L4u4K9/SXED+oZnXjKOKK0sHMbbEJ5R8tDSw8lhjKUTcyFwEem7b
+	Pi3y1+bsSM5hsuXVqubSV9JNDWF+0UL1dDS8wW/q1HDoh4+k8WTFrSnm4X18hDEQ+OD
+	ZAjM98pOm9UrR4NvTtpT9jn/eGNZhlrHU84r0w1k=
+Content-Type: multipart/alternative;
+ boundary="===============0642369613141034385=="
+MIME-Version: 1.0
+Subject: 
+ =?utf-8?q?Your_Reservation_at_Restaurante_Largo_do_Pa=C3=A7o_=7C_duco_wierts?=
+ =?utf-8?q?ema_on_9/8/26?=
+From: =?utf-8?q?Restaurante_Largo_do_Pa=C3=A7o?= <r+1h6iakdgcg0-c@message.sevenrooms.com>
+To: wierts@gmail.com
+Date: Sat, 15 Aug 2026 18:58:10 +0000
+Message-ID: <010101a006c9e7a6-30329f76-2df6-49cc-983b-4292407f54cf-000000@us-west-2.amazonses.com>
+Feedback-ID: ::1.us-west-2.fC//YAraJ9AcDqprwZbqN4AT61VL2gmVsNldz7hx2kk=:AmazonSES
+X-SES-Outgoing: 2026.08.15-54.240.62.2
+
+--===============0642369613141034385==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
+                Restaurante Largo do Paço
+            
+            
+
+
+
+
+
+
+
+
+
+              duco wiertsema 
+              
+            
+
+
+
+        Tuesday, September 8, 2026
+
+        
+
+        
+            
+                
+                
+                4 guests  ·  8:30 PM
+            
+        
+    
+
+
+
+
+
+
+
+
+
+
+                    manage reservation
+                    
+|
+
+                    cancel reservation
+                    
+
+
+
+
+
+
+
+
+
+
+            add to calendar
+        
+
+
+
+
+
+
+
+
+                Apple
+            
+
+
+
+
+                Google
+            
+
+
+
+
+                Outlook
+            
+
+
+
+
+
+
+
+
+
+
+
+
+                    
+                    Contact
+                    
+                
+
+                    Largo do Paço 6   Amarante, Porto 4600-017
+                
+
++351255410830 (chamada para rede fixa nacional) 
+
+
+
+                        
+                            map
+                        
+                    
+                    
+                     |  
+                            
+                                website
+                            
+                        
+
+
+
+
+
+
+
+
+
+
+
+
+                    
+                    A note from us
+                    
+               
+
+                   
+                   Thank you for your reservation. Should your plans change, please let us know 24 hours before your reservation time. We recommend a casual chic dress code. 
+We look forward to serving you.
+
+                   
+               
+
+
+
+
+
+
+
+
+
+
+                     Important informations
+                 
+
+We clarify that this gastronomic experience is neither vegetarian nor vegan.
+
+If you have any dietary restrictions, food allergies, or require a special diet, please inform us so that we can tailor your menu according to your needs.
+
+The menu selection must be agreed upon by all members of the table.
+
+Please note that we accept children over the age of 12, however, a kids' menu is not available.
+
+
+
+
+
+
+
+
+
+
+
+                
+                Your reservation number is 3K7TBR32KAUN
+                
+              
+
+
+
+
+
+
+
+
+
+
+    experience by
+
+
+
+
+
+
+
+    Largo do Paço 6 , Amarante Porto 4600-017, Portugal
+
+
+                You are receiving this email from Restaurante Largo do Paço through SevenRooms
+            
+
+
+
+
+
+
+
+--===============0642369613141034385==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+
+<html>
+    <head>
+    <meta name="viewport" content="width=device-width" />
+    <meta name="x-apple-disable-message-reformatting" />
+    <style type="text/css">
+    @media all and (min-width:376px) {
+        .email-bg-size {
+            width: 600px !important;
+        }
+        .card-size {
+            width: 480px !important;
+        }
+        .email-ad {
+            width: 480px !important;
+        }
+        .card-content {
+            width: 400px !important;
+        }
+        .card-charge {
+            width: 350px !important;
+        }
+        .first-card {
+            margin-top:20px !important;
+        }
+        .inner-card-content {
+            width: 350px !important;
+        }
+        .inner-card-content-right {
+            width: 320px !important;
+        }
+        td, th {
+            border-width: 0px !important;
+        }
+    }
+    @media all and (max-width:375px) {
+        .email-bg-size {
+            width: 375px !important;
+        }
+        .email-ad {
+            width: 355px !important;
+        }
+        .card-size {
+            width: 355px !important;
+        }
+        .card-content {
+            width: 300px !important;
+        }
+        .card-charge {
+            width: 300px !important;
+        }
+        .first-card {
+            margin-top:10px !important;
+        }
+        .inner-card-content {
+            width: 263px !important;
+        }
+        .inner-card-content-right {
+            width: 250px !important;
+        }
+        td, th {
+            border-width: 0px !important;
+        }
+    }
+    </style>
+    </head>
+    <body style="background-color: #F6F6F6;">
+        <table width="600" border="0" cellpadding="0" cellspacing="0" border="0" align="center" class="email-bg-size">
+            <tr>
+                <td align="center">
+                    <div id="mailbody">
+                    <table border="0" cellpadding="0" cellspacing="0" align="center" class="card-size first-card" style="width: 480px; margin-top: 20px;background-color: white;color:black;">
+    <tr>
+        
+            <td align="center" valign="top" style="padding:15px; font-size: 24px; font-family:Avenir-Book, Tahoma, Geneva, sans-serif; line-height:28px; border-bottom: 0px solid #F4F4F4">
+            
+                Restaurante Largo do Paço
+            
+            </td>
+        
+    </tr>
+    <!--[if mso]>
+        <tr>
+            <td style="background-color: white" height="6"></td>
+        </tr>
+    <![endif]-->
+</table>
+                    <div id="container">
+                    <table border="0" cellpadding="0" cellspacing="0" class="card-size" align="center" style="width: 480px;border-bottom-left-radius: 5px; border-bottom-right-radius: 5px; background-color:#FFFFFF;">
+    <tr>
+        <!--[if mso]>
+        <td style="background-color: #FFFFFF" width="60"></td>
+        <![endif]-->
+        <td align="center">
+            
+            
+
+            
+            <div class="client-name" style="font-size: 18px;color: #777777; font-family:Avenir-Book, Tahoma, Geneva, sans-serif; margin-top:24px;text-align:center">
+              duco wiertsema 
+              
+            </div>
+
+            <div style="font-size: 16px;color: #535353; font-family:Avenir-Book, Tahoma, Geneva, sans-serif; line-height:28px; text-align:center; margin-top: 7px;">
+            <div class="details">
+    <div style="font-weight: bold">
+        Tuesday, September 8, 2026
+
+        
+
+        
+            
+                
+                <br/>
+                4 guests  ·  8:30 PM
+            
+        
+    </div>
+
+    
+
+    
+
+    
+
+    
+</div>
+            </div>
+
+            
+            
+        </td>
+        <!--[if mso]>
+        <td style="background-color: #FFFFFF" width="60"></td>
+        <![endif]-->
+    </tr>
+    <tr>
+        <!--[if mso]>
+        <td style="background-color: #FFFFFF" width="60"></td>
+        <![endif]-->
+        <td style="font-size: 14px; font-family:Avenir-Book, Tahoma, Geneva, sans-serif;" align="center">
+            <div style="margin-top: 13px; margin-bottom: 25px;">
+                
+                    <a href="https://www.sevenrooms.com/direct/manage-reservation/ahNzfnNldmVucm9vbXMtc2VjdXJlcigLEhtuaWdodGxvb3BfUmVzZXJ2YXRpb25BY3R1YWwYgID7s_vV6AkM?lang=en" style="text-decoration:none !important;line-height:19px;color:#070708" data-test="sr-modify-res-link">
+                    manage reservation
+                    </a>
+                    <span style="margin-left: 15px; color: #878787; line-height:22px;">|</span>
+                    <a href="https://www.sevenrooms.com/direct/cancel-reservation/ahNzfnNldmVucm9vbXMtc2VjdXJlcigLEhtuaWdodGxvb3BfUmVzZXJ2YXRpb25BY3R1YWwYgID7s_vV6AkM?lang=en" style="text-decoration:none !important;line-height:19px; margin-left: 15px; color:#070708" data-test="sr-cancel-res-link">
+                    cancel reservation
+                    </a>
+                
+
+                
+                    <div>
+                        
+                    </div>
+                
+
+                
+            </div>
+        </td>
+        <!--[if mso]>
+        <td style="background-color: #FFFFFF" width="60"></td>
+        <![endif]-->
+    </tr>
+</table>
+
+
+<table border="0" cellpadding="0" cellspacing="0" class="card-size" align="center" style="width: 480px;border-bottom-left-radius: 5px; border-bottom-right-radius: 5px; background-color:#FFFFFF;">
+    <tr>
+        <td colspan="7" width="215" align="center"
+            style="font-size: 14px; font-family:Avenir-Book, Tahoma, Geneva, sans-serif; color:#777777;">
+            add to calendar
+        </td>
+    </tr>
+    <tr>
+        <td colspan="7" height="10"></td>
+    </tr>
+    <tr>
+        <td width="132"></td>
+        <td width="65" align="center">
+            <a href="https://www.sevenrooms.com/direct/calendar/?arrival_time=2026-09-08+19%3A30%3A00%2B00%3A00&amp;end_time=2026-09-08+22%3A15%3A00%2B00%3A00&amp;event_desc=duco+wiertsema&amp;event_location=Largo+do+Pa%C3%A7o+6+&amp;event_title=Reservation+at+Restaurante+Largo+do+Pa%C3%A7o"
+               style="font-size: 14px; font-family:Avenir-Book, Tahoma, Geneva, sans-serif; text-decoration:none !important; color:#070708">
+                Apple
+            </a>
+        </td>
+        <td width="10" align="center"></td>
+        <td width="65" align="center">
+            <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;dates=20260908T193000Z%2F20260908T221500Z&amp;details=duco+wiertsema&amp;location=Largo+do+Pa%C3%A7o+6+&amp;output=xml&amp;sf=true&amp;text=Reservation+at+Restaurante+Largo+do+Pa%C3%A7o"
+               style="font-size: 14px; font-family:Avenir-Book, Tahoma, Geneva, sans-serif; text-decoration:none !important; color:#070708">
+                Google
+            </a>
+        </td>
+        <td width="10" align="center"></td>
+        <td width="65" align="center">
+            <a href="https://outlook.office365.com/calendar/0/action/compose?body=duco+wiertsema&amp;enddt=2026-09-08T22%3A15%3A00Z&amp;location=Largo+do+Pa%C3%A7o+6+&amp;path=%2Fcalendar%2Faction%2Fcompose&amp;rru=addevent&amp;startdt=2026-09-08T19%3A30%3A00Z&amp;subject=Reservation+at+Restaurante+Largo+do+Pa%C3%A7o"
+               style="font-size: 14px; font-family:Avenir-Book, Tahoma, Geneva, sans-serif; text-decoration:none !important; color:#070708">
+                Outlook
+            </a>
+        </td>
+        <td width="132"></td>
+    </tr>
+    <tr>
+        <td colspan="7" height="20"></td>
+    </tr>
+</table>
+
+
+
+
+
+
+
+
+<!--[if mso]>
+<table border="0" cellpadding="0" cellspacing="0" align="center">
+    <tr>
+        
+            <td height="6" style="background-color: #bbb"></td>
+        
+    </tr>
+</table>
+<![endif]--><table border="0" cellpadding="0" cellspacing="0" class="card-size" align="center" style="width: 480px;border-radius: 5px; background-color:#FFFFFF; margin-top:5px;">
+    <tr>
+        <td align="center">
+            <div style="font-family:Avenir-Book, Tahoma, Geneva, sans-serif; font-size: 14px;">
+                <div style="text-align:center; font-weight:bold; color: #535353; line-height: 19px; margin-top: 16px;">
+                    
+                    Contact
+                    
+                </div>
+                
+                <div class="card-content" style="width: 400px;text-align:center; color: #878787; line-height: 22px; margin-top: 7px;">
+                    Largo do Paço 6  <br/> Amarante, Porto 4600-017
+                </div>
+                
+                
+                <div style="text-align:center; color: #878787; line-height: 22px; margin-top:3px;">
+                    <a style="text-decoration:none !important;line-height:19px;color:#070708" href="tel:+351255410830 (chamada para rede fixa nacional) ">+351255410830 (chamada para rede fixa nacional) </a>
+                </div>
+                
+                <div style="text-align:center; color: #878787; line-height: 22px; margin-bottom: 14px; margin-top: 5px;">
+                    <a style="text-decoration:none !important;color:#070708" href="https://maps.google.com/maps?q=Largo do Paço 6 , Amarante, Porto 4600-017">
+                        
+                            map
+                        
+                    </a>
+                    
+                     |  <a style="text-decoration:none !important;color:#070708" href="https://www.casadacalcada.com/">
+                            
+                                website
+                            
+                        </a>
+                    
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+
+<!--[if mso]>
+<table border="0" cellpadding="0" cellspacing="0" align="center">
+    <tr>
+        <td height="6" style="background-color: #bbb"></td>
+    </tr>
+</table>
+<![endif]-->
+
+
+<table border="0" cellpadding="0" cellspacing="0" class="card-size" align="center" style="width: 480px;border-top-left-radius: 5px; border-top-right-radius: 5px; background-color:#FFFFFF; margin-top:5px;">
+    <tr>
+        <!--[if mso]>
+            <td style="background-color: #FFFFFF" width="45"></td>
+        <![endif]-->
+        <td align="center">
+            <div style="font-family:Avenir-Book, Tahoma, Geneva, sans-serif; font-size: 14px;">
+                <div style="text-align:center; font-weight:bold; color: #535353; line-height: 19px; margin-top: 27px;">
+                    
+                    A note from us
+                    
+               </div>
+               <div class="card-content" style="width: 400px;text-align:center; color: #878787; line-height: 22px; margin-top: 6px; margin-bottom: 20px;">
+                   
+                   Thank you for your reservation. Should your plans change, please let us know 24 hours before your reservation time. We recommend a casual chic dress code. 
+We look forward to serving you.
+
+                   
+               </div>
+           </div>
+        </td>
+        <!--[if mso]>
+            <td style="background-color: #FFFFFF" width="45"></td>
+        <![endif]-->
+    </tr>
+</table>
+
+
+
+<table border="0" cellpadding="0" cellspacing="0" class="card-size" align="center" style="width: 480px;border-top-left-radius: 5px; border-top-right-radius: 5px; background-color:#FFFFFF; margin-top:5px;">
+    <tr>
+         <td align="center">
+             <div style="font-family:Avenir-Book, Tahoma, Geneva, sans-serif; font-size: 14px;">
+                 <div style="text-align:center; font-weight:bold; color: #535353; line-height: 19px; margin-top: 27px;">
+                     Important informations
+                 </div>
+                 <div class="card-content" style="width: 400px;text-align:center; color: #878787; line-height: 22px; margin-top: 6px; margin-bottom: 20px;">
+                     <p id="special_attn_msg_body">We clarify that this gastronomic experience is neither vegetarian nor vegan.
+
+If you have any dietary restrictions, food allergies, or require a special diet, please inform us so that we can tailor your menu according to your needs.
+
+The menu selection must be agreed upon by all members of the table.
+
+Please note that we accept children over the age of 12, however, a kids' menu is not available.<p>
+                 </div>
+            </div>
+         </td>
+    </tr>
+</table>
+
+
+
+                    </div>
+                    
+<table border="0" cellpadding="0" cellspacing="0" class="card-size" align="center" style="width: 480px;background-color:#FFFFFF;">
+    <!--[if mso]>
+        <tr>
+            <td height="8" style="background-color: #DBDBDB"></td>
+        </tr>
+    <![endif]-->
+    <tr>
+         <td align="center" style="background-color: #DBDBDB; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px;">
+             <div style="font-family:Avenir-Book, Tahoma, Geneva, sans-serif; font-size: 14px; padding-top:7px; padding-bottom: 7px;">
+                
+                Your reservation number is 3K7TBR32KAUN
+                
+              </div>
+         </td>
+    </tr>
+    <!--[if mso]>
+        <tr>
+            <td height="8" style="background-color: #DBDBDB"></td>
+        </tr>
+    <![endif]-->
+</table>
+
+
+
+                </div>
+                <!--[if mso]>
+<table border="0" cellpadding="0" cellspacing="0" align="center">
+    <tr>
+        <td height="20" style="background-color: #bbb"></td>
+    </tr>
+</table>
+<![endif]-->
+<table border="0" cellpadding="0" cellspacing="0" class="card-size" align="center" style="width: 480px;margin-top:22px;">
+    <tr>
+        <td align="center" class="footer" dir="auto" style="font-size: 11px; font-family:Avenir-Book, Tahoma, Geneva, sans-serif; color: #A1A1A1">
+            <div style="color: #878787; height: 24px;">
+    experience by
+</div>
+<div class="footer-img" style="margin-top: 4px;">
+    <a target="_blank" href="https://sevenrooms.com">
+        <img title="SEVENROOMS" alt="SEVENROOMS" height="32" src="https://www.sevenrooms.com/static/circleci-25cd820ca8/images/system_emails/7R-Logo-Long.png">
+    </a>
+</div>
+
+            
+<div data-test="sr-email-footer" style="color: #A1A1A1; margin-top: 18px; text-align:center;">
+    Largo do Paço 6 , Amarante Porto 4600-017, Portugal
+</div>
+
+            <div style="margin-top:5px; margin-bottom: 30px;" dir="auto">
+                You are receiving this email from Restaurante Largo do Paço through SevenRooms
+            </div>
+        </td>
+    </tr>
+</table>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>
+--===============0642369613141034385==--
