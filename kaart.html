@@ -72,6 +72,12 @@
     <h1 class="section-title">Overzichtskaart</h1>
     <p class="section-subtitle">De hele roadtrip in één beeld — overnachtingen, hotels en restaurants · Porto → Lissabon</p>
     <a href="index.html" class="back-link">← Terug naar de roadtrip</a>
+    <p style="margin-top:1rem;font-size:.85rem;">
+      Spring naar detailkaart:
+      <a href="#porto-detail" style="color:var(--azul);font-weight:600;">Porto</a> ·
+      <a href="#aveiro-detail" style="color:var(--azul);font-weight:600;">Aveiro</a> ·
+      <a href="#lissabon-detail" style="color:var(--azul);font-weight:600;">Lissabon</a>
+    </p>
   </div>
 </section>
 
@@ -107,6 +113,40 @@
       <span><span class="legende-dot" style="background:#b8860b"></span> Restaurant dag 2</span>
       <span><span class="legende-dot" style="background:#2c3e50"></span> Start begeleide wandeling</span>
       <span><span class="legende-dot" style="background:#722f37"></span> Portwijnhuis (Caves Ferreira)</span>
+    </div>
+  </div>
+</section>
+
+<section id="aveiro-detail" style="padding-bottom: 3rem; scroll-margin-top: 90px;">
+  <div class="container">
+    <h2 class="section-title" style="font-size:1.5rem;margin-bottom:.5rem;">Aveiro in detail</h2>
+    <p class="kaart-note" style="margin-top:0;margin-bottom:1rem;">
+      Hotel, alle bezienswaardigheden en de 2 restaurants van dag 5 (lunch + avond), ingezoomd.
+    </p>
+    <div id="aveiro-map" style="width:100%;height:55vh;min-height:380px;border-radius:var(--radius-lg);border:1px solid var(--border);box-shadow:var(--shadow-sm);"></div>
+    <div class="kaart-legende">
+      <span><span class="legende-dot" style="background:#1b4f72"></span> Hotel</span>
+      <span><span class="legende-dot" style="background:#0f9b8e"></span> Activiteit / bezienswaardigheid</span>
+      <span><span class="legende-dot" style="background:#c1440e"></span> Restaurant dag 5</span>
+    </div>
+  </div>
+</section>
+
+<section id="lissabon-detail" style="padding-bottom: 3rem; scroll-margin-top: 90px;">
+  <div class="container">
+    <h2 class="section-title" style="font-size:1.5rem;margin-bottom:.5rem;">Lissabon in detail</h2>
+    <p class="kaart-note" style="margin-top:0;margin-bottom:1rem;">
+      Hotel, alle bezienswaardigheden (incl. Belém en Cristo Rei) en de 4 restaurants van dag 8–10
+      (per dag een andere kleur), ingezoomd. Dag 8-lunch (Incomum) valt buiten dit kaartje — dat
+      restaurant ligt in Sintra, niet in Lissabon zelf.
+    </p>
+    <div id="lissabon-map" style="width:100%;height:60vh;min-height:420px;border-radius:var(--radius-lg);border:1px solid var(--border);box-shadow:var(--shadow-sm);"></div>
+    <div class="kaart-legende">
+      <span><span class="legende-dot" style="background:#1b4f72"></span> Hotel</span>
+      <span><span class="legende-dot" style="background:#0f9b8e"></span> Activiteit / bezienswaardigheid</span>
+      <span><span class="legende-dot" style="background:#c1440e"></span> Restaurant dag 8</span>
+      <span><span class="legende-dot" style="background:#b8860b"></span> Restaurant dag 9</span>
+      <span><span class="legende-dot" style="background:#6a4c93"></span> Restaurant dag 10</span>
     </div>
   </div>
 </section>
@@ -228,14 +268,7 @@ document.addEventListener('DOMContentLoaded', function () {
     .concat(restaurants.map(function (r) { return r.coords; }));
   map.fitBounds(alleMarkers, { padding: [30, 30] });
 
-  // Porto-detailkaart: hotel, activiteiten, wandelstart, portwijnhuis en de 4 restaurants van dag 1–2, ingezoomd
-  var portoMap = L.map('porto-map', { scrollWheelZoom: false }).setView([41.141, -8.611], 15);
-
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-  }).addTo(portoMap);
-
+  // ── Herbruikbare helpers voor de stad-detailkaarten (Porto/Aveiro/Lissabon) ──
   function badgeIcon(color, text, size) {
     size = size || 22;
     return L.divIcon({
@@ -248,27 +281,61 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   var ACTIVITEIT = '#0f9b8e';
-  var REST_DAG1 = '#c1440e';
-  var REST_DAG2 = '#b8860b';
   var WANDELSTART = '#2c3e50';
   var PORTHUIS = '#722f37';
+  var DAG_KLEUREN_PALET = ['#c1440e', '#b8860b', '#6a4c93'];
 
-  var portoHotel = overnachtingen[0]; // Forte de Gaia
-  L.marker(portoHotel.coords, { icon: dotIcon(OVERNACHTING, 22) }).addTo(portoMap)
-    .bindPopup('<b>' + portoHotel.naam + '</b><br>' + portoHotel.dag + ' · ' + portoHotel.stad + '<br><a class="popup-link" href="' + mapsUrl(portoHotel.q) + '" target="_blank" rel="noopener noreferrer">🗺️ Google Maps</a>');
+  function nieuweDetailkaart(mapId, center, zoom) {
+    var kaart = L.map(mapId, { scrollWheelZoom: false }).setView(center, zoom);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(kaart);
+    return kaart;
+  }
 
-  // Restaurants dag 1–2, kleur + dagnummer-badge per dag zodat ze los van elkaar te zien zijn
-  var portoRestaurants = restaurants.slice(0, 4); // Dag 1 Lunch/Avond, Dag 2 Lunch/Avond
-  portoRestaurants.forEach(function (r) {
-    var isDag1 = r.dag.indexOf('Dag 1') === 0;
-    var kleur = isDag1 ? REST_DAG1 : REST_DAG2;
-    var dagnr = isDag1 ? '1' : '2';
-    L.marker(r.coords, { icon: badgeIcon(kleur, dagnr, 22) }).addTo(portoMap)
-      .bindPopup('<b>' + r.naam + '</b><br>' + r.dag + '<br><a class="popup-link" href="' + mapsUrl(r.q) + '" target="_blank" rel="noopener noreferrer">🗺️ Google Maps</a>');
-  });
+  function hotelMarker(kaart, hotel, bounds) {
+    L.marker(hotel.coords, { icon: dotIcon(OVERNACHTING, 22) }).addTo(kaart)
+      .bindPopup('<b>' + hotel.naam + '</b><br>' + hotel.dag + ' · ' + hotel.stad + '<br><a class="popup-link" href="' + mapsUrl(hotel.q) + '" target="_blank" rel="noopener noreferrer">🗺️ Google Maps</a>');
+    bounds.push(hotel.coords);
+  }
 
-  // Activiteiten & bezienswaardigheden Porto (dag 1–2)
-  var portoActiviteiten = [
+  function activiteitMarkers(kaart, lijst, dagLabel, bounds) {
+    lijst.forEach(function (a) {
+      L.marker(a.coords, { icon: dotIcon(ACTIVITEIT, 16) }).addTo(kaart)
+        .bindPopup('<b>' + a.naam + '</b><br>' + dagLabel + '<br><a class="popup-link" href="' + mapsUrl(a.q) + '" target="_blank" rel="noopener noreferrer">🗺️ Google Maps</a>');
+      bounds.push(a.coords);
+    });
+  }
+
+  // Restaurants krijgen een gekleurde cirkel met dagnummer erin — kleur volgt de volgorde
+  // waarin nieuwe dagnummers in de lijst voorkomen (1e dag = terracotta, 2e = donkergeel, 3e = paars),
+  // zodat restaurants van verschillende dagen los van elkaar te zien zijn op de kaart.
+  function restaurantMarkers(kaart, lijst, bounds) {
+    var dagKleuren = {};
+    lijst.forEach(function (r) {
+      var dagNr = (r.dag.match(/Dag (\d+)/) || [null, '?'])[1];
+      if (!(dagNr in dagKleuren)) {
+        dagKleuren[dagNr] = DAG_KLEUREN_PALET[Object.keys(dagKleuren).length % DAG_KLEUREN_PALET.length];
+      }
+      L.marker(r.coords, { icon: badgeIcon(dagKleuren[dagNr], dagNr, 22) }).addTo(kaart)
+        .bindPopup('<b>' + r.naam + '</b><br>' + r.dag + '<br><a class="popup-link" href="' + mapsUrl(r.q) + '" target="_blank" rel="noopener noreferrer">🗺️ Google Maps</a>');
+      bounds.push(r.coords);
+    });
+  }
+
+  function extraMarker(kaart, item, kleur, tekst, beschrijving, bounds) {
+    L.marker(item.coords, { icon: badgeIcon(kleur, tekst, 24) }).addTo(kaart)
+      .bindPopup('<b>' + item.naam + '</b><br>' + beschrijving + '<br><a class="popup-link" href="' + mapsUrl(item.q) + '" target="_blank" rel="noopener noreferrer">🗺️ Google Maps</a>');
+    bounds.push(item.coords);
+  }
+
+  // ── Porto-detailkaart: hotel, activiteiten, wandelstart, portwijnhuis, restaurants dag 1–2 ──
+  var portoMap = nieuweDetailkaart('porto-map', [41.141, -8.611], 15);
+  var portoBounds = [];
+  hotelMarker(portoMap, overnachtingen[0], portoBounds); // Forte de Gaia
+  restaurantMarkers(portoMap, restaurants.slice(0, 4), portoBounds); // Dag 1–2, Lunch/Avond
+  activiteitMarkers(portoMap, [
     { naam: 'Livraria Lello', coords: [41.1467, -8.6153], q: 'Livraria Lello Porto' },
     { naam: 'Palácio da Bolsa', coords: [41.1414, -8.6144], q: 'Palacio da Bolsa Porto' },
     { naam: 'Sé do Porto — kathedraal', coords: [41.1430, -8.6112], q: 'Se do Porto' },
@@ -276,26 +343,41 @@ document.addEventListener('DOMContentLoaded', function () {
     { naam: 'Estação de São Bento — azulejo-tegeltableaus', coords: [41.1455, -8.6108], q: 'Sao Bento Railway Station Porto' },
     { naam: 'Dom Luís I-brug & Ribeira', coords: [41.1403, -8.6094], q: 'Dom Luis I Bridge Porto' },
     { naam: 'Douro-boottocht "6 bruggen" — vanaf de Ribeira', coords: [41.1398, -8.6097], q: 'Douro 6 bridges boat tour Porto Ribeira' }
-  ];
-  portoActiviteiten.forEach(function (a) {
-    L.marker(a.coords, { icon: dotIcon(ACTIVITEIT, 16) }).addTo(portoMap)
-      .bindPopup('<b>' + a.naam + '</b><br>Dag 1–2 · Porto<br><a class="popup-link" href="' + mapsUrl(a.q) + '" target="_blank" rel="noopener noreferrer">🗺️ Google Maps</a>');
-  });
-
-  // Start van de begeleide wandeling (Beleef Porto, 15:00 vanaf Toeristeninfo bij de Sé)
-  var wandelStart = { naam: 'Toeristeninfo Sé', coords: [41.143571487207275, -8.610224334685343], q: 'Se do Porto' };
-  L.marker(wandelStart.coords, { icon: badgeIcon(WANDELSTART, '🚶', 24) }).addTo(portoMap)
-    .bindPopup('<b>' + wandelStart.naam + '</b><br>Start begeleide wandeling (Beleef Porto) · dag 1, 15:00<br><a class="popup-link" href="' + mapsUrl(wandelStart.q) + '" target="_blank" rel="noopener noreferrer">🗺️ Google Maps</a>');
-
-  // Portwijnhuis
-  var portHuis = { naam: 'Caves Ferreira', coords: [41.1369189, -8.619281], q: 'Caves Ferreira Vila Nova de Gaia' };
-  L.marker(portHuis.coords, { icon: badgeIcon(PORTHUIS, '🍷', 24) }).addTo(portoMap)
-    .bindPopup('<b>' + portHuis.naam + '</b><br>Portwijnproeverij · dag 1–2<br><a class="popup-link" href="' + mapsUrl(portHuis.q) + '" target="_blank" rel="noopener noreferrer">🗺️ Google Maps</a>');
-
-  var portoBounds = [portoHotel.coords, wandelStart.coords, portHuis.coords]
-    .concat(portoRestaurants.map(function (r) { return r.coords; }))
-    .concat(portoActiviteiten.map(function (a) { return a.coords; }));
+  ], 'Dag 1–2 · Porto', portoBounds);
+  extraMarker(portoMap,
+    { naam: 'Toeristeninfo Sé', coords: [41.143571487207275, -8.610224334685343], q: 'Se do Porto' },
+    WANDELSTART, '🚶', 'Start begeleide wandeling (Beleef Porto) · dag 1, 15:00', portoBounds);
+  extraMarker(portoMap,
+    { naam: 'Caves Ferreira', coords: [41.1369189, -8.619281], q: 'Caves Ferreira Vila Nova de Gaia' },
+    PORTHUIS, '🍷', 'Portwijnproeverij · dag 1–2', portoBounds);
   portoMap.fitBounds(portoBounds, { padding: [40, 40] });
+
+  // ── Aveiro-detailkaart: hotel, activiteiten, restaurants dag 5 ──
+  var aveiroMap = nieuweDetailkaart('aveiro-map', [40.635, -8.665], 14);
+  var aveiroBounds = [];
+  hotelMarker(aveiroMap, overnachtingen[2], aveiroBounds); // MS Collection Aveiro — Palacete de Valdemouro
+  restaurantMarkers(aveiroMap, restaurants.slice(8, 10), aveiroBounds); // Dag 5, Lunch/Avond
+  activiteitMarkers(aveiroMap, [
+    { naam: 'Moliceiro-boottocht', coords: [40.6405, -8.6538], q: 'Aveiro Moliceiro boottocht' },
+    { naam: 'Costa Nova do Prado', coords: [40.6175, -8.7505], q: 'Costa Nova do Prado' },
+    { naam: 'Vista Alegre Porselein', coords: [40.6027, -8.6193], q: 'Vista Alegre Aveiro' }
+  ], 'Dag 5 · Aveiro', aveiroBounds);
+  aveiroMap.fitBounds(aveiroBounds, { padding: [40, 40] });
+
+  // ── Lissabon-detailkaart: hotel, activiteiten (incl. Belém en Cristo Rei), restaurants dag 8–10 ──
+  var lissabonMap = nieuweDetailkaart('lissabon-map', [38.706, -9.16], 13);
+  var lissabonBounds = [];
+  hotelMarker(lissabonMap, overnachtingen[4], lissabonBounds); // Memmo Príncipe Real
+  // Dag 8 Avond t/m Dag 10 Lunch — Dag 8 Lunch (Incomum) valt hier bewust buiten, want dat restaurant ligt in Sintra
+  restaurantMarkers(lissabonMap, restaurants.slice(15, 19), lissabonBounds);
+  activiteitMarkers(lissabonMap, [
+    { naam: 'Toren van Belém', coords: [38.6916, -9.2160], q: 'Torre de Belem Lisboa' },
+    { naam: 'Pastéis de Belém', coords: [38.6974, -9.2037], q: 'Pasteis de Belem Lisboa' },
+    { naam: 'Tram 28 & Alfama', coords: [38.7139, -9.1290], q: 'Alfama Lisboa' },
+    { naam: 'LX Factory', coords: [38.7043, -9.1786], q: 'LX Factory Lisboa' },
+    { naam: 'Cristo Rei', coords: [38.6786, -9.1725], q: 'Cristo Rei Almada' }
+  ], 'Dag 8–10 · Lissabon', lissabonBounds);
+  lissabonMap.fitBounds(lissabonBounds, { padding: [40, 40] });
 });
 </script>
 </body>
