@@ -545,14 +545,8 @@
             <span class="info-chip">✉️ info@beleefporto.nl</span>
             <span class="info-chip">📱 +351 920 423 533</span>
           </div>
-          <div class="route-map-embed" id="portoDetailMap" style="height:320px;border-radius:var(--radius);margin:1rem 0;"></div>
-          <div class="kaart-legende" style="display:flex;flex-wrap:wrap;gap:.75rem 1.25rem;font-size:.8rem;color:var(--muted);margin-bottom:1rem;">
-            <span style="display:inline-flex;align-items:center;gap:.35rem;"><span style="width:.75rem;height:.75rem;border-radius:50%;display:inline-block;background:#1b4f72;border:2px solid #fff;box-shadow:0 0 0 1px var(--border);"></span> Hotel Forte de Gaia (startpunt route)</span>
-            <span style="display:inline-flex;align-items:center;gap:.35rem;"><span style="width:.75rem;height:.75rem;border-radius:50%;display:inline-block;background:#f4b400;border:2px solid #fff;box-shadow:0 0 0 1px var(--border);"></span> Metrolijn D-haltes</span>
-            <span style="display:inline-flex;align-items:center;gap:.35rem;"><span style="width:.75rem;height:.75rem;border-radius:50%;display:inline-block;background:#c1440e;border:2px solid #fff;box-shadow:0 0 0 1px var(--border);"></span> Toeristeninfo Sé (eindpunt, start wandeling)</span>
-            <span style="display:inline-flex;align-items:center;gap:.35rem;"><span style="width:.75rem;height:.75rem;border-radius:50%;display:inline-block;background:#722f37;border:2px solid #fff;box-shadow:0 0 0 1px var(--border);"></span> Caves Ferreira (portwijnproeverij)</span>
-          </div>
           <div class="attraction-item-links">
+            <a href="kaart.html#porto-detail" class="btn btn-sm btn-map">🗺️ Bekijk op de Porto-detailkaart</a>
             <a href="https://www.beleefporto.nl/stadswandeling-in-porto-met-nederlandse-gids/" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-web">🌐 Beleef Porto</a>
             <a href="https://wa.me/351920423533" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-web">💬 WhatsApp</a>
             <a href="mailto:info@beleefporto.nl" class="btn btn-sm btn-web">✉️ E-mail</a>
@@ -1666,94 +1660,10 @@
     map.fitBounds(L.latLngBounds(allCoords).pad(0.15));
   }
 
-  function initPortoDetailMap() {
-    const box = document.getElementById('portoDetailMap');
-    if (!box) return;
-    if (typeof L === 'undefined') {
-      box.style.display = 'flex';
-      box.style.alignItems = 'center';
-      box.style.justifyContent = 'center';
-      box.innerHTML = '<a href="https://www.google.com/maps/dir/Forte+de+Gaia+Autograph+Collection/Sé+do+Porto" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-map">🗺️ Bekijk route in Google Maps</a>';
-      return;
-    }
-
-    const map = L.map(box, { scrollWheelZoom: false }).setView([41.140, -8.609], 15);
-
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>-bijdragers'
-    }).addTo(map);
-
-    function dot(color, size) {
-      size = size || 16;
-      return L.divIcon({
-        className: '',
-        html: '<div style="width:' + size + 'px;height:' + size + 'px;border-radius:50%;background:' + color + ';border:2px solid #fff;box-shadow:0 0 0 1px rgba(0,0,0,.25);"></div>',
-        iconSize: [size, size],
-        iconAnchor: [size / 2, size / 2],
-        popupAnchor: [0, -size / 2]
-      });
-    }
-
-    const START = '#c1440e';
-    const METRO = '#f4b400';
-    const HOTEL = '#1b4f72';
-    const WIJN = '#722f37';
-
-    const start = [41.143571487207275, -8.610224334685343];
-    const saoBento = [41.1455, -8.6108];
-    const jardimDoMorro = [41.1374596862929, -8.608590066432953];
-    const generalTorres = [41.133491155805324, -8.608202487230301];
-    const hotel = [41.1367, -8.6113];
-    const cavesFerreira = [41.1369189, -8.619281];
-
-    L.marker(hotel, { icon: dot(HOTEL, 20) }).addTo(map)
-      .bindPopup('<b>Forte de Gaia, Autograph Collection</b><br>Startpunt route · vertrek uiterlijk 14:30');
-
-    L.marker(generalTorres, { icon: dot(METRO, 14) }).addTo(map)
-      .bindPopup('<b>Metro General Torres</b><br>Lijn D — dichtstbijzijnde halte bij het hotel, instappen hier');
-
-    L.marker(jardimDoMorro, { icon: dot(METRO, 14) }).addTo(map)
-      .bindPopup('<b>Metro Jardim do Morro</b><br>Lijn D — alternatieve instaphalte, over de Dom Luís I-brug');
-
-    L.marker(saoBento, { icon: dot(METRO, 16) }).addTo(map)
-      .bindPopup('<b>Metro São Bento</b><br>Lijn D — hier uitstappen, richting de Sé');
-
-    L.marker(start, { icon: dot(START, 20) }).addTo(map)
-      .bindPopup('<b>Toeristeninfo Sé</b><br>Eindpunt route · start wandeling 15:00');
-
-    L.marker(cavesFerreira, { icon: dot(WIJN, 16) }).addTo(map)
-      .bindPopup('<b>Caves Ferreira</b><br>Portwijnproeverij · ±870 m / ~12 min lopen vanaf het hotel');
-
-    // Laatste stukje te voet vanaf het hotel naar de metro
-    L.polyline([hotel, generalTorres], {
-      color: HOTEL, weight: 2, opacity: .6, dashArray: '6, 6'
-    }).addTo(map);
-
-    // Metrolijn D indicatief: General Torres → Jardim do Morro → São Bento
-    L.polyline([generalTorres, jardimDoMorro, saoBento], {
-      color: METRO, weight: 3, opacity: .8, dashArray: '2, 8'
-    }).addTo(map);
-
-    // Laatste stukje te voet van São Bento naar de Sé
-    L.polyline([saoBento, start], {
-      color: START, weight: 2, opacity: .6, dashArray: '6, 6'
-    }).addTo(map);
-
-    // Wandelroute hotel → Caves Ferreira (langs de rivier, geen metro nodig)
-    L.polyline([hotel, cavesFerreira], {
-      color: WIJN, weight: 2, opacity: .6, dashArray: '6, 6'
-    }).addTo(map);
-
-    map.fitBounds(L.latLngBounds([start, saoBento, jardimDoMorro, generalTorres, hotel, cavesFerreira]).pad(0.2));
-  }
-
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initRouteMap);
-    document.addEventListener('DOMContentLoaded', initPortoDetailMap);
   } else {
     initRouteMap();
-    initPortoDetailMap();
   }
 
   // ─── Agenda (.ics) per dag ──────────────────────────
