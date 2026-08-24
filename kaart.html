@@ -91,6 +91,21 @@
   </div>
 </section>
 
+<section style="padding-bottom: 3rem;">
+  <div class="container">
+    <h2 class="section-title" style="font-size:1.5rem;margin-bottom:.5rem;">Porto in detail</h2>
+    <p class="kaart-note" style="margin-top:0;margin-bottom:1rem;">
+      Hotel en de 4 restaurants van dag 1–2, ingezoomd — op de kaart hierboven liggen deze punten
+      dicht op elkaar in de Ribeira/Gaia-oever en zijn ze lastig los te zien.
+    </p>
+    <div id="porto-map" style="width:100%;height:50vh;min-height:340px;border-radius:var(--radius-lg);border:1px solid var(--border);box-shadow:var(--shadow-sm);"></div>
+    <div class="kaart-legende">
+      <span><span class="legende-dot" style="background:#1b4f72"></span> Hotel</span>
+      <span><span class="legende-dot" style="background:#c1440e"></span> Restaurant (lunch/avond, dag 1–2)</span>
+    </div>
+  </div>
+</section>
+
 <footer style="background:var(--dark);color:#fff;padding:2rem;text-align:center;font-size:.85rem;opacity:.8;">
   Portugal Roadtrip · zo 6 – di 15 sep 2026 · <a href="index.html" style="color:var(--gold)">← Terug naar de route</a>
 </footer>
@@ -207,6 +222,27 @@ document.addEventListener('DOMContentLoaded', function () {
     .concat(tussenstops.map(function (t) { return t.coords; }))
     .concat(restaurants.map(function (r) { return r.coords; }));
   map.fitBounds(alleMarkers, { padding: [30, 30] });
+
+  // Porto-detailkaart: hotel + de 4 restaurants van dag 1–2, ingezoomd
+  var portoMap = L.map('porto-map', { scrollWheelZoom: false }).setView([41.139, -8.611], 15);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+  }).addTo(portoMap);
+
+  var portoHotel = overnachtingen[0]; // Forte de Gaia
+  L.marker(portoHotel.coords, { icon: dotIcon(OVERNACHTING, 22) }).addTo(portoMap)
+    .bindPopup('<b>' + portoHotel.naam + '</b><br>' + portoHotel.dag + ' · ' + portoHotel.stad + '<br><a class="popup-link" href="' + mapsUrl(portoHotel.q) + '" target="_blank" rel="noopener noreferrer">🗺️ Google Maps</a>');
+
+  var portoRestaurants = restaurants.slice(0, 4); // Dag 1 Lunch/Avond, Dag 2 Lunch/Avond
+  portoRestaurants.forEach(function (r) {
+    L.marker(r.coords, { icon: dotIcon(RESTAURANT, 16) }).addTo(portoMap)
+      .bindPopup('<b>' + r.naam + '</b><br>' + r.dag + '<br><a class="popup-link" href="' + mapsUrl(r.q) + '" target="_blank" rel="noopener noreferrer">🗺️ Google Maps</a>');
+  });
+
+  var portoBounds = [portoHotel.coords].concat(portoRestaurants.map(function (r) { return r.coords; }));
+  portoMap.fitBounds(portoBounds, { padding: [40, 40] });
 });
 </script>
 </body>

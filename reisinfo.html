@@ -550,6 +550,7 @@
             <span style="display:inline-flex;align-items:center;gap:.35rem;"><span style="width:.75rem;height:.75rem;border-radius:50%;display:inline-block;background:#1b4f72;border:2px solid #fff;box-shadow:0 0 0 1px var(--border);"></span> Hotel Forte de Gaia (startpunt route)</span>
             <span style="display:inline-flex;align-items:center;gap:.35rem;"><span style="width:.75rem;height:.75rem;border-radius:50%;display:inline-block;background:#f4b400;border:2px solid #fff;box-shadow:0 0 0 1px var(--border);"></span> Metrolijn D-haltes</span>
             <span style="display:inline-flex;align-items:center;gap:.35rem;"><span style="width:.75rem;height:.75rem;border-radius:50%;display:inline-block;background:#c1440e;border:2px solid #fff;box-shadow:0 0 0 1px var(--border);"></span> Toeristeninfo Sé (eindpunt, start wandeling)</span>
+            <span style="display:inline-flex;align-items:center;gap:.35rem;"><span style="width:.75rem;height:.75rem;border-radius:50%;display:inline-block;background:#722f37;border:2px solid #fff;box-shadow:0 0 0 1px var(--border);"></span> Caves Ferreira (portwijnproeverij)</span>
           </div>
           <div class="attraction-item-links">
             <a href="https://www.beleefporto.nl/stadswandeling-in-porto-met-nederlandse-gids/" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-web">🌐 Beleef Porto</a>
@@ -1697,12 +1698,14 @@
     const START = '#c1440e';
     const METRO = '#f4b400';
     const HOTEL = '#1b4f72';
+    const WIJN = '#722f37';
 
     const start = [41.143571487207275, -8.610224334685343];
     const saoBento = [41.1455, -8.6108];
     const jardimDoMorro = [41.1374596862929, -8.608590066432953];
     const generalTorres = [41.133491155805324, -8.608202487230301];
     const hotel = [41.1367, -8.6113];
+    const cavesFerreira = [41.1369189, -8.619281];
 
     L.marker(hotel, { icon: dot(HOTEL, 20) }).addTo(map)
       .bindPopup('<b>Forte de Gaia, Autograph Collection</b><br>Startpunt route · vertrek uiterlijk 14:30');
@@ -1719,6 +1722,9 @@
     L.marker(start, { icon: dot(START, 20) }).addTo(map)
       .bindPopup('<b>Toeristeninfo Sé</b><br>Eindpunt route · start wandeling 15:00');
 
+    L.marker(cavesFerreira, { icon: dot(WIJN, 16) }).addTo(map)
+      .bindPopup('<b>Caves Ferreira</b><br>Portwijnproeverij · ±870 m / ~12 min lopen vanaf het hotel');
+
     // Laatste stukje te voet vanaf het hotel naar de metro
     L.polyline([hotel, generalTorres], {
       color: HOTEL, weight: 2, opacity: .6, dashArray: '6, 6'
@@ -1734,7 +1740,12 @@
       color: START, weight: 2, opacity: .6, dashArray: '6, 6'
     }).addTo(map);
 
-    map.fitBounds(L.latLngBounds([start, saoBento, jardimDoMorro, generalTorres, hotel]).pad(0.2));
+    // Wandelroute hotel → Caves Ferreira (langs de rivier, geen metro nodig)
+    L.polyline([hotel, cavesFerreira], {
+      color: WIJN, weight: 2, opacity: .6, dashArray: '6, 6'
+    }).addTo(map);
+
+    map.fitBounds(L.latLngBounds([start, saoBento, jardimDoMorro, generalTorres, hotel, cavesFerreira]).pad(0.2));
   }
 
   if (document.readyState === 'loading') {
