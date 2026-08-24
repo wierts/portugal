@@ -1,0 +1,2268 @@
+Return-path: <bounce-DRFHOEJ2ZTNUTKLKNUPWWTZ7G4.510008@bounce.infos-klm.com>
+Original-recipient: rfc822;dwiertsema@me.com
+Received: from p00-icloudmta-smtpin-us-east-2d-100-percent-1 by p169-mailgateway-smtp-86c99cd584-kmls8 (mailgateway 2632B98)
+	with SMTP id 2574912b-1e3f-45fb-914d-76d5b9d8070c 
+	for <dwiertsema@me.com>; Sat, 22 Aug 2026 07:11:00 GMT
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: MOVE_TO_FOLDER/INBOX
+X-Apple-UUID: 2574912b-1e3f-45fb-914d-76d5b9d8070c
+Received: from mta3.airfranceklm.flyingblue.com (mta3.airfranceklm.flyingblue.com [159.92.155.11])
+	by p00-icloudmta-smtpin-us-east-2d-100-percent-1 (Postfix) with ESMTPS id 4480BC0011B
+	for <dwiertsema@me.com>; Sat, 22 Aug 2026 07:10:56 +0000 (UTC)
+X-ICL-RepId: 01a0284e-ecb0-7609-bdf5-b37e4b993d21
+X-ICL-Info: GAtbRVYDBVFFSlVFSgQEUFUKE0oWX1gHVQoPB0UBA1tbQFRZSQUDTERIRhIcDVQNABcFElV0ZCQ9NiM9SmpiLCAtLTszfmMyIi4yLU93AkxASFZHSAh2ABoMCBQdHl8MExYVWhNcW0wWFgtXHlQLCxsfCQRVW1oPWxoJGlhCVV8xLi8yKmRlJzg4Jjo9HnUtOFkOEhRfCw8BGFVZGVlEBAcYCBQdW1oPWx8KDhFeUQAZDANZG19bQgUNFEoVRFdRWxgPBR5CVwwWHA0bFR5QDgwQCBAaXEMHWxoJGlhUUl8cFwAYCx1dDhhXBRgVC0VXRFcfWRVTGBEUFQMEHl9EARBXBRgVEFsLEURaRE4CBwRMSwBaGwVUBlhNAkRBHQ5UQB9LFh0EUFMQTAMUT1VVIhYdAUQLBQcPARhWREAGGBoBVwoYG1FaXA==
+X-ICL-Score: 2.33303322422
+Authentication-Results: bimi.icloud.com; bimi=none
+X-ARC-Info: policy=fail; arc=none; r1=-20; r2=0
+Authentication-Results: arc.icloud.com; arc=none
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=infos-klm.com
+X-DMARC-Policy: v=DMARC1; p=reject; fo=1; rua=mailto:dmarc_rua@emaildefense.proofpoint.com; ruf=mailto:dmarc_ruf@emaildefense.proofpoint.com
+X-DMARC-Info: pass=pass; dmarc-policy=reject; s=r1; d=r1; pdomain=infos-klm.com
+Authentication-Results: dkim-verifier.icloud.com; dkim=pass header.d=infos-klm.com header.i=klm_royal_dutch_airlines@infos-klm.com header.b=WT/vmili
+Authentication-Results: dkim-verifier.icloud.com; dkim=pass header.d=s51.y.mc.salesforce.com header.i=@s51.y.mc.salesforce.com header.b=Hp6KbMm0
+Received-SPF: pass (spf.icloud.com: domain of bounce-DRFHOEJ2ZTNUTKLKNUPWWTZ7G4.510008@bounce.infos-klm.com designates 159.92.155.11 as permitted sender) receiver=spf.icloud.com; client-ip=159.92.155.11; helo=mta3.airfranceklm.flyingblue.com; envelope-from=bounce-DRFHOEJ2ZTNUTKLKNUPWWTZ7G4.510008@bounce.infos-klm.com
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of bounce-DRFHOEJ2ZTNUTKLKNUPWWTZ7G4.510008@bounce.infos-klm.com designates 159.92.155.11 as permitted sender) smtp.mailfrom=bounce-DRFHOEJ2ZTNUTKLKNUPWWTZ7G4.510008@bounce.infos-klm.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; s=51dkim1; d=infos-klm.com;
+ h=From:To:Subject:Date:List-Help:MIME-Version:Reply-To:Message-ID:Content-Type;
+ i=KLM_Royal_Dutch_Airlines@infos-klm.com;
+ bh=Zzl9RplRgR2tQav9RmJG3vig7QkSRDho2pIbTTU9K3Y=;
+ b=WT/vmiliff86f9knXWFeYy8Ic6icmGy5Q8y+dFaxU+HsELausRxnY45QJLHSvZ/GG1Wo8X4+F5m2
+   oFPEvcs5NnaauR5hqKmN1AAEjBLKAbfzbM0HZA0inLKhGDkiM3mulo7NxL5tcndRliUSkzZswZ8l
+   tzsWDHm0DrjRkWsMFgGxe0WOhyYDWrLSUP9d0+aN8QhMPMTIhUOeszHG18goSUK1Xb3EShQOTNp5
+   yjEmx9+Rhk8bd9Xd48nc0OxJhu3kjy/cwuCpihSxfADKRcOQBDb/rlVjAUECjxo7ZURa8CFj1gZ4
+   Glz7vqwnBSoRlskMgosMRqHTubVv740DKjC4Pg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; s=fbldkim51; d=s51.y.mc.salesforce.com;
+ h=From:To:Subject:Date:List-Help:MIME-Version:Reply-To:Message-ID:Content-Type;
+ bh=Zzl9RplRgR2tQav9RmJG3vig7QkSRDho2pIbTTU9K3Y=;
+ b=Hp6KbMm08We8Xnn0rglI7ZtcYR9wwtJayim9rvfdfwhV0Wu7FiJQntJthLViZy+NmFYhzr3KCdxE
+   Rb4hJHmGojCP6fgkoU3+Wek0NQmWInRGmCEGSMU4HIn6lCxhmmytlix8orMXxTE2XhdB5+GJvbid
+   NLBwLQfTe2CHPR49kLTCPl0bRRL9LJ657HwID3QY693Ju5CRAmJ4fc0ipOcdYcnv4wEUscNBxJIJ
+   lqnqVRWV4Mse/zVbimCVIJ9pMIiuWIhOXvMM7wHVaLX44+rKrRcbuA0oljFQsQZVC5rgTOIo4NP9
+   IVRXbzQh3TEFXry1qfDo6mum0NfB+gy6gMSlAg==
+Received: by mta3.airfranceklm.flyingblue.com id hh55ns39mjc8 for <DWIERTSEMA@ME.COM>; Sat, 22 Aug 2026 07:10:54 +0000 (envelope-from <bounce-DRFHOEJ2ZTNUTKLKNUPWWTZ7G4.510008@bounce.infos-klm.com>)
+From: "KLM Royal Dutch Airlines" <KLM_Royal_Dutch_Airlines@infos-klm.com>
+To: <DWIERTSEMA@ME.COM>
+Subject: Beste Duco Wiertsema, hier is uw checklist voor Porto
+Date: Sat, 22 Aug 2026 01:10:35 -0600
+List-Help: <https://click.airfranceklm.flyingblue.com/subscription_center.aspx?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtaWQiOiI1MzYwMDU5OTciLCJzIjoiMjEyMTUxNzU5IiwibGlkIjoiMTUiLCJqIjoiODkxODgiLCJqYiI6IjY4Njc5IiwiZCI6IjUxMDAwOCJ9.pTFzwf-3RtTBeZP8yW4uzxSqEeR5iAIU9zITXrDODpo>
+MIME-Version: 1.0
+Reply-To: "No reply" <reply-FQWLFFBWJVHULB7GQLIA2SC6XM.510008@airfranceklm.flyingblue.com>
+X-SFMC-Stack: 51
+x-job: 536005997_89188
+Message-ID: <3621f92f-c5bd-4d39-865f-ae4f1e5ec7ec@cdg3s51mta0386.xt.local>
+Content-Type: multipart/alternative;
+	boundary="n57bDsTtm7ey=_?:"
+X-MANTSH: 1TFkXHR4RCllEF2ZpXgVnfGB/emRzEQpZTRdkRURPEQpZSRcacRoQGncGHx5xGBI
+ bEBIbdwYYGgYaEQpZXhdsbHkRCkNOF1BAHx1QWlJMHHITXEN9B2V+fhp6G0RvB3wcUE5nb2MTE
+ QpYXBcZBBoEHxIFGxoaBB0bBBscGgQTGxAbHhofGhEKXlkXQlxca0kRCk1cFx4YHxEKTFoXaWh
+ tGk1dEQpMRhdjTWsRCkNaFxsfEwQTGAQbHx8EGxsRCkJeFxsRCkJGF2BTXkZcHnNteGNLEQpCR
+ xdrWmtnHl5MY39daxEKQlwXGxEKXk4XGxEKQksXbloeZB16RExAGG4RCkJJF25aHmQdekRMQBh
+ uEQpCRRdifxxuQ054ZEZoSxEKQk4XbloeZB16RExAGG4RCkJMF2BIYxIeH05OBUhnEQpCbBdgW
+ B4TG2kBHhNERhEKQkAXY39zYBtzXGRtTxwRCkJYF2xiHWBNTR5ES0hLEQpCeBdrYU1SUlhJXXh
+ AHhEKWlgXGxEKcGcXaUBvY094ZH1JG3kQGhEKcGgXa0BQehp+G3lOWXkQGhEKcGgXZ10FWhxBW
+ EddcF4QGhEKcGgXbG55TnxrSXJMSH8QGhEKcGgXb1hQX1kYbl4TeWUQGhEKcGgXaWgeS35lbUV
+ lRkwQGhEKcGgXZhpFZUwacFxufWIQGhEKcGgXZVxHc29ZZ29YRU8QGhEKcGgXZQFQR0Jdc2NOW
+ U4QGhEKcH8XZFhrYBtJSG18fGAQHxoRCnB/F20SXXxIYXBrbU4eEB4fEQpwfxdiSUFoZE1iTUV
+ 6RRAfGxEKcH0XYG9vHEkBXH5hQHMQGhEKcH8XZllvf35EbmFhbn8QEh8RCnBfF254eF9ZBRp9G
+ BtZEBoRCnB9F2Vgeh5maXBOH0dBEBoRCnB9F2BMfB5LfB1wQB9HEBoRCnB9F2ZvHXxlfRpFWxh
+ YEBoRCnB9F2hCHFl4EkJQf0hFEBoRCnB9F2NmcFpJAUhZW3twEBoRCnB9F2xge3NeeW18XXNJE
+ BoRCnB9F2tkRkFTeUlvSGUfEBoRCnB9F21hBV8FQxgefF4fEBoRCnB9F2EFfWdwTn0FXhNnEBo
+ RCnB9F2x4ck8TSAVcf2V4EBoRCnB9F25GZR0fX2h9H30SEBoRCnB9F24afQFCQUZtaG1TEBoRC
+ nB9F2h4ExhhZRtyfn8eEBoRCnB9F29oR05AQx1PXR9nEBoRCnB9F2RZeGhcQXJfb19yEBoRCnB
+ 9F2h+f0hLfmRvG3lOEBoRCnB9F2cSWXBnHnNwHXN4EBoRCnB9F2d8eV1+BWhsXmJbEBoRCnB9F
+ 2QbTmJ6ZGNMWmxbEBoRCnB9F2lyenN8WkdsTmFHEBoRCnB9F2hubF5EGGFTe1BiEBoRCnB9F3p
+ YWGB8YntBQWwTEBoRCnB9F3obGV5FWAFuWh9yEBoRCnB9F21kBWtMRlptTExPEBoRCnB9F21QH
+ GAfWh56Q0YcEBoRCnB9F2caS0VIQEJeAVNIEBoRCnB9F2BzbUZ4U257TmFuEBoRCnB9F2VPY01
+ eQh9JWW9BEBoRCnB9F3oaXXpwbXhJcGNfEBoRCnB9F2VEQkVJewFHHh16EBoRCnB9F2NiRRthU
+ EVsXWUbEBoRCnB9F2dsentkS19FBXNJEBoRCnB9F2VzX09OG0IfTBMdEBoRCnB9F2hBZ1l/AX9
+ jUHgdEBoRCnB9F2BrQEdNXk55AVxoEBoRCnB9F29yXk9jaW9rTXkdEBoRCnB9F25kZWUaSU9lT
+ XkYEBoRCnB9F3pOHFwZZkNMZFlQEBoRCnB9F2waQFpBfUEcSRhyEBoRCnB9F2VmU2tPRRxhU1t
+ CEBoRCnB9F2EFQB8cGh9HSR1OEBoRCnB9F2ZFS01FcGhibRtgEBoRCnBsF2ljHxoBRmt4aGxlE
+ B4SEQptfhcaEQpYTRdLEQ==
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwODIyMDA1NiBTYWx0ZWRfX4k/TqXcTOH5m
+ lt8/BYQnV+vMob7RNYaH4B4NMY9SYYWQskgy4ggMRADDZ2VHdURqNdNQBY6xxsKUHVF+BDViXvV
+ Qqb92pa+H/rlJG7O1nZOQZEVipV/xzwMdYzw85bPjy5gC4bHCp7QaV6ghX57z+kubmnWCAxj7jM
+ WskgN4yeBThZhLXTKbMt/2rqtJ2+h2WXgX+bnIx2S8U1OprHVxLXOeyRzaxmxbgnFVGvJgkk3LP
+ bMPJ1i3Jdb6+u7VVer+3pDTMDb3cctIdYlgRxNNgjvyJbyJLxLr8cRdIU1O0y1p/xsfHsGgYzfa
+ CHlqQDuryj7spL2WAyVN074BLMwYdTxVq4/eFY1BHyoO3IYsUYMCwVprJNx2K9BMEXtbxOntmB6
+ U9yaqOXOYyDEgll/hDKxGeoN7/9pURydDZ1uQDjZjFQDMpKKXTMKHsm04uLeZBKPWX6s1xj/
+X-Proofpoint-ORIG-GUID: zj57zpxf6X9viW-OTT0P1nE-V6zdMEI9
+X-Authority-Info: v=2.4 cv=AvfjHe9P c=1 sm=1 tr=0 ts=6a894b81 b=1
+ cx=c_apl:c_pps a=C2Axvje8GKQWG5Nhm0ZlZg==:117 a=C2Axvje8GKQWG5Nhm0ZlZg==:17
+ a=Sv0fKeRqtYgA:10 a=mB-BshXQ30IA:10 a=Dv0K9pvfBOoA:10
+ a=r77TgQKjGQsHNAKrUKIA:9 a=0s7jJthFAAAA:8 a=wAbkKDhjAAAA:8 a=FHixlZpOAAAA:8
+ a=c1xArxSCWYgARtySC0YA:9 a=lqcHg5cX4UMA:10 a=3ZKOabzyN94A:10
+ a=QEXdDO2ut3YA:10 a=T6bVDmifAAAA:8 a=7VMxggD3RPMjNa64l90A:9
+ a=aKA_iNYIJtn6h9_2:21 a=frz4AuCg-hUA:10 a=_W_S_7VecoQA:10
+ a=TbGVz34MxmlHwU7TsRi_:22 a=2msL-7rb05BIct9FRxQO:22 a=PAC2GwUU4_nZ5gd0Qq-D:22
+ a=FrpWbka1UhF2nSJ8jBIA:22 a=5yU3S35YU4bGjq-dph-N:22 a=Bho9c0fBagfJEIQBS7DQ:22
+ cc=ntf
+X-Proofpoint-GUID: zj57zpxf6X9viW-OTT0P1nE-V6zdMEI9
+X-JNJ: AAAAAAABPNarMHOfSrVds1XNdEhf2EC2yrR9K/zOQQ0eTnwMCdB5iR3otC1eHXlqRrXzX3OLgY20xyIhkrwflqKEAuvWGGFPyheZS2aLRc4xlxV0RhmDWML1fmPls7ab2W70SR7npPSa9WQIyl9dkhT/v3HZ1C81+cO3T1P4PvyPFzNdrgBD2A4rGDwaogrEqKG6ujrld+vi6G6Pcj6urNCbZBNXL7rW2598dXMW502N3md2Wkkj1iOgPpY72PfRJ+EXPh9al0JE2/dPdFYNCltFQ5L5I3u6YvZT6MIShhvifBM43hJ8F6rx+n8w3PuGaK8oE3IY47vapR0D5bNoZgf0pYY1rF3grzlIJatGB5Xp9o9EDoBOsW6i44Hl+8h1pz8j50hF/l0MSWWhyEEX712ZJWeiSy3KSM8IAEyszlEuyZnDZ4iqRdgqOcMucBqc7KeuAmtp39Tt30ivSYhL43sp1WTcp3wMPBq9M+jKQ1lNNdbLdpk1tB6KnZ21L7GFzScz4ORiDEr3kETUgWN+8VgRNJUI50eJuWym+xE64PZutxAjeFPcMF+Hmq0Du7Qd62jza+RAQrHA45/43JmSepBwURT37tNKRTgRBJBMOHrpVvUL8yoXEZawVUDT6/puCpn2aB8QsYu94CBizl0Gm8Fv/LuAnotLZux6SDLa9BE5KPmW7wP35HQyt+TSXW5YBAULRAi94FBQQtcnRhiPmeanbSlAjRMo5HN60hw9Y7HTdGZfAu8fPYuiSpZMVLdOCCmhQTjcTnWPHX1tApLk+1s3YXii5/ak0t2JNbhfTzfjj7eG3O1iNkKuXupPdWIspkOPH4taHmD3fpBQDKbX0Av2lavvopj7pifysmAgx+vkCBJpC/zY0XB7SKLQ9OCjq130HUX0LCMMQwzMGJNc6UT+DTc++4w5SF4Us+YL+5mCS4cftTaScm5fPHbKya3ta941cNtvQ4VvzmduVTp6C+EhDOdHhTGu+Vm8qC5ex/4DGwHc5LEmvOqxQkBpsVq8OWxGaS4=
+
+This is a multi-part message in MIME format.
+
+--n57bDsTtm7ey=_?:
+Content-Type: text/plain;
+	charset="utf-8"
+Content-Transfer-Encoding: 8bit
+
+KLM | HQ template 
+
+ 
+
+ 
+ 
+  
+
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+
+ 
+
+ 
+ 
+ 
+
+  
+  
+  
+  
+ 
+
+
+ 
+  
+
+
+ 
+ 
+  
+ 
+
+ 
+ 
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+ &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj;  &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj;  &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj;  &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj;  &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj;  &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj;  &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj;  &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj;  &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj;
+ &zwnj; &zwnj; &zwnj; &zwnj;  &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj;  &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj;  &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj;  &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj;  &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj;  &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj;  &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj;  &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj;  &zwnj; &zwnj; &zwnj; &zwnj;
+ &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj;  &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj;  &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj;  &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj;  &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj;  &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj;  &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; 
+
+ 
+
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs5EcYN9bSo7jLP3DVpMeDgrrNepWtObFS05D5WYiEKRp7SI0PfakDPSxPzHr4CmvfxJlNYJj4yXBPITxzIAMpIpRTjWTrhy0186--tEvM9p 
+Online versie 
+
+  
+ 
+
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs5Fd0AuPA96rLO-RBMWRvfTHwCv0k2QWrYOj-pfC7EtfhoKhVuNeN0dHqw0FIwkBU3AjG5ZQlz4-WNjaZXF6jgbUcyfHVHY9ReiUGGkDKaX 
+
+https://www.klm.com/exchange/deeplink?country=nl&language=nl&target=/profile 
+
+
+
+ 
+
+ 
+
+ Voltooi uw vlucht naar Porto
+
+
+ Beste Duco Wiertsema,
+
+
+  Wij verheugen ons om u binnenkort weer aan boord te mogen verwelkomen. Wij waarderen dat u voor ons heeft gekozen voor uw reis naar Porto.
+
+Om u te helpen uw reis goed voor te bereiden, hebben we een persoonlijke checklist voor u samengesteld. Wilt u nog uw stoel upgraden of een extra stuk bagage toevoegen? Zorg er dan voor dat u dit op tijd doet.
+
+
+
+ Boekingscode:
+
+
+YZFQIJ
+
+
+ We kijken ernaar uit om u aan boord te zien!
+
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs5GR9edCb0aiPlnm4jUBLoa6OYiqteUAP4OoqoP62TDBn6hwV5TQtlvLUhTe8YbExvyLnzBFpC-TJl1cB4S9636LkPVvodigMvhZxLn3Ycs 
+
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs5HwZIVYVEAhk2jaZ8MuEdMPyW7WT2g3Oc6jI3NhiuDlcIVMQ1k4pISiAxxPYof79XwDa9pZXkSLNDGrB9T3mn22F24J8p7KT2yv7-fC4Wn 
+Ga naar Mijn Reis  
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs5IuxLJcmpAPNRUW7XuYVytVd5cLlSm1x6siCUv7Q_HkDnqA-0JJDllBPO5X3AUg2f1mEFsLYOOYA2zkfQps1n-uiBw-t-e5wqimBNKcJBb 
+
+
+
+ 
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+Uw vlucht
+
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs5c-kqm06qZ8f1UkVaRyF3xOsB1b2ltDnX5lWO-RbRp9RNDhw0Nms_MOvKkDR0RWF2eERT-2Sb4JCJTQe_zxxT3lkpedUtH8FpWCrd1gDwR 
+
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs5er4Repr9tfg5HV0q3HUe5fieJuv6AAo633vJ2Q25Z6qpHz_MOGkRwP73rJdTEw1RrMoUZae--oz4kqW8LvJ5hN0rJ8rNjjSkIV32B7Q0q 
+Details bekijken
+ 
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs5jZKxz68mTCBzwKx3eM-wdMx_tY_zw31TdF1vm5AZ475IEhzbfuGWn7Vg3cIvGnJ73iiCOwD1jNXzSbgaF4d-cCaT65QqRT8sY5sYnf5At 
+
+Vluchtnummers:
+
+
+KL1571
+
+Vertrekdatum
+
+
+
+zo 06 sep 2026
+
+
+Amsterdam
+
+AMS
+09:10
+
+
+Porto
+
+OPO
+10:55
+
+
+Online inchecken
+
+
+U kunt vanaf 30 hours uur voor vertrek inchecken.
+
+
+ 
+
+
+ 
+
+
+
+Vliegt u Economy? Op volle vluchten kan de ruimte beperkt zijn. Om uw reis comfortabeler te maken, check uw handbagage gratis in in de vertrekhal.
+
+
+ 
+ 
+
+ 
+
+
+ 
+
+ Uw reis naar Porto
+
+
+ Personaliseer uw reis
+
+
+ Boek voor vertrek nog wat extra's voor een nog fijnere reis. Ga naar Mijn Reis en ontdek de verschillende extra opties die we bieden voor een zo aangenaam mogelijk begin van uw reis.
+
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs5pEvbSgn3AHwYVBtf9dFlOhZDJs2lSa5mf3fllBDK--EoV2IKIR37uYSSiw5zmLNsvKAr3nPcPH8dEW2MkvBJ8H6Rj-1uHPWsaSbMyOyIf 
+
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs5rdiY13-Ifl9bqckB_6gVXSsNxTpGUfuW5OnUykIcp1ElEDB2OCxdYi20s2hwC7euU0kO7sHWLj3-HGG7aA3luQgZ9CuV763kO9M_TY-9L 
+Ga naar Mijn Reis 
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs5sZC8Odf44MJ6tiWKhUtdJx2g4cyjEd5LeWAVW6sOZnou9rzPdJJwH8OUtAhBbohEVQGcDpk3IQhObUkuWs317UiZWE7Yp2vDsxW4okVrH 
+
+
+ 
+
+ 
+ 
+ 
+
+
+
+ Verwen uzelf met meer comfort
+
+
+ Strek uw benen tijdens de vlucht in één van onze stoelen met extra beenruimte naast de nooduitgang. Als <strong>Flying Blue Platinum-deelnemer</strong> kunt u gratis een stoel met extra beenruimte reserveren.
+
+
+
+  
+
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs5tF1z_ZlL1gG3Qge6dBVv3KDRi6oy6h_4ngXUaHg87zjcmfupXcciVAefKenbO44EQcFC4PZBaMX-jUswf-nFn_XX4PXwS9FKFAA9qzSHx 
+Boek online 
+
+
+
+ 
+
+ 
+ 
+ 
+ 
+ 
+
+
+
+ Upgrade naar Business Class
+
+
+ Upgrade naar Business Class en geniet van meer privacy, comfort, culinaire hoogtepunten en de volle aandacht van ons cabinepersoneel. Hoe eerder u reserveert, hoe meer keuze u heeft!
+
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs5usa2V9jqNccgKpVU1wv-GA4BZIRN8C1ADuc7qHKmJiW48wNqGPOLz4re17cGDmxIB6HH2ETM6RPcRFq6-Xy-jzmHC4e_Pcr5mKjpb3P2a 
+Boek online 
+
+
+
+ 
+
+ 
+ 
+ 
+
+ 
+ 
+  
+ 
+ 
+ 
+ 
+
+
+
+Ruimbagage
+
+
+Reist u met ruimbagage? Kijk hoeveel stuks bagage zijn toegestaan, inclusief max. gewicht en max. afmetingen. Boek uw eerste stuk extra ruimbagage gratis online en bespaar ook nog eens tijd!
+
+ 
+
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs5xzL9teZyZH0cQGY0NKOuP7J1tAVoQoidgyJ4tIGTTQSwnqKettZTd4hkJAOHnglUE-zwOza7saOvkOlNYsOS6JwZBiodXlcAqoRPFz7n5 
+Boek online 
+
+
+
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+ SStoel met extra beenruimte
+
+
+ Strek uw benen tijdens de vlucht in één van onze stoelen met extra beenruimte naast de nooduitgang. Als <strong>Flying Blue Platinum-deelnemer</strong> kunt u gratis een stoel met extra beenruimte reserveren.
+
+
+  
+
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs50vvw3Jg7tLxGy5yyqWMCRMeak1Ok60OwXr1GlQCj5f1L_mcRI8Jlkr7wDkwIbCHqxbxDpzSz4EL68rMity7Td_9W-ySG_Yhw5mrC61G2r 
+Boek online 
+
+
+
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+
+Uw reis naar Porto
+
+Personaliseer uw reis
+
+Boek voor vertrek nog wat extra's voor een nog fijnere reis. Ga naar Mijn Reis en ontdek de verschillende extra opties die we bieden voor een zo aangenaam mogelijk begin van uw reis.
+
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs52DSJ0_eAUz8oD5dIym0SiN25EPU4OBM2_KUlGUdfYmgN5hQnUFxQj2upL2RMCDh7AqAV1DNmxZrOcyoHPl1cyuwt0jRT5nMIlVwjAkQXj 
+
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs55tAh5Gcr30RsytKlkvJtuxwqK8jrBPE4mK03236SIK4yycyRqjQO8Z1iHXnvfxe5-xNQR3MgDjdjg1jIB8x1l26V3hcgd6dDCCZDkXz_u 
+Ga naar Mijn Reis 
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs59QF14Mpy0fl8qWs7-1kQ6-r9d_Q6HyttIAW9hyug-G11ENluoH8vKo93BCJD-gVLTSNTIhCLs4Qj-4kR9WwSPeOckYvuj9vw0CKlQa9az 
+
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs6Abb_4pSnjzMy_qd_DWTrLkmyA5al2VmACS45ErET8KzJcIp0jq2i4AiH8OGg0mjm7Kppgo9U8936_gGb-mB2b-eypNdqHsvS7gJxq66fN 
+
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs6D7NXyn0kCtbDlF8bKuG6OTzDiZaS2tBp91V_SP5TdsVeZq6X8YbhgwRfKCx63rauKXuXbTwa0RNpJDgoOvK9XqVWdV9QYyjgtLVL0QepE 
+Extra bagage 
+
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs6FxwUUwBQED06JbrwknDHGw60OyLvg_Yz1U65HUs-nN0SIDfhYkJM0nsRYzramS0Np3B8DgqaOW5sXSKYjDuKz95na1SBxMp0xh7RgMDuV 
+Voeg extra of speciale bagage toe aan uw boeking 
+
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs6IUtMoAzG8bkPxwdw-D4JauLVLzHOxGmFLJdK_cN1Tl8C0qKtPLpg7GPC0LNcndhToT0D6OnoXPaC7kQpodCeX_ekcARS8Dak6iXAEeNIm 
+
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs6LZNvKA9FXYCpBY5Ub8H8eAxOZCvMHZDqncsJY5K_9Vx5l_S3dKzvvS4AmfXeNSIwZ8H48eGDfyNjEhbYszhE2FMQSwFlSCAA6axf4oDp9 
+
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs6M1CjXtmHQWGvbu9fqvosXddGY9AsQ9VndcLdZnkpg2MARayRLePytolCyaQ9sosvZcmvlK-PkTt-_DiLdpciz23wDdKUd62RPTMKDHVI5 
+
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs6NxtF_xnK2j8ylEK-peporzSKUWrGvM8rC8u6trvMZtLvwlYCWAvroNsS3e0r9cSj-KBoqZq2V7v9fpRwutjJngEHPuq96R0P6qDSpj-G_ 
+Stoelkeuzes 
+
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs6POCp2U5rCH5gg09dwWf8QlZT8o478QJ2LPF6ITn60PIIgZ3K8u783JGYPLxR43m9G-NMGQtUhlc76F059kYuw3M0OrB-71cj1GLR6oBpc 
+Ontdek onze verschillende stoelkeuzes 
+
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs6TlwBwaGxY-LaPWEaPRWVGLnZ-AMe-ZELNjDGbkPTZ6vO4qdZdh4s16k_-ANmF9h8fdJGct1VhpRz60v_8ksSR5M3pxVPQwKAY8Mr1JWFC 
+
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs6XJemI8dtBhrhvyJdOhrT0lkDrqce8aGtVL4cHcmzaXQDDoGSl7Wl5L3hRJ-bk-catFJkilQ0U0wkKTHrMQUWP8JjJiG8W6l8JpXXqprHp 
+
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs6aftLNH-f8bRPrOIollV4DgfQ1TEo7ZlS2gVxr9Bny_VNF3K03l3WpBekoB1z4BVqWfpJNMIvpF_cJm6HQcvxPDVpNkL0zpYJ8qd1MPWjI 
+
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs6dW8Rv_0AfCLcE2xEa6NP0gccm1WBoJI9Xlfr-Qq4fPgDkJKw8tSE5fckz_bmxM8alRj3d2xueg9fA31hkQ4a2nL5RFszDNhh802LjRxiY 
+SAF (alternatieve vliegtuigbrandstof) 
+
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs6eTRkev89dAV7rF_6iJ_lRrOqREGohRAFVWwYX_6Rnh-r3g_FyOukCnjRWXVs2vxvQ0y5cj6JBh7mGZz9TNuwQumDWCsucOKArirvk8wc- 
+Help onze CO2-impact verlagen 
+
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs6fAu_KMDu_ZJ3OaWcJ7ENO4maE2zULo-a4QcKI_xYLNxuw_n1BihRcUJ1QjI9L_Q5hOOTmmiG7FJc-Wr_-qPcEl-ike0YuhYhR1sniTFNU 
+
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs6gl27n0mpHug5P6s_QdHUvQSbTKLK3UH_YFwe7PZLAB-USSvsfXPW-NhvsmjX5T7sUkLusLCNRKW4cqpAxqLxaMh3Mope-lKO1LI7E8uG3 
+
+
+
+
+
+ 
+ 
+
+
+ 
+
+
+
+ Uw checklist 
+
+
+ Begin goed voorbereid aan uw reis
+
+
+ Er zijn mogelijk nog wat taken die uw aandacht vragen. Voltooi alle taken voor het begin van uw reis. Anders kunt u mogelijk niet aan boord van uw vlucht.
+
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs6hL4f0wkTQ6-YSxkZeqeck7bbsAvukgbxqzyodGbSQ_RwHlEi1OYHdh8_BPtWE3baWDUdieq2cMEXsp_4EVmFM_mFjSEaqtPXo42OnwRdt 
+
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs6iTlfHm-5Rd7vybfJgfMIz5UFexqOFNt25aPb5arZuCLP1G2DwglHdUyFVrkWkRMF_RuBu2tp1_sOiTadS4KaVd9vs4Dof7fe6uOBWO7UC 
+Voltooi mijn taken 
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs6lmvEzve6Fm2AGF1BpcQx8ClfS2VSumMswFlRcee2ZEeORNomCR5J8IkswhXHfTehpWXZoJs9Qw7yUG8QnsUz6Z45FnVmEtf4qp1mxoWU_ 
+
+
+
+ 
+
+ 
+
+
+
+ Controleer de reisvoorschriften
+
+
+ Wilt u er zeker van zijn dat u alle documenten bij u hebt om te mogen vliegen? Met de TravelDoc-tool van KLM  kunt u heel makkelijk de vereisten voor uw reis controleren. Controleer deze vereisten regelmatig voor uw vertrek om er zeker van te zijn dat u kunt reizen. Vergeet ook niet om de vereisten te controleren van het land waar u heen reist, van waaruit u terugreist of waar u een aansluitende vlucht of overstap hebt. Deze vereisten kunnen per land verschillen. Er kunnen vrijstellingen van reisvoorwaarden voor u gelden.
+
+
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs6oR1kRF9POR4PTtuMmWcyTN4UoWiJhvKKQPiagqa6rzEZ7qrQCTaYc7vRDnBLmJney1LJoJAFKNDqbYVntbEAAqH-QOOXiXJBxoWL_lomH 
+de TravelDoc-tool van KLM  
+
+
+
+ 
+
+ 
+
+
+ Nieuwe inreisvereisten VK
+
+
+ Heeft u een fysiek visum, verblijfsdocument of andere vergunning voor toegang tot het VK? Maak voor u op reis gaat 
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs6pJInMtOL9-sMAKDm4dZZdD6pE5l_qsgPugS_GQqJq54cDyQ0EP83SWq1GtqSgssNG0v_Os2Z3S2LfZGqLEsrenH0TAmIf1oJOkvfn1Zhy 
+een UKVI-account aan en check of  de juiste paspoortgegevens aan uw eVisa gekoppeld zijn. Heeft u al een eVisa? Log in 
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs6rhk6n6-W3Pl7AOg05422Jb2UY1YyEI3b3c5Oe1dBDpypEc3ZROF5nnEzrzjGY4w7aO07nK-Cueo2ISI2I5weJqEU8X3pRSNEye2gW7UKd 
+op uw UKVI-account en controleer  uw paspoortgegevens.
+
+
+ Heeft u geen visum nodig voor het VK?
+
+
+ U heeft mogelijk een eTA nodig voor het VK. 
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs6vBCj4aPR1SaezwZfLd-LwcN2Y4grG3uwfQQ2s6RYYSNoM6-rDnbth7_zZTZesLAc83ra9MvalfPbEabmYO7p48CzUU-w1nff_S5OumLz7 
+ Meld u aan, indien nodig 
+
+ 
+ 
+
+ 
+
+Vragen?
+
+Voor u als Platinum-deelnemer is er een speciaal telefoonnummer beschikbaar:
+
+tel:+31204747737 
++31 20 47 47 737 
+
+
+Actuele vluchtinformatie via sms
+
+We sturen u een sms als uw vluchtschema verandert.
+
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs6zF-0dGuJSQ8ui0aRfs7AamjgKI29kCHG2f5plXpmI3JX4Uo3ZQIXN-3rj82nUpBR_hdnW9yCZnxS0GLfq4Eg4jRTygfc7SSTJLZakNslN 
+Voeg uw telefoonnummer toe 
+
+
+ 
+
+ 
+
+
+
+Reizen met baby's
+
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs7HN4VrhFUahzcpskDsTpt4f3sFhcU4t2iT2ZNaiiBuUCRaD_zjvX9jf0qC2XIWHKLnzWkVj_MQGWXP38rmR1xYEzN0iFY0uW884yS-8_7x 
+
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs7I2cSeNaJ1aqyi39wRJEWmDJOw7NNrpmJBv3mKtwotxIWEF6YDenzJlP3tbbc6CNpKrUdpOfivu4BQ73cClgP0fjPjRipwY-NU3m2UauUh 
+
+Reiswiegje 
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs7JxXja3S3QGaBddCKuJ3x5RkSH8XuydZBW-3nKelA6rcyQ1tSd4JAg4mKGj68_5C0NqEqMAmaz5XcXdqBI8v4Fkk1D9_4WaauHlM_x3Yhl 
+
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs7Ku6Ow8k-o3_NNQY7CVCm5u0klbSVMic3CHKKlc-WCD6NdQ8-LWKrQ0nnjtAG2qjDPIhXxNcLcBl1Z3DSTpUUV7EHnuTGggxH3xBDvTINu 
+
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs7Ld0oJKEVSBbNEbh_CbR_ZFT8D9mhCgAop6DkFP1n1Raalqehvryg9A_BS7y4dVeYRZOoBDPAmD-UBcfyW5G6_4rnBbCNsn-9JqLFidc7D 
+
+Reisdocumenten 
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs7MOIGkiHVG9_MIf4UL2DKc1qsYOB62TwopvetTNeGag7te-Zon0CiQ-WNnkNa_Km4Cxi3yAWLjMmEX-xisFVSB9tTQXeAsis3IKu2q5pfl 
+
+Op langeafstandsvluchten kunt u een reiswiegje reserveren via Mijn reis (afhankelijk van beschikbaarheid).
+
+
+Speciale bagage voor baby's
+
+Benieuwd of u uw kinderwagen of autostoel kunt meenemen? Check onze website voor meer informatie.
+
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs7Oi-WfzcAKy3lX6q6WR2D8lR6svzcWqXzTGl5NBX1ns3sxRF5XMfg3QuvJekRIrBdj4SqRyXVI76LcI48uawVb11ZiLZYKClr6jkbJzTAU 
+Ga naar de KLM-website 
+
+
+Na de landing: waar u uw buggy kunt ophalen
+
+Belangrijk: kinderwagens die bij de gate zijn ingecheckt worden bij aankomst bij de bagageband afgeleverd. U kunt uw kinderwagen ophalen bij de band voor buitenmaatse bagage (bijzondere bagage), afhankelijk van de luchthaven. Wij raden u aan de schermen op de luchthaven te raadplegen of bij aankomst onze medewerkers hierover te vragen.
+ 
+
+ 
+
+Reizen met kinderen
+
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs7SKNUSNsy3QjdpzMECOq4cyhNJK_-40keHti6kgIhxy1Ass-FNVPj6B9RLkI3WxoafbSqqwn6mS_P0_nC2-7l2EskKy5mdZjnRoa5L4W1k 
+
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs7Tlw8OLx1FKOEAMLFBP57iy4rrQTEvLUcJYht1zmXVcQxijgDRSh8bIFBIcQVOauz5gk3VwjyBixyH8PqXv_y44yIGI7zedlCwF-cd7q5J 
+
+Reisdocumenten 
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs7UA73X-w8bu0NBWnBeEdol1zbPpZetDKkP4aEUDJd2OBOjUD_yi2htflv3zVDB55QHn6iT4sTUCrRtdZqIetdJSXGm00wPniVQCnzHODRH 
+
+Controleer online welke reisdocumenten u moet meenemen voor uw kind.
+
+
+Meer info voor kinderen
+
+
+Meer weten over stoelopties, maaltijden en entertainment voor kinderen? Check onze website voor meer informatie.
+
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs7VQIrhuQbaGco6LB7DpK2g3jHyl_t-daj97PPa5is0BREK8hfjYTgjgal7Rq0ZqOKbQYzyXV4pSp6MuFUFKZ_BjHcCaIFRQBgpgyVU3gdX 
+Ga naar de KLM-website 
+
+Assistentie en gezondheid
+
+
+Of u nu een rolstoel nodig heeft, met een getrainde hulphond reist, of hulp nodig heeft op de luchthaven, we helpen u graag verder met meer informatie op onze website.
+
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs7ZmLpft8x3et8gu-3B6ken1SsduEaIf2kOtAkEs0v_OSKAN8ikNtzXdJAOo0Ma7t0WD5MGTVb_XJE7HF0unqvFDHpO7LgLKZMCinmxq8Cf 
+Ga naar de KLM-website 
+
+
+ 
+
+ 
+
+Alleenreizende kinderen
+
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs7d7rVkIJP0Ll5yrCCBb_zZe4kagWObl1KfprWAXYVCXbOXpBFqV3jlyrZFe6qTO4DMKYVDAgwVy7KxdOZcaS0UqThyz5N656koRk-Se8Su 
+
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs7gvSPrX55Ph6YB0MBRlefpIRJY1-4Q8l95CrAAe9XV-Sx5npky4oi8KZpdocv1IXyY6igXk6De9vjKShD-iDzAlQ-8Wx-6dMBUUmJhivNa 
+
+Reisdocumenten 
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs7jbiH8zCF95YzBuvJkOIqp2hIeggUhRclyfv7XnMh3RJ3nN1Semy9Fe5CCuczc3whez30-gRYQFzN3cQisVa-Xr3NrH_ww1AeAm2ML_P52 
+
+Ga voordat de minderjarige naar de luchthaven gaat naar Mijn Reis en controleer of alle informatie met betrekking tot de begeleidende personen correct is en of u het formulier
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs7lYiXZe4GunnYgV_Ybsnk1OWgMNbT6O_eKwT1VYqhOZbD4GOaJqOUDbOQSrHAJR85iOXQ9rWAIZU8HA82ED_DmBx7dVmr8gbxpbmDx-G9t 
+"Handling advice for unaccompanied minor" correct heeft ingevuld.
+
+
+Zodra u in Mijn Reis bent
+
+	- Klik onder de naam van uw kind op “Informatie over begeleidende personen beheren”.
+	- Controleer alle vooraf ingediende informatie en breng indien nodig wijzigingen aan.
+	- Sla uw volledig ingevulde reisformulier op en download het.
+
+
+Neem vier uitgeprinte, ingevulde en ondertekende exemplaren van het formulier met de gegevens van degene die uw kind brengt en ophaalt, mee naar de luchthaven. Alle vier de formulieren moeten ondertekend worden door de ouder of voogd en door de mensen die uw kind brengen.
+
+Dit formulier is verplicht en moet worden verstrekt aan onze KLM-medewerkers op de grond.
+
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs7oPpMnaIpx9K3qRVfX_lGEej8olvIxTHN_YzvojwkvYZuAKcz543FMu74uH_hmjuFlVdZVHENpz_g7ffp3Bp5TiNkayA17Px-OYbBn8ini 
+Ga naar de KLM-website 
+
+
+ 
+
+ 
+ 
+
+Maaltijden aan boord
+
+Maaltijden
+
+Boek voor vertrek nog wat extra's voor een nog fijnere reis. Ga naar Mijn Reis en ontdek de verschillende extra opties die we bieden voor een zo aangenaam mogelijk begin van uw reis. 
+
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs7rQ_8dDM9m5osfJQyoU39egfSRpqNxm8d7dNFwDZyQQALIXPGIIRonovIoUbi3rT4BA58J0dmbmIYcOhG5f5xrpmUP2fcqGXlE_GZs6Xan 
+
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs7si9fEElTVxo2xvUuxf7rDLC55k3SS_ebyPorCOPSMVoa7XCVPHTynCaRDGGovBX9UL3v0X-9NM68gQeVEAlOVoT3_92d3lGaFsxKUat7U 
+Reserveer uw maaltijd 
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs7tP-_hvVjIpAD6704QEfhDoMuHxFpoQv4c-47C6J_r7gdt2UHIuJFCXIjMXtSWDEfVa9SBzPdf3FNRpDatbw9X0UzrWxnBF28YjHaWuL9f 
+
+
+ 
+ 
+ 
+ 
+
+Download de KLM-app
+
+Uw reisassistent in zakformaat
+
+
+Blijf op de hoogte, beheer uw vluchten en personaliseer uw reis.
+
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs7yXDxOzl4HEMyMaigLzz4qixicRxuauyIP1Flc3gkDu8ibEMtKjnh_Kcnq8Z9uI-vuE07koxQssk3THcBtsLJ1bEblyC53kT9wAmp3D9ht 
+
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs71rw1K3rtELnKtZFniUxfnpJw2DtIMLYQyZ27cBfIPVhhQUrfp9IrM4SdGYhsXCNPEXcUjQIxsATGtivStXVWb-E2XUvJTY2KPjLU7Y4tv 
+Download nu 
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs74xz4t6n-cRT1X1lyoLyhPDCLt8S-OxH78WKQZQGhphqJAMq4uJ6DbQEqUPOtMSVtS9JQu82Hvl070_cN5RLOD8fkRZQWIPzZjF_GWj12w 
+
+
+ 
+ 
+ 
+ 
+
+KLM nieuwsbrief
+
+Benieuwd naar onze aanbiedingen?
+
+
+Ontvang ons laatste nieuws, speciale aanbiedingen en reisinspiratie direct in uw inbox!
+
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs78nrg0LjVvGyEuR-19gI39H4uk9FsrAfKbYwNae-ozKD8Hj3_SjMA-AOzjVuaMldYDB69XWSLruGxlKbNFQVxChRfvpP0XUbRT2RXxjrqq 
+
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs79D8D5EQYC-YA6Lfhkl2DHYHi1Ud7zLv9OhMqdFmAjgPYKIjiGzG_rB1NoKKDMrBGy75K5lBxmZLK12Tm6NnT3yPmAfiAFKjol8sOqQhTr 
+Aanmelden 
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs7-ojEOAUW3ROb9ZoC0LDTCtTmBucxuAIf274Tstm_Ys_dPlTqrcSQ0FTP3yYUVi2YGFkYPFfmdhe-D0qDH4UzIQIsrckn7ALByp2GMmRhE 
+
+
+ 
+ 
+
+
+ 
+
+
+ Wat vindt u van deze e-mail?
+
+
+ 
+
+ 
+
+
+
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs7_dvXzTdj0qyqNU3LmfRFFaDbksilXJavbUxykjuVt-hqlHRrrVp9IIO5jMLQN4NG0QdElRuNMt0Itgp2tPkPdBZcjYljnGM31wxfD-ti6 
+
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs8A7lCxjAlnajgrpIk91p7m3K2o7g_x_LPJoMn7fePt2ktgQCpQw_SpUdlK_5ds4sac4OSkCIZVerhsaWq4Buy-J_eJBpG8G6_foRcToDu5 
+
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs8DwIGuF5-nWb7zc_uaPLJTbJPucksn3BURJtjqs1yso6X-ZPd7eaiXEs2ies7N4xy2WQ9xEuxEYxm8PMJxgP4KZt__rjm3ykkU1PGapAtT 
+
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs8Gg5lGMLpg_KOgXtWrgVmnYmKsnvNk53VHobFUloJpCjNqrjgI82eF-l5e1rDxFHxoA3oya7Sxk-wgcANrmerCFt7mbNC21uWqZZPGfekv 
+
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs8Hd2KTq0pfq3HcKBVAOelofrGAIEtUFQdenjnHvJXRo4Qg6NbCT0OSsWUNjWwUq1ufXIDN5MVztx5B990vPzmDaT6zF5fjJ97AyHMlvDCe 
+
+
+ 
+
+
+ 
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs8Ij0O2TxW2P78Yen0jcSbYM85EzeYjgRgVUvg0lTf-UlbvNqEMmdgNTnCLU0ZJDCZMO52RlE7wWspXbbqPLj6emJAyvxAIBNE5QHmlARvv 
+
+Vragen?
+
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs8L6fBod4Vfw6n8luBuFWZbnXBmz-rp4I4k1R3aA-y_kBYaRpxd2QaG9gIcCcp8kThcUFfXvf2ZpoHmZlU_kWg_Jd7_Y---x1aIkRsj3dBy 
+
+ Wij helpen u graag het antwoord te vinden!
+  
+
+ 
+
+Extra opties
+
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs8Q52i_aG5xTAKEX4grtP6zXw7mzYbSPRyzp7awcfj9YRp9XKvLrr1NiAvETMI6MP-q4HRRlcRVHkvke3TBpih3xUkwtRIs97OJ5ZcanH-T 
+
+ Voeg extra opties toe aan je komende reis
+  
+
+ 
+
+Mijn Reis
+
+https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs8SWaC0IWR303z3w8mtJE378SEOsvWBsnYasJPHQJETqZliQoNJTdcAHOQttMIolZf4Qb88GqSs8JUdl1gtDhQLp7WzUKvnq3kuOKpxqiaJ 
+
+ Bereid je voor op je komende vlucht
+  
+
+
+ 
+
+ 
+
+Per boeking worden 5 e-mails ter voorbereiding op de reis verzonden, met services, informatie over visum en paspoort, bagageregels en speciale aanbiedingen. U kunt 
+https://cloud.airfranceklm.flyingblue.com/KL-UnsubscriptionProcessing?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs46avbpFAioEQncdWb1XXPKdc7g6yHr8FTKWXlROJ4GoNVN31p1Zl0YfmQsbRj2_DqlArZgb81EAZeTZJ5DayerAfesXYpIkp0vgJLZnKU9Yq5gEnOnZv-Zp2vHs1GBpw6wPd4jzQEohbxjK-MRTGGNzraQxQEQZQ 
+zich afmelden  als u geen e-mails ter voorbereiding op de reis meer wilt ontvangen.
+
+
+KLM hecht groot belang aan uw privacy. Lees de 
+https://www.klm.nl/exchange/deeplink?country=nl&language=nl&target=/information/legal/privacy-policy 
+Privacyverklaring van KLM  voor meer informatie.
+
+
+© 2026 KLM Royal Dutch Airlines is geregistreerd in Amstelveen, Amsterdamseweg 55, 1182 GP, Nederland – Handelsregister Amsterdam nr. 33014286.
+
+
+
+ 
+
+ 
+
+
+ 
+
+
+
+ 
+ 
+
+https://click.airfranceklm.flyingblue.com/subscription_center.aspx?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs8bSG-lBjM5SkLrK_4APgPgX78nlVKb-khqABNH5mTqqIFKc12D9y9qX2QcRvP_xxDYT0VQDj8MfEkOhkIoqwVc52tOxRtTNisvTzmJLM8I4vm3 https://click.airfranceklm.flyingblue.com/profile_center.aspx?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs8ddpLgX6hFZqFl9UxmHuwDhAXaNqO6J2__xfffrqB1YWyjljDbYf3ssMeJPiLMEJ0cNFZQvPBtiLo6e06L4BhlRL5kxtDNibCCyPMxG9Rw7V6g https://click.airfranceklm.flyingblue.com/unsub_center.aspx?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs8jPLfacLsvlVphWoKIQcDA5NRYGBunltgaxl8gxqF8Lo1K2w2HJ8qqviOxEnXrd8lgm1PIVxymjnq3I2dq1FYChOAScAhQg3ni8m0dbO2b4WMGAhU KLM N.V. Amsterdamseweg 55 Amstelveen NOORD-HOLLAND 1182 GP NL 
+
+
+--n57bDsTtm7ey=_?:
+Content-Type: text/html;
+	charset="utf-8"
+Content-Transfer-Encoding: 8bit
+
+<html lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="sg:pagetag" content="">
+<meta name="sg:flowtag" content="">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="apple-touch-icon" sizes="120x120" href="https://www.static-kl.com/assets/kl/img/logo-120.png">
+<link rel="icon" sizes="48x48" href="https://www.static-kl.com/assets/kl/img/logo-48.png" type="image/png">
+<meta charset="utf-8">
+<title>KLM | HQ template </title>
+<!--[if gte mso 9]><xml> <o:OfficeDocumentSettings> <o:AllowPNG> <o:PixelsPerInch>96</o:PixelsPerInch> </o:OfficeDocumentSettings> </xml><![endif]-->
+<style>
+html {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+p {
+    margin-top: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    margin-bottom: 0 !important;
+    padding: 0 !important;
+}
+body {
+    width: 100% !important;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color:#ffffff;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100% !important;
+    -ms-text-size-adjust: 100% !important;
+    text-size-adjust: 100% !important;
+}
+.ReadMsgBody {
+    width: 100%;
+}
+.ExternalClass {
+    width: 100%;
+    min-width: 680px;
+}
+.ExternalClass * {
+    line-height: 100%;
+}
+a {
+    color: #009dde;
+ text-decoration:none;
+}
+table td {
+    border-collapse: collapse;
+    mso-table-lspace: 0pt;
+    mso-table-rspace: 0pt;
+    margin: 0;
+    padding: 0;
+}
+img {
+    display: block;
+    line-height: 100%;
+    outline: none;
+    text-decoration: none;
+}
+.nobr {
+    white-space: nowrap;
+}
+h1, h2, h3, h4 {
+ margin: 0;
+ padding: 0;
+}
+
+@media only screen {
+.hfdr {
+    display: none!important;
+}
+}
+
+@media only screen and (max-width:650px) {
+/* gmail fix */
+u + .body {
+    width: 100% !important;
+    width: 100vw !important;
+}
+div > u + .body {
+    width: 100% !important;
+}
+/* general styles */
+table td {
+    border-collapse: separate !important;
+}
+.fullwidth {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 100% !important;
+}
+.fullwidthauto {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 100% !important;
+    height: auto !important;
+}
+.widthauto {
+    width: auto!important;
+}
+.halfwidth {
+    width: 50% !important;
+}
+.centercontent {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    float: none !important;
+    text-align: center !important;
+}
+.heightauto {
+    height: auto !important;
+}
+.floatright {
+    float: right !important;
+    text-align: right !important;
+}
+.floatleft {
+    float: left !important;
+    text-align: left !important;
+}
+.alignright {
+    text-align: right !important;
+}
+.alignleft {
+    text-align: left !important;
+}
+.hide {
+    display: none !important;
+}
+.show {
+    display: block !important;
+    max-height: none !important;
+    width: 100% !important;
+    min-width: 100% !important;
+}
+/* specific styles */
+.klm_content_text_title{
+ font-size: 28px !important;
+ line-height: 32px !important;
+}
+.padding0 {
+    padding: 0px!important;
+}
+.padding-b0 {
+    padding-bottom: 0px!important;
+}
+.padding-lr0 {
+    padding-left: 0px!important;
+    padding-right: 0px!important;
+}
+.padding-lr20 {
+    padding-left: 20px!important;
+    padding-right: 20px!important;
+}
+.padding-lr15 {
+    padding-left: 15px!important;
+    padding-right: 15px!important;
+}
+.padding-b4 {
+    padding-bottom: 4px!important;
+}
+.width90{
+ width:90px!important;
+ min-width:90px!important;
+}
+.show38{
+ width:38px!important;
+ min-width:38px!important;
+ display:table-cell!important;
+    max-height:none!important;
+ height:86px!important;
+}
+.width36{
+ width:38px!important;
+ min-width:38px!important;
+}
+.width30{
+ width:30px!important;
+ min-width:30px!important;
+}
+.font36 {
+    font-size: 36px!important;
+    line-height: 40px!important;
+}
+.font18 {
+    font-size: 18px!important;
+    line-height: 22px!important;
+}
+.font14 {
+    font-size: 14px!important;
+    line-height: 22px!important;
+}
+}
+</style>
+ 
+<!--[if !mso]><!-->
+<style>
+@media (prefers-color-scheme: dark ) {
+ body{
+  background-color: #002746 !important;
+ }
+ .klm_dark_blue_900{
+  background-color: #001527 !important;
+ }
+ .klm_dark_blue_800{
+  background-color: #002746 !important;
+ }
+ .klm_dark_blue_700{
+  background-color: #003D6D !important;
+ }
+ .klm_dark_blue_700_border{
+  border-color: #003D6D !important;
+ }
+ .klm_brown{
+  background:#322800!important; 
+  color:#FCE0B3!important;
+ }
+ .klm_dark_blue_900_border{
+  border-color: #001527 !important;
+ }
+ h1,h2,h3,h4,p,a, ul li {
+  color: #ffffff !important;
+ }
+}
+</style>
+<style>
+@media only screen {
+.UniversalSans-bold {
+    font-family: 'UniversalSans-bold', 'Arial', sans-serif!important;
+    font-weight: 700!important;
+}
+.UniversalSans-medium {
+    font-family: 'UniversalSans-medium', 'Arial', sans-serif!important;
+    font-weight: 500!important;
+    font-style: normal!important;
+}
+.UniversalSans-regular {
+    font-family: 'UniversalSans-regular', 'Arial', sans-serif!important;
+    font-weight: 400!important;
+    font-style: normal!important;
+}
+@font-face {
+    font-family: 'UniversalSans-bold';
+    src: url("https://materials.klm.com/front/UniversalSans-Display-Bold.woff") format("woff");
+    font-weight: 600;
+    font-style: normal
+}
+@font-face {
+    font-family: 'UniversalSans-medium';
+    src: url("https://materials.klm.com/front/UniversalSans-Display-Medium.woff") format("woff");
+    font-weight: 500;
+    font-style: normal
+}
+@font-face {
+    font-family: 'UniversalSans-regular';
+    src: url("https://materials.klm.com/front/UniversalSans-Display-Regular.woff") format("woff");
+    font-weight: 400;
+    font-style: normal
+}
+</style>
+<!--<![endif]-->
+</head>
+
+ <!--Attributes&Links-->
+
+ <!--Civility-->
+ <!--main destination subject-->
+  <!--Flight Details-->
+
+ <!--Main Destination-->
+
+
+ <!--Generic comfort blocks-->
+
+
+
+
+ <!--Generic RestBikePETCO2Block-->
+
+<!-- Business Block-->
+
+
+
+<!--Premium comfort-->
+ <!--Generic Business and premium comfort-->
+
+
+
+
+
+
+<!--Checked Baggage-->
+
+
+ <!--Generic Baggage blocks-->
+
+<!-- Paid hand baggage-->
+
+
+ <!--Paid Hand Baggage-->
+
+<!--extra le room seat-->
+
+
+
+
+<!--window seat-->
+
+
+
+
+
+
+ <!--Generic Standard Seat Block-->
+
+
+
+
+
+<!--ICA Block-->
+
+
+
+ <!--Lounge Blocks-->
+
+
+
+
+
+
+ <!--Generic la carte-->
+
+<!--Carry Cot-->
+
+ <!--Carry Cot-->
+
+
+ <!--uk entry-->
+ <!--personalise you trip block rule-->
+ <!--display priority block-->
+
+      <!--Questions Platinum block-->
+  <!--Personalise your trip footer-->
+  <!--uk req translation-->
+  <!--Questions-->
+ 
+
+
+ <!--Travlleing with babies translation-->
+  <!--Unaccompained minors-->
+
+
+ <!--Order your meal translation-->
+ <!--KLM App translation-->
+  <!--KLM Newslette translationr-->
+ 
+
+ 
+ <!--KLM PreFooter translation-->
+
+
+  <table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner">
+<!----></td></tr></table>
+  <table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner">
+<!----></td></tr></table>
+
+
+
+
+<body class="body"><style type="text/css">
+div.preheader 
+{ display: none !important; } 
+</style>
+<div class="preheader" style="font-size: 1px; display: none !important;">Ga goed voorbereid op reis</div>
+<div role="presentation" style="display: none; max-height: 0px; overflow:
+ hidden;font-size:1px;color:#ffffff;">&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;
+&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;
+&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;
+&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;
+&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;</div>
+ 
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="border-top: 10px solid #00A1DE;">
+    <tbody>
+      <tr>
+      </tr>
+      <td style="padding-left:20px;padding-right:20px;">
+        <table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner">
+<!----><center>
+	<a href="https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs4SnmhLnLMzyvfUKap1LwkSLVTeNZ6UsypHB9-vKG1cTqUrLpCO03QxtC-n3DpCNnEcrMF2E7rrS-nB13p3_tDorU9iM2rN9I6sxHC0fAFU" name="ONLINE_VERSION" style="color:#009dde;text-decoration:underline;" target="_blank" xt="SPCLICKTOVIEW">Online versie</a></center></td></tr></table>
+      </td>
+      <tr>
+        <td style="padding-left:20px;padding-right:20px;">
+            
+            <!--Header--> 
+          <table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner"><!---->
+
+
+
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="640" class="klm_dark_blue_800 fullwidth" align="center" style="margin:0 auto;">
+    <tr><td height="40"></td></tr>
+                <tr>
+     <td align="left">
+<a href="https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs4T-MwwjRF0x1ZKVGwzk5tahDJvcSJ1_LmfG66sKDBQeekOnB7X_-uF0PNkItowHYrQgIQB5OAOeyXnkdjjwVEehUl_ShWOYe7lfcgXqENs" target="_blank" title="KLM homepage">
+<img src="https://img.static-kl.com/transform/dfdcfdfb-5cbd-4206-a556-c4383c8b61cb/?consumerid=ch&io=transform:fill,width:102,height:60" width="51" height="30" alt="KLM" title="KLM">
+</a>
+     </td>
+     <!--REMOVE IF NO FLYING BLUE PUSH-->
+                    <!--  -->
+     <td align="right" valign="bottom"><a href="https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs4UGIt2nGiQzUIW0HomEIA_CfDEz9maabgukin14RroTTE1sehYNttdEnCltgJAlAtEnWXMllBxUrK_-gjsI9kSR1W8UlRDti7djys0XHgm">
+<img src="https://img.static-kl.com/transform/6283691d-521c-4bb3-a721-ff85a493f7d3/?consumerid=empk&io=transform:fill,width:120,height:30" width="120" height="30" alt="Flying blue status" title="Flying blue status"></a>
+     </td>
+                    <!--  -->
+     <!--// REMOVE IF NO FLYING BLUE PUSH-->
+    </tr>
+    <tr><td height="40"></td></tr>
+            </table></td></tr></table>
+
+  </td>
+    </tr>
+</tbody></table> 
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+    <tbody><tr>
+        <td style="padding-left:20px;padding-right:20px;" class="klm_dark_blue_800">
+            <!--Main Content-->
+          <table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner">
+<!----><!----><!----><!----><!----><!----><!----><!----><table align="center" border="0" cellpadding="0" cellspacing="0" class="klm_dark_blue_800 fullwidth" role="presentation" style="margin:0 auto;" width="640">
+ <tbody>
+  <tr>
+   <td class="klm_content_text_title" style="padding-bottom:24px;">
+    <h1 class="UniversalSans-medium" style="color:#072B45;font-family: Arial,sans-serif;font-size:36px;font-weight:500;text-align:left;line-height:40px;mso-line-height-rule:exactly;text-transform:initial;">
+     Voltooi uw vlucht naar Porto</h1></td></tr><tr>
+   <td style="padding-bottom:20px;">
+    <p class="UniversalSans-regular" style="color:#072B45;font-family: Arial,sans-serif;font-size:16px;font-weight:400;text-align:left;line-height:24px;mso-line-height-rule:exactly;">
+     Beste Duco Wiertsema,<br>
+     <br>
+      Wij verheugen ons om u binnenkort weer aan boord te mogen verwelkomen. Wij waarderen dat u voor ons heeft gekozen voor uw reis naar Porto.<br>
+Om u te helpen uw reis goed voor te bereiden, hebben we een persoonlijke checklist voor u samengesteld. Wilt u nog uw stoel upgraden of een extra stuk bagage toevoegen? Zorg er dan voor dat u dit op tijd doet.</p></td></tr><tr>
+   <td style="padding-bottom:10px;">
+    <p class="UniversalSans-bold" style="color:#072B45;font-family: Arial,sans-serif;font-size:16px;font-weight:700;text-align:left;line-height:24px;mso-line-height-rule:exactly;">
+     Boekingscode:</p></td></tr><tr>
+   <td style="padding-bottom:30px;">
+    <table align="left" border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-radius:12px;  background-color:#B7F1BA;display:inline-table">
+     <tbody>
+      <tr>
+       <td align="center" class="UniversalSans-medium" height="40" style="font-family: Universal display, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Arial, sans-serif; font-weight: 500; font-size:14px; color:#0A2B26!important;padding-left:16px;padding-right:16px;" valign="middle">
+        YZFQIJ</td></tr></tbody></table></td></tr><tr>
+   <td style="padding-bottom:30px;">
+    <p class="UniversalSans-regular" style="color:#072B45;font-family: Arial,sans-serif;font-size:16px;font-weight:400;text-align:left;line-height:24px;mso-line-height-rule:exactly;">
+     We kijken ernaar uit om u aan boord te zien!</p></td></tr><tr>
+   <td style="padding-bottom:40px;">
+    <table align="left" border="0" cellpadding="0" cellspacing="0" class="fullwidth" role="presentation" style="border-radius:12px;  background-color:#0077CD;">
+     <tbody>
+      <tr>
+       <td align="right" height="40">
+        <a aria-pressed="false" href="https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs4V6NUFSxZI-iENP4VhEdGPbBTcBgVxRkvkTU5IU2xMXi_yBlgk9K4C9HCzUmznZ0_DWVTJORnK5kEvDgaiUBXkUQCn7pN4Bh8c8T63G3ge" role="button" target="_blank"><img alt=" " height="40" src="https://img.static-kl.com/transform/002d5b22-347f-462a-add6-c24147c166aa/spacer_template_new?consumerid=empk&io=transform:fill,width:24,height:40" width="24"> </a></td><td align="center" class="UniversalSans-medium fullwidth" height="48" style="font-family: Universal display, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Arial, sans-serif; font-weight: 500; font-size:16px; color:#ffffff;" valign="middle">
+        <a aria-pressed="false" href="https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs4W1AQjxPCpCcpC8eLW_SdaynPxrKAz_zuL2Ud-my2kBNJ2CXLFnkiI7a0eUeyMjXn5rygD71oJfjUA_77IwumwT6lDRibt6R-UX438ZGSt" role="button" style="display: block; line-height: 40px; text-decoration: none; color: #ffffff;" target="_blank">Ga naar Mijn Reis </a></td><td align="left" height="40">
+        <a  aria-pressed="false" href="https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs4XursfGY7qUNuTic3-D85MzVB6gu4HjN2oAT-Jkf5hV2zUg6AbLjLClkO5Yb_QjoBElP6JJ-yn3OiU8oLgPoIHTF5YoKFLgP0PASZSDZxl" role="button" target="_blank"><img alt=" " height="40" src="https://img.static-kl.com/transform/002d5b22-347f-462a-add6-c24147c166aa/spacer_template_new?consumerid=empk&io=transform:fill,width:24,height:40" width="24"> </a></td></tr></tbody></table></td></tr></tbody></table></td></tr></table>
+   
+  </td>
+    </tr>
+</tbody></table>
+
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" bgcolor="#F6F1ED" class="klm_dark_blue_900">
+ <tbody><tr><td height="40"></td></tr>
+    <tr>
+        <td style="padding-left:20px;padding-right:20px;">
+   
+<!--Flight Details-->
+          <table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner">
+
+
+
+
+
+
+
+
+
+
+
+<table role="presentation" class="fullwidth klm_dark_blue_800" cellpadding="0" cellspacing="0" border="0" bgcolor="#ffffff" style="width:640px;border-radius:24px;margin:0 auto;" align="center">
+ <tr><td height="20"></td></tr>
+ <tr>
+  <td>
+  
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" class="klm_dark_blue_900_border" style="border-bottom:2px solid #f5f1ed">
+ <tr>
+  <td height="48" style="padding-left:20px;">
+<h2 class="UniversalSans-medium" style="color:#072B45;font-family: Arial,sans-serif;font-size:24px;font-weight:500;text-align:left;line-height:30px;mso-line-height-rule:exactly;text-transform:initial;">Uw vlucht
+</h2>
+  </td>
+  <td align="right" style="padding-right:20px;"><table role="presentation" align="right" cellpadding="0" cellspacing="0" border="0" style="border-radius:12px;  background-color:#0077CD;">
+  <tr>
+ <td height="40" align="right">
+  <a role="button" aria-pressed="false" href="https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs4Y5e-11NhS82sde5MnOUZ4AKcVlc-GPnv2UIm4vT5WZIIcjPLd3S2FnFn2_3ogwsWU8zaGdQDz8ZeS9pWzQWrBDBypOu-FE7BNLA6ewbQ3" target="_blank">
+   <img alt=" " src="https://img.static-kl.com/transform/002d5b22-347f-462a-add6-c24147c166aa/spacer_template_new?consumerid=empk&io=transform:fill,width:24,height:40" width="24" height="40">
+  </a>
+ </td>
+ <td class="UniversalSans-medium" height="48" align="center" valign="middle" style="font-family: Universal display, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Arial, sans-serif; font-weight: 500; font-size:16px; color:#ffffff;">
+  <a role="button" aria-pressed="false" style="display: block; line-height: 40px; text-decoration: none; color: #ffffff;" href="https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs4ZgUrUHTI5b6X5JhMPC5Po4ItxfAcCmApv5lmohkmdcfaBLP8x_-Ha3d_uxY4En_-u0pV8NRttIAaa4QtR59AIN_g-WEcR68lSa2USCzB8" target="_blank" >Details bekijken
+</a>
+ </td>
+ <td height="40" align="left">
+  <a role="button" aria-pressed="false" href="https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs4aC2l9g467docGENabbUFWIlpNahp4QwNxOarCeXgihgaI4dKzljqObsDpReRPlGfmwiJhBJy5atkcyc8L0LvmBcd98GAJLNUC7zz0NT10" target="_blank">
+   <img alt=" " src="https://img.static-kl.com/transform/002d5b22-347f-462a-add6-c24147c166aa/spacer_template_new?consumerid=empk&io=transform:fill,width:24,height:40" width="24" height="40">
+  </a>
+ </td>
+  </tr>
+</table></td>
+ </tr> 
+ <tr><td height="20"></td></tr>
+</table>
+   
+  </td>
+ </tr>
+ <tr><td height="20"></td></tr>
+ <tr>
+  <td>
+  
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" class="klm_dark_blue_900_border" style="border-bottom:2px solid #f5f1ed">
+ <tr>
+  <td height="48" style="padding-left:20px;">
+<p class="UniversalSans-regular" style="color:#072B45;font-family: Arial,sans-serif;font-size:12px;font-weight:400;text-align:left;line-height:18px;mso-line-height-rule:exactly;">Vluchtnummers:
+<br></p><h4 class="UniversalSans-bold" style="color:#072B45;font-family: Arial,sans-serif;font-size:20px;font-weight:700;text-align:left;line-height:28px;">KL1571</h4><p></p>
+  </td>
+  <td align="right" style="padding-right:20px;">
+<p class="UniversalSans-regular" style="color:#072B45;font-family: Arial,sans-serif;font-size:12px;font-weight:400;text-align:right;line-height:18px;mso-line-height-rule:exactly;">Vertrekdatum
+<br></p><h4 class="UniversalSans-bold" style="color:#072B45;font-family: Arial,sans-serif;font-size:16px;font-weight:700;text-align:right;line-height:24px;">
+zo 06 sep 2026
+</h4><p></p>
+  </td>
+ </tr> 
+ <tr><td colspan="2" height="20"></td></tr>
+</table>
+   
+  </td>
+ </tr>
+ <tr>
+  <td>
+  
+<table role="presentation" class="fullwidth klm_dark_blue_900_border" cellpadding="0" cellspacing="0" border="0" width="640" style="border-bottom:2px solid #f5f1ed">
+ <tr>
+  <td height="20"><img class="hide" src="https://img.static-kl.com/transform/c08fcece-93df-4173-a1b3-641520e35f25/sp144?consumerid=empk&io=transform:fill" width="144" alt=" " style="display:block;margin:0 auto;"></td>
+  <td height="20"></td>
+  <td height="20"><img class="hide" src="https://img.static-kl.com/transform/c08fcece-93df-4173-a1b3-641520e35f25/sp144" width="144" alt=" " style="display:block;margin:0 auto;"></td>
+ </tr>
+ <tr>
+  <td class="width90" height="48" width="144" style="padding-left:20px;max-width:144px;">
+<p class="UniversalSans-regular" style="color:#072B45;font-family: Arial,sans-serif;font-size:14px;font-weight:400;text-align:left;line-height:22px;mso-line-height-rule:exactly;">Amsterdam<br></p><h2 class="UniversalSans-bold font36" style="color:#072B45;font-family: Arial,sans-serif;font-size:48px;font-weight:700;text-align:left;line-height:52px;">AMS</h2><p class="UniversalSans-regular font14" style="color:#072B45;font-family: Arial,sans-serif;font-size:16px;font-weight:400;text-align:left;line-height:24px;mso-line-height-rule:exactly;">09:10
+</p>
+  </td>
+  <td class="fullwidth" align="center">
+   <img class="hide" src="https://img.static-kl.com/transform/7aa20420-98c2-4a10-b213-fad65579eb66/flight_desk?consumerid=empk&io=transform:fill" width="352" alt="Amsterdam Vienna" style="display:block;margin:0 auto;">
+<!--[if !mso]><!--><img class="show" src="https://img.static-kl.com/transform/fcfcfcb4-2168-4e26-b48e-50b7ff1925ec/flight_mob?consumerid=empk&io=transform:fill" width="100%" alt="Amsterdam Vienna" style="display:none;margin:0 auto;"><!--<![endif]-->
+   
+  </td>
+  <td class="width90" align="right" width="144" style="padding-right:20px;max-width:144px;">
+<p class="UniversalSans-regular" style="color:#072B45;font-family: Arial,sans-serif;font-size:14px;font-weight:400;text-align:right;line-height:22px;mso-line-height-rule:exactly;">Porto<br></p><h2 class="UniversalSans-bold font36" style="color:#072B45;font-family: Arial,sans-serif;font-size:48px;font-weight:700;text-align:right;line-height:52px;">OPO</h2><p class="UniversalSans-regular font14" style="color:#072B45;font-family: Arial,sans-serif;font-size:16px;font-weight:400;text-align:right;line-height:24px;mso-line-height-rule:exactly;">10:55</p>
+  </td>
+ </tr> 
+ <tr><td colspan="3" height="20"></td></tr>
+</table>
+   
+  </td>
+ </tr>
+ <tr><td height="20"></td></tr>
+ <tr>
+  <td style="padding:0 20px 20px 20px;">
+
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="width:100%; background-color:#FCE0B3;border-radius:16px;" class="klm_brown">
+ <tr><td height="20"></td></tr>
+ <tr>
+  <td style="padding:0 20px 10px 20px;">
+<p class="UniversalSans-bold" style="color:#322800;font-family: Arial,sans-serif;font-size:16px;font-weight:700;text-align:left;line-height:24px;mso-line-height-rule:exactly;">
+Online inchecken</p>
+  </td>
+ </tr>
+ <tr>
+  <td style="padding:0 20px;">
+<p style="color:#322800;font-family: Arial,sans-serif;font-size:16px;font-weight:400;text-align:left;line-height:24px;mso-line-height-rule:exactly;">
+U kunt vanaf 30 hours uur voor vertrek inchecken.</p>
+  </td>
+ </tr>
+ <tr><td height="20"></td></tr>
+</table>
+    
+
+
+    
+    <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+  <tr>
+    <td height="2" style="font-size:15px; line-height:15px;">&nbsp;</td>
+  </tr>
+</table>
+    
+    
+    <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="width:100%; background-color:#FCE0B3;border-radius:16px;" class="klm_brown">
+ <tr><td height="20"></td></tr>
+ <tr>
+  <td style="padding:0 20px;">
+<p style="color:#322800;font-family: Arial,sans-serif;font-size:16px;font-weight:400;text-align:left;line-height:24px;mso-line-height-rule:exactly;">
+Vliegt u Economy? Op volle vluchten kan de ruimte beperkt zijn. Om uw reis comfortabeler te maken, check uw handbagage gratis in in de vertrekhal.</p>
+  </td>
+ </tr>
+ <tr><td height="20"></td></tr>
+</table>
+    
+    
+    
+  </td>
+ </tr>
+</table></td></tr></table>
+
+        </td>
+    </tr>
+ <tr><td height="40"></td></tr>
+</tbody></table>
+
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" bgcolor="#F6F1ED" class="klm_dark_blue_900">
+    <tbody><tr>
+        <td style="padding-left:20px;padding-right:20px;">
+   
+<table role="presentation" class="fullwidth klm_dark_blue_700" cellpadding="0" cellspacing="0" border="0" bgcolor="#D0E7F6" style="width:640px;border-radius:24px;margin:0 auto;" align="center">
+ <tbody>
+     <!---->
+ <tr><td height="40"></td></tr>
+      <!---->
+<!-- v 1 column article v -->
+ 
+ 
+ 
+ <!--Personaise your trip-->
+   
+<!-- ^ 1 column article ^ -->
+<!-- v 2 column article v -->
+    <!---->
+  <tr>
+    <td>
+   <table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner"><!----><table>
+ 
+  <tr>
+   <td height="40">
+    <table>
+     
+      <tr>
+       <td style="padding-bottom:10px;padding-left:20px;padding-right:20px;">
+        <p class="UniversalSans-medium" style="color:#072B45;font-family: Arial,sans-serif;font-size:16px;font-weight:500;text-align:center;line-height:20px;mso-line-height-rule:exactly;text-transform:initial;">
+         Uw reis naar Porto</p></td></tr><tr>
+       <td style="padding-bottom:24px;padding-left:20px;padding-right:20px;">
+        <h2 class="UniversalSans-medium klm_content_text_title" style="color:#072B45;font-family: Arial,sans-serif;font-size:36px;font-weight:500;text-align:center;line-height:40px;mso-line-height-rule:exactly;text-transform:initial;">
+         Personaliseer uw reis</h2></td></tr><tr>
+       <td style="padding-bottom:20px;padding-left:20px;padding-right:20px;">
+        <p class="UniversalSans-regular" style="color:#072B45;font-family: Arial,sans-serif;font-size:16px;font-weight:400;text-align:center;line-height:20px;mso-line-height-rule:exactly;text-transform:initial;">
+         Boek voor vertrek nog wat extra's voor een nog fijnere reis. Ga naar Mijn Reis en ontdek de verschillende extra opties die we bieden voor een zo aangenaam mogelijk begin van uw reis.</p></td></tr><tr>
+       <td style="padding-bottom:40px;">
+        <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-radius:12px; background-color:#0077CD;margin:0 auto;">
+         
+          <tr>
+           <td align="right" height="40">
+            <a aria-pressed="false" href="https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs4bHOPkKgkxHP0VXQy0CPdHQekHswsX8YANIUxvPubK8BPBp1T7hKxYF0CPfGTF_mgPfqDqLtBPkGxFwMRgfe6vLQ14-A5F4cd5aRt9C5DQ" role="button" target="_blank"><img alt=" " height="40" src="https://img.static-kl.com/transform/002d5b22-347f-462a-add6-c24147c166aa/spacer_template_new?consumerid=empk&io=transform:fill,width:24,height:40" width="24"> </a></td><td align="center" class="UniversalSans-medium" height="48" style="font-family: Universal display, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Arial, sans-serif; font-weight: 500; font-size:16px; color:#ffffff;" valign="middle">
+            <a  aria-pressed="false" href="https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs4c98GHQdJFCuH2h3snLfWxIiNjNXN7O2UrjC-DoxpioD8LFtIg7Cn0ZcfjpnFBu6qiW3nr3V2IRkGTRY9nbplHl4-U4CqER657-EqKglcB" role="button" style="display: block; line-height: 40px; text-decoration: none; color: #ffffff;" target="_blank">Ga naar Mijn Reis </a></td><td align="left" height="40">
+            <a aria-pressed="false" href="https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs4dxD9OsRVMXZeYam2HD6X6Dnl8HYEUsOD-uzsmAavGiBjMZRxXv3HUPc6iftmynjpfBivaUZ7kCqPQKyNt0-FEznC7LwFgWzDUdf7j00DC" role="button" target="_blank"><img alt=" " height="40" src="https://img.static-kl.com/transform/002d5b22-347f-462a-add6-c24147c166aa/spacer_template_new?consumerid=empk&io=transform:fill,width:24,height:40" width="24"> </a></td></tr></table></td></tr></table></td></tr></table></td></tr></table>
+    </td>
+     </tr>
+     <!---->
+ <!--checked baggage-->
+<!-- ^ 2 column article ^ -->
+<!-- v 2 column article v -->
+   
+     <!-- Comfort block HTML here -->
+   <tr>
+    <td>
+   <table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner">
+<!----><!-----><table>
+ <tbody>
+  <tr>
+   <td class="padding-b0" style="padding:0 20px 20px 20px;">
+    <table align="left" border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+     <tbody>
+      <tr>
+       <td class="hide" style="width:232px;">
+        <!--[if gte mso 9]>
+<img src="https://img.static-kl.com/transform/2e79c5d8-3451-45e0-aa02-0b7c68d7fbbd/Economy-Comfort?consumerid=empk&io=transform:fill" style="width:230px;display:block;" width="230" alt="Treat yourself to more comfort" />
+<![endif]--><!--[if !mso]><!--><div style="background-image:url('https://img.static-kl.com/transform/2e79c5d8-3451-45e0-aa02-0b7c68d7fbbd/Economy-Comfort?consumerid=empk&amp;io=transform:fill');background-size:cover;border-radius:8px;">
+         <img alt="Treat yourself to more comfort" class="hide" src="https://img.static-kl.com/transform/dbd53252-ae94-4a37-a78f-475ce0df2448/sp232?consumerid=empk&io=transform:fill" style="width:232px;display:block;"></div><!--<![endif]--></td><td class="padding-lr0 fullwidth" style="padding-bottom:20px;padding-left:20px;padding-right:20px;width:368px;">
+        <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+         <!--[if !mso]><!--><tbody>
+          <tr>
+           <td class="show" style="display:none;background-image:url('https://img.static-kl.com/transform/2e79c5d8-3451-45e0-aa02-0b7c68d7fbbd/Economy-Comfort?consumerid=empk&amp;io=transform:fill');background-size:cover;border-radius:20px;">
+            <img alt="Treat yourself to more comfort" class="show" src="https://img.static-kl.com/transform/0d2faeb2-2c47-4a5b-859a-a6f71a509ed4/sp375?consumerid=empk&io=transform:fill" style="width:100%;display:none;"></td></tr><tr>
+           <td class="show" style="display:none;height:20px;">
+           </td></tr><!--<![endif]--><tr>
+           <td>
+            <h4 class="UniversalSans-bold" style="color:#072B45;font-family: Arial,sans-serif;font-size:20px;font-weight:700;text-align:left;line-height:28px;">
+             Verwen uzelf met meer comfort</h4></td></tr><tr>
+           <td style="padding-bottom:10px;">
+            <p class="UniversalSans-regular" style="color:#072B45;font-family: Arial,sans-serif;font-size:14px;font-weight:400;text-align:left;line-height:22px;mso-line-height-rule:exactly;text-transform:initial;">
+             <br>
+             Geniet van meer beenruimte en een extra verstelbare rugleuning in Economy Comfort. Als <strong>Flying Blue Platinum-deelnemer</strong> kunt u gratis een extra comfortabele stoel reserveren. <br>
+             <br>
+             &nbsp;</p></td></tr><tr>
+           <td align="right" class="floatleft" style="color:#072B45;font-family: Arial,sans-serif;font-size:16px;font-weight:700;text-align:right;line-height:24px;">
+            <a aria-pressed="false" class="UniversalSans-medium" href="https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs4eiXFp9hX6uO5mOrJYUX38qLjT6xbEjFQyzL2xADlIqtt653HbgzP7VcwhXuXeQcTsRaIX9kn4upFlUche0mzamzDuTzB2wW6in1d_tCcU" role="button" style="color:#072B45;text-decoration:underline!important;">Boek online</a></td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody></table><!----></td></tr></table>
+     </td>
+   </tr>
+      
+ <!--hand baggage-->
+<!-- ^ 2 column article ^ -->
+<!-- v info block v -->
+   
+    <!-- displayBusinessBlock HTML -->
+    <tr>
+    <td>
+   <table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner">
+<!----><!----><!----><!--
+--><!----><table>
+ <tbody>
+  <tr>
+   <td class="padding-b0" style="padding:0 20px 20px 20px;">
+<table align="left" border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+ <tbody>
+  <tr>
+   <td class="hide" style="width:232px;">
+    <!--[if gte mso 9]>
+<img src="https://img.static-kl.com/transform/948d6543-12a8-410d-9336-4a8eb864da0c/BC-EUR-Pre-Travel?consumerid=empk&io=transform:fill" style="width:230px;display:block;" width="230" alt="Upgrade to Business Class" />
+<![endif]--><!--[if !mso]><!--><div style="background-image:url('https://img.static-kl.com/transform/948d6543-12a8-410d-9336-4a8eb864da0c/BC-EUR-Pre-Travel?consumerid=empk&io=transform:fill');background-size:cover;border-radius:8px;">
+     <img alt="Upgrade to Business Class" class="hide" src="https://img.static-kl.com/transform/dbd53252-ae94-4a37-a78f-475ce0df2448/sp232?consumerid=empk&io=transform:fill" style="width:232px;display:block;"></div><!--<![endif]--></td><td class="padding-lr0 fullwidth" style="padding-bottom:20px;padding-left:20px;padding-right:20px;width:368px;">
+    <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+     <!--[if !mso]><!--><tbody>
+      <tr>
+       <td class="show" style="display:none;background-image:url('https://img.static-kl.com/transform/948d6543-12a8-410d-9336-4a8eb864da0c/BC-EUR-Pre-Travel?consumerid=empk&io=transform:fill');background-size:cover;border-radius:20px;">
+        <img alt="Upgrade to Business Class" class="show" src="https://img.static-kl.com/transform/0d2faeb2-2c47-4a5b-859a-a6f71a509ed4/sp375?consumerid=empk&io=transform:fill" style="width:100%;display:none;"></td></tr><tr>
+       <td class="show" style="display:none;height:20px;">
+       </td></tr><!--<![endif]--><tr>
+       <td>
+        <h4 class="UniversalSans-bold" style="color:#072B45;font-family: Arial,sans-serif;font-size:20px;font-weight:700;text-align:left;line-height:28px;">
+         Upgrade naar Business Class</h4></td></tr><tr>
+       <td style="padding-bottom:10px;">
+        <p class="UniversalSans-regular" style="color:#072B45;font-family: Arial,sans-serif;font-size:14px;font-weight:400;text-align:left;line-height:22px;mso-line-height-rule:exactly;text-transform:initial;">
+         Upgrade naar Business Class en geniet van meer privacy, comfort, culinaire hoogtepunten en de volle aandacht van ons cabinepersoneel. Hoe eerder u reserveert, hoe meer keuze u heeft!</p></td></tr><tr>
+       <td align="right" class="floatleft" style="color:#072B45;font-family: Arial,sans-serif;font-size:16px;font-weight:700;text-align:right;line-height:24px;">
+         <a  aria-pressed="false" class="UniversalSans-medium" href="https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs4fflfMFe316vYbjCfrVsYw7xyZnxGcHtkOCg1XEXmMpkTAxmy11zrruezW-R-5gv_Nv1RYpCLbQNzhtnM062ry9QLTXpEfxgJy9xQvx_7d" role="button" style="color:#072B45;text-decoration:underline!important;" target="_blank">Boek online</a></td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody></table><!----></td></tr></table>
+      </td>
+   </tr>
+   
+ <!--hand baggage 2-->
+<!-- ^ info block ^ -->
+    
+<!-- v 2 column article v -->
+ <!--bring your pet in the cabin-->
+<!-- ^ 2 column article ^ -->
+<!-- v 2 column article v -->
+    
+ <!--Travel with your bike-->
+<!-- ^ 2 column article ^ -->
+<!-- v 2 column article v -->
+      
+ <!--window seat-->
+<!-- ^ 2 column article ^ -->
+<!-- v 2 column article v -->
+     
+  <!-- displayCheckedBaggageBlock HTML -->
+   <tr>
+    <td>
+   <table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner">
+<!----><!----><table>
+	<tbody>
+		<tr>
+			<td style="padding:0 20px 0 20px;">
+				<table align="left" border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+					<tbody>
+						<tr>
+							<td class="hide" style="min-width:232px;width:232px;">
+								<!--[if gte mso 9]>
+<img src="https://img.static-kl.com/transform/c568a232-7fa5-4b9c-a1af-25c94cadfa16/Checked-baggage?consumerid=empk&io=transform:fill" style="width:230px;display:block;" width="230" alt="Checked baggage" />
+<![endif]--><!--[if !mso]><!--><div style="background-image:url('https://img.static-kl.com/transform/c568a232-7fa5-4b9c-a1af-25c94cadfa16/Checked-baggage?consumerid=empk&amp;io=transform:fill');background-size:cover;border-radius:8px;">
+									<img alt="Checked baggage" class="hide" src="https://img.static-kl.com/transform/dbd53252-ae94-4a37-a78f-475ce0df2448/sp232?consumerid=empk&io=transform:fill" style="width:232px;display:block;" width="232"></div><!--<![endif]--></td><td class="padding-lr0 fullwidth" style="padding-bottom:20px;padding-left:20px;padding-right:20px;width:368px;">
+								<table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+									<!--[if !mso]><!--><tbody>
+										<tr>
+											<td class="show" style="display:none;background-image:url('https://img.static-kl.com/transform/c568a232-7fa5-4b9c-a1af-25c94cadfa16/Checked-baggage?consumerid=empk&amp;io=transform:fill');background-size:cover;border-radius:20px;">
+												<img class="show" src="https://img.static-kl.com/transform/0d2faeb2-2c47-4a5b-859a-a6f71a509ed4/sp375?consumerid=empk&io=transform:fill" style="width:100%;display:none;"></td></tr><tr>
+											<td class="show" style="display:none;height:20px;">
+											</td></tr><!--<![endif]--><tr>
+											<td>
+												<h4 class="UniversalSans-bold" style="color:#072B45;font-family: Arial,sans-serif;font-size:20px;font-weight:700;text-align:left;line-height:28px;">
+													Ruimbagage</h4></td></tr><tr>
+											<td style="padding-bottom:10px;">
+												<p class="UniversalSans-regular" style="color:#072B45;font-family: Arial,sans-serif;font-size:14px;font-weight:400;text-align:left;line-height:22px;mso-line-height-rule:exactly;text-transform:initial;">
+													Reist u met ruimbagage? Kijk hoeveel stuks bagage zijn toegestaan, inclusief max. gewicht en max. afmetingen. Boek uw eerste stuk extra ruimbagage gratis online en bespaar ook nog eens tijd!<br>
+													&nbsp;</p></td></tr><tr>
+											<td align="right" class="floatleft" style="color:#072B45;font-family: Arial,sans-serif;font-size:16px;font-weight:700;text-align:right;line-height:24px;">
+												<a aria-pressed="false" class="UniversalSans-medium" href="https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs4gP9dloQyYYiuupAgpNgxCtiHjjnmFyFD22MESeT2BfhXJZGn3o1d7oFJUT6JYvO2rRY5wYbKqF9cZ5zdZdh5Lb2tVsOBWc97hiE55F0qH" role="button" style="color:#072B45;text-decoration:underline!important;">Boek online</a></td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody></table><!----></td></tr></table>
+     </td>
+   </tr>
+      
+   
+ <!--front standard seat-->
+<!-- ^ 2 column article ^ -->
+<!-- v 2 column article v -->
+     
+  <!-- displayExtraLegroomBlock HTML -->
+   <tr>
+    <td>
+   <table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner">
+<!----><!-- --><!----><table>
+ <tbody>
+  <tr>
+   <td class="padding-b0" style="padding:0 20px 20px 20px;">
+    <table align="left" border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+     <tbody>
+      <tr>
+       <td class="hide" style="width:232px;">
+        <!--[if gte mso 9]>
+<img src="https://img.static-kl.com/transform/e202903f-da7f-4921-96ff-b73a3c8468ec/Extra-legroom?consumerid=empk&io=transform:fill" style="width:230px;display:block;" width="230" alt="Extra legroom seat" />
+<![endif]--><!--[if !mso]><!--><div style="background-image:url('https://img.static-kl.com/transform/e202903f-da7f-4921-96ff-b73a3c8468ec/Extra-legroom?consumerid=empk&amp;io=transform:fill');background-size:cover;border-radius:8px;">
+         <img alt="Extra legroom seat" class="hide" src="https://img.static-kl.com/transform/dbd53252-ae94-4a37-a78f-475ce0df2448/sp232?consumerid=empk&io=transform:fill" style="width:232px;display:block;"></div><!--<![endif]--></td><td class="padding-lr0 fullwidth" style="padding-bottom:20px;padding-left:20px;padding-right:20px;width:368px;">
+        <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+         <!--[if !mso]><!--><tbody>
+          <tr>
+           <td class="show" style="display:none;background-image:url('https://img.static-kl.com/transform/e202903f-da7f-4921-96ff-b73a3c8468ec/Extra-legroom?consumerid=empk&amp;io=transform:fill');background-size:cover;border-radius:20px;">
+            <img alt="Extra legroom seat" class="show" src="https://img.static-kl.com/transform/0d2faeb2-2c47-4a5b-859a-a6f71a509ed4/sp375?consumerid=empk&io=transform:fill" style="width:100%;display:none;"></td></tr><tr>
+           <td class="show" style="display:none;height:20px;">
+           </td></tr><!--<![endif]--><tr>
+           <td>
+            <h4 class="UniversalSans-bold" style="color:#072B45;font-family: Arial,sans-serif;font-size:20px;font-weight:700;text-align:left;line-height:28px;">
+             SStoel met extra beenruimte</h4></td></tr><tr>
+           <td style="padding-bottom:10px;">
+            <p class="UniversalSans-regular" style="color:#072B45;font-family: Arial,sans-serif;font-size:14px;font-weight:400;text-align:left;line-height:22px;mso-line-height-rule:exactly;text-transform:initial;">
+             <br>
+             Strek uw benen tijdens de vlucht in één van onze stoelen met extra beenruimte naast de nooduitgang. Als <strong>Flying Blue Platinum-deelnemer</strong> kunt u gratis een stoel met extra beenruimte reserveren.
+<br>
+             &nbsp;</p></td></tr><tr>
+           <td align="right" class="floatleft" style="color:#072B45;font-family: Arial,sans-serif;font-size:16px;font-weight:700;text-align:right;line-height:24px;">
+            <a aria-pressed="false" class="UniversalSans-medium" href="https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs4huxrZ-4bzXUMyqAaljAvBGPWYt9ehVN7jMr58jYSzVZN6wSxPHxepL1hsf6OnKmpREOahsG9LKtjokjL6toZDUBBqg1hH2rsle9zaWwIg" role="button" style="color:#072B45;text-decoration:underline!important;">Boek online</a></td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody></table><!----></td></tr></table>
+     </td>
+   </tr>
+    
+ <!--Sit Together-->
+<!-- ^ 2 column article ^ -->
+<!-- v 2 column article v -->
+     
+ <!--Treat yourself with more comfort-->
+<!-- ^ 2 column article ^ -->
+<!-- v 2 column article v -->
+     
+ <!--extra leg room seat-->
+<!-- ^ 2 column article ^ -->
+<!-- v 2 column article v -->
+    
+ <!--upgrade to business class-->
+<!-- ^ 2 column article ^ -->
+<!-- v 2 column article v -->
+     
+ <!--upgrade to premium comfort-->
+<!-- ^ 2 column article ^ -->
+<!-- v 2 column article v -->
+    
+ <!--KLM Crown lounge-->
+<!-- ^ 2 column article ^ -->
+<!-- v 2 column article v -->
+     
+ <!--KLM Crown lounge-->
+<!-- ^ 2 column article ^ -->
+<!-- v 2 column article v -->
+    
+ <!--Rest relax and recharge-->
+<!-- ^ 2 column article ^ -->
+<!-- v 2 column article v -->
+    
+ <!--A la carte -->
+<!-- ^ 2 column article ^ -->
+<!-- v 2 column article v -->
+     
+ <!--Co2 Impact-->
+<!-- ^ 2 column article ^ -->
+<!-- v 2 column article v -->
+    
+ <!--Globetrotters-->
+<!-- ^ 2 column article ^ -->
+<!-- v 2 column article v -->
+    
+ <!--Need vaccines-->
+<!-- ^ 2 column article ^ -->
+     <!---->
+ <tr><td class="hide" height="20"></td></tr>
+   
+ <tr><td height="20"></td></tr>
+    <!---->
+</tbody></table>    
+   
+  </td>
+    </tr>
+<!---->
+ <tr><td height="40"></td></tr>
+       <!---->
+</tbody></table>
+<!---->
+
+ 
+  
+    <!--new table-->
+  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" bgcolor="#F6F1ED" class="klm_dark_blue_900">
+  <tbody>
+   <!-- <tr><td height="40"></td></tr>-->
+    <tr>
+      <td style="padding-left:20px;padding-right:20px;">
+
+        <table role="presentation" class="fullwidth klm_dark_blue_800" cellpadding="0" cellspacing="0" border="0" bgcolor="#ffffff" style="width:640px;border-radius:24px;margin:0 auto;" align="center">
+          <tbody>
+            <tr><td height="40"></td></tr>
+            <tr>
+              <td style="padding-left:20px;padding-right:20px;">
+                <table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner">
+<!----><!----><!----><!----><table align="center" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" class="fullwidth klm_dark_blue_800" role="presentation" style="width:640px;border-radius:24px;margin:0 auto;">
+ <tbody>
+  <tr>
+   <td height="40">
+   </td></tr><tr>
+   <td style="padding-bottom:10px;padding-left:20px;padding-right:20px;">
+    <p class="UniversalSans-medium" style="color:#565250;font-family: Arial,sans-serif;font-size:16px;font-weight:500;text-align:center;line-height:20px;mso-line-height-rule:exactly;text-transform:initial;">
+     Uw checklist </p></td></tr><tr>
+   <td style="padding-bottom:24px;padding-left:20px;padding-right:20px;">
+    <h2 class="UniversalSans-medium klm_content_text_title" style="color:#002746;font-family: Arial,sans-serif;font-size:36px;font-weight:500;text-align:center;line-height:40px;mso-line-height-rule:exactly;text-transform:initial;">
+     Begin goed voorbereid aan uw reis</h2></td></tr><tr>
+   <td style="padding-bottom:20px;padding-left:20px;padding-right:20px;">
+    <p class="UniversalSans-regular" style="color:#565250;font-family: Arial,sans-serif;font-size:16px;font-weight:400;text-align:center;line-height:20px;mso-line-height-rule:exactly;text-transform:initial;">
+     Er zijn mogelijk nog wat taken die uw aandacht vragen. Voltooi alle taken voor het begin van uw reis. Anders kunt u mogelijk niet aan boord van uw vlucht.</p></td></tr><tr>
+   <td style="padding-bottom:40px;">
+    <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-radius:12px; background-color:#0077CD;margin:0 auto;">
+     <tbody>
+      <tr>
+       <td align="right" height="40">
+        <a aria-pressed="false" href="https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs4iO8YOcglfqRquqzm0TLojW7ltqUhds9jSp-mUmud_z-c1O12cvFptYN6vESnLNUrxxSl7j2DSDdgxW8A0wG6K6hT77YnMr5KnX1QMEYOL" role="button" target="_blank"><img alt=" " height="40" src="https://img.static-kl.com/transform/002d5b22-347f-462a-add6-c24147c166aa/spacer_template_new?consumerid=empk&io=transform:fill" width="24"> </a></td><td align="center" class="UniversalSans-medium" height="48" style="font-family: Universal display, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Arial, sans-serif; font-weight: 500; font-size:16px; color:#ffffff;" valign="middle">
+        <a aria-pressed="false" href="https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs4jQ5PA52YErXcWLtFynXFokiRo7NtMmEH8OqaacqKP2TS6Yu0AhLdmGzhWIAs2qEf15UYb2TcGzxAg9zso7NGq5-7T3fmbqAF7nEBUP0l0" role="button" style="display: block; line-height: 40px; text-decoration: none; color: #ffffff;" target="_blank">Voltooi mijn taken</a></td><td align="left" height="40">
+        <a aria-pressed="false" href="https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs4klhqXymYe_7woUgapWjRDMx_ViFCy_HHkoqLZEhdb-FB-T0ne9tHrwHw1Uu5tu3h217PUwuzC1wRpQIc-SPgK4rEL2YAcCOp7bkY8wklc" role="button" target="_blank"><img alt=" " height="40" src="https://img.static-kl.com/transform/002d5b22-347f-462a-add6-c24147c166aa/spacer_template_new?consumerid=empk&io=transform:fill" width="24"> </a></td></tr></tbody></table></td></tr></tbody></table></td></tr></table>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding-left:20px;padding-right:20px;">
+                <table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner">
+<!----><!----><!----><table border="0" cellpadding="0" cellspacing="0" class="klm_brown" role="presentation" style="background-color:#FCE0B3;border-radius:16px;">
+ <tbody>
+  <tr>
+   <td height="20">
+   </td></tr><tr>
+   <td style="padding:0 20px 10px 20px;">
+    <p class="UniversalSans-bold" style="color:#322800;font-family: Arial,sans-serif;font-size:14px;font-weight:700;text-align:left;line-height:22px;mso-line-height-rule:exactly;">
+     Controleer de reisvoorschriften</p></td></tr><tr>
+   <td style="padding:0 20px 10px 20px;">
+    <p style="color:#322800;font-family: Arial,sans-serif;font-size:14px;font-weight:400;text-align:left;line-height:22px;mso-line-height-rule:exactly;">
+     Wilt u er zeker van zijn dat u alle documenten bij u hebt om te mogen vliegen? Met de TravelDoc-tool van KLM  kunt u heel makkelijk de vereisten voor uw reis controleren. Controleer deze vereisten regelmatig voor uw vertrek om er zeker van te zijn dat u kunt reizen. Vergeet ook niet om de vereisten te controleren van het land waar u heen reist, van waaruit u terugreist of waar u een aansluitende vlucht of overstap hebt. Deze vereisten kunnen per land verschillen. Er kunnen vrijstellingen van reisvoorwaarden voor u gelden.
+</p></td></tr><tr>
+   <td align="left" style="color:#382100;font-family: Arial,sans-serif;font-size:14px;font-weight:700;text-align:left;line-height:22px;padding:0 20px;">
+    <a aria-pressed="false" class="UniversalSans-medium" href="https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs4l0hJOhALS7nxiC2XiOQBsjJqLiFUcu3YaS6IC9g4YN9YEemxwOW_--zfbUheCcfyvph7Tv9AUlOkV38VjEZqraQ8IDklpHjI06Gjz5ogm" role="button" style="color:#382100;text-decoration:underline!important;" target="_blank">de TravelDoc-tool van KLM </a></td></tr><tr>
+   <td height="20">
+   </td></tr></tbody></table></td></tr></table>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding-left:20px;padding-right:20px;">
+                <table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner"><!----></td></tr></table>                  
+              </td>
+            </tr>
+            <tr>
+              <td style="padding-left:20px;padding-right:20px;">
+                <table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner">
+<!--  -->
+<br>
+
+  
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color:#EAF4FB;border-radius:16px;">
+ <tr><td></td></tr>
+ <tr>
+  <td style="padding:20px 20px 10px 20px;">
+<p class="UniversalSans-bold" style="color:#001527!important;font-family: Arial,sans-serif;font-size:14px;font-weight:700;text-align:left;line-height:22px;mso-line-height-rule:exactly;">Vragen?</p>
+  </td>
+ </tr>
+ <tr>
+  <td style="padding-bottom:10px;padding-right:20px;padding-left:20px;width:100%;">
+<p class="UniversalSans-regular" style="color:#072B45!important;font-family: Arial,sans-serif;font-size:14px;font-weight:400;text-align:left;line-height:22px;mso-line-height-rule:exactly;text-transform:initial;">Voor u als Platinum-deelnemer is er een speciaal telefoonnummer beschikbaar: </p>
+  </td>
+ </tr>
+ <tr>
+  <td style="padding:0px 20px 20px 20px;">
+<p class="UniversalSans-bold" style="color:#001527!important;font-family: Arial,sans-serif;font-size:14px;font-weight:700;text-align:left;line-height:22px;mso-line-height-rule:exactly;">
+<a href="tel:+31204747737" style="color:#001527!important;text-decoration:none;">+31 20 47 47 737</a> </p>
+  </td>
+ </tr>
+</table> 
+  
+ 
+
+ <!-- -->
+
+  <!---->
+<!---->
+<br>
+
+  
+
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color:#EAF4FB;border-radius:16px;">
+ <tr><td></td></tr>
+ <tr>
+  <td style="padding:20px 20px 10px 20px;">
+<p class="UniversalSans-bold" style="color:#001527!important;font-family: Arial,sans-serif;font-size:14px;font-weight:700;text-align:left;line-height:22px;mso-line-height-rule:exactly;">
+Actuele vluchtinformatie via sms</p>
+  </td>
+ </tr>
+ <tr>
+  <td style="padding-bottom:10px;padding-right:20px;padding-left:20px;width:100%;">
+<p class="UniversalSans-regular" style="color:#072B45!important;font-family: Arial,sans-serif;font-size:14px;font-weight:400;text-align:left;line-height:22px;mso-line-height-rule:exactly;text-transform:initial;">We sturen u een sms als uw vluchtschema verandert.</p>
+  </td>
+ </tr>
+ <tr>
+  <td style="padding:0px 20px 20px 20px;">
+<p class="UniversalSans-bold" style="color:#001527!important;font-family: Arial,sans-serif;font-size:14px;font-weight:700;text-align:left;line-height:22px;mso-line-height-rule:exactly;">
+<a role="button" aria-pressed="false" href="https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs4mTZTy5nWTbLqazDNxLHr97g3M59aqIAD5wErXPIhaa51RDhU4UDN8reKxJMBqFXpTL2UXaVlagTqGaQqTLfmDeqNv_nmmDQSmvX9gNnLN" class="UniversalSans-bold" style="color:#001527!important;text-decoration:underline!important;" target="_blank">Voeg uw telefoonnummer toe</a> </p>
+  </td>
+ </tr>
+</table>
+  
+<br>
+
+
+
+
+
+
+
+</td></tr></table>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner">
+
+<!---->
+
+
+  
+<!---->
+     <!---->  
+  
+  
+ 
+<!---->
+
+<!-- --></td></tr></table>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner"><!---->
+  <table>
+    <tr>
+  <td>
+   <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="border-top:2px solid #f5f1ed" class="klm_dark_blue_900_border"><tr><td height="30"></td></tr></table>
+  </td>
+ </tr>
+<tr>
+  <td style="padding-bottom:24px;padding-left:20px;padding-right:20px;">
+<h3 class="UniversalSans-medium klm_content_text_title" style="color:#272524;font-family: Arial,sans-serif;font-size:24px;font-weight:500;text-align:left;line-height:28px;mso-line-height-rule:exactly;text-transform:initial;">Assistentie en gezondheid</h3>
+  </td>
+ </tr>
+<tr>
+  <td style="padding:0 20px 10px 20px;">
+<p class="UniversalSans-regular" style="color:#797471;font-family: Arial,sans-serif;font-size:14px;font-weight:400;text-align:left;line-height:22px;mso-line-height-rule:exactly;">
+Of u nu een rolstoel nodig heeft, met een getrainde hulphond reist, of hulp nodig heeft op de luchthaven, we helpen u graag verder met meer informatie op onze website.</p>
+  </td>
+ </tr>
+<tr>
+  <td align="left" class="UniversalSans-bold" style="color:#001527;font-family: Arial,sans-serif;font-size:14px;font-weight:700;text-align:left;line-height:22px;padding:0 20px 20px 20px;">
+<a role="button" aria-pressed="false" href="https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs4nK_F2iz_AMNbesFeIXWaQo4t39IEbBeED4FUqBmZCw2Kkujqm-KFRZYfHllDGhLsYIQYVv3aLs_MX16Ir4c3E04tpoolG-fEBQjJxZ482" class="UniversalSans-bold" style="color:#001527;text-decoration:underline!important;" target="_blank">Ga naar de KLM-website</a>
+  </td>
+ </tr>
+</table></td></tr></table>
+              </td>
+            </tr>
+           <!-- <tr>               <td>                 <div data-type="slot" data-key="eicfxc3ral" data-label="Assistance health"></div>               </td>             </tr>-->
+            <tr>
+              <td>
+                <table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner"><!----></td></tr></table>
+              </td>
+            </tr>
+            <tr>
+              <td height="20"></td>
+            </tr>
+          </tbody>
+        </table>
+
+      </td>
+    </tr>
+    <tr><td height="40"></td></tr>
+  </tbody>
+</table>
+
+
+<!--new table end here-->
+  
+  
+  
+    
+<!---->
+  
+<!---->
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" bgcolor="#F6F1ED" class="klm_dark_blue_900">
+    <tbody><tr>
+        <td style="padding-left:20px;padding-right:20px;padding-bottom:40px;">
+<!--KLM App-->
+<!-- ^ header ^ --> 
+          <table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner"><table role="presentation" class="fullwidth klm_dark_blue_700" cellpadding="0" cellspacing="0" border="0" bgcolor="#002746" width="640" style="width:640px;margin: 0 auto;border-radius:24px;" align="center">
+<tr>
+  <td> 
+<img class="fullwidth" src="https://img.static-kl.com/transform/422f2fb2-a02e-48ac-8cc7-00b98d73598a/KLM-App?consumerid=empk&io=transform:fill" width="640" border="0" style="display: block;margin:0 auto;border-radius:24px 24px 24px 0;" alt="klm">
+  </td>
+</tr>
+ <tr><td height="40"></td></tr>
+ <tr>
+  <td style="padding-bottom:10px;padding-left:20px;padding-right:20px;">
+<p class="UniversalSans-medium" style="color:#ffffff;font-family: Arial,sans-serif;font-size:16px;font-weight:500;text-align:center;line-height:20px;mso-line-height-rule:exactly;text-transform:initial;">Download de KLM-app</p>
+  </td>
+ </tr>
+ <tr>
+  <td style="padding-bottom:12px;padding-left:20px;padding-right:20px;">
+<h2 class="UniversalSans-medium klm_content_text_title" style="color:#A5D5EF!important;font-family: Arial,sans-serif;font-size:36px;font-weight:500;text-align:center;line-height:40px;mso-line-height-rule:exactly;text-transform:initial;">Uw reisassistent in zakformaat
+</h2>
+  </td>
+ </tr>
+ <tr>
+  <td style="padding-bottom:20px;padding-left:20px;padding-right:20px;">
+<p class="UniversalSans-regular" style="color:#ffffff;font-family: Arial,sans-serif;font-size:16px;font-weight:400;text-align:center;line-height:20px;mso-line-height-rule:exactly;text-transform:initial;">Blijf op de hoogte, beheer uw vluchten en personaliseer uw reis.</p>
+  </td>
+ </tr>
+ <tr>
+  <td style="padding-bottom:40px;">
+  
+<table role="presentation" align="center" cellpadding="0" cellspacing="0" border="0" style="border-radius:12px; background-color:#0077CD;margin:0 auto;">
+  <tr>
+ <td height="40" align="right">
+  <a role="button" aria-pressed="false" href="https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs4otzgqc480R5cpziAC3NNTIy4xtV3a_9b9cXoGTxUnXw1b56_EUzXo7WRuTcuAiBn2aejFChzSXe8W1egdtLoAfXPwovuHf5IHNwe0tUHQ" target="_blank">
+   <img alt=" " src="https://img.static-kl.com/transform/002d5b22-347f-462a-add6-c24147c166aa/spacer_template_new?consumerid=empk&io=transform:fill" width="24" height="40">
+  </a>
+ </td>
+ <td class="UniversalSans-medium" height="48" align="center" valign="middle" style="font-family: Universal display, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Arial, sans-serif; font-weight: 500; font-size:16px; color:#ffffff;">
+  <a role="button" aria-pressed="false" style="display: block; line-height: 40px; text-decoration: none; color: #ffffff;" href="https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs4p0BBckawkd_zupCL0Bpb4ic1xOQlDQmFy1IdPsvP_BARyE0SPO33WMqzvXjIX4cpvFGampqAemCtCWESBtv9HrZeZRftgUl63Hd03bbhG" target="_blank">Download nu</a>
+ </td>
+ <td height="40" align="left">
+  <a role="button" aria-pressed="false" href="https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs4qy90MwxnES5c1Q5D7i73mWbcMNz2y6i1p2R8kRzOGbg8xqzA4me2tW4JUdpt0bCQZ86DHLelOByFCfmpKB4o7lJEgWRCTGEaR3S_byVmz" target="_blank">
+   <img alt=" " src="https://img.static-kl.com/transform/002d5b22-347f-462a-add6-c24147c166aa/spacer_template_new?consumerid=empk&io=transform:fill" width="24" height="40">
+  </a>
+ </td>
+  </tr>
+</table>
+      
+     </td>
+ </tr>
+</table></td></tr></table>
+   
+ </td>
+</tr>
+</tbody></table>
+<!---->
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" bgcolor="#F6F1ED" class="klm_dark_blue_900">
+    <tbody><tr>
+        <td style="padding-left:20px;padding-right:20px;padding-bottom:40px;">
+<!--KLM Newsletter-->
+<!-- ^ header ^ --> 
+          <table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner"><table role="presentation" class="fullwidth klm_dark_blue_700" cellpadding="0" cellspacing="0" border="0" bgcolor="#002746" width="640" style="width:640px;margin: 0 auto;border-radius:24px;" align="center">
+<tr>
+  <td> 
+<img class="fullwidth" src="https://img.static-kl.com/transform/fc2af479-e747-4c81-a2fb-f561710ab6e2/Newsletter-optin?consumerid=empk&io=transform:fill" width="640" border="0" style="display: block;margin:0 auto;border-radius:24px 24px 24px 0;" alt="klm">
+  </td>
+</tr>
+ <tr><td height="40"></td></tr>
+ <tr>
+  <td style="padding-bottom:10px;padding-left:20px;padding-right:20px;">
+<p class="UniversalSans-medium" style="color:#ffffff;font-family: Arial,sans-serif;font-size:16px;font-weight:500;text-align:center;line-height:20px;mso-line-height-rule:exactly;text-transform:initial;">KLM nieuwsbrief</p>
+  </td>
+ </tr>
+ <tr>
+  <td style="padding-bottom:12px;padding-left:20px;padding-right:20px;">
+<h2 class="UniversalSans-medium klm_content_text_title" style="color:#A5D5EF!important;font-family: Arial,sans-serif;font-size:36px;font-weight:500;text-align:center;line-height:40px;mso-line-height-rule:exactly;text-transform:initial;">Benieuwd naar onze aanbiedingen?
+</h2>
+  </td>
+ </tr>
+ <tr>
+  <td style="padding-bottom:20px;padding-left:20px;padding-right:20px;">
+<p class="UniversalSans-regular" style="color:#ffffff;font-family: Arial,sans-serif;font-size:16px;font-weight:400;text-align:center;line-height:20px;mso-line-height-rule:exactly;text-transform:initial;">Ontvang ons laatste nieuws, speciale aanbiedingen en reisinspiratie direct in uw inbox!</p>
+  </td>
+ </tr>
+ <tr>
+  <td style="padding-bottom:40px;">
+  
+<table role="presentation" align="center" cellpadding="0" cellspacing="0" border="0" style="border-radius:12px; background-color:#0077CD;margin:0 auto;">
+  <tr>
+ <td height="40" align="right">
+  <a role="button" aria-pressed="false" href="https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs4rHtmOXPgES5ofEcgBqdYIEG-M2q0oFkY_M6WPCIuwtvRJmNwY_kF6Ek3WkvCuwOebHD0WaiE0viplMRrpTR6rfWNybRdFQsE0NBSfg1q_" target="_blank">
+   <img alt=" " src="https://img.static-kl.com/transform/002d5b22-347f-462a-add6-c24147c166aa/spacer_template_new?consumerid=empk&io=transform:fill" width="24" height="40">
+  </a>
+ </td>
+ <td class="UniversalSans-medium" height="48" align="center" valign="middle" style="font-family: Universal display, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Arial, sans-serif; font-weight: 500; font-size:16px; color:#ffffff;">
+  <a role="button" aria-pressed="false" style="display: block; line-height: 40px; text-decoration: none; color: #ffffff;" href="https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs4sd2eYD0fNWYEONYW7N09kpI0DmbKKsAT4s_JJxsqsdRAr8jSnyqrGK-SSd1t8SvjE9_RfuC6LA0Ni7Fmym0XM0OPxfQonN6pbUitgwdnM" target="_blank" >Aanmelden</a>
+ </td>
+ <td height="40" align="left">
+  <a role="button" aria-pressed="false" href="https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs4t-XWTg1romJq0kg_rCgVc3lRKdNdAMrs_nMQ32Rfj_7SYi5WKuEpeR0meiAN-8UkIdgNZaOIC1qrFivc47JDp5KJE3YKmP0kJJ0Eq_dXI" target="_blank">
+   <img alt=" " src="https://img.static-kl.com/transform/002d5b22-347f-462a-add6-c24147c166aa/spacer_template_new?consumerid=empk&io=transform:fill" width="24" height="40">
+  </a>
+ </td>
+  </tr>
+</table>
+      
+     </td>
+ </tr>
+</table></td></tr></table>
+   
+ </td>
+</tr>
+</tbody></table>
+
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" bgcolor="#F6F1ED" class="klm_dark_blue_900">
+    <tbody><tr>
+        <td style="padding-left:20px;padding-right:20px;">
+   
+<table role="presentation" class="fullwidth klm_dark_blue_800" cellpadding="0" cellspacing="0" border="0" bgcolor="#ffffff" style="width:640px;border-radius:24px;margin:0 auto;" align="center">
+ <tbody><tr><td height="30"></td></tr>
+ <tr>
+  <td style="padding-bottom:10px;padding-left:20px;padding-right:20px;">
+<!--Mopinion Text-->
+    <table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner">
+<!----><p class="UniversalSans-bold" style="color:#072B45;font-family: Arial,sans-serif;font-size:14px;font-weight:700;text-align:center;line-height:22px;mso-line-height-rule:exactly;text-transform:initial;">
+ Wat vindt u van deze e-mail?</p></td></tr></table>
+  </td>
+ </tr>
+ <tr>
+  <td style="padding-bottom:40px;">
+<!--Mopinion symbols-->
+    <table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner">
+
+<table border="0" cellpadding="0" cellspacing="0" id="footer-usabilia" width="100%">
+ 
+   <tr>
+   <td align="center" style="padding: 16px 0 0 0 !important;">
+    <table border="0" cellpadding="0" cellspacing="0" width="auto">
+     
+      <tr>
+       <td style="padding: 0 4px">
+        <p style="display: block !important;margin: 0 !important;">
+         <a aria-label="Annoying" class="klm_usabilla_link"  href="https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs4u8CWFbdEG4_nAEcTcc85A6hImLX_yiTGWjwc-cPTx-8xrnrM2ihtYiUOZ92zLJv-vLzCbGjsEoO5oHZ0qqAxQvVv5cKkoxzrrE7lSF6e2" xt="SPNOTRACK" style="font-size: 0 !important;text-decoration: none! important;display:block !important;"><img alt="Annoying" height="44" src="https://img.static-kl.com/transform/57647468-c7f8-43b0-910c-10b056a16ad7/?consumerid=ch&io=transform:fill" style="display: inline-block;vertical-align: middle" width="44"> </a></p></td><td style="padding: 0 4px">
+        <p style="display: block !important;margin: 0 !important;">
+         <a aria-label="Not really" class="klm_usabilla_link"  href="https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs4v67MFErZvz8gKieWhCiMWVgzSAwwnRguREA6d38NhuzJ0cpzcdu-qBaE4kv8u6V9Y-lcH7dB39QsGTjNvhbFNjtWqzDY5k5las6L3sXI6" xt="SPNOTRACK" style="font-size: 0 !important;text-decoration: none! important;display:block !important;"><img alt="Not really" height="44" src="https://img.static-kl.com/transform/9efb7d56-8f47-47da-afb8-874cbc9dc6f0/?consumerid=ch&io=transform:fill" style="display: inline-block;vertical-align: middle" width="44"> </a></p></td><td style="padding: 0 4px">
+        <p style="display: block !important;margin: 0 !important;">
+         <a aria-label="Neutral" class="klm_usabilla_link"  href="https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs4wFbpnzQ5TlbOflAKLY4IF6LTBksZ0JxSYfYkI1fTEESSCu0ruoHHeaSNpjs53XfYWXNwHwFdwaFDwg6RIYfCVxsVdD3cABcxaz9Kf6Ble" xt="SPNOTRACK" style="font-size: 0 !important;text-decoration: none! important;display:block !important;"><img alt="Neutral" height="44" src="https://img.static-kl.com/transform/0473645b-0f3e-4396-a83c-4af9bcf8a67c/?consumerid=ch&io=transform:fill" style="display: inline-block;vertical-align: middle" width="44"> </a></p></td><td style="padding: 0 4px">
+        <p style="display: block !important;margin: 0 !important;">
+         <a aria-label="Happy" class="klm_usabilla_link"  href="https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs4xLwwln1kFhKt71TyXfrgZ0towbT2UzzUba1J7R8OPoVOzxA-feTuWfD4S08bkrugR23gglS040GJUIsd_qwSGa2QU-1id_xD1qhCkrb_C" xt="SPNOTRACK" style="font-size: 0 !important;text-decoration: none! important;display:block !important;"><img alt="Happy" height="44" src="https://img.static-kl.com/transform/9c52e406-68f3-4c6e-bc7d-3144c477e865/?consumerid=ch&io=transform:fill" style="display: inline-block;vertical-align: middle" width="44"> </a></p></td><td style="padding: 0 4px">
+        <p style="display: block !important;margin: 0 !important;">
+          <a aria-label="Love it" class="klm_usabilla_link"  href="https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs4yHItQrAJbKBak3EluMzx2smD6ug6awuaoG_DNePxo1CvG4J1_TrXA00yKKUZVdx2OUcTfYcq9UtqbSdb6sz2azsVT_vCfEdc4baxo7UV6" xt="SPNOTRACK" style="font-size: 0 !important;text-decoration: none! important;display:block !important;"><img alt="Love it" height="44" src="https://img.static-kl.com/transform/761b5f6c-2be0-4865-96c0-92b8b481e369/?consumerid=ch&io=transform:fill" style="display: inline-block;vertical-align: middle" width="44"> </a></p></td></tr></table></td></tr></table></td></tr></table>
+  </td>
+ </tr>
+<!-- v divider v -->
+ <tr>
+  <td style="padding-left:30px;padding-right:30px;">
+   <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="border-top:2px solid #f5f1ed" class="klm_dark_blue_900_border"><tbody><tr><td height="30"></td></tr></tbody></table>
+  </td>
+ </tr>
+<!-- ^ divider ^ -->
+ <!--KLM Prefooter-->
+    <!-- v text v -->
+   <tr>
+     <td>
+       <table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner"><table role="presentation" cellpadding="0" cellspacing="0" border="0">
+  <tr>
+    <td align="center" style="padding-bottom:20px;">
+      <a href="https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs4zQaiep-tHtJ5vl7rN8GApXYJFr_aC3I-ZaJr9OxmGwoTG-RPXHQ7878zvvu8Tuy9hXOORtOK3fDwiRUBFZEbs8RKzRGREG3zorvFisx7K" target="_blank">
+        <img src="https://img.static-kl.com/transform/a5abc701-edfa-42c3-9351-a105c9e2470a/klm_logo?consumerid=empk&io=transform:fill,width:51,height:30" width="51" height="30" alt="KLM" title="KLM">
+      </a>
+    </td>
+  </tr>
+
+  <tr>
+    <td style="padding-left:30px;padding-right:30px;" valign="top">
+
+      <!-- Card 1 -->
+      <table role="presentation" class="fullwidth" cellpadding="0" cellspacing="0" border="0" width="196" style="float:left;width:196px;" align="left">
+        <tr>
+          <td>
+            <table role="presentation" class="fullwidth" cellpadding="0" cellspacing="0" border="0" width="188" style="background-color:#EAF4FB;border-radius:24px;float:left;" align="left">
+              <tr>
+                <td class="padding-b4" style="padding:14px;">
+                  <img class="width30" src="https://img.static-kl.com/transform/cbd1308b-164a-4bc3-afea-096ff7de60d6/?consumerid=empk&io=transform:fill,width:48,height:48" width="48" border="0" style="display:block;" alt="klm">
+                </td>
+              </tr>
+              <tr>
+                <td style="padding-left:16px;padding-right:16px;">
+                  <p class="UniversalSans-bold" style="color:#002845!important;font-family:Arial,sans-serif;font-size:14px;font-weight:700;text-align:left;line-height:22px;mso-line-height-rule:exactly;text-transform:initial;">Vragen?</p>
+                </td>
+              </tr>
+              <tr>
+                <td style="padding-bottom:16px;padding-left:16px;padding-right:16px;">
+                  <p class="UniversalSans-regular" style="color:#002845!important;font-family:Arial,sans-serif;font-size:12px;font-weight:400;text-align:left;line-height:18px;mso-line-height-rule:exactly;text-transform:initial;">
+                    <a href="https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs40OuwqL_YgIRId2Ovw0o4NlhyQOwfUuwCcsve285cUk28EbDCAEjfC2gYSArtwraQNgwbK9L54BJSSbcNQeaofFoqGw_x997JUQNeXmjo0" target="_blank" style="color:#002845;text-decoration:none;">
+                      Wij helpen u graag het antwoord te vinden!
+                    </a>
+                  </p>
+                </td>
+              </tr>
+            </table>
+          </td>
+          <td class="hide" style="min-width:8px;width:8px;">&nbsp;</td>
+        </tr>
+        <tr>
+          <td height="10"></td>
+          <td class="hide"></td>
+        </tr>
+      </table>
+
+      <!-- Card 2 -->
+      <table role="presentation" class="fullwidth" cellpadding="0" cellspacing="0" border="0" width="196" style="float:left;width:196px;" align="left">
+        <tr>
+          <td>
+            <table role="presentation" class="fullwidth" cellpadding="0" cellspacing="0" border="0" width="188" style="background-color:#EAF4FB;border-radius:24px;float:left;" align="left">
+              <tr>
+                <td class="padding-b4" style="padding:14px;">
+                  <img class="width30" src="https://img.static-kl.com/transform/a3ac0719-383b-4fa3-a9a3-518bd983952a/?consumerid=empk&io=transform:fill,width:48,height:48" width="48" border="0" style="display:block;" alt="Extra options">
+                </td>
+              </tr>
+              <tr>
+                <td style="padding-left:16px;padding-right:16px;">
+                  <p class="UniversalSans-bold" style="color:#002845!important;font-family:Arial,sans-serif;font-size:14px;font-weight:700;text-align:left;line-height:22px;mso-line-height-rule:exactly;text-transform:initial;">Extra opties</p>
+                </td>
+              </tr>
+              <tr>
+                <td style="padding-bottom:16px;padding-left:16px;padding-right:16px;">
+                  <p class="UniversalSans-regular" style="color:#002845!important;font-family:Arial,sans-serif;font-size:12px;font-weight:400;text-align:left;line-height:18px;mso-line-height-rule:exactly;text-transform:initial;">
+                    <a href="https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs411GFXc_widUCKGe0b21KkbRmsTG46arwWscPov8sT1Nmwel1tH0UCIVce8e0_V_W69VHOPuUuxLzmbdUI3RXELasihmt3WYX9NFKKDpOI" target="_blank" style="color:#002845;text-decoration:none;">
+                      Voeg extra opties toe aan je komende reis
+                    </a>
+                  </p>
+                </td>
+              </tr>
+            </table>
+          </td>
+          <td class="hide" style="min-width:8px;width:8px;">&nbsp;</td>
+        </tr>
+        <tr>
+          <td height="10"></td>
+          <td class="hide"></td>
+        </tr>
+      </table>
+
+      <!-- Card 3 -->
+      <table role="presentation" class="fullwidth" cellpadding="0" cellspacing="0" border="0" width="188" style="float:right;width:188px;" align="right">
+        <tr>
+          <td>
+            <table role="presentation" class="fullwidth" cellpadding="0" cellspacing="0" border="0" width="188" style="background-color:#EAF4FB;border-radius:24px;float:right;" align="right">
+              <tr>
+                <td class="padding-b4" style="padding:14px;">
+                  <img class="width30" src="https://img.static-kl.com/transform/9166e688-363f-419a-bc87-1f94024fcca1/?consumerid=empk&io=transform:fill,width:48,height:48" width="48" border="0" style="display:block;" alt="klm">
+                </td>
+              </tr>
+              <tr>
+                <td style="padding-left:16px;padding-right:16px;">
+                  <p class="UniversalSans-bold" style="color:#002845!important;font-family:Arial,sans-serif;font-size:14px;font-weight:700;text-align:left;line-height:22px;mso-line-height-rule:exactly;text-transform:initial;">Mijn Reis</p>
+                </td>
+              </tr>
+              <tr>
+                <td style="padding-bottom:16px;padding-left:16px;padding-right:16px;">
+                  <p class="UniversalSans-regular" style="color:#002845!important;font-family:Arial,sans-serif;font-size:12px;font-weight:400;text-align:left;line-height:18px;mso-line-height-rule:exactly;text-transform:initial;">
+                    <a href="https://click.airfranceklm.flyingblue.com/?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs42g2N045aaVLF_d_FD4zVKYHb0Ns_HY0VI2G6WaR7_8BRfqbhFLLQYt9wNh5NxMd926gi1AL0a9hPalTXAUVQ8dxCleovTqv9mcK8qQoRb" target="_blank" style="color:#002845;text-decoration:none;">
+                      Bereid je voor op je komende vlucht
+                    </a>
+                  </p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td height="20"></td>
+        </tr>
+      </table>
+
+    </td>
+  </tr>
+</table>
+</td></tr></table>
+     </td>
+     </tr>
+
+   
+ <tr>
+  <td style="padding:0 30px 10px 30px;">
+<!--Footer-->
+    <table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner"><p class="UniversalSans-regular" style="color:#797471;font-family: Arial,sans-serif;font-size:10px;font-weight:400;text-align:left;line-height:16px;mso-line-height-rule:exactly;padding-top: 24px;">
+Per boeking worden 5 e-mails ter voorbereiding op de reis verzonden, met services, informatie over visum en paspoort, bagageregels en speciale aanbiedingen. U kunt <a href="https://cloud.airfranceklm.flyingblue.com/KL-UnsubscriptionProcessing?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs3My8pn6NCpIqzJ2i0aRjL8hbUPm4p4RTraEeS-hOOoEYWrxep-K7iMpt7SzT81XCte4wk7_inK04c7byRmWOD1sA7ZsRVJt5QT93nv11nJYZ38vJ4KhSvFbyOMngy2fWqOnAHsEYb308i4y_6FuWmQCjOx-HrgeQ" style="color:#797471;text-decoration:underline" target="_blank" role="button" aria-pressed="false" title="Unsubscribe">zich afmelden</a> als u geen e-mails ter voorbereiding op de reis meer wilt ontvangen.
+<br><br>KLM hecht groot belang aan uw privacy. Lees de <a href="https://www.klm.nl/exchange/deeplink?country=nl&language=nl&target=/information/legal/privacy-policy" style="color:#797471;text-decoration:underline" target="_blank" role="button" aria-pressed="false" title="PrivacyStatement">Privacyverklaring van KLM</a> voor meer informatie.
+<br><br>© 2026 KLM Royal Dutch Airlines is geregistreerd in Amstelveen, Amsterdamseweg 55, 1182 GP, Nederland – Handelsregister Amsterdam nr. 33014286.
+</p></td></tr></table>
+  </td>
+ </tr>
+   
+   <tr>
+     <td style="padding:0 30px 10px 30px;">
+     <table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner">
+</td></tr></table>
+     </td>
+   </tr>
+<!-- ^ text ^ -->
+ <tr><td height="20"></td></tr>
+</tbody></table>    
+   
+  </td>
+    </tr>
+
+ <tr><td height="40"></td></tr>
+</tbody></table>
+
+ 
+  <img src="https://click.airfranceklm.flyingblue.com/open.aspx?52KZI5JUJ3HE3J4SCS4ZUU7W7Y.510008&d=510008&bmt=0" width="1" height="1" alt="">
+  
+
+</body></html>
+<div  style="display: none;" >https://click.airfranceklm.flyingblue.com/subscription_center.aspx?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs43t_lVa-TK7dN7rDkVsvLyZivYvcBNCEfy-syFi2UPUIQyQmHpIGmnh2nemervfG-XqCxkANMBdtR4lA1Wp4Ns https://click.airfranceklm.flyingblue.com/profile_center.aspx?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs44N5HSUMmlIg6UuyCl8nbWy6gGHFn-KhjMGFFpafNLkOXAjzr76N7ytcnR4m2suEFaib8w2FybE0EGBbSgIosg https://click.airfranceklm.flyingblue.com/unsub_center.aspx?qs=ABB7InYiOjEsImQiOjQ5NzZ9ADMAAAAAALzHZs45aO_1aIIuwGFC1pQRXshPJZjxZdCYrndYRSxcABKioyQ8kTPiKq0d-Z6Hbv43lFVRbkDY_0g8kCR5IAJHzYr7hyM KLM N.V. Amsterdamseweg 55 Amstelveen NOORD-HOLLAND 1182 GP NL 
+</div>
+
+--n57bDsTtm7ey=_?:--
+

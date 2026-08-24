@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Voorbereiding — Portugal Roadtrip</title>
+  <meta name="description" content="Actiepunten uit de bevestigingsmails van KLM en Forte de Gaia — wat er nog geregeld moet worden voor vertrek naar Portugal, september 2026.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icons/favicon-32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <meta name="theme-color" content="#1b4f72">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Portugal">
+  <style>
+    .voorb-intro { background: var(--cream); padding: 3rem 0 2rem; text-align: center; }
+    .back-link { display: inline-flex; align-items: center; gap: .4rem; color: var(--azul); font-weight: 600; text-decoration: none; margin-bottom: 2rem; }
+    .back-link:hover { color: var(--terra); }
+    .voorb-grid { display: flex; flex-direction: column; gap: 2rem; margin-top: 1rem; max-width: 900px; margin-left: auto; margin-right: auto; }
+    .voorb-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+    .voorb-card-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: var(--azul);
+      color: #fff;
+      padding: 1.25rem 1.75rem;
+      flex-wrap: wrap;
+    }
+    .voorb-card-header h3 { font-family: var(--serif); font-size: 1.25rem; margin: 0; flex: 1; }
+    .voorb-source-tag { font-size: .8rem; opacity: .85; white-space: nowrap; }
+    .voorb-card-body { padding: 1.5rem 1.75rem; }
+    .voorb-card-body p { margin: 0 0 .9rem; line-height: 1.6; }
+    .voorb-table { width: 100%; border-collapse: collapse; font-size: .92rem; margin-bottom: 1.1rem; }
+    .voorb-table td { padding: .45rem .5rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+    .voorb-table td:first-child { color: var(--muted); width: 42%; }
+    .voorb-table tr:last-child td { border-bottom: none; }
+    .voorb-number {
+      display: inline-block;
+      background: var(--sand);
+      border: 1px solid var(--border);
+      border-radius: 2rem;
+      padding: .25rem .9rem;
+      font-weight: 700;
+      color: var(--azul);
+      letter-spacing: .02em;
+    }
+    ul.voorb-checklist { list-style: none; margin: 0 0 1.1rem; padding: 0; }
+    ul.voorb-checklist li { margin-bottom: .65rem; }
+    ul.voorb-checklist label {
+      display: flex;
+      align-items: flex-start;
+      gap: .6rem;
+      cursor: pointer;
+      line-height: 1.5;
+    }
+    ul.voorb-checklist input[type="checkbox"] {
+      margin-top: .2rem;
+      width: 1.15rem;
+      height: 1.15rem;
+      flex-shrink: 0;
+      accent-color: var(--terra);
+      cursor: pointer;
+    }
+    ul.voorb-checklist input[type="checkbox"]:checked + span {
+      color: var(--muted);
+      text-decoration: line-through;
+      text-decoration-color: var(--terra);
+    }
+    .voorb-note {
+      border-left: 4px solid var(--gold);
+      background: var(--sand);
+      padding: .75rem 1rem;
+      border-radius: 0 var(--radius) var(--radius) 0;
+      font-size: .85rem;
+      color: var(--text);
+      margin-top: 1rem;
+    }
+    .voorb-btns { margin-top: 1.1rem; display: flex; gap: .75rem; flex-wrap: wrap; }
+    .voorb-countdown {
+      background: linear-gradient(135deg, var(--azul), #123a56);
+      color: #fff;
+      border-radius: var(--radius);
+      padding: 1.1rem 1.25rem;
+      margin: 0 0 1.25rem;
+      text-align: center;
+    }
+    .voorb-countdown-label {
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      opacity: .85;
+      margin-bottom: .6rem;
+    }
+    .voorb-countdown-units {
+      display: flex;
+      justify-content: center;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+    }
+    .voorb-countdown-unit { min-width: 3.5rem; }
+    .voorb-countdown-num {
+      font-family: var(--serif);
+      font-size: 1.9rem;
+      font-weight: 700;
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+    }
+    .voorb-countdown-unit-label {
+      font-size: .7rem;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      opacity: .8;
+      margin-top: .25rem;
+    }
+    .voorb-countdown.is-open {
+      background: linear-gradient(135deg, var(--terra), var(--gold));
+    }
+    .voorb-countdown-open-msg { font-family: var(--serif); font-size: 1.15rem; }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="nav-logo"><a href="index.html" style="color:inherit;text-decoration:none">Portugal 🇵🇹</a></div>
+    <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Menu" aria-expanded="false">☰</button>
+    <ul class="nav-links">
+      <li><a href="actueel.html">📰 Actueel</a></li>
+      <li><a href="reisinfo.html">✈️ Reisinfo</a></li>
+      <li><a href="restaurants.html">🍽️ Restaurants</a></li>
+      <li><a href="hotels.html">🏨 Hotels</a></li>
+      <li><a href="route.html">🚗 Rijroute</a></li>
+      <li><a href="kaart.html">🗺️ Kaart</a></li>
+      <li><a href="activiteiten.html">✨ Activiteiten</a></li>
+      <li><a href="checklist.html">✅ Checklists</a></li>
+      <li><a href="voorbereidingen.html" style="color:var(--gold)">🧾 Voorbereiding</a></li>
+      <li><a href="todo.html">📝 To-do</a></li>
+      <li><a href="confirmations.html">📩 Bevestigingen</a></li>
+      <li><a href="budget.html">🔒 Budget</a></li>
+      <li><a href="bronnen.html">🔗 Bronnen</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="voorb-intro">
+  <div class="container">
+    <h1 class="section-title">Voorbereiding</h1>
+    <p class="section-subtitle">Actiepunten uit binnengekomen mails van KLM &amp; Forte de Gaia — wat er nog geregeld moet worden vóór vertrek</p>
+    <a href="index.html" class="back-link">← Terug naar de roadtrip</a>
+  </div>
+</section>
+
+<section style="padding: 1rem 0 4rem;">
+  <div class="container">
+    <div class="voorb-grid">
+
+      <!-- KLM -->
+      <div class="voorb-card">
+        <div class="voorb-card-header">
+          <h3>✈️ KLM — vlucht afronden</h3>
+          <span class="voorb-source-tag">Mail van KLM, 22 aug 2026</span>
+        </div>
+        <div class="voorb-card-body">
+          <p>KLM stuurde een persoonlijke checklist om de heenvlucht naar Porto voor te bereiden. Kern: op tijd online inchecken en eventuele extra's regelen vóórdat het te laat is.</p>
+
+          <div class="voorb-countdown" data-checkin-countdown data-checkin-target="2026-09-05T03:10:00+02:00">
+            <div class="voorb-countdown-label">⏳ Tijd tot online inchecken opengaat</div>
+            <div class="voorb-countdown-units">
+              <div class="voorb-countdown-unit"><div class="voorb-countdown-num" data-cd-days>–</div><div class="voorb-countdown-unit-label">dagen</div></div>
+              <div class="voorb-countdown-unit"><div class="voorb-countdown-num" data-cd-hours>–</div><div class="voorb-countdown-unit-label">uur</div></div>
+              <div class="voorb-countdown-unit"><div class="voorb-countdown-num" data-cd-minutes>–</div><div class="voorb-countdown-unit-label">min</div></div>
+              <div class="voorb-countdown-unit"><div class="voorb-countdown-num" data-cd-seconds>–</div><div class="voorb-countdown-unit-label">sec</div></div>
+            </div>
+          </div>
+
+          <table class="voorb-table">
+            <tr><td>Boekingscode</td><td><span class="voorb-number">YZFQIJ</span></td></tr>
+            <tr><td>Vlucht</td><td>KL1571 · zo 6 sep 2026 · AMS 09:10 → OPO 10:55</td></tr>
+            <tr><td>Online inchecken</td><td>Kan vanaf 30 uur voor vertrek — dus vanaf <strong>za 5 sep, ca. 03:10 uur</strong> (NL-tijd)</td></tr>
+          </table>
+          <ul class="voorb-checklist" data-checklist="klm-voorbereiding">
+            <li><label><input type="checkbox" data-item="klm-inchecken"><span>Online inchecken (vanaf za 5 sep ca. 03:10) voor alle 4 passagiers</span></label></li>
+            <li><label><input type="checkbox" data-item="klm-extras"><span>Checken of een stoel-upgrade of extra bagage nodig is (via "Mijn Reis")</span></label></li>
+            <li><label><input type="checkbox" data-item="klm-handbagage"><span>Bij een volle Economy-vlucht: handbagage evt. gratis inchecken in de vertrekhal</span></label></li>
+          </ul>
+          <div class="voorb-note">
+            ℹ️ Eén boeking (YZFQIJ) voor alle 4 reizigers — zie 📩 Bevestigingen voor de volledige vlucht- en passagiersgegevens.
+          </div>
+        </div>
+      </div>
+
+      <!-- FORTE DE GAIA -->
+      <div class="voorb-card">
+        <div class="voorb-card-header">
+          <h3>🏨 Forte de Gaia — voorbereiding verblijf</h3>
+          <span class="voorb-source-tag">Mail van Marriott Bonvoy, 23 aug 2026</span>
+        </div>
+        <div class="voorb-card-body">
+          <p>Forte de Gaia, Autograph Collection (Vila Nova de Gaia) stuurde alvast praktische info en suggesties voor het verblijf op dag 1–2.</p>
+          <table class="voorb-table">
+            <tr><td>Bevestigingsnummer</td><td><span class="voorb-number">76094675</span></td></tr>
+            <tr><td>Aankomst</td><td>zondag 6 september 2026</td></tr>
+            <tr><td>Vertrek</td><td>dinsdag 8 september 2026</td></tr>
+            <tr><td>Adres</td><td>Rua de Serpa Pinto 60, Vila Nova de Gaia, Portugal</td></tr>
+          </table>
+          <ul class="voorb-checklist" data-checklist="fortedegaia-voorbereiding">
+            <li><label><input type="checkbox" data-item="fdg-reserveringsdetails"><span>Reserveringsdetails gecontroleerd via "View Reservation Details"</span></label></li>
+            <li><label><input type="checkbox" data-item="fdg-activiteiten"><span>Overwegen of er nog activiteiten/ervaringen in Vila Nova de Gaia geboekt moeten worden</span></label></li>
+            <li><label><input type="checkbox" data-item="fdg-contact"><span>Zo nodig hotel rechtstreeks contacten voor extra wensen bij het verblijf</span></label></li>
+          </ul>
+          <div class="voorb-note">
+            Zie 📩 Bevestigingen voor de volledige kamer- en boekingsgegevens van beide kamers.
+          </div>
+        </div>
+      </div>
+
+    </div><!-- voorb-grid -->
+  </div><!-- container -->
+</section>
+
+<footer style="background:var(--dark);color:#fff;padding:2rem;text-align:center;font-size:.85rem;opacity:.8;">
+  Portugal Roadtrip · zo 6 – di 15 sep 2026 · <a href="index.html" style="color:var(--gold)">← Terug naar de route</a>
+</footer>
+
+<script src="nav.js" defer></script>
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script src="onesignal-init.js" defer></script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => { navigator.serviceWorker.register('sw.js').catch(() => {}); });
+}
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('[data-checkin-countdown]').forEach(box => {
+    const target = new Date(box.dataset.checkinTarget);
+    const daysEl = box.querySelector('[data-cd-days]');
+    const hoursEl = box.querySelector('[data-cd-hours]');
+    const minsEl = box.querySelector('[data-cd-minutes]');
+    const secsEl = box.querySelector('[data-cd-seconds]');
+    let timerId = null;
+
+    function pad(n) { return String(n).padStart(2, '0'); }
+
+    function tick() {
+      const diff = target.getTime() - Date.now();
+      if (diff <= 0) {
+        box.classList.add('is-open');
+        box.innerHTML = '<div class="voorb-countdown-open-msg">✅ Online inchecken is nu mogelijk!</div>';
+        if (timerId) clearInterval(timerId);
+        return;
+      }
+      const totalSeconds = Math.floor(diff / 1000);
+      const days = Math.floor(totalSeconds / 86400);
+      const hours = Math.floor((totalSeconds % 86400) / 3600);
+      const minutes = Math.floor((totalSeconds % 3600) / 60);
+      const seconds = totalSeconds % 60;
+      if (daysEl) daysEl.textContent = days;
+      if (hoursEl) hoursEl.textContent = pad(hours);
+      if (minsEl) minsEl.textContent = pad(minutes);
+      if (secsEl) secsEl.textContent = pad(seconds);
+    }
+
+    tick();
+    timerId = setInterval(tick, 1000);
+  });
+
+  document.querySelectorAll('[data-checklist]').forEach(list => {
+    const key = 'portugal-checklist-' + list.dataset.checklist;
+    let saved = {};
+    try { saved = JSON.parse(localStorage.getItem(key)) || {}; } catch (e) { saved = {}; }
+    const boxes = list.querySelectorAll('input[type="checkbox"][data-item]');
+    boxes.forEach(box => {
+      if (saved[box.dataset.item]) box.checked = true;
+      box.addEventListener('change', () => {
+        saved[box.dataset.item] = box.checked;
+        try { localStorage.setItem(key, JSON.stringify(saved)); } catch (e) {}
+      });
+    });
+  });
+});
+</script>
+</body>
+</html>

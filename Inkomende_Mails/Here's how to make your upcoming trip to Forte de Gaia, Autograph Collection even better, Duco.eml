@@ -1,0 +1,1974 @@
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=wiertsema.net; s=default;
+ t=1787509829;
+ b=Vkbtnur1oJuaVE/AhCccXluYW0FBmVvvX3UHdpYsP6HwXnWhHXAmTeTVgpO9A1z+RIweN
+ 4pyZ42BV2YGn2EkPe47hjadHSyZYufnWeEE9B8MGR1hkVLMnIPMJE5BGWz51TJxeSMX5bhr
+ YtcVMbEiteSjwg88G1BNjb56deJDSCQ=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=wiertsema.net; s=default; t=1787509829; h=list-unsubscribe :
+ message-id : mime-version : reply-to : subject : from : to : date :
+ content-type : from; bh=4lHnXM+6dRMmytE4iOPEikdf4dR6zeYGWnl2rq3l/g4=;
+ b=Sod2ECLc5mi95j5otRtkdEVdDHHLUMptfyEQWDfoaFswVl7K6GYoQbVrVBusvHwC8M3/M
+ NgadzvFO4cDHyVjgNAOw7jB6+JOKK6NHQllWOKQ31pfEBHrGM0dFYBPBh+kNPJ9wNx9lgqd
+ Kyuz6qlvJGhcERk6fTwmveqJXrUc43M=
+ARC-Authentication-Results: i=1; shared80.cloud86-host.nl;
+  dkim=pass header.d=email-marriott.com;
+  spf=pass smtp.mailfrom=marriott@email-marriott.com smtp.helo=mta152a.pmx1.epsl1.com;
+  dkim=pass header.d=email-marriott.com
+Return-Path: <Marriott@email-marriott.com>
+X-Original-To: duco@wiertsema.net
+Delivered-To: duco@wiertsema.net
+Received: from mta152a.pmx1.epsl1.com (mta152a.pmx1.epsl1.com [142.54.245.152])
+	by shared80.cloud86-host.nl (Postfix) with ESMTPS id 51689282978
+	for <duco@wiertsema.net>; Sun, 23 Aug 2026 20:30:24 +0200 (CEST)
+Authentication-Results: shared80.cloud86-host.nl;
+	dkim=pass header.d=email-marriott.com;
+        spf=pass (sender IP is 142.54.245.152) smtp.mailfrom=marriott@email-marriott.com smtp.helo=mta152a.pmx1.epsl1.com
+Received-SPF: pass (shared80.cloud86-host.nl: domain of email-marriott.com designates 142.54.245.152 as permitted sender) client-ip=142.54.245.152; envelope-from=marriott@email-marriott.com; helo=mta152a.pmx1.epsl1.com;
+X-Virus-Scanned: amavis at cloud86-host.nl
+X-Spam-Flag: NO
+X-Spam-Score: -0.493
+X-Spam-Level: 
+X-Spam-Status: No, score=-0.493 tagged_above=-9999 required=4
+ tests=[BAYES_00=-1.9, DKIMWL_WL_HIGH=-0.344, DKIM_SIGNED=0.1,
+ DKIM_VALID=-0.1, DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, DMARC_PASS=-0.1,
+ HTML_FONT_LOW_CONTRAST=0.001, HTML_MESSAGE=0.001, MIME_HTML_ONLY=0.1,
+ MPART_ALT_DIFF=0.3, PYZOR_CHECK=1.392, RCVD_IN_MSPIKE_H3=0.001,
+ RCVD_IN_MSPIKE_WL=0.001, SPF_HELO_NONE=0.001, SPF_PASS=-0.001, TXREP=0.255]
+ autolearn=no autolearn_force=no
+Authentication-Results: shared80.cloud86-host.nl (amavis);
+ dkim=pass (1024-bit key) header.d=email-marriott.com
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=email-marriott.com;
+	s=ep1; t=1787509822;
+	bh=+7e0DQ+fJEFU2Wow6hNcWDpmfkvlycM8irENHFccbgA=;
+	h=List-Unsubscribe:List-Unsubscribe-Post:MIME-Version:Subject:From:
+	 To:Date:Content-Type;
+	b=A6z0Lj5t4+bw/OYESyJccNvh0i1MGouHHu6lJsBfOw/zRqwjF8vRp/haRtGhKgw4U
+	 ebufDnFMRcW1sRWYJTj1n17IeX49b1x/Xul6xO53GGW+sTmaw6jaTqnOLjL0qRTcgi
+	 KVa6J7IU3Lda9jkNOSHeV48d4GTPYzLV0LW6izRc=
+Received: from [10.233.18.231] ([10.233.18.231:38758])
+	by pc1udsmtn2n15 (envelope-from <Marriott@email-marriott.com>)
+	(ecelerity 4.2.38.62370 r(:)) with ECSTREAM
+	id A4/17-20811-E3C3B8A6; Sun, 23 Aug 2026 18:30:22 +0000
+List-Unsubscribe: <mailto:Marriott-HP2v71000001a02fe2fd0e9f1e57f4bbe5c898177@email-marriott.com?subject=list-unsubscribe>,<https://email-marriott.com/U2/v71000001a02fe2fd0e9f1e57f4bbe5c898/31d4c3dcc8334083000001c1c0b84425>
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+Message-ID: <HP2v71000001a02fe2fd0e9f1e57f4bbe5c898177@email-marriott.com>
+MIME-Version: 1.0
+Feedback-ID: 31d4c3dc-c833-4083-bb7f-fa6c2528e756:53f8cdc5-f8c9-4f2b-a7dd-75b24dd12773:email:epslh1
+X-NSS: 31d4c3dc-c833-4083-bb7f-fa6c2528e756
+Reply-To: "Do.Not.Reply@email-marriott.com"
+ <Do.Not.Reply@email-marriott.com>
+Subject: Here's how to make your upcoming trip to Forte de Gaia, Autograph
+ Collection even better, Duco
+From: "Guest Relations at Forte de Gaia, Autograph Collection "
+ <Guest.Relations@email-marriott.com>
+To: duco@wiertsema.net
+Date: Sun, 23 Aug 2026 18:30:22 +0000
+Content-Type: multipart/alternative;
+ boundary="-=Part.256d124.ca28ed19a7c85689.1a02fe354a7.6bf8d8ae429ac45a=-"
+
+---=Part.256d124.ca28ed19a7c85689.1a02fe354a7.6bf8d8ae429ac45a=-
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=UTF-8
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1=2E0 Transitional//EN" "http://w=
+ww=2Ew3=2Eorg/TR/xhtml1/DTD/xhtml1-transitional=2Edtd">
+<html xmlns=3D"http://www=2Ew3=2Eorg/1999/xhtml" xmlns:v=3D"urn:schemas-mi=
+crosoft-com:vml" xmlns:o=3D"urn:schemas-microsoft-com:office:office" lang=
+=3D"en">
+<head>
+<title>Marriott Bonvoy</title>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8" /=
+>
+<meta http-equiv=3D"X-UA-Compatible" content=3D"IE=3Dedge" />
+<meta name=3D"viewport" content=3D"width=3Ddevice-width, initial scale=3D1=
+=2E0" />
+<meta name=3D"robots" content=3D"no index" />
+<meta name=3D"format-detection" content=3D"telephone=3Dno" />
+<meta name=3D"format-detection" content=3D"address=3Dno" />
+
+<!--[if !mso]><!-->
+<link rel=3D"stylesheet" href=3D"https://fonts=2Egoogleapis=2Ecom/css2?fam=
+ily=3DAlex Brush&display=3Dswap"/>
+
+<style type=3D"text/css">
+ @font-face {
+      font-family: Swiss-Light;
+      src: url('https://cache=2Emarriott=2Ecom/aka-fonts/Milux/Swiss721BT-=
+Light=2Eeot') format('embedded-opentype'),url('https://cache=2Emarriott=2Ec=
+om/aka-fonts/Milux/Swiss721BT-Light=2Ettf') format('truetype'),url('https:/=
+/cache=2Emarriott=2Ecom/aka-fonts/Milux/Swiss721BT-Light=2Esvg') format('sv=
+g'),url('https://cache=2Emarriott=2Ecom/aka-fonts/Milux/Swiss721BT-Light=2E=
+woff') format('woff'),url('https://cache=2Emarriott=2Ecom/aka-fonts/Milux/S=
+wiss721BT-Light=2Ewoff2') format('woff2');
+      font-style: normal;
+      font-weight: 400;
+    }
+        @font-face {
+      font-family: Swiss-Bold-Condensed;
+      src: url('https://cache=2Emarriott=2Ecom/aka-fonts/MarriottDigital/s=
+wiss/Swiss721BT-BoldCondensed=2Eeot') format('embedded-opentype'),url('http=
+s://cache=2Emarriott=2Ecom/aka-fonts/MarriottDigital/swiss/Swiss721BT-BoldC=
+ondensed=2Ettf') format('truetype'),url('https://cache=2Emarriott=2Ecom/aka=
+-fonts/MarriottDigital/swiss/Swiss721BT-BoldCondensed=2Esvg') format('svg')=
+,url('https://cache=2Emarriott=2Ecom/aka-fonts/MarriottDigital/swiss/Swiss7=
+21BT-BoldCondensed=2Ewoff') format('woff'),url('https://cache=2Emarriott=2E=
+com/aka-fonts/MarriottDigital/swiss/Swiss721BT-BoldCondensed=2Ewoff2') form=
+at('woff2');
+      font-style: normal;
+      font-weight: 400;
+    }=09
+  =20
+    </style>
+<!--<![endif]-->
+
+<style type=3D"text/css">
+* { -webkit-text-size-adjust: none;}
+td { mso-line-height-rule: exactly;}
+a[x-apple-data-detectors] { color: inherit !important; text-decoration: no=
+ne !important; font-size: inherit !important; font-family: inherit !importa=
+nt; font-weight: inherit !important; line-height: inherit !important;}
+=2Ebody-fix { height: 100% !important; margin: 0 auto !important; padding:=
+ 0 !important; width: 100% !important; -webkit-text-size-adjust: 100%; -ms-=
+text-size-adjust: 100%; -webkit-font-smoothing: antialiased; word-spacing: =
+normal;}
+div[style*=3D"margin:0 0"] { margin: 0 !important;}
+table, td { border-collapse: collapse !important; mso-table-lspace: 0pt; m=
+so-table-rspace: 0pt; -webkit-text-size-adjust: 100%; -ms-text-size-adjust:=
+ 100%;}
+img { border: 0; line-height: 100%; outline: none; text-decoration: none; =
+display: block;}
+div, p, a, li, td, span {
+    -webkit-text-size-adjust: none;
+}
+
+=2Eset_outlook_hidden {
+    display: none !important;
+}
+
+a[href^=3Dtel], #MessageViewBody a, a[x-apple-data-detectors], #body a, =
+=2Elink {
+    color: inherit;
+    text-decoration: none;
+    font-size: inherit;
+    font-family: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+}
+
+a=2Ebutton {
+    border-left: 0px !important;
+    border-right: 0px !important;
+    display: block !important;
+    width: 100% !important;
+}
+[data-outlook-cycle] [x-apple-data-detectors-type=3D"calendar-event"] {
+    color: inherit !important;
+    -webkit-text-decoration-color: inherit !important;
+    text-decoration: none !important;
+}
+
+#body [x-apple-data-detectors=3Dtrue],
+a[x-apple-data-detectors=3Dtrue] {
+    color: inherit !important;
+    -webkit-text-decoration-color: inherit !important;
+    text-decoration: inherit !important;
+}
+
+sup {
+    -webkit-text-size-adjust: none;
+    vertical-align: text-top =2E6em;
+    line-height: =2E6em;
+    font-size: 60%;
+}
+
+sub {
+    -webkit-text-size-adjust: none;
+    vertical-align: text-bottom =2E9em;
+    line-height: =2E9em;
+    font-size: 60%;
+}
+=2Eyshortcuts a {
+    border-bottom: none !important;
+}
+
+=2Eundoreset th {
+    padding: 1px !important;
+}
+
+=2Enowrap {
+    white-space: nowrap !important;
+}
+strong {
+    font-weight: bold;
+}
+em {
+    font-style: italic;
+}
+
+  =2Ewrapto100pc {
+      width: 100% !important;
+      height: auto !important;
+  }
+  =2Enomob_rounded {
+      display: none !important;
+      width: 0px !important;
+      height: 0px !important;
+  }
+
+u + #body a {
+    color: inherit;
+    text-decoration: none;
+    font-size: inherit;
+    font-family: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+}
+u + #body =2Enomob_rounded {
+    display: none!important;
+    width: 0px!important;
+    height: 0px!important;
+}
+u + #body =2Egmailbutton {
+    width: 100% !important;
+}
+
+
+@media only screen and (max-width: 480px) {
+body { width: 100%; min-width: 100%; position: relative; top: 0; left: 0; =
+right: 0; margin: 0; padding: 0;}
+=2EmarginFix { position: relative; top: 0; left: 0; right: 0;}
+=2Efull-width-container { width: 100% !important; min-width: 320px !import=
+ant;}
+=2Efull-width { width: 100% !important; min-width: 100% !important;}
+ =2EdisplayBlock {
+        display: block!important;
+      }=09
+=2EresponsiveCell { width: 100% !important; display: block !important;}
+=2EstackTbl { width: 100% !important; display: table !important;}
+=2EstackTblMarginTop { width: 100% !important; display: table !important; =
+margin-top: 50px !important;}
+=2EalignCenter { text-align: center !important;}
+   =2EcenterTable {
+          text-align: center !important;
+          display: block !important;
+          margin-left: auto !important;
+          margin-right: auto !important;
+          float: none !important;
+        }
+
+        table=2EcenterTable {
+          display: inline-block !important;
+        }
+
+=2EalignRight { text-align: right !important;}
+=2EautoHeight { height: auto !important;}
+=2Eheight348 { height: 348px !important;}
+=2Ehide { width: 0px !important; height: 0px !important; display: none !im=
+portant;}
+=2Eshowme { display: block !important; width: auto !important; overflow: v=
+isible !important; float: none !important; max-height: inherit !important; =
+max-width: inherit !important; line-height: auto !important; margin-top: 0p=
+x !important; visibility: inherit !important;}
+ =2EfullWidthImg { width: 100% !important; height: auto !important; min-wi=
+dth: 100% !important;}
+  =2Emobile_show {
+      display: block !important;
+      width: auto !important;
+      overflow: visible !important;
+      float: none !important;
+      max-height: none !important;
+      line-height: normal !important;
+      height: auto !important;
+  }
+
+  =2Enomob, =2Ehide {
+      display: none !important;
+  }
+   =20
+     =2EcenterMe {
+          text-align: center !important;
+          display: block !important;
+          margin-left: auto !important;
+          margin-right: auto !important;
+          float: none !important;
+        }
+
+        table=2EcenterMe {
+          display: inline-block !important;
+        }
+ =20
+  =2EmobileStack {
+          width: 100% !important;
+          display: table !important;
+          text-align: center !important;
+        }
+  =2ElogoShrink {
+          width: 75% !important;
+      height: auto;
+        }
+
+  =2EbgAdjust {
+      background-position: top center;
+  }
+  =2Ehide_bgimage {
+      background-image: none !important;
+      height: auto !important;
+      width: 100% !important;
+  }
+
+  =2Ecenter {
+      text-align: center !important;
+  }
+  =2Eleft {
+      text-align: left !important;
+  }
+  =2Eright {
+      text-align: right !important;
+  }
+
+  =2Emargin0 {
+      margin: 0 auto !important;
+  }
+  =2Emargin-left {
+      margin-right: auto;
+      margin-left: 0;
+  }
+  =2Emargin-right {
+      margin-right: 0;
+      margin-left: auto;
+  }
+
+  =2Ewrap {
+      width: 100% !important;
+      height: auto !important;
+      min-width: 100% !important;
+  }
+  =2Ewrap-existing-content {
+      height: auto !important;
+      display: block;
+  }
+  =2Eresize280 {
+      width: 280px !important;
+      height: auto !important;
+  }
+
+  =2Ecolsplit {
+      width: 100% !important;
+      float: inherit !important;
+      display: block !important;
+      background-position: top center !important;
+  }
+
+  th=2Etopstack {
+      display: table-header-group !important;
+  }
+  th=2Ebotstack {
+      display: table-footer-group !important;
+  }
+
+  =2Einline {
+      display: inline-block !important;
+  }
+
+  =2Epad0 {
+      padding: 0px !important;
+  }
+  =2Epad0t {
+      padding-top: 0px !important;
+  }
+  =2Epad0r {
+      padding-right: 0px !important;
+  }
+  =2Epad0b {
+      padding-bottom: 0px !important;
+  }
+  =2Epad0l {
+      padding-left: 0px !important;
+  }
+  =2Epad0rl {
+      padding-right: 0px !important;
+      padding-left: 0px !important;
+  }
+  =2Epad0tb {
+      padding-top: 0px !important;
+      padding-bottom: 0px !important;
+  }
+  =2Epad20 {
+      padding: 20px !important;
+  }
+   =2Epad10t {
+      padding-top: 10px !important;
+  }
+  =2Epad20t {
+      padding-top: 20px !important;
+  }
+  =2Epad30t {
+      padding-top: 30px !important;
+  }
+  =2Epad20r {
+      padding-right: 20px !important;
+  }
+  =2Epad20b {
+      padding-bottom: 20px !important;
+  }
+  =2Epad20l {
+      padding-left: 20px !important;
+  }
+  =2Epad20rl {
+      padding-right: 20px !important;
+      padding-left: 20px !important;
+  }
+  =2Epad30rl {
+      padding-right: 30px !important;
+      padding-left: 30px !important;
+  }
+  =2Epad20tb {
+      padding-top: 20px !important;
+      padding-bottom: 20px !important;
+  }
+   =2Eborder_none {
+    border: none !important;
+   }
+
+		=2Einline {
+		display: inline-block !important;
+		}
+	=09
+    =2Emargin0 {margin: 0 auto!important;}
+    }
+
+		td =2Emobile_h1, td =2Emobile_h1 span {
+    font-size: 40px !important;
+    line-height: 120% !important;
+    }
+    td =2Emobile_h2, td =2Emobile_h2 span {
+    font-size: 30px !important;
+    line-height: 120% !important;
+    }
+    td =2Emobile_h3, td =2Emobile_h3 span {
+    font-size: 24px !important;
+    line-height: 120% !important;
+    }
+    td =2Emobile_h4, td =2Emobile_h4 span {
+    font-size: 20px !important;
+    line-height: 120% !important;
+    }
+    td =2Emobile_p1, td =2Emobile_p1 span {
+    font-size: 16px !important;
+    line-height: 150% !important;
+    }
+    td =2Emobile_p2, td =2Emobile_p2 span {
+    font-size: 14px !important;
+    line-height: 150% !important;
+    }
+    td =2Emobile_p3, td =2Emobile_p3 span {
+    font-size: 12px !important;
+    line-height: 150% !important;
+    }
+    td =2Emobile_cta, td =2Emobile_cta span {
+    font-size: 16px !important;
+    line-height: 150% !important;
+    }
+
+</style>
+<!--[if mso | ie]>
+<style>
+=2Esup {
+  vertical-align: 1px !important;
+  font-size: 100% !important;
+}
+</style>
+<![endif]-->
+
+<!--[if ie]>
+<style>
+  =2Esup {
+    vertical-align: 5px !important;
+    font-size: 77% !important;
+  }
+</style>
+<![endif]-->
+
+<!--[if gt mso 15]>
+<style type=3D"text/css" media=3D"all">
+  /* Outlook 2016 Height Fix */
+  table, tr, th, td {border-collapse: collapse;}
+  tr { font-size:0px; line-height:0px; border-collapse: collapse; }
+</style>
+<![endif]-->
+
+<!--[if gte mso 9]><xml>
+<o:OfficeDocumentSettings>
+  <o:AllowPNG/>
+  <o:PixelsPerInch>96</o:PixelsPerInch>
+</o:OfficeDocumentSettings>
+</xml><![endif]-->
+
+</head>
+ <body id=3D"body" class=3D"body-fix" bgcolor=3D"#f9f6f4" style=3D"backgro=
+und-color:#f9f6f4;">
+<div role=3D"article" aria-roledescription=3D"email" aria-label=3D"Email f=
+rom Marriott">
+=20
+   <!-- PH - Preheader, Hidden -->
+	<div style=3D"display:none">
+We look forward to welcoming you for your stay=2E&#8199;&#847; &#8199;&#84=
+7; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847;
+&#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#81=
+99;&#847;
+&#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#81=
+99;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#=
+847; &#8199;&#847;
+&#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#81=
+99;&#847;
+&#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#81=
+99;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#=
+847; &#8199;&#847;
+&#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#81=
+99;&#847;
+&#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#81=
+99;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#=
+847; &#8199;&#847;
+&#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#81=
+99;&#847;
+&#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#81=
+99;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#=
+847; &#8199;&#847;
+&#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#81=
+99;&#847;
+&#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#81=
+99;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#=
+847; &#8199;&#847;
+&#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#81=
+99;&#847;
+&#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#81=
+99;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#=
+847; &#8199;&#847;
+&#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#81=
+99;&#847;
+&#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#81=
+99;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#=
+847; &#8199;&#847;
+&#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#81=
+99;&#847;
+&shy; &shy; &shy; &shy; &shy; &shy; &shy; &shy; &shy; &shy; &shy; &shy; &s=
+hy; &shy; &shy; &shy; &shy; &shy; &shy; &shy; &shy; &shy; &shy; &shy; &shy;=
+ &shy; &shy; &shy; &shy; &shy;=20
+&shy; &shy; &shy; &shy; &shy; &shy; &shy; &shy; &shy; &shy; &shy; &shy; &s=
+hy; &shy; &shy; &shy; &shy; &shy; &shy; &shy; &shy; &shy; &shy; &shy; &shy;=
+ &shy; &shy; &shy; &shy; &shy;=20
+&shy; &shy; &shy; &shy; &shy; &shy; &shy; &shy; &shy; &shy; &shy; &shy; &s=
+hy; &shy; &shy; &shy; &shy; &shy; &shy; &shy; &shy; &shy; &shy; &shy; &shy;=
+ &shy; &shy; &shy; &shy; &shy;=20
+&shy; &shy; &shy; &shy; &shy; &shy; &shy; &shy; &shy; &shy; &shy; &shy; &s=
+hy; &shy; &shy; &shy; &shy; &shy; &shy; &shy; &shy; &shy; &shy; &shy; &shy;=
+ &shy; &shy; &shy; &shy; &shy;=20
+&shy; &shy; &shy; &shy; &shy; &shy; &shy; &shy; &shy; &shy; &shy; &shy; &s=
+hy; &shy; &shy; &shy; &shy; &shy;
+&nbsp;
+</div>
+ =20
+ =20
+<!-- treatment_id styles -->
+
+  <table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" border=
+=3D"0" width=3D"100%" class=3D"marginFix">
+    <tbody><tr>
+      <td width=3D"100%" align=3D"center" bgcolor=3D"#f9f6f4">
+        <table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" b=
+order=3D"0" width=3D"640" style=3D"width:640px" class=3D"full-width-contain=
+er">
+          <tbody><tr>
+            <td width=3D"640" align=3D"center" style=3D"min-width:640px;" =
+class=3D"full-width-container">
+ <!--header vpp1-->
+
+<table role=3D"presentation" width=3D"100%" border=3D"0" cellspacing=3D"0"=
+ cellpadding=3D"0" class=3D"wrap" bgcolor=3D"#37323E">
+<tbody>
+<tr>
+<td align=3D"left" valign=3D"top">
+<table role=3D"presentation" width=3D"100%" border=3D"0" cellspacing=3D"0"=
+ cellpadding=3D"0" class=3D"wrap">
+<tbody>
+<tr>
+<td align=3D"center" style=3D"padding: 10px 80px 0px 80px" class=3D"pad20r=
+l match">
+<p style=3D"font-size: 14px; mso-line-height-rule: exactly; line-height: 1=
+50%; margin: 0px; font-weight: normal; letter-spacing: 0px; text-transform:=
+ none; color: #FFFFFF; font-family: Swiss-Light, Helvetica, Arial, sans-ser=
+if; " class=3D"mobile_match">
+<span style=3D"font-size: 14px; font-family: Swiss-Light, Helvetica, Arial=
+, sans-serif; color: #FFFFFF; line-height: 150%; font-weight: 400;">&nbsp;F=
+orte de Gaia, Autograph Collection<br>
+</span>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<table role=3D"presentation" border=3D"0" cellspacing=3D"0" cellpadding=3D=
+"0" class=3D"wrap" bgcolor=3D"#37323E" width=3D"100%">
+<tbody>
+<tr>
+<td align=3D"center" valign=3D"top" style=3D"padding: 10px 0px 5px 0px" cl=
+ass=3D"pad0rl">
+<table role=3D"presentation" width=3D"100%" border=3D"0" cellspacing=3D"0"=
+ cellpadding=3D"0" class=3D"wrap" bgcolor=3D"#ffffff">
+<tbody>
+<tr>
+<td style=3D"line-height: 1px !important;" align=3D"center" valign=3D"top"=
+>
+<img src=3D"https://images=2Eharmony=2Eepsilon=2Ecom/ContentHandler/images=
+?id=3D3f67ada7-a01e-4c02-ab71-8b46fd3106ae" height=3D"1" style=3D"display: =
+block" border=3D"0" alt=3D"">
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<!-- End 1-001: Divider -->=20
+<!-- Two Columns start -->
+<table class=3D"wrap" bgcolor=3D"#37323E" border=3D"0" cellpadding=3D"0" c=
+ellspacing=3D"0" role=3D"presentation" width=3D"100%">=20
+<tbody>
+<tr>
+ <td class=3D"wrap" bgcolor=3D"#37323E">
+<table bgcolor=3D"#37323E" class=3D"wrap" border=3D"0" cellpadding=3D"0" c=
+ellspacing=3D"0" role=3D"presentation" width=3D"100%">
+=20
+<tbody>
+<tr>
+ <td>
+ <table bgcolor=3D"#37323E" class=3D"wrap" border=3D"0" cellpadding=3D"0" =
+cellspacing=3D"0" role=3D"presentation" width=3D"100%">
+ <tbody>
+<tr>
+ <td class=3D"pad20rl" style=3D"padding: 15px 0px 15px 0px;">
+ <table class=3D"wrap" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" ro=
+le=3D"presentation" width=3D"100%">
+<tbody>
+<tr>
+<th class=3D"mobileStack pad20b" valign=3D"middle" width=3D"34=2E166667%">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentati=
+on" width=3D"100%">
+ <tbody>
+<tr>
+
+ <td align=3D"center" valign=3D"top" class=3D"pad30rl" style=3D"padding: 0=
+px 0px 0px 25px;">
+<a href=3D"https://email-marriott=2Ecom/T/v71000001a02fe2fd0e9f1e57f4bbe5c=
+898/31d4c3dcc83340830000021ef3a0bcc2/31d4c3dc-c833-4083-bb7f-fa6c2528e756?_=
+_dU__=3Dv0oQlZ2XmHtXjKKCycNLIk04888UAVMa5S575yBLsoKzM4fwBvfuHkRA=3D=3D&__F_=
+_=3Dv0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX_0JoZLAZABQF8ooLJw0siTTjzzxQ=
+BUxrlIwL8mWfTa5t5GgjiAKNXlY22WuEN0FAgwa5UVj5lRQ1YNq6Ud8-04tq681AMpAXAhTXIzJ=
+uHGfBinYpPdGDqe7_fS2ZJqZ1eN_ZmMo2T6Q9TEDFlg8Xum3a8IAh4w4ts7vfMWK7rC8FwxBk_n=
+jwunqorBmzKrCzk0Y7TwIRrOVI4Lct5O56FrHwzZeuvZh0KfuYMeLeZ9fdGGOQtlMxhDvU_nAom=
+kVXYojGLdIMa8GDuw9PazwSdfaggqDsHGDdpbLWztKdCLkt0Y-ktQdrk4X71kModLVkicwm2Jwt=
+5YCVR7FWg_afvbzZb26tc-5uk8YyUXa6NbsthM3xP6_GMUjun2ihkL-3yj7JNPlUH7BalUI9QaM=
+tXpoRadAeXRimMs=3D" target=3D"_blank">
+<img class=3D"logoShrink margin0" src=3D"https://media=2E4at5=2Enet/email_=
+domains/mar/315770/images/770x390_logos_white/logo_autograph_final_white=2E=
+png" alt=3D"" width=3D"200" style=3D"display: block; width: 200px;" border=
+=3D"0">
+</a>
+</td>
+</tr>
+</tbody>
+</table>
+</th>
+<th valign=3D"middle" class=3D"mobileStack" width=3D"65=2E833333%">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentati=
+on" width=3D"100%">=20
+<tbody>
+<tr>
+  <td class=3D"center pad10t mobile_match pad20rl" align=3D"right" valign=
+=3D"top" style=3D"padding: 2px 35px 0px 0px; font-size: 14px; mso-line-heig=
+ht-rule: exactly; line-height: 150%; font-weight: 400; letter-spacing: 0px;=
+ text-transform: none; color: #FFFFFF; font-family: Swiss-Light, Helvetica,=
+ Arial, sans-serif;">Rua de Serpa Pinto 60<br>Vila Nova de Gaia, Portugal<b=
+r></td>
+</tr><tr>
+<td class=3D"center mobile_match pad20rl" align=3D"right" valign=3D"top" s=
+tyle=3D"padding: 2px 35px 0px 0px; font-size: 14px; mso-line-height-rule: e=
+xactly; line-height: 1=2E5; font-weight: 400; letter-spacing: 0px; text-tra=
+nsform: none; color: #FFFFFF; font-family: Swiss-Light, Helvetica, Arial, s=
+ans-serif;">
+<span style=3D"font-size: 14px; font-family: Swiss-Light, Helvetica, Arial=
+, sans-serif; font-weight: 400; line-height: 1=2E5; color: #FFFFFF;"> Confi=
+rmation #: 76094675</span>
+</td>
+</tr></tbody>
+</table>
+</th>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<!-- Two Columns end -->
+
+<!--primary vpp2-->
+
+
+<!--LPA_PRIMARY_ALT_B+T_WIP-->
+<!--IMGURL1-->
+<table role=3D"presentation" width=3D"100%" border=3D"0" cellspacing=3D"0"=
+ cellpadding=3D"0" class=3D"wrap" align=3D"center" bgcolor=3D"#FFFFFF">
+	<tbody>
+		<tr>
+			<td align=3D"center" valign=3D"top" style=3D"padding: 0px 0px 0px 0px" =
+class=3D"pad0rl">
+				<a href=3D"https://email-marriott=2Ecom/T/v71000001a02fe2fd0e9f1e57f4b=
+be5c898/31d4c3dcc83340830000021ef3a0bcc3/31d4c3dc-c833-4083-bb7f-fa6c2528e7=
+56?__dU__=3Dv0oQlZ2XmHtXjKKCycNLIk04888UAVMa5S575yBLsoKzM4fwBvfuHkRA=3D=3D&=
+__F__=3Dv0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX_0JoZLAZABQF8ooLJw0siTTj=
+zzxQBUxrlIwL8mWfTa5t5GgjiAKNXlY22WuEN0FAgwa5UVj5lRQ1YNq6Ud8-04tq681AMpAXAhT=
+XIzJuHGfBinYpPdGDqe7_fS2ZJqZ1eN_ZmMo2T6Q9TEDFlg8Xum33yrlco515Q5pzsLuXV8nVGr=
+3YLtFwAQpkTDpcgDeGTf2EAtg-xxT3_urldoN-u_snBP2T_RbnyhznmjEYqEUri4FLktZZhOj4G=
+MU_HJYZVrVXQMy02WzDqWabsYADAyebQ5fFaXso8-eLf7I6TFHoBHQbgLLZAZve4bcy0NXUeaGF=
+8x_PF_SBLcU2pmSQ_wPuIej1X6IwMfWtU1B7Cua5A=3D=3D" target=3D"_blank"><img src=
+=3D"https://cache=2Emarriott=2Ecom/is/image/marriotts7prod/ak-opolg-lobby-s=
+tairs-14704:Classic-Hor" alt=3D"Forte de Gaia, Autograph Collection" width=
+=3D"640" height=3D"auto" style=3D"display: block" border=3D"0" class=3D"ful=
+lWidthImg"> </a>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<!--LINE + HEADLINE1-->
+<table role=3D"presentation" width=3D"100%" border=3D"0" cellspacing=3D"0"=
+ cellpadding=3D"0" class=3D"wrap" bgcolor=3D"#FFFFFF">
+	<tbody>
+		<tr>
+			<td align=3D"center" style=3D"padding: 60px 20px 10px 20px" class=3D"pa=
+d20rl match">
+				<h1 style=3D"font-size: 14px; mso-line-height-rule: exactly; line-heig=
+ht: 36px; margin: 0px; font-weight: normal; letter-spacing: 0px; text-trans=
+form: none; color: #000000; font-family: DINNeuzeitGroteskStd-Light, Times,=
+ serif, Helvetica, Arial, sans-serif;" class=3D"mobile_match"><span style=
+=3D"font-size: 32px; font-family: DINNeuzeitGroteskStd-Light, Times, serif,=
+ Helvetica, Arial, sans-serif; color: #000000;; font-weight: 400; line-heig=
+ht: 36px;">Look Forward to an Unforgettable Stay</span></h1></td>
+		</tr>
+	</tbody>
+</table>
+<!--BODYTXT PARAGRAPHS -->
+<table role=3D"presentation" border=3D"0" cellspacing=3D"0" cellpadding=3D=
+"0" class=3D"wrap" bgcolor=3D"#FFFFFF" width=3D"100%">
+	<tbody>
+		<tr>
+			<td align=3D"center" valign=3D"top" style=3D"padding: 20px 20px 20px 20=
+px" class=3D"pad20rl">
+				<table role=3D"presentation" width=3D"80%" border=3D"0" cellspacing=3D=
+"0" cellpadding=3D"0" class=3D"wrap" bgcolor=3D"#1C1C1C">
+					<tbody>
+						<tr>
+							<td style=3D"line-height: 1px !important;" align=3D"center" valign=
+=3D"top"><img src=3D"https://images=2Eharmony=2Eepsilon=2Ecom/ContentHandle=
+r/images?id=3D3f67ada7-a01e-4c02-ab71-8b46fd3106ae" height=3D"1" style=3D"d=
+isplay: block" border=3D"0" alt=3D""></td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<table role=3D"presentation" width=3D"100%" border=3D"0" cellspacing=3D"0"=
+ cellpadding=3D"0" class=3D"wrap" bgcolor=3D"#FFFFFF">
+	<tbody>
+		<tr>
+			<td align=3D"left" valign=3D"top">
+				<table role=3D"presentation" width=3D"100%" border=3D"0" cellspacing=
+=3D"0" cellpadding=3D"0" class=3D"wrap">
+					<tbody>
+						<tr>
+							<td align=3D"center" style=3D"padding: 0px 80px 0px 80px" class=3D"=
+pad20rl match">
+                              <p style=3D"font-size: 14px; mso-line-height=
+-rule: exactly; line-height: 150%; margin: 0px; font-weight: normal; letter=
+-spacing: 0px; text-transform: none; color: #000000; font-family: Swiss-Lig=
+ht, Helvetica, Arial, sans-serif;" class=3D"mobile_match"><span style=3D"fo=
+nt-size: 16px; font-family: Swiss-Light, Helvetica, Arial, sans-serif; font=
+-weight: 400; line-height: 150%; color: #000000;;"><span style=3D"font-fami=
+ly: Swiss-Light, Helvetica, Arial, sans-serif; font-weight: 400; line-heigh=
+t: 150%;">Dear Duco Wiertsema,<br><br> We look forward to welcoming you to =
+your one-of-a-kind stay at Forte de Gaia, Autograph Collection beginning Se=
+ptember 06, 2026 through September 08, 2026=2E <br><br>Each Autograph Colle=
+ction<span style=3D"font-family: Arial, sans-serif; line-height: 0px; font-=
+size: 9px; vertical-align: 5px;">&reg;</span>  hotel is a destination withi=
+n a destination=2E Distinctively designed and artfully curated, each hotel =
+has a singular style that reflects its unique story with inspiring spaces, =
+creative cuisine, and moments that leave a lasting impression=2E We hope yo=
+u enjoy discovering ours=2E<br><br>As you prepare for your stay, if you req=
+uire any assistance booking reservations, please contact us directly so we =
+can help make your stay even more exceptional=2E<br><br>Start your journey =
+to collect memorable experiences at a hotel that's exactly like nothing els=
+e=2E</span>
+
+									</span>
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+
+
+<!--LPA_PRIMARY_SURVEY_CTA_B+T_WIP -->
+
+
+<!--LPA_PRIMARY_HOTEL_SALUTATION_B+T_WIP-->
+<table role=3D"presentation" width=3D"100%" border=3D"0" cellspacing=3D"0"=
+ cellpadding=3D"0" class=3D"wrap" bgcolor=3D"#FFFFFF">
+              <tbody><tr>
+                <td align=3D"left" valign=3D"top"><table role=3D"presentat=
+ion" width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" class=
+=3D"wrap">
+                    <tbody><tr>
+                      <td align=3D"center" style=3D"padding: 30px 20px 0px=
+ 20px" class=3D"pad20rl match"><p style=3D"font-size: 16px; mso-line-height=
+-rule: exactly; line-height: 150%; margin: 0px; font-weight: normal; letter=
+-spacing: 0px; text-transform: none; color: #000000; font-family: Swiss-Lig=
+ht,Helvetica, Arial, sans-serif;" class=3D"mobile_match"><span style=3D"fon=
+t-size: 16px; font-family: Swiss-Light, Helvetica, Arial, sans-serif; font-=
+weight: 400;; line-height: 150%; color: #000000;;">We can't wait to make yo=
+ur stay remarkable,</span></p></td>
+                    </tr>
+                  </tbody></table></td>
+              </tr>
+            </tbody></table>     =20
+
+            <table role=3D"presentation" width=3D"100%" border=3D"0" cells=
+pacing=3D"0" cellpadding=3D"0" class=3D"wrap" bgcolor=3D"#FFFFFF">
+              <tbody><tr>
+                <td align=3D"left" valign=3D"top"><table role=3D"presentat=
+ion" width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" class=
+=3D"wrap">
+                    <tbody><tr>
+<td align=3D"center" style=3D"padding: 10px 20px 0px 20px" class=3D"pad20r=
+l match">
+  <p style=3D"font-size: 14px; mso-line-height-rule: exactly; line-height:=
+ 150%; margin: 0px; font-weight: 400; letter-spacing: 0px; color: #000000; =
+font-family: DINNeuzeitGroteskStd-Light, Times, serif, Helvetica, Arial, sa=
+ns-serif;" class=3D"mobile_match">
+
+      <span style=3D"color: #000000; font-family: DINNeuzeitGroteskStd-Lig=
+ht, Times, serif; font-weight: 400; line-height: 150%; font-size: 30px;">Gu=
+est Relations</span><br>
+
+      <span style=3D"font-size: 16px; font-family: Swiss-Light, Helvetica,=
+ Arial, sans-serif; font-weight: 400;; line-height: 150%; color: #000000;;"=
+>
+        Guest Relations at Forte de Gaia, Autograph Collection
+      </span><br>
+
+      <span style=3D"font-size: 16px; font-family: Swiss-Light, Helvetica,=
+ Arial, sans-serif; font-weight: 400;; line-height: 150%; color: #000000;;"=
+>
+        Forte de Gaia, Autograph Collection
+      </span>
+
+  </p>
+</td>
+
+                    </tr>
+                  </tbody></table></td>
+              </tr>
+            </tbody></table>
+<table role=3D"presentation" width=3D"100%" border=3D"0" cellspacing=3D"0"=
+ cellpadding=3D"0" class=3D"wrap" bgcolor=3D"#FFFFFF">
+              <tbody><tr>
+                <td align=3D"left" valign=3D"top"><table role=3D"presentat=
+ion" width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" class=
+=3D"wrap">
+                    <tbody><tr>
+                      <td align=3D"center" style=3D"padding: 10px 20px 0px=
+ 20px" class=3D"pad20rl match">
+                        <p style=3D"font-size: 14px; mso-line-height-rule:=
+ exactly; line-height: 150%; margin: 0px; font-weight: normal; letter-spaci=
+ng: 0px; text-transform: none; color: #000000; font-family: Swiss-Light, He=
+lvetica, Arial, sans-serif;" class=3D"mobile_match"><span style=3D"font-fam=
+ily: Swiss-Light, Helvetica, Arial, sans-serif; font-weight: 400; line-heig=
+ht: 150%; font-size: 16px;"><a href=3D"https://email-marriott=2Ecom/T/v7100=
+0001a02fe2fd0e9f1e57f4bbe5c898/31d4c3dcc83340830000021ef3a0bcc4/31d4c3dc-c8=
+33-4083-bb7f-fa6c2528e756?__dU__=3Dv0oQlZ2XmHtXjKKCycNLIk04888UAVMa5S575yBL=
+soKzM4fwBvfuHkRA=3D=3D&__F__=3Dv0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX_=
+0JoZLAZABQF8ooLJw0siTTjzzxQBUxrlIwL8mWfTa5t5GgjiAKNXlY22WuEN0FAgwa5UVj5lRQ1=
+YNq6Ud8-04tq681AMpAXAhTXIzJuHGfBinYpPdGDqe7_fS2ZJqZ1eN_ZmMo2T6Q9TEDFlg8Xum3=
+iBXuAKxSWMNM6s0rPQLDTNQP1ZSWkbHLA-k-chXvpLarKY8oPnXZhhdcKZgiMDFGwzZeuvZh0Kf=
+uYMeLeZ9fdGGOQtlMxhDvU_nAomkVXYojGLdIMa8GDuw9PazwSdfafBTiDGGRxdry-nXERnaFjQ=
+OHO9jum30eu0b2M_5kYAnaSmKJfVWQ-lR-iKNF6DLrPMIQqTzq1POd4D3DTiixR3lz3OeKh9teF=
+l_bLP18tnwlGOGfyGJRuFB1RTZcOjOqH3P-d5mF3kc=3D" style=3D"text-decoration: un=
+derline; color: #000000;">Contact Us</a></span></p>
+</td>
+                    </tr>                   =20
+                  </tbody></table></td>
+              </tr>
+            </tbody></table>
+
+
+      <table role=3D"presentation" width=3D"100%" border=3D"0" cellspacing=
+=3D"0" cellpadding=3D"0" bgcolor=3D"#FFFFFF">
+        <tbody><tr>
+          <td>
+            <table role=3D"presentation" width=3D"100%" border=3D"0" cells=
+pacing=3D"0" class=3D"wrap">
+              <tbody><tr>
+                              <td height=3D"40" align=3D"left" valign=3D"t=
+op" bgcolor=3D"#FFFFFF" style=3D"line-height: 0px; padding: 0px; "><img src=
+=3D"https://images=2Eharmony=2Eepsilon=2Ecom/ContentHandler/images?id=3D3f6=
+7ada7-a01e-4c02-ab71-8b46fd3106ae" height=3D"40" style=3D"display: block; h=
+eight: 40px;" border=3D"0" alt=3D""></td>
+              </tr>
+            </tbody></table>
+          </td>
+        </tr>
+      </tbody></table>
+
+<!--amenity section preface vpp_3-->
+
+<table role=3D"presentation" width=3D"100%" border=3D"0" cellspacing=3D"0"=
+ cellpadding=3D"0" class=3D"wrap" bgcolor=3D"#37323E">
+              <tbody><tr>
+                <td align=3D"left" valign=3D"top"><table role=3D"presentat=
+ion" width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" class=
+=3D"wrap">
+                    <tbody><tr>
+                      <td align=3D"center" style=3D"padding: 60px 20px 10p=
+x 20px" class=3D"pad20rl match"><h3 style=3D"font-size: 14px; mso-line-heig=
+ht-rule: exactly; line-height: 36px; margin: 0px; font-weight: normal; lett=
+er-spacing: 0px; text-transform: none; color: #FFFFFF; font-family: DINNeuz=
+eitGroteskStd-Light, Times, serif, Helvetica, Arial, sans-serif;" class=3D"=
+mobile_match"><span style=3D"font-size: 32px; font-family: DINNeuzeitGrotes=
+kStd-Light, Times, serif; color: #FFFFFF; font-weight:400; line-height: 36p=
+x;">Your Carefully Crafted Stay</span></h3></td>
+                    </tr>
+                  </tbody></table></td>
+              </tr>
+            </tbody></table>
+      =20
+            <table role=3D"presentation" width=3D"100%" border=3D"0" cells=
+pacing=3D"0" cellpadding=3D"0" class=3D"wrap" bgcolor=3D"#37323E">
+              <tbody><tr>
+                <td align=3D"left" valign=3D"top"><table role=3D"presentat=
+ion" width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" class=
+=3D"wrap">
+                    <tbody><tr>
+                      <td align=3D"center" style=3D"padding: 0px 80px 30px=
+ 80px" class=3D"pad20rl match"><p style=3D"font-size: 14px; mso-line-height=
+-rule: exactly; line-height: 150%; margin: 0px; font-weight: normal; letter=
+-spacing: 0px; text-transform: none; color: #FFFFFF; font-family: Swiss-Lig=
+ht, Helvetica, Arial, sans-serif;" class=3D"mobile_match"><span style=3D"fo=
+nt-size: 16px; font-family: Swiss-Light, Helvetica, Arial, sans-serif; font=
+-weight: 400; color: #FFFFFF; line-height: 150%; font-weight:400;">No two A=
+utograph Collection hotels are the same, but they all leave their mark with=
+ a unique point of distinction and a singular story to tell=2E<br></span></=
+p></td>
+                    </tr>
+                  </tbody></table></td>
+              </tr>
+            </tbody></table>
+             =20
+<!--amenity 1 vpp_4-->
+
+   <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"present=
+ation" bgcolor=3D"#37323E" width=3D"100%">
+                        <tbody>
+                          <tr>
+                            <td class=3D"" style=3D"padding: 0px 0px 40px =
+0px; background-color: #37323E">
+                              <table border=3D"0" cellpadding=3D"0" cellsp=
+acing=3D"0" role=3D"presentation" width=3D"100%">
+                                <tbody>
+                                  <tr><!-- Column start -->
+                                    <th class=3D"mobileStack" valign=3D"mi=
+ddle" width=3D"42%">
+                                      <table border=3D"0" cellpadding=3D"0=
+" cellspacing=3D"0" role=3D"presentation" width=3D"100%">
+                                        <tbody>
+                                          <tr>
+                                            <td rowspan=3D"4" class=3D"cen=
+terMe pad20rl" style=3D"padding: 0px 10px 0px 30px; text-align: center"> <a=
+ href=3D"https://email-marriott=2Ecom/T/v71000001a02fe2fd0e9f1e57f4bbe5c898=
+/31d4c3dcc83340830000021ef3a0bcc5/31d4c3dc-c833-4083-bb7f-fa6c2528e756?__dU=
+__=3Dv0oQlZ2XmHtXjKKCycNLIk04888UAVMa5S575yBLsoKzM4fwBvfuHkRA=3D=3D&__F__=
+=3Dv0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX_0JoZLAZABQF8ooLJw0siTTjzzxQB=
+UxrlIwL8mWfTa5t5GgjiAKNXlY22WuEN0FAgwa5UVj5lRQ1YNq6Ud8-04tq681AMpAXAiYgiGde=
+4v3ViOFtocmYRLuaU2YP8RbQWo1-CY9KYRt2sXJazvVPqEqTeSNMiOO3xaS1VscWQ6uQ9i35shI=
+0KKMnLSSwvR5etm1N1PqolvrqKLQUevFXw4B3OxhUvUFuQ1OwBj3J-3fRR4HozT2nFWt_VO2b5P=
+KU1JiHfF0SGIK7Xa5rgTFDYq4jHzYqS9HQjde0e2_dLD0KT6FRxQDKUlIxiqvkTKJ2WtOt2sFCr=
+H4x1G0Kcumnvnua2M-W_8ZOMw-hUcUAylJSNRAb9Mtj9m931tEpsO_-aGzBV3WeYcr3h_oXGpDg=
+U0QZOoU1sCu1Ftvkf1_tw_hfk7mJ0wvtc7A" target=3D"_blank"><img class=3D"wrap" =
+src=3D"https://cache=2Emarriott=2Ecom/is/image/marriotts7prod/ak-opolg-rest=
+aurant-dona-mar-35154-40240:Wide-Hor" alt=3D"" style=3D"display: block;widt=
+h:260px;" width=3D"260"></a></td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                    </th>
+                                    <th class=3D"mobileStack" width=3D"58%=
+">
+                                      <table border=3D"0" cellpadding=3D"0=
+" cellspacing=3D"0" role=3D"presentation" style=3D"direction: ltr;" width=
+=3D"100%">
+                                        <tbody>
+                                          <tr>
+                                              <td class=3D"mobile_match ce=
+nterMe pad20rl pad20t" align=3D"right" valign=3D"top" style=3D"text-align: =
+left; padding: 0px 5px 0px 20px;font-size: 14px; mso-line-height-rule: exac=
+tly; line-height: 120%; font-weight: 400;  letter-spacing: 1px; color: #FFF=
+FFF; font-family: DINNeuzeitGroteskStd-Light, Times, serif, Helvetica, Aria=
+l, sans-serif;"><span style=3D"font-size: 20px; font-family: DINNeuzeitGrot=
+eskStd-Light, Times, serif; color: #FFFFFF; line-height: 120%; font-weight:=
+ 400;">Creative Cuisine</span></td>
+                                            </tr>
+                                          <tr>
+                                             <td class=3D"centerMe pad20rl=
+" align=3D"right" valign=3D"top" style=3D"text-align: left; padding: 10px 2=
+0px 0px 20px;font-size: 14px; mso-line-height-rule: exactly; line-height: 2=
+4px; font-weight: 400; letter-spacing: 0px; text-transform: none; color: #F=
+FFFFF; font-family: Swiss-Light, Helvetica, Arial, sans-serif;" class=3D"mo=
+bile_match"><span style=3D"font-size: 16px; font-family: Swiss-Light, Helve=
+tica, Arial, sans-serif; font-weight: 400; line-height: 150%; color: #FFFFF=
+F;">Bespoke local and seasonal menus created by award-winning chefs engage =
+the senses and capture a precise time and place=2E</span><br></td>
+                                          </tr>
+                                          <tr>
+                                            <td align=3D"center" class=3D"=
+centerMe pad20rl" style=3D"padding:15px 30px 0px 20px;">
+                                              <table width=3D"100%" role=
+=3D"presentation" class=3D"" border=3D"0" cellpadding=3D"0" cellspacing=3D"=
+0">
+                                                <tbody>
+                                                  <tr>
+                                                    <td align=3D"center" s=
+tyle=3D"background-color:#8ED3E7; text-transform:uppercase; padding:10px 30=
+px 10px 30px;"> <a href=3D"https://email-marriott=2Ecom/T/v71000001a02fe2fd=
+0e9f1e57f4bbe5c898/31d4c3dcc83340830000021ef3a0bcc6/31d4c3dc-c833-4083-bb7f=
+-fa6c2528e756?__dU__=3Dv0oQlZ2XmHtXjKKCycNLIk04888UAVMa5S575yBLsoKzM4fwBvfu=
+HkRA=3D=3D&__F__=3Dv0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX_0JoZLAZABQF8=
+ooLJw0siTTjzzxQBUxrlIwL8mWfTa5t5GgjiAKNXlY22WuEN0FAgwa5UVj5lRQ1YNq6Ud8-04tq=
+681AMpAXAiYgiGde4v3ViOFtocmYRLuaU2YP8RbQWo1-CY9KYRt2sXJazvVPqEqTeSNMiOO3xaS=
+1VscWQ6uQ9m3DpsoGEYSMn3HopgCLBe_V3HtXMiH0Mtpa7Id4Y4si72kJwxJ4hhOwBj3J-3fRR4=
+HozT2nFWt_VO2b5PKU1JiHfF0SGIK7Xa5rgTFDYq4jHzYqS9HQjde0e2_dLD0KT6FRxQDKUlIxi=
+qvkTKJ2WtOt2sFCrH4x1G0Kcumnvnua2M-W_8ZOMw-hUcUAylJSDhWWx6QUiR1z8SwOkzyi9D8B=
+udyK-8xWkpAvHDW2mB2wxmV519UY-Jvkf1_tw_hfk7mJ0wvtc7A" target=3D"_blank" styl=
+e=3D"Swiss-Light, Helvetica, Arial, sans-serif; color: #37323E; text-decora=
+tion: none; font-weight: 400;" rel=3D"noopener noreferrer"><span style=3D"f=
+ont-size: 16px; color: #37323E; font-family:Swiss-Light, Helvetica, Arial, =
+sans-serif; font-weight:400; line-height: 150%; text-decoration: none;">EXP=
+LORE RESTAURANTS</span></a></td>
+                                                  </tr>
+                                                </tbody>
+                                              </table>
+                                            </td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                    </th>
+                                    <!-- Column end-->
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+<!--amenity 2 vpp_5-->
+
+   <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"present=
+ation" bgcolor=3D"#37323E" width=3D"100%">
+                        <tbody>
+                          <tr>
+                            <td class=3D"" style=3D"direction: rtl;padding=
+: 0px 0px 40px 0px; background-color: #37323E">
+                              <table border=3D"0" cellpadding=3D"0" cellsp=
+acing=3D"0" role=3D"presentation" width=3D"100%">
+                                <tbody>
+                                  <tr><!-- Column start -->
+                                    <th class=3D"mobileStack" valign=3D"mi=
+ddle" width=3D"42%">
+                                      <table border=3D"0" cellpadding=3D"0=
+" cellspacing=3D"0" role=3D"presentation" width=3D"100%">
+                                        <tbody>
+                                          <tr>
+                                            <td rowspan=3D"4" class=3D"cen=
+terMe pad20rl" style=3D"padding: 0px 10px 0px 30px; text-align: center"> <a=
+ href=3D"https://email-marriott=2Ecom/T/v71000001a02fe2fd0e9f1e57f4bbe5c898=
+/31d4c3dcc83340830000021ef3a0bcc7/31d4c3dc-c833-4083-bb7f-fa6c2528e756?__dU=
+__=3Dv0oQlZ2XmHtXjKKCycNLIk04888UAVMa5S575yBLsoKzM4fwBvfuHkRA=3D=3D&__F__=
+=3Dv0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX_0JoZLAZABQF8ooLJw0siTTjzzxQB=
+UxrlIwL8mWfTa5t5GgjiAKNXlY22WuEN0FAgwa5UVj5lRQ1YNq6Ud8-04tq681AMpAXAhTXIzJu=
+HGfBkL5-_tFvx2_T-NVBdWsIB4ZNgXeN1REAwXqdCiNJTLrYj9q16MR-nSiruOXu8RNgIjAEHqT=
+V8Gzi3_LXvcvFH8AwZWY6MqmvZvPX5OjK-sWc8zCVnpe4Z9rZ6FX9dTNSpy2OjQRw-aPrryac7x=
+aMTL6jt_Yovkz5QnnLswscV53loYT9xKZAvayL5LZrJ4Bn7UyWflks2gegoNq8G0J0628nPVghd=
+_-deAEaOtIQepCKDz2r4B1fUHHF291e8IH6jIDcvazpTbuasaUlaZ7IAfNa74x7m17WJCHTHfT2=
+T-Fu9RVGoF5qpjAzJ3Y-EECnHDyVAzAYxZkgSZ3IWs8QGs=3D" target=3D"_blank"><img c=
+lass=3D"wrap" src=3D"https://cache=2Emarriott=2Ecom/is/image/marriotts7prod=
+/ak-opolg-exterior-pool-23358:Classic-Hor" alt=3D"" style=3D"display: block=
+;width:260px;" width=3D"260"></a></td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                    </th>
+                                    <th class=3D"mobileStack" width=3D"58%=
+">
+                                      <table border=3D"0" cellpadding=3D"0=
+" cellspacing=3D"0" role=3D"presentation" style=3D"direction: ltr;" width=
+=3D"100%">
+                                        <tbody>
+                                          <tr>
+                                              <td class=3D"mobile_match ce=
+nterMe pad20rl pad20t" align=3D"right" valign=3D"top" style=3D"text-align: =
+left; padding: 0px 5px 0px 20px;font-size: 14px; mso-line-height-rule: exac=
+tly; line-height: 120%; font-weight: 400;  letter-spacing: 1px; color: #FFF=
+FFF; font-family: DINNeuzeitGroteskStd-Light, Times, serif, Helvetica, Aria=
+l, sans-serif;"><span style=3D"font-size: 20px; font-family: DINNeuzeitGrot=
+eskStd-Light, Times, serif; color: #FFFFFF; line-height: 120%; font-weight:=
+ 400;">What to Expect</span></td>
+                                            </tr>
+                                          <tr>
+                                             <td class=3D"centerMe pad20rl=
+" align=3D"right" valign=3D"top" style=3D"text-align: left; padding: 10px 2=
+0px 0px 20px;font-size: 14px; mso-line-height-rule: exactly; line-height: 2=
+4px; font-weight: 400; letter-spacing: 0px; text-transform: none; color: #F=
+FFFFF; font-family: Swiss-Light, Helvetica, Arial, sans-serif;" class=3D"mo=
+bile_match"><span style=3D"font-size: 16px; font-family: Swiss-Light, Helve=
+tica, Arial, sans-serif; font-weight: 400; line-height: 150%; color: #FFFFF=
+F;">Discover all the amenities and services at Forte de Gaia, Autograph Col=
+lection and get ready for your upcoming stay=2E</span><br></td>
+                                          </tr>
+                                          <tr>
+                                            <td align=3D"center" class=3D"=
+centerMe pad20rl" style=3D"padding:15px 30px 0px 20px;">
+                                              <table width=3D"100%" role=
+=3D"presentation" class=3D"" border=3D"0" cellpadding=3D"0" cellspacing=3D"=
+0">
+                                                <tbody>
+                                                  <tr>
+                                                    <td align=3D"center" s=
+tyle=3D"background-color:#8ED3E7; text-transform:uppercase; padding:10px 30=
+px 10px 30px;"> <a href=3D"https://email-marriott=2Ecom/T/v71000001a02fe2fd=
+0e9f1e57f4bbe5c898/31d4c3dcc83340830000021ef3a0bcc8/31d4c3dc-c833-4083-bb7f=
+-fa6c2528e756?__dU__=3Dv0oQlZ2XmHtXjKKCycNLIk04888UAVMa5S575yBLsoKzM4fwBvfu=
+HkRA=3D=3D&__F__=3Dv0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX_0JoZLAZABQF8=
+ooLJw0siTTjzzxQBUxrlIwL8mWfTa5t5GgjiAKNXlY22WuEN0FAgwa5UVj5lRQ1YNq6Ud8-04tq=
+681AMpAXAhTXIzJuHGfBkL5-_tFvx2_T-NVBdWsIB4ZNgXeN1REAwXqdCiNJTLrYj9q16MR-nSi=
+ruOXu8RNgIjAEHqTV8Gzi3_LXvcvFH_6kDVCNILH4VLPD8uHJ5H4jpX22jadYGpc5gQtKAfqFDf=
+JEma7custrryac7xaMTL6jt_Yovkz5QnnLswscV53loYT9xKZAvayL5LZrJ4Bn7UyWflks2gego=
+Nq8G0J0628nPVghd_-deAEaOtIQepCKDz2r4B1fUHHF291e8IH6jIDcvazpTbuasaUlaZ7IAePr=
+6PTPGfI1dYe-Fpi3aHVSprFNYzGUfCpumuKGtmzegsa9xM4Ej-NgSZ3IWs8QGs=3D" target=
+=3D"_blank" style=3D"Swiss-Light, Helvetica, Arial, sans-serif; color: #373=
+23E; text-decoration: none; font-weight: 400;" data-link-id=3D"" rel=3D"noo=
+pener noreferrer"><span style=3D"font-size: 16px; color: #37323E; font-fami=
+ly:Swiss-Light, Helvetica, Arial, sans-serif; font-weight:400; line-height:=
+ 150%; text-decoration: none;">LEARN MORE</span></a></td>
+                                                  </tr>
+                                                </tbody>
+                                              </table>
+                                            </td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                    </th>
+                                    <!-- Column end-->
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+<!--amenity 3 vpp_6-->
+<!--amenity 4 vpp_7-->
+  <!--amenity 5 vpp_8-->
+<!--[!--amenity 6 vpp_9-->
+<!--MBTA Module vpp_10-->
+
+<table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" border=3D=
+"0" width=3D"100%" bgcolor=3D"#ffffff" align=3D"center" style=3D"background=
+-color:#ffffff;">
+  <tbody>
+
+    <tr>
+      <td align=3D"center" style=3D"padding:32px 20px 10px 20px;">
+
+        <!-- Clickable image -->
+        <a href=3D"https://email-marriott=2Ecom/T/v71000001a02fe2fd0e9f1e5=
+7f4bbe5c898/31d4c3dcc83340830000021ef3a0bcc9/31d4c3dc-c833-4083-bb7f-fa6c25=
+28e756?__dU__=3Dv0oQlZ2XmHtXjKKCycNLIk04888UAVMa5S575yBLsoKzM4fwBvfuHkRA=3D=
+=3D&__F__=3Dv0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX_0IA9a7wNY25rKk-_HJm=
+1AQTzxqZ2c2TioKLK2A_0ONLZ2yFac_ljExBVuUl_ON-8RpTZg_xFtBakChG0ug7oohKk1pHjz7=
+K4_5-gapinCuTzvv3s-VRMGT8xtWiv-KJu-fdkdS18juwkUcw1Pi7PpmVyFfGJ8-xHWKedxoHtD=
+dpSmZbjJGWHKUD3OtyXB2k1tWzRh4LkgfgTEJ5LYMwvRnoWooE9z5cTCSImFBS44vqJcm6_Ajre=
+UK3KVgTFZdr7EYgp-fU2jmh8Yt_Kk6NXtKEbsMUTo9rQHxHYe2rtFqutTp5imK764kLLh2mo6ce=
+fqUQubC0L7_yn2V6q2b8xtxnICiWeYYYTEcBKtAjHX-SbgVl3poBCYYBDYLzv_Aftt4ExT7Xm-f=
+7Q=3D=3D" target=3D"_blank">
+          <img src=3D"https://media=2E4at5=2Enet/email_domains/mar/315770/=
+images/marriott-bonvoy-tours-activities=2Epng" width=3D"185" alt=3D"" borde=
+r=3D"0" style=3D"display:block; width:230px; max-width:230px;" class=3D"IMG=
+URL1">
+        </a>
+      </td>
+    </tr>
+   =20
+<!-- Headline (clickable) -->
+<tr>
+  <td align=3D"center" style=3D"padding:18px 20px 0 20px; font-family: 'Al=
+dine721 Lt BT', Georgia, 'Times New Roman', serif; font-size:28px; line-hei=
+ght:34px; color:#1c1c1c; font-weight:400;">
+    <a href=3D""
+       target=3D"_blank"
+       class=3D"HEADLINE1"
+       style=3D"display:block; max-width:400px; margin:0 auto; text-decora=
+tion:none; color:#2A2A2A; font-weight:400; font-size:28px; line-height:34px=
+; font-family: 'Aldine721 Lt BT', Georgia, 'Times New Roman', serif;">
+      Turn Your Vila Nova de Gaia <br>Stay Into an Experience
+    </a>
+  </td>
+</tr>
+
+    <!-- Body Copy -->
+<tr>
+  <td align=3D"center" style=3D"padding:14px 40px 0 40px; font-family: 'Sw=
+is721 Lt BT', Arial, Helvetica, sans-serif; font-size:16px; line-height:24p=
+x; color:#1c1c1c;">
+    <span class=3D"BODYTXT1" style=3D"display:block; max-width:500px; marg=
+in:0 auto;">
+      Make your time in Vila Nova de Gaia unforgettable=2E Find hand-picke=
+d activities and local experiences curated just for you=2E=20
+    </span>
+  </td>
+</tr>
+
+
+    <!-- CTA Button -->
+<tr>
+      <td align=3D"center" style=3D"padding:24px 20px 40px 20px;">
+        <table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" b=
+order=3D"0">
+          <tbody>
+            <tr>
+<td align=3D"center" style=3D"background-color:#8ED3E7; border-radius:0px;=
+">
+  <a href=3D"https://email-marriott=2Ecom/T/v71000001a02fe2fd0e9f1e57f4bbe=
+5c898/31d4c3dcc83340830000021ef3a0bcca/31d4c3dc-c833-4083-bb7f-fa6c2528e756=
+?__dU__=3Dv0oQlZ2XmHtXjKKCycNLIk04888UAVMa5S575yBLsoKzM4fwBvfuHkRA=3D=3D&__=
+F__=3Dv0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX_0IA9a7wNY25rKk-_HJm1AQTzx=
+qZ2c2TioKLK2A_0ONLZ2yFac_ljExBVuUl_ON-8RpTZg_xFtBakChG0ug7oohKk1pHjz7K4_eR0=
+JM83yqZXOm4gjWYaGpSKGN8R2ft44Qmco24YJw1F1WwFwKX6ywm_4b9_itacu9QVPjO1mX4XrMx=
+tHQzyr_3HeVJ5zk44ZK6IUSBEPN_BU551Wqa3N7GIk1q-Pm-hDoE-Rge5PloyutnoDyw5yyaTNe=
+6J8CHPUdCuJJbPjrlpEKjH9GIAZ0n74vk_LoQ2LqAjysn2uHmt-nTvJlTlJJGpCzPlo0-vsVAYr=
+VQ7ztoSTfVKX2cj_Mdf7rHnJ5x-n8O-6_OzWv-xqQsz5aNPr7bz-gjOS1KgivJqh_K-xT8I_um6=
+3zEYQLVylKWeL3dHAREmT7eWaAiZnZySSzTFZZv2AfFsaqKSo=3D" target=3D"_blank" sty=
+le=3D"display:inline-block; padding:12px 64px; font-family: Swiss-Light, He=
+lvetica, Arial, sans-serif; font-weight:400; font-size:16px; line-height: 1=
+50%; color:#37323E; text-decoration:none; text-transform:uppercase; letter-=
+spacing:1px;mso-border-alt:1px solid #8ED3E7;">
+    Book Activities
+  </a>
+</td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+    <!-- Horizontal Rule -->
+    <td align=3D"center" valign=3D"top" style=3D"padding: 20px 20px 20px 2=
+0px" class=3D"pad20rl">
+				<table role=3D"presentation" width=3D"80%" border=3D"0" cellspacing=3D=
+"0" cellpadding=3D"0" class=3D"wrap" bgcolor=3D"#1C1C1C">
+					<tbody>
+						<tr>
+							<td style=3D"line-height: 1px !important;" align=3D"center" valign=
+=3D"top"><img src=3D"https://images=2Eharmony=2Eepsilon=2Ecom/ContentHandle=
+r/images?id=3D3f67ada7-a01e-4c02-ab71-8b46fd3106ae" height=3D"1" style=3D"d=
+isplay: block" border=3D"0" alt=3D""></td>
+						</tr>
+					</tbody>
+				</table>
+			</td>=20
+  </tbody>
+</table>
+
+<!--reservation confirmation vpp_11-->
+
+<table role=3D"presentation" width=3D"100%" border=3D"0" cellspacing=3D"0"=
+ cellpadding=3D"0" class=3D"wrap" bgcolor=3D"#FFFFFF">
+	<tbody>
+		<tr>
+			<td align=3D"left" valign=3D"top">
+				<table role=3D"presentation" width=3D"100%" border=3D"0" cellspacing=
+=3D"0" cellpadding=3D"0" class=3D"wrap">
+					<tbody>
+						<tr>
+							<td align=3D"center" style=3D"padding: 60px 20px 0px 20px" class=3D=
+"pad20rl match">
+                              <h3 style=3D"font-size: 14px; mso-line-heigh=
+t-rule: exactly; line-height: 120%; margin: 0px; font-weight: normal; color=
+: #000000; font-family: DINNeuzeitGroteskStd-Light, Times, serif,Helvetica,=
+ Arial, sans-serif;" class=3D"mobile_match"><span style=3D"font-size: 32px;=
+ font-family: font-weight:400; line-height: 120%; color: #000000;"><span st=
+yle=3D"font-size: 32px; font-family: DINNeuzeitGroteskStd-Light, Times, ser=
+if; line-height: 120%;">In Preparation For Your Stay</span><br></span></h3>=
+</td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<table role=3D"presentation" width=3D"100%" border=3D"0" cellspacing=3D"0"=
+ cellpadding=3D"0" class=3D"wrap" bgcolor=3D"#FFFFFF">
+	<tbody>
+		<tr>
+			<td align=3D"left" valign=3D"top">
+				<table role=3D"presentation" width=3D"100%" border=3D"0" cellspacing=
+=3D"0" cellpadding=3D"0" class=3D"wrap">
+					<tbody>
+						<tr>
+							<td align=3D"center" style=3D"padding: 10px 0px 0px 0px" class=3D"p=
+ad20rl match">
+								<p style=3D"font-size: 14px; mso-line-height-rule: exactly; line-h=
+eight: 150%; margin: 0px; font-weight: normal; letter-spacing: 0px; text-tr=
+ansform: none; color: #000000; font-family: Swiss-Light, Helvetica, Arial, =
+sans-serif;" class=3D"mobile_match"><span style=3D"font-size: 16px; font-fa=
+mily: Swiss-Light, Helvetica, Arial, sans-serif; font-weight: 400; font-wei=
+ght: 400; line-height: 150%; color: #000000;" class=3D"mobile_match">In ant=
+icipation of your visit, here=E2=80=99s what we would like you to know:</sp=
+an>
+									<br>
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<table role=3D"presentation" border=3D"0" cellspacing=3D"0" cellpadding=3D=
+"0" class=3D"wrap" bgcolor=3D"#FFFFFF" width=3D"100%">
+	<tbody>
+		<tr>
+			<td align=3D"center" valign=3D"top" style=3D"padding: 50px 20px 50px 20=
+px" class=3D"pad20rl">
+				<table role=3D"presentation" width=3D"55%" border=3D"0" cellspacing=3D=
+"0" cellpadding=3D"0" class=3D"wrap" bgcolor=3D"#1C1C1C">
+					<tbody>
+						<tr>
+							<td style=3D"line-height: 1px !important;" align=3D"center" valign=
+=3D"top"><img src=3D"https://images=2Eharmony=2Eepsilon=2Ecom/ContentHandle=
+r/images?id=3D3f67ada7-a01e-4c02-ab71-8b46fd3106ae" height=3D"1" style=3D"d=
+isplay: block" border=3D"0" alt=3D""></td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<table role=3D"presentation" width=3D"100%" border=3D"0" cellspacing=3D"0"=
+ cellpadding=3D"0" class=3D"wrap" bgcolor=3D"#FFFFFF">
+	<tbody>
+		<tr>
+			<td align=3D"left" valign=3D"top">
+				<table role=3D"presentation" width=3D"100%" border=3D"0" cellspacing=
+=3D"0" cellpadding=3D"0" class=3D"wrap">
+					<tbody>
+						<tr>
+							<td align=3D"center" style=3D"padding: 0px 50px 20px 50px" class=3D=
+"pad20rl match">
+								<p style=3D"font-size: 14px; mso-line-height-rule: exactly; line-h=
+eight: 150%; margin: 0px; font-weight: normal; letter-spacing: 0px; text-tr=
+ansform: none; color: #000000; font-family:  Swiss-Light, Helvetica, Arial,=
+ sans-serif" class=3D"mobile_match"><span style=3D"font-family:  Swiss-Regu=
+lar, Helvetica, Arial, sans-serif; line-height: 150%;"><span style=3D"line-=
+height: 150%; font-family: Swiss-Regular, Helvetica, Arial, sans-serif;"><s=
+pan style=3D"font-size: 16px; line-height: 150%;">CONFIRMATION NUMBER<br></=
+span></span><span style=3D"font-size: 16px; font-weight: 400; line-height: =
+150%; font-family:Swiss-Light, Helvetica, Arial, sans-serif;">76094675</spa=
+n></span>
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<table role=3D"presentation" width=3D"100%" cellspacing=3D"0" cellpadding=
+=3D"0" border=3D"0" bgcolor=3D"#FFFFFF">
+	<tbody>
+		<tr>
+			<th class=3D"colsplit" style=3D"font-weight: normal;" dir=3D"ltr" width=
+=3D"50%" valign=3D"top" bgcolor=3D"#FFFFFF" align=3D"left">
+				<table role=3D"presentation" width=3D"100%" cellspacing=3D"0" cellpadd=
+ing=3D"0" border=3D"0">
+					<tbody>
+						<tr>
+							<td valign=3D"top">
+								<table role=3D"presentation" width=3D"100%" cellspacing=3D"0" cell=
+padding=3D"0" border=3D"0">
+									<tbody>
+										<tr>
+											<td style=3D"padding: 0px 20px 0px 20px; border-right: 1px soli=
+d #000000; border-right-width: 1px; border-right-color: #000000;" class=3D"=
+match pad20rl pad20b wrap border_none" valign=3D"top" align=3D"center">
+												<p style=3D"font-size: 14px; mso-line-height-rule: exactly; li=
+ne-height: 150%; margin: 0px; font-weight: normal; letter-spacing: 0px; tex=
+t-transform: none; color: #000000; font-family: Swiss-Light, Helvetica, Ari=
+al, sans-serif" class=3D"mobile_p1"><span style=3D"font-family:  Swiss-Regu=
+lar, Helvetica, Arial, sans-serif; line-height: 150%;"><span style=3D"line-=
+height: 150%; font-family: Swiss-Regular, Helvetica, Arial, sans-serif;"><s=
+pan style=3D"font-size: 16px; line-height: 150%;">ARRIVAL DATE</span></span=
+>
+													<br><span style=3D"font-size: 16px; font-family: Swiss-Light,=
+ Helvetica, Arial, sans-serif; color: #1c1c1c; font-weight: 400; line-heigh=
+t: 150%;">September 06, 2026</span></span>
+												</p>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</th>
+			<th class=3D"colsplit" style=3D"font-weight: normal;" dir=3D"ltr" width=
+=3D"50%" valign=3D"top" bgcolor=3D"#FFFFFF" align=3D"left">
+				<table role=3D"presentation" width=3D"100%" cellspacing=3D"0" cellpadd=
+ing=3D"0" border=3D"0">
+					<tbody>
+						<tr>
+							<td valign=3D"top">
+								<table role=3D"presentation" width=3D"100%" cellspacing=3D"0" cell=
+padding=3D"0" border=3D"0">
+									<tbody>
+										<tr>
+											<td style=3D"padding: 0px 20px 0px 20px;" class=3D"match pad20r=
+l wrap" valign=3D"top" align=3D"center">
+												<p style=3D"font-size: 14px; mso-line-height-rule: exactly;  l=
+ine-height: 150%; margin: 0px; font-weight: normal; letter-spacing: 0px; te=
+xt-transform: none; color: #000000; font-family: Swiss-Light, Helvetica, Ar=
+ial, sans-serif" class=3D"mobile_match"><span style=3D"font-family: Swiss-R=
+egular, Helvetica, Arial, sans-serif; line-height: 150%;"><span style=3D"li=
+ne-height: 150%; font-family: Swiss-Regular, Helvetica, Arial, sans-serif;"=
+><span style=3D"font-size: 16px; line-height: 150%;">DEPARTURE DATE</span><=
+/span>
+													<br><span style=3D"font-size: 16px; font-family: Swiss-Light,=
+ Helvetica, Arial, sans-serif; color: #1c1c1c; font-weight: 400; line-heigh=
+t: 150%;">September 08, 2026</span></span>
+												</p>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</th>
+		</tr>
+	</tbody>
+</table>
+<table role=3D"presentation" width=3D"100%" border=3D"0" cellspacing=3D"0"=
+ cellpadding=3D"0" class=3D"wrap" bgcolor=3D"#FFFFFF">
+	<tbody>
+		<tr>
+			<td align=3D"center" valign=3D"top" style=3D"padding: 30px 0px 0px 0px"=
+ class=3D"pad20rl ">
+				<table class=3D"wrap" role=3D"presentation" cellspacing=3D"0" cellpadd=
+ing=3D"0" border=3D"0">
+					<tbody>
+						<tr>
+							<td valign=3D"top" align=3D"center">
+								<table role=3D"presentation" border=3D"0" cellspacing=3D"0" cellpa=
+dding=3D"0" width=3D"280" class=3D"wrap ">
+									<tbody>
+										<tr>
+											<td align=3D"center" valign=3D"top" style=3D"background-color: =
+#8ED3E7; border: 1px solid #8ED3E7">
+												<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" role=
+=3D"presentation" class=3D"wrap">
+													<tbody>
+														<tr>
+                                                          <td align=3D"cen=
+ter" valign=3D"middle" class=3D"match center" style=3D"font-weight: 400; le=
+tter-spacing: 0px; text-transform: uppercase; padding: 10px 20px"><span sty=
+le=3D"color: #37323E; font-family: Swiss-Light, Helvetica, Arial, sans-seri=
+f; font-size: 14px; mso-line-height-rule: exactly; line-height: 150%"><a hr=
+ef=3D"https://email-marriott=2Ecom/T/v71000001a02fe2fd0e9f1e57f4bbe5c898/31=
+d4c3dcc83340830000021ef3a0bccb/31d4c3dc-c833-4083-bb7f-fa6c2528e756?__dU__=
+=3Dv0oQlZ2XmHtXjKKCycNLIk04888UAVMa5S575yBLsoKzM4fwBvfuHkRA=3D=3D&__F__=3Dv=
+0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX_0IA9a7wNY25rVTBF8qYs1JjzzxQBUxrl=
+LSAuST3NneNlOVYXhJ8KAVQrQda_XD3pV5Wvvyas7Q0v-qvEPz-BYxTsAY9yft30UeB6M09pxVr=
+f1Ttm-TylNSYh3xdEhiCu12ua4ExQ2KuIx82KkvR0I3XtHtv3Sw9Ck-hUcUAylJSMYqr5Eyidlr=
+TrdrBQqx-MdRtCnLpp757mtjPlv_GTjMPoVHFAMpSUiA8ZvDKvzmjogY1sqzCryiEKNwWkBxXLb=
+wltAfUOeq2pez7Hpd7gIfb5H9f7cP4X5O5idML7XOwA=3D=3D" target=3D"_blank" style=
+=3D"font-family: Swiss-Light, Helvetica, Arial, sans-serif; color: #37323E;=
+ text-decoration: none; font-weight:400;" rel=3D"noopener noreferrer"><span=
+ style=3D"font-size: 16px; color: #37323E; font-family:Swiss-Light, Helveti=
+ca, Arial, sans-serif; line-height: 150%; text-decoration: none;">VIEW RESE=
+RVATION DETAILS</span></a>
+																</span>
+															</td>
+														</tr>
+													</tbody>
+												</table>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<table role=3D"presentation" border=3D"0" cellspacing=3D"0" cellpadding=3D=
+"0" class=3D"wrap" bgcolor=3D"#FFFFFF" width=3D"100%">
+	<tbody>
+		<tr>
+			<td align=3D"center" valign=3D"top" style=3D"padding: 50px 20px 50px 20=
+px" class=3D"pad20rl">
+				<table role=3D"presentation" width=3D"80%" border=3D"0" cellspacing=3D=
+"0" cellpadding=3D"0" class=3D"wrap" bgcolor=3D"#1C1C1C">
+					<tbody>
+						<tr>
+							<td style=3D"line-height: 1px !important;" align=3D"center" valign=
+=3D"top"><img src=3D"https://images=2Eharmony=2Eepsilon=2Ecom/ContentHandle=
+r/images?id=3D3f67ada7-a01e-4c02-ab71-8b46fd3106ae" height=3D"1" style=3D"d=
+isplay: block" border=3D"0" alt=3D""></td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+	</tbody>
+</table>
+             =20
+<!--benefits vpp_12-->
+
+   =20
+
+
+
+
+=20
+							=09
+						=09
+						=09
+								<table role=3D"presentation" width=3D"100%" border=3D"0" cellspaci=
+ng=3D"0" cellpadding=3D"0" bgcolor=3D"#FFFFFF">
+									<tbody>
+										<tr>
+											<td>
+												<table role=3D"presentation" width=3D"100%" border=3D"0" cells=
+pacing=3D"0" class=3D"wrap">
+													<tbody>
+														<tr>
+															<td height=3D"40" align=3D"left" valign=3D"top" bgcolor=3D"=
+#FFFFFF" style=3D"line-height: 0px; padding: 0px; "><img src=3D"https://ima=
+ges=2Eharmony=2Eepsilon=2Ecom/ContentHandler/images?id=3D3f67ada7-a01e-4c02=
+-ab71-8b46fd3106ae" height=3D"40" style=3D"display: block; height: 40px;" b=
+order=3D"0" alt=3D""></td>
+														</tr>
+													</tbody>
+												</table>
+											</td>
+										</tr>
+									</tbody>
+								</table>=20
+                        =20
+                            =20
+
+<!--Ritz Club Module-->             =20
+             =20
+             =20
+<!--footer-->=20
+
+<table role=3D"presentation" border=3D"0" cellspacing=3D"0" cellpadding=3D=
+"0" width=3D"100%" class=3D"wrap" bgcolor=3D"#37323E">
+    <tbody>
+        <tr>
+            <td>
+                <table role=3D"presentation" border=3D"0" cellspacing=3D"0=
+" cellpadding=3D"0" width=3D"100%" class=3D"wrap">
+                    <tbody>
+                        <tr>
+                          <td style=3D"padding: 20px 20px 0px 20px" align=
+=3D"center">
+                                <table role=3D"presentation" border=3D"0" =
+cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" class=3D"wrap">
+                                    <tbody>
+                                        <tr>
+                                            <th style=3D"padding: 0px" ali=
+gn=3D"center">
+                                                <table role=3D"presentatio=
+n" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%">
+                                                    <tbody>
+                                                        <tr>
+                                                            <th style=3D"f=
+ont-weight: normal; padding: 0px" align=3D"left">
+                                                                <table rol=
+e=3D"presentation" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=
+=3D"100%" class=3D"center wrap">
+                                                                    <tbody=
+>
+                                                                        <t=
+r>
+                                                                          =
+  <th align=3D"left" class=3D"pad0l">
+                                                                          =
+      <table role=3D"presentation" border=3D"0" cellspacing=3D"0" cellpaddi=
+ng=3D"0" width=3D"100%">
+                                                                          =
+          <tbody>
+                                                                          =
+              <tr>
+                                                                          =
+                <td style=3D"padding: 0px 20px" align=3D"center">
+                                                                          =
+                  <a href=3D"https://email-marriott=2Ecom/T/v71000001a02fe2=
+fd0e9f1e57f4bbe5c898/31d4c3dcc83340830000021ef3a0bccc/31d4c3dc-c833-4083-bb=
+7f-fa6c2528e756?__dU__=3Dv0oQlZ2XmHtXjKKCycNLIk04888UAVMa5S575yBLsoKzM4fwBv=
+fuHkRA=3D=3D&__F__=3Dv0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX_0IA9a7wNY2=
+5hzuq4jxIq8nuokoU9MIDwCDzd6irlJNtVOeur2FkYERaU2YP8RbQWpAoRtLoO6KISpNaR48-yu=
+POX2Ua_4wUOpWzRh4LkgfgTEJ5LYMwvRnoWooE9z5cTCSImFBS44vqJcm6_AjreUK3KVgTFZdr7=
+EYgp-fU2jmh8Yt_Kk6NXtKEbsMUTo9rQHxHYe2rtFqutTp5imK764kLLh2mo6cefqUQubC0L7_y=
+o-EFpYGCXiP2iUOdt_SB7wVLaARXtIJCyjfPJVyTa_hSnDh4DV5v_t4ExT7Xm-f7Q=3D=3D">
+                                                                          =
+                    <img style=3D"display: block" class=3D"IMGURL1" src=3D"=
+https://media=2E4at5=2Enet/email_domains/mar/315770/images/770x390_logos_wh=
+ite/logo_autograph_final_white=2Epng" width=3D"230" />
+                                                                          =
+                  </a>
+                                                                          =
+                </td>
+                                                                          =
+              </tr>
+                                                                          =
+          </tbody>
+                                                                          =
+      </table>
+                                                                          =
+  </th>
+                                                                        </=
+tr>
+                                                                    </tbod=
+y>
+                                                                </table>
+                                                            </th>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </th>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+       <tr>
+            <td>
+                <table role=3D"presentation" border=3D"0" cellspacing=3D"0=
+" cellpadding=3D"0" width=3D"100%" class=3D"wrap" >
+                    <tbody>
+                        <tr>=20
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td>
+<table role=3D"presentation" border=3D"0" cellspacing=3D"0" cellpadding=3D=
+"0" width=3D"100%" align=3D"center" class=3D"wrap" bgcolor=3D"#37323E">
+                    <tbody>
+                        <tr>
+                           <td align=3D"center" valign=3D"top" style=3D"pa=
+dding: 30px 0px 20px 0px" class=3D"pad20rl">
+                                <table role=3D"presentation" width=3D"80%"=
+ border=3D"0" cellspacing=3D"0" cellpadding=3D"0" class=3D"wrap" bgcolor=3D=
+"#37323E">
+                                    <tbody>
+                                        <tr>
+                                          <td style=3D"line-height: 1px !i=
+mportant;" align=3D"center" valign=3D"top" bgcolor=3D"#FFFFFF">
+                                             =20
+                                              <img style=3D"display: block=
+" height=3D"1" src=3D"https://images=2Eharmony=2Eepsilon=2Ecom/ContentHandl=
+er/images?id=3D3f67ada7-a01e-4c02-ab71-8b46fd3106ae" border=3D"0"/>
+                                          </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    </tbody>
+              </table>
+            </td>
+        </tr>
+      =20
+        <tr>
+            <td>
+                <table role=3D"presentation" border=3D"0" cellspacing=3D"0=
+" cellpadding=3D"0" width=3D"100%" bgcolor=3D"#37323E">
+                    <tbody>
+                        <tr>
+                            <td style=3D"padding: 40px 20px 40px" align=3D=
+"center" class=3D"pad0rl">
+                                <table role=3D"presentation" border=3D"0" =
+cellspacing=3D"0" cellpadding=3D"0" width=3D"100%">
+                                    <tbody>
+                                        <tr>
+                                            <td style=3D"padding: 0px" ali=
+gn=3D"center">
+                                                <table role=3D"presentatio=
+n" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" align=3D"center">
+                                                    <tbody>
+                                                        <tr>
+                                                          <td style=3D"pad=
+ding: 0px 20px" align=3D"center"><a href=3D"https://email-marriott=2Ecom/T/=
+v71000001a02fe2fd0e9f1e57f4bbe5c898/31d4c3dcc83340830000021ef3a0bccd/31d4c3=
+dc-c833-4083-bb7f-fa6c2528e756?__dU__=3Dv0oQlZ2XmHtXjKKCycNLIk04888UAVMa5S5=
+75yBLsoKzM4fwBvfuHkRA=3D=3D&__F__=3Dv0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvX=
+MWoX_0JoZLAZABQF4zau-oFBc2TNlTq7z8LKg1Gb0GBmeZmpG7XiMbx_4M8n1rIkPhpGNmHx-lP=
+8bWuAQ7P2uucQjtaj4vxaF8B32srrZ6A8sOcsmkzXuifAhz1HQriSWz465aRCox_RiAGdJ--L5P=
+y6ENi6gI8rJ9rh5rfp07yZU5SSWHfeAXJZuq4xiqvkTKJ2WtOt2sFCrH4x1G0Kcumnvnua2M-W_=
+8ZOMw-hUcUAylJSM_3Z0cI8ZpQBoaEm3JLDlH-4r263NotkNUddkArRCPtCMl9Hm2chv1vkf1_t=
+w_hfk7mJ0wvtc7A"><img style=3D"display: block" class=3D"IMGURL3" src=3D"htt=
+ps://images=2Eharmony=2Eepsilon=2Ecom/ContentHandler/images?id=3D7a6fce30-6=
+a7c-11ed-81a9-935abdbb6485" width=3D"30" /></a></td>
+                                                          <td style=3D"pad=
+ding: 0px 20px" align=3D"center"><a href=3D"https://email-marriott=2Ecom/T/=
+v71000001a02fe2fd0e9f1e57f4bbe5c898/31d4c3dcc83340830000021ef3a0bcce/31d4c3=
+dc-c833-4083-bb7f-fa6c2528e756?__dU__=3Dv0oQlZ2XmHtXjKKCycNLIk04888UAVMa5S5=
+75yBLsoKzM4fwBvfuHkRA=3D=3D&__F__=3Dv0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvX=
+MWoX_0JoZLAZABQF9OJQbzKjWJqjvxdDSaKpQYvkLxLF3usyvhQCSo3gEtx_fS2ZJqZ1eN_ZmMo=
+2T6Q9TEDFlg8Xum33yrlco515Q5pzsLuXV8nVGr3YLtFwAQpkTDpcgDeGTf2EAtg-xxT3_urldo=
+N-u_snBP2T_RbnyhznmjEYqEUrrEQS_caKgjz4ARo60hB6kIoPPavgHV9QccXb3V7wgfqMgNy9r=
+OlNu5qxpSVpnsgB6qoq63fAlQf83s6LwSZ8KS3zZV6IlYyWthP6-L6_hC1tb_5l1EQJQuBJncha=
+zxAaw=3D=3D"><img style=3D"display: block" class=3D"IMGURL4" src=3D"https:/=
+/images=2Eharmony=2Eepsilon=2Ecom/ContentHandler/images?id=3D6c44ca90-6a7c-=
+11ed-9f80-ab6cea934aa7" width=3D"30"/></a></td>
+                                                          <td style=3D"pad=
+ding: 0px 20px" align=3D"center"><a href=3D"https://email-marriott=2Ecom/T/=
+v71000001a02fe2fd0e9f1e57f4bbe5c898/31d4c3dcc83340830000021ef3a0bccf/31d4c3=
+dc-c833-4083-bb7f-fa6c2528e756?__dU__=3Dv0oQlZ2XmHtXjKKCycNLIk04888UAVMa5S5=
+75yBLsoKzM4fwBvfuHkRA=3D=3D&__F__=3Dv0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvX=
+MWoX_0JoZLAZABQF3l0BCq7aLnRVuO99PCJXfPde_A1pV92bc5WytoWI4tydmuKcwuYf4NHKfc9=
+fqKUf6KTolqh7KlRH4N1sFrHuGPfnQupOCYI5a68mnO8WjEy-o7f2KL5M-UJ5y7MLHFed5aGE_c=
+SmQL2si-S2ayeAZ-1Mln5ZLNoHtUpXCEORWIiWHTI6jNNJ-wRuwxROj2tAfEdh7au0Wq61OnmKY=
+rvriQsuHaajpx5-pRC5sLQvv_Km6mqGwu3YB-8ykrB44ONAL1iJwwDbso0jScrI8gh4YhaaEGMG=
+xzUqXgTFPteb5_t"><img style=3D"display: block" class=3D"IMGURL5" src=3D"htt=
+ps://images=2Eharmony=2Eepsilon=2Ecom/ContentHandler/images?id=3D807d07c0-6=
+a7c-11ed-aeaf-63f60f0b5b4c" width=3D"30"/></a></td>
+
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <table role=3D"presentation" border=3D"0" cellspacing=3D"0=
+" cellpadding=3D"0" width=3D"100%" class=3D"wrap" bgcolor=3D"#37323E">
+                    <tbody>
+                        <tr>
+                            <td align=3D"left">
+                                <table role=3D"presentation" border=3D"0" =
+cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" class=3D"wrap">
+                                    <tbody>
+                                        <tr>
+                                            <td style=3D"padding: 0px 20px=
+ 15px" align=3D"center" class=3D"pad20rl match">
+                                              <p style=3D"text-transform: =
+uppercase; font-size: 14px; line-height: 150%; margin: 0px; font-weight: no=
+rmal; letter-spacing: 0px; font-family: DINNeuzeitGroteskStd-Light, Times, =
+serif, Helvetica, Arial, sans-serif; color: #FFFFFF" class=3D"mobile_match"=
+>
+                                                  <span style=3D"line-heig=
+ht: 150%">
+                                                  <span style=3D"font-size=
+: 12px; line-height: 150%; font-weight: 400; font-family: DINNeuzeitGrotesk=
+Std-Light, Times, serif, Helvetica, Arial, sans-serif; color: #FFFFFF;">
+                                                    <strong>
+                                                      <a style=3D"text-dec=
+oration: none; color: #FFFFFF" href=3D"https://email-marriott=2Ecom/T/v7100=
+0001a02fe2fd0e9f1e57f4bbe5c898/31d4c3dcc83340830000021ef3a0bcd0/31d4c3dc-c8=
+33-4083-bb7f-fa6c2528e756?__dU__=3Dv0oQlZ2XmHtXjKKCycNLIk04888UAVMa5S575yBL=
+soKzM4fwBvfuHkRA=3D=3D&__F__=3Dv0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX_=
+0JoZLAZABQF8ooLJw0siTTjzzxQBUxrlLl5Pma2_2uwtDlgLxSK2GiU5VheEnwoBVCtB1r9cPel=
+Xla-_JqztDS_6q8Q_P4FjFOwBj3J-3fRR4HozT2nFWt_VO2b5PKU1JiHfF0SGIK7Xa5rgTFDYq4=
+jHzYqS9HQjde0e2_dLD0KSCR7aIkd8ja4GMU_HJYZVrVXQMy02WzDqWabsYADAyebQ5fFaXso8-=
+eLf7I6TFHoBGFgF3QgLcyvLYYhXRtaNmDaY6H9Ke7BeFfQUY_zaiP_CS41f8alMfWtU1B7Cua5A=
+=3D=3D">PRIVACY CENTER</a>&nbsp; &nbsp; &nbsp;|&nbsp; &nbsp; &nbsp;
+                                                 =20
+                                                 =20
+                                                      <a style=3D"text-dec=
+oration: none; color: #FFFFFF;" href=3D"https://email-marriott=2Ecom/T/v710=
+00001a02fe2fd0e9f1e57f4bbe5c898/31d4c3dcc83340830000021ef3a0bcd1/31d4c3dc-c=
+833-4083-bb7f-fa6c2528e756?__dU__=3Dv0oQlZ2XmHtXjKKCycNLIk04888UAVMa5S575yB=
+LsoKzM4fwBvfuHkRA=3D=3D&__F__=3Dv0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX=
+_0JoZLAZABQF8ooLJw0siTTjzzxQBUxrlLeTbfzHKjcOg_Lvh4bPwOQOzucdr4KYBppTZg_xFtB=
+akChG0ug7oohKk1pHjz7K485fZRr_jBQ6lbNGHguSB-BMQnktgzC9GehaigT3PlxMJIiYUFLji-=
+olybr8COt5QrcpWBMVl2vsf0e_6bey6Idz7CdOd4S83MsFBiiWcz_Z6jBnujCV9wkeOkoDPVWto=
+TilCoBUTgaWjkhCUTGOdaPz23lxEBsAPwnjBgFNnd39vnNSvJOkQS-4MjnHaBhW8M_y4R6HTK-i=
+BoyImT4S32_">TERMS OF USE</a>
+                                                  </strong>
+                                                  </span>
+                                                  </span>
+                                              </p>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <table role=3D"presentation" border=3D"0" cellspacing=3D"0=
+" cellpadding=3D"0" width=3D"100%" class=3D"wrap" bgcolor=3D"#37323E">
+                    <tbody>
+                        <tr>
+                            <td align=3D"left">
+                                <table role=3D"presentation" border=3D"0" =
+cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" class=3D"wrap" bgcolor=
+=3D"#37323E">
+                                    <tbody>
+                                        <tr>
+                                         =20
+                                            <td style=3D"padding: 0px 20px=
+ 40px" align=3D"center" class=3D"pad20rl match">
+                                              <p style=3D"text-transform: =
+uppercase; font-size: 14px; line-height: 150%; margin: 0px; font-weight: no=
+rmal; letter-spacing: 0px; font-family: DINNeuzeitGroteskStd-Light, Times, =
+serif, Helvetica, Arial, sans-serif; color: #FFFFFF;" class=3D"mobile_match=
+"><a style=3D"text-decoration: none; font-size: 12px; line-height: 150%; fo=
+nt-family: DINNeuzeitGroteskStd-Light, Times, serif, Helvetica, Arial, sans=
+-serif; font-weight: 400; color: #FFFFFF;" href=3D"https://email-marriott=
+=2Ecom/H/2/v71000001a02fe2fd0e9f1e57f4bbe5c898/31d4c3dc-c833-4083-bb7f-fa6c=
+2528e756/HTML"><strong>WEB VIEW</strong></a><br /></p>
+                                            </td>
+                                         =20
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <table role=3D"presentation" width=3D"100%" class=3D"wrap"=
+ bgcolor=3D"#37323E">
+                    <tbody>
+                        <tr>
+                            <td align=3D"left">
+                                <table role=3D"presentation" width=3D"100%=
+" class=3D"wrap" bgcolor=3D"#37323E">
+                                    <tbody>
+                                        <tr>
+                                            <td style=3D"padding: 0px 50px=
+ 100px" align=3D"center" class=3D"pad20rl match">
+                                              <p style=3D"font-size: 10px;=
+ line-height: 150%; margin: 0px; font-weight: normal; letter-spacing: 0px; =
+text-transform: none; font-family: DINNeuzeitGroteskStd-Light, Times, serif=
+, Helvetica, Arial, sans-serif; color: #FFFFFF;" class=3D"mobile_match">
+                                                *Benefits vary by brand an=
+d hotel=2E Select benefits are subject to availability=2E Please see full t=
+erms and conditions=2E=20
+                                                <br />
+                                                <br />	=09
+                                                	You may opt out of promot=
+ional emails at any time =20
+                                                <a style=3D"text-decoratio=
+n: underline; color: #FFFFFF;"  href=3D"https://email-marriott=2Ecom/T/v710=
+00001a02fe2fd0e9f1e57f4bbe5c898/31d4c3dcc83340830000021ef3a0bcd2/31d4c3dc-c=
+833-4083-bb7f-fa6c2528e756?__dU__=3Dv0oQlZ2XmHtXjKKCycNLIk04888UAVMa5S575yB=
+LsoKzM4fwBvfuHkRA=3D=3D&__F__=3Dv0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX=
+_0JoZLAZABQF8ooLJw0siTTjzzxQBUxrlJu_1hwVUpjtjMatxA9kdXN7rU4Z-uO14jPkiMtbGe1=
+o8XJazvVPqEqTeSNMiOO3xaS1VscWQ6uQyV0Rbed20riIalWwCT5IriloQfS7wSUxqtuujOnzZs=
+uV326WPq7Om4u6U-HXVL_F7pdCKufQBNFUTqBQwYa1FGa-jt3plckiCwUGKJZzP9nqMGe6MJX3C=
+R46SgM9Va2hOKUKgFROBpaOSEJRMY51o8VvjQrZ5x0Gah1azUeEYLPDjzk0sTKPsEN7GeawYfm2=
+JXMSPLh8R_8GjIiZPhLfb8=3D">here</a>=2E Each email also includes a link to u=
+nsubscribe=2E Please note: should you unsubscribe, you will continue to rec=
+eive emails such as this one, reservation confirmations, hotel stay receipt=
+s and changes to program terms and conditions=2E <br /><br />This email is =
+sent from an unmonitored mailbox=2E Please contact us at the specific prope=
+rty email address listed above and someone will reply to you directly=2E<br=
+ /><br />=C2=A9 2025 MARRIOTT INTERNATIONAL, INC=2E ALL RIGHTS RESERVED=2E =
+<br />MARRIOTT PROPRIETARY INFORMATION
+                                              </p>
+                                            </td>
+                                        </tr>
+                                  =20
+                                    </tbody>
+                                </table>
+                     =20
+   =20
+ =20
+
+
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<img src=3D'https://email-marriott=2Ecom/O/v71000001a02fe2fd0e9f1e57f4bbe5=
+c898/31d4c3dcc833408300004c5a42963aa1' style=3D"display:none; max-height: 0=
+px; font-size: 0px; overflow: hidden; mso-hide: all"/></body></html>
+---=Part.256d124.ca28ed19a7c85689.1a02fe354a7.6bf8d8ae429ac45a=---
+
