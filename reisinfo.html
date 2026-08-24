@@ -52,6 +52,14 @@
     .reisinfo-intro { background: var(--cream); padding: 2.5rem 0 1.5rem; text-align: center; }
     .back-link { display: inline-flex; align-items: center; gap: .4rem; color: var(--azul); font-weight: 600; text-decoration: none; }
     .back-link:hover { color: var(--terra); }
+
+    .day-card[data-day-target] { cursor: pointer; transition: transform .15s ease, box-shadow .15s ease; }
+    .day-card[data-day-target]:hover,
+    .day-card[data-day-target]:focus-visible {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md, 0 8px 20px rgba(0,0,0,.12));
+    }
+    .day-card[data-day-target] .day-card-btns a { cursor: pointer; }
   </style>
 </head>
 <body>
@@ -253,7 +261,7 @@
 
     <div class="days-grid">
 
-      <div class="day-card fade-in">
+      <div class="day-card fade-in" data-day-target="day1" tabindex="0" role="link" aria-label="Bekijk details voor dag 1–2, Porto">
         <div class="day-card-img">
           <img src="images/dag01-porto.jpg" loading="lazy" decoding="async"
                alt="Porto aan de Douro">
@@ -279,7 +287,7 @@
         </div>
       </div>
 
-      <div class="day-card fade-in">
+      <div class="day-card fade-in" data-day-target="day2" tabindex="0" role="link" aria-label="Bekijk details voor dag 3–4, Amarante">
         <div class="day-card-img">
           <img src="images/dag02-douro.jpg" loading="lazy" decoding="async"
                alt="Amarante en de Douro-wijngaarden">
@@ -305,7 +313,7 @@
         </div>
       </div>
 
-      <div class="day-card fade-in">
+      <div class="day-card fade-in" data-day-target="day3" tabindex="0" role="link" aria-label="Bekijk details voor dag 5, Aveiro">
         <div class="day-card-img">
           <img src="images/dag03-aveiro.jpg" loading="lazy" decoding="async"
                alt="Aveiro grachten en moliceiro boten">
@@ -331,7 +339,7 @@
         </div>
       </div>
 
-      <div class="day-card fade-in">
+      <div class="day-card fade-in" data-day-target="day4" tabindex="0" role="link" aria-label="Bekijk details voor dag 6, Batalha, Alcobaça en Nazaré">
         <div class="day-card-img">
           <img src="images/dag04-nazare.jpg" loading="lazy" decoding="async"
                alt="Nazaré kliffen en golven">
@@ -357,7 +365,7 @@
         </div>
       </div>
 
-      <div class="day-card fade-in">
+      <div class="day-card fade-in" data-day-target="day5" tabindex="0" role="link" aria-label="Bekijk details voor dag 6–7, Óbidos">
         <div class="day-card-img">
           <img src="images/dag05-obidos.jpg" loading="lazy" decoding="async"
                alt="Óbidos middeleeuwse stad">
@@ -383,7 +391,7 @@
         </div>
       </div>
 
-      <div class="day-card fade-in">
+      <div class="day-card fade-in" data-day-target="day6" tabindex="0" role="link" aria-label="Bekijk details voor dag 8, Mafra en Sintra">
         <div class="day-card-img">
           <img src="images/dag06-sintra.jpg" loading="lazy" decoding="async"
                alt="Palácio da Pena in Sintra">
@@ -409,7 +417,7 @@
         </div>
       </div>
 
-      <div class="day-card fade-in">
+      <div class="day-card fade-in" data-day-target="day7" tabindex="0" role="link" aria-label="Bekijk details voor dag 8–10, Lissabon">
         <div class="day-card-img">
           <img src="images/dag07-lisboa.jpg" loading="lazy" decoding="async"
                alt="Lissabon panorama met tram">
@@ -1722,6 +1730,22 @@
     btn.addEventListener('click', (e) => {
       e.preventDefault();
       downloadIcs(btn.getAttribute('data-ics-day'));
+    });
+  });
+
+  // Vogelvlucht-tegels (.day-card) volledig doorklikbaar maken naar de dagdetails,
+  // behalve wanneer er al op een link binnen de tegel (Maps/Details/Agenda) is geklikt.
+  document.querySelectorAll('.day-card[data-day-target]').forEach(card => {
+    const target = card.getAttribute('data-day-target');
+    card.addEventListener('click', (e) => {
+      if (e.target.closest('a')) return;
+      window.location.hash = target;
+    });
+    card.addEventListener('keydown', (e) => {
+      if ((e.key === 'Enter' || e.key === ' ') && !e.target.closest('a')) {
+        e.preventDefault();
+        window.location.hash = target;
+      }
     });
   });
 
