@@ -155,10 +155,20 @@ def send_onesignal_notification(nieuwe):
     if len(plekken) > 4:
         beschrijving += f" en {len(plekken) - 4} andere plek(ken)"
 
+    # Titel altijd expliciet als bosbrand-alert, met de dichtstbijzijnde
+    # routeplaats erin zodat je in de meldingenlijst meteen ziet waar het om gaat.
+    dichtstbijzijnde_naam = plekken[0][0] if plekken else None
+    if dichtstbijzijnde_naam:
+        titel = f"🔥 Bosbrand-alert bij {dichtstbijzijnde_naam}"
+        if len(plekken) > 1:
+            titel += " e.o."
+    else:
+        titel = "🔥 Bosbrand-alert bij de route"
+
     payload = {
         "app_id": ONESIGNAL_APP_ID,
         "included_segments": ["Total Subscriptions"],
-        "headings": {"en": "🔥 Bosbrand-alert bij de route"},
+        "headings": {"en": titel},
         "contents": {
             "en": f"Nieuwe hitte-detectie binnen {ALERT_RADIUS_KM:.0f} km van: {beschrijving}. Check de kaart voor details."
         },
