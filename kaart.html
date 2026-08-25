@@ -138,7 +138,8 @@
     <p class="kaart-note" style="margin-top:0;margin-bottom:1rem;">
       Hotel, alle bezienswaardigheden (incl. Belém en Cristo Rei) en de 4 restaurants van dag 8–10
       (per dag een andere kleur), ingezoomd. Dag 8-lunch (Incomum) valt buiten dit kaartje — dat
-      restaurant ligt in Sintra, niet in Lissabon zelf.
+      restaurant ligt in Sintra, niet in Lissabon zelf. Ook het startpunt van de geboekte stadswandeling
+      op dag 9 (Praça Luís de Camões) staat erop.
     </p>
     <div id="lissabon-map" style="width:100%;height:60vh;min-height:420px;border-radius:var(--radius-lg);border:1px solid var(--border);box-shadow:var(--shadow-sm);"></div>
     <div class="kaart-legende">
@@ -147,6 +148,7 @@
       <span><span class="legende-dot" style="background:#c1440e"></span> Restaurant dag 8</span>
       <span><span class="legende-dot" style="background:#b8860b"></span> Restaurant dag 9</span>
       <span><span class="legende-dot" style="background:#6a4c93"></span> Restaurant dag 10</span>
+      <span><span class="legende-dot" style="background:#2c3e50"></span> Start begeleide wandeling</span>
     </div>
   </div>
 </section>
@@ -377,6 +379,9 @@ document.addEventListener('DOMContentLoaded', function () {
     { naam: 'LX Factory', coords: [38.7043, -9.1786], q: 'LX Factory Lisboa' },
     { naam: 'Cristo Rei', coords: [38.6786, -9.1725], q: 'Cristo Rei Almada' }
   ], 'Dag 8–10 · Lissabon', lissabonBounds);
+  extraMarker(lissabonMap,
+    { naam: 'Praça Luís de Camões', coords: [38.7107, -9.1434], q: 'Praca Luis de Camoes Lisboa' },
+    WANDELSTART, '🚶', 'Start begeleide wandeling (Mijn Lissabon — Gino) · dag 9, 9:30', lissabonBounds);
   lissabonMap.fitBounds(lissabonBounds, { padding: [40, 40] });
 });
 </script>

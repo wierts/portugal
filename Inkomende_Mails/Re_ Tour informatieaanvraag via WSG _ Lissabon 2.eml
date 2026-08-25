@@ -1,0 +1,482 @@
+Delivered-To: duco.wiertsema@gmail.com
+Received: by 2002:a05:7023:c013:b0:141:a57b:7e2c with SMTP id io19csp170594dlc;
+        Tue, 25 Aug 2026 04:19:24 -0700 (PDT)
+X-Forwarded-Encrypted: i=5; AHgh+Rrjj4uXSRYFJVsGrRBbboRTbuA+blJHsPFvNm3WlIOG98zlEant+Mcmb+oP0FYQINIbPvwJLHEvDvCbNM8N3A==@gmail.com
+X-Received: by 2002:a67:e704:0:b0:781:1ac:8232 with SMTP id ada2fe7eead31-78101acbf3amr559724137.5.1787656764165;
+        Tue, 25 Aug 2026 04:19:24 -0700 (PDT)
+ARC-Seal: i=4; a=rsa-sha256; t=1787656764; cv=pass;
+        d=google.com; s=arc-20260327;
+        b=jIJyJMFVFXnw1BadsV8S1XULAqT4rByCU3JxkH1pvYE7WXDJOCmu+z6MSRKn8Ra1d7
+         oUe4AoAsd+lM6O6ZjuQlzWgaULfgtmxiBfzVMVQDVRBL+m7Pp0d3CV05zDuQA14YFeG/
+         n1LqzEzUfmeRV1oFFcePayRc2iMH1pyhsw/gCnSBwSIs3AyYLtD6fd6fgzK9q+xQo1el
+         WFC3kCslqfk5CpAo9/3WPBMAN7wmdjVYkMr6HCci7j+P3m1P0NdmChGBRvh5IXmYgod9
+         vDWOXRMctHcbg52c20pex13103hVAr/M/hMnamjo4AL7HcYZ/SmaKsZxTwCjwiKpnh2R
+         i19w==
+ARC-Message-Signature: i=4; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :dkim-signature:delivered-to;
+        bh=LOyo+9rQ2IehRHDhoiYRgkLL8fwkzJPxy6KjiHpxE3c=;
+        fh=tJ34AohxkxlUSNGYES7MxNRrP8ExlPHxZyeJv4PHAVw=;
+        b=UQHtf65WG+Y2nEcTDU++8swaqdBz6YeirrlGYV4pdTbcs3zLNhsK/cOK9o+M4OmxZk
+         0Wf3Uqq2e4NrIZZsTbjLSemA8UnXuQZBM8Ll+jK3N3IkvfRjrxTKZsiyEaE+oLp+ECa4
+         MAHra6NkCqxNgl7Sh3382qQYXAu7CRs72hjRvlSfHGaS9MBQuvzl8Wdtg1AbJyD/Uau5
+         ne/24yhag3HvS2MTfCWdwomAyaaOJsaSOpcSzctNLVBu4Uq0Avb2rKF3taZtUY1C1QZ1
+         pKT8tdU6h1xki1WRW85DwVgU9dosfCHtXx00WRgyooZamS/pEqX7bTxfNBlSpMbEJ0pS
+         EqAA==;
+        dara=google.com
+ARC-Authentication-Results: i=4; mx.google.com;
+       dkim=pass header.i=@mijnlissabon-nl.20251104.gappssmtp.com header.s=20251104 header.b=jjMzyYPE;
+       arc=pass (i=3 spf=pass spfdomain=mijnlissabon.nl dkim=pass dkdomain=mijnlissabon-nl.20251104.gappssmtp.com);
+       spf=pass (google.com: domain of wierts+caf_=duco.wiertsema=googlemail.com@googlemail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom="wierts+caf_=duco.wiertsema=googlemail.com@googlemail.com";
+       dara=pass header.i=@gmail.com
+Return-Path: <wierts+caf_=duco.wiertsema=googlemail.com@googlemail.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id ada2fe7eead31-780489e0ca9sor378287137.8.2026.08.25.04.19.23
+        for <duco.wiertsema@gmail.com>
+        (Google Transport Security);
+        Tue, 25 Aug 2026 04:19:24 -0700 (PDT)
+Received-SPF: pass (google.com: domain of wierts+caf_=duco.wiertsema=googlemail.com@googlemail.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@mijnlissabon-nl.20251104.gappssmtp.com header.s=20251104 header.b=jjMzyYPE;
+       arc=pass (i=3 spf=pass spfdomain=mijnlissabon.nl dkim=pass dkdomain=mijnlissabon-nl.20251104.gappssmtp.com);
+       spf=pass (google.com: domain of wierts+caf_=duco.wiertsema=googlemail.com@googlemail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom="wierts+caf_=duco.wiertsema=googlemail.com@googlemail.com";
+       dara=pass header.i=@gmail.com
+ARC-Seal: i=3; a=rsa-sha256; t=1787656763; cv=pass;
+        d=google.com; s=arc-20260327;
+        b=ki4oS/70n0H9rkWK9aMxIkq6kX2c/4aw3dK0E9/o3/QyOUzHXCu89Gg4wI24SHpcBE
+         cg6SfYZ0yUl2zWRFuV/WXk6BmE1K7mtlSzPL33uw/kQ/DrT3/0iVjWnzn+UNrax65Pnk
+         K/yz5rXfdArnaptDknZfih8uCSXJmJXyWnvn+WhOqb7l9PldV/0kU4Ao/UEYxxlJRJQd
+         cIVNRBstPvf8ibSFll1ixCzgaJT2mXcmvrCa5KlkLjNyMDZ34/y5YS081ATmYLIYQF77
+         MgfanG9Xv7O4ai+Yrr1kt5RzL/qBfVd8pRi6H545aTjVWVhpOGXCD/1VgzK4789Sc69Z
+         tN1w==
+ARC-Message-Signature: i=3; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :dkim-signature:delivered-to;
+        bh=LOyo+9rQ2IehRHDhoiYRgkLL8fwkzJPxy6KjiHpxE3c=;
+        fh=tJ34AohxkxlUSNGYES7MxNRrP8ExlPHxZyeJv4PHAVw=;
+        b=TWEn92CBZJkfsNAyp0uXodnIt5oe1Ej2EiI4N6BCNicmLb32aWsmrPbyQMwZz8iSIs
+         va317yhr7H1e1Cy19SrmaAVEugCw4UUgdXZkfw904fYh9X5j5sWfYskHqT/OaPGMUKOr
+         wConkJun1h3MEF8cwxl7N2HeLByXmkYcTi1vkich8As8RIyHj+lYGSXWI/QH41NbdNLP
+         9WtJ4cs9tNLgVCyL1U234IqmP2JvdoaXRX2pfLF6TvbajGfaYUfm3v//SAo8PEamKRRh
+         cTUrhfU3pEVo9Eb2eya4p2qeg4tP0Atx4pySN7AHRkoUNGCgBYTjeD1I6WVQf2vgMZwi
+         RlFA==;
+        dara=google.com
+ARC-Authentication-Results: i=3; mx.google.com;
+       dkim=pass header.i=@mijnlissabon-nl.20251104.gappssmtp.com header.s=20251104 header.b=jjMzyYPE;
+       arc=pass (i=1);
+       spf=pass (google.com: domain of gino@mijnlissabon.nl designates 209.85.220.41 as permitted sender) smtp.mailfrom=gino@mijnlissabon.nl;
+       dara=pass header.i=@gmail.com
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1787656763; x=1788261563;
+        h=content-type:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:dkim-signature:delivered-to:x-forwarded-for
+         :x-forwarded-to:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=LOyo+9rQ2IehRHDhoiYRgkLL8fwkzJPxy6KjiHpxE3c=;
+        b=aZoZLxTTC1iL/6FHyDuQTaEuICrS0SK7RbrMoCqB/BiLxSSsNA5yyz+wNoGrSXInfv
+         URWcQGPN+Tm68WYmrRDodhUBCdWqnxAqkMFsTU5VJN3LjRcS+YJ+fZfibLNytsbevbbe
+         o4S0HPYOboA/AU8wJZPe4vuFE0n7kouUaA7Px7B+GfVZAGwSO4eb4rokkETVJSA+teJv
+         wjloWGyIDVDhXDh4JZmcU4152vkD8Nb+sRtOvOGM+LNUsuYe048MbswLhEj8cfNqHNdT
+         dR9HeIHdRkpV0fTlgjRbwPJNELse0vb9d63s52NjloL+4hjqRLgzpuBNJ0QGBRIDcH7w
+         8YOg==
+X-Forwarded-Encrypted: i=3; AHgh+RrhZf56dqgnVve95ESUmxTtN9ESXjP9NNNv4ttmGzwWFlABBYoJHbZg70vwmiuqoirS84/N3MT0ylvRHpF3yQ==@googlemail.com
+X-Gm-Message-State: AFuF++n8HbGH5+reCOauPieF4VqraaFrZh7sGmCs+7a4We8Nt8c+UR6i
+	y4ifC1UgWweiN5BNrgj5ydm40WTsnCTBPVIRok0Ywnqc7XsIDF53rd/w17aeLEsMb+KRmBcAjS2
+	wvVvZH0Te9CYxQu93NNtEYEvG4bo21k/c+cp1JQDuJmZVbYkl4A3wVBgWs11q/Q==
+X-Received: by 2002:a05:6102:448c:b0:77d:9fe9:1716 with SMTP id ada2fe7eead31-77fe61557b4mr2318774137.2.1787656763610;
+        Tue, 25 Aug 2026 04:19:23 -0700 (PDT)
+X-Forwarded-To: duco.wiertsema@googlemail.com
+X-Forwarded-For: wierts@googlemail.com duco.wiertsema@googlemail.com
+Delivered-To: wierts@gmail.com
+Received: by 2002:ab0:305a:0:b0:97c:b34e:ec15 with SMTP id x26csp321629ual;
+        Tue, 25 Aug 2026 04:19:22 -0700 (PDT)
+X-Received: by 2002:a05:690c:c6d3:b0:81d:bc5:4624 with SMTP id 00721157ae682-854778068bfmr18524557b3.25.1787656761912;
+        Tue, 25 Aug 2026 04:19:21 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1787656761; cv=pass;
+        d=google.com; s=arc-20260327;
+        b=Asl9xu9YC8NQqhVuGtLE2SdzAP8rRWyXgsO4E+abmvbOqaZ+aMfQl7hje40bMP03+e
+         fH4ikYBXV4dYTUM9cEbwOr5+PL63CoTPYctXXz8C2Q8kQb+QbOVlU9BQQ/UE6dtJ4ole
+         /8EdbglfQcweQjO+jjjDS7dAej2YXfF09bIhK4RxLyUg3N5ERM9wGylQLOrn1EzVfo0T
+         fjl6XQ6t0cAoxuABMRx0qIn9nxuuLgv9x5T9byxpYdw7XX23uEkzWpfo+OPdB3yjYXFU
+         NEt02zk9KFdYXkee76pzXSEVMxDFhyjpw9dyvBRV068Ll33HpGHHRcB8GsyUZ7IgQvy3
+         64gg==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :dkim-signature;
+        bh=LOyo+9rQ2IehRHDhoiYRgkLL8fwkzJPxy6KjiHpxE3c=;
+        fh=OzEPqevkYqfXd8sxf71cLCxDJAPorBtAIWzctpVS4Bk=;
+        b=MkZWnLoT3FY+RrAokZiBOWAIzLrqYID/PwM2W8xIjSviMJLIduW/Hg93FmgiDYcX9d
+         nf3NGeQN43JRwh7Z5CYe206ibdqdJQSRdUiOIjiNc9g5OEKgdqvEA4LX0pI9vD9RW4TA
+         FaCtxTLJ+fq1hAB8XKg4s1YxN9Lki4GkE8/0PzVBWkBj3K0D8nBVB/4QNwosYtbPoxr8
+         EuRLCiqMS9W/jHZI2u/sBqKHBumt3X8OZwj5hPx7d5w7VdowIltv3RraZFjS0tOImDqE
+         zVQykd/u6NeNj9LemnhpP1l2mjlrsitlX5JY2r1ryZ+fXKohtFLWJe5fmjP8ARxBmyfA
+         cc7g==;
+        dara=google.com
+ARC-Authentication-Results: i=2; mx.google.com;
+       dkim=pass header.i=@mijnlissabon-nl.20251104.gappssmtp.com header.s=20251104 header.b=jjMzyYPE;
+       arc=pass (i=1);
+       spf=pass (google.com: domain of gino@mijnlissabon.nl designates 209.85.220.41 as permitted sender) smtp.mailfrom=gino@mijnlissabon.nl;
+       dara=pass header.i=@gmail.com
+Return-Path: <gino@mijnlissabon.nl>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id 00721157ae682-8555067e0dasor9667047b3.1.2026.08.25.04.19.21
+        for <wierts@gmail.com>
+        (Google Transport Security);
+        Tue, 25 Aug 2026 04:19:21 -0700 (PDT)
+Received-SPF: pass (google.com: domain of gino@mijnlissabon.nl designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+ARC-Seal: i=1; a=rsa-sha256; t=1787656761; cv=none;
+        d=google.com; s=arc-20260327;
+        b=fmfXH+oVPjUaRIBYjdXI6J4Z+nOs0uxIMYVnbTpHuDYgYKyVUQ2S+UWewC3sUyLhS2
+         gpnPs+F42abEjcHq/pslGvTsac2qr3uO1TeTFFgeRawMvlX6nj+JeuRGB/XL3/LgN2j0
+         Ve29nPGKa5FgxFJiuCu0XCFnF1/eJSU8QhH6M8l66RSH/P6jZESG1xfxwcoN/XFVTVWS
+         s/p4k20Ysic8g/KIGcSv2FiM0VUUlnuwYYNgM/L7QXx4f8LDesvQkF3ExJ2QMSQzVtX4
+         vJ3cy03txjW/IuzDYhrnUOV8zwIVtS+XBk0OZ7AgZu5sbbNdQSp9KveguCW0Y1HxWWu7
+         80GQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :dkim-signature;
+        bh=LOyo+9rQ2IehRHDhoiYRgkLL8fwkzJPxy6KjiHpxE3c=;
+        fh=OzEPqevkYqfXd8sxf71cLCxDJAPorBtAIWzctpVS4Bk=;
+        b=MkpmZloo6cnZ5ePxQiAsTYLu0l4WRUyNKCbuPkVSH8Gvh8q5T7Y48Rn1xA8TEmPqU0
+         5M8HjxzshTT53/tnupOhXr68+unVgoHPRbVhVx4FuKPE7DuEaZcTM8rlDp5f3rh/lfC7
+         sHDpxMSPjHJJJMHfLxNis8RrDrKOftv9ZYPBYb+cUvCPng17NYAEl7aJApasXQ7KHYQO
+         7cI0qGu61nY75+BZ74vZl6OzsJtX61zVmzr/xi/ZnGDnd02wqArA+s7BKQnFkb9bZPWl
+         FfZiG00Nio+uTUtE7cQBW7qfuP970IOa5BR6W7qiqbu2k8nz7Z+Koq2HNHqsD1nKzKwc
+         cimw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=mijnlissabon-nl.20251104.gappssmtp.com; s=20251104; t=1787656761; x=1788261561; dara=google.com;
+        h=content-type:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=LOyo+9rQ2IehRHDhoiYRgkLL8fwkzJPxy6KjiHpxE3c=;
+        b=jjMzyYPEni09nd3SScQR+xlmmGrdYQsRZve64UfLKWYV/4CZRVOUNlO2z8mQ7Dk9AS
+         1jUTDw0mZZ/AFFzeHubXXSnnQEf3EKtX/ZEAZP8vz5y0tyogw0RmT/bwqAebTf4e8EBC
+         5caGr5qS7KRbm+ZdccwVqje/mRm7FcOemLnRM/c4ZSmawXh5bJaj9Jqz+/bh4qqtD9eo
+         xASPcyJfpd7wnmkQdAOWRBwE2OsnXxsWFYGvh+qaq0/Mv1sez+CBGYwQWfv4HZXYuxiz
+         Qk+yIYw/irxi7ydE5qqjqeHVfTE9Ah6nH8p3opNuEhdIM2B4j/ejlcEv/+GlN66DzE9b
+         vliA==
+X-Gm-Gg: AR+sD10Lq6MICwsHFaQdemMsU0KPNw1ZD4QDIrlbcdips/0KZ26sq1SF9tzyQqwGMGY
+	p2zZRAR/IsX0HJJJL2yZUc5qh087XaIwQiywTJ3ffLI8gEAsl+V6hpjdxlritWioQH5wNVVi0uh
+	Z8TAJXOWT7SkYwZo11fAATSUbS5AW4yRLGJ49DTZopmdRUUQpMacww1dUwGXfDefftdAlIamMiq
+	kJFXjaYYIz0bllh+JJmnNZ6zdoFj3SxRsE+7u7VaO2Lx/CTV/vTC3BPttU+3UW+WIb70NNam0US
+	b6g33/8wbi9CVlliJmv4TxaynEtBpMUn/h+Gi7BSpdUdx1JZQNkCucNWiqMySBBSYBbhUqgyDoN
+	HWg==
+X-Received: by 2002:a05:690c:c354:b0:81e:abe2:e01b with SMTP id
+ 00721157ae682-85477dd0f01mr19980367b3.26.1787656761042; Tue, 25 Aug 2026
+ 04:19:21 -0700 (PDT)
+MIME-Version: 1.0
+References: <KhQDq9k6avoolFqSmeLjWJPpHDir61Afl29CBB8tT0@www.wereldstadgidsen.com>
+In-Reply-To: <KhQDq9k6avoolFqSmeLjWJPpHDir61Afl29CBB8tT0@www.wereldstadgidsen.com>
+From: Gino de Graaf <gino@mijnlissabon.nl>
+Date: Tue, 25 Aug 2026 12:19:10 +0100
+X-Gm-Features: AcwNN1Ww1vLnVX5kIZK_paB-p-OB2YSphHYXoAjs6LCpvt8xE6Hyf1Hw2zAWLvU
+Message-ID: <CAKL+ZP7WXRRpDeWMLkoH7kM9i+QcWiv2vApwX4EA2ipFEskseg@mail.gmail.com>
+Subject: Re: Tour informatieaanvraag via WSG : Lissabon
+To: wierts@gmail.com
+Content-Type: multipart/alternative; boundary="00000000000038fa390659dd467f"
+
+--00000000000038fa390659dd467f
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hallo Duco
+
+Ik ben nog wel beschikbaar op 14 september. De tour duurt zo'n 2,5 uur en
+kan elk half uur starten tussen 9 en 11 of tussen 14.30 en 15.30.
+De wandeltour met 4 personen kost =E2=82=AC120 en dit is priv=C3=A9.
+
+Tijdens deze tocht zullen we een beeld krijgen van de verschillende wijken,
+zowel de chique buurten als de oudste delen van Lissabon.
+De tour is priv=C3=A9, dus kan ook naar jullie wensen aangepast worden. Als=
+ er
+iets specifieks is wat jullie graag willen zien, of een onderwerp waarin
+jullie ge=C3=AFnteresseerd zijn, laat het gerust weten, dan kan ik daar rek=
+ening
+mee houden.
+
+Ik hoor graag of en wanneer jullie willen boeken.
+
+Groeten Gino
+
+
+
+Op di 25 aug 2026 om 12:02 schreef Wereldstadgidsen <
+wsg@wereldstadgidsen.com>:
+
+> *Naam en Achternaam*
+> duco
+> *E-mail*
+> wierts@gmail.com
+> *Telefoon nummer*
+> 0616750939
+> *Ik ben geinteresseerd in de volgende excursie(s)*
+> Lissabon te voet: Chiado, Baixa & Alfama
+> *Vaker met Wereldstadgidsen op pad geweest ? Zo ja, graag stad/steden
+> vermelden*
+> porto
+> *Indien je werkzaam bent in de reissector: Ben je aangesloten bij*
+> Nee, ik ben zelfstandige
+> *Bericht*
+> kna je een tocht doen voor 4 personen in lissabon op 14 september.
+> wat zijn de kosten en is dit dan een prive tour? kunnen we overleggen ove=
+r
+> de inhoud van de toer?
+> *Bestemming*
+> Lissabon
+> *Toestemming*
+> Ik ga akkoord met het privacy beleid zoals dat op deze website is
+> gepubliceerd en geef toestemming voor de opslag van mijn gegevens met als
+> doel de communicatie te bewerkstelligen en te onderhouden.
+> Verzonden van Wereldstadgidsen <https://www.wereldstadgidsen.com>
+>
+
+--00000000000038fa390659dd467f
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hallo Duco<div><br></div><div>Ik ben nog wel beschikbaar o=
+p 14 september. De tour duurt zo&#39;n 2,5 uur en kan elk half uur starten =
+tussen 9 en 11 of tussen 14.30 en 15.30.=C2=A0</div><div>De wandeltour met =
+4 personen kost =E2=82=AC120 en dit is priv=C3=A9.=C2=A0</div><div><br></di=
+v><div>Tijdens deze tocht zullen we een beeld krijgen van de verschillende =
+wijken, zowel de chique=C2=A0buurten als de oudste delen van Lissabon.</div=
+><div>De tour is priv=C3=A9, dus kan ook naar jullie wensen aangepast worde=
+n. Als er iets specifieks is wat jullie graag willen zien, of een onderwerp=
+ waarin jullie ge=C3=AFnteresseerd zijn, laat het gerust weten, dan kan ik =
+daar rekening mee houden.</div><div><br></div><div>Ik hoor graag of en wann=
+eer jullie willen boeken.</div><div><br></div><div>Groeten Gino</div><div><=
+br></div><div><br></div></div><br><div class=3D"gmail_quote gmail_quote_con=
+tainer"><div dir=3D"ltr" class=3D"gmail_attr">Op di 25 aug 2026 om 12:02 sc=
+hreef Wereldstadgidsen &lt;<a href=3D"mailto:wsg@wereldstadgidsen.com">wsg@=
+wereldstadgidsen.com</a>&gt;:<br></div><blockquote class=3D"gmail_quote" st=
+yle=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padd=
+ing-left:1ex"><div class=3D"msg3182341195310220676"><u></u>
+
+
+=09
+=09
+=09
+=09
+=09
+=09
+
+<div style=3D"height:100%;margin:0px;padding:0px;width:100%;background-colo=
+r:rgb(233,234,236)">
+=09
+	<center>
+		<table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" =
+height=3D"100%" width=3D"100%" id=3D"m_3182341195310220676bodyTable" style=
+=3D"border-collapse:collapse;height:100%;margin:0px;padding:0px;width:100%;=
+background-color:rgb(233,234,236)">
+			<tbody><tr>
+				<td align=3D"center" valign=3D"top" id=3D"m_3182341195310220676bodyCell=
+" style=3D"height:100%;margin:0px;padding:50px;width:100%">
+				=09
+				=09
+					<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%"=
+ class=3D"m_3182341195310220676templateContainer" style=3D"border-collapse:=
+collapse;border:0px;max-width:600px">
+												<tbody><tr>
+							<td valign=3D"top" id=3D"m_3182341195310220676templateBody" style=3D=
+"background-color:rgb(255,255,255);border:1px solid rgb(193,193,193);paddin=
+g-top:0px;padding-bottom:0px">
+								<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"10=
+0%" style=3D"min-width:100%;border-collapse:collapse">
+									<tbody>
+										<tr>
+											<td valign=3D"top">
+												<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacin=
+g=3D"0" width=3D"100%" style=3D"min-width:100%;border-collapse:collapse" cl=
+ass=3D"m_3182341195310220676mcnTextContentContainer">
+													<tbody>
+														<tr>
+															<td valign=3D"top" style=3D"padding:30px" class=3D"m_3182341=
+195310220676mcnTextContent">
+<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" widt=
+h=3D"100%" style=3D"min-width:100%;border-collapse:collapse;width:100%">
+<tbody>
+<tr>
+<td style=3D"color:rgb(51,51,51);padding-top:20px;padding-bottom:3px"><stro=
+ng>Naam en Achternaam</strong></td>
+</tr>
+<tr>
+<td style=3D"color:rgb(85,85,85);padding-top:3px;padding-bottom:20px">duco<=
+/td>
+</tr>
+</tbody>
+</table>
+<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" widt=
+h=3D"100%" style=3D"border-top:1px solid rgb(221,221,221);min-width:100%;bo=
+rder-collapse:collapse;width:100%">
+<tbody>
+<tr>
+<td style=3D"color:rgb(51,51,51);padding-top:20px;padding-bottom:3px"><stro=
+ng>E-mail</strong></td>
+</tr>
+<tr>
+<td style=3D"color:rgb(85,85,85);padding-top:3px;padding-bottom:20px"><a hr=
+ef=3D"mailto:wierts@gmail.com" target=3D"_blank">wierts@gmail.com</a></td>
+</tr>
+</tbody>
+</table>
+<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" widt=
+h=3D"100%" style=3D"border-top:1px solid rgb(221,221,221);min-width:100%;bo=
+rder-collapse:collapse;width:100%">
+<tbody>
+<tr>
+<td style=3D"color:rgb(51,51,51);padding-top:20px;padding-bottom:3px"><stro=
+ng>Telefoon nummer</strong></td>
+</tr>
+<tr>
+<td style=3D"color:rgb(85,85,85);padding-top:3px;padding-bottom:20px">06167=
+50939</td>
+</tr>
+</tbody>
+</table>
+<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" widt=
+h=3D"100%" style=3D"border-top:1px solid rgb(221,221,221);min-width:100%;bo=
+rder-collapse:collapse;width:100%">
+<tbody>
+<tr>
+<td style=3D"color:rgb(51,51,51);padding-top:20px;padding-bottom:3px"><stro=
+ng>Ik ben geinteresseerd in de volgende excursie(s)</strong></td>
+</tr>
+<tr>
+<td style=3D"color:rgb(85,85,85);padding-top:3px;padding-bottom:20px">Lissa=
+bon te voet: Chiado, Baixa &amp; Alfama</td>
+</tr>
+</tbody>
+</table>
+<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" widt=
+h=3D"100%" style=3D"border-top:1px solid rgb(221,221,221);min-width:100%;bo=
+rder-collapse:collapse;width:100%">
+<tbody>
+<tr>
+<td style=3D"color:rgb(51,51,51);padding-top:20px;padding-bottom:3px"><stro=
+ng>Vaker met Wereldstadgidsen op pad geweest ? Zo ja, graag stad/steden ver=
+melden</strong></td>
+</tr>
+<tr>
+<td style=3D"color:rgb(85,85,85);padding-top:3px;padding-bottom:20px">porto=
+</td>
+</tr>
+</tbody>
+</table>
+<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" widt=
+h=3D"100%" style=3D"border-top:1px solid rgb(221,221,221);min-width:100%;bo=
+rder-collapse:collapse;width:100%">
+<tbody>
+<tr>
+<td style=3D"color:rgb(51,51,51);padding-top:20px;padding-bottom:3px"><stro=
+ng>Indien je werkzaam bent in de reissector: Ben je aangesloten bij</strong=
+></td>
+</tr>
+<tr>
+<td style=3D"color:rgb(85,85,85);padding-top:3px;padding-bottom:20px">Nee, =
+ik ben zelfstandige</td>
+</tr>
+</tbody>
+</table>
+<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" widt=
+h=3D"100%" style=3D"border-top:1px solid rgb(221,221,221);min-width:100%;bo=
+rder-collapse:collapse;width:100%">
+<tbody>
+<tr>
+<td style=3D"color:rgb(51,51,51);padding-top:20px;padding-bottom:3px"><stro=
+ng>Bericht</strong></td>
+</tr>
+<tr>
+<td style=3D"color:rgb(85,85,85);padding-top:3px;padding-bottom:20px">kna j=
+e een tocht doen voor 4 personen in lissabon op 14 september.<br>
+wat zijn de kosten en is dit dan een prive tour? kunnen we overleggen over =
+de inhoud van de toer?</td>
+</tr>
+</tbody>
+</table>
+<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" widt=
+h=3D"100%" style=3D"border-top:1px solid rgb(221,221,221);min-width:100%;bo=
+rder-collapse:collapse;width:100%">
+<tbody>
+<tr>
+<td style=3D"color:rgb(51,51,51);padding-top:20px;padding-bottom:3px"><stro=
+ng>Bestemming</strong></td>
+</tr>
+<tr>
+<td style=3D"color:rgb(85,85,85);padding-top:3px;padding-bottom:20px">Lissa=
+bon</td>
+</tr>
+</tbody>
+</table>
+<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" widt=
+h=3D"100%" style=3D"border-top:1px solid rgb(221,221,221);min-width:100%;bo=
+rder-collapse:collapse;width:100%">
+<tbody>
+<tr>
+<td style=3D"color:rgb(51,51,51);padding-top:20px;padding-bottom:3px"><stro=
+ng>Toestemming</strong></td>
+</tr>
+<tr>
+<td style=3D"color:rgb(85,85,85);padding-top:3px;padding-bottom:20px">Ik ga=
+ akkoord met het privacy beleid zoals dat op deze website is gepubliceerd e=
+n geef toestemming voor de opslag van mijn gegevens met als doel de communi=
+catie te bewerkstelligen en te onderhouden.</td>
+</tr>
+</tbody>
+</table>
+
+															</td>
+														</tr>
+													</tbody>
+												</table>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<td valign=3D"top" id=3D"m_3182341195310220676templateFooter" style=
+=3D"background-color:rgb(233,234,236);border-top:0px;border-bottom:0px;padd=
+ing-top:12px;padding-bottom:12px">
+								<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"10=
+0%" style=3D"min-width:100%;border-collapse:collapse">
+									<tbody>
+										<tr>
+											<td valign=3D"top">
+												<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacin=
+g=3D"0" width=3D"100%" style=3D"min-width:100%;border-collapse:collapse" cl=
+ass=3D"m_3182341195310220676mcnTextContentContainer">
+													<tbody>
+														<tr>
+															<td valign=3D"top" class=3D"m_3182341195310220676mcnTextCont=
+ent" style=3D"padding:9px 18px;word-break:break-word;color:rgb(170,170,170)=
+;font-family:Helvetica;font-size:12px;line-height:150%;text-align:center">
+
+															=09
+																Verzonden van <a href=3D"https://www.wereldstadgidsen.com" =
+style=3D"color:rgb(187,187,187)" target=3D"_blank">Wereldstadgidsen</a>
+															</td>
+														</tr>
+													</tbody>
+												</table>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</td>
+						</tr>
+					</tbody></table>
+				=09
+				=09
+					</td>
+				</tr>
+			</tbody></table>
+		</center>
+	</div>
+
+
+</div></blockquote></div>
+
+--00000000000038fa390659dd467f--

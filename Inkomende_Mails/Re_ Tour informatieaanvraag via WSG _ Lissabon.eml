@@ -1,0 +1,467 @@
+Return-Path: <gino@mijnlissabon.nl>
+X-Original-To: duco@wiertsema.net
+Delivered-To: duco@wiertsema.net
+Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com [209.85.128.175])
+	by shared80.cloud86-host.nl (Postfix) with ESMTPS id 54AA62842D3
+	for <duco@wiertsema.net>; Tue, 25 Aug 2026 19:11:32 +0200 (CEST)
+Authentication-Results: shared80.cloud86-host.nl;
+	dkim=pass header.d=mijnlissabon-nl.20251104.gappssmtp.com;
+        spf=pass (sender IP is 209.85.128.175) smtp.mailfrom=gino@mijnlissabon.nl smtp.helo=mail-yw1-f175.google.com
+Received-SPF: pass (shared80.cloud86-host.nl: domain of mijnlissabon.nl designates 209.85.128.175 as permitted sender) client-ip=209.85.128.175; envelope-from=gino@mijnlissabon.nl; helo=mail-yw1-f175.google.com;
+X-Virus-Scanned: amavis at cloud86-host.nl
+X-Spam-Flag: NO
+X-Spam-Score: -2.448
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.448 tagged_above=-9999 required=4
+ tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1, DMARC_MISSING=1,
+ HTML_MESSAGE=0.001, RCVD_IN_DNSWL_NONE=-0.0001, RCVD_IN_MSPIKE_H2=0.001,
+ SPF_HELO_NONE=0.001, SPF_PASS=-0.001, TXREP=-1.550]
+ autolearn=no autolearn_force=no
+Authentication-Results: shared80.cloud86-host.nl (amavis);
+ dkim=pass (2048-bit key) header.d=mijnlissabon-nl.20251104.gappssmtp.com
+Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-84c4d4f68c7so60441907b3.2
+        for <duco@wiertsema.net>; Tue, 25 Aug 2026 10:11:32 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1787677891; cv=none;
+        d=google.com; s=arc-20260327;
+        b=UjpKQ9AYHFjHzvR8JiHdkEExokf+tyRf2Fn2YDaq/adGV+PpRwRF32KrbZfEzlLcii
+         nKqnHBjNLiCPE1QzXOraAUEt/gYImVkvS5cjK6JuK+6iiHisIHovHTFNucXIJKNSXVgJ
+         L80qMI6vCS15ckwZC8g5e/Jj+H6FS1J+iS9g5v0ELRkwyCiRlO1N6RFAXWEAe8ik7xnp
+         CWqjIb0R7KUIe8THz7mTbSenrBsmhlvJ+MCwZCMEvrZ8mOJd43d77Z8Q/gRrWlE/rCiB
+         Yg4YZKhkW3lNfSNnxrwzXNOzPk7VS9603W4E0ipo0elRVqJzZ2E9HnHIsKfMJ7LzsDO7
+         CP+Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :dkim-signature;
+        bh=+aSOtFuTf6hsEYDpFAn8pFMcMCCr/AEyfPaNqpK362w=;
+        fh=R0MT9bX1szAFXP4sWEVnxykX4Azbz0v5sTucg7c8dLE=;
+        b=ka036a3r6G/Vo0FqcJorC5kBq+Ski6NsYhQ71XJADm5QL7qHhNASrEEEsKgLH5iHno
+         sZmdjOM/Zv09j20sVIimOYGhH15KksL9aIOR6VhMSZZNM1tTkIl5EEzhviwXPYVjnVrC
+         UJN9d2DBW5L8IxG2+XNM47SDpEYGdCuxd8K5JV99qrLdMqCTBAqB618OHrfiQFx/JtEp
+         irPCvDzHHyhE1FDv+AEbffVX/htsl4AoQgg5QoLKmWn1mhjcQhEd9UDCa1dfic5FhnJt
+         6k5j+DadZjrmHzhwciCTesKEeT/ofz+V11cC0uGfgN3QZOujTtSLxJstsuZh7iJlJPw4
+         PKrA==;
+        darn=wiertsema.net
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=mijnlissabon-nl.20251104.gappssmtp.com; s=20251104; t=1787677891; x=1788282691; darn=wiertsema.net;
+        h=content-type:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=+aSOtFuTf6hsEYDpFAn8pFMcMCCr/AEyfPaNqpK362w=;
+        b=NE7L2y1kiEaAo1SJExclozLH+/dkIqUPO0g+t6DasQy79bJqerUS2nsI1vdK5t855v
+         Rhjpfhw7MbPp9VXqcK1wRLKrfQMskN/XWod5RPi3PYzXOGVSR5ZoZICBLUCIfI8xrz2x
+         i4YR1n3iwKfYYqJgW+GZvG08v8lqs/naLKDhLCp1M7jAtCPlvtO4d7QpCDMQvg6zgdU1
+         Eoj4tKN2SpCQRNd8whIu6OBks9uhWfuOHZZ6Dbz2EBx3k0yBxhEvIj3CxBECquZFFp4x
+         fJvCTXAmlnUiRZ44bldjPE3zvE7RBolYeiRefIaRllHSCBVeX0yu5tUzWUuMrqsOg5ii
+         wBYw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1787677891; x=1788282691;
+        h=content-type:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=+aSOtFuTf6hsEYDpFAn8pFMcMCCr/AEyfPaNqpK362w=;
+        b=VN3+A2Ej71AcAnYLvTWi028wkKvBoOdSr88e0b14g/03IwAPqhiVyaU/+tGWNxjQFA
+         SOhDQe2cEpgJxUVnDnP5MD+cnBG0CYqZcWbIwuNkxAxx45wIgVggrHvHjW3sro8+Lz+r
+         FF+bb1OaTg5d26uruBTJXmTIlkM73kOeUFffpR+q4J4qKdxRKhM6qyuMK9aG8DSa3sFW
+         osFsva23p80n0sQZMvAxjTZ0DqoIws4MHJfhP7rtK+nLm96kXV5+gNmjam9K3lxMhKne
+         nvmGtEZSbxgqbpNkU4OjjfJlepqFEWW+DOQiuB4TSZDs4+5EZM6oWcFAwByk/JEBN3yZ
+         1IzQ==
+X-Gm-Message-State: AFuF++mtWM1fBYEwMERa3CeyriCD11sVEQJ/QdFeN4+fGfvHEhA9QPHQ
+	mgNVswq080dBd/rNBNdE4+vJ9+XBbln6aU+eehW/0C+dzvmGUDTe3EmtaJxdxclnhdVvHe1L9vo
+	TyYg9a7kRK8N/FvvHdtPo5yaieejC5/6mGfhf0wrAkVFdjYhRgpHwVErE
+X-Gm-Gg: AR+sD10EvTL1A5GUfCtwksVb3YCa+Ggs0H7iRWEQQJ50ZvYFvygxhM0WxLDbz6Ty/0c
+	6xC6SgSW+l2U9HyXgooPd1wXiE3Z5D9Z798mvNbSORWMeFxnTbDpSl41aXZtjbflYzsaok3YXUS
+	qxbZNSw0IyPjYOCPBSQ+H4Ts5QrhxNFf6WFziJ9k2N+wD0yJB1RgSO2b11CBSFRNXKk360JJwK0
+	1HiN7XvQoqYE53oQlYuVyp8nWOmnNeKVS5MU5Ld5Qtz2qf8wG0iVObKut/msE6GP8SMQP+iFbD/
+	etptlyvG0cNBjtISQ3IxmFg+REKrWtUXO+57Fu6JJF3tlFufepxvsk/zdo3Pkb4rEwW4Cxo9bU3
+	9GTDhypGBGWUq
+X-Received: by 2002:a05:690c:650c:b0:81f:3dab:372f with SMTP id
+ 00721157ae682-8573cbc4d4dmr1907207b3.12.1787677890843; Tue, 25 Aug 2026
+ 10:11:30 -0700 (PDT)
+MIME-Version: 1.0
+References: <KhQDq9k6avoolFqSmeLjWJPpHDir61Afl29CBB8tT0@www.wereldstadgidsen.com>
+ <CAKL+ZP7WXRRpDeWMLkoH7kM9i+QcWiv2vApwX4EA2ipFEskseg@mail.gmail.com> <0546AC5A-EC0C-4A84-BB23-4EE59750D13E@wiertsema.net>
+In-Reply-To: <0546AC5A-EC0C-4A84-BB23-4EE59750D13E@wiertsema.net>
+From: Gino de Graaf <gino@mijnlissabon.nl>
+Date: Tue, 25 Aug 2026 18:11:20 +0100
+X-Gm-Features: AcwNN1WOaqlRSugqKwg7eUmELlDPXP7mmLno7jafqCcsmZoE63BFuczDbKxuXnU
+Message-ID: <CAKL+ZP5Ts0MXKKcktLHvaeNLAKMOBJe3xbvEsRiNEsZ2NQzb_w@mail.gmail.com>
+Subject: Re: Tour informatieaanvraag via WSG : Lissabon
+To: Duco Wiertsema <duco@wiertsema.net>
+Content-Type: multipart/alternative; boundary="000000000000a825130659e23192"
+
+--000000000000a825130659e23192
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hoi Duco,
+
+Het startpunt van de tour is normaal op het pra=C3=A7a Lu=C3=ADs de Cam=C3=
+=B5es.
+https://maps.app.goo.gl/9A1dJuBpK2aGvdXa8
+Voor jullie nog geen 10 minuutjes lopen.
+
+Het eindpunt is in Alfama, met een hoop restaurants in de buurt om na de
+tour even lekker te lunchen.
+Je kan ook gerust via Whatsapp een berichtje sturen als er later nog vragen
+zijn:
+Whatsapp
+<https://api.whatsapp.com/send/?phone=3D%2B351960271656&text&type=3Dphone_n=
+umber&app_absent=3D0>
+ +351960271656
+
+Verder heb ik niets nodig. Tot over een paar weken.
+
+Groeten Gino
+
+
+
+Op di 25 aug 2026 om 12:26 schreef Duco Wiertsema <duco@wiertsema.net>:
+
+> Hai Gino,
+>
+> Laten we 14e inde ochtend plannen.
+>
+> We zijn met 4en, dwz 2 volwassenen en 2 senioren ;)
+> Zouden we eventueel om 9.30 kunnen beginnen we zijn tenminste op vakantie=
+.
+>
+> We logeren in memo principale  hotel, waar is normaal je start punt.
+>
+> Zijn  er nog zaken die je moet weten van ons?
+>
+> Dank Duco
+>
+>
+>
+> On 25 Aug 2026, at 13:19, Gino de Graaf <gino@mijnlissabon.nl> wrote:
+>
+> Hallo Duco
+>
+> Ik ben nog wel beschikbaar op 14 september. De tour duurt zo'n 2,5 uur en
+> kan elk half uur starten tussen 9 en 11 of tussen 14.30 en 15.30.
+> De wandeltour met 4 personen kost =E2=82=AC120 en dit is priv=C3=A9.
+>
+> Tijdens deze tocht zullen we een beeld krijgen van de verschillende
+> wijken, zowel de chique buurten als de oudste delen van Lissabon.
+> De tour is priv=C3=A9, dus kan ook naar jullie wensen aangepast worden. A=
+ls er
+> iets specifieks is wat jullie graag willen zien, of een onderwerp waarin
+> jullie ge=C3=AFnteresseerd zijn, laat het gerust weten, dan kan ik daar r=
+ekening
+> mee houden.
+>
+> Ik hoor graag of en wanneer jullie willen boeken.
+>
+> Groeten Gino
+>
+>
+>
+> Op di 25 aug 2026 om 12:02 schreef Wereldstadgidsen <
+> wsg@wereldstadgidsen.com>:
+>
+>> *Naam en Achternaam*
+>> duco
+>> *E-mail*
+>> wierts@gmail.com
+>> *Telefoon nummer*
+>> 0616750939
+>> *Ik ben geinteresseerd in de volgende excursie(s)*
+>> Lissabon te voet: Chiado, Baixa & Alfama
+>> *Vaker met Wereldstadgidsen op pad geweest ? Zo ja, graag stad/steden
+>> vermelden*
+>> porto
+>> *Indien je werkzaam bent in de reissector: Ben je aangesloten bij*
+>> Nee, ik ben zelfstandige
+>> *Bericht*
+>> kna je een tocht doen voor 4 personen in lissabon op 14 september.
+>> wat zijn de kosten en is dit dan een prive tour? kunnen we overleggen
+>> over de inhoud van de toer?
+>> *Bestemming*
+>> Lissabon
+>> *Toestemming*
+>> Ik ga akkoord met het privacy beleid zoals dat op deze website is
+>> gepubliceerd en geef toestemming voor de opslag van mijn gegevens met al=
+s
+>> doel de communicatie te bewerkstelligen en te onderhouden.
+>> Verzonden van Wereldstadgidsen <https://www.wereldstadgidsen.com/>
+>>
+>
+>
+
+--000000000000a825130659e23192
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hoi Duco,<div><br></div><div>Het startpunt van de tour is =
+normaal op het pra=C3=A7a Lu=C3=ADs de Cam=C3=B5es.=C2=A0<a href=3D"https:/=
+/maps.app.goo.gl/9A1dJuBpK2aGvdXa8">https://maps.app.goo.gl/9A1dJuBpK2aGvdX=
+a8</a></div><div>Voor jullie nog geen 10 minuutjes lopen.=C2=A0</div><div><=
+br></div><div>Het eindpunt is in Alfama, met een hoop restaurants in de buu=
+rt om na de tour even lekker te lunchen.</div><div>Je kan ook gerust via Wh=
+atsapp een berichtje sturen als er later nog vragen zijn:</div><div><a href=
+=3D"https://api.whatsapp.com/send/?phone=3D%2B351960271656&amp;text&amp;typ=
+e=3Dphone_number&amp;app_absent=3D0" style=3D"background-color:transparent"=
+>Whatsapp</a><span style=3D"background-color:transparent">=C2=A0</span><spa=
+n style=3D"background-color:transparent">+351960271656</span></div><div><sp=
+an style=3D"background-color:transparent"><br></span></div><div><span style=
+=3D"background-color:transparent">Verder heb ik niets nodig. Tot over een p=
+aar weken.</span></div><div><span style=3D"background-color:transparent"><b=
+r></span></div><div><span style=3D"background-color:transparent">Groeten Gi=
+no</span></div><div><br></div><div><br></div></div><br><div class=3D"gmail_=
+quote gmail_quote_container"><div dir=3D"ltr" class=3D"gmail_attr">Op di 25=
+ aug 2026 om 12:26 schreef Duco Wiertsema &lt;<a href=3D"mailto:duco@wierts=
+ema.net">duco@wiertsema.net</a>&gt;:<br></div><blockquote class=3D"gmail_qu=
+ote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,20=
+4);padding-left:1ex"><div>Hai Gino,<div><br></div><div>Laten we 14e inde oc=
+htend plannen.</div><div><br></div><div>We zijn met 4en, dwz 2 volwassenen =
+en 2 senioren ;)</div><div>Zouden we eventueel om 9.30 kunnen beginnen we z=
+ijn tenminste op vakantie.=C2=A0</div><div><br></div><div>We logeren in mem=
+o principale =C2=A0hotel, waar is normaal je start punt.=C2=A0</div><div><b=
+r></div><div>Zijn =C2=A0er nog zaken die je moet weten van ons?</div><div><=
+br></div><div>Dank Duco</div><div><br id=3D"m_-9052484727033977317lineBreak=
+AtBeginningOfMessage"><div>=C2=A0<br><blockquote type=3D"cite"><div>On 25 A=
+ug 2026, at 13:19, Gino de Graaf &lt;<a href=3D"mailto:gino@mijnlissabon.nl=
+" target=3D"_blank">gino@mijnlissabon.nl</a>&gt; wrote:</div><br><div><div =
+dir=3D"ltr">Hallo Duco<div><br></div><div>Ik ben nog wel beschikbaar op 14 =
+september. De tour duurt zo&#39;n 2,5 uur en kan elk half uur starten tusse=
+n 9 en 11 of tussen 14.30 en 15.30.=C2=A0</div><div>De wandeltour met 4 per=
+sonen kost =E2=82=AC120 en dit is priv=C3=A9.=C2=A0</div><div><br></div><di=
+v>Tijdens deze tocht zullen we een beeld krijgen van de verschillende wijke=
+n, zowel de chique=C2=A0buurten als de oudste delen van Lissabon.</div><div=
+>De tour is priv=C3=A9, dus kan ook naar jullie wensen aangepast worden. Al=
+s er iets specifieks is wat jullie graag willen zien, of een onderwerp waar=
+in jullie ge=C3=AFnteresseerd zijn, laat het gerust weten, dan kan ik daar =
+rekening mee houden.</div><div><br></div><div>Ik hoor graag of en wanneer j=
+ullie willen boeken.</div><div><br></div><div>Groeten Gino</div><div><br></=
+div><div><br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" cl=
+ass=3D"gmail_attr">Op di 25 aug 2026 om 12:02 schreef Wereldstadgidsen &lt;=
+<a href=3D"mailto:wsg@wereldstadgidsen.com" target=3D"_blank">wsg@wereldsta=
+dgidsen.com</a>&gt;:<br></div><blockquote class=3D"gmail_quote" style=3D"ma=
+rgin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:=
+1ex"><div><u></u>
+
+
+=09
+=09
+=09
+=09
+=09
+=09
+
+<div style=3D"height:100%;margin:0px;padding:0px;width:100%;background-colo=
+r:rgb(233,234,236)">
+=09
+	<center>
+		<table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" =
+height=3D"100%" width=3D"100%" id=3D"m_-9052484727033977317m_31823411953102=
+20676bodyTable" style=3D"border-collapse:collapse;height:100%;margin:0px;pa=
+dding:0px;width:100%;background-color:rgb(233,234,236)">
+			<tbody><tr>
+				<td align=3D"center" valign=3D"top" id=3D"m_-9052484727033977317m_31823=
+41195310220676bodyCell" style=3D"height:100%;margin:0px;padding:50px;width:=
+100%">
+				=09
+				=09
+					<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%"=
+ style=3D"border-collapse:collapse;border:0px;max-width:600px">
+												<tbody><tr>
+							<td valign=3D"top" id=3D"m_-9052484727033977317m_3182341195310220676=
+templateBody" style=3D"background-color:rgb(255,255,255);border:1px solid r=
+gb(193,193,193);padding-top:0px;padding-bottom:0px">
+								<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"10=
+0%" style=3D"min-width:100%;border-collapse:collapse">
+									<tbody>
+										<tr>
+											<td valign=3D"top">
+												<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacin=
+g=3D"0" width=3D"100%" style=3D"min-width:100%;border-collapse:collapse">
+													<tbody>
+														<tr>
+															<td valign=3D"top" style=3D"padding:30px">
+<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" widt=
+h=3D"100%" style=3D"min-width:100%;border-collapse:collapse;width:100%">
+<tbody>
+<tr>
+<td style=3D"color:rgb(51,51,51);padding-top:20px;padding-bottom:3px"><stro=
+ng>Naam en Achternaam</strong></td>
+</tr>
+<tr>
+<td style=3D"color:rgb(85,85,85);padding-top:3px;padding-bottom:20px">duco<=
+/td>
+</tr>
+</tbody>
+</table>
+<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" widt=
+h=3D"100%" style=3D"border-top:1px solid rgb(221,221,221);min-width:100%;bo=
+rder-collapse:collapse;width:100%">
+<tbody>
+<tr>
+<td style=3D"color:rgb(51,51,51);padding-top:20px;padding-bottom:3px"><stro=
+ng>E-mail</strong></td>
+</tr>
+<tr>
+<td style=3D"color:rgb(85,85,85);padding-top:3px;padding-bottom:20px"><a hr=
+ef=3D"mailto:wierts@gmail.com" target=3D"_blank">wierts@gmail.com</a></td>
+</tr>
+</tbody>
+</table>
+<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" widt=
+h=3D"100%" style=3D"border-top:1px solid rgb(221,221,221);min-width:100%;bo=
+rder-collapse:collapse;width:100%">
+<tbody>
+<tr>
+<td style=3D"color:rgb(51,51,51);padding-top:20px;padding-bottom:3px"><stro=
+ng>Telefoon nummer</strong></td>
+</tr>
+<tr>
+<td style=3D"color:rgb(85,85,85);padding-top:3px;padding-bottom:20px">06167=
+50939</td>
+</tr>
+</tbody>
+</table>
+<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" widt=
+h=3D"100%" style=3D"border-top:1px solid rgb(221,221,221);min-width:100%;bo=
+rder-collapse:collapse;width:100%">
+<tbody>
+<tr>
+<td style=3D"color:rgb(51,51,51);padding-top:20px;padding-bottom:3px"><stro=
+ng>Ik ben geinteresseerd in de volgende excursie(s)</strong></td>
+</tr>
+<tr>
+<td style=3D"color:rgb(85,85,85);padding-top:3px;padding-bottom:20px">Lissa=
+bon te voet: Chiado, Baixa &amp; Alfama</td>
+</tr>
+</tbody>
+</table>
+<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" widt=
+h=3D"100%" style=3D"border-top:1px solid rgb(221,221,221);min-width:100%;bo=
+rder-collapse:collapse;width:100%">
+<tbody>
+<tr>
+<td style=3D"color:rgb(51,51,51);padding-top:20px;padding-bottom:3px"><stro=
+ng>Vaker met Wereldstadgidsen op pad geweest ? Zo ja, graag stad/steden ver=
+melden</strong></td>
+</tr>
+<tr>
+<td style=3D"color:rgb(85,85,85);padding-top:3px;padding-bottom:20px">porto=
+</td>
+</tr>
+</tbody>
+</table>
+<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" widt=
+h=3D"100%" style=3D"border-top:1px solid rgb(221,221,221);min-width:100%;bo=
+rder-collapse:collapse;width:100%">
+<tbody>
+<tr>
+<td style=3D"color:rgb(51,51,51);padding-top:20px;padding-bottom:3px"><stro=
+ng>Indien je werkzaam bent in de reissector: Ben je aangesloten bij</strong=
+></td>
+</tr>
+<tr>
+<td style=3D"color:rgb(85,85,85);padding-top:3px;padding-bottom:20px">Nee, =
+ik ben zelfstandige</td>
+</tr>
+</tbody>
+</table>
+<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" widt=
+h=3D"100%" style=3D"border-top:1px solid rgb(221,221,221);min-width:100%;bo=
+rder-collapse:collapse;width:100%">
+<tbody>
+<tr>
+<td style=3D"color:rgb(51,51,51);padding-top:20px;padding-bottom:3px"><stro=
+ng>Bericht</strong></td>
+</tr>
+<tr>
+<td style=3D"color:rgb(85,85,85);padding-top:3px;padding-bottom:20px">kna j=
+e een tocht doen voor 4 personen in lissabon op 14 september.<br>
+wat zijn de kosten en is dit dan een prive tour? kunnen we overleggen over =
+de inhoud van de toer?</td>
+</tr>
+</tbody>
+</table>
+<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" widt=
+h=3D"100%" style=3D"border-top:1px solid rgb(221,221,221);min-width:100%;bo=
+rder-collapse:collapse;width:100%">
+<tbody>
+<tr>
+<td style=3D"color:rgb(51,51,51);padding-top:20px;padding-bottom:3px"><stro=
+ng>Bestemming</strong></td>
+</tr>
+<tr>
+<td style=3D"color:rgb(85,85,85);padding-top:3px;padding-bottom:20px">Lissa=
+bon</td>
+</tr>
+</tbody>
+</table>
+<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" widt=
+h=3D"100%" style=3D"border-top:1px solid rgb(221,221,221);min-width:100%;bo=
+rder-collapse:collapse;width:100%">
+<tbody>
+<tr>
+<td style=3D"color:rgb(51,51,51);padding-top:20px;padding-bottom:3px"><stro=
+ng>Toestemming</strong></td>
+</tr>
+<tr>
+<td style=3D"color:rgb(85,85,85);padding-top:3px;padding-bottom:20px">Ik ga=
+ akkoord met het privacy beleid zoals dat op deze website is gepubliceerd e=
+n geef toestemming voor de opslag van mijn gegevens met als doel de communi=
+catie te bewerkstelligen en te onderhouden.</td>
+</tr>
+</tbody>
+</table>
+
+															</td>
+														</tr>
+													</tbody>
+												</table>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<td valign=3D"top" id=3D"m_-9052484727033977317m_3182341195310220676=
+templateFooter" style=3D"background-color:rgb(233,234,236);border-top:0px;b=
+order-bottom:0px;padding-top:12px;padding-bottom:12px">
+								<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"10=
+0%" style=3D"min-width:100%;border-collapse:collapse">
+									<tbody>
+										<tr>
+											<td valign=3D"top">
+												<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacin=
+g=3D"0" width=3D"100%" style=3D"min-width:100%;border-collapse:collapse">
+													<tbody>
+														<tr>
+															<td valign=3D"top" style=3D"padding:9px 18px;word-break:brea=
+k-word;color:rgb(170,170,170);font-family:Helvetica;font-size:12px;line-hei=
+ght:150%;text-align:center">
+
+															=09
+																Verzonden van <a href=3D"https://www.wereldstadgidsen.com/"=
+ style=3D"color:rgb(187,187,187)" target=3D"_blank">Wereldstadgidsen</a>
+															</td>
+														</tr>
+													</tbody>
+												</table>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</td>
+						</tr>
+					</tbody></table>
+				=09
+				=09
+					</td>
+				</tr>
+			</tbody></table>
+		</center>
+	</div>
+
+
+</div></blockquote></div>
+</div></blockquote></div><br></div></div></blockquote></div>
+
+--000000000000a825130659e23192--
