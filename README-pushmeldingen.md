@@ -79,12 +79,34 @@ Kanttekening: dit zijn ruwe satelliet-hitte-detecties (VIIRS), geen bevestigde
 brandmeldingen — een enkele detectie kan soms ook een andere hittebron zijn
 (bijv. industrie). Check bij een melding altijd even fogos.pt voor bevestiging.
 
+## Wat komt er in de melding te staan?
+
+De **eerste regel van je laatste commit** wordt de tekst van de pushmelding
+(de titel blijft altijd "Portugal Roadtrip bijgewerkt"). Schrijf dat commit-subject
+dus in gewoon Nederlands, gericht aan de reizigers — bijvoorbeeld:
+
+```
+Lunch op dag 9 is nu Cantinho do Aziz
+```
+
+wordt de melding: **Portugal Roadtrip bijgewerkt** — _Lunch op dag 9 is nu Cantinho do Aziz_
+
+Technische details kun je in de rest van het commit-bericht (onder een lege regel)
+kwijt; die komen niet in de melding.
+
+- Geen zinnige eerste regel? Dan valt de melding terug op de algemene tekst
+  "Er is iets veranderd in de reisgids — tik om te bekijken."
+- **Géén melding voor deze push?** Zet `[geen-melding]` ergens in het commit-bericht
+  (handig bij een typfout-fix o.i.d.).
+- Alleen scripts/workflows/CSS gewijzigd en geen `.html`/`manifest.json`/`sw.js`/
+  `onesignal-init.js`? Dan wordt er sowieso geen melding gestuurd.
+
 ## Kanttekeningen
 - Werkt vanaf **iOS 16.4+**, en alleen als de site als app op het beginscherm staat
   (niet gewoon in Safari).
 - De melding gaat naar **alle** aangemelde toestellen (dus zowel je iPhone als iPad
   als je op beide "Zet meldingen aan" hebt gedaan).
-- Elke wijziging aan een `.html`-bestand (of manifest/sw/onesignal-init) die gepusht
-  wordt naar `main` triggert een melding — bij losse kleine wijzigingen kan dat dus
-  vaker zijn dan je wilt. Zeg het gerust als je dit wilt beperken (bijv. alleen
-  handmatig via een knop in GitHub in plaats van automatisch bij elke push).
+- Bij een push met meerdere commits tegelijk telt alleen de **laatste** commit —
+  zowel voor de check "is er iets inhoudelijks gewijzigd" als voor de meldingstekst.
+- Je kunt de melding ook handmatig sturen via **Actions → "Stuur pushmelding bij
+  site-update" → Run workflow** (stuurt dan de algemene tekst).

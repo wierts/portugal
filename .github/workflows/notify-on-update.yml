@@ -3,6 +3,11 @@ name: Stuur pushmelding bij site-update
 # Triggert pas als de GitHub Pages-deployment ("pages-build-deployment") succesvol
 # is afgerond — niet meteen bij de push zelf. Zo staat de nieuwe site al echt live
 # op het moment dat de melding (met link) verstuurd wordt.
+#
+# De meldingstekst = de eerste regel (subject) van de laatste commit. Schrijf die
+# dus in gewoon Nederlands, gericht aan de reizigers — dat is precies wat er in de
+# pushmelding komt te staan. Zet [geen-melding] ergens in het commit-bericht om
+# voor die push géén melding te sturen (bijv. bij een kleine typfout-fix).
 on:
   workflow_run:
     workflows: ["pages-build-deployment"]
@@ -23,67 +28,122 @@ jobs:
           ref: ${{ github.event.workflow_run.head_sha }}
           fetch-depth: 2
 
-      - name: Check of relevante bestanden zijn gewijzigd
-        if: github.event_name == 'workflow_run'
-        id: filter
+      - name: Bepaal of er een melding moet en met welke tekst
+        id: melding
         run: |
-          # workflow_run kent geen ingebouwde paths-filter (die bestond bij de oude
-          # push-trigger wel). Dit vergelijkt daarom de laatste commit van de push
-          # met zijn parent. Bij een push van meerdere commits tegelijk wordt dus
-          # niet elke tussenliggende commit los gecontroleerd — in de praktijk
-          # (kleine, losse pushes) is dat voldoende; in het ergste geval blijft een
-          # melding een keer uit en kan die alsnog handmatig via "Run workflow".
-          changed=$(git diff --name-only HEAD^ HEAD || echo "")
-          echo "Gewijzigde bestanden:"
-          echo "$changed"
-          if echo "$changed" | grep -Eq '\.html$|^manifest\.json$|^sw\.js$|^onesignal-init\.js$|^\.github/workflows/notify-on-update\.yml$'; then
-            echo "relevant=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "relevant=false" >> "$GITHUB_OUTPUT"
+          HEADING="Portugal Roadtrip bijgewerkt"
+          GENERIEK="Er is iets veranderd in de reisgids — tik om te bekijken."
+
+          emit() {
+            {
+              echo "send=$1"
+              echo "heading<<__EOF__"; echo "$2"; echo "__EOF__"
+              echo "body<<__EOF__";    echo "$3"; echo "__EOF__"
+            } >> "$GITHUB_OUTPUT"
+          }
+
+          # Handmatig gestart via "Run workflow" — geen commit-context beschikbaar.
+          if [ "${{ github.event_name }}" != "workflow_run" ]; then
+            echo "Handmatige run — algemene melding."
+            emit true "$HEADING" "$GENERIEK"
+            exit 0
           fi
 
+          changed=$(git diff --name-only HEAD^ HEAD || echo "")
+          echo "Gewijzigde bestanden:"; echo "$changed"
+
+          subject=$(git log -1 --pretty=%s)
+          full=$(git log -1 --pretty=%B)
+          echo "Commit-subject: $subject"
+
+          # Escape-luik: [geen-melding] / [skip-melding] / [no-notify] ergens in de commit
+          if printf '%s' "$full" | grep -qiE '\[(geen-melding|skip-melding|no-notify)\]'; then
+            echo "Commit vraagt expliciet om géén melding — overslaan."
+            emit false "" ""
+            exit 0
+          fi
+
+          # workflow_run kent geen ingebouwde paths-filter. Dit vergelijkt de laatste
+          # commit met zijn parent. Bij een push van meerdere commits tegelijk wordt
+          # niet elke tussenliggende commit los gecontroleerd — in de praktijk
+          # (kleine, losse pushes) is dat voldoende; anders alsnog handmatig via
+          # "Run workflow".
+          if ! echo "$changed" | grep -Eq '\.html$|^manifest\.json$|^sw\.js$|^onesignal-init\.js$'; then
+            echo "Geen inhoudelijke bestanden gewijzigd — geen melding."
+            emit false "" ""
+            exit 0
+          fi
+
+          # Meldingstekst = commit-subject, tenzij die leeg of een merge-commit is.
+          case "$subject" in
+            "" | "Merge "* ) body="$GENERIEK" ;;
+            * ) body="$subject" ;;
+          esac
+
+          # iOS kapt lange meldingen af — hou het kort.
+          if [ "${#body}" -gt 180 ]; then
+            body="$(printf '%s' "$body" | cut -c1-177)…"
+          fi
+
+          echo "Meldingstekst: $body"
+          emit true "$HEADING" "$body"
+
       - name: Verstuur OneSignal pushmelding
-        if: github.event_name == 'workflow_dispatch' || steps.filter.outputs.relevant == 'true'
+        if: steps.melding.outputs.send == 'true'
+        env:
+          ONESIGNAL_APP_ID: ${{ secrets.ONESIGNAL_APP_ID }}
+          ONESIGNAL_REST_API_KEY: ${{ secrets.ONESIGNAL_REST_API_KEY }}
+          MELDING_HEADING: ${{ steps.melding.outputs.heading }}
+          MELDING_BODY: ${{ steps.melding.outputs.body }}
         run: |
-          if [ -z "${{ secrets.ONESIGNAL_APP_ID }}" ] || [ -z "${{ secrets.ONESIGNAL_REST_API_KEY }}" ]; then
+          if [ -z "$ONESIGNAL_APP_ID" ] || [ -z "$ONESIGNAL_REST_API_KEY" ]; then
             echo "::error::ONESIGNAL_APP_ID of ONESIGNAL_REST_API_KEY secret ontbreekt nog — sla melding over. Zie README-pushmeldingen.md."
             exit 1
           fi
 
-          response=$(curl -s -w "\n%{http_code}" -X POST https://onesignal.com/api/v1/notifications \
-            -H "Authorization: Key ${{ secrets.ONESIGNAL_REST_API_KEY }}" \
-            -H "Content-Type: application/json" \
-            -d '{
-              "app_id": "${{ secrets.ONESIGNAL_APP_ID }}",
-              "included_segments": ["Total Subscriptions"],
-              "headings": {"en": "Portugal Roadtrip bijgewerkt"},
-              "contents": {"en": "Er is iets veranderd in de reisgids — tik om te bekijken."},
-              "url": "https://wierts.github.io/portugal/"
+          payload=$(jq -n \
+            --arg app_id "$ONESIGNAL_APP_ID" \
+            --arg heading "$MELDING_HEADING" \
+            --arg body "$MELDING_BODY" \
+            --arg url "https://wierts.github.io/portugal/" \
+            '{
+              app_id: $app_id,
+              included_segments: ["Total Subscriptions"],
+              headings: { en: $heading },
+              contents: { en: $body },
+              url: $url
             }')
 
+          echo "Payload: $payload"
+
+          response=$(curl -s -w "\n%{http_code}" -X POST https://onesignal.com/api/v1/notifications \
+            -H "Authorization: Key $ONESIGNAL_REST_API_KEY" \
+            -H "Content-Type: application/json" \
+            -d "$payload")
+
           http_code=$(echo "$response" | tail -n1)
-          body=$(echo "$response" | sed '$d')
+          resp_body=$(echo "$response" | sed '$d')
 
           echo "HTTP status: $http_code"
-          echo "Response body: $body"
+          echo "Response body: $resp_body"
 
           if [ "$http_code" -ge 400 ]; then
             echo "::error::OneSignal-melding is niet verstuurd — HTTP $http_code. Zie response body hierboven."
             exit 1
           fi
 
-          if echo "$body" | grep -q '"errors"'; then
+          if echo "$resp_body" | grep -q '"errors"'; then
             echo "::error::OneSignal-melding is niet (volledig) verstuurd — zie response body hierboven."
             exit 1
           fi
 
-          if ! echo "$body" | grep -q '"id"'; then
+          if ! echo "$resp_body" | grep -q '"id"'; then
             echo "::error::Geen id in de response — melding is waarschijnlijk niet verstuurd."
             exit 1
           fi
 
-          if echo "$body" | grep -q '"recipients"'; then
-            recipients=$(echo "$body" | grep -o '"recipients":[0-9]*' | grep -o '[0-9]*')
+          if echo "$resp_body" | grep -q '"recipients"'; then
+            recipients=$(echo "$resp_body" | grep -o '"recipients":[0-9]*' | grep -o '[0-9]*')
             echo "Aantal ontvangers: $recipients"
             if [ "$recipients" -eq 0 ]; then
               echo "::error::Melding verstuurd maar 0 ontvangers — controleer of er nog abonnees zijn."
