@@ -510,6 +510,30 @@
       '</div>';
   }
 
+  // Roept fitBounds pas (opnieuw) aan zodra de kaart-container echt een grootte
+  // heeft. Zonder dit knapt fitBounds af op maxZoom wanneer de pagina in een
+  // achtergrond-tab laadt of de layout nog niet rond is — resultaat: een lege of
+  // veel te ver ingezoomde kaart.
+  function fitBoundsWhenReady(map, bounds, options) {
+    let settled = false;
+    const ro = ('ResizeObserver' in window) ? new ResizeObserver(() => apply()) : null;
+    function apply() {
+      if (settled) return;
+      const el = map.getContainer();
+      if (!el.clientWidth || !el.clientHeight) return; // nog geen layout → later opnieuw
+      settled = true;
+      map.invalidateSize({ animate: false, pan: false });
+      try { map.fitBounds(bounds, options); } catch (e) { console.warn('[route] fitBounds:', e && e.message); }
+      if (ro) ro.disconnect();
+      window.removeEventListener('load', apply);
+    }
+    apply();                                // normale geval: meteen raak
+    if (settled) return;
+    if (ro) ro.observe(map.getContainer()); // container krijgt pas later een grootte
+    window.addEventListener('load', apply); // vangnet als ResizeObserver ontbreekt
+    setTimeout(apply, 1000);                // extra vangnet
+  }
+
   function initLegMap(el, legKey) {
     const leg = legs[legKey];
     if (!leg) return;
@@ -537,7 +561,7 @@
     });
 
     const bounds = L.latLngBounds(line);
-    map.fitBounds(bounds, { padding: [24, 24] });
+    fitBoundsWhenReady(map, bounds, { padding: [24, 24] });
   }
 
   document.querySelectorAll('[data-leg-map]').forEach(el => {

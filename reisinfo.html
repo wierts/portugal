@@ -1658,6 +1658,30 @@
       '</div>';
   }
 
+  // Roept fitBounds pas (opnieuw) aan zodra de kaart-container echt een grootte
+  // heeft. Zonder dit knapt fitBounds af op maxZoom wanneer de pagina in een
+  // achtergrond-tab laadt of de layout nog niet rond is — resultaat: een lege of
+  // veel te ver ingezoomde kaart.
+  function fitBoundsWhenReady(map, bounds, options) {
+    let settled = false;
+    const ro = ('ResizeObserver' in window) ? new ResizeObserver(() => apply()) : null;
+    function apply() {
+      if (settled) return;
+      const el = map.getContainer();
+      if (!el.clientWidth || !el.clientHeight) return; // nog geen layout → later opnieuw
+      settled = true;
+      map.invalidateSize({ animate: false, pan: false });
+      try { map.fitBounds(bounds, options); } catch (e) { console.warn('[reisinfo] fitBounds:', e && e.message); }
+      if (ro) ro.disconnect();
+      window.removeEventListener('load', apply);
+    }
+    apply();                                // normale geval: meteen raak
+    if (settled) return;
+    if (ro) ro.observe(map.getContainer()); // container krijgt pas later een grootte
+    window.addEventListener('load', apply); // vangnet als ResizeObserver ontbreekt
+    setTimeout(apply, 1000);                // extra vangnet
+  }
+
   function initRouteMap() {
     const box = document.getElementById('routeMap');
     if (!box) return;
@@ -1698,7 +1722,7 @@
     });
 
     const allCoords = line.concat(waypointStops.map(w => w.coords));
-    map.fitBounds(L.latLngBounds(allCoords).pad(0.15));
+    fitBoundsWhenReady(map, L.latLngBounds(allCoords).pad(0.15));
   }
 
   if (document.readyState === 'loading') {
