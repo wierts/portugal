@@ -51,9 +51,23 @@
     }
     .apx-section-sub { color: var(--muted); margin-bottom: 2rem; font-size: .95rem; }
 
-    .apx-day { scroll-margin-top: 90px; }
-    .apx-day + .apx-day { margin-top: 3rem; }
-    .apx-day .apx-section-title { font-size: 1.45rem; }
+    /* Eén rij per dag */
+    table.apx-days td { vertical-align: top; }
+    table.apx-days tr[id] { scroll-margin-top: 90px; }
+    table.apx-days td:first-child { min-width: 8.5rem; max-width: 13rem; }
+    .apx-daycol .apx-name { display: block; }
+    .apx-daycol .apx-tag { margin-bottom: 0; }
+
+    .apx-act { padding: .4rem 0; line-height: 1.5; }
+    .apx-act:first-child { padding-top: 0; }
+    .apx-act:last-child { padding-bottom: 0; }
+    .apx-act + .apx-act { border-top: 1px dashed var(--border); }
+    .apx-act-naam { font-weight: 700; color: var(--dark); text-decoration: none; border-bottom: 1px dotted var(--azul); }
+    .apx-act-naam:hover { color: var(--azul); }
+    .apx-act .apx-note { color: var(--muted); font-size: .82rem; }
+    .apx-act .apx-links { display: inline-flex; margin-left: .35rem; vertical-align: middle; }
+    .apx-act .apx-links a { padding: .1rem .4rem; font-size: .72rem; }
+    .apx-act .apx-tag { margin: 0 .3rem 0 0; }
 
     .apx-table-wrap {
       background: var(--white);
@@ -127,6 +141,7 @@
         color: var(--muted);
         margin-bottom: .15rem;
       }
+      table.apx-days td:first-child { max-width: none; }
     }
   </style>
 </head>
@@ -172,310 +187,93 @@
   </div>
 </section>
 
-<!-- ACTIVITEITEN PER DAG -->
+<!-- ACTIVITEITEN PER DAG — één rij per dag -->
 <section class="apx-section" id="act-per-dag">
   <div class="container">
+    <h2 class="apx-section-title">✨ Activiteiten per dag</h2>
+    <p class="apx-section-sub">Elke dag één regel. Tik op een naam voor Google Maps; de knoppen zijn websites, reserveren en contact.</p>
+    <div class="apx-table-wrap">
+      <table class="apx-table apx-days">
+        <thead><tr><th>Dag</th><th>Activiteiten</th></tr></thead>
+        <tbody>
 
-    <div class="apx-day" id="dag-1-2">
-      <h2 class="apx-section-title">📍 Dag 1–2 · Porto</h2>
-      <p class="apx-section-sub">zo 6 – ma 7 september</p>
-      <div class="apx-table-wrap">
-        <table class="apx-table">
-          <thead><tr><th>Activiteit</th><th>Links</th></tr></thead>
-          <tbody>
-            <tr>
-              <td data-label="Activiteit"><span class="apx-name">Livraria Lello</span></td>
-              <td data-label="Links"><div class="apx-links">
-                <a class="map" href="https://www.google.com/maps/place/Livraria+Lello/@41.1467,-8.6153,17z" target="_blank" rel="noopener noreferrer">🗺️ Maps</a>
-                <a class="web" href="https://www.livrarialello.pt/en" target="_blank" rel="noopener noreferrer">🌐 Website</a>
-              </div></td>
-            </tr>
-            <tr>
-              <td data-label="Activiteit"><span class="apx-name">Caves Ferreira</span> — portwijnkelder 🇵🇹</td>
-              <td data-label="Links"><div class="apx-links">
-                <a class="map" href="https://www.google.com/maps/search/Caves+Ferreira+Vila+Nova+de+Gaia" target="_blank" rel="noopener noreferrer">🗺️ Maps</a>
-                <a class="web" href="https://www.sograpevinhos.com/en/winetourism" target="_blank" rel="noopener noreferrer">🌐 Reserveren</a>
-              </div></td>
-            </tr>
-            <tr>
-              <td data-label="Activiteit"><span class="apx-name">Dom Luís I-brug &amp; Ribeira</span></td>
-              <td data-label="Links"><div class="apx-links">
-                <a class="map" href="https://www.google.com/maps/place/Dom+Luís+I+Bridge/@41.1403,-8.6094,17z" target="_blank" rel="noopener noreferrer">🗺️ Maps</a>
-              </div></td>
-            </tr>
-            <tr>
-              <td data-label="Activiteit"><span class="apx-name">Palácio da Bolsa</span></td>
-              <td data-label="Links"><div class="apx-links">
-                <a class="map" href="https://www.google.com/maps/place/Pal%C3%A1cio+da+Bolsa/@41.1414,-8.6144,17z" target="_blank" rel="noopener noreferrer">🗺️ Maps</a>
-                <a class="web" href="https://www.palaciodabolsa.com" target="_blank" rel="noopener noreferrer">🌐 Website</a>
-              </div></td>
-            </tr>
-            <tr>
-              <td data-label="Activiteit"><span class="apx-name">Sé do Porto</span> — kathedraal</td>
-              <td data-label="Links"><div class="apx-links">
-                <a class="map" href="https://www.google.com/maps/place/Sé+do+Porto/@41.1430,-8.6112,17z" target="_blank" rel="noopener noreferrer">🗺️ Maps</a>
-              </div></td>
-            </tr>
-            <tr>
-              <td data-label="Activiteit"><span class="apx-name">Torre dos Clérigos</span></td>
-              <td data-label="Links"><div class="apx-links">
-                <a class="map" href="https://www.google.com/maps/place/Torre+dos+Clérigos/@41.1456,-8.6146,17z" target="_blank" rel="noopener noreferrer">🗺️ Maps</a>
-                <a class="web" href="https://www.torredosclerigos.pt" target="_blank" rel="noopener noreferrer">🌐 Website</a>
-              </div></td>
-            </tr>
-            <tr>
-              <td data-label="Activiteit"><span class="apx-name">Estação de São Bento</span> — azulejo-tegeltableaus</td>
-              <td data-label="Links"><div class="apx-links">
-                <a class="map" href="https://www.google.com/maps/place/São+Bento+Railway+Station/@41.1455,-8.6108,17z" target="_blank" rel="noopener noreferrer">🗺️ Maps</a>
-              </div></td>
-            </tr>
-            <tr>
-              <td data-label="Activiteit"><span class="apx-name">Douro-boottocht "6 bruggen"</span> — vanaf de Ribeira</td>
-              <td data-label="Links"><div class="apx-links">
-                <a class="map" href="https://www.google.com/maps/search/Douro+6+bridges+boat+tour+Porto+Ribeira" target="_blank" rel="noopener noreferrer">🗺️ Maps</a>
-              </div></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+          <tr id="dag-1-2">
+            <td data-label="Dag" class="apx-daycol"><span class="apx-name">Dag 1–2 · Porto</span><span class="apx-tag">zo 6 – ma 7 sep</span></td>
+            <td data-label="Activiteiten">
+              <div class="apx-act"><a class="apx-act-naam" href="https://www.google.com/maps/place/Livraria+Lello/@41.1467,-8.6153,17z" target="_blank" rel="noopener noreferrer">Livraria Lello</a><span class="apx-links"><a class="web" href="https://www.livrarialello.pt/en" target="_blank" rel="noopener noreferrer">🌐 Website</a></span></div>
+              <div class="apx-act"><a class="apx-act-naam" href="https://www.google.com/maps/search/Caves+Ferreira+Vila+Nova+de+Gaia" target="_blank" rel="noopener noreferrer">Caves Ferreira</a> <span class="apx-note">— portwijnkelder 🇵🇹</span><span class="apx-links"><a class="web" href="https://www.sograpevinhos.com/en/winetourism" target="_blank" rel="noopener noreferrer">🌐 Reserveren</a></span></div>
+              <div class="apx-act"><a class="apx-act-naam" href="https://www.google.com/maps/place/Dom+Luís+I+Bridge/@41.1403,-8.6094,17z" target="_blank" rel="noopener noreferrer">Dom Luís I-brug &amp; Ribeira</a></div>
+              <div class="apx-act"><a class="apx-act-naam" href="https://www.google.com/maps/place/Pal%C3%A1cio+da+Bolsa/@41.1414,-8.6144,17z" target="_blank" rel="noopener noreferrer">Palácio da Bolsa</a><span class="apx-links"><a class="web" href="https://www.palaciodabolsa.com" target="_blank" rel="noopener noreferrer">🌐 Website</a></span></div>
+              <div class="apx-act"><a class="apx-act-naam" href="https://www.google.com/maps/place/Sé+do+Porto/@41.1430,-8.6112,17z" target="_blank" rel="noopener noreferrer">Sé do Porto</a> <span class="apx-note">— kathedraal</span></div>
+              <div class="apx-act"><a class="apx-act-naam" href="https://www.google.com/maps/place/Torre+dos+Clérigos/@41.1456,-8.6146,17z" target="_blank" rel="noopener noreferrer">Torre dos Clérigos</a><span class="apx-links"><a class="web" href="https://www.torredosclerigos.pt" target="_blank" rel="noopener noreferrer">🌐 Website</a></span></div>
+              <div class="apx-act"><a class="apx-act-naam" href="https://www.google.com/maps/place/São+Bento+Railway+Station/@41.1455,-8.6108,17z" target="_blank" rel="noopener noreferrer">Estação de São Bento</a> <span class="apx-note">— azulejo-tegeltableaus</span></div>
+              <div class="apx-act"><a class="apx-act-naam" href="https://www.google.com/maps/search/Douro+6+bridges+boat+tour+Porto+Ribeira" target="_blank" rel="noopener noreferrer">Douro-boottocht "6 bruggen"</a> <span class="apx-note">— vanaf de Ribeira</span></div>
+            </td>
+          </tr>
+
+          <tr id="dag-3-4">
+            <td data-label="Dag" class="apx-daycol"><span class="apx-name">Dag 3–4 · Amarante &amp; Douro</span><span class="apx-tag">di 8 – wo 9 sep</span></td>
+            <td data-label="Activiteiten">
+              <div class="apx-act"><a class="apx-act-naam" href="https://www.google.com/maps/search/Niepoort+Quinta+de+N%C3%A1poles+Douro" target="_blank" rel="noopener noreferrer">Niepoort — Quinta de Nápoles</a> <span class="apx-note">🇳🇱 Dirk van der Niepoort</span><span class="apx-links"><a class="web" href="https://www.niepoort.pt/en/" target="_blank" rel="noopener noreferrer">🌐 Website</a><a class="tel" href="tel:+351223777770">📞 Bel</a><a class="mail" href="mailto:napoles@niepoort.pt">✉️ Mail</a></span></div>
+              <div class="apx-act"><a class="apx-act-naam" href="https://www.google.com/maps/place/Quinta+do+Pôpa/@41.1540,-7.5970,15z" target="_blank" rel="noopener noreferrer">Quinta do Pôpa</a><span class="apx-links"><a class="web" href="https://www.quintadopopa.com" target="_blank" rel="noopener noreferrer">🌐 Website</a></span></div>
+              <div class="apx-act"><a class="apx-act-naam" href="https://www.google.com/maps/search/Douro+River+Cruise/@41.18,-7.58,12z" target="_blank" rel="noopener noreferrer">Douro riviercruise</a><span class="apx-links"><a class="web" href="https://www.visitdouro.com" target="_blank" rel="noopener noreferrer">🌐 Info</a></span></div>
+              <div class="apx-act"><a class="apx-act-naam" href="https://www.google.com/maps/place/Lamego/@41.1050,-7.6400,13z" target="_blank" rel="noopener noreferrer">Lamego</a><span class="apx-links"><a class="web" href="https://www.visitlamego.pt" target="_blank" rel="noopener noreferrer">🌐 Info</a></span></div>
+              <div class="apx-act"><a class="apx-act-naam" href="https://www.google.com/maps/place/Museu+do+Douro/@41.1616,-7.7863,16z" target="_blank" rel="noopener noreferrer">Peso da Régua &amp; Museu do Douro</a><span class="apx-links"><a class="web" href="https://www.museudodouro.pt" target="_blank" rel="noopener noreferrer">🌐 Website</a></span></div>
+            </td>
+          </tr>
+
+          <tr id="dag-5">
+            <td data-label="Dag" class="apx-daycol"><span class="apx-name">Dag 5 · Aveiro</span><span class="apx-tag">do 10 sep</span></td>
+            <td data-label="Activiteiten">
+              <div class="apx-act"><a class="apx-act-naam" href="https://www.google.com/maps/place/Aveiro/@40.6405,-8.6538,14z" target="_blank" rel="noopener noreferrer">Moliceiro-boottocht</a></div>
+              <div class="apx-act"><a class="apx-act-naam" href="https://www.google.com/maps/place/Costa+Nova+do+Prado/@40.6175,-8.7505,15z" target="_blank" rel="noopener noreferrer">Costa Nova do Prado</a></div>
+              <div class="apx-act"><a class="apx-act-naam" href="https://www.google.com/maps/place/Vista+Alegre/@40.6027,-8.6193,16z" target="_blank" rel="noopener noreferrer">Vista Alegre porselein</a><span class="apx-links"><a class="web" href="https://www.vistaalegre.com" target="_blank" rel="noopener noreferrer">🌐 Website</a></span></div>
+            </td>
+          </tr>
+
+          <tr id="dag-6">
+            <td data-label="Dag" class="apx-daycol"><span class="apx-name">Dag 6 · Batalha, Alcobaça &amp; Nazaré</span><span class="apx-tag">vr 11 sep · onderweg</span></td>
+            <td data-label="Activiteiten">
+              <div class="apx-act"><span class="apx-tag">Batalha</span><a class="apx-act-naam" href="https://www.google.com/maps/place/Mosteiro+da+Batalha/@39.6595,-8.8248,16z" target="_blank" rel="noopener noreferrer">Klooster van Batalha</a><span class="apx-links"><a class="web" href="https://www.mosteirobatalha.gov.pt" target="_blank" rel="noopener noreferrer">🌐 Website</a></span></div>
+              <div class="apx-act"><span class="apx-tag">Alcobaça</span><a class="apx-act-naam" href="https://www.google.com/maps/place/Mosteiro+de+Alcoba%C3%A7a/@39.5470,-8.9800,16z" target="_blank" rel="noopener noreferrer">Klooster van Alcobaça</a> <span class="apx-note">— onderweg</span><span class="apx-links"><a class="web" href="https://mosteiroalcobaca.gov.pt" target="_blank" rel="noopener noreferrer">🌐 Website</a></span></div>
+              <div class="apx-act"><span class="apx-tag">Nazaré</span><a class="apx-act-naam" href="https://www.google.com/maps/place/Nazaré/@39.6013,-9.0655,14z" target="_blank" rel="noopener noreferrer">Nazaré Sítio</a></div>
+              <div class="apx-act"><span class="apx-tag">Leiria</span><a class="apx-act-naam" href="https://www.google.com/maps/place/Castelo+de+Leiria/@39.7444,-8.8075,16z" target="_blank" rel="noopener noreferrer">Kasteel van Leiria</a></div>
+            </td>
+          </tr>
+
+          <tr id="dag-6-7">
+            <td data-label="Dag" class="apx-daycol"><span class="apx-name">Dag 6–7 · Óbidos</span><span class="apx-tag">vr 11 – za 12 sep</span></td>
+            <td data-label="Activiteiten">
+              <div class="apx-act"><span class="apx-tag">Óbidos</span><a class="apx-act-naam" href="https://www.google.com/maps/place/Óbidos/@39.3621,-9.1566,15z" target="_blank" rel="noopener noreferrer">Vestingmuren &amp; Kasteel</a></div>
+              <div class="apx-act"><span class="apx-tag">Dag 7</span><a class="apx-act-naam" href="https://www.google.com/maps/place/Caldas+da+Rainha/@39.4067,-9.1361,14z" target="_blank" rel="noopener noreferrer">Caldas da Rainha</a></div>
+            </td>
+          </tr>
+
+          <tr id="dag-8">
+            <td data-label="Dag" class="apx-daycol"><span class="apx-name">Dag 8 · Mafra &amp; Sintra</span><span class="apx-tag">zo 13 sep · dagtrip</span></td>
+            <td data-label="Activiteiten">
+              <div class="apx-act"><span class="apx-tag">Mafra</span><a class="apx-act-naam" href="https://www.google.com/maps/place/Pal%C3%A1cio+Nacional+de+Mafra/@38.9376,-9.3327,16z" target="_blank" rel="noopener noreferrer">Paleisklooster van Mafra</a> <span class="apx-note">— optie A/B</span><span class="apx-links"><a class="web" href="https://www.palaciomafra.gov.pt" target="_blank" rel="noopener noreferrer">🌐 Website</a></span></div>
+              <div class="apx-act"><span class="apx-tag">Sintra</span><a class="apx-act-naam" href="https://www.google.com/maps/place/Palácio+da+Pena/@38.7875,-9.3906,16z" target="_blank" rel="noopener noreferrer">Palácio da Pena</a><span class="apx-links"><a class="web" href="https://www.parquesdesintra.pt/parques-monumentos-e-pacos/parque-e-palacio-nacional-da-pena/" target="_blank" rel="noopener noreferrer">🌐 Reserveren</a></span></div>
+              <div class="apx-act"><span class="apx-tag">Sintra</span><a class="apx-act-naam" href="https://www.google.com/maps/place/Quinta+da+Regaleira/@38.7973,-9.3954,17z" target="_blank" rel="noopener noreferrer">Quinta da Regaleira</a> <span class="apx-note">— vooral bij optie A</span><span class="apx-links"><a class="web" href="https://www.regaleira.pt" target="_blank" rel="noopener noreferrer">🌐 Website</a></span></div>
+              <div class="apx-act"><span class="apx-tag">Cabo da Roca</span><a class="apx-act-naam" href="https://www.google.com/maps/place/Cabo+da+Roca/@38.7811,-9.4986,15z" target="_blank" rel="noopener noreferrer">Cabo da Roca</a></div>
+            </td>
+          </tr>
+
+          <tr id="dag-8-10">
+            <td data-label="Dag" class="apx-daycol"><span class="apx-name">Dag 8–10 · Lissabon</span><span class="apx-tag">zo 13 – di 15 sep</span></td>
+            <td data-label="Activiteiten">
+              <div class="apx-act"><span class="apx-tag">Belém</span><a class="apx-act-naam" href="https://www.google.com/maps/place/Torre+de+Belém/@38.6916,-9.2160,17z" target="_blank" rel="noopener noreferrer">Toren van Belém</a><span class="apx-links"><a class="web" href="https://www.torrebelem.gov.pt" target="_blank" rel="noopener noreferrer">🌐 Website</a></span></div>
+              <div class="apx-act"><span class="apx-tag">Belém</span><a class="apx-act-naam" href="https://www.google.com/maps/place/Pastéis+de+Belém/@38.6974,-9.2037,17z" target="_blank" rel="noopener noreferrer">Pastéis de Belém</a><span class="apx-links"><a class="web" href="https://www.pasteisdebelem.pt" target="_blank" rel="noopener noreferrer">🌐 Website</a></span></div>
+              <div class="apx-act"><a class="apx-act-naam" href="https://www.google.com/maps/place/Alfama/@38.7139,-9.1290,15z" target="_blank" rel="noopener noreferrer">Tram 28 &amp; Alfama</a></div>
+              <div class="apx-act"><a class="apx-act-naam" href="https://www.google.com/maps/place/LX+Factory/@38.7043,-9.1786,16z" target="_blank" rel="noopener noreferrer">LX Factory</a><span class="apx-links"><a class="web" href="https://www.lxfactory.com" target="_blank" rel="noopener noreferrer">🌐 Website</a></span></div>
+              <div class="apx-act"><a class="apx-act-naam" href="https://www.google.com/maps/place/Cristo+Rei/@38.6786,-9.1725,16z" target="_blank" rel="noopener noreferrer">Cristo Rei</a><span class="apx-links"><a class="web" href="https://www.cristorei.pt" target="_blank" rel="noopener noreferrer">🌐 Website</a></span></div>
+              <div class="apx-act"><span class="apx-tag">Dag 9 · geboekt</span><a class="apx-act-naam" href="https://www.google.com/maps/search/Pra%C3%A7a+Lu%C3%ADs+de+Cam%C3%B5es+Lisboa" target="_blank" rel="noopener noreferrer">Stadswandeling met gids</a> <span class="apx-note">— Mijn Lissabon (Gino) 🇳🇱, 9:30 · start Praça Luís de Camões, eindigt in Alfama · ±2,5 u · privé, 4 pers., €120</span><span class="apx-links"><a class="tel" href="tel:+351960271656">📞 Bel</a><a class="mail" href="mailto:gino@mijnlissabon.nl">✉️ Mail</a><a class="web" href="https://wa.me/+351960271656" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a></span></div>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
     </div>
-
-    <div class="apx-day" id="dag-3-4">
-      <h2 class="apx-section-title">📍 Dag 3–4 · Amarante &amp; Douro</h2>
-      <p class="apx-section-sub">di 8 – wo 9 september</p>
-      <div class="apx-table-wrap">
-        <table class="apx-table">
-          <thead><tr><th>Activiteit</th><th>Links</th></tr></thead>
-          <tbody>
-            <tr>
-              <td data-label="Activiteit"><span class="apx-name">Niepoort — Quinta de Nápoles</span> 🇳🇱 Dirk van der Niepoort</td>
-              <td data-label="Links"><div class="apx-links">
-                <a class="map" href="https://www.google.com/maps/search/Niepoort+Quinta+de+N%C3%A1poles+Douro" target="_blank" rel="noopener noreferrer">🗺️ Maps</a>
-                <a class="web" href="https://www.niepoort.pt/en/" target="_blank" rel="noopener noreferrer">🌐 Website</a>
-                <a class="tel" href="tel:+351223777770">📞 +351 223 777 770</a>
-                <a class="mail" href="mailto:napoles@niepoort.pt">✉️ napoles@niepoort.pt</a>
-              </div></td>
-            </tr>
-            <tr>
-              <td data-label="Activiteit"><span class="apx-name">Quinta do Pôpa</span></td>
-              <td data-label="Links"><div class="apx-links">
-                <a class="map" href="https://www.google.com/maps/place/Quinta+do+Pôpa/@41.1540,-7.5970,15z" target="_blank" rel="noopener noreferrer">🗺️ Maps</a>
-                <a class="web" href="https://www.quintadopopa.com" target="_blank" rel="noopener noreferrer">🌐 Website</a>
-              </div></td>
-            </tr>
-            <tr>
-              <td data-label="Activiteit"><span class="apx-name">Douro Riviercruise</span></td>
-              <td data-label="Links"><div class="apx-links">
-                <a class="map" href="https://www.google.com/maps/search/Douro+River+Cruise/@41.18,-7.58,12z" target="_blank" rel="noopener noreferrer">🗺️ Tochten</a>
-                <a class="web" href="https://www.visitdouro.com" target="_blank" rel="noopener noreferrer">🌐 Info</a>
-              </div></td>
-            </tr>
-            <tr>
-              <td data-label="Activiteit"><span class="apx-name">Lamego</span></td>
-              <td data-label="Links"><div class="apx-links">
-                <a class="map" href="https://www.google.com/maps/place/Lamego/@41.1050,-7.6400,13z" target="_blank" rel="noopener noreferrer">🗺️ Maps</a>
-                <a class="web" href="https://www.visitlamego.pt" target="_blank" rel="noopener noreferrer">🌐 Info</a>
-              </div></td>
-            </tr>
-            <tr>
-              <td data-label="Activiteit"><span class="apx-name">Peso da Régua &amp; Museu do Douro</span></td>
-              <td data-label="Links"><div class="apx-links">
-                <a class="map" href="https://www.google.com/maps/place/Museu+do+Douro/@41.1616,-7.7863,16z" target="_blank" rel="noopener noreferrer">🗺️ Maps</a>
-                <a class="web" href="https://www.museudodouro.pt" target="_blank" rel="noopener noreferrer">🌐 Website</a>
-              </div></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <div class="apx-day" id="dag-5">
-      <h2 class="apx-section-title">📍 Dag 5 · Aveiro</h2>
-      <p class="apx-section-sub">do 10 september</p>
-      <div class="apx-table-wrap">
-        <table class="apx-table">
-          <thead><tr><th>Activiteit</th><th>Links</th></tr></thead>
-          <tbody>
-            <tr>
-              <td data-label="Activiteit"><span class="apx-name">Moliceiro-boottocht</span></td>
-              <td data-label="Links"><div class="apx-links">
-                <a class="map" href="https://www.google.com/maps/place/Aveiro/@40.6405,-8.6538,14z" target="_blank" rel="noopener noreferrer">🗺️ Maps</a>
-              </div></td>
-            </tr>
-            <tr>
-              <td data-label="Activiteit"><span class="apx-name">Costa Nova do Prado</span></td>
-              <td data-label="Links"><div class="apx-links">
-                <a class="map" href="https://www.google.com/maps/place/Costa+Nova+do+Prado/@40.6175,-8.7505,15z" target="_blank" rel="noopener noreferrer">🗺️ Maps</a>
-              </div></td>
-            </tr>
-            <tr>
-              <td data-label="Activiteit"><span class="apx-name">Vista Alegre Porselein</span></td>
-              <td data-label="Links"><div class="apx-links">
-                <a class="map" href="https://www.google.com/maps/place/Vista+Alegre/@40.6027,-8.6193,16z" target="_blank" rel="noopener noreferrer">🗺️ Maps</a>
-                <a class="web" href="https://www.vistaalegre.com" target="_blank" rel="noopener noreferrer">🌐 Website</a>
-              </div></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <div class="apx-day" id="dag-6">
-      <h2 class="apx-section-title">📍 Dag 6 · Batalha, Alcobaça &amp; Nazaré</h2>
-      <p class="apx-section-sub">vr 11 september · onderweg van Aveiro naar Óbidos</p>
-      <div class="apx-table-wrap">
-        <table class="apx-table">
-          <thead><tr><th>Activiteit</th><th>Links</th></tr></thead>
-          <tbody>
-            <tr>
-              <td data-label="Activiteit"><span class="apx-tag">Batalha</span><br><span class="apx-name">Klooster van Batalha</span></td>
-              <td data-label="Links"><div class="apx-links">
-                <a class="map" href="https://www.google.com/maps/place/Mosteiro+da+Batalha/@39.6595,-8.8248,16z" target="_blank" rel="noopener noreferrer">🗺️ Maps</a>
-                <a class="web" href="https://www.mosteirobatalha.gov.pt" target="_blank" rel="noopener noreferrer">🌐 Website</a>
-              </div></td>
-            </tr>
-            <tr>
-              <td data-label="Activiteit"><span class="apx-tag">Alcobaça</span><br><span class="apx-name">Klooster van Alcobaça</span> — onderweg</td>
-              <td data-label="Links"><div class="apx-links">
-                <a class="map" href="https://www.google.com/maps/place/Mosteiro+de+Alcoba%C3%A7a/@39.5470,-8.9800,16z" target="_blank" rel="noopener noreferrer">🗺️ Maps</a>
-                <a class="web" href="https://mosteiroalcobaca.gov.pt" target="_blank" rel="noopener noreferrer">🌐 Website</a>
-              </div></td>
-            </tr>
-            <tr>
-              <td data-label="Activiteit"><span class="apx-tag">Nazaré</span><br><span class="apx-name">Nazaré Sítio</span></td>
-              <td data-label="Links"><div class="apx-links">
-                <a class="map" href="https://www.google.com/maps/place/Nazaré/@39.6013,-9.0655,14z" target="_blank" rel="noopener noreferrer">🗺️ Maps</a>
-              </div></td>
-            </tr>
-            <tr>
-              <td data-label="Activiteit"><span class="apx-tag">Leiria</span><br><span class="apx-name">Kasteel van Leiria</span></td>
-              <td data-label="Links"><div class="apx-links">
-                <a class="map" href="https://www.google.com/maps/place/Castelo+de+Leiria/@39.7444,-8.8075,16z" target="_blank" rel="noopener noreferrer">🗺️ Maps</a>
-              </div></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <div class="apx-day" id="dag-6-7">
-      <h2 class="apx-section-title">📍 Dag 6–7 · Óbidos</h2>
-      <p class="apx-section-sub">vr 11 – za 12 september</p>
-      <div class="apx-table-wrap">
-        <table class="apx-table">
-          <thead><tr><th>Activiteit</th><th>Links</th></tr></thead>
-          <tbody>
-            <tr>
-              <td data-label="Activiteit"><span class="apx-tag">Óbidos</span><br><span class="apx-name">Vestingmuren &amp; Kasteel</span></td>
-              <td data-label="Links"><div class="apx-links">
-                <a class="map" href="https://www.google.com/maps/place/Óbidos/@39.3621,-9.1566,15z" target="_blank" rel="noopener noreferrer">🗺️ Maps</a>
-              </div></td>
-            </tr>
-            <tr>
-              <td data-label="Activiteit"><span class="apx-tag">Dag 7 · Caldas da Rainha</span><br><span class="apx-name">Caldas da Rainha</span></td>
-              <td data-label="Links"><div class="apx-links">
-                <a class="map" href="https://www.google.com/maps/place/Caldas+da+Rainha/@39.4067,-9.1361,14z" target="_blank" rel="noopener noreferrer">🗺️ Maps</a>
-              </div></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <div class="apx-day" id="dag-8">
-      <h2 class="apx-section-title">📍 Dag 8 · Mafra &amp; Sintra</h2>
-      <p class="apx-section-sub">zo 13 september · dagtrip, daarna door naar Lissabon</p>
-      <div class="apx-table-wrap">
-        <table class="apx-table">
-          <thead><tr><th>Activiteit</th><th>Links</th></tr></thead>
-          <tbody>
-            <tr>
-              <td data-label="Activiteit"><span class="apx-tag">Mafra</span><br><span class="apx-name">Paleisklooster van Mafra</span> — optie A/B</td>
-              <td data-label="Links"><div class="apx-links">
-                <a class="map" href="https://www.google.com/maps/place/Pal%C3%A1cio+Nacional+de+Mafra/@38.9376,-9.3327,16z" target="_blank" rel="noopener noreferrer">🗺️ Maps</a>
-                <a class="web" href="https://www.palaciomafra.gov.pt" target="_blank" rel="noopener noreferrer">🌐 Website</a>
-              </div></td>
-            </tr>
-            <tr>
-              <td data-label="Activiteit"><span class="apx-tag">Sintra</span><br><span class="apx-name">Palácio da Pena</span></td>
-              <td data-label="Links"><div class="apx-links">
-                <a class="map" href="https://www.google.com/maps/place/Palácio+da+Pena/@38.7875,-9.3906,16z" target="_blank" rel="noopener noreferrer">🗺️ Maps</a>
-                <a class="web" href="https://www.parquesdesintra.pt/parques-monumentos-e-pacos/parque-e-palacio-nacional-da-pena/" target="_blank" rel="noopener noreferrer">🌐 Reserveren</a>
-              </div></td>
-            </tr>
-            <tr>
-              <td data-label="Activiteit"><span class="apx-tag">Sintra</span><br><span class="apx-name">Quinta da Regaleira</span> — vooral bij optie A</td>
-              <td data-label="Links"><div class="apx-links">
-                <a class="map" href="https://www.google.com/maps/place/Quinta+da+Regaleira/@38.7973,-9.3954,17z" target="_blank" rel="noopener noreferrer">🗺️ Maps</a>
-                <a class="web" href="https://www.regaleira.pt" target="_blank" rel="noopener noreferrer">🌐 Website</a>
-              </div></td>
-            </tr>
-            <tr>
-              <td data-label="Activiteit"><span class="apx-tag">Cabo da Roca</span><br><span class="apx-name">Cabo da Roca</span></td>
-              <td data-label="Links"><div class="apx-links">
-                <a class="map" href="https://www.google.com/maps/place/Cabo+da+Roca/@38.7811,-9.4986,15z" target="_blank" rel="noopener noreferrer">🗺️ Maps</a>
-              </div></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <div class="apx-day" id="dag-8-10">
-      <h2 class="apx-section-title">📍 Dag 8–10 · Lissabon</h2>
-      <p class="apx-section-sub">zo 13 – di 15 september</p>
-      <div class="apx-table-wrap">
-        <table class="apx-table">
-          <thead><tr><th>Activiteit</th><th>Links</th></tr></thead>
-          <tbody>
-            <tr>
-              <td data-label="Activiteit"><span class="apx-tag">Belém</span><br><span class="apx-name">Toren van Belém</span></td>
-              <td data-label="Links"><div class="apx-links">
-                <a class="map" href="https://www.google.com/maps/place/Torre+de+Belém/@38.6916,-9.2160,17z" target="_blank" rel="noopener noreferrer">🗺️ Maps</a>
-                <a class="web" href="https://www.torrebelem.gov.pt" target="_blank" rel="noopener noreferrer">🌐 Website</a>
-              </div></td>
-            </tr>
-            <tr>
-              <td data-label="Activiteit"><span class="apx-tag">Belém</span><br><span class="apx-name">Pastéis de Belém</span></td>
-              <td data-label="Links"><div class="apx-links">
-                <a class="map" href="https://www.google.com/maps/place/Pastéis+de+Belém/@38.6974,-9.2037,17z" target="_blank" rel="noopener noreferrer">🗺️ Maps</a>
-                <a class="web" href="https://www.pasteisdebelem.pt" target="_blank" rel="noopener noreferrer">🌐 Website</a>
-              </div></td>
-            </tr>
-            <tr>
-              <td data-label="Activiteit"><span class="apx-name">Tram 28 &amp; Alfama</span></td>
-              <td data-label="Links"><div class="apx-links">
-                <a class="map" href="https://www.google.com/maps/place/Alfama/@38.7139,-9.1290,15z" target="_blank" rel="noopener noreferrer">🗺️ Maps</a>
-              </div></td>
-            </tr>
-            <tr>
-              <td data-label="Activiteit"><span class="apx-name">LX Factory</span></td>
-              <td data-label="Links"><div class="apx-links">
-                <a class="map" href="https://www.google.com/maps/place/LX+Factory/@38.7043,-9.1786,16z" target="_blank" rel="noopener noreferrer">🗺️ Maps</a>
-                <a class="web" href="https://www.lxfactory.com" target="_blank" rel="noopener noreferrer">🌐 Website</a>
-              </div></td>
-            </tr>
-            <tr>
-              <td data-label="Activiteit"><span class="apx-name">Cristo Rei</span></td>
-              <td data-label="Links"><div class="apx-links">
-                <a class="map" href="https://www.google.com/maps/place/Cristo+Rei/@38.6786,-9.1725,16z" target="_blank" rel="noopener noreferrer">🗺️ Maps</a>
-                <a class="web" href="https://www.cristorei.pt" target="_blank" rel="noopener noreferrer">🌐 Website</a>
-              </div></td>
-            </tr>
-            <tr>
-              <td data-label="Activiteit"><span class="apx-tag">Dag 9 · ma 14 sep · geboekt</span><br><span class="apx-name">Stadswandeling met gids</span> — Mijn Lissabon (Gino) 🇳🇱, <strong>9:30</strong><br>Start: Praça Luís de Camões · eindigt in Alfama · ±2,5 uur · privé, 4 pers., €120</td>
-              <td data-label="Links"><div class="apx-links">
-                <a class="map" href="https://www.google.com/maps/search/Pra%C3%A7a+Lu%C3%ADs+de+Cam%C3%B5es+Lisboa" target="_blank" rel="noopener noreferrer">🗺️ Maps startpunt</a>
-                <a class="tel" href="tel:+351960271656">📞 +351 960 271 656</a>
-                <a class="mail" href="mailto:gino@mijnlissabon.nl">✉️ gino@mijnlissabon.nl</a>
-                <a class="web" href="https://wa.me/+351960271656" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
-              </div></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
   </div>
 </section>
 
