@@ -1,0 +1,151 @@
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=wiertsema.net; s=default;
+ t=1787608083;
+ b=vyjwUi02rU0+bNtrkyWtz/2lqf0dfdHghrKflAOZLaMMdPcJwJdryXgm+eSdpeZhrZJ68
+ mG4h5mj69v2Rw7hR5AxBqW1h+16LDdNHJXrPbyu/K64A/6ZOsd7hbB6DWJwnnk3COHMKRES
+ LiJby+5Bz2nlMDxXt5hAmOfQ8kPuwBg=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=wiertsema.net; s=default; t=1787608083; h=mime-version : references
+ : in-reply-to : from : date : message-id : subject : to : content-type
+ : from; bh=I84FYM+ZSoFLpXww5tC9l993Wblt+DLYBUYb3h6A8rM=;
+ b=eeeHBH/PkDve719pM1N+gVTyU3fo+SV0kS+i8zaIqb+gaOVD/xEx1SB6o3DAex0L+AlpI
+ e2scDl81XbQwgsGbjlEffU+nxLnAvwIIzrHXn+F7nrtDC6Gj65WM2cadMqDMQC7+me0lx4N
+ v74wcqZpN3XsUsIcIY2/a7AuSwdbmOI=
+ARC-Authentication-Results: i=1; shared80.cloud86-host.nl;
+  spf=pass smtp.mailfrom=info@beleefporto.nl smtp.helo=shared117.cloud86-host.io
+Return-Path: <info@beleefporto.nl>
+X-Original-To: duco@wiertsema.net
+Delivered-To: duco@wiertsema.net
+Received: from shared117.cloud86-host.io (shared117.cloud86-host.io [45.82.191.182])
+	by shared80.cloud86-host.nl (Postfix) with ESMTPS id 9F1E8284B2E
+	for <duco@wiertsema.net>; Mon, 24 Aug 2026 23:47:58 +0200 (CEST)
+Authentication-Results: shared80.cloud86-host.nl;
+        spf=pass (sender IP is 45.82.191.182) smtp.mailfrom=info@beleefporto.nl smtp.helo=shared117.cloud86-host.io
+Received-SPF: pass (shared80.cloud86-host.nl: domain of beleefporto.nl designates 45.82.191.182 as permitted sender) client-ip=45.82.191.182; envelope-from=info@beleefporto.nl; helo=shared117.cloud86-host.io;
+X-Virus-Scanned: amavis at cloud86-host.nl
+X-Spam-Flag: NO
+X-Spam-Score: -2.141
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.141 tagged_above=-9999 required=4
+ tests=[BAYES_00=-1.9, DMARC_PASS=-0.1, HTML_IMAGE_ONLY_28=1.404,
+ HTML_MESSAGE=0.001, KAM_DMARC_STATUS=0.01, RCVD_IN_ZEN_BLOCKED=0.001,
+ SPF_HELO_NONE=0.001, SPF_PASS=-0.001, TXREP=-1.567, T_REMOTE_IMAGE=0.01]
+ autolearn=no autolearn_force=no
+Received: from mail-ot1-f49.google.com (mail-ot1-f49.google.com [209.85.210.49])
+	by shared117.cloud86-host.io (Postfix) with ESMTPSA id 774C63346B1
+	for <duco@wiertsema.net>; Mon, 24 Aug 2026 23:47:55 +0200 (CEST)
+Authentication-Results: shared117.cloud86-host.io;
+        spf=pass (sender IP is 209.85.210.49) smtp.mailfrom=info@beleefporto.nl smtp.helo=mail-ot1-f49.google.com
+Received-SPF: pass (shared117.cloud86-host.io: connection is authenticated)
+X-Virus-Scanned: amavis at cloud86-host.io
+Received: by mail-ot1-f49.google.com with SMTP id
+ 46e09a7af769-7e9eaf04bfaso2040959a34.1
+        for <duco@wiertsema.net>; Mon, 24 Aug 2026 14:47:55 -0700 (PDT)
+X-Gm-Message-State: AFuF++nT8Mf4FE8WMBa0L0V+8EcxWirSp+lilykh9vG4lYI4USHlCPQn
+	B8glUXVEVEl7V+AqhWRreqERZa3EKSL9zUNmqkkLAXvNT6rVkS6ee25CwVqx2wXm8YBhwyzLo3h
+	ivRTXLNFvI9xn2JwyCke3CLgghqJcBJY=
+X-Received: by 2002:a05:6820:4d82:b0:6b1:56cd:3aba with SMTP id
+ 006d021491bc7-6b16b346bdbmr14005050eaf.18.1787608074442; Mon, 24 Aug 2026
+ 14:47:54 -0700 (PDT)
+MIME-Version: 1.0
+References: <LoRDPRSGsobtCBhkmqKhBe85MPFhidny8VxUZqN0Hik@www.beleefporto.nl>
+ <CAL4y4OwSdFH1bqE_oir24hHtgsAiMO6ejQLD=u6pzOt5VMKi9w@mail.gmail.com>
+ <DF6AE0DB-59FF-4327-90D7-56E2A6B03BFA@wiertsema.net>
+In-Reply-To: <DF6AE0DB-59FF-4327-90D7-56E2A6B03BFA@wiertsema.net>
+From: Beleef Porto <info@beleefporto.nl>
+Date: Mon, 24 Aug 2026 22:47:42 +0100
+X-Gmail-Original-Message-ID: 
+ <CAL4y4OxXxdk_fMSt5=boNNgTJeWg5hGxNkMYuCxCvkgi8cw43Q@mail.gmail.com>
+X-Gm-Features: AcwNN1Vrh5wRSAbISO_0nfyvTwHkl9yBdKGsPF0GxnLr8yKlDnFXx4qrwifKCLg
+Message-ID: 
+ <CAL4y4OxXxdk_fMSt5=boNNgTJeWg5hGxNkMYuCxCvkgi8cw43Q@mail.gmail.com>
+Subject: Re: Nieuw verzoek via web: Reservering Porto tour
+To: Duco Wiertsema <duco@wiertsema.net>
+Content-Type: multipart/alternative; boundary="000000000000465b950659d1f00f"
+X-PPP-Message-ID: 
+ <178760807804.1789423.1825282049828481232@shared117.cloud86-host.io>
+X-PPP-Vhost: beleefporto.nl
+
+--000000000000465b950659d1f00f
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Ha Duco,
+
+Top, dat is dan afgesproken.
+
+Het is een priv=C3=A9 tour, dus er gaan geen andere klanten mee.
+We kunnen de route afstemmen op eventuele wensen.
+
+Groet,
+
+Philip
+
+
+beleefporto.nl
+
+: +351 920 423 533
+
+
+
+On Mon, 24 Aug 2026 at 18:55, Duco Wiertsema <duco@wiertsema.net> wrote:
+
+> Super,
+>
+> We zullen cash betalen ;)
+>
+> Voor de volledigheid, zullen we met meer dan 4 zijn of is onze groep de
+> enige?
+> Zoja kunnen we bepaalde accenten van de route bespreken?
+>
+> Alvast dank Duco
+>
+> On 24 Aug 2026, at 16:12, Beleef Porto <info@beleefporto.nl> wrote:
+>
+> Ticket Office op Rua Ch=C3=A3 36 <https://maps.app.goo.gl/hHhmie9AewPKbSq=
+29>
+>
+>
+>
+
+--000000000000465b950659d1f00f
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">Ha Duco,</div><div dir=3D"auto"><br></div><div dir=3D"aut=
+o">Top, dat is dan afgesproken.</div><div dir=3D"auto"><br></div><div dir=
+=3D"auto">Het is een priv=C3=A9 tour, dus er gaan geen andere klanten mee.=
+=C2=A0<br clear=3D"all">We kunnen de route afstemmen op eventuele wensen.</=
+div><div dir=3D"auto"><br></div><div dir=3D"auto">Groet,</div><div dir=3D"a=
+uto"><br></div><div dir=3D"auto">Philip<br><br><br clear=3D"all"><div dir=
+=3D"auto"><div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmai=
+l_signature"><div dir=3D"ltr"><div><a href=3D"http://beleefporto.nl" style=
+=3D"color:rgb(0,0,0);font-family:verdana,sans-serif" target=3D"_blank">bele=
+efporto.nl</a></div><div><span style=3D"font-family:verdana,sans-serif"><br=
+></span></div><div><span style=3D"font-family:verdana,sans-serif"><img alt=
+=3D""><img alt=3D""><img src=3D"https://ci3.googleusercontent.com/mail-sig/=
+AIorK4w1WHEphizfTHPVlNah64dv6DcEwyws4k17NTuLvVVCWeLomGSSfOdXl16XJolsr-ZsKrO=
+mNJY">: +351 920 423 533</span></div><div><span style=3D"font-family:verdan=
+a,sans-serif"><img src=3D"https://ci3.googleusercontent.com/mail-sig/AIorK4=
+x1TyKnz8g-f3kzE3DuqVV8d_KCMYfOBS-mgi5zsMAcd7corG8jBjrlGqzdnNjT5ALySM2lXC4" =
+width=3D"96" height=3D"96"></span><br></div><div><br></div></div></div></di=
+v></div><div><br><div class=3D"gmail_quote gmail_quote_container"><div dir=
+=3D"ltr" class=3D"gmail_attr">On Mon, 24 Aug 2026 at 18:55, Duco Wiertsema =
+&lt;<a href=3D"mailto:duco@wiertsema.net">duco@wiertsema.net</a>&gt; wrote:=
+<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;bord=
+er-left:1px #ccc solid;padding-left:1ex"><div style=3D"line-break:after-whi=
+te-space"><div style=3D"line-break:after-white-space">Super,<div><br></div>=
+<div>We zullen cash betalen ;)=C2=A0</div><div><br></div><div>Voor de volle=
+digheid, zullen we met meer dan 4 zijn of is onze groep de enige?</div><div=
+>Zoja kunnen we bepaalde accenten van de route bespreken?</div><div><br></d=
+iv><div>Alvast dank Duco</div></div></div><div style=3D"line-break:after-wh=
+ite-space"><div style=3D"line-break:after-white-space"><div><div><br><block=
+quote type=3D"cite"><div>On 24 Aug 2026, at 16:12, Beleef Porto &lt;<a href=
+=3D"mailto:info@beleefporto.nl" target=3D"_blank">info@beleefporto.nl</a>&g=
+t; wrote:</div><br><div><a href=3D"https://maps.app.goo.gl/hHhmie9AewPKbSq2=
+9" style=3D"font-family:verdana,sans-serif;font-style:normal;font-variant-c=
+aps:normal;font-weight:400;letter-spacing:normal;text-align:start;text-inde=
+nt:0px;text-transform:none;white-space:normal;word-spacing:0px" target=3D"_=
+blank">Ticket Office op Rua Ch=C3=A3 36</a></div></blockquote></div><br></d=
+iv></div></div></blockquote></div></div>
+
+--000000000000465b950659d1f00f--

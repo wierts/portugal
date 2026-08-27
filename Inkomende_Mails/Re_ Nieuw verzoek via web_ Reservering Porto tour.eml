@@ -1,0 +1,462 @@
+Delivered-To: duco.wiertsema@gmail.com
+Received: by 2002:a05:7022:2098:b0:141:957c:f652 with SMTP id u24csp894470dlu;
+        Mon, 24 Aug 2026 07:12:53 -0700 (PDT)
+X-Forwarded-Encrypted: i=4; AHgh+RrLPfAX/emUVJB3FXD7EgD6VAG566mxjAJs3vh4slZ9pGGOojYN1VmR8ORnQyRhsLSjGCs15SerQQgmyKurNQ==@gmail.com
+X-Received: by 2002:a05:6102:41a5:b0:778:86f2:9f26 with SMTP id ada2fe7eead31-77a64b65516mr9863439137.9.1787580772760;
+        Mon, 24 Aug 2026 07:12:52 -0700 (PDT)
+ARC-Seal: i=3; a=rsa-sha256; t=1787580772; cv=pass;
+        d=google.com; s=arc-20260327;
+        b=EBU3iM3fh9diDtcs3rYz4cbrredYV26xX2uWiosI93V//S/Uc0Y6S5MenIhSUCVYVs
+         gKYIXjVKSqDSHUkSBmjhdQ4aLCglG9xAiihqNJxlU4EQh1o3GLPVgFR3N+LJ2EwUIy+U
+         NFyKR2TD49aZ6WdfNNiTdH+HXYu1Ar7Z1vnLAH8Q7dhtIIFfy0snfDSNeJ5yVfQcIh1Q
+         PqFDfQyRsbgD7zkmGiD+cTFKB+Ik8swlAkvj3JsLLwum2P3Ba11CjF8AFoqaGy3GWQ9+
+         l6J+gE6H3Yalt3vQtOmgohRLAmRZF2KPpWBX4MfgjpYuhmTB2KRtLrmZ2oZ9uHgXah1K
+         G9BQ==
+ARC-Message-Signature: i=3; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :delivered-to;
+        bh=CPzJqwnl5tYBxOI7XKTtQSsOqruvtgUaZF3R1NkIto0=;
+        fh=lzWYlpoEktAnQXp4aCPyuzvEGNB95xFoXYHQKuocD+E=;
+        b=KWAX/LXuiEB2ZaIaZaes82wV0JETs3+HKohbUDLHV5268sWFx0AC/nT0wOiUlUA4S0
+         kUlt9/ef7ZykuqwU7PPSpI2A8aAXFzgDijD2ZyCcs99+t9E9delGS2u0qRp1CJgGQRKf
+         dazPLbSQ0s09k9//HoSgeDfRGNHA69RrL0SEfLmmRq28rE4sOWe5mU3Ko1E9wB1+oeH8
+         ysGI2cB57nGiJNhK6gw1/sIPECn3aoJ7TPAj6sevcdnqNc8WGZuTMbVObdPaT4337ibp
+         W+7yXkhEibQ8ZckTyWyZvv1SJ1m7rWd9d1b7iUN/WsGSdnlAjwSN2HQMYq/trqioq8Ki
+         g0NQ==;
+        dara=google.com
+ARC-Authentication-Results: i=3; mx.google.com;
+       arc=pass (i=2 spf=pass spfdomain=beleefporto.nl dmarc=pass fromdomain=beleefporto.nl);
+       spf=pass (google.com: domain of wierts+caf_=duco.wiertsema=googlemail.com@googlemail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom="wierts+caf_=duco.wiertsema=googlemail.com@googlemail.com";
+       dmarc=fail (p=NONE sp=NONE dis=NONE arc=pass) header.from=beleefporto.nl;
+       dara=pass header.i=@gmail.com
+Return-Path: <wierts+caf_=duco.wiertsema=googlemail.com@googlemail.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id ada2fe7eead31-77d86c22ad4sor1332691137.12.2026.08.24.07.12.52
+        for <duco.wiertsema@gmail.com>
+        (Google Transport Security);
+        Mon, 24 Aug 2026 07:12:52 -0700 (PDT)
+Received-SPF: pass (google.com: domain of wierts+caf_=duco.wiertsema=googlemail.com@googlemail.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       arc=pass (i=2 spf=pass spfdomain=beleefporto.nl dmarc=pass fromdomain=beleefporto.nl);
+       spf=pass (google.com: domain of wierts+caf_=duco.wiertsema=googlemail.com@googlemail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom="wierts+caf_=duco.wiertsema=googlemail.com@googlemail.com";
+       dmarc=fail (p=NONE sp=NONE dis=NONE arc=pass) header.from=beleefporto.nl;
+       dara=pass header.i=@gmail.com
+Authentication-Results: shared117.cloud86-host.io;
+        spf=pass (sender IP is 209.85.210.43) smtp.mailfrom=info@beleefporto.nl smtp.helo=mail-ot1-f43.google.com
+ARC-Seal: i=2; a=rsa-sha256; t=1787580772; cv=pass;
+        d=google.com; s=arc-20260327;
+        b=qzht8RBDJgieR4XTcKItuU7XBcxM2htA2EODequXqokLHiIxwvUvhFH7eUtPtOm/3X
+         rZ0kq3oBTz6uNUcYbb/nZOZ1RWUOOWaY6DaUc+vpEczi195JB9DJh0tCNC6DaeGheDu8
+         mJMKbJ0lZAuBQ3NgJ+rB7a6pl7RrNi8ORrOuUh82kojudGkcZK6ztbEVup+Pz5vXbEOB
+         KbKQG23+/PWQDsbMwCVzEafQs4k/PgViXZ115qaeGjctPpTjP96jS8kRQuaddVjmdp9R
+         +eSgv3JTgh+pJjBM62PwrM4Vg8kZHsfhCNoF5Hl+nIu2W0til0r51WvOnQn2sUyvCiCR
+         RvBA==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :delivered-to;
+        bh=CPzJqwnl5tYBxOI7XKTtQSsOqruvtgUaZF3R1NkIto0=;
+        fh=lzWYlpoEktAnQXp4aCPyuzvEGNB95xFoXYHQKuocD+E=;
+        b=AzhRm4zmcKTsRPyMHY77UxU7XcMyPba+IOjvDjr2nWxzeKPlruyu7rSlmYxvdrO9Yq
+         JWAxWHv/HNMAbwHBRC3KSN9MkVPquZ6SmDf1iahC96EY5hx1ruSR4OAF22EngDwbHlDv
+         E4IepYByzGYHlucXfadmtuYGtVUJ29bgHSNM92rSbrXYRaObj4zBkfUcYEKzU1KODbYJ
+         9qj9wx9Vd3sSa1nFEp7H6mHaJ5ONubAo1uM1J4TXwPrZfeItPUPPxALQi96waF8+IW82
+         QK/hWODxX0KKw2v4tWf6y9lTzFnM4Ep+EVE8kIUZcWPZ7DxqGnX7FdVzsCNaE8oHRCb5
+         1pqA==;
+        dara=google.com
+ARC-Authentication-Results: i=2; mx.google.com;
+       spf=pass (google.com: domain of info@beleefporto.nl designates 45.82.191.182 as permitted sender) smtp.mailfrom=info@beleefporto.nl;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=beleefporto.nl
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1787580772; x=1788185572;
+        h=content-type:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:delivered-to:x-forwarded-for:x-forwarded-to
+         :x-gm-message-state:x-original-authentication-results:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=CPzJqwnl5tYBxOI7XKTtQSsOqruvtgUaZF3R1NkIto0=;
+        b=ddou6yNXTYspKpBhEzApD+DEMZpys4gGnyN9E6Jr/IMFuMk6a9L0gsue6C8TMtT+Ht
+         saVQ/ngQQj3+mr8srftOlxHIRsfNLFImMwdLnxw14tQBzR5z2whai9j3nkrXtuUbBRNC
+         wIWlME5dW8icciTw0e8WelS2uihiaXTVjOlYzfW6bogxxAG4Cts6bngW7njTgL9BUzsH
+         LsGOsJV5RJ3Naj7Gvr5w/Try0Oak+2wQ7Ewus5mue4/n/J5Bg6cwF/dmxhnIK0d5Jsa2
+         UKLuvosAb+7JrHhHe/VOrG8+dZ/dO4MIVuA29AtdppGK12bHfpw91aVSYgO20Bjyf+Gi
+         ktuQ==
+X-Original-Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of info@beleefporto.nl designates 45.82.191.182 as permitted sender) smtp.mailfrom=info@beleefporto.nl;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=beleefporto.nl
+X-Forwarded-Encrypted: i=2; AHgh+RqGrr3lY3rrBOr9/nh+6BKagzv5dbpbsKtD0f55iVpT9lYql0/mEGoMgKFIssOi6ZAEWiyemiJ/5A2pbFvaYQ==@googlemail.com
+X-Gm-Message-State: AFuF++ly9iWjYCUzpY6FOeTH70kV6Fn5ZwbB3okObhsHZrtOM+PRw1nD
+	AiDr36CSlIbWESH8Tqq/5Y5GU7NL1ozOp9E1nqhBbiTOQsmulnT3NpltqZAEPdZGb/RMBMc4+2d
+	rE+iD+44v/5nQHEqnpbGQznnn/3FoL3a2QhjB6bDC/45YxYRy8uagL+iTn2Lc6w==
+X-Received: by 2002:a05:6102:2c88:b0:772:5acc:b849 with SMTP id ada2fe7eead31-77a636413f6mr10437504137.5.1787580772120;
+        Mon, 24 Aug 2026 07:12:52 -0700 (PDT)
+X-Forwarded-To: duco.wiertsema@googlemail.com
+X-Forwarded-For: wierts@googlemail.com duco.wiertsema@googlemail.com
+Delivered-To: wierts@gmail.com
+Received: by 2002:ab0:2047:0:b0:97c:8ef7:dce4 with SMTP id g7csp1699057ual;
+        Mon, 24 Aug 2026 07:12:50 -0700 (PDT)
+X-Received: by 2002:a17:906:9c8a:b0:c1c:4c72:e6df with SMTP id a640c23a62f3a-c244ceead55mr3011180466b.0.1787580770291;
+        Mon, 24 Aug 2026 07:12:50 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1787580770; cv=none;
+        d=google.com; s=arc-20260327;
+        b=XWyU5fTC/yHCHPbj123r2f9UAT+cxmqS9Gc2CWgfkrQVOyGy0dWhNJNGUlGWQCgwIw
+         WW6XBJzP7DJujkN5EQFkx4zN5FIb6UFiMWr01uc4sJ36lTn0WM8WjwfY5IFaW7hk1prQ
+         I3T2jJwUMlfvli/yduVx2gPImNd5oDcFMftLeL2xqCzFlsCQCV0E95mbeNc1BxCpjOcv
+         xt3PNE0OjNEBNuHqER61y7V8OKJdc9l7WQbyUtthvUvsuimiw+lD9rQ2hXd9AliT3xs5
+         rEehbnsKSjmodlWgbA9DGU1EWHheE39JFEp8JITJT91ANV8eLbHc0XesCYRLsmabUO0f
+         s8oQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version;
+        bh=CPzJqwnl5tYBxOI7XKTtQSsOqruvtgUaZF3R1NkIto0=;
+        fh=OzEPqevkYqfXd8sxf71cLCxDJAPorBtAIWzctpVS4Bk=;
+        b=OpbgBcq14lIIqLdy9W2HUHfDglINTZ99YrE1vUZT20m9uxK2c3ZNyHLfxxbjiYUIqq
+         oOuyyIbSI6AdvKuMDsnfri0/q75RaEAZqnK2soP76Q58xJHNgwrtqKl2749WmjrtUSMM
+         +3xz6+6SvZ+6+4DBbIO3apNGmnTTJsCwUD/tOsh8vTMTVPEK7lORVZN8c68wgK0cpb4N
+         5D5MskCQFK0dCbV7svc0nB9Ef75fs1D6KmhZqk6AJDi22UN6AN7g3U7yqcN+QRy5B0SR
+         S3mqc1BGlrmNSWN8Sn9LJDZlO/ihQhKSR41IvOZy+KX0sl2qtapZ6L9PIU3De+NU3/QJ
+         Q1fg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of info@beleefporto.nl designates 45.82.191.182 as permitted sender) smtp.mailfrom=info@beleefporto.nl;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=beleefporto.nl
+Return-Path: <info@beleefporto.nl>
+Received: from shared117.cloud86-host.io (shared117.cloud86-host.io. [45.82.191.182])
+        by mx.google.com with ESMTPS id a640c23a62f3a-c249670ba2asi850070566b.129.2026.08.24.07.12.50
+        for <wierts@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 24 Aug 2026 07:12:50 -0700 (PDT)
+Received-SPF: pass (google.com: domain of info@beleefporto.nl designates 45.82.191.182 as permitted sender) client-ip=45.82.191.182;
+Received: from mail-ot1-f43.google.com (mail-ot1-f43.google.com [209.85.210.43])
+	by shared117.cloud86-host.io (Postfix) with ESMTPSA id 5BFDF32D453
+	for <wierts@gmail.com>; Mon, 24 Aug 2026 16:12:47 +0200 (CEST)
+Received-SPF: pass (shared117.cloud86-host.io: connection is authenticated)
+X-Virus-Scanned: amavis at cloud86-host.io
+Received: by mail-ot1-f43.google.com with SMTP id
+ 46e09a7af769-7f3ece23165so3684118a34.0
+        for <wierts@gmail.com>; Mon, 24 Aug 2026 07:12:47 -0700 (PDT)
+X-Received: by 2002:a05:6820:f02a:b0:6ae:6484:5f40 with SMTP id
+ 006d021491bc7-6b159332bb4mr23079175eaf.21.1787580766282; Mon, 24 Aug 2026
+ 07:12:46 -0700 (PDT)
+MIME-Version: 1.0
+References: <LoRDPRSGsobtCBhkmqKhBe85MPFhidny8VxUZqN0Hik@www.beleefporto.nl>
+In-Reply-To: <LoRDPRSGsobtCBhkmqKhBe85MPFhidny8VxUZqN0Hik@www.beleefporto.nl>
+From: Beleef Porto <info@beleefporto.nl>
+Date: Mon, 24 Aug 2026 15:12:27 +0100
+X-Gmail-Original-Message-ID: 
+ <CAL4y4OwSdFH1bqE_oir24hHtgsAiMO6ejQLD=u6pzOt5VMKi9w@mail.gmail.com>
+X-Gm-Features: AcwNN1VmWmGw7FJlzgh6bVLf65BfzxvIuD1vOPHDOEHAA5wjW48TeIBZt5ae5K0
+Message-ID: 
+ <CAL4y4OwSdFH1bqE_oir24hHtgsAiMO6ejQLD=u6pzOt5VMKi9w@mail.gmail.com>
+Subject: Re: Nieuw verzoek via web: Reservering Porto tour
+To: wierts@gmail.com
+Content-Type: multipart/alternative; boundary="00000000000094eb8e0659cb94ba"
+X-PPP-Message-ID: 
+ <178758076990.1214268.14783771874627866990@shared117.cloud86-host.io>
+X-PPP-Vhost: beleefporto.nl
+
+--00000000000094eb8e0659cb94ba
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hoi Duco,
+
+Dank voor je aanvraag, en leuk dat jullie naar Porto komen, het is een
+prachtige stad.
+Het is mogelijk zondagmiddag 6 september de stadswandeling te doen.
+We kunnen om 15:00 beginnen en dan zijn jullie rond 18:00 klaar.
+De kosten voor 4 personen is 150=E2=82=AC in totaal; betaling graag in cash=
+.
+De verzamelplaats is voor het Ticket Office op Rua Ch=C3=A3 36
+<https://maps.app.goo.gl/hHhmie9AewPKbSq29>.
+
+Ik hoor graag of dat akkoord is voor jullie.
+
+Vriendelijke groet,
+
+Philip
+
+
+beleefporto.nl
+
+: +351 920 423 533
+
+
+
+
+Op ma 24 aug 2026 om 10:40 schreef duco <info@beleefporto.nl>:
+
+> *Kies tour*
+> Stadswandeling
+> *Naam / Achternaam*
+> duco
+> *Telefoonnummer*
+> 0618477430
+> *E-mail*
+> wierts@gmail.com
+> *Gewenste tour datum en tijd*
+> zondag 6 in de middag of 7 sep rond 11 uur
+> *Extra informatie mbt reservering*
+> we zijn met 4 waarvan 2 boven de 75
+> *Toestemming*
+> Ik ga akkoord met het privacybeleid zoals gepubliceerd op deze website en
+> de opslag van mijn gegevens
+> Verzonden van Nederlandse gids in Porto <https://www.beleefporto.nl>
+>
+
+--00000000000094eb8e0659cb94ba
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr"><div><div style=3D"font-family:verdana,sa=
+ns-serif;font-size:small" class=3D"gmail_default">Hoi Duco,</div><div style=
+=3D"font-family:verdana,sans-serif;font-size:small" class=3D"gmail_default"=
+><br></div><div style=3D"font-family:verdana,sans-serif;font-size:small" cl=
+ass=3D"gmail_default">Dank voor je aanvraag, en leuk dat jullie naar Porto =
+komen, het is een prachtige stad.</div><div style=3D"font-family:verdana,sa=
+ns-serif;font-size:small" class=3D"gmail_default">Het is mogelijk zondagmid=
+dag 6 september de stadswandeling te doen.</div><div style=3D"font-family:v=
+erdana,sans-serif;font-size:small" class=3D"gmail_default">We kunnen om 15:=
+00 beginnen en dan zijn jullie rond 18:00 klaar.=C2=A0</div><div style=3D"f=
+ont-family:verdana,sans-serif;font-size:small" class=3D"gmail_default">De k=
+osten voor 4 personen is 150=E2=82=AC in totaal; betaling graag in cash.</d=
+iv><div style=3D"font-family:verdana,sans-serif;font-size:small" class=3D"g=
+mail_default">De verzamelplaats is voor het <a href=3D"https://maps.app.goo=
+.gl/hHhmie9AewPKbSq29">Ticket Office op Rua Ch=C3=A3 36</a>.</div><div styl=
+e=3D"font-family:verdana,sans-serif;font-size:small" class=3D"gmail_default=
+"><br></div><div style=3D"font-family:verdana,sans-serif;font-size:small" c=
+lass=3D"gmail_default">Ik hoor graag of dat akkoord is voor jullie.</div><d=
+iv style=3D"font-family:verdana,sans-serif;font-size:small" class=3D"gmail_=
+default"><br></div><div style=3D"font-family:verdana,sans-serif;font-size:s=
+mall" class=3D"gmail_default">Vriendelijke groet,</div><div style=3D"font-f=
+amily:verdana,sans-serif;font-size:small" class=3D"gmail_default"><br></div=
+><div style=3D"font-family:verdana,sans-serif;font-size:small" class=3D"gma=
+il_default">Philip</div><div style=3D"font-family:verdana,sans-serif;font-s=
+ize:small" class=3D"gmail_default"><br></div><br clear=3D"all"></div><div><=
+div dir=3D"ltr" class=3D"gmail_signature"><div dir=3D"ltr"><div><a href=3D"=
+http://beleefporto.nl" style=3D"color:rgb(0,0,0);font-family:verdana,sans-s=
+erif" target=3D"_blank">beleefporto.nl</a></div><div><span style=3D"font-fa=
+mily:verdana,sans-serif"><br></span></div><div><span style=3D"font-family:v=
+erdana,sans-serif"><img alt=3D""><img alt=3D""><img src=3D"https://ci3.goog=
+leusercontent.com/mail-sig/AIorK4w1WHEphizfTHPVlNah64dv6DcEwyws4k17NTuLvVVC=
+WeLomGSSfOdXl16XJolsr-ZsKrOmNJY">: +351 920 423 533</span></div><div><span =
+style=3D"font-family:verdana,sans-serif"><img src=3D"https://ci3.googleuser=
+content.com/mail-sig/AIorK4x1TyKnz8g-f3kzE3DuqVV8d_KCMYfOBS-mgi5zsMAcd7corG=
+8jBjrlGqzdnNjT5ALySM2lXC4" width=3D"96" height=3D"96"></span><br></div><div=
+><br></div></div></div></div><br></div><br><div class=3D"gmail_quote gmail_=
+quote_container"><div dir=3D"ltr" class=3D"gmail_attr">Op ma 24 aug 2026 om=
+ 10:40 schreef duco &lt;<a href=3D"mailto:info@beleefporto.nl">info@beleefp=
+orto.nl</a>&gt;:<br></div><blockquote class=3D"gmail_quote" style=3D"margin=
+:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"=
+><div class=3D"msg-2218218911277693605"><u></u>
+
+
+=09
+=09
+=09
+=09
+=09
+
+
+<div bgcolor=3D"#e9eaec" style=3D"height:100%;width:100%;min-width:100%;box=
+-sizing:border-box;font-weight:normal;margin:0px;font-size:14px;text-align:=
+center;padding:0px 25px;line-height:22px;background-color:rgb(233,234,236);=
+color:rgb(51,51,51);font-family:-apple-system,BlinkMacSystemFont,avenir nex=
+t,avenir,segoe ui,helvetica neue,helvetica,Cantarell,Ubuntu,roboto,noto,ari=
+al,sans-serif">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" heig=
+ht=3D"100%" role=3D"presentation" style=3D"border-collapse:collapse;border-=
+spacing:0px;vertical-align:top;height:100%;width:100%;min-width:100%;box-si=
+zing:border-box;text-align:center;background-color:rgb(233,234,236);font-we=
+ight:normal;padding:0px;margin:0px;font-size:14px;line-height:22px;color:rg=
+b(51,51,51);font-family:-apple-system,BlinkMacSystemFont,avenir next,avenir=
+,segoe ui,helvetica neue,helvetica,Cantarell,Ubuntu,roboto,noto,arial,sans-=
+serif">
+	<tbody><tr style=3D"padding:0px;vertical-align:top">
+		<td style=3D"border-collapse:collapse;vertical-align:top;font-weight:norm=
+al;padding:0px;margin:0px;font-size:14px;color:rgb(51,51,51);font-family:-a=
+pple-system,BlinkMacSystemFont,avenir next,avenir,segoe ui,helvetica neue,h=
+elvetica,Cantarell,Ubuntu,roboto,noto,arial,sans-serif;line-height:22px"></=
+td>
+		<td align=3D"center" valign=3D"top" class=3D"m_-2218218911277693605body-i=
+nner" width=3D"660" style=3D"border-collapse:collapse;vertical-align:top;fo=
+nt-weight:normal;padding:50px 0px;margin:0px;font-size:14px;color:rgb(51,51=
+,51);font-family:-apple-system,BlinkMacSystemFont,avenir next,avenir,segoe =
+ui,helvetica neue,helvetica,Cantarell,Ubuntu,roboto,noto,arial,sans-serif;l=
+ine-height:22px">
+			<div width=3D"100%" dir=3D"ltr" style=3D"max-width:660px;margin-left:aut=
+o;margin-right:auto">
+				<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" =
+role=3D"presentation" style=3D"border-collapse:collapse;border-spacing:0px;=
+padding:0px;vertical-align:top;margin:0px auto">
+															<tbody><tr style=3D"padding:0px;vertical-align:top">
+						<td class=3D"m_-2218218911277693605wrapper-inner" bgcolor=3D"#ffffff"=
+ style=3D"border-collapse:collapse;vertical-align:top;font-weight:normal;ma=
+rgin:0px;font-size:14px;color:rgb(51,51,51);font-family:-apple-system,Blink=
+MacSystemFont,avenir next,avenir,segoe ui,helvetica neue,helvetica,Cantarel=
+l,Ubuntu,roboto,noto,arial,sans-serif;padding:25px 30px 50px;background-col=
+or:rgb(255,255,255);border:1px solid rgb(198,198,198);line-height:22px">
+							<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100=
+%" role=3D"presentation" style=3D"border-collapse:collapse;border-spacing:0=
+px;padding:0px;vertical-align:top">
+								<tbody><tr style=3D"padding:0px;vertical-align:top">
+									<td valign=3D"top" style=3D"border-collapse:collapse;vertical-alig=
+n:top;font-weight:normal;padding:0px;margin:0px;font-size:14px;color:rgb(51=
+,51,51);font-family:-apple-system,BlinkMacSystemFont,avenir next,avenir,seg=
+oe ui,helvetica neue,helvetica,Cantarell,Ubuntu,roboto,noto,arial,sans-seri=
+f;line-height:22px">
+
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" role=
+=3D"presentation" style=3D"border-collapse:collapse;border-spacing:0px;padd=
+ing:0px;vertical-align:top">
+	<tbody>
+		<tr style=3D"padding:0px;vertical-align:top">
+	<td class=3D"m_-2218218911277693605field-name" style=3D"border-collapse:co=
+llapse;vertical-align:top;font-weight:normal;padding:25px 0px 7px;margin:0p=
+x;font-size:14px;color:rgb(51,51,51);font-family:-apple-system,BlinkMacSyst=
+emFont,avenir next,avenir,segoe ui,helvetica neue,helvetica,Cantarell,Ubunt=
+u,roboto,noto,arial,sans-serif;line-height:22px"><b style=3D"margin-bottom:=
+0px">Kies tour</b></td>
+</tr>
+<tr style=3D"padding:0px;vertical-align:top">
+	<td class=3D"m_-2218218911277693605field-value" style=3D"border-collapse:c=
+ollapse;vertical-align:top;font-weight:normal;padding:0px 0px 25px;margin:0=
+px;font-size:14px;color:rgb(51,51,51);font-family:-apple-system,BlinkMacSys=
+temFont,avenir next,avenir,segoe ui,helvetica neue,helvetica,Cantarell,Ubun=
+tu,roboto,noto,arial,sans-serif;line-height:22px;border-bottom:1px solid rg=
+b(226,226,226)">Stadswandeling</td>
+</tr>
+<tr style=3D"padding:0px;vertical-align:top">
+	<td class=3D"m_-2218218911277693605field-name" style=3D"border-collapse:co=
+llapse;vertical-align:top;font-weight:normal;padding:25px 0px 7px;margin:0p=
+x;font-size:14px;color:rgb(51,51,51);font-family:-apple-system,BlinkMacSyst=
+emFont,avenir next,avenir,segoe ui,helvetica neue,helvetica,Cantarell,Ubunt=
+u,roboto,noto,arial,sans-serif;line-height:22px"><b style=3D"margin-bottom:=
+0px">Naam / Achternaam</b></td>
+</tr>
+<tr class=3D"m_-2218218911277693605field-name" style=3D"padding:25px 0px 7p=
+x;vertical-align:top">
+	<td class=3D"m_-2218218911277693605field-value" style=3D"border-collapse:c=
+ollapse;vertical-align:top;font-weight:normal;padding:0px 0px 25px;margin:0=
+px;font-size:14px;color:rgb(51,51,51);font-family:-apple-system,BlinkMacSys=
+temFont,avenir next,avenir,segoe ui,helvetica neue,helvetica,Cantarell,Ubun=
+tu,roboto,noto,arial,sans-serif;line-height:22px;border-bottom:1px solid rg=
+b(226,226,226)">duco</td>
+</tr>
+<tr style=3D"padding:0px;vertical-align:top">
+	<td class=3D"m_-2218218911277693605field-name" style=3D"border-collapse:co=
+llapse;vertical-align:top;font-weight:normal;padding:25px 0px 7px;margin:0p=
+x;font-size:14px;color:rgb(51,51,51);font-family:-apple-system,BlinkMacSyst=
+emFont,avenir next,avenir,segoe ui,helvetica neue,helvetica,Cantarell,Ubunt=
+u,roboto,noto,arial,sans-serif;line-height:22px"><b style=3D"margin-bottom:=
+0px">Telefoonnummer</b></td>
+</tr>
+<tr style=3D"padding:0px;vertical-align:top">
+	<td class=3D"m_-2218218911277693605field-value" style=3D"border-collapse:c=
+ollapse;vertical-align:top;font-weight:normal;padding:0px 0px 25px;margin:0=
+px;font-size:14px;color:rgb(51,51,51);font-family:-apple-system,BlinkMacSys=
+temFont,avenir next,avenir,segoe ui,helvetica neue,helvetica,Cantarell,Ubun=
+tu,roboto,noto,arial,sans-serif;line-height:22px;border-bottom:1px solid rg=
+b(226,226,226)">0618477430</td>
+</tr>
+<tr style=3D"padding:0px;vertical-align:top">
+	<td class=3D"m_-2218218911277693605field-name" style=3D"border-collapse:co=
+llapse;vertical-align:top;font-weight:normal;padding:25px 0px 7px;margin:0p=
+x;font-size:14px;color:rgb(51,51,51);font-family:-apple-system,BlinkMacSyst=
+emFont,avenir next,avenir,segoe ui,helvetica neue,helvetica,Cantarell,Ubunt=
+u,roboto,noto,arial,sans-serif;line-height:22px"><b style=3D"margin-bottom:=
+0px">E-mail</b></td>
+</tr>
+<tr style=3D"padding:0px;vertical-align:top">
+	<td class=3D"m_-2218218911277693605field-value" style=3D"border-collapse:c=
+ollapse;vertical-align:top;font-weight:normal;padding:0px 0px 25px;margin:0=
+px;font-size:14px;color:rgb(51,51,51);font-family:-apple-system,BlinkMacSys=
+temFont,avenir next,avenir,segoe ui,helvetica neue,helvetica,Cantarell,Ubun=
+tu,roboto,noto,arial,sans-serif;line-height:22px;border-bottom:1px solid rg=
+b(226,226,226)"><a href=3D"mailto:wierts@gmail.com" style=3D"font-weight:no=
+rmal;padding:0px;margin:0px;line-height:22px;font-family:-apple-system,Blin=
+kMacSystemFont,avenir next,avenir,segoe ui,helvetica neue,helvetica,Cantare=
+ll,Ubuntu,roboto,noto,arial,sans-serif;color:rgb(226,119,48);word-break:bre=
+ak-word" target=3D"_blank">wierts@gmail.com</a></td>
+</tr>
+<tr style=3D"padding:0px;vertical-align:top">
+	<td class=3D"m_-2218218911277693605field-name" style=3D"border-collapse:co=
+llapse;vertical-align:top;font-weight:normal;padding:25px 0px 7px;margin:0p=
+x;font-size:14px;color:rgb(51,51,51);font-family:-apple-system,BlinkMacSyst=
+emFont,avenir next,avenir,segoe ui,helvetica neue,helvetica,Cantarell,Ubunt=
+u,roboto,noto,arial,sans-serif;line-height:22px"><b style=3D"margin-bottom:=
+0px">Gewenste tour datum en tijd</b></td>
+</tr>
+<tr style=3D"padding:0px;vertical-align:top">
+	<td class=3D"m_-2218218911277693605field-value" style=3D"border-collapse:c=
+ollapse;vertical-align:top;font-weight:normal;padding:0px 0px 25px;margin:0=
+px;font-size:14px;color:rgb(51,51,51);font-family:-apple-system,BlinkMacSys=
+temFont,avenir next,avenir,segoe ui,helvetica neue,helvetica,Cantarell,Ubun=
+tu,roboto,noto,arial,sans-serif;line-height:22px;border-bottom:1px solid rg=
+b(226,226,226)">zondag 6 in de middag of 7 sep rond 11 uur</td>
+</tr>
+<tr style=3D"padding:0px;vertical-align:top">
+	<td class=3D"m_-2218218911277693605field-name" style=3D"border-collapse:co=
+llapse;vertical-align:top;font-weight:normal;padding:25px 0px 7px;margin:0p=
+x;font-size:14px;color:rgb(51,51,51);font-family:-apple-system,BlinkMacSyst=
+emFont,avenir next,avenir,segoe ui,helvetica neue,helvetica,Cantarell,Ubunt=
+u,roboto,noto,arial,sans-serif;line-height:22px"><b style=3D"margin-bottom:=
+0px">Extra informatie mbt reservering</b></td>
+</tr>
+<tr style=3D"padding:0px;vertical-align:top">
+	<td class=3D"m_-2218218911277693605field-value" style=3D"border-collapse:c=
+ollapse;vertical-align:top;font-weight:normal;padding:0px 0px 25px;margin:0=
+px;font-size:14px;color:rgb(51,51,51);font-family:-apple-system,BlinkMacSys=
+temFont,avenir next,avenir,segoe ui,helvetica neue,helvetica,Cantarell,Ubun=
+tu,roboto,noto,arial,sans-serif;line-height:22px;border-bottom:1px solid rg=
+b(226,226,226)">we zijn met 4 waarvan 2 boven de 75</td>
+</tr>
+<tr style=3D"padding:0px;vertical-align:top">
+	<td class=3D"m_-2218218911277693605field-name" style=3D"border-collapse:co=
+llapse;vertical-align:top;font-weight:normal;padding:25px 0px 7px;margin:0p=
+x;font-size:14px;color:rgb(51,51,51);font-family:-apple-system,BlinkMacSyst=
+emFont,avenir next,avenir,segoe ui,helvetica neue,helvetica,Cantarell,Ubunt=
+u,roboto,noto,arial,sans-serif;line-height:22px"><b style=3D"margin-bottom:=
+0px">Toestemming</b></td>
+</tr>
+<tr style=3D"padding:0px;vertical-align:top">
+	<td class=3D"m_-2218218911277693605field-value" style=3D"border-collapse:c=
+ollapse;vertical-align:top;font-weight:normal;padding:0px 0px 25px;margin:0=
+px;font-size:14px;color:rgb(51,51,51);font-family:-apple-system,BlinkMacSys=
+temFont,avenir next,avenir,segoe ui,helvetica neue,helvetica,Cantarell,Ubun=
+tu,roboto,noto,arial,sans-serif;line-height:22px;border-bottom:1px solid rg=
+b(226,226,226)">Ik ga akkoord met het privacybeleid zoals gepubliceerd op d=
+eze website en de opslag van mijn gegevens</td>
+</tr>	</tbody>
+</table>
+
+									</td>
+								</tr>
+								<tr style=3D"padding:0px;vertical-align:top">
+									<td align=3D"center" valign=3D"top" style=3D"border-collapse:colla=
+pse;vertical-align:top;font-weight:normal;padding:25px 0px 0px;margin:0px;f=
+ont-family:-apple-system,BlinkMacSystemFont,avenir next,avenir,segoe ui,hel=
+vetica neue,helvetica,Cantarell,Ubuntu,roboto,noto,arial,sans-serif;font-si=
+ze:12px;text-align:center;color:rgb(153,153,153);line-height:22px">
+										Verzonden van <a href=3D"https://www.beleefporto.nl" style=3D"fon=
+t-weight:normal;padding:0px;margin:0px;line-height:22px;font-family:-apple-=
+system,BlinkMacSystemFont,avenir next,avenir,segoe ui,helvetica neue,helvet=
+ica,Cantarell,Ubuntu,roboto,noto,arial,sans-serif;text-decoration:underline=
+;color:rgb(153,153,153)" target=3D"_blank">Nederlandse gids in Porto</a>			=
+						</td>
+								</tr>
+							</tbody></table>
+						</td>
+					</tr>
+				</tbody></table>
+			</div>
+		</td>
+		<td style=3D"border-collapse:collapse;vertical-align:top;font-weight:norm=
+al;padding:0px;margin:0px;font-size:14px;color:rgb(51,51,51);font-family:-a=
+pple-system,BlinkMacSystemFont,avenir next,avenir,segoe ui,helvetica neue,h=
+elvetica,Cantarell,Ubuntu,roboto,noto,arial,sans-serif;line-height:22px"></=
+td>
+	</tr>
+</tbody></table>
+</div>
+
+</div></blockquote></div></div>
+
+--00000000000094eb8e0659cb94ba--
