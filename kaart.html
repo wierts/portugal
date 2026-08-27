@@ -136,8 +136,9 @@
   <div class="container">
     <h2 class="section-title" style="font-size:1.5rem;margin-bottom:.5rem;">Lissabon in detail</h2>
     <p class="kaart-note" style="margin-top:0;margin-bottom:1rem;">
-      Hotel, alle bezienswaardigheden (incl. Belém en Cristo Rei) en de 4 restaurants van dag 8–10
-      (per dag een andere kleur), ingezoomd. Dag 8-lunch (Incomum) valt buiten dit kaartje — dat
+      Hotel, alle bezienswaardigheden (incl. Belém en Cristo Rei) en de 5 restaurants van dag 8–10
+      (per dag een andere kleur — Cantinho do Aziz en het alternatief Cervejaria Trindade delen de kleur
+      van dag 9), ingezoomd. Dag 8-lunch (Incomum) valt buiten dit kaartje — dat
       restaurant ligt in Sintra, niet in Lissabon zelf. Ook het startpunt van de geboekte stadswandeling
       op dag 9 (Praça Luís de Camões) staat erop.
     </p>
@@ -248,11 +249,12 @@ document.addEventListener('DOMContentLoaded', function () {
     { dag: 'Dag 5 · Avond', naam: 'Salpoente', coords: [40.6460, -8.6520], q: 'Salpoente Aveiro' },
     { dag: 'Dag 6 · Lunch', naam: 'Restaurante O Casalinho', coords: [39.6010, -9.0705], q: 'Restaurante O Casalinho Nazare' },
     { dag: 'Dag 6 · Avond', naam: 'A Nova Casa de Ramiro', coords: [39.3608, -9.1573], q: 'A Nova Casa de Ramiro Obidos' },
-    { dag: 'Dag 6–7 · Lunch', naam: 'Alcaide', coords: [39.3610, -9.1575], q: 'Alcaide Obidos Rua Direita' },
+    { dag: 'Dag 7 · Lunch', naam: 'Alcaide', coords: [39.3610, -9.1575], q: 'Alcaide Obidos Rua Direita' },
     { dag: 'Dag 7 · Avond', naam: 'Restaurante Poço dos Sabores', coords: [39.3520, -9.1450], q: 'Restaurante Poco dos Sabores Usseira Obidos' },
     { dag: 'Dag 8 · Lunch', naam: 'Incomum by Luís Santos', coords: [38.7975, -9.3870], q: 'Incomum by Luis Santos Sintra' },
     { dag: 'Dag 8 · Avond', naam: 'Taberna da Rua das Flores', coords: [38.7098, -9.1435], q: 'Taberna da Rua das Flores Chiado Lisboa' },
     { dag: 'Dag 9 · Lunch', naam: 'Cantinho do Aziz', coords: [38.7156, -9.1350], q: 'Cantinho do Aziz Rua de Sao Lourenco 5 Lisboa' },
+    { dag: 'Dag 9 · Lunch-alternatief', naam: 'Cervejaria Trindade', coords: [38.7098, -9.1428], q: 'Cervejaria Trindade Lisboa' },
     { dag: 'Dag 9 · Avond', naam: 'Tágide Wine & Tapas', coords: [38.7100, -9.1420], q: 'Tagide Wine Tapas Chiado Lisboa' },
     { dag: 'Dag 10 · Lunch', naam: 'Enoteca de Belém', coords: [38.6978, -9.2064], q: 'Enoteca de Belem Lisboa' }
   ];
@@ -395,7 +397,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var lissabonBounds = [];
   hotelMarker(lissabonMap, overnachtingen[4], lissabonBounds); // Memmo Príncipe Real
   // Dag 8 Avond t/m Dag 10 Lunch — Dag 8 Lunch (Incomum) valt hier bewust buiten, want dat restaurant ligt in Sintra
-  restaurantMarkers(lissabonMap, restaurants.slice(15, 19), lissabonBounds);
+  restaurantMarkers(lissabonMap, restaurants.slice(15, 20), lissabonBounds);
   activiteitMarkers(lissabonMap, [
     { naam: 'Toren van Belém', coords: [38.6916, -9.2160], q: 'Torre de Belem Lisboa' },
     { naam: 'Pastéis de Belém', coords: [38.6974, -9.2037], q: 'Pasteis de Belem Lisboa' },
