@@ -107,7 +107,7 @@ header {
 }
 
 header nav {
-  max-width: 1280px;
+  max-width: 1600px;
   margin: 0 auto;
   width: 100%;
   display: flex;
@@ -176,7 +176,7 @@ header nav {
   flex-shrink: 0;
 }
 
-@media (max-width: 960px) {
+@media (max-width: 1400px) {
   .nav-toggle { display: block; }
 
   header nav { position: relative; }
