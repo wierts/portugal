@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Logboek — Portugal Roadtrip</title>
+  <meta name="description" content="Dagelijks reislogboek: wat we deden, uitgaven, praktische aantekeningen en foto's per dag, dag 1 t/m 10.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icons/favicon-32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <meta name="theme-color" content="#1b4f72">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Portugal">
+  <style>
+    .log-intro { background: var(--cream); padding: 3rem 0 2rem; text-align: center; }
+    .back-link { display: inline-flex; align-items: center; gap: .4rem; color: var(--azul); font-weight: 600; text-decoration: none; margin-bottom: 1rem; }
+    .back-link:hover { color: var(--terra); }
+
+    .log-nav {
+      display: flex;
+      justify-content: center;
+      gap: .6rem;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+    }
+    .log-nav a {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: .45rem 1.1rem;
+      font-size: .82rem;
+      font-weight: 600;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .log-nav a:hover { background: var(--gold); color: #fff; border-color: var(--gold); }
+
+    .log-total-bar {
+      max-width: 900px;
+      margin: 1.75rem auto 0;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: .5rem;
+    }
+    .log-total-bar .label { font-weight: 600; color: var(--muted); font-size: .9rem; }
+    .log-total-bar .amount { font-family: var(--serif); font-size: 1.4rem; color: var(--azul); }
+
+    .log-section { padding: 2.5rem 0; }
+    .log-section:nth-child(odd) { background: var(--sand); }
+
+    .log-day {
+      max-width: 900px;
+      margin: 0 auto 2rem;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      scroll-margin-top: 90px;
+    }
+    .log-day-head {
+      background: var(--azul);
+      color: #fff;
+      padding: 1.1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: .4rem;
+    }
+    .log-day-head h2 { font-family: var(--serif); font-size: 1.3rem; margin: 0; }
+    .log-day-head .log-date { font-size: .85rem; opacity: .9; }
+    .log-day-body { padding: 1.5rem; display: flex; flex-direction: column; gap: 1.5rem; }
+    .log-block h3 { font-size: .95rem; text-transform: uppercase; letter-spacing: .03em; color: var(--muted); margin: 0 0 .6rem; }
+    .log-placeholder { color: var(--muted); font-style: italic; font-size: .9rem; margin: 0; }
+
+    table.log-expenses { width: 100%; border-collapse: collapse; font-size: .9rem; }
+    table.log-expenses td { padding: .5rem .25rem; border-bottom: 1px dashed var(--border); }
+    table.log-expenses td.log-bedrag { text-align: right; white-space: nowrap; width: 6rem; }
+    table.log-expenses tfoot td { border-bottom: none; border-top: 2px solid var(--border); font-weight: 700; padding-top: .6rem; }
+    table.log-expenses tfoot td.log-dagtotaal { text-align: right; color: var(--azul); }
+
+    ul.log-notes { margin: 0; padding-left: 1.2rem; display: flex; flex-direction: column; gap: .3rem; font-size: .92rem; line-height: 1.5; }
+
+    .log-temp-value { font-family: var(--serif); font-size: 1.3rem; color: var(--dark); }
+    .log-temp-cond { font-size: .88rem; color: var(--muted); margin-left: .5rem; }
+    .log-temp-source { display: block; font-size: .75rem; color: var(--muted); opacity: .75; margin-top: .2rem; }
+
+    .log-photos { display: flex; flex-wrap: wrap; gap: 1rem; }
+    .log-photos img { width: 180px; height: 130px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border); display: block; }
+    .log-photos code { background: var(--sand); padding: .1rem .35rem; border-radius: 4px; font-size: .85em; }
+    .log-photos figure { margin: 0; width: 180px; }
+    .log-photos figcaption { font-size: .78rem; color: var(--muted); line-height: 1.4; margin-top: .4rem; }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="nav-logo"><a href="index.html" style="color:inherit;text-decoration:none">Portugal 🇵🇹</a></div>
+    <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Menu" aria-expanded="false">☰</button>
+    <ul class="nav-links">
+      <li><a href="actueel.html">📰 Actueel</a></li>
+      <li><a href="reisinfo.html">✈️ Reisinfo</a></li>
+      <li><a href="restaurants.html">🍽️ Restaurants</a></li>
+      <li><a href="hotels.html">🏨 Hotels</a></li>
+      <li><a href="route.html">🚗 Rijroute</a></li>
+      <li><a href="kaart.html">🗺️ Kaart</a></li>
+      <li><a href="activiteiten.html">✨ Activiteiten</a></li>
+      <li><a href="checklist.html">✅ Checklists</a></li>
+      <li><a href="voorbereidingen.html">🧾 Voorbereiding</a></li>
+      <li><a href="todo.html">📝 To-do</a></li>
+      <li><a href="confirmations.html">📩 Bevestigingen</a></li>
+      <li><a href="budget.html">🔒 Budget</a></li>
+      <li><a href="bronnen.html">🔗 Bronnen</a></li>
+      <li><a href="documenten.html">📄 Documenten</a></li>
+      <li><a href="logboek.html" style="color:var(--gold)">🗓️ Logboek</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="log-intro">
+  <div class="container">
+    <h1 class="section-title">Logboek</h1>
+    <p class="section-subtitle">Wat we per dag echt deden, uitgaven, praktische aantekeningen en foto's — vul dit tijdens of na de reis aan.</p>
+    <a href="index.html" class="back-link">← Terug naar de roadtrip</a>
+    <div class="log-nav">
+      <a href="#dag-1">Dag 1</a>
+      <a href="#dag-2">Dag 2</a>
+      <a href="#dag-3">Dag 3</a>
+      <a href="#dag-4">Dag 4</a>
+      <a href="#dag-5">Dag 5</a>
+      <a href="#dag-6">Dag 6</a>
+      <a href="#dag-7">Dag 7</a>
+      <a href="#dag-8">Dag 8</a>
+      <a href="#dag-9">Dag 9</a>
+      <a href="#dag-10">Dag 10</a>
+    </div>
+    <div class="log-total-bar">
+      <span class="label">Totaal uitgegeven (logboek, dag 1–10)</span>
+      <span class="amount" id="log-grand-total">€0,00</span>
+    </div>
+  </div>
+</section>
+
+<section class="log-section">
+  <div class="container">
+
+    <section class="log-day" id="dag-1">
+      <div class="log-day-head"><h2>Dag 1 · Porto</h2><span class="log-date">zo 6 sep · aankomst</span></div>
+      <div class="log-day-body">
+        <div class="log-block">
+          <h3>🌡️ Temperatuur</h3>
+          <p><span class="log-temp-value">23° / 18°C</span><span class="log-temp-cond">helder, wat ochtendmist tot ca. 10:00, verder rustig</span><span class="log-temp-source">gemeten, Porto-Francisco Sá Carneiro</span></p>
+        </div>
+        <div class="log-block">
+          <h3>📝 Wat we deden</h3>
+          <p>Stadswandeling met Philip, de Nederlandse gids (Beleef Porto). 's Avonds gegeten in restaurant Renate van het hotel (Forte de Gaia).</p>
+        </div>
+        <div class="log-block">
+          <h3>💶 Uitgaven</h3>
+          <table class="log-expenses">
+            <tbody>
+              <tr><td class="log-placeholder">— nog in te vullen —</td><td class="log-bedrag" data-eur="0">€0,00</td></tr>
+            </tbody>
+            <tfoot>
+              <tr><td>Totaal dag 1</td><td class="log-dagtotaal">€0,00</td></tr>
+            </tfoot>
+          </table>
+        </div>
+        <div class="log-block">
+          <h3>💡 Praktisch</h3>
+          <ul class="log-notes"><li class="log-placeholder">Nog in te vullen.</li></ul>
+        </div>
+        <div class="log-block">
+          <h3>📸 Foto's</h3>
+          <div class="log-photos">
+            <figure>
+              <a href="images/logboek/dag-01/dag01-kabelbaan-douro.jpg" target="_blank" rel="noopener"><img src="images/logboek/dag-01/dag01-kabelbaan-douro.jpg" alt="Teleférico de Gaia met uitzicht op de Dom Luís I-brug en de Ribeira" loading="lazy"></a>
+              <figcaption><strong>Teleférico de Gaia</strong> — sinds 2011 in gebruik, ±600 m lang en overbrugt zo'n 60 hoogtemeters tussen de Gaia-kade en Jardim do Morro, een van de hoogste stadskabelbanen van Europa.</figcaption>
+            </figure>
+            <figure>
+              <a href="images/logboek/dag-01/dag01-ribeira-gevel.jpg" target="_blank" rel="noopener"><img src="images/logboek/dag-01/dag01-ribeira-gevel.jpg" alt="Verweerde gevel met balkons in de Ribeira, Porto" loading="lazy"></a>
+              <figcaption><strong>Ribeira, Porto</strong> — sinds 1996 UNESCO-werelderfgoed, bekend om de kleurrijke, smalle huizen en het middeleeuwse stratenpatroon langs de Douro.</figcaption>
+            </figure>
+            <figure>
+              <a href="images/logboek/dag-01/dag01-sao-bento-azulejos.jpg" target="_blank" rel="noopener"><img src="images/logboek/dag-01/dag01-sao-bento-azulejos.jpg" alt="Azulejo-tegeltableaus in Estação de São Bento" loading="lazy"></a>
+              <figcaption><strong>Estação de São Bento</strong> — de hal bevat zo'n 20.000 azulejo-tegels van Jorge Colaço (voltooid 1916) met taferelen uit de Portugese geschiedenis en het noordelijke platteland. Het station staat op de plek van het voormalige Convento de São Bento de Avé-Maria.</figcaption>
+            </figure>
+            <figure>
+              <a href="images/logboek/dag-01/dag01-dom-luis-brug-zonsondergang.jpg" target="_blank" rel="noopener"><img src="images/logboek/dag-01/dag01-dom-luis-brug-zonsondergang.jpg" alt="Op de Dom Luís I-brug bij zonsondergang, uitzicht op Porto" loading="lazy"></a>
+              <figcaption><strong>Dom Luís I-brug</strong> — gebouwd 1881–1886 naar ontwerp van Théophile Seyrig, vaak per abuis toegeschreven aan Gustave Eiffel (die wél de nabijgelegen Ponte Maria Pia bouwde).</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="log-day" id="dag-2">
+      <div class="log-day-head"><h2>Dag 2 · Porto</h2><span class="log-date">ma 7 sep</span></div>
+      <div class="log-day-body">
+        <div class="log-block">
+          <h3>🌡️ Temperatuur</h3>
+          <p><span class="log-temp-value">23° / 14°C</span><span class="log-temp-cond">helder, kortstondig lichte mist vroeg in de ochtend</span><span class="log-temp-source">gemeten, Porto-Francisco Sá Carneiro</span></p>
+        </div>
+        <div class="log-block">
+          <h3>📝 Wat we deden</h3>
+          <p>Boottocht op de Douro. Gerelaxt bij het zwembad van het hotel. Portproeverij bij Churchill's. 's Avonds gegeten bij Escondidinho.</p>
+        </div>
+        <div class="log-block">
+          <h3>💶 Uitgaven</h3>
+          <table class="log-expenses">
+            <tbody>
+              <tr><td class="log-placeholder">— nog in te vullen —</td><td class="log-bedrag" data-eur="0">€0,00</td></tr>
+            </tbody>
+            <tfoot>
+              <tr><td>Totaal dag 2</td><td class="log-dagtotaal">€0,00</td></tr>
+            </tfoot>
+          </table>
+        </div>
+        <div class="log-block">
+          <h3>💡 Praktisch</h3>
+          <ul class="log-notes"><li class="log-placeholder">Nog in te vullen.</li></ul>
+        </div>
+        <div class="log-block">
+          <h3>📸 Foto's</h3>
+          <div class="log-photos">
+            <figure>
+              <a href="images/logboek/dag-02/dag02-boottocht-douro.jpg" target="_blank" rel="noopener"><img src="images/logboek/dag-02/dag02-boottocht-douro.jpg" alt="Selfie tijdens de boottocht op de Douro, onder een brugboog" loading="lazy"></a>
+              <figcaption><strong>Douro-vallei</strong> — sinds 2001 UNESCO-werelderfgoed en al sinds 1756 een officieel afgebakende wijnregio, een van de oudste ter wereld.</figcaption>
+            </figure>
+            <figure>
+              <a href="images/logboek/dag-02/dag02-zwembad-hotel.jpg" target="_blank" rel="noopener"><img src="images/logboek/dag-02/dag02-zwembad-hotel.jpg" alt="Relaxen bij het zwembad van het hotel" loading="lazy"></a>
+              <figcaption><strong>Forte de Gaia, Autograph Collection</strong> — 5-sterrenhotel aan de Gaia-kade, op loopafstand van de historische portwijnkelders (Ferreira, Cockburn's) en de Dom Luís-brug.</figcaption>
+            </figure>
+            <figure>
+              <a href="images/logboek/dag-02/dag02-portproeverij-churchills.jpg" target="_blank" rel="noopener"><img src="images/logboek/dag-02/dag02-portproeverij-churchills.jpg" alt="Portproeverij bij Churchill's, met een rij glazen en flessen op tafel" loading="lazy"></a>
+              <figcaption><strong>Churchill's</strong> — opgericht in 1981 door Johnny Graham (van de familie achter Graham's Port), het eerste nieuwe portwijnhuis in 50 jaar en nog steeds onafhankelijk.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="log-day" id="dag-3">
+      <div class="log-day-head"><h2>Dag 3 · Amarante</h2><span class="log-date">di 8 sep</span></div>
+      <div class="log-day-body">
+        <div class="log-block">
+          <h3>🌡️ Temperatuur</h3>
+          <p><span class="log-temp-value">23° / 15°C</span><span class="log-temp-cond">wisselend bewolkt, in de avond lichte regen/motregen</span><span class="log-temp-source">gemeten, regionale proxy Porto (geen eigen station Amarante)</span></p>
+        </div>
+        <div class="log-block">
+          <h3>📝 Wat we deden</h3>
+          <p class="log-placeholder">Nog in te vullen.</p>
+        </div>
+        <div class="log-block">
+          <h3>💶 Uitgaven</h3>
+          <table class="log-expenses">
+            <tbody>
+              <tr><td class="log-placeholder">— nog in te vullen —</td><td class="log-bedrag" data-eur="0">€0,00</td></tr>
+            </tbody>
+            <tfoot>
+              <tr><td>Totaal dag 3</td><td class="log-dagtotaal">€0,00</td></tr>
+            </tfoot>
+          </table>
+        </div>
+        <div class="log-block">
+          <h3>💡 Praktisch</h3>
+          <ul class="log-notes"><li class="log-placeholder">Nog in te vullen.</li></ul>
+        </div>
+        <div class="log-block">
+          <h3>📸 Foto's</h3>
+          <div class="log-photos">
+            <p class="log-placeholder">Nog geen foto's — zet bestanden in <code>images/logboek/dag-03/</code> en voeg hier <code>&lt;img&gt;</code>-tags toe.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="log-day" id="dag-4">
+      <div class="log-day-head"><h2>Dag 4 · Douro-vallei</h2><span class="log-date">wo 9 sep · dagtrip</span></div>
+      <div class="log-day-body">
+        <div class="log-block">
+          <h3>🌡️ Temperatuur</h3>
+          <p><span class="log-temp-value">24° / 12°C</span><span class="log-temp-cond">helder en droog</span><span class="log-temp-source">gemeten, regionale proxy Chaves (geen eigen station Douro-vallei/Pinhão)</span></p>
+        </div>
+        <div class="log-block">
+          <h3>📝 Wat we deden</h3>
+          <p class="log-placeholder">Nog in te vullen.</p>
+        </div>
+        <div class="log-block">
+          <h3>💶 Uitgaven</h3>
+          <table class="log-expenses">
+            <tbody>
+              <tr><td class="log-placeholder">— nog in te vullen —</td><td class="log-bedrag" data-eur="0">€0,00</td></tr>
+            </tbody>
+            <tfoot>
+              <tr><td>Totaal dag 4</td><td class="log-dagtotaal">€0,00</td></tr>
+            </tfoot>
+          </table>
+        </div>
+        <div class="log-block">
+          <h3>💡 Praktisch</h3>
+          <ul class="log-notes"><li class="log-placeholder">Nog in te vullen.</li></ul>
+        </div>
+        <div class="log-block">
+          <h3>📸 Foto's</h3>
+          <div class="log-photos">
+            <p class="log-placeholder">Nog geen foto's — zet bestanden in <code>images/logboek/dag-04/</code> en voeg hier <code>&lt;img&gt;</code>-tags toe.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="log-day" id="dag-5">
+      <div class="log-day-head"><h2>Dag 5 · Aveiro</h2><span class="log-date">do 10 sep</span></div>
+      <div class="log-day-body">
+        <div class="log-block">
+          <h3>🌡️ Temperatuur</h3>
+          <p><span class="log-temp-value">22° / 12°C</span><span class="log-temp-cond">helder, lichte mist vroeg in de ochtend</span><span class="log-temp-source">gemeten, regionale proxy Ovar/Maceda (geen eigen station Aveiro)</span></p>
+        </div>
+        <div class="log-block">
+          <h3>📝 Wat we deden</h3>
+          <p class="log-placeholder">Nog in te vullen.</p>
+        </div>
+        <div class="log-block">
+          <h3>💶 Uitgaven</h3>
+          <table class="log-expenses">
+            <tbody>
+              <tr><td class="log-placeholder">— nog in te vullen —</td><td class="log-bedrag" data-eur="0">€0,00</td></tr>
+            </tbody>
+            <tfoot>
+              <tr><td>Totaal dag 5</td><td class="log-dagtotaal">€0,00</td></tr>
+            </tfoot>
+          </table>
+        </div>
+        <div class="log-block">
+          <h3>💡 Praktisch</h3>
+          <ul class="log-notes"><li class="log-placeholder">Nog in te vullen.</li></ul>
+        </div>
+        <div class="log-block">
+          <h3>📸 Foto's</h3>
+          <div class="log-photos">
+            <p class="log-placeholder">Nog geen foto's — zet bestanden in <code>images/logboek/dag-05/</code> en voeg hier <code>&lt;img&gt;</code>-tags toe.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="log-day" id="dag-6">
+      <div class="log-day-head"><h2>Dag 6 · Batalha, Alcobaça &amp; Nazaré</h2><span class="log-date">vr 11 sep · onderweg</span></div>
+      <div class="log-day-body">
+        <div class="log-block">
+          <h3>🌡️ Temperatuur</h3>
+          <p><span class="log-temp-value">26° / 13°C</span><span class="log-temp-cond">helder en droog</span><span class="log-temp-source">gemeten, regionale proxy Monte Real/Leiria</span></p>
+        </div>
+        <div class="log-block">
+          <h3>📝 Wat we deden</h3>
+          <p class="log-placeholder">Nog in te vullen.</p>
+        </div>
+        <div class="log-block">
+          <h3>💶 Uitgaven</h3>
+          <table class="log-expenses">
+            <tbody>
+              <tr><td class="log-placeholder">— nog in te vullen —</td><td class="log-bedrag" data-eur="0">€0,00</td></tr>
+            </tbody>
+            <tfoot>
+              <tr><td>Totaal dag 6</td><td class="log-dagtotaal">€0,00</td></tr>
+            </tfoot>
+          </table>
+        </div>
+        <div class="log-block">
+          <h3>💡 Praktisch</h3>
+          <ul class="log-notes"><li class="log-placeholder">Nog in te vullen.</li></ul>
+        </div>
+        <div class="log-block">
+          <h3>📸 Foto's</h3>
+          <div class="log-photos">
+            <p class="log-placeholder">Nog geen foto's — zet bestanden in <code>images/logboek/dag-06/</code> en voeg hier <code>&lt;img&gt;</code>-tags toe.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="log-day" id="dag-7">
+      <div class="log-day-head"><h2>Dag 7 · Óbidos</h2><span class="log-date">za 12 sep</span></div>
+      <div class="log-day-body">
+        <div class="log-block">
+          <h3>🌡️ Temperatuur</h3>
+          <p><span class="log-temp-value">31° / 17°C</span><span class="log-temp-cond">veel zon, warm, wind NNW 10-15 km/u</span><span class="log-temp-source">verwachting voor vandaag, Óbidos</span></p>
+        </div>
+        <div class="log-block">
+          <h3>📝 Wat we deden</h3>
+          <p class="log-placeholder">Nog in te vullen.</p>
+        </div>
+        <div class="log-block">
+          <h3>💶 Uitgaven</h3>
+          <table class="log-expenses">
+            <tbody>
+              <tr><td class="log-placeholder">— nog in te vullen —</td><td class="log-bedrag" data-eur="0">€0,00</td></tr>
+            </tbody>
+            <tfoot>
+              <tr><td>Totaal dag 7</td><td class="log-dagtotaal">€0,00</td></tr>
+            </tfoot>
+          </table>
+        </div>
+        <div class="log-block">
+          <h3>💡 Praktisch</h3>
+          <ul class="log-notes"><li class="log-placeholder">Nog in te vullen.</li></ul>
+        </div>
+        <div class="log-block">
+          <h3>📸 Foto's</h3>
+          <div class="log-photos">
+            <p class="log-placeholder">Nog geen foto's — zet bestanden in <code>images/logboek/dag-07/</code> en voeg hier <code>&lt;img&gt;</code>-tags toe.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="log-day" id="dag-8">
+      <div class="log-day-head"><h2>Dag 8 · Mafra &amp; Sintra</h2><span class="log-date">zo 13 sep · dagtrip</span></div>
+      <div class="log-day-body">
+        <div class="log-block">
+          <h3>🌡️ Temperatuur</h3>
+          <p><span class="log-temp-value">33° / 20°C</span><span class="log-temp-cond">zonnig</span><span class="log-temp-source">verwachting, regio Lissabon (dichtstbijzijnde stationsdata)</span></p>
+        </div>
+        <div class="log-block">
+          <h3>📝 Wat we deden</h3>
+          <p class="log-placeholder">Nog in te vullen.</p>
+        </div>
+        <div class="log-block">
+          <h3>💶 Uitgaven</h3>
+          <table class="log-expenses">
+            <tbody>
+              <tr><td class="log-placeholder">— nog in te vullen —</td><td class="log-bedrag" data-eur="0">€0,00</td></tr>
+            </tbody>
+            <tfoot>
+              <tr><td>Totaal dag 8</td><td class="log-dagtotaal">€0,00</td></tr>
+            </tfoot>
+          </table>
+        </div>
+        <div class="log-block">
+          <h3>💡 Praktisch</h3>
+          <ul class="log-notes"><li class="log-placeholder">Nog in te vullen.</li></ul>
+        </div>
+        <div class="log-block">
+          <h3>📸 Foto's</h3>
+          <div class="log-photos">
+            <p class="log-placeholder">Nog geen foto's — zet bestanden in <code>images/logboek/dag-08/</code> en voeg hier <code>&lt;img&gt;</code>-tags toe.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="log-day" id="dag-9">
+      <div class="log-day-head"><h2>Dag 9 · Lissabon</h2><span class="log-date">ma 14 sep</span></div>
+      <div class="log-day-body">
+        <div class="log-block">
+          <h3>🌡️ Temperatuur</h3>
+          <p><span class="log-temp-value">32° / 20°C</span><span class="log-temp-cond">zonnig</span><span class="log-temp-source">verwachting, Lissabon</span></p>
+        </div>
+        <div class="log-block">
+          <h3>📝 Wat we deden</h3>
+          <p class="log-placeholder">Nog in te vullen.</p>
+        </div>
+        <div class="log-block">
+          <h3>💶 Uitgaven</h3>
+          <table class="log-expenses">
+            <tbody>
+              <tr><td class="log-placeholder">— nog in te vullen —</td><td class="log-bedrag" data-eur="0">€0,00</td></tr>
+            </tbody>
+            <tfoot>
+              <tr><td>Totaal dag 9</td><td class="log-dagtotaal">€0,00</td></tr>
+            </tfoot>
+          </table>
+        </div>
+        <div class="log-block">
+          <h3>💡 Praktisch</h3>
+          <ul class="log-notes"><li class="log-placeholder">Nog in te vullen.</li></ul>
+        </div>
+        <div class="log-block">
+          <h3>📸 Foto's</h3>
+          <div class="log-photos">
+            <p class="log-placeholder">Nog geen foto's — zet bestanden in <code>images/logboek/dag-09/</code> en voeg hier <code>&lt;img&gt;</code>-tags toe.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="log-day" id="dag-10">
+      <div class="log-day-head"><h2>Dag 10 · Lissabon</h2><span class="log-date">di 15 sep · vertrek</span></div>
+      <div class="log-day-body">
+        <div class="log-block">
+          <h3>🌡️ Temperatuur</h3>
+          <p><span class="log-temp-value">31° / 19°C</span><span class="log-temp-cond">zonnig</span><span class="log-temp-source">verwachting, Lissabon</span></p>
+        </div>
+        <div class="log-block">
+          <h3>📝 Wat we deden</h3>
+          <p class="log-placeholder">Nog in te vullen.</p>
+        </div>
+        <div class="log-block">
+          <h3>💶 Uitgaven</h3>
+          <table class="log-expenses">
+            <tbody>
+              <tr><td class="log-placeholder">— nog in te vullen —</td><td class="log-bedrag" data-eur="0">€0,00</td></tr>
+            </tbody>
+            <tfoot>
+              <tr><td>Totaal dag 10</td><td class="log-dagtotaal">€0,00</td></tr>
+            </tfoot>
+          </table>
+        </div>
+        <div class="log-block">
+          <h3>💡 Praktisch</h3>
+          <ul class="log-notes"><li class="log-placeholder">Nog in te vullen.</li></ul>
+        </div>
+        <div class="log-block">
+          <h3>📸 Foto's</h3>
+          <div class="log-photos">
+            <p class="log-placeholder">Nog geen foto's — zet bestanden in <code>images/logboek/dag-10/</code> en voeg hier <code>&lt;img&gt;</code>-tags toe.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</section>
+
+<footer style="background:var(--dark);color:#fff;padding:2rem;text-align:center;font-size:.85rem;opacity:.8;">
+  Portugal Roadtrip · zo 6 – di 15 sep 2026 · <a href="index.html" style="color:var(--gold)">← Terug naar de route</a>
+</footer>
+
+<script src="nav.js" defer></script>
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script src="onesignal-init.js" defer></script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => { navigator.serviceWorker.register('sw.js').catch(() => {}); });
+}
+// Uitgaven per dag optellen en een reistotaal tonen.
+// Werkt automatisch: voeg een <tr> toe met een <td class="log-bedrag" data-eur="12.50">€12,50</td>
+// en de dag- en reistotalen worden bij het laden van de pagina herberekend.
+document.addEventListener('DOMContentLoaded', function () {
+  var grandTotal = 0;
+  document.querySelectorAll('table.log-expenses').forEach(function (table) {
+    var sum = 0;
+    table.querySelectorAll('td.log-bedrag[data-eur]').forEach(function (td) {
+      sum += parseFloat(td.getAttribute('data-eur')) || 0;
+    });
+    var totalCell = table.querySelector('.log-dagtotaal');
+    if (totalCell) totalCell.textContent = '€' + sum.toFixed(2).replace('.', ',');
+    grandTotal += sum;
+  });
+  var grandCell = document.getElementById('log-grand-total');
+  if (grandCell) grandCell.textContent = '€' + grandTotal.toFixed(2).replace('.', ',');
+});
+</script>
+</body>
+</html>
