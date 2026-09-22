@@ -1,0 +1,2120 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fotogallerij — Portugal Roadtrip</title>
+  <meta name="description" content="Alle reisfoto's op een rij, per dag geordend op basis van opnamedatum — 439 foto's van dag 1 t/m 8.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icons/favicon-32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <meta name="theme-color" content="#1b4f72">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Portugal">
+  <style>
+    .gallery-intro { background: var(--cream); padding: 3rem 0 2rem; text-align: center; }
+    .back-link { display: inline-flex; align-items: center; gap: .4rem; color: var(--azul); font-weight: 600; text-decoration: none; margin-bottom: 1rem; }
+    .back-link:hover { color: var(--terra); }
+
+    .gallery-nav {
+      display: flex;
+      justify-content: center;
+      gap: .6rem;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+    }
+    .gallery-nav a {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: .45rem 1.1rem;
+      font-size: .82rem;
+      font-weight: 600;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .gallery-nav a:hover { background: var(--gold); color: #fff; border-color: var(--gold); }
+
+    .gallery-count-bar {
+      max-width: 900px;
+      margin: 1.75rem auto 0;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: .5rem;
+    }
+    .gallery-count-bar .label { font-weight: 600; color: var(--muted); font-size: .9rem; }
+    .gallery-count-bar .amount { font-family: var(--serif); font-size: 1.4rem; color: var(--azul); }
+
+    .gallery-section { padding: 2.5rem 0; }
+
+    .gallery-day {
+      max-width: 1200px;
+      margin: 0 auto 2rem;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      scroll-margin-top: 90px;
+    }
+    .gallery-day-head {
+      background: var(--azul);
+      color: #fff;
+      padding: 1.1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: .4rem;
+    }
+    .gallery-day-head h2 { font-family: var(--serif); font-size: 1.3rem; margin: 0; }
+    .gallery-day-head .gallery-date { font-size: .85rem; opacity: .9; }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 6px;
+      padding: 10px;
+    }
+    .gallery-item {
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      border-radius: 6px;
+      cursor: pointer;
+      background: var(--sand);
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .3s ease;
+    }
+    .gallery-item:hover img { transform: scale(1.08); }
+
+    /* ─── Lightbox ─── */
+    .lightbox-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15,12,9,.94);
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 1.5rem;
+    }
+    .lightbox-overlay.open { display: flex; }
+    .lightbox-img-wrap {
+      max-width: 92vw;
+      max-height: 74vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .lightbox-img-wrap img {
+      max-width: 100%;
+      max-height: 74vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 4px;
+      box-shadow: var(--shadow-lg);
+    }
+    .lightbox-caption { color: var(--sand); margin-top: 1rem; font-size: .9rem; text-align: center; }
+    .lightbox-counter { color: var(--gold); font-size: .78rem; margin-top: .3rem; letter-spacing: .04em; }
+    .lightbox-close {
+      position: absolute; top: 1.1rem; right: 1.25rem;
+      background: rgba(255,255,255,.1); border: none; color: #fff;
+      font-size: 1.6rem; line-height: 1; cursor: pointer;
+      width: 2.6rem; height: 2.6rem; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .lightbox-close:hover { background: rgba(255,255,255,.2); }
+    .lightbox-nav-btn {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(255,255,255,.1); border: none; color: #fff;
+      font-size: 1.8rem; width: 3rem; height: 3rem; border-radius: 50%;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+    }
+    .lightbox-nav-btn:hover { background: rgba(255,255,255,.2); }
+    .lightbox-prev { left: .75rem; }
+    .lightbox-next { right: .75rem; }
+    @media (max-width: 600px) {
+      .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 4px; padding: 6px; }
+      .lightbox-nav-btn { width: 2.4rem; height: 2.4rem; font-size: 1.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="nav-logo"><a href="index.html" style="color:inherit;text-decoration:none">Portugal 🇵🇹</a></div>
+    <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Menu" aria-expanded="false">☰</button>
+    <ul class="nav-links">
+      <li><a href="actueel.html">📰 Actueel</a></li>
+      <li><a href="reisinfo.html">✈️ Reisinfo</a></li>
+      <li><a href="restaurants.html">🍽️ Restaurants</a></li>
+      <li><a href="hotels.html">🏨 Hotels</a></li>
+      <li><a href="route.html">🚗 Rijroute</a></li>
+      <li><a href="kaart.html">🗺️ Kaart</a></li>
+      <li><a href="activiteiten.html">✨ Activiteiten</a></li>
+      <li><a href="confirmations.html">📩 Bevestigingen</a></li>
+      <li><a href="budget.html">🔒 Budget</a></li>
+      <li><a href="bronnen.html">🔗 Bronnen</a></li>
+      <li><a href="documenten.html">📄 Documenten</a></li>
+      <li><a href="logboek.html">🗓️ Logboek</a></li>
+      <li><a href="fotogallerij.html" style="color:var(--gold)">📸 Fotogallerij</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="gallery-intro">
+  <div class="container">
+    <h1 class="section-title">Fotogallerij</h1>
+    <p class="section-subtitle">Alle reisfoto's op een rij, automatisch ingedeeld per dag op basis van de opnamedatum. Klik op een foto voor groot formaat.</p>
+    <a href="index.html" class="back-link">← Terug naar de roadtrip</a>
+    <div class="gallery-nav">
+      <a href="#gdag-1">Dag 1</a>
+      <a href="#gdag-2">Dag 2</a>
+      <a href="#gdag-3">Dag 3</a>
+      <a href="#gdag-4">Dag 4</a>
+      <a href="#gdag-5">Dag 5</a>
+      <a href="#gdag-6">Dag 6</a>
+      <a href="#gdag-7">Dag 7</a>
+      <a href="#gdag-8">Dag 8</a>
+    </div>
+    <div class="gallery-count-bar">
+      <span class="label">Totaal aantal foto's (dag 1–8)</span>
+      <span class="amount">439</span>
+    </div>
+  </div>
+</section>
+
+<section class="gallery-section">
+  <div class="container">
+
+<section class="gallery-day" id="gdag-1">
+  <div class="gallery-day-head">
+    <h2>Dag 1 · Porto</h2>
+    <span class="gallery-date">zo 6 sep · aankomst · 58 foto's</span>
+  </div>
+  <div class="gallery-grid">
+        <div class="gallery-item" data-index="0">
+          <img src="images/fotogallerij/dag-01/thumbs/001.webp" alt="Dag 1 · Porto · 08:02" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="1">
+          <img src="images/fotogallerij/dag-01/thumbs/002.webp" alt="Dag 1 · Porto · 08:02" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="2">
+          <img src="images/fotogallerij/dag-01/thumbs/003.webp" alt="Dag 1 · Porto · 08:05" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="3">
+          <img src="images/fotogallerij/dag-01/thumbs/004.webp" alt="Dag 1 · Porto · 08:06" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="4">
+          <img src="images/fotogallerij/dag-01/thumbs/005.webp" alt="Dag 1 · Porto · 08:07" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="5">
+          <img src="images/fotogallerij/dag-01/thumbs/006.webp" alt="Dag 1 · Porto · 13:05" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="6">
+          <img src="images/fotogallerij/dag-01/thumbs/007.webp" alt="Dag 1 · Porto · 13:05" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="7">
+          <img src="images/fotogallerij/dag-01/thumbs/008.webp" alt="Dag 1 · Porto · 13:05" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="8">
+          <img src="images/fotogallerij/dag-01/thumbs/009.webp" alt="Dag 1 · Porto · 13:05" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="9">
+          <img src="images/fotogallerij/dag-01/thumbs/010.webp" alt="Dag 1 · Porto · 13:05" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="10">
+          <img src="images/fotogallerij/dag-01/thumbs/011.webp" alt="Dag 1 · Porto · 13:41" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="11">
+          <img src="images/fotogallerij/dag-01/thumbs/012.webp" alt="Dag 1 · Porto · 13:41" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="12">
+          <img src="images/fotogallerij/dag-01/thumbs/013.webp" alt="Dag 1 · Porto · 13:42" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="13">
+          <img src="images/fotogallerij/dag-01/thumbs/014.webp" alt="Dag 1 · Porto · 14:41" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="14">
+          <img src="images/fotogallerij/dag-01/thumbs/015.webp" alt="Dag 1 · Porto · 14:41" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="15">
+          <img src="images/fotogallerij/dag-01/thumbs/016.webp" alt="Dag 1 · Porto · 14:41" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="16">
+          <img src="images/fotogallerij/dag-01/thumbs/017.webp" alt="Dag 1 · Porto · 15:52" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="17">
+          <img src="images/fotogallerij/dag-01/thumbs/018.webp" alt="Dag 1 · Porto · 15:52" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="18">
+          <img src="images/fotogallerij/dag-01/thumbs/019.webp" alt="Dag 1 · Porto · 15:52" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="19">
+          <img src="images/fotogallerij/dag-01/thumbs/020.webp" alt="Dag 1 · Porto · 15:52" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="20">
+          <img src="images/fotogallerij/dag-01/thumbs/021.webp" alt="Dag 1 · Porto · 15:52" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="21">
+          <img src="images/fotogallerij/dag-01/thumbs/022.webp" alt="Dag 1 · Porto · 15:52" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="22">
+          <img src="images/fotogallerij/dag-01/thumbs/023.webp" alt="Dag 1 · Porto · 15:55" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="23">
+          <img src="images/fotogallerij/dag-01/thumbs/024.webp" alt="Dag 1 · Porto · 15:55" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="24">
+          <img src="images/fotogallerij/dag-01/thumbs/025.webp" alt="Dag 1 · Porto · 15:55" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="25">
+          <img src="images/fotogallerij/dag-01/thumbs/026.webp" alt="Dag 1 · Porto · 15:55" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="26">
+          <img src="images/fotogallerij/dag-01/thumbs/027.webp" alt="Dag 1 · Porto · 16:15" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="27">
+          <img src="images/fotogallerij/dag-01/thumbs/028.webp" alt="Dag 1 · Porto · 16:15" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="28">
+          <img src="images/fotogallerij/dag-01/thumbs/029.webp" alt="Dag 1 · Porto · 16:15" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="29">
+          <img src="images/fotogallerij/dag-01/thumbs/030.webp" alt="Dag 1 · Porto · 16:15" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="30">
+          <img src="images/fotogallerij/dag-01/thumbs/031.webp" alt="Dag 1 · Porto · 17:55" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="31">
+          <img src="images/fotogallerij/dag-01/thumbs/032.webp" alt="Dag 1 · Porto · 17:55" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="32">
+          <img src="images/fotogallerij/dag-01/thumbs/033.webp" alt="Dag 1 · Porto · 17:55" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="33">
+          <img src="images/fotogallerij/dag-01/thumbs/034.webp" alt="Dag 1 · Porto · 17:55" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="34">
+          <img src="images/fotogallerij/dag-01/thumbs/035.webp" alt="Dag 1 · Porto · 17:55" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="35">
+          <img src="images/fotogallerij/dag-01/thumbs/036.webp" alt="Dag 1 · Porto · 17:55" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="36">
+          <img src="images/fotogallerij/dag-01/thumbs/037.webp" alt="Dag 1 · Porto · 17:55" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="37">
+          <img src="images/fotogallerij/dag-01/thumbs/038.webp" alt="Dag 1 · Porto · 17:55" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="38">
+          <img src="images/fotogallerij/dag-01/thumbs/039.webp" alt="Dag 1 · Porto · 17:55" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="39">
+          <img src="images/fotogallerij/dag-01/thumbs/040.webp" alt="Dag 1 · Porto · 17:55" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="40">
+          <img src="images/fotogallerij/dag-01/thumbs/041.webp" alt="Dag 1 · Porto · 17:56" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="41">
+          <img src="images/fotogallerij/dag-01/thumbs/042.webp" alt="Dag 1 · Porto · 17:56" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="42">
+          <img src="images/fotogallerij/dag-01/thumbs/043.webp" alt="Dag 1 · Porto · 17:56" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="43">
+          <img src="images/fotogallerij/dag-01/thumbs/044.webp" alt="Dag 1 · Porto · 17:56" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="44">
+          <img src="images/fotogallerij/dag-01/thumbs/045.webp" alt="Dag 1 · Porto · 17:56" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="45">
+          <img src="images/fotogallerij/dag-01/thumbs/046.webp" alt="Dag 1 · Porto · 17:56" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="46">
+          <img src="images/fotogallerij/dag-01/thumbs/047.webp" alt="Dag 1 · Porto · 17:56" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="47">
+          <img src="images/fotogallerij/dag-01/thumbs/048.webp" alt="Dag 1 · Porto · 17:56" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="48">
+          <img src="images/fotogallerij/dag-01/thumbs/049.webp" alt="Dag 1 · Porto · 17:56" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="49">
+          <img src="images/fotogallerij/dag-01/thumbs/050.webp" alt="Dag 1 · Porto · 17:56" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="50">
+          <img src="images/fotogallerij/dag-01/thumbs/051.webp" alt="Dag 1 · Porto · 18:42" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="51">
+          <img src="images/fotogallerij/dag-01/thumbs/052.webp" alt="Dag 1 · Porto · 18:42" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="52">
+          <img src="images/fotogallerij/dag-01/thumbs/053.webp" alt="Dag 1 · Porto · 18:43" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="53">
+          <img src="images/fotogallerij/dag-01/thumbs/054.webp" alt="Dag 1 · Porto · 18:43" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="54">
+          <img src="images/fotogallerij/dag-01/thumbs/055.webp" alt="Dag 1 · Porto · 18:43" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="55">
+          <img src="images/fotogallerij/dag-01/thumbs/056.webp" alt="Dag 1 · Porto · 18:43" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="56">
+          <img src="images/fotogallerij/dag-01/thumbs/057.webp" alt="Dag 1 · Porto · 18:43" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="57">
+          <img src="images/fotogallerij/dag-01/thumbs/058.webp" alt="Dag 1 · Porto · 18:43" loading="lazy" decoding="async">
+        </div>
+  </div>
+</section>
+
+<section class="gallery-day" id="gdag-2">
+  <div class="gallery-day-head">
+    <h2>Dag 2 · Porto</h2>
+    <span class="gallery-date">ma 7 sep · 82 foto's</span>
+  </div>
+  <div class="gallery-grid">
+        <div class="gallery-item" data-index="58">
+          <img src="images/fotogallerij/dag-02/thumbs/001.webp" alt="Dag 2 · Porto · 11:34" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="59">
+          <img src="images/fotogallerij/dag-02/thumbs/002.webp" alt="Dag 2 · Porto · 11:49" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="60">
+          <img src="images/fotogallerij/dag-02/thumbs/003.webp" alt="Dag 2 · Porto · 11:49" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="61">
+          <img src="images/fotogallerij/dag-02/thumbs/004.webp" alt="Dag 2 · Porto · 11:50" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="62">
+          <img src="images/fotogallerij/dag-02/thumbs/005.webp" alt="Dag 2 · Porto · 11:50" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="63">
+          <img src="images/fotogallerij/dag-02/thumbs/006.webp" alt="Dag 2 · Porto · 11:50" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="64">
+          <img src="images/fotogallerij/dag-02/thumbs/007.webp" alt="Dag 2 · Porto · 11:50" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="65">
+          <img src="images/fotogallerij/dag-02/thumbs/008.webp" alt="Dag 2 · Porto · 11:51" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="66">
+          <img src="images/fotogallerij/dag-02/thumbs/009.webp" alt="Dag 2 · Porto · 11:51" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="67">
+          <img src="images/fotogallerij/dag-02/thumbs/010.webp" alt="Dag 2 · Porto · 11:51" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="68">
+          <img src="images/fotogallerij/dag-02/thumbs/011.webp" alt="Dag 2 · Porto · 11:51" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="69">
+          <img src="images/fotogallerij/dag-02/thumbs/012.webp" alt="Dag 2 · Porto · 11:54" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="70">
+          <img src="images/fotogallerij/dag-02/thumbs/013.webp" alt="Dag 2 · Porto · 11:55" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="71">
+          <img src="images/fotogallerij/dag-02/thumbs/014.webp" alt="Dag 2 · Porto · 11:58" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="72">
+          <img src="images/fotogallerij/dag-02/thumbs/015.webp" alt="Dag 2 · Porto · 12:02" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="73">
+          <img src="images/fotogallerij/dag-02/thumbs/016.webp" alt="Dag 2 · Porto · 12:02" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="74">
+          <img src="images/fotogallerij/dag-02/thumbs/017.webp" alt="Dag 2 · Porto · 12:03" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="75">
+          <img src="images/fotogallerij/dag-02/thumbs/018.webp" alt="Dag 2 · Porto · 12:03" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="76">
+          <img src="images/fotogallerij/dag-02/thumbs/019.webp" alt="Dag 2 · Porto · 12:08" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="77">
+          <img src="images/fotogallerij/dag-02/thumbs/020.webp" alt="Dag 2 · Porto · 12:08" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="78">
+          <img src="images/fotogallerij/dag-02/thumbs/021.webp" alt="Dag 2 · Porto · 13:14" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="79">
+          <img src="images/fotogallerij/dag-02/thumbs/022.webp" alt="Dag 2 · Porto · 13:14" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="80">
+          <img src="images/fotogallerij/dag-02/thumbs/023.webp" alt="Dag 2 · Porto · 13:14" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="81">
+          <img src="images/fotogallerij/dag-02/thumbs/024.webp" alt="Dag 2 · Porto · 13:14" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="82">
+          <img src="images/fotogallerij/dag-02/thumbs/025.webp" alt="Dag 2 · Porto · 13:14" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="83">
+          <img src="images/fotogallerij/dag-02/thumbs/026.webp" alt="Dag 2 · Porto · 13:14" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="84">
+          <img src="images/fotogallerij/dag-02/thumbs/027.webp" alt="Dag 2 · Porto · 13:14" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="85">
+          <img src="images/fotogallerij/dag-02/thumbs/028.webp" alt="Dag 2 · Porto · 13:14" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="86">
+          <img src="images/fotogallerij/dag-02/thumbs/029.webp" alt="Dag 2 · Porto · 13:25" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="87">
+          <img src="images/fotogallerij/dag-02/thumbs/030.webp" alt="Dag 2 · Porto · 13:25" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="88">
+          <img src="images/fotogallerij/dag-02/thumbs/031.webp" alt="Dag 2 · Porto · 13:25" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="89">
+          <img src="images/fotogallerij/dag-02/thumbs/032.webp" alt="Dag 2 · Porto · 13:25" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="90">
+          <img src="images/fotogallerij/dag-02/thumbs/033.webp" alt="Dag 2 · Porto · 13:27" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="91">
+          <img src="images/fotogallerij/dag-02/thumbs/034.webp" alt="Dag 2 · Porto · 13:42" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="92">
+          <img src="images/fotogallerij/dag-02/thumbs/035.webp" alt="Dag 2 · Porto · 13:49" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="93">
+          <img src="images/fotogallerij/dag-02/thumbs/036.webp" alt="Dag 2 · Porto · 13:49" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="94">
+          <img src="images/fotogallerij/dag-02/thumbs/037.webp" alt="Dag 2 · Porto · 13:50" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="95">
+          <img src="images/fotogallerij/dag-02/thumbs/038.webp" alt="Dag 2 · Porto · 13:50" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="96">
+          <img src="images/fotogallerij/dag-02/thumbs/039.webp" alt="Dag 2 · Porto · 13:51" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="97">
+          <img src="images/fotogallerij/dag-02/thumbs/040.webp" alt="Dag 2 · Porto · 13:52" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="98">
+          <img src="images/fotogallerij/dag-02/thumbs/041.webp" alt="Dag 2 · Porto · 13:54" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="99">
+          <img src="images/fotogallerij/dag-02/thumbs/042.webp" alt="Dag 2 · Porto · 14:13" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="100">
+          <img src="images/fotogallerij/dag-02/thumbs/043.webp" alt="Dag 2 · Porto · 14:13" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="101">
+          <img src="images/fotogallerij/dag-02/thumbs/044.webp" alt="Dag 2 · Porto · 14:13" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="102">
+          <img src="images/fotogallerij/dag-02/thumbs/045.webp" alt="Dag 2 · Porto · 14:15" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="103">
+          <img src="images/fotogallerij/dag-02/thumbs/046.webp" alt="Dag 2 · Porto · 14:15" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="104">
+          <img src="images/fotogallerij/dag-02/thumbs/047.webp" alt="Dag 2 · Porto · 14:19" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="105">
+          <img src="images/fotogallerij/dag-02/thumbs/048.webp" alt="Dag 2 · Porto · 14:27" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="106">
+          <img src="images/fotogallerij/dag-02/thumbs/049.webp" alt="Dag 2 · Porto · 14:27" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="107">
+          <img src="images/fotogallerij/dag-02/thumbs/050.webp" alt="Dag 2 · Porto · 14:30" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="108">
+          <img src="images/fotogallerij/dag-02/thumbs/051.webp" alt="Dag 2 · Porto · 14:31" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="109">
+          <img src="images/fotogallerij/dag-02/thumbs/052.webp" alt="Dag 2 · Porto · 14:31" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="110">
+          <img src="images/fotogallerij/dag-02/thumbs/053.webp" alt="Dag 2 · Porto · 14:31" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="111">
+          <img src="images/fotogallerij/dag-02/thumbs/054.webp" alt="Dag 2 · Porto · 14:36" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="112">
+          <img src="images/fotogallerij/dag-02/thumbs/055.webp" alt="Dag 2 · Porto · 14:36" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="113">
+          <img src="images/fotogallerij/dag-02/thumbs/056.webp" alt="Dag 2 · Porto · 14:36" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="114">
+          <img src="images/fotogallerij/dag-02/thumbs/057.webp" alt="Dag 2 · Porto · 14:36" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="115">
+          <img src="images/fotogallerij/dag-02/thumbs/058.webp" alt="Dag 2 · Porto · 14:42" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="116">
+          <img src="images/fotogallerij/dag-02/thumbs/059.webp" alt="Dag 2 · Porto · 14:42" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="117">
+          <img src="images/fotogallerij/dag-02/thumbs/060.webp" alt="Dag 2 · Porto · 14:42" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="118">
+          <img src="images/fotogallerij/dag-02/thumbs/061.webp" alt="Dag 2 · Porto · 14:43" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="119">
+          <img src="images/fotogallerij/dag-02/thumbs/062.webp" alt="Dag 2 · Porto · 15:07" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="120">
+          <img src="images/fotogallerij/dag-02/thumbs/063.webp" alt="Dag 2 · Porto · 15:07" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="121">
+          <img src="images/fotogallerij/dag-02/thumbs/064.webp" alt="Dag 2 · Porto · 15:07" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="122">
+          <img src="images/fotogallerij/dag-02/thumbs/065.webp" alt="Dag 2 · Porto · 15:21" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="123">
+          <img src="images/fotogallerij/dag-02/thumbs/066.webp" alt="Dag 2 · Porto · 15:21" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="124">
+          <img src="images/fotogallerij/dag-02/thumbs/067.webp" alt="Dag 2 · Porto · 15:21" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="125">
+          <img src="images/fotogallerij/dag-02/thumbs/068.webp" alt="Dag 2 · Porto · 15:21" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="126">
+          <img src="images/fotogallerij/dag-02/thumbs/069.webp" alt="Dag 2 · Porto · 16:44" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="127">
+          <img src="images/fotogallerij/dag-02/thumbs/070.webp" alt="Dag 2 · Porto · 17:29" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="128">
+          <img src="images/fotogallerij/dag-02/thumbs/071.webp" alt="Dag 2 · Porto · 17:29" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="129">
+          <img src="images/fotogallerij/dag-02/thumbs/072.webp" alt="Dag 2 · Porto · 17:29" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="130">
+          <img src="images/fotogallerij/dag-02/thumbs/073.webp" alt="Dag 2 · Porto · 17:29" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="131">
+          <img src="images/fotogallerij/dag-02/thumbs/074.webp" alt="Dag 2 · Porto · 17:29" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="132">
+          <img src="images/fotogallerij/dag-02/thumbs/075.webp" alt="Dag 2 · Porto · 17:29" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="133">
+          <img src="images/fotogallerij/dag-02/thumbs/076.webp" alt="Dag 2 · Porto · 17:29" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="134">
+          <img src="images/fotogallerij/dag-02/thumbs/077.webp" alt="Dag 2 · Porto · 17:29" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="135">
+          <img src="images/fotogallerij/dag-02/thumbs/078.webp" alt="Dag 2 · Porto · 17:30" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="136">
+          <img src="images/fotogallerij/dag-02/thumbs/079.webp" alt="Dag 2 · Porto · 17:30" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="137">
+          <img src="images/fotogallerij/dag-02/thumbs/080.webp" alt="Dag 2 · Porto · 17:30" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="138">
+          <img src="images/fotogallerij/dag-02/thumbs/081.webp" alt="Dag 2 · Porto · 17:30" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="139">
+          <img src="images/fotogallerij/dag-02/thumbs/082.webp" alt="Dag 2 · Porto · 21:53" loading="lazy" decoding="async">
+        </div>
+  </div>
+</section>
+
+<section class="gallery-day" id="gdag-3">
+  <div class="gallery-day-head">
+    <h2>Dag 3 · Amarante</h2>
+    <span class="gallery-date">di 8 sep · 75 foto's</span>
+  </div>
+  <div class="gallery-grid">
+        <div class="gallery-item" data-index="140">
+          <img src="images/fotogallerij/dag-03/thumbs/001.webp" alt="Dag 3 · Amarante · 12:56" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="141">
+          <img src="images/fotogallerij/dag-03/thumbs/002.webp" alt="Dag 3 · Amarante · 12:56" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="142">
+          <img src="images/fotogallerij/dag-03/thumbs/003.webp" alt="Dag 3 · Amarante · 13:01" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="143">
+          <img src="images/fotogallerij/dag-03/thumbs/004.webp" alt="Dag 3 · Amarante · 13:03" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="144">
+          <img src="images/fotogallerij/dag-03/thumbs/005.webp" alt="Dag 3 · Amarante · 13:09" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="145">
+          <img src="images/fotogallerij/dag-03/thumbs/006.webp" alt="Dag 3 · Amarante · 13:09" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="146">
+          <img src="images/fotogallerij/dag-03/thumbs/007.webp" alt="Dag 3 · Amarante · 13:11" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="147">
+          <img src="images/fotogallerij/dag-03/thumbs/008.webp" alt="Dag 3 · Amarante · 13:11" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="148">
+          <img src="images/fotogallerij/dag-03/thumbs/009.webp" alt="Dag 3 · Amarante · 13:11" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="149">
+          <img src="images/fotogallerij/dag-03/thumbs/010.webp" alt="Dag 3 · Amarante · 13:14" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="150">
+          <img src="images/fotogallerij/dag-03/thumbs/011.webp" alt="Dag 3 · Amarante · 13:14" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="151">
+          <img src="images/fotogallerij/dag-03/thumbs/012.webp" alt="Dag 3 · Amarante · 13:54" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="152">
+          <img src="images/fotogallerij/dag-03/thumbs/013.webp" alt="Dag 3 · Amarante · 13:54" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="153">
+          <img src="images/fotogallerij/dag-03/thumbs/014.webp" alt="Dag 3 · Amarante · 14:29" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="154">
+          <img src="images/fotogallerij/dag-03/thumbs/015.webp" alt="Dag 3 · Amarante · 14:29" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="155">
+          <img src="images/fotogallerij/dag-03/thumbs/016.webp" alt="Dag 3 · Amarante · 14:29" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="156">
+          <img src="images/fotogallerij/dag-03/thumbs/017.webp" alt="Dag 3 · Amarante · 14:29" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="157">
+          <img src="images/fotogallerij/dag-03/thumbs/018.webp" alt="Dag 3 · Amarante · 14:29" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="158">
+          <img src="images/fotogallerij/dag-03/thumbs/019.webp" alt="Dag 3 · Amarante · 14:29" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="159">
+          <img src="images/fotogallerij/dag-03/thumbs/020.webp" alt="Dag 3 · Amarante · 14:36" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="160">
+          <img src="images/fotogallerij/dag-03/thumbs/021.webp" alt="Dag 3 · Amarante · 14:56" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="161">
+          <img src="images/fotogallerij/dag-03/thumbs/022.webp" alt="Dag 3 · Amarante · 14:56" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="162">
+          <img src="images/fotogallerij/dag-03/thumbs/023.webp" alt="Dag 3 · Amarante · 14:56" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="163">
+          <img src="images/fotogallerij/dag-03/thumbs/024.webp" alt="Dag 3 · Amarante · 15:17" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="164">
+          <img src="images/fotogallerij/dag-03/thumbs/025.webp" alt="Dag 3 · Amarante · 15:17" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="165">
+          <img src="images/fotogallerij/dag-03/thumbs/026.webp" alt="Dag 3 · Amarante · 15:18" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="166">
+          <img src="images/fotogallerij/dag-03/thumbs/027.webp" alt="Dag 3 · Amarante · 15:18" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="167">
+          <img src="images/fotogallerij/dag-03/thumbs/028.webp" alt="Dag 3 · Amarante · 15:18" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="168">
+          <img src="images/fotogallerij/dag-03/thumbs/029.webp" alt="Dag 3 · Amarante · 15:19" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="169">
+          <img src="images/fotogallerij/dag-03/thumbs/030.webp" alt="Dag 3 · Amarante · 15:20" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="170">
+          <img src="images/fotogallerij/dag-03/thumbs/031.webp" alt="Dag 3 · Amarante · 15:20" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="171">
+          <img src="images/fotogallerij/dag-03/thumbs/032.webp" alt="Dag 3 · Amarante · 15:20" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="172">
+          <img src="images/fotogallerij/dag-03/thumbs/033.webp" alt="Dag 3 · Amarante · 15:22" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="173">
+          <img src="images/fotogallerij/dag-03/thumbs/034.webp" alt="Dag 3 · Amarante · 15:22" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="174">
+          <img src="images/fotogallerij/dag-03/thumbs/035.webp" alt="Dag 3 · Amarante · 15:24" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="175">
+          <img src="images/fotogallerij/dag-03/thumbs/036.webp" alt="Dag 3 · Amarante · 15:28" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="176">
+          <img src="images/fotogallerij/dag-03/thumbs/037.webp" alt="Dag 3 · Amarante · 15:35" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="177">
+          <img src="images/fotogallerij/dag-03/thumbs/038.webp" alt="Dag 3 · Amarante · 15:42" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="178">
+          <img src="images/fotogallerij/dag-03/thumbs/039.webp" alt="Dag 3 · Amarante · 15:43" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="179">
+          <img src="images/fotogallerij/dag-03/thumbs/040.webp" alt="Dag 3 · Amarante · 15:43" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="180">
+          <img src="images/fotogallerij/dag-03/thumbs/041.webp" alt="Dag 3 · Amarante · 15:43" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="181">
+          <img src="images/fotogallerij/dag-03/thumbs/042.webp" alt="Dag 3 · Amarante · 15:45" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="182">
+          <img src="images/fotogallerij/dag-03/thumbs/043.webp" alt="Dag 3 · Amarante · 15:45" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="183">
+          <img src="images/fotogallerij/dag-03/thumbs/044.webp" alt="Dag 3 · Amarante · 15:47" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="184">
+          <img src="images/fotogallerij/dag-03/thumbs/045.webp" alt="Dag 3 · Amarante · 15:48" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="185">
+          <img src="images/fotogallerij/dag-03/thumbs/046.webp" alt="Dag 3 · Amarante · 15:48" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="186">
+          <img src="images/fotogallerij/dag-03/thumbs/047.webp" alt="Dag 3 · Amarante · 15:50" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="187">
+          <img src="images/fotogallerij/dag-03/thumbs/048.webp" alt="Dag 3 · Amarante · 15:50" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="188">
+          <img src="images/fotogallerij/dag-03/thumbs/049.webp" alt="Dag 3 · Amarante · 16:03" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="189">
+          <img src="images/fotogallerij/dag-03/thumbs/050.webp" alt="Dag 3 · Amarante · 16:03" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="190">
+          <img src="images/fotogallerij/dag-03/thumbs/051.webp" alt="Dag 3 · Amarante · 16:05" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="191">
+          <img src="images/fotogallerij/dag-03/thumbs/052.webp" alt="Dag 3 · Amarante · 18:12" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="192">
+          <img src="images/fotogallerij/dag-03/thumbs/053.webp" alt="Dag 3 · Amarante · 18:12" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="193">
+          <img src="images/fotogallerij/dag-03/thumbs/054.webp" alt="Dag 3 · Amarante · 18:12" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="194">
+          <img src="images/fotogallerij/dag-03/thumbs/055.webp" alt="Dag 3 · Amarante · 18:12" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="195">
+          <img src="images/fotogallerij/dag-03/thumbs/056.webp" alt="Dag 3 · Amarante · 18:42" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="196">
+          <img src="images/fotogallerij/dag-03/thumbs/057.webp" alt="Dag 3 · Amarante · 18:42" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="197">
+          <img src="images/fotogallerij/dag-03/thumbs/058.webp" alt="Dag 3 · Amarante · 18:42" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="198">
+          <img src="images/fotogallerij/dag-03/thumbs/059.webp" alt="Dag 3 · Amarante · 18:42" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="199">
+          <img src="images/fotogallerij/dag-03/thumbs/060.webp" alt="Dag 3 · Amarante · 18:43" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="200">
+          <img src="images/fotogallerij/dag-03/thumbs/061.webp" alt="Dag 3 · Amarante · 18:43" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="201">
+          <img src="images/fotogallerij/dag-03/thumbs/062.webp" alt="Dag 3 · Amarante · 18:43" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="202">
+          <img src="images/fotogallerij/dag-03/thumbs/063.webp" alt="Dag 3 · Amarante · 18:45" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="203">
+          <img src="images/fotogallerij/dag-03/thumbs/064.webp" alt="Dag 3 · Amarante · 18:45" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="204">
+          <img src="images/fotogallerij/dag-03/thumbs/065.webp" alt="Dag 3 · Amarante · 18:45" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="205">
+          <img src="images/fotogallerij/dag-03/thumbs/066.webp" alt="Dag 3 · Amarante · 18:45" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="206">
+          <img src="images/fotogallerij/dag-03/thumbs/067.webp" alt="Dag 3 · Amarante · 18:46" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="207">
+          <img src="images/fotogallerij/dag-03/thumbs/068.webp" alt="Dag 3 · Amarante · 18:46" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="208">
+          <img src="images/fotogallerij/dag-03/thumbs/069.webp" alt="Dag 3 · Amarante · 18:46" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="209">
+          <img src="images/fotogallerij/dag-03/thumbs/070.webp" alt="Dag 3 · Amarante · 18:47" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="210">
+          <img src="images/fotogallerij/dag-03/thumbs/071.webp" alt="Dag 3 · Amarante · 18:47" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="211">
+          <img src="images/fotogallerij/dag-03/thumbs/072.webp" alt="Dag 3 · Amarante · 18:47" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="212">
+          <img src="images/fotogallerij/dag-03/thumbs/073.webp" alt="Dag 3 · Amarante · 18:52" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="213">
+          <img src="images/fotogallerij/dag-03/thumbs/074.webp" alt="Dag 3 · Amarante · 18:52" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="214">
+          <img src="images/fotogallerij/dag-03/thumbs/075.webp" alt="Dag 3 · Amarante · 18:52" loading="lazy" decoding="async">
+        </div>
+  </div>
+</section>
+
+<section class="gallery-day" id="gdag-4">
+  <div class="gallery-day-head">
+    <h2>Dag 4 · Douro-vallei</h2>
+    <span class="gallery-date">wo 9 sep · dagtrip · 44 foto's</span>
+  </div>
+  <div class="gallery-grid">
+        <div class="gallery-item" data-index="215">
+          <img src="images/fotogallerij/dag-04/thumbs/001.webp" alt="Dag 4 · Douro-vallei · 17:56" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="216">
+          <img src="images/fotogallerij/dag-04/thumbs/002.webp" alt="Dag 4 · Douro-vallei · 18:37" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="217">
+          <img src="images/fotogallerij/dag-04/thumbs/003.webp" alt="Dag 4 · Douro-vallei · 18:37" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="218">
+          <img src="images/fotogallerij/dag-04/thumbs/004.webp" alt="Dag 4 · Douro-vallei · 18:37" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="219">
+          <img src="images/fotogallerij/dag-04/thumbs/005.webp" alt="Dag 4 · Douro-vallei · 18:37" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="220">
+          <img src="images/fotogallerij/dag-04/thumbs/006.webp" alt="Dag 4 · Douro-vallei · 18:52" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="221">
+          <img src="images/fotogallerij/dag-04/thumbs/007.webp" alt="Dag 4 · Douro-vallei · 18:52" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="222">
+          <img src="images/fotogallerij/dag-04/thumbs/008.webp" alt="Dag 4 · Douro-vallei · 18:52" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="223">
+          <img src="images/fotogallerij/dag-04/thumbs/009.webp" alt="Dag 4 · Douro-vallei · 18:52" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="224">
+          <img src="images/fotogallerij/dag-04/thumbs/010.webp" alt="Dag 4 · Douro-vallei · 18:52" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="225">
+          <img src="images/fotogallerij/dag-04/thumbs/011.webp" alt="Dag 4 · Douro-vallei · 18:53" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="226">
+          <img src="images/fotogallerij/dag-04/thumbs/012.webp" alt="Dag 4 · Douro-vallei · 18:55" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="227">
+          <img src="images/fotogallerij/dag-04/thumbs/013.webp" alt="Dag 4 · Douro-vallei · 18:55" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="228">
+          <img src="images/fotogallerij/dag-04/thumbs/014.webp" alt="Dag 4 · Douro-vallei · 18:55" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="229">
+          <img src="images/fotogallerij/dag-04/thumbs/015.webp" alt="Dag 4 · Douro-vallei · 19:04" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="230">
+          <img src="images/fotogallerij/dag-04/thumbs/016.webp" alt="Dag 4 · Douro-vallei · 19:05" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="231">
+          <img src="images/fotogallerij/dag-04/thumbs/017.webp" alt="Dag 4 · Douro-vallei · 19:05" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="232">
+          <img src="images/fotogallerij/dag-04/thumbs/018.webp" alt="Dag 4 · Douro-vallei · 19:06" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="233">
+          <img src="images/fotogallerij/dag-04/thumbs/019.webp" alt="Dag 4 · Douro-vallei · 19:06" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="234">
+          <img src="images/fotogallerij/dag-04/thumbs/020.webp" alt="Dag 4 · Douro-vallei · 19:06" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="235">
+          <img src="images/fotogallerij/dag-04/thumbs/021.webp" alt="Dag 4 · Douro-vallei · 19:06" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="236">
+          <img src="images/fotogallerij/dag-04/thumbs/022.webp" alt="Dag 4 · Douro-vallei · 19:06" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="237">
+          <img src="images/fotogallerij/dag-04/thumbs/023.webp" alt="Dag 4 · Douro-vallei · 19:06" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="238">
+          <img src="images/fotogallerij/dag-04/thumbs/024.webp" alt="Dag 4 · Douro-vallei · 19:06" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="239">
+          <img src="images/fotogallerij/dag-04/thumbs/025.webp" alt="Dag 4 · Douro-vallei · 19:10" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="240">
+          <img src="images/fotogallerij/dag-04/thumbs/026.webp" alt="Dag 4 · Douro-vallei · 19:10" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="241">
+          <img src="images/fotogallerij/dag-04/thumbs/027.webp" alt="Dag 4 · Douro-vallei · 19:10" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="242">
+          <img src="images/fotogallerij/dag-04/thumbs/028.webp" alt="Dag 4 · Douro-vallei · 19:14" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="243">
+          <img src="images/fotogallerij/dag-04/thumbs/029.webp" alt="Dag 4 · Douro-vallei · 19:17" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="244">
+          <img src="images/fotogallerij/dag-04/thumbs/030.webp" alt="Dag 4 · Douro-vallei · 19:17" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="245">
+          <img src="images/fotogallerij/dag-04/thumbs/031.webp" alt="Dag 4 · Douro-vallei · 20:40" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="246">
+          <img src="images/fotogallerij/dag-04/thumbs/032.webp" alt="Dag 4 · Douro-vallei · 20:40" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="247">
+          <img src="images/fotogallerij/dag-04/thumbs/033.webp" alt="Dag 4 · Douro-vallei · 20:40" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="248">
+          <img src="images/fotogallerij/dag-04/thumbs/034.webp" alt="Dag 4 · Douro-vallei · 20:40" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="249">
+          <img src="images/fotogallerij/dag-04/thumbs/035.webp" alt="Dag 4 · Douro-vallei · 20:40" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="250">
+          <img src="images/fotogallerij/dag-04/thumbs/036.webp" alt="Dag 4 · Douro-vallei · 21:03" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="251">
+          <img src="images/fotogallerij/dag-04/thumbs/037.webp" alt="Dag 4 · Douro-vallei · 21:03" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="252">
+          <img src="images/fotogallerij/dag-04/thumbs/038.webp" alt="Dag 4 · Douro-vallei · 21:03" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="253">
+          <img src="images/fotogallerij/dag-04/thumbs/039.webp" alt="Dag 4 · Douro-vallei · 21:03" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="254">
+          <img src="images/fotogallerij/dag-04/thumbs/040.webp" alt="Dag 4 · Douro-vallei · 21:07" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="255">
+          <img src="images/fotogallerij/dag-04/thumbs/041.webp" alt="Dag 4 · Douro-vallei · 21:08" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="256">
+          <img src="images/fotogallerij/dag-04/thumbs/042.webp" alt="Dag 4 · Douro-vallei · 21:08" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="257">
+          <img src="images/fotogallerij/dag-04/thumbs/043.webp" alt="Dag 4 · Douro-vallei · 21:08" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="258">
+          <img src="images/fotogallerij/dag-04/thumbs/044.webp" alt="Dag 4 · Douro-vallei · 21:25" loading="lazy" decoding="async">
+        </div>
+  </div>
+</section>
+
+<section class="gallery-day" id="gdag-5">
+  <div class="gallery-day-head">
+    <h2>Dag 5 · Aveiro</h2>
+    <span class="gallery-date">do 10 sep · 24 foto's</span>
+  </div>
+  <div class="gallery-grid">
+        <div class="gallery-item" data-index="259">
+          <img src="images/fotogallerij/dag-05/thumbs/001.webp" alt="Dag 5 · Aveiro · 18:12" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="260">
+          <img src="images/fotogallerij/dag-05/thumbs/002.webp" alt="Dag 5 · Aveiro · 18:12" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="261">
+          <img src="images/fotogallerij/dag-05/thumbs/003.webp" alt="Dag 5 · Aveiro · 18:23" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="262">
+          <img src="images/fotogallerij/dag-05/thumbs/004.webp" alt="Dag 5 · Aveiro · 18:23" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="263">
+          <img src="images/fotogallerij/dag-05/thumbs/005.webp" alt="Dag 5 · Aveiro · 18:23" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="264">
+          <img src="images/fotogallerij/dag-05/thumbs/006.webp" alt="Dag 5 · Aveiro · 18:24" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="265">
+          <img src="images/fotogallerij/dag-05/thumbs/007.webp" alt="Dag 5 · Aveiro · 18:24" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="266">
+          <img src="images/fotogallerij/dag-05/thumbs/008.webp" alt="Dag 5 · Aveiro · 18:24" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="267">
+          <img src="images/fotogallerij/dag-05/thumbs/009.webp" alt="Dag 5 · Aveiro · 18:24" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="268">
+          <img src="images/fotogallerij/dag-05/thumbs/010.webp" alt="Dag 5 · Aveiro · 18:24" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="269">
+          <img src="images/fotogallerij/dag-05/thumbs/011.webp" alt="Dag 5 · Aveiro · 18:24" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="270">
+          <img src="images/fotogallerij/dag-05/thumbs/012.webp" alt="Dag 5 · Aveiro · 18:24" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="271">
+          <img src="images/fotogallerij/dag-05/thumbs/013.webp" alt="Dag 5 · Aveiro · 20:47" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="272">
+          <img src="images/fotogallerij/dag-05/thumbs/014.webp" alt="Dag 5 · Aveiro · 20:47" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="273">
+          <img src="images/fotogallerij/dag-05/thumbs/015.webp" alt="Dag 5 · Aveiro · 20:47" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="274">
+          <img src="images/fotogallerij/dag-05/thumbs/016.webp" alt="Dag 5 · Aveiro · 20:53" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="275">
+          <img src="images/fotogallerij/dag-05/thumbs/017.webp" alt="Dag 5 · Aveiro · 20:53" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="276">
+          <img src="images/fotogallerij/dag-05/thumbs/018.webp" alt="Dag 5 · Aveiro · 20:53" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="277">
+          <img src="images/fotogallerij/dag-05/thumbs/019.webp" alt="Dag 5 · Aveiro · 20:53" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="278">
+          <img src="images/fotogallerij/dag-05/thumbs/020.webp" alt="Dag 5 · Aveiro · 20:54" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="279">
+          <img src="images/fotogallerij/dag-05/thumbs/021.webp" alt="Dag 5 · Aveiro · 20:55" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="280">
+          <img src="images/fotogallerij/dag-05/thumbs/022.webp" alt="Dag 5 · Aveiro · 20:55" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="281">
+          <img src="images/fotogallerij/dag-05/thumbs/023.webp" alt="Dag 5 · Aveiro · 20:55" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="282">
+          <img src="images/fotogallerij/dag-05/thumbs/024.webp" alt="Dag 5 · Aveiro · 20:55" loading="lazy" decoding="async">
+        </div>
+  </div>
+</section>
+
+<section class="gallery-day" id="gdag-6">
+  <div class="gallery-day-head">
+    <h2>Dag 6 · Batalha, Alcobaça &amp; Nazaré</h2>
+    <span class="gallery-date">vr 11 sep · onderweg · 120 foto's</span>
+  </div>
+  <div class="gallery-grid">
+        <div class="gallery-item" data-index="283">
+          <img src="images/fotogallerij/dag-06/thumbs/001.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 00:01" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="284">
+          <img src="images/fotogallerij/dag-06/thumbs/002.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 00:11" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="285">
+          <img src="images/fotogallerij/dag-06/thumbs/003.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 00:11" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="286">
+          <img src="images/fotogallerij/dag-06/thumbs/004.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 00:11" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="287">
+          <img src="images/fotogallerij/dag-06/thumbs/005.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 11:21" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="288">
+          <img src="images/fotogallerij/dag-06/thumbs/006.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 11:21" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="289">
+          <img src="images/fotogallerij/dag-06/thumbs/007.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 11:21" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="290">
+          <img src="images/fotogallerij/dag-06/thumbs/008.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 11:55" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="291">
+          <img src="images/fotogallerij/dag-06/thumbs/009.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 11:55" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="292">
+          <img src="images/fotogallerij/dag-06/thumbs/010.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 11:55" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="293">
+          <img src="images/fotogallerij/dag-06/thumbs/011.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 11:56" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="294">
+          <img src="images/fotogallerij/dag-06/thumbs/012.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 11:56" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="295">
+          <img src="images/fotogallerij/dag-06/thumbs/013.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 11:57" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="296">
+          <img src="images/fotogallerij/dag-06/thumbs/014.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 11:57" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="297">
+          <img src="images/fotogallerij/dag-06/thumbs/015.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 11:57" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="298">
+          <img src="images/fotogallerij/dag-06/thumbs/016.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 11:57" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="299">
+          <img src="images/fotogallerij/dag-06/thumbs/017.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 12:00" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="300">
+          <img src="images/fotogallerij/dag-06/thumbs/018.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 12:00" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="301">
+          <img src="images/fotogallerij/dag-06/thumbs/019.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 12:00" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="302">
+          <img src="images/fotogallerij/dag-06/thumbs/020.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 12:00" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="303">
+          <img src="images/fotogallerij/dag-06/thumbs/021.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 12:29" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="304">
+          <img src="images/fotogallerij/dag-06/thumbs/022.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 12:29" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="305">
+          <img src="images/fotogallerij/dag-06/thumbs/023.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 12:32" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="306">
+          <img src="images/fotogallerij/dag-06/thumbs/024.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 12:40" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="307">
+          <img src="images/fotogallerij/dag-06/thumbs/025.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 12:40" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="308">
+          <img src="images/fotogallerij/dag-06/thumbs/026.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 12:40" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="309">
+          <img src="images/fotogallerij/dag-06/thumbs/027.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 12:44" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="310">
+          <img src="images/fotogallerij/dag-06/thumbs/028.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 12:45" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="311">
+          <img src="images/fotogallerij/dag-06/thumbs/029.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 12:45" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="312">
+          <img src="images/fotogallerij/dag-06/thumbs/030.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 13:01" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="313">
+          <img src="images/fotogallerij/dag-06/thumbs/031.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 13:01" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="314">
+          <img src="images/fotogallerij/dag-06/thumbs/032.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 13:01" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="315">
+          <img src="images/fotogallerij/dag-06/thumbs/033.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 13:04" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="316">
+          <img src="images/fotogallerij/dag-06/thumbs/034.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 13:04" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="317">
+          <img src="images/fotogallerij/dag-06/thumbs/035.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 13:04" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="318">
+          <img src="images/fotogallerij/dag-06/thumbs/036.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 13:08" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="319">
+          <img src="images/fotogallerij/dag-06/thumbs/037.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 13:08" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="320">
+          <img src="images/fotogallerij/dag-06/thumbs/038.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 13:08" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="321">
+          <img src="images/fotogallerij/dag-06/thumbs/039.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 13:24" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="322">
+          <img src="images/fotogallerij/dag-06/thumbs/040.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 13:24" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="323">
+          <img src="images/fotogallerij/dag-06/thumbs/041.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 13:25" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="324">
+          <img src="images/fotogallerij/dag-06/thumbs/042.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 13:25" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="325">
+          <img src="images/fotogallerij/dag-06/thumbs/043.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 13:25" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="326">
+          <img src="images/fotogallerij/dag-06/thumbs/044.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 13:25" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="327">
+          <img src="images/fotogallerij/dag-06/thumbs/045.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 13:25" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="328">
+          <img src="images/fotogallerij/dag-06/thumbs/046.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 14:11" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="329">
+          <img src="images/fotogallerij/dag-06/thumbs/047.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 14:31" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="330">
+          <img src="images/fotogallerij/dag-06/thumbs/048.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 14:48" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="331">
+          <img src="images/fotogallerij/dag-06/thumbs/049.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 14:53" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="332">
+          <img src="images/fotogallerij/dag-06/thumbs/050.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 14:54" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="333">
+          <img src="images/fotogallerij/dag-06/thumbs/051.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 14:54" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="334">
+          <img src="images/fotogallerij/dag-06/thumbs/052.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 14:54" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="335">
+          <img src="images/fotogallerij/dag-06/thumbs/053.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 14:54" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="336">
+          <img src="images/fotogallerij/dag-06/thumbs/054.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 14:54" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="337">
+          <img src="images/fotogallerij/dag-06/thumbs/055.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 14:55" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="338">
+          <img src="images/fotogallerij/dag-06/thumbs/056.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 14:55" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="339">
+          <img src="images/fotogallerij/dag-06/thumbs/057.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 14:55" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="340">
+          <img src="images/fotogallerij/dag-06/thumbs/058.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 14:55" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="341">
+          <img src="images/fotogallerij/dag-06/thumbs/059.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 14:56" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="342">
+          <img src="images/fotogallerij/dag-06/thumbs/060.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 14:56" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="343">
+          <img src="images/fotogallerij/dag-06/thumbs/061.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 14:57" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="344">
+          <img src="images/fotogallerij/dag-06/thumbs/062.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 14:59" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="345">
+          <img src="images/fotogallerij/dag-06/thumbs/063.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 15:00" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="346">
+          <img src="images/fotogallerij/dag-06/thumbs/064.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 15:02" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="347">
+          <img src="images/fotogallerij/dag-06/thumbs/065.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 15:02" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="348">
+          <img src="images/fotogallerij/dag-06/thumbs/066.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 15:02" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="349">
+          <img src="images/fotogallerij/dag-06/thumbs/067.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 15:30" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="350">
+          <img src="images/fotogallerij/dag-06/thumbs/068.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 15:30" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="351">
+          <img src="images/fotogallerij/dag-06/thumbs/069.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 15:30" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="352">
+          <img src="images/fotogallerij/dag-06/thumbs/070.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 15:34" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="353">
+          <img src="images/fotogallerij/dag-06/thumbs/071.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 15:34" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="354">
+          <img src="images/fotogallerij/dag-06/thumbs/072.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 15:34" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="355">
+          <img src="images/fotogallerij/dag-06/thumbs/073.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 15:39" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="356">
+          <img src="images/fotogallerij/dag-06/thumbs/074.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 15:40" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="357">
+          <img src="images/fotogallerij/dag-06/thumbs/075.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 15:40" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="358">
+          <img src="images/fotogallerij/dag-06/thumbs/076.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 15:42" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="359">
+          <img src="images/fotogallerij/dag-06/thumbs/077.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 15:59" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="360">
+          <img src="images/fotogallerij/dag-06/thumbs/078.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 15:59" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="361">
+          <img src="images/fotogallerij/dag-06/thumbs/079.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 16:00" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="362">
+          <img src="images/fotogallerij/dag-06/thumbs/080.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 16:01" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="363">
+          <img src="images/fotogallerij/dag-06/thumbs/081.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 16:01" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="364">
+          <img src="images/fotogallerij/dag-06/thumbs/082.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 16:07" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="365">
+          <img src="images/fotogallerij/dag-06/thumbs/083.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 16:10" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="366">
+          <img src="images/fotogallerij/dag-06/thumbs/084.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 16:15" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="367">
+          <img src="images/fotogallerij/dag-06/thumbs/085.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 17:30" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="368">
+          <img src="images/fotogallerij/dag-06/thumbs/086.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 17:31" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="369">
+          <img src="images/fotogallerij/dag-06/thumbs/087.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 17:34" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="370">
+          <img src="images/fotogallerij/dag-06/thumbs/088.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 17:34" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="371">
+          <img src="images/fotogallerij/dag-06/thumbs/089.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 17:39" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="372">
+          <img src="images/fotogallerij/dag-06/thumbs/090.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 17:40" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="373">
+          <img src="images/fotogallerij/dag-06/thumbs/091.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 17:41" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="374">
+          <img src="images/fotogallerij/dag-06/thumbs/092.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 17:41" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="375">
+          <img src="images/fotogallerij/dag-06/thumbs/093.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 17:41" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="376">
+          <img src="images/fotogallerij/dag-06/thumbs/094.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 17:45" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="377">
+          <img src="images/fotogallerij/dag-06/thumbs/095.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 17:46" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="378">
+          <img src="images/fotogallerij/dag-06/thumbs/096.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 17:46" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="379">
+          <img src="images/fotogallerij/dag-06/thumbs/097.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 17:46" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="380">
+          <img src="images/fotogallerij/dag-06/thumbs/098.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 17:46" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="381">
+          <img src="images/fotogallerij/dag-06/thumbs/099.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 17:46" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="382">
+          <img src="images/fotogallerij/dag-06/thumbs/100.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 17:47" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="383">
+          <img src="images/fotogallerij/dag-06/thumbs/101.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 17:47" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="384">
+          <img src="images/fotogallerij/dag-06/thumbs/102.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 17:47" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="385">
+          <img src="images/fotogallerij/dag-06/thumbs/103.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 17:47" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="386">
+          <img src="images/fotogallerij/dag-06/thumbs/104.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 17:50" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="387">
+          <img src="images/fotogallerij/dag-06/thumbs/105.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 17:51" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="388">
+          <img src="images/fotogallerij/dag-06/thumbs/106.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 17:51" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="389">
+          <img src="images/fotogallerij/dag-06/thumbs/107.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 17:52" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="390">
+          <img src="images/fotogallerij/dag-06/thumbs/108.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 17:52" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="391">
+          <img src="images/fotogallerij/dag-06/thumbs/109.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 17:52" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="392">
+          <img src="images/fotogallerij/dag-06/thumbs/110.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 17:54" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="393">
+          <img src="images/fotogallerij/dag-06/thumbs/111.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 17:54" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="394">
+          <img src="images/fotogallerij/dag-06/thumbs/112.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 17:59" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="395">
+          <img src="images/fotogallerij/dag-06/thumbs/113.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 17:59" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="396">
+          <img src="images/fotogallerij/dag-06/thumbs/114.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 18:01" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="397">
+          <img src="images/fotogallerij/dag-06/thumbs/115.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 18:11" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="398">
+          <img src="images/fotogallerij/dag-06/thumbs/116.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 18:11" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="399">
+          <img src="images/fotogallerij/dag-06/thumbs/117.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 18:11" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="400">
+          <img src="images/fotogallerij/dag-06/thumbs/118.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 18:11" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="401">
+          <img src="images/fotogallerij/dag-06/thumbs/119.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 18:11" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="402">
+          <img src="images/fotogallerij/dag-06/thumbs/120.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 18:14" loading="lazy" decoding="async">
+        </div>
+  </div>
+</section>
+
+<section class="gallery-day" id="gdag-7">
+  <div class="gallery-day-head">
+    <h2>Dag 7 · Óbidos</h2>
+    <span class="gallery-date">za 12 sep · 33 foto's</span>
+  </div>
+  <div class="gallery-grid">
+        <div class="gallery-item" data-index="403">
+          <img src="images/fotogallerij/dag-07/thumbs/001.webp" alt="Dag 7 · Óbidos · 11:16" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="404">
+          <img src="images/fotogallerij/dag-07/thumbs/002.webp" alt="Dag 7 · Óbidos · 11:17" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="405">
+          <img src="images/fotogallerij/dag-07/thumbs/003.webp" alt="Dag 7 · Óbidos · 11:17" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="406">
+          <img src="images/fotogallerij/dag-07/thumbs/004.webp" alt="Dag 7 · Óbidos · 11:17" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="407">
+          <img src="images/fotogallerij/dag-07/thumbs/005.webp" alt="Dag 7 · Óbidos · 11:17" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="408">
+          <img src="images/fotogallerij/dag-07/thumbs/006.webp" alt="Dag 7 · Óbidos · 11:56" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="409">
+          <img src="images/fotogallerij/dag-07/thumbs/007.webp" alt="Dag 7 · Óbidos · 11:56" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="410">
+          <img src="images/fotogallerij/dag-07/thumbs/008.webp" alt="Dag 7 · Óbidos · 11:56" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="411">
+          <img src="images/fotogallerij/dag-07/thumbs/009.webp" alt="Dag 7 · Óbidos · 11:58" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="412">
+          <img src="images/fotogallerij/dag-07/thumbs/010.webp" alt="Dag 7 · Óbidos · 11:58" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="413">
+          <img src="images/fotogallerij/dag-07/thumbs/011.webp" alt="Dag 7 · Óbidos · 12:00" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="414">
+          <img src="images/fotogallerij/dag-07/thumbs/012.webp" alt="Dag 7 · Óbidos · 12:00" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="415">
+          <img src="images/fotogallerij/dag-07/thumbs/013.webp" alt="Dag 7 · Óbidos · 12:00" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="416">
+          <img src="images/fotogallerij/dag-07/thumbs/014.webp" alt="Dag 7 · Óbidos · 12:01" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="417">
+          <img src="images/fotogallerij/dag-07/thumbs/015.webp" alt="Dag 7 · Óbidos · 12:02" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="418">
+          <img src="images/fotogallerij/dag-07/thumbs/016.webp" alt="Dag 7 · Óbidos · 12:19" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="419">
+          <img src="images/fotogallerij/dag-07/thumbs/017.webp" alt="Dag 7 · Óbidos · 12:19" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="420">
+          <img src="images/fotogallerij/dag-07/thumbs/018.webp" alt="Dag 7 · Óbidos · 12:19" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="421">
+          <img src="images/fotogallerij/dag-07/thumbs/019.webp" alt="Dag 7 · Óbidos · 14:00" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="422">
+          <img src="images/fotogallerij/dag-07/thumbs/020.webp" alt="Dag 7 · Óbidos · 14:08" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="423">
+          <img src="images/fotogallerij/dag-07/thumbs/021.webp" alt="Dag 7 · Óbidos · 15:32" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="424">
+          <img src="images/fotogallerij/dag-07/thumbs/022.webp" alt="Dag 7 · Óbidos · 23:13" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="425">
+          <img src="images/fotogallerij/dag-07/thumbs/023.webp" alt="Dag 7 · Óbidos · 23:13" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="426">
+          <img src="images/fotogallerij/dag-07/thumbs/024.webp" alt="Dag 7 · Óbidos · 23:13" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="427">
+          <img src="images/fotogallerij/dag-07/thumbs/025.webp" alt="Dag 7 · Óbidos · 23:13" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="428">
+          <img src="images/fotogallerij/dag-07/thumbs/026.webp" alt="Dag 7 · Óbidos · 23:13" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="429">
+          <img src="images/fotogallerij/dag-07/thumbs/027.webp" alt="Dag 7 · Óbidos · 23:13" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="430">
+          <img src="images/fotogallerij/dag-07/thumbs/028.webp" alt="Dag 7 · Óbidos · 23:24" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="431">
+          <img src="images/fotogallerij/dag-07/thumbs/029.webp" alt="Dag 7 · Óbidos · 23:24" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="432">
+          <img src="images/fotogallerij/dag-07/thumbs/030.webp" alt="Dag 7 · Óbidos · 23:26" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="433">
+          <img src="images/fotogallerij/dag-07/thumbs/031.webp" alt="Dag 7 · Óbidos · 23:27" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="434">
+          <img src="images/fotogallerij/dag-07/thumbs/032.webp" alt="Dag 7 · Óbidos · 23:27" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="435">
+          <img src="images/fotogallerij/dag-07/thumbs/033.webp" alt="Dag 7 · Óbidos · 23:27" loading="lazy" decoding="async">
+        </div>
+  </div>
+</section>
+
+<section class="gallery-day" id="gdag-8">
+  <div class="gallery-day-head">
+    <h2>Dag 8 · Mafra &amp; Sintra</h2>
+    <span class="gallery-date">zo 13 sep · dagtrip · 3 foto's</span>
+  </div>
+  <div class="gallery-grid">
+        <div class="gallery-item" data-index="436">
+          <img src="images/fotogallerij/dag-08/thumbs/001.webp" alt="Dag 8 · Mafra & Sintra · 12:50" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="437">
+          <img src="images/fotogallerij/dag-08/thumbs/002.webp" alt="Dag 8 · Mafra & Sintra · 12:50" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-index="438">
+          <img src="images/fotogallerij/dag-08/thumbs/003.webp" alt="Dag 8 · Mafra & Sintra · 12:50" loading="lazy" decoding="async">
+        </div>
+  </div>
+</section>
+
+  </div>
+</section>
+
+<footer style="background:var(--dark);color:#fff;padding:2rem;text-align:center;font-size:.85rem;opacity:.8;">
+  Portugal Roadtrip · zo 6 – di 15 sep 2026 · <a href="index.html" style="color:var(--gold)">← Terug naar de route</a>
+</footer>
+
+<div class="lightbox-overlay" id="lightbox">
+  <button class="lightbox-close" id="lightbox-close" aria-label="Sluiten">✕</button>
+  <button class="lightbox-nav-btn lightbox-prev" id="lightbox-prev" aria-label="Vorige">‹</button>
+  <button class="lightbox-nav-btn lightbox-next" id="lightbox-next" aria-label="Volgende">›</button>
+  <div class="lightbox-img-wrap">
+    <img id="lightbox-img" src="" alt="">
+  </div>
+  <div class="lightbox-caption" id="lightbox-caption"></div>
+  <div class="lightbox-counter" id="lightbox-counter"></div>
+</div>
+
+<script src="nav.js" defer></script>
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script src="onesignal-init.js" defer></script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => { navigator.serviceWorker.register('sw.js').catch(() => {}); });
+}
+</script>
+<script data-goatcounter="https://wierts.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
+<script>
+(function () {
+  var photos = [
+    {full:'images/fotogallerij/dag-01/full/001.webp', caption:'Dag 1 · Porto · 08:02'},
+    {full:'images/fotogallerij/dag-01/full/002.webp', caption:'Dag 1 · Porto · 08:02'},
+    {full:'images/fotogallerij/dag-01/full/003.webp', caption:'Dag 1 · Porto · 08:05'},
+    {full:'images/fotogallerij/dag-01/full/004.webp', caption:'Dag 1 · Porto · 08:06'},
+    {full:'images/fotogallerij/dag-01/full/005.webp', caption:'Dag 1 · Porto · 08:07'},
+    {full:'images/fotogallerij/dag-01/full/006.webp', caption:'Dag 1 · Porto · 13:05'},
+    {full:'images/fotogallerij/dag-01/full/007.webp', caption:'Dag 1 · Porto · 13:05'},
+    {full:'images/fotogallerij/dag-01/full/008.webp', caption:'Dag 1 · Porto · 13:05'},
+    {full:'images/fotogallerij/dag-01/full/009.webp', caption:'Dag 1 · Porto · 13:05'},
+    {full:'images/fotogallerij/dag-01/full/010.webp', caption:'Dag 1 · Porto · 13:05'},
+    {full:'images/fotogallerij/dag-01/full/011.webp', caption:'Dag 1 · Porto · 13:41'},
+    {full:'images/fotogallerij/dag-01/full/012.webp', caption:'Dag 1 · Porto · 13:41'},
+    {full:'images/fotogallerij/dag-01/full/013.webp', caption:'Dag 1 · Porto · 13:42'},
+    {full:'images/fotogallerij/dag-01/full/014.webp', caption:'Dag 1 · Porto · 14:41'},
+    {full:'images/fotogallerij/dag-01/full/015.webp', caption:'Dag 1 · Porto · 14:41'},
+    {full:'images/fotogallerij/dag-01/full/016.webp', caption:'Dag 1 · Porto · 14:41'},
+    {full:'images/fotogallerij/dag-01/full/017.webp', caption:'Dag 1 · Porto · 15:52'},
+    {full:'images/fotogallerij/dag-01/full/018.webp', caption:'Dag 1 · Porto · 15:52'},
+    {full:'images/fotogallerij/dag-01/full/019.webp', caption:'Dag 1 · Porto · 15:52'},
+    {full:'images/fotogallerij/dag-01/full/020.webp', caption:'Dag 1 · Porto · 15:52'},
+    {full:'images/fotogallerij/dag-01/full/021.webp', caption:'Dag 1 · Porto · 15:52'},
+    {full:'images/fotogallerij/dag-01/full/022.webp', caption:'Dag 1 · Porto · 15:52'},
+    {full:'images/fotogallerij/dag-01/full/023.webp', caption:'Dag 1 · Porto · 15:55'},
+    {full:'images/fotogallerij/dag-01/full/024.webp', caption:'Dag 1 · Porto · 15:55'},
+    {full:'images/fotogallerij/dag-01/full/025.webp', caption:'Dag 1 · Porto · 15:55'},
+    {full:'images/fotogallerij/dag-01/full/026.webp', caption:'Dag 1 · Porto · 15:55'},
+    {full:'images/fotogallerij/dag-01/full/027.webp', caption:'Dag 1 · Porto · 16:15'},
+    {full:'images/fotogallerij/dag-01/full/028.webp', caption:'Dag 1 · Porto · 16:15'},
+    {full:'images/fotogallerij/dag-01/full/029.webp', caption:'Dag 1 · Porto · 16:15'},
+    {full:'images/fotogallerij/dag-01/full/030.webp', caption:'Dag 1 · Porto · 16:15'},
+    {full:'images/fotogallerij/dag-01/full/031.webp', caption:'Dag 1 · Porto · 17:55'},
+    {full:'images/fotogallerij/dag-01/full/032.webp', caption:'Dag 1 · Porto · 17:55'},
+    {full:'images/fotogallerij/dag-01/full/033.webp', caption:'Dag 1 · Porto · 17:55'},
+    {full:'images/fotogallerij/dag-01/full/034.webp', caption:'Dag 1 · Porto · 17:55'},
+    {full:'images/fotogallerij/dag-01/full/035.webp', caption:'Dag 1 · Porto · 17:55'},
+    {full:'images/fotogallerij/dag-01/full/036.webp', caption:'Dag 1 · Porto · 17:55'},
+    {full:'images/fotogallerij/dag-01/full/037.webp', caption:'Dag 1 · Porto · 17:55'},
+    {full:'images/fotogallerij/dag-01/full/038.webp', caption:'Dag 1 · Porto · 17:55'},
+    {full:'images/fotogallerij/dag-01/full/039.webp', caption:'Dag 1 · Porto · 17:55'},
+    {full:'images/fotogallerij/dag-01/full/040.webp', caption:'Dag 1 · Porto · 17:55'},
+    {full:'images/fotogallerij/dag-01/full/041.webp', caption:'Dag 1 · Porto · 17:56'},
+    {full:'images/fotogallerij/dag-01/full/042.webp', caption:'Dag 1 · Porto · 17:56'},
+    {full:'images/fotogallerij/dag-01/full/043.webp', caption:'Dag 1 · Porto · 17:56'},
+    {full:'images/fotogallerij/dag-01/full/044.webp', caption:'Dag 1 · Porto · 17:56'},
+    {full:'images/fotogallerij/dag-01/full/045.webp', caption:'Dag 1 · Porto · 17:56'},
+    {full:'images/fotogallerij/dag-01/full/046.webp', caption:'Dag 1 · Porto · 17:56'},
+    {full:'images/fotogallerij/dag-01/full/047.webp', caption:'Dag 1 · Porto · 17:56'},
+    {full:'images/fotogallerij/dag-01/full/048.webp', caption:'Dag 1 · Porto · 17:56'},
+    {full:'images/fotogallerij/dag-01/full/049.webp', caption:'Dag 1 · Porto · 17:56'},
+    {full:'images/fotogallerij/dag-01/full/050.webp', caption:'Dag 1 · Porto · 17:56'},
+    {full:'images/fotogallerij/dag-01/full/051.webp', caption:'Dag 1 · Porto · 18:42'},
+    {full:'images/fotogallerij/dag-01/full/052.webp', caption:'Dag 1 · Porto · 18:42'},
+    {full:'images/fotogallerij/dag-01/full/053.webp', caption:'Dag 1 · Porto · 18:43'},
+    {full:'images/fotogallerij/dag-01/full/054.webp', caption:'Dag 1 · Porto · 18:43'},
+    {full:'images/fotogallerij/dag-01/full/055.webp', caption:'Dag 1 · Porto · 18:43'},
+    {full:'images/fotogallerij/dag-01/full/056.webp', caption:'Dag 1 · Porto · 18:43'},
+    {full:'images/fotogallerij/dag-01/full/057.webp', caption:'Dag 1 · Porto · 18:43'},
+    {full:'images/fotogallerij/dag-01/full/058.webp', caption:'Dag 1 · Porto · 18:43'},
+    {full:'images/fotogallerij/dag-02/full/001.webp', caption:'Dag 2 · Porto · 11:34'},
+    {full:'images/fotogallerij/dag-02/full/002.webp', caption:'Dag 2 · Porto · 11:49'},
+    {full:'images/fotogallerij/dag-02/full/003.webp', caption:'Dag 2 · Porto · 11:49'},
+    {full:'images/fotogallerij/dag-02/full/004.webp', caption:'Dag 2 · Porto · 11:50'},
+    {full:'images/fotogallerij/dag-02/full/005.webp', caption:'Dag 2 · Porto · 11:50'},
+    {full:'images/fotogallerij/dag-02/full/006.webp', caption:'Dag 2 · Porto · 11:50'},
+    {full:'images/fotogallerij/dag-02/full/007.webp', caption:'Dag 2 · Porto · 11:50'},
+    {full:'images/fotogallerij/dag-02/full/008.webp', caption:'Dag 2 · Porto · 11:51'},
+    {full:'images/fotogallerij/dag-02/full/009.webp', caption:'Dag 2 · Porto · 11:51'},
+    {full:'images/fotogallerij/dag-02/full/010.webp', caption:'Dag 2 · Porto · 11:51'},
+    {full:'images/fotogallerij/dag-02/full/011.webp', caption:'Dag 2 · Porto · 11:51'},
+    {full:'images/fotogallerij/dag-02/full/012.webp', caption:'Dag 2 · Porto · 11:54'},
+    {full:'images/fotogallerij/dag-02/full/013.webp', caption:'Dag 2 · Porto · 11:55'},
+    {full:'images/fotogallerij/dag-02/full/014.webp', caption:'Dag 2 · Porto · 11:58'},
+    {full:'images/fotogallerij/dag-02/full/015.webp', caption:'Dag 2 · Porto · 12:02'},
+    {full:'images/fotogallerij/dag-02/full/016.webp', caption:'Dag 2 · Porto · 12:02'},
+    {full:'images/fotogallerij/dag-02/full/017.webp', caption:'Dag 2 · Porto · 12:03'},
+    {full:'images/fotogallerij/dag-02/full/018.webp', caption:'Dag 2 · Porto · 12:03'},
+    {full:'images/fotogallerij/dag-02/full/019.webp', caption:'Dag 2 · Porto · 12:08'},
+    {full:'images/fotogallerij/dag-02/full/020.webp', caption:'Dag 2 · Porto · 12:08'},
+    {full:'images/fotogallerij/dag-02/full/021.webp', caption:'Dag 2 · Porto · 13:14'},
+    {full:'images/fotogallerij/dag-02/full/022.webp', caption:'Dag 2 · Porto · 13:14'},
+    {full:'images/fotogallerij/dag-02/full/023.webp', caption:'Dag 2 · Porto · 13:14'},
+    {full:'images/fotogallerij/dag-02/full/024.webp', caption:'Dag 2 · Porto · 13:14'},
+    {full:'images/fotogallerij/dag-02/full/025.webp', caption:'Dag 2 · Porto · 13:14'},
+    {full:'images/fotogallerij/dag-02/full/026.webp', caption:'Dag 2 · Porto · 13:14'},
+    {full:'images/fotogallerij/dag-02/full/027.webp', caption:'Dag 2 · Porto · 13:14'},
+    {full:'images/fotogallerij/dag-02/full/028.webp', caption:'Dag 2 · Porto · 13:14'},
+    {full:'images/fotogallerij/dag-02/full/029.webp', caption:'Dag 2 · Porto · 13:25'},
+    {full:'images/fotogallerij/dag-02/full/030.webp', caption:'Dag 2 · Porto · 13:25'},
+    {full:'images/fotogallerij/dag-02/full/031.webp', caption:'Dag 2 · Porto · 13:25'},
+    {full:'images/fotogallerij/dag-02/full/032.webp', caption:'Dag 2 · Porto · 13:25'},
+    {full:'images/fotogallerij/dag-02/full/033.webp', caption:'Dag 2 · Porto · 13:27'},
+    {full:'images/fotogallerij/dag-02/full/034.webp', caption:'Dag 2 · Porto · 13:42'},
+    {full:'images/fotogallerij/dag-02/full/035.webp', caption:'Dag 2 · Porto · 13:49'},
+    {full:'images/fotogallerij/dag-02/full/036.webp', caption:'Dag 2 · Porto · 13:49'},
+    {full:'images/fotogallerij/dag-02/full/037.webp', caption:'Dag 2 · Porto · 13:50'},
+    {full:'images/fotogallerij/dag-02/full/038.webp', caption:'Dag 2 · Porto · 13:50'},
+    {full:'images/fotogallerij/dag-02/full/039.webp', caption:'Dag 2 · Porto · 13:51'},
+    {full:'images/fotogallerij/dag-02/full/040.webp', caption:'Dag 2 · Porto · 13:52'},
+    {full:'images/fotogallerij/dag-02/full/041.webp', caption:'Dag 2 · Porto · 13:54'},
+    {full:'images/fotogallerij/dag-02/full/042.webp', caption:'Dag 2 · Porto · 14:13'},
+    {full:'images/fotogallerij/dag-02/full/043.webp', caption:'Dag 2 · Porto · 14:13'},
+    {full:'images/fotogallerij/dag-02/full/044.webp', caption:'Dag 2 · Porto · 14:13'},
+    {full:'images/fotogallerij/dag-02/full/045.webp', caption:'Dag 2 · Porto · 14:15'},
+    {full:'images/fotogallerij/dag-02/full/046.webp', caption:'Dag 2 · Porto · 14:15'},
+    {full:'images/fotogallerij/dag-02/full/047.webp', caption:'Dag 2 · Porto · 14:19'},
+    {full:'images/fotogallerij/dag-02/full/048.webp', caption:'Dag 2 · Porto · 14:27'},
+    {full:'images/fotogallerij/dag-02/full/049.webp', caption:'Dag 2 · Porto · 14:27'},
+    {full:'images/fotogallerij/dag-02/full/050.webp', caption:'Dag 2 · Porto · 14:30'},
+    {full:'images/fotogallerij/dag-02/full/051.webp', caption:'Dag 2 · Porto · 14:31'},
+    {full:'images/fotogallerij/dag-02/full/052.webp', caption:'Dag 2 · Porto · 14:31'},
+    {full:'images/fotogallerij/dag-02/full/053.webp', caption:'Dag 2 · Porto · 14:31'},
+    {full:'images/fotogallerij/dag-02/full/054.webp', caption:'Dag 2 · Porto · 14:36'},
+    {full:'images/fotogallerij/dag-02/full/055.webp', caption:'Dag 2 · Porto · 14:36'},
+    {full:'images/fotogallerij/dag-02/full/056.webp', caption:'Dag 2 · Porto · 14:36'},
+    {full:'images/fotogallerij/dag-02/full/057.webp', caption:'Dag 2 · Porto · 14:36'},
+    {full:'images/fotogallerij/dag-02/full/058.webp', caption:'Dag 2 · Porto · 14:42'},
+    {full:'images/fotogallerij/dag-02/full/059.webp', caption:'Dag 2 · Porto · 14:42'},
+    {full:'images/fotogallerij/dag-02/full/060.webp', caption:'Dag 2 · Porto · 14:42'},
+    {full:'images/fotogallerij/dag-02/full/061.webp', caption:'Dag 2 · Porto · 14:43'},
+    {full:'images/fotogallerij/dag-02/full/062.webp', caption:'Dag 2 · Porto · 15:07'},
+    {full:'images/fotogallerij/dag-02/full/063.webp', caption:'Dag 2 · Porto · 15:07'},
+    {full:'images/fotogallerij/dag-02/full/064.webp', caption:'Dag 2 · Porto · 15:07'},
+    {full:'images/fotogallerij/dag-02/full/065.webp', caption:'Dag 2 · Porto · 15:21'},
+    {full:'images/fotogallerij/dag-02/full/066.webp', caption:'Dag 2 · Porto · 15:21'},
+    {full:'images/fotogallerij/dag-02/full/067.webp', caption:'Dag 2 · Porto · 15:21'},
+    {full:'images/fotogallerij/dag-02/full/068.webp', caption:'Dag 2 · Porto · 15:21'},
+    {full:'images/fotogallerij/dag-02/full/069.webp', caption:'Dag 2 · Porto · 16:44'},
+    {full:'images/fotogallerij/dag-02/full/070.webp', caption:'Dag 2 · Porto · 17:29'},
+    {full:'images/fotogallerij/dag-02/full/071.webp', caption:'Dag 2 · Porto · 17:29'},
+    {full:'images/fotogallerij/dag-02/full/072.webp', caption:'Dag 2 · Porto · 17:29'},
+    {full:'images/fotogallerij/dag-02/full/073.webp', caption:'Dag 2 · Porto · 17:29'},
+    {full:'images/fotogallerij/dag-02/full/074.webp', caption:'Dag 2 · Porto · 17:29'},
+    {full:'images/fotogallerij/dag-02/full/075.webp', caption:'Dag 2 · Porto · 17:29'},
+    {full:'images/fotogallerij/dag-02/full/076.webp', caption:'Dag 2 · Porto · 17:29'},
+    {full:'images/fotogallerij/dag-02/full/077.webp', caption:'Dag 2 · Porto · 17:29'},
+    {full:'images/fotogallerij/dag-02/full/078.webp', caption:'Dag 2 · Porto · 17:30'},
+    {full:'images/fotogallerij/dag-02/full/079.webp', caption:'Dag 2 · Porto · 17:30'},
+    {full:'images/fotogallerij/dag-02/full/080.webp', caption:'Dag 2 · Porto · 17:30'},
+    {full:'images/fotogallerij/dag-02/full/081.webp', caption:'Dag 2 · Porto · 17:30'},
+    {full:'images/fotogallerij/dag-02/full/082.webp', caption:'Dag 2 · Porto · 21:53'},
+    {full:'images/fotogallerij/dag-03/full/001.webp', caption:'Dag 3 · Amarante · 12:56'},
+    {full:'images/fotogallerij/dag-03/full/002.webp', caption:'Dag 3 · Amarante · 12:56'},
+    {full:'images/fotogallerij/dag-03/full/003.webp', caption:'Dag 3 · Amarante · 13:01'},
+    {full:'images/fotogallerij/dag-03/full/004.webp', caption:'Dag 3 · Amarante · 13:03'},
+    {full:'images/fotogallerij/dag-03/full/005.webp', caption:'Dag 3 · Amarante · 13:09'},
+    {full:'images/fotogallerij/dag-03/full/006.webp', caption:'Dag 3 · Amarante · 13:09'},
+    {full:'images/fotogallerij/dag-03/full/007.webp', caption:'Dag 3 · Amarante · 13:11'},
+    {full:'images/fotogallerij/dag-03/full/008.webp', caption:'Dag 3 · Amarante · 13:11'},
+    {full:'images/fotogallerij/dag-03/full/009.webp', caption:'Dag 3 · Amarante · 13:11'},
+    {full:'images/fotogallerij/dag-03/full/010.webp', caption:'Dag 3 · Amarante · 13:14'},
+    {full:'images/fotogallerij/dag-03/full/011.webp', caption:'Dag 3 · Amarante · 13:14'},
+    {full:'images/fotogallerij/dag-03/full/012.webp', caption:'Dag 3 · Amarante · 13:54'},
+    {full:'images/fotogallerij/dag-03/full/013.webp', caption:'Dag 3 · Amarante · 13:54'},
+    {full:'images/fotogallerij/dag-03/full/014.webp', caption:'Dag 3 · Amarante · 14:29'},
+    {full:'images/fotogallerij/dag-03/full/015.webp', caption:'Dag 3 · Amarante · 14:29'},
+    {full:'images/fotogallerij/dag-03/full/016.webp', caption:'Dag 3 · Amarante · 14:29'},
+    {full:'images/fotogallerij/dag-03/full/017.webp', caption:'Dag 3 · Amarante · 14:29'},
+    {full:'images/fotogallerij/dag-03/full/018.webp', caption:'Dag 3 · Amarante · 14:29'},
+    {full:'images/fotogallerij/dag-03/full/019.webp', caption:'Dag 3 · Amarante · 14:29'},
+    {full:'images/fotogallerij/dag-03/full/020.webp', caption:'Dag 3 · Amarante · 14:36'},
+    {full:'images/fotogallerij/dag-03/full/021.webp', caption:'Dag 3 · Amarante · 14:56'},
+    {full:'images/fotogallerij/dag-03/full/022.webp', caption:'Dag 3 · Amarante · 14:56'},
+    {full:'images/fotogallerij/dag-03/full/023.webp', caption:'Dag 3 · Amarante · 14:56'},
+    {full:'images/fotogallerij/dag-03/full/024.webp', caption:'Dag 3 · Amarante · 15:17'},
+    {full:'images/fotogallerij/dag-03/full/025.webp', caption:'Dag 3 · Amarante · 15:17'},
+    {full:'images/fotogallerij/dag-03/full/026.webp', caption:'Dag 3 · Amarante · 15:18'},
+    {full:'images/fotogallerij/dag-03/full/027.webp', caption:'Dag 3 · Amarante · 15:18'},
+    {full:'images/fotogallerij/dag-03/full/028.webp', caption:'Dag 3 · Amarante · 15:18'},
+    {full:'images/fotogallerij/dag-03/full/029.webp', caption:'Dag 3 · Amarante · 15:19'},
+    {full:'images/fotogallerij/dag-03/full/030.webp', caption:'Dag 3 · Amarante · 15:20'},
+    {full:'images/fotogallerij/dag-03/full/031.webp', caption:'Dag 3 · Amarante · 15:20'},
+    {full:'images/fotogallerij/dag-03/full/032.webp', caption:'Dag 3 · Amarante · 15:20'},
+    {full:'images/fotogallerij/dag-03/full/033.webp', caption:'Dag 3 · Amarante · 15:22'},
+    {full:'images/fotogallerij/dag-03/full/034.webp', caption:'Dag 3 · Amarante · 15:22'},
+    {full:'images/fotogallerij/dag-03/full/035.webp', caption:'Dag 3 · Amarante · 15:24'},
+    {full:'images/fotogallerij/dag-03/full/036.webp', caption:'Dag 3 · Amarante · 15:28'},
+    {full:'images/fotogallerij/dag-03/full/037.webp', caption:'Dag 3 · Amarante · 15:35'},
+    {full:'images/fotogallerij/dag-03/full/038.webp', caption:'Dag 3 · Amarante · 15:42'},
+    {full:'images/fotogallerij/dag-03/full/039.webp', caption:'Dag 3 · Amarante · 15:43'},
+    {full:'images/fotogallerij/dag-03/full/040.webp', caption:'Dag 3 · Amarante · 15:43'},
+    {full:'images/fotogallerij/dag-03/full/041.webp', caption:'Dag 3 · Amarante · 15:43'},
+    {full:'images/fotogallerij/dag-03/full/042.webp', caption:'Dag 3 · Amarante · 15:45'},
+    {full:'images/fotogallerij/dag-03/full/043.webp', caption:'Dag 3 · Amarante · 15:45'},
+    {full:'images/fotogallerij/dag-03/full/044.webp', caption:'Dag 3 · Amarante · 15:47'},
+    {full:'images/fotogallerij/dag-03/full/045.webp', caption:'Dag 3 · Amarante · 15:48'},
+    {full:'images/fotogallerij/dag-03/full/046.webp', caption:'Dag 3 · Amarante · 15:48'},
+    {full:'images/fotogallerij/dag-03/full/047.webp', caption:'Dag 3 · Amarante · 15:50'},
+    {full:'images/fotogallerij/dag-03/full/048.webp', caption:'Dag 3 · Amarante · 15:50'},
+    {full:'images/fotogallerij/dag-03/full/049.webp', caption:'Dag 3 · Amarante · 16:03'},
+    {full:'images/fotogallerij/dag-03/full/050.webp', caption:'Dag 3 · Amarante · 16:03'},
+    {full:'images/fotogallerij/dag-03/full/051.webp', caption:'Dag 3 · Amarante · 16:05'},
+    {full:'images/fotogallerij/dag-03/full/052.webp', caption:'Dag 3 · Amarante · 18:12'},
+    {full:'images/fotogallerij/dag-03/full/053.webp', caption:'Dag 3 · Amarante · 18:12'},
+    {full:'images/fotogallerij/dag-03/full/054.webp', caption:'Dag 3 · Amarante · 18:12'},
+    {full:'images/fotogallerij/dag-03/full/055.webp', caption:'Dag 3 · Amarante · 18:12'},
+    {full:'images/fotogallerij/dag-03/full/056.webp', caption:'Dag 3 · Amarante · 18:42'},
+    {full:'images/fotogallerij/dag-03/full/057.webp', caption:'Dag 3 · Amarante · 18:42'},
+    {full:'images/fotogallerij/dag-03/full/058.webp', caption:'Dag 3 · Amarante · 18:42'},
+    {full:'images/fotogallerij/dag-03/full/059.webp', caption:'Dag 3 · Amarante · 18:42'},
+    {full:'images/fotogallerij/dag-03/full/060.webp', caption:'Dag 3 · Amarante · 18:43'},
+    {full:'images/fotogallerij/dag-03/full/061.webp', caption:'Dag 3 · Amarante · 18:43'},
+    {full:'images/fotogallerij/dag-03/full/062.webp', caption:'Dag 3 · Amarante · 18:43'},
+    {full:'images/fotogallerij/dag-03/full/063.webp', caption:'Dag 3 · Amarante · 18:45'},
+    {full:'images/fotogallerij/dag-03/full/064.webp', caption:'Dag 3 · Amarante · 18:45'},
+    {full:'images/fotogallerij/dag-03/full/065.webp', caption:'Dag 3 · Amarante · 18:45'},
+    {full:'images/fotogallerij/dag-03/full/066.webp', caption:'Dag 3 · Amarante · 18:45'},
+    {full:'images/fotogallerij/dag-03/full/067.webp', caption:'Dag 3 · Amarante · 18:46'},
+    {full:'images/fotogallerij/dag-03/full/068.webp', caption:'Dag 3 · Amarante · 18:46'},
+    {full:'images/fotogallerij/dag-03/full/069.webp', caption:'Dag 3 · Amarante · 18:46'},
+    {full:'images/fotogallerij/dag-03/full/070.webp', caption:'Dag 3 · Amarante · 18:47'},
+    {full:'images/fotogallerij/dag-03/full/071.webp', caption:'Dag 3 · Amarante · 18:47'},
+    {full:'images/fotogallerij/dag-03/full/072.webp', caption:'Dag 3 · Amarante · 18:47'},
+    {full:'images/fotogallerij/dag-03/full/073.webp', caption:'Dag 3 · Amarante · 18:52'},
+    {full:'images/fotogallerij/dag-03/full/074.webp', caption:'Dag 3 · Amarante · 18:52'},
+    {full:'images/fotogallerij/dag-03/full/075.webp', caption:'Dag 3 · Amarante · 18:52'},
+    {full:'images/fotogallerij/dag-04/full/001.webp', caption:'Dag 4 · Douro-vallei · 17:56'},
+    {full:'images/fotogallerij/dag-04/full/002.webp', caption:'Dag 4 · Douro-vallei · 18:37'},
+    {full:'images/fotogallerij/dag-04/full/003.webp', caption:'Dag 4 · Douro-vallei · 18:37'},
+    {full:'images/fotogallerij/dag-04/full/004.webp', caption:'Dag 4 · Douro-vallei · 18:37'},
+    {full:'images/fotogallerij/dag-04/full/005.webp', caption:'Dag 4 · Douro-vallei · 18:37'},
+    {full:'images/fotogallerij/dag-04/full/006.webp', caption:'Dag 4 · Douro-vallei · 18:52'},
+    {full:'images/fotogallerij/dag-04/full/007.webp', caption:'Dag 4 · Douro-vallei · 18:52'},
+    {full:'images/fotogallerij/dag-04/full/008.webp', caption:'Dag 4 · Douro-vallei · 18:52'},
+    {full:'images/fotogallerij/dag-04/full/009.webp', caption:'Dag 4 · Douro-vallei · 18:52'},
+    {full:'images/fotogallerij/dag-04/full/010.webp', caption:'Dag 4 · Douro-vallei · 18:52'},
+    {full:'images/fotogallerij/dag-04/full/011.webp', caption:'Dag 4 · Douro-vallei · 18:53'},
+    {full:'images/fotogallerij/dag-04/full/012.webp', caption:'Dag 4 · Douro-vallei · 18:55'},
+    {full:'images/fotogallerij/dag-04/full/013.webp', caption:'Dag 4 · Douro-vallei · 18:55'},
+    {full:'images/fotogallerij/dag-04/full/014.webp', caption:'Dag 4 · Douro-vallei · 18:55'},
+    {full:'images/fotogallerij/dag-04/full/015.webp', caption:'Dag 4 · Douro-vallei · 19:04'},
+    {full:'images/fotogallerij/dag-04/full/016.webp', caption:'Dag 4 · Douro-vallei · 19:05'},
+    {full:'images/fotogallerij/dag-04/full/017.webp', caption:'Dag 4 · Douro-vallei · 19:05'},
+    {full:'images/fotogallerij/dag-04/full/018.webp', caption:'Dag 4 · Douro-vallei · 19:06'},
+    {full:'images/fotogallerij/dag-04/full/019.webp', caption:'Dag 4 · Douro-vallei · 19:06'},
+    {full:'images/fotogallerij/dag-04/full/020.webp', caption:'Dag 4 · Douro-vallei · 19:06'},
+    {full:'images/fotogallerij/dag-04/full/021.webp', caption:'Dag 4 · Douro-vallei · 19:06'},
+    {full:'images/fotogallerij/dag-04/full/022.webp', caption:'Dag 4 · Douro-vallei · 19:06'},
+    {full:'images/fotogallerij/dag-04/full/023.webp', caption:'Dag 4 · Douro-vallei · 19:06'},
+    {full:'images/fotogallerij/dag-04/full/024.webp', caption:'Dag 4 · Douro-vallei · 19:06'},
+    {full:'images/fotogallerij/dag-04/full/025.webp', caption:'Dag 4 · Douro-vallei · 19:10'},
+    {full:'images/fotogallerij/dag-04/full/026.webp', caption:'Dag 4 · Douro-vallei · 19:10'},
+    {full:'images/fotogallerij/dag-04/full/027.webp', caption:'Dag 4 · Douro-vallei · 19:10'},
+    {full:'images/fotogallerij/dag-04/full/028.webp', caption:'Dag 4 · Douro-vallei · 19:14'},
+    {full:'images/fotogallerij/dag-04/full/029.webp', caption:'Dag 4 · Douro-vallei · 19:17'},
+    {full:'images/fotogallerij/dag-04/full/030.webp', caption:'Dag 4 · Douro-vallei · 19:17'},
+    {full:'images/fotogallerij/dag-04/full/031.webp', caption:'Dag 4 · Douro-vallei · 20:40'},
+    {full:'images/fotogallerij/dag-04/full/032.webp', caption:'Dag 4 · Douro-vallei · 20:40'},
+    {full:'images/fotogallerij/dag-04/full/033.webp', caption:'Dag 4 · Douro-vallei · 20:40'},
+    {full:'images/fotogallerij/dag-04/full/034.webp', caption:'Dag 4 · Douro-vallei · 20:40'},
+    {full:'images/fotogallerij/dag-04/full/035.webp', caption:'Dag 4 · Douro-vallei · 20:40'},
+    {full:'images/fotogallerij/dag-04/full/036.webp', caption:'Dag 4 · Douro-vallei · 21:03'},
+    {full:'images/fotogallerij/dag-04/full/037.webp', caption:'Dag 4 · Douro-vallei · 21:03'},
+    {full:'images/fotogallerij/dag-04/full/038.webp', caption:'Dag 4 · Douro-vallei · 21:03'},
+    {full:'images/fotogallerij/dag-04/full/039.webp', caption:'Dag 4 · Douro-vallei · 21:03'},
+    {full:'images/fotogallerij/dag-04/full/040.webp', caption:'Dag 4 · Douro-vallei · 21:07'},
+    {full:'images/fotogallerij/dag-04/full/041.webp', caption:'Dag 4 · Douro-vallei · 21:08'},
+    {full:'images/fotogallerij/dag-04/full/042.webp', caption:'Dag 4 · Douro-vallei · 21:08'},
+    {full:'images/fotogallerij/dag-04/full/043.webp', caption:'Dag 4 · Douro-vallei · 21:08'},
+    {full:'images/fotogallerij/dag-04/full/044.webp', caption:'Dag 4 · Douro-vallei · 21:25'},
+    {full:'images/fotogallerij/dag-05/full/001.webp', caption:'Dag 5 · Aveiro · 18:12'},
+    {full:'images/fotogallerij/dag-05/full/002.webp', caption:'Dag 5 · Aveiro · 18:12'},
+    {full:'images/fotogallerij/dag-05/full/003.webp', caption:'Dag 5 · Aveiro · 18:23'},
+    {full:'images/fotogallerij/dag-05/full/004.webp', caption:'Dag 5 · Aveiro · 18:23'},
+    {full:'images/fotogallerij/dag-05/full/005.webp', caption:'Dag 5 · Aveiro · 18:23'},
+    {full:'images/fotogallerij/dag-05/full/006.webp', caption:'Dag 5 · Aveiro · 18:24'},
+    {full:'images/fotogallerij/dag-05/full/007.webp', caption:'Dag 5 · Aveiro · 18:24'},
+    {full:'images/fotogallerij/dag-05/full/008.webp', caption:'Dag 5 · Aveiro · 18:24'},
+    {full:'images/fotogallerij/dag-05/full/009.webp', caption:'Dag 5 · Aveiro · 18:24'},
+    {full:'images/fotogallerij/dag-05/full/010.webp', caption:'Dag 5 · Aveiro · 18:24'},
+    {full:'images/fotogallerij/dag-05/full/011.webp', caption:'Dag 5 · Aveiro · 18:24'},
+    {full:'images/fotogallerij/dag-05/full/012.webp', caption:'Dag 5 · Aveiro · 18:24'},
+    {full:'images/fotogallerij/dag-05/full/013.webp', caption:'Dag 5 · Aveiro · 20:47'},
+    {full:'images/fotogallerij/dag-05/full/014.webp', caption:'Dag 5 · Aveiro · 20:47'},
+    {full:'images/fotogallerij/dag-05/full/015.webp', caption:'Dag 5 · Aveiro · 20:47'},
+    {full:'images/fotogallerij/dag-05/full/016.webp', caption:'Dag 5 · Aveiro · 20:53'},
+    {full:'images/fotogallerij/dag-05/full/017.webp', caption:'Dag 5 · Aveiro · 20:53'},
+    {full:'images/fotogallerij/dag-05/full/018.webp', caption:'Dag 5 · Aveiro · 20:53'},
+    {full:'images/fotogallerij/dag-05/full/019.webp', caption:'Dag 5 · Aveiro · 20:53'},
+    {full:'images/fotogallerij/dag-05/full/020.webp', caption:'Dag 5 · Aveiro · 20:54'},
+    {full:'images/fotogallerij/dag-05/full/021.webp', caption:'Dag 5 · Aveiro · 20:55'},
+    {full:'images/fotogallerij/dag-05/full/022.webp', caption:'Dag 5 · Aveiro · 20:55'},
+    {full:'images/fotogallerij/dag-05/full/023.webp', caption:'Dag 5 · Aveiro · 20:55'},
+    {full:'images/fotogallerij/dag-05/full/024.webp', caption:'Dag 5 · Aveiro · 20:55'},
+    {full:'images/fotogallerij/dag-06/full/001.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 00:01'},
+    {full:'images/fotogallerij/dag-06/full/002.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 00:11'},
+    {full:'images/fotogallerij/dag-06/full/003.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 00:11'},
+    {full:'images/fotogallerij/dag-06/full/004.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 00:11'},
+    {full:'images/fotogallerij/dag-06/full/005.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 11:21'},
+    {full:'images/fotogallerij/dag-06/full/006.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 11:21'},
+    {full:'images/fotogallerij/dag-06/full/007.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 11:21'},
+    {full:'images/fotogallerij/dag-06/full/008.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 11:55'},
+    {full:'images/fotogallerij/dag-06/full/009.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 11:55'},
+    {full:'images/fotogallerij/dag-06/full/010.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 11:55'},
+    {full:'images/fotogallerij/dag-06/full/011.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 11:56'},
+    {full:'images/fotogallerij/dag-06/full/012.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 11:56'},
+    {full:'images/fotogallerij/dag-06/full/013.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 11:57'},
+    {full:'images/fotogallerij/dag-06/full/014.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 11:57'},
+    {full:'images/fotogallerij/dag-06/full/015.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 11:57'},
+    {full:'images/fotogallerij/dag-06/full/016.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 11:57'},
+    {full:'images/fotogallerij/dag-06/full/017.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 12:00'},
+    {full:'images/fotogallerij/dag-06/full/018.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 12:00'},
+    {full:'images/fotogallerij/dag-06/full/019.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 12:00'},
+    {full:'images/fotogallerij/dag-06/full/020.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 12:00'},
+    {full:'images/fotogallerij/dag-06/full/021.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 12:29'},
+    {full:'images/fotogallerij/dag-06/full/022.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 12:29'},
+    {full:'images/fotogallerij/dag-06/full/023.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 12:32'},
+    {full:'images/fotogallerij/dag-06/full/024.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 12:40'},
+    {full:'images/fotogallerij/dag-06/full/025.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 12:40'},
+    {full:'images/fotogallerij/dag-06/full/026.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 12:40'},
+    {full:'images/fotogallerij/dag-06/full/027.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 12:44'},
+    {full:'images/fotogallerij/dag-06/full/028.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 12:45'},
+    {full:'images/fotogallerij/dag-06/full/029.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 12:45'},
+    {full:'images/fotogallerij/dag-06/full/030.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 13:01'},
+    {full:'images/fotogallerij/dag-06/full/031.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 13:01'},
+    {full:'images/fotogallerij/dag-06/full/032.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 13:01'},
+    {full:'images/fotogallerij/dag-06/full/033.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 13:04'},
+    {full:'images/fotogallerij/dag-06/full/034.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 13:04'},
+    {full:'images/fotogallerij/dag-06/full/035.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 13:04'},
+    {full:'images/fotogallerij/dag-06/full/036.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 13:08'},
+    {full:'images/fotogallerij/dag-06/full/037.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 13:08'},
+    {full:'images/fotogallerij/dag-06/full/038.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 13:08'},
+    {full:'images/fotogallerij/dag-06/full/039.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 13:24'},
+    {full:'images/fotogallerij/dag-06/full/040.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 13:24'},
+    {full:'images/fotogallerij/dag-06/full/041.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 13:25'},
+    {full:'images/fotogallerij/dag-06/full/042.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 13:25'},
+    {full:'images/fotogallerij/dag-06/full/043.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 13:25'},
+    {full:'images/fotogallerij/dag-06/full/044.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 13:25'},
+    {full:'images/fotogallerij/dag-06/full/045.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 13:25'},
+    {full:'images/fotogallerij/dag-06/full/046.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 14:11'},
+    {full:'images/fotogallerij/dag-06/full/047.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 14:31'},
+    {full:'images/fotogallerij/dag-06/full/048.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 14:48'},
+    {full:'images/fotogallerij/dag-06/full/049.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 14:53'},
+    {full:'images/fotogallerij/dag-06/full/050.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 14:54'},
+    {full:'images/fotogallerij/dag-06/full/051.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 14:54'},
+    {full:'images/fotogallerij/dag-06/full/052.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 14:54'},
+    {full:'images/fotogallerij/dag-06/full/053.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 14:54'},
+    {full:'images/fotogallerij/dag-06/full/054.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 14:54'},
+    {full:'images/fotogallerij/dag-06/full/055.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 14:55'},
+    {full:'images/fotogallerij/dag-06/full/056.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 14:55'},
+    {full:'images/fotogallerij/dag-06/full/057.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 14:55'},
+    {full:'images/fotogallerij/dag-06/full/058.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 14:55'},
+    {full:'images/fotogallerij/dag-06/full/059.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 14:56'},
+    {full:'images/fotogallerij/dag-06/full/060.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 14:56'},
+    {full:'images/fotogallerij/dag-06/full/061.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 14:57'},
+    {full:'images/fotogallerij/dag-06/full/062.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 14:59'},
+    {full:'images/fotogallerij/dag-06/full/063.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 15:00'},
+    {full:'images/fotogallerij/dag-06/full/064.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 15:02'},
+    {full:'images/fotogallerij/dag-06/full/065.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 15:02'},
+    {full:'images/fotogallerij/dag-06/full/066.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 15:02'},
+    {full:'images/fotogallerij/dag-06/full/067.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 15:30'},
+    {full:'images/fotogallerij/dag-06/full/068.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 15:30'},
+    {full:'images/fotogallerij/dag-06/full/069.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 15:30'},
+    {full:'images/fotogallerij/dag-06/full/070.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 15:34'},
+    {full:'images/fotogallerij/dag-06/full/071.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 15:34'},
+    {full:'images/fotogallerij/dag-06/full/072.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 15:34'},
+    {full:'images/fotogallerij/dag-06/full/073.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 15:39'},
+    {full:'images/fotogallerij/dag-06/full/074.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 15:40'},
+    {full:'images/fotogallerij/dag-06/full/075.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 15:40'},
+    {full:'images/fotogallerij/dag-06/full/076.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 15:42'},
+    {full:'images/fotogallerij/dag-06/full/077.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 15:59'},
+    {full:'images/fotogallerij/dag-06/full/078.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 15:59'},
+    {full:'images/fotogallerij/dag-06/full/079.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 16:00'},
+    {full:'images/fotogallerij/dag-06/full/080.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 16:01'},
+    {full:'images/fotogallerij/dag-06/full/081.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 16:01'},
+    {full:'images/fotogallerij/dag-06/full/082.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 16:07'},
+    {full:'images/fotogallerij/dag-06/full/083.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 16:10'},
+    {full:'images/fotogallerij/dag-06/full/084.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 16:15'},
+    {full:'images/fotogallerij/dag-06/full/085.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 17:30'},
+    {full:'images/fotogallerij/dag-06/full/086.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 17:31'},
+    {full:'images/fotogallerij/dag-06/full/087.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 17:34'},
+    {full:'images/fotogallerij/dag-06/full/088.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 17:34'},
+    {full:'images/fotogallerij/dag-06/full/089.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 17:39'},
+    {full:'images/fotogallerij/dag-06/full/090.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 17:40'},
+    {full:'images/fotogallerij/dag-06/full/091.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 17:41'},
+    {full:'images/fotogallerij/dag-06/full/092.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 17:41'},
+    {full:'images/fotogallerij/dag-06/full/093.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 17:41'},
+    {full:'images/fotogallerij/dag-06/full/094.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 17:45'},
+    {full:'images/fotogallerij/dag-06/full/095.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 17:46'},
+    {full:'images/fotogallerij/dag-06/full/096.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 17:46'},
+    {full:'images/fotogallerij/dag-06/full/097.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 17:46'},
+    {full:'images/fotogallerij/dag-06/full/098.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 17:46'},
+    {full:'images/fotogallerij/dag-06/full/099.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 17:46'},
+    {full:'images/fotogallerij/dag-06/full/100.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 17:47'},
+    {full:'images/fotogallerij/dag-06/full/101.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 17:47'},
+    {full:'images/fotogallerij/dag-06/full/102.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 17:47'},
+    {full:'images/fotogallerij/dag-06/full/103.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 17:47'},
+    {full:'images/fotogallerij/dag-06/full/104.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 17:50'},
+    {full:'images/fotogallerij/dag-06/full/105.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 17:51'},
+    {full:'images/fotogallerij/dag-06/full/106.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 17:51'},
+    {full:'images/fotogallerij/dag-06/full/107.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 17:52'},
+    {full:'images/fotogallerij/dag-06/full/108.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 17:52'},
+    {full:'images/fotogallerij/dag-06/full/109.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 17:52'},
+    {full:'images/fotogallerij/dag-06/full/110.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 17:54'},
+    {full:'images/fotogallerij/dag-06/full/111.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 17:54'},
+    {full:'images/fotogallerij/dag-06/full/112.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 17:59'},
+    {full:'images/fotogallerij/dag-06/full/113.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 17:59'},
+    {full:'images/fotogallerij/dag-06/full/114.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 18:01'},
+    {full:'images/fotogallerij/dag-06/full/115.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 18:11'},
+    {full:'images/fotogallerij/dag-06/full/116.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 18:11'},
+    {full:'images/fotogallerij/dag-06/full/117.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 18:11'},
+    {full:'images/fotogallerij/dag-06/full/118.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 18:11'},
+    {full:'images/fotogallerij/dag-06/full/119.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 18:11'},
+    {full:'images/fotogallerij/dag-06/full/120.webp', caption:'Dag 6 · Batalha, Alcobaça & Nazaré · 18:14'},
+    {full:'images/fotogallerij/dag-07/full/001.webp', caption:'Dag 7 · Óbidos · 11:16'},
+    {full:'images/fotogallerij/dag-07/full/002.webp', caption:'Dag 7 · Óbidos · 11:17'},
+    {full:'images/fotogallerij/dag-07/full/003.webp', caption:'Dag 7 · Óbidos · 11:17'},
+    {full:'images/fotogallerij/dag-07/full/004.webp', caption:'Dag 7 · Óbidos · 11:17'},
+    {full:'images/fotogallerij/dag-07/full/005.webp', caption:'Dag 7 · Óbidos · 11:17'},
+    {full:'images/fotogallerij/dag-07/full/006.webp', caption:'Dag 7 · Óbidos · 11:56'},
+    {full:'images/fotogallerij/dag-07/full/007.webp', caption:'Dag 7 · Óbidos · 11:56'},
+    {full:'images/fotogallerij/dag-07/full/008.webp', caption:'Dag 7 · Óbidos · 11:56'},
+    {full:'images/fotogallerij/dag-07/full/009.webp', caption:'Dag 7 · Óbidos · 11:58'},
+    {full:'images/fotogallerij/dag-07/full/010.webp', caption:'Dag 7 · Óbidos · 11:58'},
+    {full:'images/fotogallerij/dag-07/full/011.webp', caption:'Dag 7 · Óbidos · 12:00'},
+    {full:'images/fotogallerij/dag-07/full/012.webp', caption:'Dag 7 · Óbidos · 12:00'},
+    {full:'images/fotogallerij/dag-07/full/013.webp', caption:'Dag 7 · Óbidos · 12:00'},
+    {full:'images/fotogallerij/dag-07/full/014.webp', caption:'Dag 7 · Óbidos · 12:01'},
+    {full:'images/fotogallerij/dag-07/full/015.webp', caption:'Dag 7 · Óbidos · 12:02'},
+    {full:'images/fotogallerij/dag-07/full/016.webp', caption:'Dag 7 · Óbidos · 12:19'},
+    {full:'images/fotogallerij/dag-07/full/017.webp', caption:'Dag 7 · Óbidos · 12:19'},
+    {full:'images/fotogallerij/dag-07/full/018.webp', caption:'Dag 7 · Óbidos · 12:19'},
+    {full:'images/fotogallerij/dag-07/full/019.webp', caption:'Dag 7 · Óbidos · 14:00'},
+    {full:'images/fotogallerij/dag-07/full/020.webp', caption:'Dag 7 · Óbidos · 14:08'},
+    {full:'images/fotogallerij/dag-07/full/021.webp', caption:'Dag 7 · Óbidos · 15:32'},
+    {full:'images/fotogallerij/dag-07/full/022.webp', caption:'Dag 7 · Óbidos · 23:13'},
+    {full:'images/fotogallerij/dag-07/full/023.webp', caption:'Dag 7 · Óbidos · 23:13'},
+    {full:'images/fotogallerij/dag-07/full/024.webp', caption:'Dag 7 · Óbidos · 23:13'},
+    {full:'images/fotogallerij/dag-07/full/025.webp', caption:'Dag 7 · Óbidos · 23:13'},
+    {full:'images/fotogallerij/dag-07/full/026.webp', caption:'Dag 7 · Óbidos · 23:13'},
+    {full:'images/fotogallerij/dag-07/full/027.webp', caption:'Dag 7 · Óbidos · 23:13'},
+    {full:'images/fotogallerij/dag-07/full/028.webp', caption:'Dag 7 · Óbidos · 23:24'},
+    {full:'images/fotogallerij/dag-07/full/029.webp', caption:'Dag 7 · Óbidos · 23:24'},
+    {full:'images/fotogallerij/dag-07/full/030.webp', caption:'Dag 7 · Óbidos · 23:26'},
+    {full:'images/fotogallerij/dag-07/full/031.webp', caption:'Dag 7 · Óbidos · 23:27'},
+    {full:'images/fotogallerij/dag-07/full/032.webp', caption:'Dag 7 · Óbidos · 23:27'},
+    {full:'images/fotogallerij/dag-07/full/033.webp', caption:'Dag 7 · Óbidos · 23:27'},
+    {full:'images/fotogallerij/dag-08/full/001.webp', caption:'Dag 8 · Mafra & Sintra · 12:50'},
+    {full:'images/fotogallerij/dag-08/full/002.webp', caption:'Dag 8 · Mafra & Sintra · 12:50'},
+    {full:'images/fotogallerij/dag-08/full/003.webp', caption:'Dag 8 · Mafra & Sintra · 12:50'}
+  ];
+
+  var overlay = document.getElementById('lightbox');
+  var imgEl = document.getElementById('lightbox-img');
+  var captionEl = document.getElementById('lightbox-caption');
+  var counterEl = document.getElementById('lightbox-counter');
+  var current = 0;
+
+  function show(index) {
+    if (index < 0) index = photos.length - 1;
+    if (index >= photos.length) index = 0;
+    current = index;
+    var p = photos[current];
+    imgEl.src = p.full;
+    imgEl.alt = p.caption;
+    captionEl.textContent = p.caption;
+    counterEl.textContent = (current + 1) + ' / ' + photos.length;
+  }
+
+  function open(index) {
+    show(index);
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function close() {
+    overlay.classList.remove('open');
+    imgEl.src = '';
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('.gallery-item').forEach(function (el) {
+    el.addEventListener('click', function () {
+      open(parseInt(el.getAttribute('data-index'), 10));
+    });
+  });
+
+  document.getElementById('lightbox-close').addEventListener('click', close);
+  document.getElementById('lightbox-prev').addEventListener('click', function () { show(current - 1); });
+  document.getElementById('lightbox-next').addEventListener('click', function () { show(current + 1); });
+
+  overlay.addEventListener('click', function (e) {
+    if (e.target === overlay) close();
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (!overlay.classList.contains('open')) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowLeft') show(current - 1);
+    if (e.key === 'ArrowRight') show(current + 1);
+  });
+})();
+</script>
+</body>
+</html>
