@@ -55,6 +55,42 @@
     .gallery-count-bar .label { font-weight: 600; color: var(--muted); font-size: .9rem; }
     .gallery-count-bar .amount { font-family: var(--serif); font-size: 1.4rem; color: var(--azul); }
 
+    /* ─── Hoogtepunten ─── */
+    .highlights-section { padding: 2.5rem 0 .5rem; background: var(--sand); }
+    .highlights-section .section-title { margin-bottom: .25rem; }
+    .highlights-intro { text-align: center; color: var(--muted); font-size: .92rem; max-width: 640px; margin: 0 auto 2rem; }
+    .highlight-day-row { margin-bottom: 1.5rem; }
+    .highlight-day-label {
+      display: inline-flex;
+      flex-direction: column;
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      color: var(--dark);
+      text-decoration: none;
+      margin-bottom: .6rem;
+      font-weight: 700;
+    }
+    .highlight-day-label span { font-family: inherit; font-size: .78rem; font-weight: 400; color: var(--muted); margin-top: .1rem; }
+    .highlight-day-label:hover { color: var(--terra); }
+    .highlight-strip {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 6px;
+      scroll-snap-type: x proximity;
+      -webkit-overflow-scrolling: touch;
+    }
+    .highlight-thumb {
+      flex: 0 0 auto;
+      width: 190px;
+      height: 190px;
+      scroll-snap-align: start;
+      border-radius: 8px;
+      box-shadow: var(--shadow-sm);
+    }
+    .highlight-strip::-webkit-scrollbar { height: 6px; }
+    .highlight-strip::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
     .gallery-section { padding: 2.5rem 0; }
 
     .gallery-day {
@@ -152,7 +188,109 @@
     @media (max-width: 600px) {
       .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 4px; padding: 6px; }
       .lightbox-nav-btn { width: 2.4rem; height: 2.4rem; font-size: 1.4rem; }
+      .highlight-thumb { width: 140px; height: 140px; }
     }
+    /* ─── Statistiek & tijdlijn ─── */
+    .stats-section { padding: 2.5rem 0 3rem; }
+    .stat-tiles {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: .75rem;
+      max-width: 900px;
+      margin: 0 auto 2rem;
+    }
+    .stat-tile {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      padding: 1rem 1.1rem;
+      display: flex;
+      flex-direction: column;
+      gap: .15rem;
+    }
+    .stat-tile-label { font-size: .78rem; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: .03em; }
+    .stat-tile-value { font-family: var(--serif); font-size: 1.7rem; color: var(--azul); line-height: 1.2; }
+    .stat-tile-sub { font-size: .78rem; color: var(--muted); }
+
+    .stat-chart-card {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      padding: 1.5rem;
+    }
+    .stat-chart-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: .75rem;
+      margin-bottom: 1rem;
+    }
+    .stat-legend { display: flex; flex-wrap: wrap; gap: 1rem; }
+    .stat-legend-item { display: inline-flex; align-items: center; gap: .4rem; font-size: .82rem; color: var(--text); }
+    .stat-swatch { width: .7rem; height: .7rem; border-radius: 2px; display: inline-block; }
+    .stat-table-toggle {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: .4rem 1rem;
+      font-size: .8rem;
+      font-weight: 600;
+      color: var(--azul);
+      cursor: pointer;
+    }
+    .stat-table-toggle:hover { background: var(--cream); }
+
+    .stat-chart-wrap { position: relative; overflow-x: auto; }
+    .stat-chart-svg { width: 100%; min-width: 640px; height: auto; display: block; }
+    .stat-grid { stroke: var(--border); stroke-width: 1; }
+    .stat-ytick { fill: var(--muted); font-size: 11px; font-family: inherit; }
+    .stat-xlabel { fill: var(--text); font-size: 12px; font-weight: 600; font-family: inherit; }
+    .stat-xlabel-sub { fill: var(--muted); font-size: 10px; font-family: inherit; }
+    .stat-toplabel { fill: var(--dark); font-size: 12px; font-weight: 700; font-family: inherit; }
+    .stat-seg { transition: opacity .12s ease; }
+    .stat-bar-group:hover .stat-seg { opacity: .8; }
+    .stat-hit { cursor: pointer; }
+
+    .stat-tooltip {
+      position: absolute;
+      pointer-events: none;
+      background: var(--dark);
+      color: #fff;
+      border-radius: 8px;
+      padding: .6rem .8rem;
+      font-size: .78rem;
+      line-height: 1.5;
+      box-shadow: var(--shadow-lg);
+      z-index: 20;
+      min-width: 160px;
+      transform: translate(-50%, -100%);
+      margin-top: -10px;
+    }
+    .stat-tooltip .tt-title { font-family: var(--serif); font-size: .88rem; margin-bottom: .3rem; color: var(--gold); }
+    .stat-tooltip .tt-row { display: flex; align-items: center; gap: .4rem; justify-content: space-between; }
+    .stat-tooltip .tt-key { display: inline-flex; align-items: center; gap: .35rem; opacity: .85; }
+    .stat-tooltip .tt-line { width: .6rem; height: 3px; border-radius: 2px; display: inline-block; }
+    .stat-tooltip .tt-val { font-weight: 700; }
+    .stat-tooltip .tt-total { margin-top: .3rem; padding-top: .3rem; border-top: 1px solid rgba(255,255,255,.2); font-weight: 700; }
+
+    .stat-table-wrap { margin-top: 1.25rem; overflow-x: auto; }
+    table.stat-table { width: 100%; border-collapse: collapse; font-size: .85rem; }
+    table.stat-table th, table.stat-table td { padding: .5rem .6rem; text-align: right; border-bottom: 1px solid var(--border); }
+    table.stat-table th:first-child, table.stat-table td:first-child,
+    table.stat-table th:nth-child(2), table.stat-table td:nth-child(2),
+    table.stat-table th:nth-child(3), table.stat-table td:nth-child(3) { text-align: left; }
+    table.stat-table th { color: var(--muted); font-weight: 600; font-size: .78rem; text-transform: uppercase; letter-spacing: .02em; }
+    table.stat-table tbody tr:hover { background: var(--cream); }
+
+    @media (max-width: 600px) {
+      .stat-chart-card { padding: 1rem; }
+    }
+
   </style>
 </head>
 <body>
@@ -175,6 +313,7 @@
       <li><a href="documenten.html">📄 Documenten</a></li>
       <li><a href="logboek.html">🗓️ Logboek</a></li>
       <li><a href="fotogallerij.html" style="color:var(--gold)">📸 Fotogallerij</a></li>
+      <li><a href="fotokaart.html">📍 Fotokaart</a></li>
     </ul>
   </nav>
 </header>
@@ -200,6 +339,183 @@
       <span class="label">Totaal aantal foto's (dag 1–10)</span>
       <span class="amount">607</span>
     </div>
+  </div>
+</section>
+
+<section class="highlights-section">
+  <div class="container">
+    <h2 class="section-title" style="font-size:1.6rem;">📌 Hoogtepunten</h2>
+    <p class="highlights-intro">Een kleine selectie per dag — klik voor groot formaat, of scroll de volledige gallerij hieronder door voor alle foto's.</p>
+      <div class="highlight-day-row">
+        <a class="highlight-day-label" href="#gdag-1">Dag 1 · Porto<span>zo 6 sep · aankomst</span></a>
+        <div class="highlight-strip">
+        <div class="gallery-item highlight-thumb" data-index="24">
+          <img src="images/fotogallerij/dag-01/thumbs/057.webp" alt="Dag 1 · Porto · 18:43" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item highlight-thumb" data-index="16">
+          <img src="images/fotogallerij/dag-01/thumbs/027.webp" alt="Dag 1 · Porto · 16:15" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item highlight-thumb" data-index="15">
+          <img src="images/fotogallerij/dag-01/thumbs/023.webp" alt="Dag 1 · Porto · 15:55" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item highlight-thumb" data-index="18">
+          <img src="images/fotogallerij/dag-01/thumbs/035.webp" alt="Dag 1 · Porto · 17:55" loading="lazy" decoding="async">
+        </div>
+        </div>
+      </div>
+      <div class="highlight-day-row">
+        <a class="highlight-day-label" href="#gdag-2">Dag 2 · Porto<span>ma 7 sep</span></a>
+        <div class="highlight-strip">
+        <div class="gallery-item highlight-thumb" data-index="66">
+          <img src="images/fotogallerij/dag-02/thumbs/054.webp" alt="Dag 2 · Porto · 14:36" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item highlight-thumb" data-index="46">
+          <img src="images/fotogallerij/dag-02/thumbs/030.webp" alt="Dag 2 · Porto · 13:25" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item highlight-thumb" data-index="74">
+          <img src="images/fotogallerij/dag-02/thumbs/065.webp" alt="Dag 2 · Porto · 15:21" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item highlight-thumb" data-index="78">
+          <img src="images/fotogallerij/dag-02/thumbs/074.webp" alt="Dag 2 · Porto · 17:29" loading="lazy" decoding="async">
+        </div>
+        </div>
+      </div>
+      <div class="highlight-day-row">
+        <a class="highlight-day-label" href="#gdag-3">Dag 3 · Amarante<span>di 8 sep</span></a>
+        <div class="highlight-strip">
+        <div class="gallery-item highlight-thumb" data-index="107">
+          <img src="images/fotogallerij/dag-03/thumbs/040.webp" alt="Dag 3 · Amarante · 15:24" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item highlight-thumb" data-index="99">
+          <img src="images/fotogallerij/dag-03/thumbs/024.webp" alt="Dag 3 · Amarante · 15:17" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item highlight-thumb" data-index="121">
+          <img src="images/fotogallerij/dag-03/thumbs/070.webp" alt="Dag 3 · Amarante · 16:03" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item highlight-thumb" data-index="108">
+          <img src="images/fotogallerij/dag-03/thumbs/042.webp" alt="Dag 3 · Amarante · 15:28" loading="lazy" decoding="async">
+        </div>
+        </div>
+      </div>
+      <div class="highlight-day-row">
+        <a class="highlight-day-label" href="#gdag-4">Dag 4 · Douro-vallei<span>wo 9 sep · dagtrip</span></a>
+        <div class="highlight-strip">
+        <div class="gallery-item highlight-thumb" data-index="145">
+          <img src="images/fotogallerij/dag-04/thumbs/009.webp" alt="Dag 4 · Douro-vallei · 16:46" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item highlight-thumb" data-index="164">
+          <img src="images/fotogallerij/dag-04/thumbs/043.webp" alt="Dag 4 · Douro-vallei · 19:10" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item highlight-thumb" data-index="176">
+          <img src="images/fotogallerij/dag-04/thumbs/062.webp" alt="Dag 4 · Douro-vallei · 21:03" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item highlight-thumb" data-index="181">
+          <img src="images/fotogallerij/dag-04/thumbs/071.webp" alt="Dag 4 · Douro-vallei · 21:25" loading="lazy" decoding="async">
+        </div>
+        </div>
+      </div>
+      <div class="highlight-day-row">
+        <a class="highlight-day-label" href="#gdag-5">Dag 5 · Aveiro<span>do 10 sep</span></a>
+        <div class="highlight-strip">
+        <div class="gallery-item highlight-thumb" data-index="209">
+          <img src="images/fotogallerij/dag-05/thumbs/041.webp" alt="Dag 5 · Aveiro · 20:55" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item highlight-thumb" data-index="202">
+          <img src="images/fotogallerij/dag-05/thumbs/031.webp" alt="Dag 5 · Aveiro · 20:47" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item highlight-thumb" data-index="193">
+          <img src="images/fotogallerij/dag-05/thumbs/017.webp" alt="Dag 5 · Aveiro · 17:12" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item highlight-thumb" data-index="207">
+          <img src="images/fotogallerij/dag-05/thumbs/038.webp" alt="Dag 5 · Aveiro · 20:54" loading="lazy" decoding="async">
+        </div>
+        </div>
+      </div>
+      <div class="highlight-day-row">
+        <a class="highlight-day-label" href="#gdag-6">Dag 6 · Batalha, Alcobaça &amp; Nazaré<span>vr 11 sep · onderweg</span></a>
+        <div class="highlight-strip">
+        <div class="gallery-item highlight-thumb" data-index="312">
+          <img src="images/fotogallerij/dag-06/thumbs/132.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 17:47" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item highlight-thumb" data-index="266">
+          <img src="images/fotogallerij/dag-06/thumbs/080.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 14:55" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item highlight-thumb" data-index="245">
+          <img src="images/fotogallerij/dag-06/thumbs/053.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 13:01" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item highlight-thumb" data-index="320">
+          <img src="images/fotogallerij/dag-06/thumbs/143.webp" alt="Dag 6 · Batalha, Alcobaça & Nazaré · 17:54" loading="lazy" decoding="async">
+        </div>
+        </div>
+      </div>
+      <div class="highlight-day-row">
+        <a class="highlight-day-label" href="#gdag-7">Dag 7 · Óbidos<span>za 12 sep</span></a>
+        <div class="highlight-strip">
+        <div class="gallery-item highlight-thumb" data-index="386">
+          <img src="images/fotogallerij/dag-07/thumbs/080.webp" alt="Dag 7 · Óbidos · 12:20" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item highlight-thumb" data-index="420">
+          <img src="images/fotogallerij/dag-07/thumbs/122.webp" alt="Dag 7 · Óbidos · 13:57" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item highlight-thumb" data-index="402">
+          <img src="images/fotogallerij/dag-07/thumbs/098.webp" alt="Dag 7 · Óbidos · 12:39" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item highlight-thumb" data-index="427">
+          <img src="images/fotogallerij/dag-07/thumbs/133.webp" alt="Dag 7 · Óbidos · 15:31" loading="lazy" decoding="async">
+        </div>
+        </div>
+      </div>
+      <div class="highlight-day-row">
+        <a class="highlight-day-label" href="#gdag-8">Dag 8 · Mafra &amp; Sintra<span>zo 13 sep · dagtrip</span></a>
+        <div class="highlight-strip">
+        <div class="gallery-item highlight-thumb" data-index="514">
+          <img src="images/fotogallerij/dag-08/thumbs/075.webp" alt="Dag 8 · Mafra & Sintra · 14:11" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item highlight-thumb" data-index="504">
+          <img src="images/fotogallerij/dag-08/thumbs/059.webp" alt="Dag 8 · Mafra & Sintra · 13:27" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item highlight-thumb" data-index="498">
+          <img src="images/fotogallerij/dag-08/thumbs/052.webp" alt="Dag 8 · Mafra & Sintra · 13:22" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item highlight-thumb" data-index="474">
+          <img src="images/fotogallerij/dag-08/thumbs/026.webp" alt="Dag 8 · Mafra & Sintra · 13:07" loading="lazy" decoding="async">
+        </div>
+        </div>
+      </div>
+      <div class="highlight-day-row">
+        <a class="highlight-day-label" href="#gdag-9">Dag 9 · Lissabon<span>ma 14 sep</span></a>
+        <div class="highlight-strip">
+        <div class="gallery-item highlight-thumb" data-index="517">
+          <img src="images/fotogallerij/dag-09/thumbs/001.webp" alt="Dag 9 · Lissabon · 09:42" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item highlight-thumb" data-index="520">
+          <img src="images/fotogallerij/dag-09/thumbs/004.webp" alt="Dag 9 · Lissabon · 11:40" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item highlight-thumb" data-index="558">
+          <img src="images/fotogallerij/dag-09/thumbs/052.webp" alt="Dag 9 · Lissabon · 15:39" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item highlight-thumb" data-index="553">
+          <img src="images/fotogallerij/dag-09/thumbs/046.webp" alt="Dag 9 · Lissabon · 15:34" loading="lazy" decoding="async">
+        </div>
+        </div>
+      </div>
+      <div class="highlight-day-row">
+        <a class="highlight-day-label" href="#gdag-10">Dag 10 · Lissabon<span>di 15 sep · vertrek</span></a>
+        <div class="highlight-strip">
+        <div class="gallery-item highlight-thumb" data-index="593">
+          <img src="images/fotogallerij/dag-10/thumbs/034.webp" alt="Dag 10 · Lissabon · 14:18" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item highlight-thumb" data-index="587">
+          <img src="images/fotogallerij/dag-10/thumbs/026.webp" alt="Dag 10 · Lissabon · 13:49" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item highlight-thumb" data-index="574">
+          <img src="images/fotogallerij/dag-10/thumbs/006.webp" alt="Dag 10 · Lissabon · 12:30" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item highlight-thumb" data-index="600">
+          <img src="images/fotogallerij/dag-10/thumbs/042.webp" alt="Dag 10 · Lissabon · 15:55" loading="lazy" decoding="async">
+        </div>
+        </div>
+      </div>
   </div>
 </section>
 
@@ -2120,6 +2436,54 @@
   </div>
 </section>
 
+
+<section class="stats-section" id="statistiek">
+  <div class="container">
+    <h2 class="section-title" style="font-size:1.6rem;">📊 Statistiek &amp; tijdlijn</h2>
+    <p class="highlights-intro">Het ritme van de reis: hoeveel foto's er per dag zijn genomen, en of dat vooral 's ochtends, 's middags of 's avonds was.</p>
+
+    
+<div class="stat-tiles">
+  <div class="stat-tile"><span class="stat-tile-label">Totaal foto's</span><span class="stat-tile-value">607</span></div>
+  <div class="stat-tile"><span class="stat-tile-label">Drukste dag</span><span class="stat-tile-value">129</span><span class="stat-tile-sub">Dag 7 · Óbidos</span></div>
+  <div class="stat-tile"><span class="stat-tile-label">Rustigste dag</span><span class="stat-tile-value">25</span><span class="stat-tile-sub">Dag 1 · Porto</span></div>
+  <div class="stat-tile"><span class="stat-tile-label">Gemiddeld per dag</span><span class="stat-tile-value">61</span></div>
+</div>
+
+
+    <div class="stat-chart-card">
+      <div class="stat-chart-head">
+        <div class="stat-legend">
+          <span class="stat-legend-item"><span class="stat-swatch" style="background:#d4ac0d"></span>Ochtend (&lt;12:00)</span>
+          <span class="stat-legend-item"><span class="stat-swatch" style="background:#2e86c1"></span>Middag (12:00–18:00)</span>
+          <span class="stat-legend-item"><span class="stat-swatch" style="background:#c1440e"></span>Avond (&gt;18:00)</span>
+        </div>
+        <button type="button" class="stat-table-toggle" id="stat-table-toggle" aria-expanded="false">Toon als tabel</button>
+      </div>
+      <div class="stat-chart-wrap">
+        
+<svg viewBox="-40 0 940 334" class="stat-chart-svg" role="img" aria-label="Aantal foto's per dag, verdeeld over ochtend, middag en avond">
+  <g><line x1="0" y1="288.0" x2="900" y2="288.0" class="stat-grid" /><text x="-8" y="292.0" class="stat-ytick" text-anchor="end">0</text><line x1="0" y1="250.9" x2="900" y2="250.9" class="stat-grid" /><text x="-8" y="254.9" class="stat-ytick" text-anchor="end">20</text><line x1="0" y1="213.7" x2="900" y2="213.7" class="stat-grid" /><text x="-8" y="217.7" class="stat-ytick" text-anchor="end">40</text><line x1="0" y1="176.6" x2="900" y2="176.6" class="stat-grid" /><text x="-8" y="180.6" class="stat-ytick" text-anchor="end">60</text><line x1="0" y1="139.4" x2="900" y2="139.4" class="stat-grid" /><text x="-8" y="143.4" class="stat-ytick" text-anchor="end">80</text><line x1="0" y1="102.3" x2="900" y2="102.3" class="stat-grid" /><text x="-8" y="106.3" class="stat-ytick" text-anchor="end">100</text><line x1="0" y1="65.1" x2="900" y2="65.1" class="stat-grid" /><text x="-8" y="69.1" class="stat-ytick" text-anchor="end">120</text><line x1="0" y1="28.0" x2="900" y2="28.0" class="stat-grid" /><text x="-8" y="32.0" class="stat-ytick" text-anchor="end">140</text></g>
+  <g><g class="stat-bar-group" data-day="1" data-city="Porto" data-date="zo 6 sep" data-ochtend="5" data-middag="16" data-avond="4" data-total="25"><path d="M33.0,288.0 L33.0,278.7142857142857 L57.0,278.7142857142857 L57.0,288.0 Z" fill="#d4ac0d" class="stat-seg" data-day="1" data-label="ochtend" data-value="5" /><path d="M33.0,276.7142857142857 L33.0,249.0 L57.0,249.0 L57.0,276.7142857142857 Z" fill="#2e86c1" class="stat-seg" data-day="1" data-label="middag" data-value="16" /><path d="M33.0,247.0 L33.0,245.57142857142856 Q33.0,241.57142857142856 37.0,241.57142857142856 L53.0,241.57142857142856 Q57.0,241.57142857142856 57.0,245.57142857142856 L57.0,247.0 Z" fill="#c1440e" class="stat-seg" data-day="1" data-label="avond" data-value="4" /><rect x="33.0" y="28" width="24" height="260" fill="transparent" class="stat-hit" /></g><g class="stat-bar-group" data-day="2" data-city="Porto" data-date="ma 7 sep" data-ochtend="14" data-middag="41" data-avond="1" data-total="56"><path d="M123.0,288.0 L123.0,262.0 L147.0,262.0 L147.0,288.0 Z" fill="#d4ac0d" class="stat-seg" data-day="2" data-label="ochtend" data-value="14" /><path d="M123.0,260.0 L123.0,185.85714285714286 L147.0,185.85714285714286 L147.0,260.0 Z" fill="#2e86c1" class="stat-seg" data-day="2" data-label="middag" data-value="41" /><path d="M123.0,183.85714285714286 L123.0,188.0 Q123.0,184.0 127.0,184.0 L143.0,184.0 Q147.0,184.0 147.0,188.0 L147.0,183.85714285714286 Z" fill="#c1440e" class="stat-seg" data-day="2" data-label="avond" data-value="1" /><rect x="123.0" y="28" width="24" height="260" fill="transparent" class="stat-hit" /></g><g class="stat-bar-group" data-day="3" data-city="Amarante" data-date="di 8 sep" data-ochtend="0" data-middag="42" data-avond="18" data-total="60"><path d="M213.0,288.0 L213.0,210.0 L237.0,210.0 L237.0,288.0 Z" fill="#2e86c1" class="stat-seg" data-day="3" data-label="middag" data-value="42" /><path d="M213.0,208.0 L213.0,180.57142857142858 Q213.0,176.57142857142858 217.0,176.57142857142858 L233.0,176.57142857142858 Q237.0,176.57142857142858 237.0,180.57142857142858 L237.0,208.0 Z" fill="#c1440e" class="stat-seg" data-day="3" data-label="avond" data-value="18" /><rect x="213.0" y="28" width="24" height="260" fill="transparent" class="stat-hit" /></g><g class="stat-bar-group" data-day="4" data-city="Douro-vallei" data-date="wo 9 sep" data-ochtend="0" data-middag="7" data-avond="34" data-total="41"><path d="M303.0,288.0 L303.0,275.0 L327.0,275.0 L327.0,288.0 Z" fill="#2e86c1" class="stat-seg" data-day="4" data-label="middag" data-value="7" /><path d="M303.0,273.0 L303.0,215.85714285714283 Q303.0,211.85714285714283 307.0,211.85714285714283 L323.0,211.85714285714283 Q327.0,211.85714285714283 327.0,215.85714285714283 L327.0,273.0 Z" fill="#c1440e" class="stat-seg" data-day="4" data-label="avond" data-value="34" /><rect x="303.0" y="28" width="24" height="260" fill="transparent" class="stat-hit" /></g><g class="stat-bar-group" data-day="5" data-city="Aveiro" data-date="do 10 sep" data-ochtend="0" data-middag="12" data-avond="17" data-total="29"><path d="M393.0,288.0 L393.0,265.7142857142857 L417.0,265.7142857142857 L417.0,288.0 Z" fill="#2e86c1" class="stat-seg" data-day="5" data-label="middag" data-value="12" /><path d="M393.0,263.7142857142857 L393.0,238.14285714285714 Q393.0,234.14285714285714 397.0,234.14285714285714 L413.0,234.14285714285714 Q417.0,234.14285714285714 417.0,238.14285714285714 L417.0,263.7142857142857 Z" fill="#c1440e" class="stat-seg" data-day="5" data-label="avond" data-value="17" /><rect x="393.0" y="28" width="24" height="260" fill="transparent" class="stat-hit" /></g><g class="stat-bar-group" data-day="6" data-city="Batalha, Alcobaça & Nazaré" data-date="vr 11 sep" data-ochtend="19" data-middag="92" data-avond="4" data-total="115"><path d="M483.0,288.0 L483.0,252.71428571428572 L507.0,252.71428571428572 L507.0,288.0 Z" fill="#d4ac0d" class="stat-seg" data-day="6" data-label="ochtend" data-value="19" /><path d="M483.0,250.71428571428572 L483.0,81.85714285714286 L507.0,81.85714285714286 L507.0,250.71428571428572 Z" fill="#2e86c1" class="stat-seg" data-day="6" data-label="middag" data-value="92" /><path d="M483.0,79.85714285714286 L483.0,78.42857142857144 Q483.0,74.42857142857144 487.0,74.42857142857144 L503.0,74.42857142857144 Q507.0,74.42857142857144 507.0,78.42857142857144 L507.0,79.85714285714286 Z" fill="#c1440e" class="stat-seg" data-day="6" data-label="avond" data-value="4" /><rect x="483.0" y="28" width="24" height="260" fill="transparent" class="stat-hit" /></g><g class="stat-bar-group" data-day="7" data-city="Óbidos" data-date="za 12 sep" data-ochtend="39" data-middag="71" data-avond="19" data-total="129"><path d="M573.0,288.0 L573.0,215.57142857142856 L597.0,215.57142857142856 L597.0,288.0 Z" fill="#d4ac0d" class="stat-seg" data-day="7" data-label="ochtend" data-value="39" /><path d="M573.0,213.57142857142856 L573.0,83.71428571428572 L597.0,83.71428571428572 L597.0,213.57142857142856 Z" fill="#2e86c1" class="stat-seg" data-day="7" data-label="middag" data-value="71" /><path d="M573.0,81.71428571428572 L573.0,52.428571428571445 Q573.0,48.428571428571445 577.0,48.428571428571445 L593.0,48.428571428571445 Q597.0,48.428571428571445 597.0,52.428571428571445 L597.0,81.71428571428572 Z" fill="#c1440e" class="stat-seg" data-day="7" data-label="avond" data-value="19" /><rect x="573.0" y="28" width="24" height="260" fill="transparent" class="stat-hit" /></g><g class="stat-bar-group" data-day="8" data-city="Mafra & Sintra" data-date="zo 13 sep" data-ochtend="2" data-middag="58" data-avond="2" data-total="62"><path d="M663.0,288.0 L663.0,284.2857142857143 L687.0,284.2857142857143 L687.0,288.0 Z" fill="#d4ac0d" class="stat-seg" data-day="8" data-label="ochtend" data-value="2" /><path d="M663.0,282.2857142857143 L663.0,176.57142857142858 L687.0,176.57142857142858 L687.0,282.2857142857143 Z" fill="#2e86c1" class="stat-seg" data-day="8" data-label="middag" data-value="58" /><path d="M663.0,174.57142857142858 L663.0,176.85714285714286 Q663.0,172.85714285714286 667.0,172.85714285714286 L683.0,172.85714285714286 Q687.0,172.85714285714286 687.0,176.85714285714286 L687.0,174.57142857142858 Z" fill="#c1440e" class="stat-seg" data-day="8" data-label="avond" data-value="2" /><rect x="663.0" y="28" width="24" height="260" fill="transparent" class="stat-hit" /></g><g class="stat-bar-group" data-day="9" data-city="Lissabon" data-date="ma 14 sep" data-ochtend="15" data-middag="30" data-avond="8" data-total="53"><path d="M753.0,288.0 L753.0,260.14285714285717 L777.0,260.14285714285717 L777.0,288.0 Z" fill="#d4ac0d" class="stat-seg" data-day="9" data-label="ochtend" data-value="15" /><path d="M753.0,258.14285714285717 L753.0,204.42857142857142 L777.0,204.42857142857142 L777.0,258.14285714285717 Z" fill="#2e86c1" class="stat-seg" data-day="9" data-label="middag" data-value="30" /><path d="M753.0,202.42857142857142 L753.0,193.57142857142856 Q753.0,189.57142857142856 757.0,189.57142857142856 L773.0,189.57142857142856 Q777.0,189.57142857142856 777.0,193.57142857142856 L777.0,202.42857142857142 Z" fill="#c1440e" class="stat-seg" data-day="9" data-label="avond" data-value="8" /><rect x="753.0" y="28" width="24" height="260" fill="transparent" class="stat-hit" /></g><g class="stat-bar-group" data-day="10" data-city="Lissabon" data-date="di 15 sep" data-ochtend="1" data-middag="34" data-avond="2" data-total="37"><path d="M843.0,288.0 L843.0,286.14285714285717 L867.0,286.14285714285717 L867.0,288.0 Z" fill="#d4ac0d" class="stat-seg" data-day="10" data-label="ochtend" data-value="1" /><path d="M843.0,284.14285714285717 L843.0,223.0 L867.0,223.0 L867.0,284.14285714285717 Z" fill="#2e86c1" class="stat-seg" data-day="10" data-label="middag" data-value="34" /><path d="M843.0,221.0 L843.0,223.28571428571428 Q843.0,219.28571428571428 847.0,219.28571428571428 L863.0,219.28571428571428 Q867.0,219.28571428571428 867.0,223.28571428571428 L867.0,221.0 Z" fill="#c1440e" class="stat-seg" data-day="10" data-label="avond" data-value="2" /><rect x="843.0" y="28" width="24" height="260" fill="transparent" class="stat-hit" /></g></g>
+  <g><text x="45.0" y="233.6" class="stat-toplabel" text-anchor="middle">25</text><text x="135.0" y="176.0" class="stat-toplabel" text-anchor="middle">56</text><text x="225.0" y="168.6" class="stat-toplabel" text-anchor="middle">60</text><text x="315.0" y="203.9" class="stat-toplabel" text-anchor="middle">41</text><text x="405.0" y="226.1" class="stat-toplabel" text-anchor="middle">29</text><text x="495.0" y="66.4" class="stat-toplabel" text-anchor="middle">115</text><text x="585.0" y="40.4" class="stat-toplabel" text-anchor="middle">129</text><text x="675.0" y="164.9" class="stat-toplabel" text-anchor="middle">62</text><text x="765.0" y="181.6" class="stat-toplabel" text-anchor="middle">53</text><text x="855.0" y="211.3" class="stat-toplabel" text-anchor="middle">37</text></g>
+  <g><text x="45.0" y="308" class="stat-xlabel" text-anchor="middle">Dag 1</text><text x="45.0" y="324" class="stat-xlabel-sub" text-anchor="middle">Porto</text><text x="135.0" y="308" class="stat-xlabel" text-anchor="middle">Dag 2</text><text x="135.0" y="324" class="stat-xlabel-sub" text-anchor="middle">Porto</text><text x="225.0" y="308" class="stat-xlabel" text-anchor="middle">Dag 3</text><text x="225.0" y="324" class="stat-xlabel-sub" text-anchor="middle">Amarante</text><text x="315.0" y="308" class="stat-xlabel" text-anchor="middle">Dag 4</text><text x="315.0" y="324" class="stat-xlabel-sub" text-anchor="middle">Douro-vallei</text><text x="405.0" y="308" class="stat-xlabel" text-anchor="middle">Dag 5</text><text x="405.0" y="324" class="stat-xlabel-sub" text-anchor="middle">Aveiro</text><text x="495.0" y="308" class="stat-xlabel" text-anchor="middle">Dag 6</text><text x="495.0" y="324" class="stat-xlabel-sub" text-anchor="middle">Batalha</text><text x="585.0" y="308" class="stat-xlabel" text-anchor="middle">Dag 7</text><text x="585.0" y="324" class="stat-xlabel-sub" text-anchor="middle">Óbidos</text><text x="675.0" y="308" class="stat-xlabel" text-anchor="middle">Dag 8</text><text x="675.0" y="324" class="stat-xlabel-sub" text-anchor="middle">Mafra</text><text x="765.0" y="308" class="stat-xlabel" text-anchor="middle">Dag 9</text><text x="765.0" y="324" class="stat-xlabel-sub" text-anchor="middle">Lissabon</text><text x="855.0" y="308" class="stat-xlabel" text-anchor="middle">Dag 10</text><text x="855.0" y="324" class="stat-xlabel-sub" text-anchor="middle">Lissabon</text></g>
+</svg>
+
+        <div class="stat-tooltip" id="stat-tooltip" role="tooltip" hidden></div>
+      </div>
+      <div class="stat-table-wrap" id="stat-table-wrap" hidden>
+        
+<table class="stat-table">
+  <thead><tr><th>Dag</th><th>Datum</th><th>Locatie</th><th>Ochtend</th><th>Middag</th><th>Avond</th><th>Totaal</th></tr></thead>
+  <tbody><tr><td>Dag 1</td><td>zo 6 sep</td><td>Porto</td><td>5</td><td>16</td><td>4</td><td><strong>25</strong></td></tr><tr><td>Dag 2</td><td>ma 7 sep</td><td>Porto</td><td>14</td><td>41</td><td>1</td><td><strong>56</strong></td></tr><tr><td>Dag 3</td><td>di 8 sep</td><td>Amarante</td><td>0</td><td>42</td><td>18</td><td><strong>60</strong></td></tr><tr><td>Dag 4</td><td>wo 9 sep</td><td>Douro-vallei</td><td>0</td><td>7</td><td>34</td><td><strong>41</strong></td></tr><tr><td>Dag 5</td><td>do 10 sep</td><td>Aveiro</td><td>0</td><td>12</td><td>17</td><td><strong>29</strong></td></tr><tr><td>Dag 6</td><td>vr 11 sep</td><td>Batalha, Alcobaça & Nazaré</td><td>19</td><td>92</td><td>4</td><td><strong>115</strong></td></tr><tr><td>Dag 7</td><td>za 12 sep</td><td>Óbidos</td><td>39</td><td>71</td><td>19</td><td><strong>129</strong></td></tr><tr><td>Dag 8</td><td>zo 13 sep</td><td>Mafra & Sintra</td><td>2</td><td>58</td><td>2</td><td><strong>62</strong></td></tr><tr><td>Dag 9</td><td>ma 14 sep</td><td>Lissabon</td><td>15</td><td>30</td><td>8</td><td><strong>53</strong></td></tr><tr><td>Dag 10</td><td>di 15 sep</td><td>Lissabon</td><td>1</td><td>34</td><td>2</td><td><strong>37</strong></td></tr></tbody>
+</table>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
 <footer style="background:var(--dark);color:#fff;padding:2rem;text-align:center;font-size:.85rem;opacity:.8;">
   Portugal Roadtrip · zo 6 – di 15 sep 2026 · <a href="index.html" style="color:var(--gold)">← Terug naar de route</a>
 </footer>
@@ -2807,6 +3171,72 @@ if ('serviceWorker' in navigator) {
     if (e.key === 'ArrowRight') show(current + 1);
   });
 })();
+</script>
+<script>
+(function () {
+  var wrap = document.querySelector('.stat-chart-wrap');
+  var tooltip = document.getElementById('stat-tooltip');
+  if (!wrap || !tooltip) return;
+
+  var COLORS = { ochtend: '#d4ac0d', middag: '#2e86c1', avond: '#c1440e' };
+  var LABELS = { ochtend: 'Ochtend', middag: 'Middag', avond: 'Avond' };
+
+  function buildTooltip(group) {
+    var day = group.getAttribute('data-day');
+    var city = group.getAttribute('data-city');
+    var date = group.getAttribute('data-date');
+    var total = group.getAttribute('data-total');
+    var html = '<div class="tt-title">Dag ' + day + ' · ' + city + '</div>';
+    html += '<div style="opacity:.75;margin-bottom:.35rem;">' + date + '</div>';
+    ['ochtend', 'middag', 'avond'].forEach(function (key) {
+      var val = group.getAttribute('data-' + key);
+      if (parseInt(val, 10) === 0) return;
+      html += '<div class="tt-row"><span class="tt-key"><span class="tt-line" style="background:' + COLORS[key] + '"></span>' + LABELS[key] + '</span><span class="tt-val">' + val + '</span></div>';
+    });
+    html += '<div class="tt-row tt-total"><span>Totaal</span><span class="tt-val">' + total + '</span></div>';
+    tooltip.innerHTML = html;
+  }
+
+  function showTooltip(group, evt) {
+    buildTooltip(group);
+    tooltip.hidden = false;
+    var wrapRect = wrap.getBoundingClientRect();
+    var groupRect = group.getBoundingClientRect();
+    var ttRect = tooltip.getBoundingClientRect();
+    var x = groupRect.left + groupRect.width / 2 - wrapRect.left;
+    var y = groupRect.top - wrapRect.top;
+    // clamp so the tooltip never renders above the chart card (e.g. tall bars near the top)
+    var minY = ttRect.height + 12;
+    if (y < minY) y = minY;
+    tooltip.style.left = x + 'px';
+    tooltip.style.top = y + 'px';
+  }
+
+  function hideTooltip() {
+    tooltip.hidden = true;
+  }
+
+  document.querySelectorAll('.stat-bar-group').forEach(function (group) {
+    group.addEventListener('pointerenter', function (e) { showTooltip(group, e); });
+    group.addEventListener('pointermove', function (e) { showTooltip(group, e); });
+    group.addEventListener('pointerleave', hideTooltip);
+    group.setAttribute('tabindex', '0');
+    group.addEventListener('focus', function (e) { showTooltip(group, e); });
+    group.addEventListener('blur', hideTooltip);
+  });
+
+  var toggleBtn = document.getElementById('stat-table-toggle');
+  var tableWrap = document.getElementById('stat-table-wrap');
+  if (toggleBtn && tableWrap) {
+    toggleBtn.addEventListener('click', function () {
+      var isHidden = tableWrap.hidden;
+      tableWrap.hidden = !isHidden;
+      toggleBtn.setAttribute('aria-expanded', String(isHidden));
+      toggleBtn.textContent = isHidden ? 'Verberg tabel' : 'Toon als tabel';
+    });
+  }
+})();
+
 </script>
 </body>
 </html>
