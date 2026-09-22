@@ -1,0 +1,2878 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reisgids — Portugal Roadtrip</title>
+  <meta name="description" content="Complete reisgids voor de Portugal roadtrip: route, vluchten, hotels, restaurants, bezienswaardigheden, actuele info en praktische tips — dag voor dag, september 2026.">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icons/favicon-32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <meta name="theme-color" content="#1b4f72">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Portugal">
+
+  <style>
+    .rg-intro { background: var(--cream); padding: 2.5rem 0 1.5rem; text-align: center; }
+    .back-link { display: inline-flex; align-items: center; gap: .4rem; color: var(--azul); font-weight: 600; text-decoration: none; }
+    .back-link:hover { color: var(--terra); }
+
+    .rg-jump { display: flex; justify-content: center; gap: .5rem; flex-wrap: wrap; margin-top: 1.5rem; }
+    .rg-jump a {
+      background: var(--white); border: 1px solid var(--border); border-radius: 999px;
+      padding: .4rem 1rem; font-size: .8rem; font-weight: 700; text-decoration: none; color: #fff;
+    }
+    .rg-jump a:hover { filter: brightness(1.1); }
+
+    .rg-day-section { padding: 3rem 0; border-top: 1px solid var(--border); }
+    .rg-day-header {
+      display: flex; align-items: baseline; gap: 1rem; flex-wrap: wrap;
+      padding: .5rem 0 1.5rem; margin-bottom: 1.5rem; border-bottom: 3px solid var(--rg-day-color, var(--azul));
+    }
+    .rg-day-badge {
+      background: var(--rg-day-color, var(--azul)); color: #fff; font-family: var(--serif);
+      font-weight: 700; font-size: 1.1rem; padding: .4rem 1rem; border-radius: 2rem; white-space: nowrap;
+    }
+    .rg-day-header h2 { font-family: var(--serif); color: var(--dark); font-size: 1.7rem; margin: 0; }
+    .rg-day-header .rg-day-date { color: var(--muted); font-size: .95rem; }
+
+    .rg-subhead {
+      font-family: var(--serif); color: var(--dark); font-size: 1.15rem;
+      margin: 2rem 0 1rem; padding-left: .75rem; border-left: 4px solid var(--rg-day-color, var(--gold));
+    }
+    .rg-subhead:first-child { margin-top: 0; }
+
+    .rg-hotel-note {
+      display: flex; align-items: center; gap: .75rem; background: var(--sand);
+      border: 1px solid var(--border); border-radius: var(--radius); padding: .9rem 1.25rem;
+      margin-bottom: 1.5rem; font-size: .92rem; color: var(--text);
+    }
+    .rg-hotel-note .rg-hotel-note-icon { font-size: 1.3rem; }
+
+    .rg-algemeen { background: var(--sand); padding-top: 1rem; }
+    .rg-algemeen-title {
+      font-family: var(--serif); font-size: 2rem; color: var(--dark); text-align: center;
+      padding-top: 2rem; margin-bottom: .3rem;
+    }
+    .rg-algemeen-sub { text-align: center; color: var(--muted); margin-bottom: 2rem; }
+    .rg-algemeen-block { padding: 2rem 0; }
+    .rg-algemeen-block:nth-child(even) { background: var(--white); }
+    .rg-algemeen-block-title {
+      font-family: var(--serif); font-size: 1.5rem; color: var(--dark); margin-bottom: .3rem;
+      display: flex; align-items: center; gap: .6rem;
+    }
+    .rg-algemeen-block-sub { color: var(--muted); margin-bottom: 1.25rem; font-size: .92rem; }
+
+    .actueel-text { max-width: 720px; }
+    .actueel-text p { margin-bottom: 1rem; line-height: 1.65; }
+
+    .link-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+    .link-card {
+      background: var(--white); border: 1px solid var(--border); border-radius: var(--radius);
+      box-shadow: var(--shadow-sm); padding: 1.1rem 1.3rem; text-decoration: none; color: inherit;
+      display: block; transition: box-shadow .2s ease, transform .2s ease;
+    }
+    .link-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+    .link-card-title { font-weight: 700; color: var(--azul); margin-bottom: .3rem; font-size: .98rem; }
+    .link-card-desc { font-size: .85rem; color: var(--muted); line-height: 1.5; }
+    .link-tag {
+      display: inline-block; font-size: .7rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .04em; padding: .15rem .55rem; border-radius: 999px; margin-bottom: .5rem;
+    }
+    .link-tag.official { background: var(--azul); color: #fff; }
+    .link-tag.blog { background: var(--gold); color: #fff; }
+
+    .forecast-table { width: 100%; border-collapse: collapse; font-size: .88rem; margin: 1.5rem 0; }
+    .forecast-table th, .forecast-table td { padding: .6rem .7rem; border-bottom: 1px solid var(--border); text-align: center; }
+    .forecast-table th { background: var(--azul); color: #fff; font-weight: 600; }
+    .forecast-table td:first-child, .forecast-table th:first-child { text-align: left; font-weight: 600; }
+    .forecast-table tr:nth-child(even) td { background: var(--sand); }
+
+    .disclaimer-box {
+      background: var(--cream); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 1.3rem 1.5rem; margin-top: 1rem; font-size: .9rem; color: var(--muted);
+      display: flex; gap: .7rem; align-items: flex-start;
+    }
+
+    .fire-map-wrap { min-height: 320px; margin: 1.5rem 0; }
+    .fire-map-embed { width: 100%; height: 320px; border-radius: var(--radius, 8px); overflow: hidden; background: var(--sand); }
+    .fire-map-fallback { display: flex; align-items: center; justify-content: center; height: 100%; text-align: center; padding: 1rem; }
+    .fire-map-fallback-inner { display: flex; flex-direction: column; align-items: center; gap: .6rem; }
+    .fire-map-fallback-icon { font-size: 1.8rem; }
+    .fire-map-legend { display: flex; flex-wrap: wrap; gap: 1rem; font-size: .82rem; color: var(--muted); margin-top: .6rem; }
+    .fire-map-legend span { display: inline-flex; align-items: center; gap: .35rem; }
+    .fire-map-legend .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; background: #e74c3c; box-shadow: 0 0 0 2px #fff, 0 0 0 3px #e74c3c; }
+    .route-waypoint-marker {
+      background: var(--azul, #1b4f72); color: #fff; border-radius: 50%; display: flex;
+      align-items: center; justify-content: center; font-size: .8rem; line-height: 1; box-shadow: 0 0 0 2px #fff;
+    }
+
+    .fun-facts { background: var(--sand); border-left: 4px solid var(--gold); border-radius: var(--radius); padding: 1rem 1.3rem; margin: .8rem 0 1.6rem; }
+    .fun-facts-title { font-weight: 700; color: var(--dark); margin-bottom: .5rem; font-size: .92rem; display: flex; align-items: center; gap: .4rem; }
+    .fun-facts ul { margin: 0; padding-left: 1.2rem; }
+    .fun-facts li { margin-bottom: .4rem; font-size: .92rem; line-height: 1.55; color: var(--text); }
+    .fun-facts li:last-child { margin-bottom: 0; }
+
+    .program-box { background: var(--white); border: 1px solid var(--border); border-left: 4px solid var(--azul); border-radius: var(--radius); padding: 1rem 1.3rem; margin: .8rem 0 1.6rem; }
+    .program-box-title { font-weight: 700; color: var(--dark); margin-bottom: .6rem; font-size: .92rem; display: flex; align-items: center; gap: .4rem; }
+    .program-box ul { margin: 0 0 .8rem; padding-left: 1.2rem; }
+    .program-box li { margin-bottom: .35rem; font-size: .9rem; line-height: 1.5; color: var(--text); }
+    .program-box li:last-child { margin-bottom: 0; }
+    .program-box li.program-relevant { font-weight: 600; color: var(--dark); }
+    .program-box p { font-size: .88rem; line-height: 1.55; color: var(--muted); margin: 0; }
+    .program-box p:not(:last-child) { margin-bottom: .6rem; }
+    .program-box a { color: var(--azul); text-decoration: underline; font-weight: 600; }
+
+    .city-block { margin-bottom: 0; }
+
+    .hotel-grid, .restaurant-grid { display: flex; flex-direction: column; gap: 1.5rem; margin: 0 0 1.5rem; }
+    .hotel-card, .restaurant-card {
+      background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm); overflow: hidden; transition: box-shadow .2s ease;
+    }
+    .hotel-card:hover, .restaurant-card:hover { box-shadow: var(--shadow-md); }
+    .hotel-card-header { display: flex; align-items: center; gap: 1rem; background: var(--azul); color: #fff; padding: 1.25rem 1.75rem; }
+    .hotel-dag-badge { background: var(--terra); color: #fff; font-size: .75rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; padding: .3rem .75rem; border-radius: 2px; white-space: nowrap; }
+    .hotel-card-header h3 { font-family: var(--serif); font-size: 1.25rem; margin: 0; flex: 1; }
+    .hotel-city-tag { font-size: .85rem; opacity: .8; white-space: nowrap; }
+    .hotel-card-body { padding: 1.5rem 1.75rem; }
+    .hotel-desc { color: var(--text); line-height: 1.7; margin-bottom: 1.25rem; }
+    .hotel-chips { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1.25rem; }
+    .hotel-chip { background: var(--sand); border: 1px solid var(--border); border-radius: 2rem; font-size: .8rem; color: var(--text); padding: .25rem .75rem; }
+    .hotel-btns { display: flex; gap: .75rem; flex-wrap: wrap; }
+    .hotel-highlight { border-left: 4px solid var(--gold); background: var(--sand); padding: .75rem 1rem; border-radius: 0 var(--radius) var(--radius) 0; font-size: .9rem; color: var(--text); margin-bottom: 1.25rem; font-style: italic; }
+
+    .restaurant-card-header { display: flex; align-items: center; gap: 1rem; background: var(--terra); color: #fff; padding: 1.25rem 1.75rem; }
+    .restaurant-dag-badge { background: rgba(255,255,255,.2); color: #fff; font-size: .75rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; padding: .3rem .75rem; border-radius: 2px; white-space: nowrap; }
+    .restaurant-card-header h3 { font-family: var(--serif); font-size: 1.25rem; margin: 0; flex: 1; }
+    .restaurant-city-tag { font-size: .85rem; opacity: .85; white-space: nowrap; }
+    .restaurant-card-body { padding: 1.5rem 1.75rem; }
+    .restaurant-desc { color: var(--text); line-height: 1.7; margin-bottom: 1.25rem; }
+    .restaurant-chips { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1.25rem; }
+    .restaurant-chip { background: var(--sand); border: 1px solid var(--border); border-radius: 2rem; font-size: .8rem; color: var(--text); padding: .25rem .75rem; }
+    .restaurant-btns { display: flex; gap: .75rem; flex-wrap: wrap; }
+    .specialiteit-box { border-left: 4px solid var(--terra); background: #fef5f0; padding: .75rem 1rem; border-radius: 0 var(--radius) var(--radius) 0; margin-bottom: 1.25rem; }
+    .specialiteit-box strong { display: block; font-size: .75rem; text-transform: uppercase; letter-spacing: .05em; color: var(--terra); margin-bottom: .25rem; }
+    .specialiteit-box p { margin: 0; font-size: .95rem; color: var(--text); }
+    .tip-box { border-left: 4px solid var(--gold); background: #fffbf0; padding: .6rem 1rem; border-radius: 0 var(--radius) var(--radius) 0; font-size: .85rem; color: var(--muted); margin-bottom: 1.25rem; }
+
+    .extra-tip-card { border: 1px dashed var(--gold, #c9a227); background: #fffdf5; border-radius: var(--radius, 8px); padding: 1.25rem 1.5rem; margin-top: 1rem; }
+    .extra-tip-label { display: inline-block; font-size: .75rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--gold, #c9a227); background: rgba(201,162,39,0.12); padding: .25rem .75rem; border-radius: 2rem; margin-bottom: .6rem; }
+    .extra-tip-card .attraction-item-name { margin-bottom: .4rem; }
+    .route-marker-waypoint { background: var(--gold, #c9a227); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1rem; line-height: 1; box-shadow: 0 0 0 2px #fff; }
+
+    @media (max-width: 600px) {
+      .hotel-card-header, .restaurant-card-header { flex-wrap: wrap; }
+      .hotel-btns, .restaurant-btns { flex-direction: column; }
+      .rg-jump { gap: .4rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="nav-logo"><a href="index.html" style="color:inherit;text-decoration:none">Portugal 🇵🇹</a></div>
+    <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Menu" aria-expanded="false">☰</button>
+    <ul class="nav-links">
+      <li><a href="reisgids.html" style="color:var(--gold)">📖 Reisgids</a></li>
+      <li><a href="route.html">🚗 Rijroute</a></li>
+      <li><a href="kaart.html">🗺️ Kaart</a></li>
+      <li><a href="activiteiten.html">✨ Activiteiten</a></li>
+      <li><a href="confirmations.html">📩 Bevestigingen</a></li>
+      <li><a href="budget.html">🔒 Budget</a></li>
+      <li><a href="bronnen.html">🔗 Bronnen</a></li>
+      <li><a href="documenten.html">📄 Documenten</a></li>
+      <li><a href="logboek.html">🗓️ Logboek</a></li>
+      <li><a href="fotogallerij.html">📸 Fotogallerij</a></li>
+      <li><a href="fotokaart.html">📍 Fotokaart</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="rg-intro">
+  <div class="container">
+    <h1 class="section-title">Reisgids</h1>
+    <p class="section-subtitle">Route, vluchten, hotels, restaurants, bezienswaardigheden en actuele info — dag voor dag</p>
+    <a href="index.html" class="back-link">← Terug naar de roadtrip</a>
+    <div class="rg-jump">
+      <a href="#dag-1" style="background:#1b4f72">Dag 1</a>
+      <a href="#dag-2" style="background:#2e86c1">Dag 2</a>
+      <a href="#dag-3" style="background:#17a589">Dag 3</a>
+      <a href="#dag-4" style="background:#28b463">Dag 4</a>
+      <a href="#dag-5" style="background:#d4ac0d">Dag 5</a>
+      <a href="#dag-6" style="background:#ca6f1e">Dag 6</a>
+      <a href="#dag-7" style="background:#cb4335">Dag 7</a>
+      <a href="#dag-8" style="background:#a04000">Dag 8</a>
+      <a href="#dag-9" style="background:#8e44ad">Dag 9</a>
+      <a href="#dag-10" style="background:#5b2c6f">Dag 10</a>
+    </div>
+  </div>
+</section>
+
+<section id="route">
+  <div class="container">
+    <h2 class="section-title">Jouw Reis door Portugal</h2>
+    <p class="section-subtitle">Van de charmante straten van Porto tot de levendige hoofdstad Lissabon</p>
+
+    <div class="intro-box">
+<p>
+<strong>Welkom in Portugal!</strong> Deze interactieve route voert je langs de mooiste bestemmingen
+        van het land. Je begint in Porto, een stad doordrenkt van geschiedenis en thuisbasis van de
+        beroemdste portwijn ter wereld. Van daaruit trek je door de terrasvormige wijnbergen van de
+        Douro-vallei, ontdek je kleurrijke kuststadjes, verken je middeleeuwse vestingsteden, bezoek
+        je romantische bergpaleizen in mistig Sintra en sluit je af in het bruisende Lissabon.
+      </p>
+<p>
+        Elke dag heeft directe Google Maps-links voor navigatie, officiële websitelinks voor reserveringen
+        en tips voor de beste bezienswaardigheden, eetgelegenheden en fotomomenten.
+      </p>
+<div class="features-row">
+<span class="feature-item">🗺️ Google Maps per attractie</span>
+<span class="feature-item">🌐 Officiële websitelinks</span>
+<span class="feature-item">📍 Rijroutes per dag</span>
+<span class="feature-item">⏱ Tijdsinschattingen</span>
+<span class="feature-item">📸 Fotografie-tips</span>
+</div>
+</div>
+
+    <div class="route-map-wrap fade-in">
+<div class="route-map-head">
+<h3>De Complete Route</h3>
+<p>Porto → Douro → Aveiro → Nazaré → Óbidos → Sintra → Lissabon · ±500 km</p>
+</div>
+<div class="route-map-embed" id="routeMap"></div>
+<p style="font-size:.85rem;color:var(--muted,#7a7a7a);margin:.5rem 0 0;">
+<span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--gold,#c9a227);margin-right:.4rem;vertical-align:middle;"></span>
+        Kleinere gouden stippen = tussenstops onderweg (Alcobaça op dag 6, Mafra op dag 8) — geen overnachting.
+      </p>
+<div class="route-stops">
+<span class="route-stop"><span class="route-dot">1</span>Porto</span>
+<span class="route-arrow">→</span>
+<span class="route-stop"><span class="route-dot">2</span>Douro</span>
+<span class="route-arrow">→</span>
+<span class="route-stop"><span class="route-dot">3</span>Aveiro</span>
+<span class="route-arrow">→</span>
+<span class="route-stop"><span class="route-dot">4</span>Nazaré</span>
+<span class="route-arrow">→</span>
+<span class="route-stop"><span class="route-dot">5</span>Óbidos</span>
+<span class="route-arrow">→</span>
+<span class="route-stop"><span class="route-dot">6</span>Sintra</span>
+<span class="route-arrow">→</span>
+<span class="route-stop"><span class="route-dot">7</span>Lissabon</span>
+</div>
+<a class="btn btn-map route-map-btn" href="https://www.google.com/maps/dir/Porto,+Portugal/Douro+Valley,+Portugal/Aveiro,+Portugal/Alcoba%C3%A7a,+Portugal/Nazar%C3%A9,+Portugal/%C3%93bidos,+Portugal/Mafra,+Portugal/Sintra,+Portugal/Lisbon,+Portugal" rel="noopener noreferrer" target="_blank">🗺️ Open volledige route in Google Maps</a>
+</div>
+  </div>
+</section>
+
+<section class="rg-day-section" id="dag-1" style="--rg-day-color:#1b4f72">
+  <div class="container">
+    <div class="rg-day-header"><span class="rg-day-badge">Dag 1</span><h2>Porto</h2><span class="rg-day-date">zo 6 sep · aankomst</span></div>
+    <h3 class="rg-subhead">✈️ Vlucht</h3>
+    <div class="flights-grid"><div class="flight-card fade-in">
+<div class="flight-card-top">
+<span class="flight-badge">✈️ Heenvlucht</span>
+<span class="flight-date">zo 6 sep 2026</span>
+</div>
+<div class="flight-number">KLM · KL1571</div>
+<div class="flight-route">
+<div class="flight-point">
+<span class="flight-code">AMS</span>
+<span class="flight-city">Amsterdam</span>
+<span class="flight-time">08:50</span>
+</div>
+<div class="flight-line"><span class="flight-plane">✈</span></div>
+<div class="flight-point">
+<span class="flight-code">OPO</span>
+<span class="flight-city">Porto</span>
+<span class="flight-time">10:30</span>
+</div>
+</div>
+<p class="flight-meta">Non-stop · ±2u40 · daarna direct door naar Dag 1</p>
+<div class="flight-btns">
+<a class="btn btn-sm btn-map" href="https://www.flightradar24.com/data/flights/kl1571" rel="noopener noreferrer" target="_blank">📡 Live status</a>
+<a class="btn btn-sm btn-web" href="https://www.schiphol.nl/nl/vertrek/KL1571/" rel="noopener noreferrer" target="_blank">🛫 Schiphol</a>
+</div>
+</div></div>
+    <h3 class="rg-subhead">🏨 Overnachting</h3>
+    <div class="hotel-grid"><div class="hotel-card" id="forte-de-gaia">
+<div class="hotel-card-header">
+<span class="hotel-dag-badge">Dag 1–2</span>
+<h3>Forte de Gaia, Autograph Collection</h3>
+<span class="hotel-city-tag">Vila Nova de Gaia · zo 6 – di 8 sep · 2 nachten</span>
+</div>
+<div class="hotel-card-body">
+<div class="hotel-highlight">
+        "Pal aan de Douro-oever met spectaculair uitzicht op Porto's skyline — en toch aan de stillere, rustiger kant van de rivier."
+      </div>
+<p class="hotel-desc">
+        5-sterren Marriott Autograph Collection op de Gaia-oever, Rua de Serpa Pinto 60. 119 kamers
+        ontworpen door Nini Andrade Silva, allemaal met Douro-rivierzicht richting Porto. Eigen wijnkelder
+        en proeverijen, restaurant Dona Maria, twee zwembaden. Loopafstand van de portlodges (Ferreira,
+        Cockburn's) en de Dom Luís-brug. Avond 1: Enoteca 1756 op Cais de Gaia (loopafstand).
+        Avond 2: lopen over de Dom Luís-brug naar Taberna dos Mercadores in Porto.
+      </p>
+<div class="hotel-chips">
+<span class="hotel-chip">⭐⭐⭐⭐⭐ Autograph Collection</span>
+<span class="hotel-chip">📍 Vila Nova de Gaia</span>
+<span class="hotel-chip">🍷 Eigen wijnkelder</span>
+<span class="hotel-chip">🌊 Douro-rivierzicht op Porto</span>
+<span class="hotel-chip">🏊 2 zwembaden</span>
+<span class="hotel-chip">🚶 Portlodges op loopafstand</span>
+</div>
+<div class="hotel-btns">
+<a class="btn btn-sm btn-map" href="https://www.google.com/maps/search/Forte+de+Gaia+Autograph+Collection+Vila+Nova+de+Gaia" rel="noopener noreferrer" target="_blank">🗺️ Google Maps</a>
+<a class="btn btn-sm btn-web" href="https://www.marriott.com/hotels/travel/opolg-forte-de-gaia-autograph-collection" rel="noopener noreferrer" target="_blank">🌐 Website</a>
+<a class="btn btn-sm btn-video" href="https://www.youtube.com/watch?v=aV4R6EKMeys" rel="noopener noreferrer" target="_blank">▶️ Video</a>
+</div>
+</div>
+</div></div>
+    <h3 class="rg-subhead">✨ Attracties & tips</h3>
+    <div class="day-detail fade-in" id="day1">
+<div class="day-detail-header">
+<div class="day-detail-info">
+<span class="day-detail-day">Dag 1–2 · zo 6–ma 7 sep</span>
+<h2>Porto</h2>
+<p class="day-detail-tagline">Portwijn &amp; Literaire Magie</p>
+<p class="day-detail-desc">
+            Porto is een stad van contrasten: vervallen azulejos naast hipster koffiebars,
+            eeuwenoude portwijnkelders naast moderne gastronomie. De Ribeira-wijk,
+            geklasseerd als UNESCO-erfgoed, is het hart van de stad. Pak een boot over de
+            Douro naar Vila Nova de Gaia voor de meest indrukwekkende panorama's.
+          </p>
+<div class="day-meta-grid">
+<div class="meta-cell">
+<div class="meta-label">Rijafstand</div>
+<div class="meta-value">30 min van luchthaven</div>
+</div>
+<div class="meta-cell">
+<div class="meta-label">Overnachting</div>
+<div class="meta-value">Forte de Gaia, Autograph Collection · 2 nachten</div>
+</div>
+<div class="meta-cell">
+<div class="meta-label">Beste tip</div>
+<div class="meta-value">Vroeg bij Livraria Lello</div>
+</div>
+<div class="meta-cell">
+<div class="meta-label">Fotomoment</div>
+<div class="meta-value">Dom Luís-brug bij zonsondergang</div>
+</div>
+<div class="meta-cell">
+<div class="meta-label">Lunch tip</div>
+<div class="meta-value">Adega São Nicolau · arroz de polvo</div>
+</div>
+</div>
+</div>
+<div class="day-detail-photo">
+<img alt="Porto skyline" decoding="async" loading="lazy" src="images/dag01-porto.jpg"/>
+</div>
+</div>
+<h3 style="font-family:var(--serif);color:var(--dark);margin-bottom:1.5rem;">✨ Attracties</h3>
+<div class="attractions-list-detail">
+<div class="attraction-item-card extra-tip-card">
+<span class="extra-tip-label">🧑‍🏫 Programma dag 1 — begeleide wandeling (geboekt)</span>
+<div class="attraction-item-top">
+<div class="attraction-item-name">🇳🇱 Beleef Porto — Nederlandstalige privétour</div>
+</div>
+<p class="attraction-item-desc">
+            Start om <strong>15:00</strong> vanaf het <strong>Ticket Office op Rua Chã 36</strong>
+            (vlak bij de Sé en metrostation São Bento), en eindigt rond <strong>18:00</strong>. Een
+            privétour van circa 3 uur door het eeuwenoude centrum van Porto, in het Nederlands en
+            op jullie eigen tempo — aanpassingen zijn altijd mogelijk. De tour brengt je langs de
+            Sé, Torre dos Clérigos, Livraria Lello, São Bento en de Ribeira, met verhalen over de
+            rabelo-boten die vroeger de vaten portwijn vervoerden, richting de Dom Luís I-brug. Voor
+            deze reis al <strong>geboekt voor zondag 6 sep, 4 personen, €150 totaal — contant te
+            betalen</strong>. Contactpersoon: Philip.
+          </p>
+<p class="attraction-item-desc">
+<strong>Vanuit het hotel naar het startpunt:</strong> loop vanaf Forte de Gaia
+            (±5–6 min, ±440 m) naar metrostation <strong>General Torres</strong> of
+            <strong>Jardim do Morro</strong>, en neem daar <strong>Metrolijn D (geel)</strong> —
+            1 halte, over het bovendek van de Dom Luís I-brug, naar <strong>São Bento</strong>.
+            Vanaf São Bento is het nog ±3 minuten lopen naar het Ticket Office op Rua Chã 36.
+          </p>
+<p class="attraction-item-desc">
+<strong>Hoe laat weg uit het hotel:</strong> reken op ±5–6 min lopen + eventueel
+            metrokaartjes kopen (±5 min de eerste keer) + tot ±10–12 min wachttijd (metro rijdt
+            overdag om de 4–15 min) + 1 haltes metro (~3 min) + ±3 min lopen naar Rua Chã 36. Om ruim op
+            tijd voor 15:00 te zijn, raden we aan om <strong>uiterlijk 14:30</strong> uit het hotel te
+            vertrekken. Lopen in plaats van de metro kan ook (±1 km via de brug, ~13 min) — dan om
+            uiterlijk 14:40 vertrekken.
+          </p>
+<p class="attraction-item-desc">
+<strong>Metrokaartjes kopen — stap voor stap</strong> (bij de gele automaten op elk
+            metrostation, ook bij General Torres/Jardim do Morro en São Bento):
+          </p>
+<ol style="margin:0 0 1rem 1.25rem;padding:0;color:var(--text);font-size:.95rem;line-height:1.7;">
+<li>Eerste keer: koop de fysieke, blauwe <strong>Andante-kaart</strong> — eenmalig €0,60 per persoon, bovenop je eerste oplading.</li>
+<li>Selecteer zone <strong>Z2</strong> en kies het kaarttype: enkele rit (€1,40 p.p.) of de 24-uurs pas "Título Andante 24" (€5,35 p.p.).</li>
+<li>Betaal bij de automaat met pinpas/creditcard of contant.</li>
+<li>Valideer de kaart bij de gele validators bij de ingang van het perron vlak vóórdat je instapt — dat moment start de 24 uur (valideren kan tot 10 min voor vertrek). Elke persoon valideert zijn eigen kaart.</li>
+</ol>
+<p class="attraction-item-desc">
+            Voor 2 nachten Porto/Gaia is de 24-uurs Z2-pas (€5,35 p.p.) meestal het voordeligst bij
+            meerdere ritten op één dag. Reist iemand breder door het hele netwerk (bijv. ook richting
+            kust of luchthaven) op meerdere dagen, dan is de <strong>Andante Tour</strong> interessanter:
+            1 dag €7,75 p.p. (24 uur geldig) of 3 dagen €16,55 p.p. (72 uur geldig) — een 48-uurs optie
+            bestaat niet.
+          </p>
+<div class="attraction-item-info">
+<span class="info-chip">🗣️ Nederlandstalig</span>
+<span class="info-chip">⏱ ±3 uur</span>
+<span class="info-chip">👥 Privé, eigen tempo</span>
+<span class="info-chip">🕒 Vertrek hotel uiterlijk 14:30</span>
+<span class="info-chip">🚇 Heen: Metrolijn D · General Torres/Jardim do Morro → São Bento</span>
+<span class="info-chip">🎫 Andante Z2 · €1,40 p.p. (of €5,35 dagpas)</span>
+<span class="info-chip">✉️ info@beleefporto.nl</span>
+<span class="info-chip">📱 +351 920 423 533</span>
+</div>
+<div class="attraction-item-links">
+<a class="btn btn-sm btn-map" href="kaart.html#porto-detail">🗺️ Bekijk op de Porto-detailkaart</a>
+<a class="btn btn-sm btn-web" href="https://www.beleefporto.nl/stadswandeling-in-porto-met-nederlandse-gids/" rel="noopener noreferrer" target="_blank">🌐 Beleef Porto</a>
+<a class="btn btn-sm btn-web" href="https://wa.me/351920423533" rel="noopener noreferrer" target="_blank">💬 WhatsApp</a>
+<a class="btn btn-sm btn-web" href="mailto:info@beleefporto.nl">✉️ E-mail</a>
+<a class="btn btn-sm btn-map" href="https://www.google.com/maps/search/Rua+Ch%C3%A3+36+Porto" rel="noopener noreferrer" target="_blank">🗺️ Ticket Office Rua Chã 36</a>
+<a class="btn btn-sm btn-map" href="https://www.google.com/maps/place/S%C3%A3o+Bento+Railway+Station/@41.1455,-8.6108,17z" rel="noopener noreferrer" target="_blank">🗺️ Metro São Bento</a>
+</div>
+</div>
+<div class="attraction-item-card">
+<div class="attraction-item-top">
+<div class="attraction-item-name">📚 Livraria Lello</div>
+</div>
+<p class="attraction-item-desc">
+            Een van 's werelds mooiste boekhandels. Het adembenemende Art Deco-interieur uit 1900
+            met zijn iconische rode wenteltrap inspireert naar verluidt J.K. Rowling bij Harry Potter.
+            Reserveer online — er is een entreebijdrage die verrekend wordt met een aankoop.
+          </p>
+<div class="attraction-item-info">
+<span class="info-chip">📍 Rua das Carmelitas 144</span>
+<span class="info-chip">🕐 9:00–19:00</span>
+<span class="info-chip">⏱ 45–60 min</span>
+<span class="info-chip">💶 ~€8 entree</span>
+</div>
+<div class="attraction-item-links">
+<a class="btn btn-sm btn-map" href="https://www.google.com/maps/place/Livraria+Lello/@41.1467,-8.6153,17z" rel="noopener noreferrer" target="_blank">🗺️ Google Maps</a>
+<a class="btn btn-sm btn-web" href="https://www.livrarialello.pt/en" rel="noopener noreferrer" target="_blank">🌐 Website</a>
+</div>
+</div>
+<div class="attraction-item-card">
+<div class="attraction-item-top">
+<div class="attraction-item-name">🍷 Caves Ferreira 🇵🇹</div>
+</div>
+<p class="attraction-item-desc">
+            Het enige grote porthuis dat door zijn hele geschiedenis volledig Portugees is gebleven —
+            door lokale gidsen het vaakst aanbevolen als je er maar één wilt doen. Opgericht in 1751,
+            met het verhaal van Dona Antónia Adelaide Ferreira, een legendarische zakenvrouw die het
+            bedrijf in 1844 in een mannenwereld overnam en tot een van de grote porthuizen uitbouwde.
+            De rondleiding door de kelders eindigt met een proeverij; ligt aan de rivier in Gaia,
+            geen heuvel op.
+          </p>
+<div class="attraction-item-info">
+<span class="info-chip">📍 Av. Ramos Pinto 70, Gaia</span>
+<span class="info-chip">🇵🇹 100% Portugees porthuis</span>
+<span class="info-chip">⏱ 1–1,5 uur</span>
+<span class="info-chip">📞 Reserveren aanbevolen</span>
+</div>
+<div class="attraction-item-links">
+<a class="btn btn-sm btn-map" href="https://www.google.com/maps/search/Caves+Ferreira+Vila+Nova+de+Gaia" rel="noopener noreferrer" target="_blank">🗺️ Google Maps</a>
+<a class="btn btn-sm btn-web" href="https://www.sograpevinhos.com/en/winetourism" rel="noopener noreferrer" target="_blank">🌐 Reserveren</a>
+</div>
+</div>
+<div class="attraction-item-card">
+<div class="attraction-item-top">
+<div class="attraction-item-name">🌉 Dom Luís I-brug &amp; Ribeira</div>
+</div>
+<p class="attraction-item-desc">
+            De iconische dubbellaagse metalen brug (ontworpen door Théophile Seyrig, leerling van
+            Eiffel) verbindt Porto met Gaia. Loop over het bovendek voor het beste panorama.
+            De Ribeira-wijk eronder is UNESCO-erfgoed en bruist 's avonds van terrassen en fado.
+          </p>
+<div class="attraction-item-info">
+<span class="info-chip">📍 Ribeira, Porto</span>
+<span class="info-chip">🕐 Altijd open</span>
+<span class="info-chip">💶 Gratis</span>
+<span class="info-chip">📸 Beste licht: gouden uur</span>
+</div>
+<div class="attraction-item-links">
+<a class="btn btn-sm btn-map" href="https://www.google.com/maps/place/Dom+Luís+I+Bridge/@41.1403,-8.6094,17z" rel="noopener noreferrer" target="_blank">🗺️ Google Maps</a>
+</div>
+</div>
+<div class="attraction-item-card extra-tip-card">
+<span class="extra-tip-label">⏳ Als je tijd over hebt</span>
+<div class="attraction-item-top">
+<div class="attraction-item-name">🏛️ Palácio da Bolsa</div>
+</div>
+<p class="attraction-item-desc">
+            Indrukwekkende 19e-eeuwse voormalige beurszaal, gebouwd door Porto's kooplieden.
+            De absolute blikvanger is de Arabische Zaal — een weelderig vergulde ruimte
+            geïnspireerd op het Alhambra in Granada, waar nog altijd staatsbezoeken worden
+            ontvangen. Alleen te bezoeken met een rondleiding (30–45 min).
+          </p>
+<div class="attraction-item-info">
+<span class="info-chip">📍 Rua de Ferreira Borges, Porto</span>
+<span class="info-chip">🕐 9:00–18:30</span>
+<span class="info-chip">💶 ~€10</span>
+<span class="info-chip">⏱ 30–45 min rondleiding</span>
+</div>
+<div class="attraction-item-links">
+<a class="btn btn-sm btn-map" href="https://www.google.com/maps/place/Pal%C3%A1cio+da+Bolsa/@41.1414,-8.6144,17z" rel="noopener noreferrer" target="_blank">🗺️ Google Maps</a>
+<a class="btn btn-sm btn-web" href="https://www.palaciodabolsa.com" rel="noopener noreferrer" target="_blank">🌐 Website</a>
+</div>
+</div>
+</div>
+</div>
+    <h3 class="rg-subhead">📰 Actueel</h3>
+    <div class="city-block">
+<h3 style="font-family:var(--serif); color:var(--azul); margin:0 0 .5rem; font-size:1.15rem;">🍷 Porto <span style="font-weight:400;color:var(--muted);font-size:.8rem;">— dag 1–2, zo 6 – ma 7 sep</span></h3>
+<p>De grote uitbreiding van de Porto Metro loopt vertraging op: de nieuwe Rosa-lijn zou dit jaar opengaan, maar de opening is verschoven naar begin 2027 — rond de bouwplaatsen (Rosa en Ruby) kunnen dus nog wegwerkzaamheden en omleidingen zijn, check vlak voor vertrek Google Maps als je met de auto het centrum in wilt. Positiever nieuws: de nieuwe Porto Metrobus-lijn is sinds april 2026 officieel operationeel. Verder verhoogde buurgemeente Vila Nova de Gaia (aan de overkant van de Douro, waar veel wijnkelders zitten) de toeristenbelasting van €2,50 naar €3,00 per nacht — dit geldt nu het hele jaar door, zonder lager winterseizoenstarief.</p>
+<div class="fun-facts">
+<div class="fun-facts-title">✨ Wist je dat...?</div>
+<ul>
+<li>Porto's Romeinse naam "Portus Cale" de oorsprong is van de naam Portugal zelf.</li>
+<li>de beroemde Dom Luís I-brug vaak aan Gustave Eiffel wordt toegeschreven, maar eigenlijk is ontworpen door zijn leerling Théophile Seyrig.</li>
+<li>boekhandel Livraria Lello vaak wordt genoemd als inspiratie voor Zweinsteins Wegisweg uit Harry Potter — J.K. Rowling woonde er begin jaren '90, al ontkent ze zelf een directe link.</li>
+<li>Casa da Música, het futuristische concertgebouw dat werd ontworpen door de bekende architect Rem Koolhaas, geldt als een van de opvallendste gebouwen van de stad?</li>
+<li>Porto de grootste synagoge van het hele Iberisch Schiereiland huisvest, de Kadoorie Mekor Haim-synagoge?</li>
+<li>het Parque da Cidade het enige stadspark in Europa is dat direct aan zee grenst?</li>
+</ul>
+</div>
+</div>
+    <h3 class="rg-subhead">🍽️ Eten</h3>
+    <div class="restaurant-grid">
+      <div class="restaurant-card" id="enoteca-1756">
+<div class="restaurant-card-header">
+<span class="restaurant-dag-badge">Dag 1 · Porto · Avond</span>
+<h3>Enoteca 1756</h3>
+<span class="restaurant-city-tag">Cais de Gaia, Vila Nova de Gaia</span>
+</div>
+<div class="restaurant-card-body">
+<p class="restaurant-desc">
+        Wijnbar-restaurant op het Cais de Gaia, op loopafstand van Forte de Gaia. Uitstekende
+        Portugese wijnkaart met een focus op Douro- en Vinho Verde-wijnen, gecombineerd met
+        petiscos en lichte gerechten. Een ontspannen eerste avond na aankomst, met uitzicht op
+        de rivier en Porto's skyline aan de overkant.
+      </p>
+<div class="restaurant-chips">
+<span class="restaurant-chip">🍷 Portugese wijnkaart</span>
+<span class="restaurant-chip">📍 Cais de Gaia</span>
+<span class="restaurant-chip">🚶 Loopafstand Forte de Gaia</span>
+<span class="restaurant-chip">🌊 Uitzicht op de Douro</span>
+<span class="restaurant-chip">📞 Reserveren mogelijk (SevenRooms)</span>
+</div>
+<div class="restaurant-btns">
+<a class="btn btn-sm btn-map" href="https://www.google.com/maps/search/Enoteca+1756+Cais+de+Gaia+Vila+Nova+de+Gaia" rel="noopener noreferrer" target="_blank">🗺️ Google Maps</a>
+<a class="btn btn-sm btn-tel" href="tel:+351222448500">📞 +351 222 448 500</a>
+<a class="btn btn-sm btn-review" href="restaurant-enoteca-1756.html">📖 Recensies &amp; meer</a>
+</div>
+</div>
+</div>
+      <div class="restaurant-card" id="adega-sao-nicolau">
+<div class="restaurant-card-header">
+<span class="restaurant-dag-badge">Dag 1 · Porto · Lunch</span>
+<h3>Adega São Nicolau</h3>
+<span class="restaurant-city-tag">Rua de São Nicolau 1, Ribeira</span>
+</div>
+<div class="restaurant-card-body">
+<div class="specialiteit-box">
+<strong>Specialiteit van de dag</strong>
+<p>Arroz de polvo — octopusrijst langzaam gekookt in eigen bouillon. Volkomen anders dan de standaard octopus die toeristen krijgen. Rijkdom, diepte, ziel.</p>
+</div>
+<p class="restaurant-desc">
+        Kleine, authentieke tasca in de Ribeira die al decennialang hetzelfde doet: eerlijke Portugese
+        gerechten zonder toeristenprijzen, hoewel het midden in de meest toeristische wijk van Porto ligt.
+        Sterk in vis en zeevruchten. Eén van de weinige plekken in de Ribeira waar locals écht komen eten.
+        Geen ambiance-trucjes, gewoon goed eten.
+      </p>
+<div class="tip-box">
+        💡 Betaal contant — ze kijken je aan met diepe teleurstelling bij een kaart. Wachtrij voor
+        de deur om 11:45 is normaal. Ma–za tot 15:00.
+      </div>
+<div class="restaurant-chips">
+<span class="restaurant-chip">🐙 Octopus</span>
+<span class="restaurant-chip">🐟 Verse vis</span>
+<span class="restaurant-chip">💵 Contant</span>
+<span class="restaurant-chip">📍 Ribeira</span>
+<span class="restaurant-chip">🕐 Ma–Za 12–15u</span>
+<span class="restaurant-chip">📞 Reserveer of wacht</span>
+</div>
+<div class="restaurant-btns">
+<a class="btn btn-sm btn-map" href="https://www.google.com/maps/search/Adega+São+Nicolau+Porto+Ribeira" rel="noopener noreferrer" target="_blank">🗺️ Google Maps</a>
+<a class="btn btn-sm btn-tel" href="tel:+351222008232">📞 +351 222 008 232</a>
+<a class="btn btn-sm btn-review" href="restaurant-adega-sao-nicolau.html">📖 Recensies &amp; meer</a>
+</div>
+</div>
+</div>
+    </div>
+  </div>
+</section>
+
+<section class="rg-day-section" id="dag-2" style="--rg-day-color:#2e86c1">
+  <div class="container">
+    <div class="rg-day-header"><span class="rg-day-badge">Dag 2</span><h2>Porto</h2><span class="rg-day-date">ma 7 sep</span></div>
+    <div class="rg-hotel-note"><span class="rg-hotel-note-icon">🏨</span><span>Overnachting: <strong>Forte de Gaia, Autograph Collection</strong>, Vila Nova de Gaia — zie Dag 1 voor alle details.</span></div>
+    <h3 class="rg-subhead">🍽️ Eten</h3>
+    <div class="restaurant-grid">
+      <div class="restaurant-card" id="taberna-dos-mercadores">
+<div class="restaurant-card-header">
+<span class="restaurant-dag-badge">Dag 2 · Porto · Avond</span>
+<h3>Taberna dos Mercadores</h3>
+<span class="restaurant-city-tag">Rua dos Mercadores, Ribeira, Porto</span>
+</div>
+<div class="restaurant-card-body">
+<p class="restaurant-desc">
+        Klein, authentiek restaurant in een smal straatje van de Ribeira, aan de Porto-kant van de
+        Dom Luís-brug. Traditionele Portugese keuken in een knusse, historische setting — ideaal
+        voor de tweede avond, na een wandeling over de brug vanuit Vila Nova de Gaia.
+      </p>
+<div class="restaurant-chips">
+<span class="restaurant-chip">🍽️ Traditionele keuken</span>
+<span class="restaurant-chip">📍 Ribeira, Porto</span>
+<span class="restaurant-chip">🌉 Na wandeling over Dom Luís-brug</span>
+<span class="restaurant-chip">📞 Reserveer</span>
+</div>
+<div class="restaurant-btns">
+<a class="btn btn-sm btn-map" href="https://www.google.com/maps/search/Taberna+dos+Mercadores+Porto+Ribeira" rel="noopener noreferrer" target="_blank">🗺️ Google Maps</a>
+<a class="btn btn-sm btn-tel" href="tel:+351222010510">📞 +351 222 010 510</a>
+<a class="btn btn-sm btn-web" href="https://tabernadosmercadores.com/" rel="noopener noreferrer" target="_blank">🌐 Website</a>
+<a class="btn btn-sm btn-review" href="restaurant-taberna-dos-mercadores.html">📖 Recensies &amp; meer</a>
+</div>
+</div>
+</div>
+      <div class="restaurant-card" id="postigo-do-carvao">
+<div class="restaurant-card-header">
+<span class="restaurant-dag-badge">Dag 2 · Porto · Lunch</span>
+<h3>Postigo do Carvão</h3>
+<span class="restaurant-city-tag">Ribeira, Porto</span>
+</div>
+<div class="restaurant-card-body">
+<div class="specialiteit-box">
+<strong>Specialiteit van de dag</strong>
+<p>Arroz de marisco — een van de beste zeevruchtenrijstgerechten van de Ribeira, ruim en rijk gevuld. Geen trendy keuken, wél al jaren trouw aan traditionele Portugese recepten.</p>
+</div>
+<p class="restaurant-desc">
+        Klassieker in de Ribeira die zich niets aantrekt van nieuwe trends en onverstoorbaar
+        vasthoudt aan traditionele Portugese gerechten. Precies de plek voor een eerlijke,
+        onopgesmukte lunch tussen de sightseeing van de tweede Porto-dag door.
+      </p>
+<div class="restaurant-chips">
+<span class="restaurant-chip">🦐 Arroz de marisco</span>
+<span class="restaurant-chip">📍 Ribeira, Porto</span>
+<span class="restaurant-chip">🍽️ Traditionele keuken</span>
+<span class="restaurant-chip">🚶 Geen reservering nodig voor lunch</span>
+</div>
+<div class="restaurant-btns">
+<a class="btn btn-sm btn-map" href="https://www.google.com/maps/search/Postigo+do+Carvao+Porto+Ribeira" rel="noopener noreferrer" target="_blank">🗺️ Google Maps</a>
+<a class="btn btn-sm btn-tel" href="tel:+351222004539">📞 +351 222 004 539</a>
+<a class="btn btn-sm btn-web" href="https://www.postigodocarvao.com/" rel="noopener noreferrer" target="_blank">🌐 Website</a>
+<a class="btn btn-sm btn-review" href="restaurant-postigo-do-carvao.html">📖 Recensies &amp; meer</a>
+</div>
+</div>
+</div>
+    </div>
+  </div>
+</section>
+
+<section class="rg-day-section" id="dag-3" style="--rg-day-color:#17a589">
+  <div class="container">
+    <div class="rg-day-header"><span class="rg-day-badge">Dag 3</span><h2>Amarante</h2><span class="rg-day-date">di 8 sep</span></div>
+    <h3 class="rg-subhead">🏨 Overnachting</h3>
+    <div class="hotel-grid"><div class="hotel-card" id="casa-da-calcada">
+<div class="hotel-card-header">
+<span class="hotel-dag-badge">Dag 3–4</span>
+<h3>Casa da Calçada, Relais &amp; Châteaux</h3>
+<span class="hotel-city-tag">Amarante · di 8 – do 10 sep · 2 nachten</span>
+</div>
+<div class="hotel-card-body">
+<div class="hotel-highlight">
+        "Een 16e-eeuws paleis aan de Tâmega-rivier, aan de poort van de Douro — rustiger dan de wijnvallei zelf, met de quinta's op zo'n uur rijden."
+      </div>
+<p class="hotel-desc">
+        16e-eeuws paleis in het historische centrum van Amarante, Largo do Paço 6, lid van Relais &amp; Châteaux.
+        Boekingen: 2 kamers (Classic Room), elk 2 personen, non-refundable rate. Toegang tot binnen- en
+        buitenzwembad, gym, tuinen en wijngaarden op het terrein, gratis parkeren en ontbijtbuffet inbegrepen.
+        Amarante ligt aan de westrand van de Douro-regio — reken op ongeveer 45–60 minuten rijden naar
+        de quinta's rond Pinhão/Régua voor wijnproeverijen.
+      </p>
+<div class="hotel-chips">
+<span class="hotel-chip">⭐⭐⭐⭐⭐ Relais &amp; Châteaux</span>
+<span class="hotel-chip">📍 Amarante centrum</span>
+<span class="hotel-chip">🏛️ 16e-eeuws paleis</span>
+<span class="hotel-chip">🏊 Binnen- &amp; buitenzwembad</span>
+<span class="hotel-chip">🌿 Eigen tuinen &amp; wijngaarden</span>
+<span class="hotel-chip">🍳 Ontbijt &amp; parkeren inbegrepen</span>
+</div>
+<div class="hotel-btns">
+<a class="btn btn-sm btn-map" href="https://www.google.com/maps/search/Casa+da+Calcada+Amarante" rel="noopener noreferrer" target="_blank">🗺️ Google Maps</a>
+<a class="btn btn-sm btn-web" href="https://www.casadacalcada.com" rel="noopener noreferrer" target="_blank">🌐 Website</a>
+</div>
+</div>
+</div></div>
+    <h3 class="rg-subhead">✨ Attracties & tips</h3>
+    <div class="day-detail fade-in" id="day2">
+<div class="day-detail-header">
+<div class="day-detail-info">
+<span class="day-detail-day">Dag 3–4 · di 8–wo 9 sep</span>
+<h2>Amarante</h2>
+<p class="day-detail-tagline">Poort naar de Douro &amp; Romantiek</p>
+<p class="day-detail-desc">
+            Amarante is een sfeervol stadje aan de Tâmega-rivier, aan de westrand van de Douro-regio.
+            Vanuit hier rijd je in ongeveer een uur de wijnvallei in, met haar eeuwenoude stenen
+            terrassen die langs onmogelijk steile hellingen cascaderen — bewerkt voor meer dan
+            2.000 jaar. Overdag ga je op wijnproeverij bij de quinta's rond Pinhão, 's avonds kom je
+            terug naar de rust van het historische centrum van Amarante.
+          </p>
+<div class="day-meta-grid">
+<div class="meta-cell">
+<div class="meta-label">Rijafstand</div>
+<div class="meta-value">1 uur van Porto · ~1–1,5 uur naar quinta's bij Pinhão</div>
+</div>
+<div class="meta-cell">
+<div class="meta-label">Overnachting</div>
+<div class="meta-value">Casa da Calçada · Relais &amp; Châteaux, Amarante</div>
+</div>
+<div class="meta-cell">
+<div class="meta-label">Restaurants</div>
+<div class="meta-value">Dag 3: in Amarante zelf (Taberna Memórias, Largo do Paço in het hotel). Dag 4: Quinta de la Rosa bij Pinhão tijdens de dagtrip, 's avonds Quinta da Lama in Vila Meã</div>
+</div>
+<div class="meta-cell">
+<div class="meta-label">Beste tip</div>
+<div class="meta-value">Reserveer Niepoort ruim vooraf</div>
+</div>
+<div class="meta-cell">
+<div class="meta-label">Fotomoment</div>
+<div class="meta-value">Ponte de São Gonçalo bij zonsondergang</div>
+</div>
+<div class="meta-cell">
+<div class="meta-label">Lunch tip</div>
+<div class="meta-value">Dag 3: Taberna Memórias (Amarante) · dag 4: Cozinha da Clara (Quinta de la Rosa, tijdens dagtrip Douro)</div>
+</div>
+</div>
+</div>
+<div class="day-detail-photo">
+<img alt="Amarante en de Douro-wijngaarden" decoding="async" loading="lazy" src="images/dag02-douro.jpg"/>
+</div>
+</div>
+<h3 style="font-family:var(--serif);color:var(--dark);margin-bottom:1.5rem;">✨ Attracties</h3>
+<div class="attractions-list-detail">
+<div class="attraction-item-card">
+<div class="attraction-item-top">
+<div class="attraction-item-name">🍷 Niepoort — Quinta de Nápoles 🇳🇱</div>
+</div>
+<p class="attraction-item-desc">
+            Authentieke, intieme wijnervaring bij een Nederlandse familie die al sinds 1842 wijn
+            en port maakt — Dirk van der Niepoort geldt als grondlegger van de moderne Douro. De
+            Quinta de Nápoles ligt midden in de wijnbergen (tussen Régua en Pinhão). Bezoekers
+            roemen juist het persoonlijke, exclusieve karakter — geen toeristische massa-lodge,
+            maar een echte proeverij op de quinta, vaak met een huisgemaakte lunch op het terras.
+            Reserveer ruim vooraf; bezoek is alleen op afspraak.
+          </p>
+<div class="attraction-item-info">
+<span class="info-chip">📍 Santo Adrião, Douro</span>
+<span class="info-chip">🍇 Port én droge Douro-wijnen</span>
+<span class="info-chip">⏱ 2–3 uur (incl. lunch)</span>
+<span class="info-chip">📞 Alleen op reservering</span>
+</div>
+<div class="attraction-item-links">
+<a class="btn btn-sm btn-map" href="https://www.google.com/maps/search/Niepoort+Quinta+de+N%C3%A1poles+Douro" rel="noopener noreferrer" target="_blank">🗺️ Google Maps</a>
+<a class="btn btn-sm btn-web" href="https://www.niepoort.pt/en/" rel="noopener noreferrer" target="_blank">🌐 Website</a>
+</div>
+</div>
+<div class="attraction-item-card">
+<div class="attraction-item-top">
+<div class="attraction-item-name">🏡 Quinta do Pôpa</div>
+</div>
+<p class="attraction-item-desc">
+            Een van de meest prestigieuze quintas van de Douro-vallei. Het panoramaterras kijkt
+            uit over eindeloze wijngaarden. Professionele sommeliers begeleiden proeverijen van
+            premium Douro-rode wijnen, witte wijnen en rosés.
+          </p>
+<div class="attraction-item-info">
+<span class="info-chip">📍 Bij Pinhão</span>
+<span class="info-chip">🕐 Di–Za 10:30–17:30</span>
+<span class="info-chip">⏱ 2–3 uur</span>
+<span class="info-chip">📞 Reserveren verplicht</span>
+</div>
+<div class="attraction-item-links">
+<a class="btn btn-sm btn-map" href="https://www.google.com/maps/place/Quinta+do+Pôpa/@41.1540,-7.5970,15z" rel="noopener noreferrer" target="_blank">🗺️ Google Maps</a>
+<a class="btn btn-sm btn-web" href="https://www.quintadopopa.com" rel="noopener noreferrer" target="_blank">🌐 Website</a>
+</div>
+</div>
+<div class="attraction-item-card">
+<div class="attraction-item-top">
+<div class="attraction-item-name">⛵ Douro Riviercruise</div>
+</div>
+<p class="attraction-item-desc">
+            Glijdt langs terrasvormige wijngaarden op waterniveau. Veel tochten bevatten lunch en
+            wijntjes. Een rustgevende, romantische ervaring langs werkende quintas.
+            Ideaal in de ochtend voor het mooiste licht.
+          </p>
+<div class="attraction-item-info">
+<span class="info-chip">📍 Vertrek vanuit Pinhão of Régua</span>
+<span class="info-chip">⏱ 2–4 uur</span>
+<span class="info-chip">🍷 Incl. dranken &amp; snacks</span>
+<span class="info-chip">✨ Beste: ochtendsun</span>
+</div>
+<div class="attraction-item-links">
+<a class="btn btn-sm btn-map" href="https://www.google.com/maps/search/Douro+River+Cruise/@41.18,-7.58,12z" rel="noopener noreferrer" target="_blank">🗺️ Tochten zoeken</a>
+<a class="btn btn-sm btn-web" href="https://www.visitdouro.com" rel="noopener noreferrer" target="_blank">🌐 Info</a>
+</div>
+</div>
+<div class="attraction-item-card">
+<div class="attraction-item-top">
+<div class="attraction-item-name">🏘️ Lamego</div>
+</div>
+<p class="attraction-item-desc">
+            Charmante heuveltjesstad met traditionele Portugese architectuur. Het beroemde
+            barokke heiligdom Nossa Senhora dos Remédios heeft 686 stenen traptreden met
+            spectaculair panoramisch uitzicht over de vallei.
+          </p>
+<div class="attraction-item-info">
+<span class="info-chip">📍 Ten westen van Pinhão</span>
+<span class="info-chip">🕐 24/7 open</span>
+<span class="info-chip">🪜 686 treden te beklimmen</span>
+<span class="info-chip">🏆 Adembenemend uitzicht</span>
+</div>
+<div class="attraction-item-links">
+<a class="btn btn-sm btn-map" href="https://www.google.com/maps/place/Lamego/@41.1050,-7.6400,13z" rel="noopener noreferrer" target="_blank">🗺️ Google Maps</a>
+<a class="btn btn-sm btn-web" href="https://www.visitlamego.pt" rel="noopener noreferrer" target="_blank">🌐 Info</a>
+</div>
+</div>
+<div class="attraction-item-card extra-tip-card">
+<span class="extra-tip-label">⏳ Als je tijd over hebt</span>
+<div class="attraction-item-top">
+<div class="attraction-item-name">🚂 Peso da Régua &amp; Museu do Douro</div>
+</div>
+<p class="attraction-item-desc">
+            Het historische handelscentrum van de Douro-wijnstreek, waar vroeger de
+            rabelo-boten met vaten port de rivier af voeren naar Porto. Het Museu do Douro,
+            gevestigd in een oud douanegebouw aan de rivier, vertelt de geschiedenis van de
+            wijnstreek en de aanleg van de terrassen. Leuke, compacte stop tussen twee
+            wijnproeverijen door.
+          </p>
+<div class="attraction-item-info">
+<span class="info-chip">📍 Peso da Régua</span>
+<span class="info-chip">🕐 Di–Zo 10:00–18:00</span>
+<span class="info-chip">💶 ~€6</span>
+<span class="info-chip">⏱ 1 uur</span>
+</div>
+<div class="attraction-item-links">
+<a class="btn btn-sm btn-map" href="https://www.google.com/maps/place/Museu+do+Douro/@41.1616,-7.7863,16z" rel="noopener noreferrer" target="_blank">🗺️ Google Maps</a>
+<a class="btn btn-sm btn-web" href="https://www.museudodouro.pt" rel="noopener noreferrer" target="_blank">🌐 Website</a>
+</div>
+</div>
+</div>
+</div>
+    <h3 class="rg-subhead">📰 Actueel</h3>
+    <div class="city-block">
+<h3 style="font-family:var(--serif); color:var(--azul); margin:0 0 .5rem; font-size:1.15rem;">🍑 Amarante <span style="font-weight:400;color:var(--muted);font-size:.8rem;">— dag 3–4, di 8 – wo 9 sep</span></h3>
+<p>Mooi bijpassend nieuws: <strong>Largo do Paço</strong>, het restaurant ín jullie hotel Casa da Calçada, kreeg in de Michelin Guide Portugal 2026 (maart) een Michelin-ster — niet de eerste overigens: het restaurant had in 2004 ook al eens een ster, raakte die later kwijt, en pakt hem nu na 22 jaar terug onder chef Francisco Quintas (27), die daarbij ook de Michelin Young Chef Award kreeg. Mooi meegenomen: precies waar het diner op dag 3 gepland staat. De tweejaarlijkse Bienal de Artes Performativas de Amarante liep dit jaar van 21 tot 30 augustus, dus die is net voorbij tegen de tijd dat jullie aankomen.</p>
+<div class="fun-facts">
+<div class="fun-facts-title">✨ Wist je dat...?</div>
+<ul>
+<li>Amarante bekendstaat om de fallusvormige "bolos de São Gonçalo", traditionele liefdesgebakjes die teruggaan op een 13e-eeuwse heilige?</li>
+<li>deze gebakjes tijdens de dictatuur (1926–1974) zelfs verboden waren als "aanstootgevend", maar stiekem toch werden gemaakt en geruild?</li>
+<li>het stadje aan de Tâmega-rivier ligt en al eeuwen geldt als de poort naar de Douro-vallei?</li>
+<li>bezoekers bij het beeld van São Gonçalo drie keer aan het koord van de kerkklok moeten trekken om een wens te laten uitkomen?</li>
+<li>Largo do Paço — jullie geboekte restaurant — is uitgeroepen tot een van de beste restaurants van Europa?</li>
+<li>de bekende brug van Amarante een rol speelde in de Napoleontische oorlogen, toen de stad wekenlang standhield tegen de Franse troepen?</li>
+</ul>
+</div>
+</div>
+    <h3 class="rg-subhead">🍽️ Eten</h3>
+    <div class="restaurant-grid">
+      <div class="restaurant-card" id="largo-do-paco">
+<div class="restaurant-card-header">
+<span class="restaurant-dag-badge">Dag 3 · Amarante (in het hotel) · Avond</span>
+<h3>Largo do Paço</h3>
+<span class="restaurant-city-tag">Casa da Calçada, Largo do Paço 6, Amarante</span>
+</div>
+<div class="restaurant-card-body">
+<div class="specialiteit-box">
+<strong>Specialiteit van de dag</strong>
+<p>"Jantar à luz das Estrelas" — het degustatiemenu van chef Francisco Quintas: traditie en verfijning, met internationale invloeden en verrassende technieken.</p>
+</div>
+<p class="restaurant-desc">
+        Het sterrenrestaurant van jullie eigen hotel, Casa da Calçada — dus geen rit terug van
+        de Douro nodig na een dag wijnproeven. 1 Michelin-ster, sinds eind 2024/begin 2025 onder
+        leiding van chef Francisco Quintas (25 jaar, eerder een ster gewonnen bij 2Monkeys), na
+        de renovatie en heropening van het hotel in 2025. Fine dining in het 16de-eeuwse paleis.
+      </p>
+<div class="tip-box">
+        ✅ Gereserveerd: di 8 sep, 20:30 uur, 4 personen — reserveringsnummer
+        <strong>3K7TBR32KAUN</strong>. Casual chic dress code aanbevolen; wijzigingen graag
+        24 uur van tevoren doorgeven. Reken op ±€150 p.p. voor het degustatiemenu,
+        wijnarrangement €80–170 extra.
+      </div>
+<div class="restaurant-chips">
+<span class="restaurant-chip">⭐ Michelin-ster</span>
+<span class="restaurant-chip">👨‍🍳 Chef Francisco Quintas</span>
+<span class="restaurant-chip">🏨 In het hotel zelf</span>
+<span class="restaurant-chip">🍷 Wijnarrangement mogelijk</span>
+<span class="restaurant-chip">✅ Gereserveerd (4p, 20:30)</span>
+</div>
+<div class="restaurant-btns">
+<a class="btn btn-sm btn-map" href="https://www.google.com/maps/search/Largo+do+Paco+Casa+da+Calcada+Amarante" rel="noopener noreferrer" target="_blank">🗺️ Google Maps</a>
+<a class="btn btn-sm btn-tel" href="tel:+351255410830">📞 +351 255 410 830</a>
+<a class="btn btn-sm btn-mail" href="mailto:geral@casadacalcada.com">✉️ E-mail</a>
+<a class="btn btn-sm btn-web" href="https://www.casadacalcada.com/restaurant" rel="noopener noreferrer" target="_blank">🌐 Website</a>
+<a class="btn btn-sm btn-review" href="restaurant-largo-do-paco.html">📖 Recensies &amp; meer</a>
+</div>
+</div>
+</div>
+      <div class="restaurant-card" id="taberna-memorias">
+<div class="restaurant-card-header">
+<span class="restaurant-dag-badge">Dag 3 · Amarante · Lunch</span>
+<h3>Taberna Memórias</h3>
+<span class="restaurant-city-tag">Rua 31 de Janeiro 105, Amarante</span>
+</div>
+<div class="restaurant-card-body">
+<div class="specialiteit-box">
+<strong>Specialiteit van de dag</strong>
+<p>Petiscos, tapas en presunto — traditionele Portugese hapjes in een gezellige, informele taberna-sfeer.</p>
+</div>
+<p class="restaurant-desc">
+        Gezellige, typische taberna in het centrum van Amarante — perfect voor een ontspannen
+        lunch direct na aankomst uit Porto, zonder om te rijden naar de Douro-vallei (die is
+        pas dag 4 aan de beurt). Motto: "olhe o dia, aproveite o momento." Vlakbij Casa da
+        Calçada en de Ponte de São Gonçalo.
+      </p>
+<div class="tip-box">
+        💡 Op dinsdag alleen 's middags open (11:00–15:00) — dat komt toevallig precies uit
+        voor de lunch op dag 3. Reserveer via e-mail.
+      </div>
+<div class="restaurant-chips">
+<span class="restaurant-chip">🍖 Petiscos &amp; presunto</span>
+<span class="restaurant-chip">📍 Centrum Amarante</span>
+<span class="restaurant-chip">🚶 Vlakbij het hotel</span>
+<span class="restaurant-chip">🕐 Di 11:00–15:00</span>
+<span class="restaurant-chip">📞 Reserveer per e-mail</span>
+</div>
+<div class="restaurant-btns">
+<a class="btn btn-sm btn-map" href="https://www.google.com/maps/search/Taberna+Memorias+Amarante" rel="noopener noreferrer" target="_blank">🗺️ Google Maps</a>
+<a class="btn btn-sm btn-tel" href="tel:255073236">📞 255 073 236</a>
+<a class="btn btn-sm btn-mail" href="mailto:reservastabernamemorias@gmail.com">✉️ E-mail</a>
+<a class="btn btn-sm btn-web" href="https://www.tabernamemorias.pt/" rel="noopener noreferrer" target="_blank">🌐 Website</a>
+<a class="btn btn-sm btn-review" href="restaurant-taberna-memorias.html">📖 Recensies &amp; meer</a>
+</div>
+</div>
+</div>
+    </div>
+  </div>
+</section>
+
+<section class="rg-day-section" id="dag-4" style="--rg-day-color:#28b463">
+  <div class="container">
+    <div class="rg-day-header"><span class="rg-day-badge">Dag 4</span><h2>Douro-vallei</h2><span class="rg-day-date">wo 9 sep · dagtrip</span></div>
+    <div class="rg-hotel-note"><span class="rg-hotel-note-icon">🏨</span><span>Overnachting: <strong>Casa da Calçada</strong>, Amarante — zie Dag 3 voor alle details.</span></div>
+    <h3 class="rg-subhead">🍽️ Eten</h3>
+    <div class="restaurant-grid">
+      <div class="restaurant-card" id="cozinha-da-clara">
+<div class="restaurant-card-header">
+<span class="restaurant-dag-badge">Dag 4 · Pinhão · Lunch</span>
+<h3>Cozinha da Clara</h3>
+<span class="restaurant-city-tag">Quinta de la Rosa, bij Pinhão</span>
+</div>
+<div class="restaurant-card-body">
+<div class="specialiteit-box">
+<strong>Specialiteit van de dag</strong>
+<p>Octopus, geit, Iberisch varken en langzaam gegaarde runderwang — traditionele Portugese gerechten met een moderne, internationale toets, bereid door chef Pedro Cardoso.</p>
+</div>
+<p class="restaurant-desc">
+        Helder, licht restaurant op wijngoed Quinta de la Rosa met een sfeervol terras direct boven
+        de Douro-rivier. Op zo'n 15 minuten lopen vanaf het dorp Pinhão (lichte klim). Combineer met
+        een wijnproeverij op het landgoed voor een compleet middagprogramma.
+      </p>
+<div class="tip-box">
+        💡 Reserveer vooraf, zeker in september. Een wijnproeverij-lunch (met kelderbezoek en
+        wijnpairing) kan vooraf worden geboekt.
+      </div>
+<div class="restaurant-chips">
+<span class="restaurant-chip">🐙 Octopus</span>
+<span class="restaurant-chip">🐐 Geit</span>
+<span class="restaurant-chip">🌊 Terras boven de Douro</span>
+<span class="restaurant-chip">🍷 Wijnproeverij-lunch mogelijk</span>
+</div>
+<div class="restaurant-btns">
+<a class="btn btn-sm btn-map" href="https://www.google.com/maps/search/Cozinha+da+Clara+Quinta+de+la+Rosa+Pinhao" rel="noopener noreferrer" target="_blank">🗺️ Google Maps</a>
+<a class="btn btn-sm btn-tel" href="tel:+351938344549">📞 +351 938 344 549</a>
+<a class="btn btn-sm btn-mail" href="mailto:cozinhadaclara@quintadelarosa.com">✉️ E-mail</a>
+<a class="btn btn-sm btn-review" href="restaurant-cozinha-da-clara.html">📖 Recensies &amp; meer</a>
+</div>
+</div>
+</div>
+      <div class="restaurant-card" id="quinta-da-lama">
+<div class="restaurant-card-header">
+<span class="restaurant-dag-badge">Dag 4 · Vila Meã · Avond</span>
+<h3>Quinta da Lama</h3>
+<span class="restaurant-city-tag">Rua Caminho da Rua Real, Vila Meã (±10 min rijden vanaf hotel)</span>
+</div>
+<div class="restaurant-card-body">
+<div class="specialiteit-box">
+<strong>Specialiteit van de dag</strong>
+<p>Bacalhau assado (gebakken kabeljauw) en steak — eerlijke, verse regionale keuken met een Rota do Românico-kwaliteitskeurmerk.</p>
+</div>
+<p class="restaurant-desc">
+        Landelijk restaurant net buiten Amarante, in Vila Meã — geen rit terug naar Pinhão nodig
+        na twee dagen Douro. Warme, gastvrije sfeer en verse, regionale gerechten. Een mooie,
+        rustige afsluiter van het Douro-verblijf, dicht bij het hotel.
+      </p>
+<div class="tip-box">
+        💡 Open woensdag 19:00–21:30 (bevestigd voor 9 sep). Reserveren aan te raden.
+      </div>
+<div class="restaurant-chips">
+<span class="restaurant-chip">🏅 Rota do Românico keurmerk</span>
+<span class="restaurant-chip">🐟 Bacalhau assado</span>
+<span class="restaurant-chip">🥩 Steak</span>
+<span class="restaurant-chip">🚗 ±10 min van hotel</span>
+<span class="restaurant-chip">📞 Reserveer aan te raden</span>
+</div>
+<div class="restaurant-btns">
+<a class="btn btn-sm btn-map" href="https://www.google.com/maps/search/Quinta+da+Lama+Vila+Mea+Amarante" rel="noopener noreferrer" target="_blank">🗺️ Google Maps</a>
+<a class="btn btn-sm btn-tel" href="tel:+351255733548">📞 +351 255 733 548</a>
+<a class="btn btn-sm btn-mail" href="mailto:quintadalama@hotmail.com">✉️ E-mail</a>
+<a class="btn btn-sm btn-review" href="restaurant-quinta-da-lama.html">📖 Recensies &amp; meer</a>
+</div>
+</div>
+</div>
+    </div>
+  </div>
+</section>
+
+<section class="rg-day-section" id="dag-5" style="--rg-day-color:#d4ac0d">
+  <div class="container">
+    <div class="rg-day-header"><span class="rg-day-badge">Dag 5</span><h2>Aveiro</h2><span class="rg-day-date">do 10 sep</span></div>
+    <h3 class="rg-subhead">🏨 Overnachting</h3>
+    <div class="hotel-grid"><div class="hotel-card" id="ms-collection-aveiro">
+<div class="hotel-card-header">
+<span class="hotel-dag-badge">Dag 5</span>
+<h3>MS Collection Aveiro — Palacete de Valdemouro</h3>
+<span class="hotel-city-tag">Aveiro · do 10 sep · 1 nacht</span>
+</div>
+<div class="hotel-card-body">
+<div class="hotel-highlight">
+        "Als ik had geweten hoe fantastisch dit hotel is — en hoe geweldig Aveiro — had ik zeker langer geboekt."
+      </div>
+<p class="hotel-desc">
+        Gerestaureerd 18e-eeuws stadspaleis, voormalig huis van de beroemde Portugese schrijver Eça de Queiroz.
+        Het eerste 5-sterrenhotel van Aveiro, lid van Small Luxury Hotels of the World. Suites zijn vernoemd
+        naar personages uit zijn romans. Binnen- én buitenzwembad, spa, Moments Spa, restaurant Prosa.
+        Op loopafstand van de moliceiro-pier en het stadscentrum. Reviewers omschrijven het als
+        "één van de beste hotelervaringen in 40 jaar reizen."
+      </p>
+<div class="hotel-chips">
+<span class="hotel-chip">⭐⭐⭐⭐⭐ Small Luxury Hotels</span>
+<span class="hotel-chip">📍 Centrum Aveiro</span>
+<span class="hotel-chip">🏛️ 18e-eeuws paleis</span>
+<span class="hotel-chip">💆 Moments Spa</span>
+<span class="hotel-chip">🏊 Binnen- &amp; buitenzwembad</span>
+<span class="hotel-chip">🚶 Moliceiro-pier 2 min</span>
+</div>
+<div class="hotel-btns">
+<a class="btn btn-sm btn-map" href="https://www.google.com/maps/search/MS+Collection+Aveiro+Palacete+Valdemouro" rel="noopener noreferrer" target="_blank">🗺️ Google Maps</a>
+<a class="btn btn-sm btn-web" href="https://www.mscollection.com/aveiro" rel="noopener noreferrer" target="_blank">🌐 Website</a>
+<a class="btn btn-sm btn-video" href="https://www.youtube.com/watch?v=EBDmFsc82p0" rel="noopener noreferrer" target="_blank">▶️ Video</a>
+</div>
+</div>
+</div></div>
+    <h3 class="rg-subhead">✨ Attracties & tips</h3>
+    <div class="day-detail fade-in" id="day3">
+<div class="day-detail-header">
+<div class="day-detail-info">
+<span class="day-detail-day">Dag 5 · do 10 sep</span>
+<h2>Aveiro</h2>
+<p class="day-detail-tagline">Art Nouveau &amp; Kleurrijke Kust</p>
+<p class="day-detail-desc">
+            Aveiro wordt het Venetië van Portugal genoemd, met schilderachtige grachten bevaren
+            door traditionele moliceiro-boten met kleurrijke boegprenten. De stad is ook bekend
+            voor haar prachtige Art Nouveau-architectuur. Op 10 minuten rijden ligt Costa Nova
+            met de beroemde gestreepte visserhuisjes.
+          </p>
+<div class="day-meta-grid">
+<div class="meta-cell"><div class="meta-label">Rijafstand</div><div class="meta-value">1,5 uur van Douro</div></div>
+<div class="meta-cell"><div class="meta-label">Overnachting</div><div class="meta-value">MS Collection Palacete de Valdemouro</div></div>
+<div class="meta-cell"><div class="meta-label">Specialiteit</div><div class="meta-value">Ovos moles (eigebakjes)</div></div>
+<div class="meta-cell"><div class="meta-label">Lunch tip</div><div class="meta-value">O Telheiro · enguias + arroz de marisco</div></div>
+<div class="meta-cell"><div class="meta-label">Diner tip</div><div class="meta-value">Salpoente · bacalhau-specialist</div></div>
+<div class="meta-cell"><div class="meta-label">Fotomoment</div><div class="meta-value">Costa Nova gestreepte huisjes</div></div>
+</div>
+</div>
+<div class="day-detail-photo">
+<img alt="Aveiro grachten en kleurrijke huisjes" decoding="async" loading="lazy" src="images/dag03-aveiro.jpg"/>
+</div>
+</div>
+<div class="attractions-list-detail">
+<div class="attraction-item-card">
+<div class="attraction-item-name">⛵ Moliceiro-boottocht</div>
+<p class="attraction-item-desc">Glijd in een traditionele beschilderde boot door de grachten van Aveiro. Duurt ca. 45 minuten en biedt het mooiste uitzicht op de Art Nouveau-gevels.</p>
+<div class="attraction-item-info">
+<span class="info-chip">📍 Cais dos Barcos, Aveiro</span>
+<span class="info-chip">⏱ 45 min</span>
+<span class="info-chip">💶 ~€10 p.p.</span>
+</div>
+<div class="attraction-item-links">
+<a class="btn btn-sm btn-map" href="https://www.google.com/maps/place/Aveiro/@40.6405,-8.6538,14z" rel="noopener noreferrer" target="_blank">🗺️ Google Maps</a>
+</div>
+</div>
+<div class="attraction-item-card">
+<div class="attraction-item-name">🏠 Costa Nova do Prado</div>
+<p class="attraction-item-desc">Kleurrijke gestreepte vissershuisjes langs de Atlantische kust. Een van de meest gefotografeerde plekken van Portugal, en terecht. Kom vroeg voor weinig volk.</p>
+<div class="attraction-item-info">
+<span class="info-chip">📍 10 min van Aveiro</span>
+<span class="info-chip">💶 Gratis</span>
+<span class="info-chip">📸 Gouden uur aanbevolen</span>
+</div>
+<div class="attraction-item-links">
+<a class="btn btn-sm btn-map" href="https://www.google.com/maps/place/Costa+Nova+do+Prado/@40.6175,-8.7505,15z" rel="noopener noreferrer" target="_blank">🗺️ Google Maps</a>
+</div>
+</div>
+<div class="attraction-item-card extra-tip-card">
+<span class="extra-tip-label">⏳ Als je tijd over hebt</span>
+<div class="attraction-item-top">
+<div class="attraction-item-name">🏺 Vista Alegre Porselein</div>
+</div>
+<p class="attraction-item-desc">
+            Historische porseleinfabriek, opgericht in 1824 en het oudste nog actieve
+            porseleinmerk van de Iberische wijnstreek. Het museum toont eeuwenoude stukken en
+            de fabrieksrondleiding laat zien hoe het porselein nog steeds grotendeels met de
+            hand wordt beschilderd. De outlet-winkel is populair voor mooie, betaalbare stukken.
+          </p>
+<div class="attraction-item-info">
+<span class="info-chip">📍 Ílhavo, ~20 min van Aveiro</span>
+<span class="info-chip">🕐 9:30–18:00</span>
+<span class="info-chip">💶 Museum ~€5</span>
+<span class="info-chip">⏱ 1–1,5 uur</span>
+</div>
+<div class="attraction-item-links">
+<a class="btn btn-sm btn-map" href="https://www.google.com/maps/place/Vista+Alegre/@40.6027,-8.6193,16z" rel="noopener noreferrer" target="_blank">🗺️ Google Maps</a>
+<a class="btn btn-sm btn-web" href="https://www.vistaalegre.com" rel="noopener noreferrer" target="_blank">🌐 Website</a>
+</div>
+</div>
+</div>
+</div>
+    <h3 class="rg-subhead">📰 Actueel</h3>
+    <div class="city-block">
+<h3 style="font-family:var(--serif); color:var(--azul); margin:0 0 .5rem; font-size:1.15rem;">🛶 Aveiro <span style="font-weight:400;color:var(--muted);font-size:.8rem;">— dag 5, do 10 sep</span></h3>
+<p>De jaarlijkse Feira do Livro (boekenmarkt) loopt dit jaar van 28 augustus tot 13 september, met tentoonstellingen en workshops — dat overlapt dus met het bezoek op 10 september. Het Festival dos Canais (lichtshow op de kanalen) vond dit jaar al plaats van 15–19 juli en is dus voorbij; verder geen bijzonder nieuws voor Aveiro op dit moment.</p>
+<div class="fun-facts">
+<div class="fun-facts-title">✨ Wist je dat...?</div>
+<ul>
+<li>Aveiro bekendstaat als "Venetië van Portugal", vanwege de kanalen en kleurrijke moliceiro-boten die oorspronkelijk zeewier oogstten?</li>
+<li>de stad beroemd is om ovos moles, eierdooier-zoetigheden vaak verpakt in schelp- of visvormpjes, van oorsprong gemaakt door nonnen?</li>
+<li>de zoutpannen rond Aveiro al sinds de middeleeuwen in gebruik zijn voor zoutwinning?</li>
+<li>het Ecomuseu Marinha da Troncalhada laat zien hoe zeewier (moliço) vroeger met de hand uit de kanalen werd gewonnen?</li>
+<li>het treinstation van Aveiro zelf ook bedekt is met prachtige azulejo-tegelpanelen, net als dat van Pinhão in de Douro-vallei?</li>
+<li>de Universiteit van Aveiro pas in 1973 werd opgericht, relatief jong voor Portugese begrippen?</li>
+</ul>
+</div>
+</div>
+    <h3 class="rg-subhead">🍽️ Eten</h3>
+    <div class="restaurant-grid">
+      <div class="restaurant-card" id="salpoente">
+<div class="restaurant-card-header">
+<span class="restaurant-dag-badge">Dag 5 · Aveiro · Avond</span>
+<h3>Salpoente</h3>
+<span class="restaurant-city-tag">Cais de São Roque 83, Aveiro</span>
+</div>
+<div class="restaurant-card-body">
+<div class="specialiteit-box">
+<strong>Specialiteit van de dag</strong>
+<p>Bacalhau — Salpoente noemt zich specialist in kabeljauw en biedt zowel "O Bacalhau" als "Bacalhau Contemporâneo". Ook de gerookte paling met bietenemulsie is een aanrader.</p>
+</div>
+<p class="restaurant-desc">
+        Gevestigd in twee gerestaureerde 19e-eeuwse zoutpakhuizen aan het Canal de São Roque, een van
+        de laatste van dit type in Aveiro. Elegante, rustige ambiance met uitzicht op de Ria de Aveiro
+        en de langsvarende moliceiros. Moderne Portugese keuken gebaseerd op producten uit de streek,
+        met een à la carte kaart, een 6-gangen proeverij en een vegetarisch menu.
+      </p>
+<div class="tip-box">
+        💡 Reserveren is aan te raden, vooral in het weekend. Vraag om een tafel met zicht op het kanaal.
+      </div>
+<div class="restaurant-chips">
+<span class="restaurant-chip">🐟 Bacalhau-specialist</span>
+<span class="restaurant-chip">🏛️ Historisch zoutpakhuis</span>
+<span class="restaurant-chip">🌊 Uitzicht op de Ria</span>
+<span class="restaurant-chip">🍽️ 6-gangen proeverij</span>
+<span class="restaurant-chip">📞 Reserveer</span>
+</div>
+<div class="restaurant-btns">
+<a class="btn btn-sm btn-map" href="https://www.google.com/maps/search/Salpoente+Aveiro" rel="noopener noreferrer" target="_blank">🗺️ Google Maps</a>
+<a class="btn btn-sm btn-tel" href="tel:+351234382674">📞 +351 234 382 674</a>
+<a class="btn btn-sm btn-mail" href="mailto:salpoente@salpoente.pt">✉️ E-mail</a>
+<a class="btn btn-sm btn-web" href="https://salpoente.pt/en/" rel="noopener noreferrer" target="_blank">🌐 Website</a>
+<a class="btn btn-sm btn-review" href="restaurant-salpoente.html">📖 Recensies &amp; meer</a>
+</div>
+</div>
+</div>
+      <div class="restaurant-card" id="o-telheiro">
+<div class="restaurant-card-header">
+<span class="restaurant-dag-badge">Dag 5 · Aveiro · Lunch</span>
+<h3>O Telheiro</h3>
+<span class="restaurant-city-tag">Praça do Peixe (Vismarkt), Aveiro</span>
+</div>
+<div class="restaurant-card-body">
+<div class="specialiteit-box">
+<strong>Specialiteiten van de dag</strong>
+<p>Enguias (gestoofde paling) — uniek voor Aveiro, nergens anders zo vers en vers bereid. Daarna arroz de marisco als je meer trek hebt. Afsluiten met ovos moles bij Confeitaria Peixinho (1856) vlakbij.</p>
+</div>
+<p class="restaurant-desc">
+        Al meer dan 30 jaar een begrip bij de lokale bevolking van Aveiro. Rumoerige, gezellige
+        eetkaal aan de Vismarkt, het kloppende hart van de stad. Portugese families aan lange
+        tafels, verse vis van de markt naast de deur, lokale witte wijn. Geen gimmicks, geen Engels
+        menu, gewoon hetgeen op de markt vers was die ochtend.
+      </p>
+<div class="tip-box">
+        💡 Na de lunch direct naar Confeitaria Peixinho (1856) voor ovos moles — de beschermde
+        Aveiro-lekkernij gemaakt van eigeel en suiker in schelpvorm. Dit mag je niet missen.
+      </div>
+<div class="restaurant-chips">
+<span class="restaurant-chip">🐍 Enguias (paling)</span>
+<span class="restaurant-chip">🦐 Arroz de marisco</span>
+<span class="restaurant-chip">📍 Vismarkt, centrum</span>
+<span class="restaurant-chip">👨‍👩‍👧 Lokale families</span>
+<span class="restaurant-chip">🕐 Lunch 12–14:30u</span>
+</div>
+<div class="restaurant-btns">
+<a class="btn btn-sm btn-map" href="https://www.google.com/maps/search/O+Telheiro+Aveiro+Praça+Peixe" rel="noopener noreferrer" target="_blank">🗺️ Google Maps</a>
+<a class="btn btn-sm btn-tel" href="tel:+351234429473">📞 +351 234 429 473</a>
+<a class="btn btn-sm btn-review" href="restaurant-o-telheiro.html">📖 Recensies &amp; meer</a>
+</div>
+</div>
+</div>
+    </div>
+  </div>
+</section>
+
+<section class="rg-day-section" id="dag-6" style="--rg-day-color:#ca6f1e">
+  <div class="container">
+    <div class="rg-day-header"><span class="rg-day-badge">Dag 6</span><h2>Batalha, Alcobaça & Nazaré</h2><span class="rg-day-date">vr 11 sep · onderweg</span></div>
+    <h3 class="rg-subhead">🏨 Overnachting</h3>
+    <div class="hotel-grid"><div class="hotel-card" id="pousada-obidos">
+<div class="hotel-card-header">
+<span class="hotel-dag-badge">Dag 6–7</span>
+<h3>Pousada Castelo de Óbidos</h3>
+<span class="hotel-city-tag">Óbidos · vr 11 – zo 13 sep · 2 nachten</span>
+</div>
+<div class="hotel-card-body">
+<div class="hotel-highlight">
+        "Dit was geen hotelverblijf — het was leven in de geschiedenis. Aankomen terwijl de dagjesmensen weggaan en het dorp magisch stil wordt."
+      </div>
+<p class="hotel-desc">
+        Slechts 9 kamers — sommige direct in de 14e-eeuwse kasteeltoren, met stenen muren en hemelbed.
+        Onderdeel van de nationale Pousadas-keten die historisch erfgoed beheert. Restaurant van
+        chef Cláudia Santiago met regionale keuken, een van de 7 Wonderen van Portugal. Twee nachten
+        is ideaal: de eerste avond heb je het dorp voor jezelf als de dagjesmensen (na 18:00) weg zijn,
+        de tweede ochtend loop je de muurwandeling bij dageraad. Vroeg reserveren is essentieel —
+        verkoopt ver op voorhand uit, zeker in september.
+      </p>
+<div class="hotel-chips">
+<span class="hotel-chip">🏰 Echt 14e-eeuws kasteel</span>
+<span class="hotel-chip">📍 Binnen de kasteelmuren</span>
+<span class="hotel-chip">🛏️ Slechts 9 kamers</span>
+<span class="hotel-chip">🍽️ Restaurant in het kasteel</span>
+<span class="hotel-chip">⚠️ Vroeg reserveren!</span>
+</div>
+<div class="hotel-highlight" style="border-color:var(--azul); background:#eef4f8;">
+        💡 Uit recente recensies: verwacht bij deze "Classic Room, Castle"-categorie vooral
+        authentieke kasteelsfeer, niet per se moderne hotelluxe — denk aan afwijkende plattegronden
+        (bv. traptreden tussen slaapkamer en badkamer) passend bij het 14e-eeuwse gebouw. Reviewers
+        die dit vooraf wisten waren unaniem enthousiast; wie 21e-eeuws comfort verwacht kan beter
+        een ander hotel kiezen. Geen aanleiding om naar een andere kamercategorie te upgraden.
+      </div>
+<div class="hotel-btns">
+<a class="btn btn-sm btn-map" href="https://www.google.com/maps/search/Pousada+Castelo+Obidos" rel="noopener noreferrer" target="_blank">🗺️ Google Maps</a>
+<a class="btn btn-sm btn-web" href="https://www.pousadas.pt/en/hotel/pousada-obidos" rel="noopener noreferrer" target="_blank">🌐 Reserveren</a>
+<a class="btn btn-sm btn-video" href="https://www.youtube.com/watch?v=iXSE4ByxQKQ" rel="noopener noreferrer" target="_blank">▶️ Video</a>
+</div>
+</div>
+</div></div>
+    <h3 class="rg-subhead">✨ Attracties & tips</h3>
+    <div class="day-detail fade-in" id="day4">
+<div class="day-detail-header">
+<div class="day-detail-info">
+<span class="day-detail-day">Dag 6 · vr 11 sep</span>
+<h2>Batalha, Alcobaça &amp; Nazaré</h2>
+<p class="day-detail-tagline">Geschiedenis &amp; Oceaangeweld</p>
+<p class="day-detail-desc">Combineer de indrukwekkende gotische architectuur van het Klooster van Batalha (1385, UNESCO) met het rustiger gelegen Klooster van Alcobaça — Portugal's grootste kerk en het eerste puur gotische bouwwerk van het land — vlak onderweg naar Nazaré. Sluit af met de dramatische kliffen en reuzengolven van Nazaré. Het Farol-vuurtoren uitkijkpunt biedt de meest spectaculaire uitzichten op zee.</p>
+<div class="day-meta-grid">
+<div class="meta-cell"><div class="meta-label">Rijafstand</div><div class="meta-value">45 min van Aveiro</div></div>
+<div class="meta-cell"><div class="meta-label">Onderweg</div><div class="meta-value">Alcobaça · ~15-20 min tussen Batalha en Nazaré</div></div>
+<div class="meta-cell"><div class="meta-label">Overnachting</div><div class="meta-value">Pousada Castelo de Óbidos</div></div>
+<div class="meta-cell"><div class="meta-label">Lunch Nazaré</div><div class="meta-value">O Casalinho · oesters + cataplana</div></div>
+</div>
+</div>
+<div class="day-detail-photo">
+<img alt="Nazaré kliffen" decoding="async" loading="lazy" src="images/dag04-nazare.jpg"/>
+</div>
+</div>
+<div class="attractions-list-detail">
+<div class="attraction-item-card">
+<div class="attraction-item-name">⛪ Klooster van Batalha</div>
+<p class="attraction-item-desc">UNESCO Werelderfgoed met gotisch-manueline architectuur. Gebouwd om de overwinning bij de Slag van Aljubarrota (1385) te vieren. De Kapel der Onvoltooiden is een meesterwerk.</p>
+<div class="attraction-item-info">
+<span class="info-chip">📍 Batalha</span>
+<span class="info-chip">🕐 9:00–18:00</span>
+<span class="info-chip">💶 ~€6</span>
+</div>
+<div class="attraction-item-links">
+<a class="btn btn-sm btn-map" href="https://www.google.com/maps/place/Mosteiro+da+Batalha/@39.6595,-8.8248,16z" rel="noopener noreferrer" target="_blank">🗺️ Google Maps</a>
+<a class="btn btn-sm btn-web" href="https://www.mosteirobatalha.gov.pt" rel="noopener noreferrer" target="_blank">🌐 Website</a>
+</div>
+</div>
+<div class="attraction-item-card">
+<div class="attraction-item-top">
+<div class="attraction-item-name">⛪ Klooster van Alcobaça — onderweg</div>
+</div>
+<p class="attraction-item-desc">
+            Korte tussenstop tussen Batalha en Nazaré (~15-20 min rijden vanaf Batalha, geen omweg).
+            Dit UNESCO-klooster uit 1153 is de grootste kerk van Portugal en een van de belangrijkste
+            middeleeuwse bouwwerken van het land — indrukwekkend door zijn kale, statige eenvoud in
+            plaats van overdadige versiering. Bekend van de tragische liefdesgeschiedenis van Pedro
+            en Inês, wier graftombes hier tegenover elkaar staan. Rustiger dan Batalha, minder
+            toeristische drukte, en zeker de moeite waard als korte stop onderweg.
+          </p>
+<div class="attraction-item-info">
+<span class="info-chip">📍 Alcobaça, tussen Batalha en Nazaré</span>
+<span class="info-chip">🕐 9:00–18:00</span>
+<span class="info-chip">💶 ~€6</span>
+<span class="info-chip">⏱ 45–60 min bezoek</span>
+</div>
+<div class="attraction-item-links">
+<a class="btn btn-sm btn-map" href="https://www.google.com/maps/place/Mosteiro+de+Alcoba%C3%A7a/@39.5470,-8.9800,16z" rel="noopener noreferrer" target="_blank">🗺️ Google Maps</a>
+<a class="btn btn-sm btn-web" href="https://mosteiroalcobaca.gov.pt" rel="noopener noreferrer" target="_blank">🌐 Website</a>
+</div>
+</div>
+<div class="attraction-item-card">
+<div class="attraction-item-name">🌊 Nazaré Sítio</div>
+<p class="attraction-item-desc">Het hoog gelegen deel van Nazaré met de beroemde Farol-vuurtoren, van waaruit de beroemde XXL-golven worden gesurft (tot 30 meter hoog in de winter). Het kabeltje brengt je omhoog.</p>
+<div class="attraction-item-info">
+<span class="info-chip">📍 Nazaré Sítio</span>
+<span class="info-chip">🕐 Altijd open</span>
+<span class="info-chip">💶 Gratis</span>
+</div>
+<div class="attraction-item-links">
+<a class="btn btn-sm btn-map" href="https://www.google.com/maps/place/Nazaré/@39.6013,-9.0655,14z" rel="noopener noreferrer" target="_blank">🗺️ Google Maps</a>
+</div>
+</div>
+<div class="attraction-item-card extra-tip-card">
+<span class="extra-tip-label">🤫 Geheime tip (lokaal)</span>
+<div class="attraction-item-top">
+<div class="attraction-item-name">⛪ Igreja de São Gião — verborgen kerkje</div>
+</div>
+<p class="attraction-item-desc">
+            Een van de oudste kerkjes van Portugal — mogelijk zelfs van het hele Iberisch
+            Schiereiland. Pas in 1961 herontdekt op de Quinta de São Gião, zo'n 5 km ten
+            zuiden van Nazaré vlak bij de duinen en het strand. Het huidige gebouw met
+            Asturische bouwkenmerken staat op de fundamenten van een vroegchristelijk
+            kerkje uit de Visigotische tijd, op zijn beurt gebouwd op de plek van een
+            Romeinse tempel voor Neptunus. Sinds 1986 een beschermd nationaal monument,
+            maar door de afgelegen ligging nauwelijks bekend bij bezoekers — een echte
+            lokale geheimtip volgens de gemeente Nazaré zelf.
+          </p>
+<div class="attraction-item-info">
+<span class="info-chip">📍 ~5 km ten zuiden van Nazaré (Famalicão)</span>
+<span class="info-chip">🏛️ Nationaal monument sinds 1986</span>
+<span class="info-chip">⏱ 20–30 min</span>
+</div>
+<div class="attraction-item-links">
+<a class="btn btn-sm btn-map" href="https://www.google.com/maps/place/Igreja+de+São+Gião,+Nazaré" rel="noopener noreferrer" target="_blank">🗺️ Google Maps</a>
+<a class="btn btn-sm btn-web" href="https://www.cm-nazare.pt/visitar/onde-ir/monumentos-e-patrimonio/poi/igreja-de-s-giao" rel="noopener noreferrer" target="_blank">🌐 Gemeente Nazaré</a>
+</div>
+</div>
+<div class="attraction-item-card extra-tip-card">
+<span class="extra-tip-label">⏳ Als je tijd over hebt</span>
+<div class="attraction-item-top">
+<div class="attraction-item-name">🕳️ Grutas de Mira de Aire</div>
+</div>
+<p class="attraction-item-desc">
+            De grootste grotten van Portugal en een van de "7 Natuurwonderen van
+            Portugal" — 11 km aan gangen, zalen en ondergrondse meren, waarvan zo'n
+            600 meter toegankelijk is met een looppad. Op ongeveer 20 minuten van
+            Batalha, in de Serra de Aire e Candeeiros. Een verrassende, koele afwisseling
+            tussen de twee kloosterbezoeken door — al vergt het wel een kleine omweg.
+          </p>
+<div class="attraction-item-info">
+<span class="info-chip">📍 ~20 min van Batalha</span>
+<span class="info-chip">🕐 Check openingstijden vooraf</span>
+<span class="info-chip">⏱ 45–60 min bezoek</span>
+</div>
+<div class="attraction-item-links">
+<a class="btn btn-sm btn-map" href="https://www.google.com/maps/place/Grutas+de+Mira+de+Aire" rel="noopener noreferrer" target="_blank">🗺️ Google Maps</a>
+<a class="btn btn-sm btn-web" href="https://www.grutasmiradaire.com/" rel="noopener noreferrer" target="_blank">🌐 Website</a>
+</div>
+</div>
+<div class="attraction-item-card extra-tip-card">
+<span class="extra-tip-label">⏳ Als je tijd over hebt</span>
+<div class="attraction-item-top">
+<div class="attraction-item-name">🏰 Kasteel van Leiria</div>
+</div>
+<p class="attraction-item-desc">
+            Prachtig gerestaureerd middeleeuws kasteel hoog op een heuvel boven de stad Leiria,
+            met een fraai uitzicht over de rivier Lis en de daken van de stad. Leiria ligt
+            praktisch naast Batalha (~10 min rijden), dus dit is een stop zonder enige omweg
+            als er tussen de twee kloosters en Nazaré nog tijd over is.
+          </p>
+<div class="attraction-item-info">
+<span class="info-chip">📍 Leiria, vlak bij Batalha</span>
+<span class="info-chip">🕐 9:30–18:00</span>
+<span class="info-chip">💶 ~€2,10</span>
+<span class="info-chip">⏱ 45 min</span>
+</div>
+<div class="attraction-item-links">
+<a class="btn btn-sm btn-map" href="https://www.google.com/maps/place/Castelo+de+Leiria/@39.7444,-8.8075,16z" rel="noopener noreferrer" target="_blank">🗺️ Google Maps</a>
+</div>
+</div>
+</div>
+</div>
+    <h3 class="rg-subhead">🏄 Surfen bij Nazaré</h3>
+    <div class="actueel-text"><div class="actueel-text">
+<p>Op 10 september 2026 was de golfhoogte bij Nazaré ongeveer 1,0–1,2 meter, met een swell uit het noord-noordwesten en een periode van 10-11 seconden (golfkwaliteit laag, rond 1★) — duidelijk rustiger dan de 0,6–1,4 meter van 5 september. Voor vrijdag 11 sep wordt een verdere afname voorspeld, met vanaf zaterdag 12 sep weer een lichte toename richting 1,2–1,4 meter: geen bijzondere condities, geen aangekondigd big-wave-evenement en geen strand- of veiligheidswaarschuwing. De beroemde reuzengolven bij <strong>Praia do Norte</strong> (tot 20-30 meter) ontstaan alleen bij een specifieke combinatie van een diepe onderzeese canyon en grote noordwestelijke wintersstormen, meestal tussen oktober en maart. In september, tijdens onze reis, is de kans op zulke golven klein — dan is het vooral een mooie, rustige surfstek.</p>
+<p><strong>Praia do Norte</strong> is het domein van big-wave surfers en niet geschikt (of veilig) om zelf te leren surfen. Voor lessen onder begeleiding is <strong>Praia da Vila</strong>, direct in het centrum van Nazaré, de aangewezen plek: beschutter water, een vlaggen-gemarkeerde zwem-/surfzone en een makkelijke ingang vanaf het strand.</p>
+<p>De bekendste optie is <strong>Nazaré Surf School</strong>, sinds 2012 gevestigd direct op het strand van Praia da Vila — met surf-, bodyboard- en SUP-lessen voor beginners tot gevorderden, privé of in groepjes, en instructie in het Engels. Er zijn ook andere surfscholen actief in Nazaré (o.a. Surfing Nazaré en Surf4You) die vergelijkbare begeleide lessen aanbieden.</p>
+</div></div>
+    <div class="link-grid">
+<a class="link-card" href="https://www.surf-forecast.com/breaks/Nazare/forecasts/latest" rel="noopener noreferrer" target="_blank">
+<span class="link-tag official">Forecast</span>
+<div class="link-card-title">Surf-Forecast — Nazaré</div>
+<div class="link-card-desc">Actuele en 6-daagse golfhoogte, windrichting en swellvoorspelling.</div>
+</a>
+<a class="link-card" href="https://nazarewaves.com/en/webcams" rel="noopener noreferrer" target="_blank">
+<span class="link-tag blog">Webcam</span>
+<div class="link-card-title">Nazaré Waves — live webcams</div>
+<div class="link-card-desc">Live beelden van Praia do Norte en de vuurtoren, handig vlak voor vertrek.</div>
+</a>
+<a class="link-card" href="https://praiadonortenazare.pt/escola/nazare-surf-school/" rel="noopener noreferrer" target="_blank">
+<span class="link-tag official">Surfschool</span>
+<div class="link-card-title">Nazaré Surf School — Praia da Vila</div>
+<div class="link-card-desc">Begeleide surf-, bodyboard- en SUP-lessen op het strand in het centrum, ook voor beginners.</div>
+</a>
+<a class="link-card" href="https://www.surfingnazare.pt/en" rel="noopener noreferrer" target="_blank">
+<span class="link-tag blog">Surfschool</span>
+<div class="link-card-title">Surfing Nazaré</div>
+<div class="link-card-desc">Alternatieve surfschool met lessen en materiaalverhuur in Nazaré.</div>
+</a>
+</div>
+    <div class="disclaimer-box">
+      🌊 Golfhoogte gecheckt op 10 september 2026 (±1,0–1,2 meter, swell NNW, periode 10-11s, golfkwaliteit laag ~1★) — check de forecast-link hierboven nog even vlak vóór je surfsessie, condities veranderen dagelijks.
+    </div>
+    <h3 class="rg-subhead">🍽️ Eten</h3>
+    <div class="restaurant-grid">
+      <div class="restaurant-card" id="o-casalinho">
+<div class="restaurant-card-header">
+<span class="restaurant-dag-badge">Dag 6 · Tussenstop Nazaré · Lunch</span>
+<h3>Restaurante O Casalinho</h3>
+<span class="restaurant-city-tag">Praça Sousa Oliveira 25, Nazaré</span>
+</div>
+<div class="restaurant-card-body">
+<div class="specialiteit-box">
+<strong>Specialiteit van de dag</strong>
+<p>Oestres (oesters) — O Casalinho is dé oesterreferentie van Nazaré, locals bestellen ze nergens anders. Cataplana de tamboril (zeeduivel in de cataplana) voor twee als je doorrijdt naar Óbidos.</p>
+</div>
+<p class="restaurant-desc">
+        Op het hoofdplein van Nazaré, terras met directe zeezicht. Lokale aanbeveling voor
+        oesters en dagverse vis. Eén ober werkt er al veertig jaar — dat vertelt je alles over
+        hoe het er loopt. Perfect als lunchstop tussen de vuurtoren bij Praia do Norte en de
+        doorrit naar Óbidos (±45 minuten rijden).
+      </p>
+<div class="tip-box">
+        💡 Reserveer voor de lunch — zeker op vrijdag en in september. Parkeer buiten het
+        centrum en loop naar het plein (10 min).
+      </div>
+<div class="restaurant-chips">
+<span class="restaurant-chip">🦪 Oesters</span>
+<span class="restaurant-chip">🐟 Dagverse vis</span>
+<span class="restaurant-chip">🌊 Zeezicht</span>
+<span class="restaurant-chip">📍 Hoofdplein Nazaré</span>
+<span class="restaurant-chip">📞 Reserveer</span>
+</div>
+<div class="restaurant-btns">
+<a class="btn btn-sm btn-map" href="https://www.google.com/maps/search/Restaurante+O+Casalinho+Nazare" rel="noopener noreferrer" target="_blank">🗺️ Google Maps</a>
+<a class="btn btn-sm btn-tel" href="tel:+351262551328">📞 +351 262 551 328</a>
+<a class="btn btn-sm btn-review" href="restaurant-o-casalinho.html">📖 Recensies &amp; meer</a>
+</div>
+</div>
+</div>
+      <div class="restaurant-card" id="nova-casa-de-ramiro">
+<div class="restaurant-card-header">
+<span class="restaurant-dag-badge">Dag 6 · Óbidos · Avond</span>
+<h3>A Nova Casa de Ramiro</h3>
+<span class="restaurant-city-tag">Rua Direita 79, binnen de muren van Óbidos</span>
+</div>
+<div class="restaurant-card-body">
+<div class="specialiteit-box">
+<strong>Specialiteit van de dag</strong>
+<p>Garnalenrisotto, wagyu-beef en gegrilde varkenslende met amandelsausglazuur — verfijnde Portugese gerechten in een sfeervolle, kaarslicht-setting.</p>
+</div>
+<p class="restaurant-desc">
+        Gelegen aan de rand van de historische muren van Óbidos, met een grotachtige sfeer:
+        gewelfde plafonds, stenen vloeren, kaarslicht en elegante kroonluchters. Een mooie,
+        sfeervolle eerste avond na aankomst in Óbidos, binnen loopafstand van de Pousada.
+      </p>
+<div class="tip-box">
+        💡 Reserveer vooraf — populair bij zowel gasten als locals, zeker in het weekend.
+      </div>
+<div class="restaurant-chips">
+<span class="restaurant-chip">🦐 Garnalenrisotto</span>
+<span class="restaurant-chip">🥩 Wagyu-beef</span>
+<span class="restaurant-chip">🕯️ Kaarslicht-sfeer</span>
+<span class="restaurant-chip">📍 Binnen de muren</span>
+<span class="restaurant-chip">📞 Reserveer</span>
+</div>
+<div class="restaurant-btns">
+<a class="btn btn-sm btn-map" href="https://www.google.com/maps/search/A+Nova+Casa+de+Ramiro+Obidos" rel="noopener noreferrer" target="_blank">🗺️ Google Maps</a>
+<a class="btn btn-sm btn-tel" href="tel:+351262958324">📞 +351 262 958 324</a>
+<a class="btn btn-sm btn-mail" href="mailto:novacasaramiro@gmail.com">✉️ E-mail</a>
+<a class="btn btn-sm btn-review" href="restaurant-nova-casa-de-ramiro.html">📖 Recensies &amp; meer</a>
+</div>
+</div>
+</div>
+    </div>
+  </div>
+</section>
+
+<section class="rg-day-section" id="dag-7" style="--rg-day-color:#cb4335">
+  <div class="container">
+    <div class="rg-day-header"><span class="rg-day-badge">Dag 7</span><h2>Óbidos</h2><span class="rg-day-date">za 12 sep</span></div>
+    <div class="rg-hotel-note"><span class="rg-hotel-note-icon">🏨</span><span>Overnachting: <strong>Pousada Castelo de Óbidos</strong>, Óbidos — zie Dag 6 voor alle details.</span></div>
+    <h3 class="rg-subhead">✨ Attracties & tips</h3>
+    <div class="day-detail fade-in" id="day5">
+<div class="day-detail-header">
+<div class="day-detail-info">
+<span class="day-detail-day">Dag 6–7 · vr 11–za 12 sep</span>
+<h2>Óbidos</h2>
+<p class="day-detail-tagline">Middeleeuws Sprookje</p>
+<p class="day-detail-desc">Óbidos is een volledig bewaarde middeleeuwse stad omringd door imposante vestingmuren. Witte huisjes met blauwe en gele randen, bougainvillea's, kasseienstraatjes — een van Portugal's mooiste dorpjes. Proef de ginjinha (kerslikeur) uit een chocoladebeker.</p>
+<div class="day-meta-grid">
+<div class="meta-cell"><div class="meta-label">Rijafstand</div><div class="meta-value">1 uur van Nazaré</div></div>
+<div class="meta-cell"><div class="meta-label">Tip</div><div class="meta-value">Loop de hele vestingmuur (dagbrekers weg om 18u)</div></div>
+<div class="meta-cell"><div class="meta-label">Hotel</div><div class="meta-value">Pousada Castelo de Óbidos · 2 nachten</div></div>
+<div class="meta-cell"><div class="meta-label">Lunch tip</div><div class="meta-value">Alcaide · bacalhau com nozes</div></div>
+<div class="meta-cell"><div class="meta-label">Diner tip (dag 7)</div><div class="meta-value">Poço dos Sabores, Usseira · kort ritje, geen loopafstand vanaf de Pousada</div></div>
+</div>
+</div>
+<div class="day-detail-photo">
+<img alt="Óbidos middeleeuwse straatjes" decoding="async" loading="lazy" src="images/dag05-obidos.jpg"/>
+</div>
+</div>
+<div class="attractions-list-detail">
+<div class="attraction-item-card">
+<div class="attraction-item-name">🏯 Vestingmuren &amp; Kasteel</div>
+<p class="attraction-item-desc">Loop de volledige rondgang over de middeleeuwse muren voor panoramisch uitzicht. Het kasteel (nu een luxe pousada) is van buiten te bewonderen.</p>
+<div class="attraction-item-info">
+<span class="info-chip">📍 Óbidos centrum</span>
+<span class="info-chip">💶 Gratis</span>
+<span class="info-chip">⏱ Halve dag</span>
+</div>
+<div class="attraction-item-links">
+<a class="btn btn-sm btn-map" href="https://www.google.com/maps/place/Óbidos/@39.3621,-9.1566,15z" rel="noopener noreferrer" target="_blank">🗺️ Google Maps</a>
+</div>
+</div>
+<div class="attraction-item-card extra-tip-card">
+<span class="extra-tip-label">🤫 Geheime tip (lokaal)</span>
+<div class="attraction-item-top">
+<div class="attraction-item-name">🌊 Lagoa de Óbidos — verborgen lagune</div>
+</div>
+<p class="attraction-item-desc">
+            Een fraaie kustlagune vlak bij Óbidos die zelfs bij veel Portugezen zelf
+            nauwelijks bekend is — een mooi, rustig alternatief voor de drukte binnen de
+            vestingmuren. Lekker wandelen langs het water, of eropuit met een kajak of
+            SUP. Onderdeel van het "Segredos de Óbidos"-initiatief van de gemeente, dat
+            juist dit soort minder toeristische plekjes onder de aandacht brengt.
+          </p>
+<div class="attraction-item-info">
+<span class="info-chip">📍 ~15–20 min van Óbidos centrum</span>
+<span class="info-chip">🚣 Kajak/SUP mogelijk</span>
+<span class="info-chip">💶 Gratis (excursies apart)</span>
+</div>
+<div class="attraction-item-links">
+<a class="btn btn-sm btn-map" href="https://www.google.com/maps/place/Lagoa+de+Óbidos" rel="noopener noreferrer" target="_blank">🗺️ Google Maps</a>
+<a class="btn btn-sm btn-web" href="https://www.cm-obidos.pt/viver/comunicacao-e-imagem/noticias-em-destaque/noticia/a-viagem-por-tempos-de-outrora-a-descoberta-dos-segredos-de-obidos" rel="noopener noreferrer" target="_blank">🌐 Gemeente Óbidos</a>
+</div>
+</div>
+<div class="attraction-item-card extra-tip-card">
+<span class="extra-tip-label">⏳ Als je tijd over hebt</span>
+<div class="attraction-item-top">
+<div class="attraction-item-name">🏺 Caldas da Rainha</div>
+</div>
+<p class="attraction-item-desc">
+            Levendige marktstad op zo'n 15 minuten van Óbidos, met een heel ander karakter:
+            minder toeristisch, meer lokaal leven. Beroemd om zijn aardewerk, met name de
+            excentrieke groente- en dierfiguren van Bordallo Pinheiro. De dagelijkse markt bij
+            het Praça da República is de moeite waard, net als het park Parque Dom Carlos I.
+          </p>
+<div class="attraction-item-info">
+<span class="info-chip">📍 ~15 min van Óbidos</span>
+<span class="info-chip">🕐 Markt vooral ochtend</span>
+<span class="info-chip">💶 Gratis rondlopen</span>
+<span class="info-chip">⏱ 1–1,5 uur</span>
+</div>
+<div class="attraction-item-links">
+<a class="btn btn-sm btn-map" href="https://www.google.com/maps/place/Caldas+da+Rainha/@39.4067,-9.1361,14z" rel="noopener noreferrer" target="_blank">🗺️ Google Maps</a>
+</div>
+</div>
+</div>
+</div>
+    <h3 class="rg-subhead">📰 Actueel</h3>
+    <div class="city-block">
+<h3 style="font-family:var(--serif); color:var(--azul); margin:0 0 .5rem; font-size:1.15rem;">🏰 Óbidos <span style="font-weight:400;color:var(--muted);font-size:.8rem;">— dag 6–7, vr 11 – za 12 sep</span></h3>
+<p><strong>Nieuw:</strong> het Festival de Ópera de Óbidos 2026 ("Luz e Trevas") loopt dit jaar van 5 tot 20 september — dat overlapt vrijwel precies met het verblijf. Tijdens de twee nachten in Óbidos staan er voorstellingen gepland: "A Cinderela, ou o Triunfo da Bondade" op 11 september om 20:00 in het Convento de São Miguel das Gaeiras, en "Caim, ou o Primeiro Homicídio" op 12 september om 18:00 in de Igreja da Misericórdia de Óbidos (bron: officieel programma op festivaloperaobidos.pt). Het dorp zal dus net wat drukker en muzikaler zijn dan gebruikelijk — leuk om even naar te kijken of een kaartje voor te overwegen. De jaarlijkse Mercado Medieval liep dit jaar van 19 juli tot 12 augustus en is dus al voorbij, en het Internationaal Chocoladefestival valt normaal in het voorjaar, dus ook buiten deze periode. Het nieuwe surfpark net buiten Óbidos (Wavegarden/Surfers Cove, circa €25–30 miljoen investering) is nog in aanbouw met opening beoogd in 2026 — mogelijk wat bouwactiviteit in de omgeving, maar niet in het historische centrum zelf.</p>
+<div class="program-box">
+<div class="program-box-title">🎭 Festival de Ópera de Óbidos — volledig programma &amp; kaartjes</div>
+<ul>
+<li>5 sep — Gala "Mozart, Weber en Beethoven"</li>
+<li class="program-relevant">11 &amp; 13 sep — "A Cinderela, ou o Triunfo da Bondade" (Rossini's La Cenerentola)</li>
+<li class="program-relevant">12 sep — "Caim, ou o Primeiro Homicídio" (oratorium van Scarlatti)</li>
+<li>16 sep — Recital "De Purcell a Britten"</li>
+<li>19 &amp; 20 sep — "Orfeu e Eurídice" (Gluck)</li>
+</ul>
+<p>De twee gemarkeerde voorstellingen (11 en 12 sep) vallen in het verblijf in Óbidos. Sinds half augustus zijn tijd en locatie bekend: "A Cinderela" op vrijdag 11 sep om 20:00 in het Convento de São Miguel das Gaeiras, en "Caim" op zaterdag 12 sep om 18:00 in de Igreja da Misericórdia de Óbidos.</p>
+<p><strong>Kaartjes:</strong> online via <a href="https://blueticket.meo.pt" rel="noopener noreferrer" target="_blank">Meo Blueticket</a>, of fysiek bij Convento de São Miguel das Gaeiras (ma–vr 10:00–13:00 &amp; 14:00–17:00) en ABA – Banda de Alcobaça (ma–vr 9:00–13:00 &amp; 14:00–18:00). <strong>Prijzen waren ook op 1 september nog steeds niet gepubliceerd</strong> — check dichter bij vertrek nogmaals via <a href="https://festivaloperaobidos.pt/bilhetes/" rel="noopener noreferrer" target="_blank">festivaloperaobidos.pt/bilhetes</a>, of mail <a href="mailto:info.festivaloperaobidos@gmail.com">info.festivaloperaobidos@gmail.com</a> / bel +351 967 716 647.</p>
+</div>
+<div class="fun-facts">
+<div class="fun-facts-title">✨ Wist je dat...?</div>
+<ul>
+<li>Óbidos sinds 1282 eeuwenlang het traditionele bruidsgeschenk was van de Portugese koning aan zijn koningin?</li>
+<li>de lokale ginjinha (kersenlikeur) traditioneel wordt geserveerd in een eetbaar chocoladekopje?</li>
+<li>het stadje 14 kerkjes telt binnen de goed bewaarde middeleeuwse stadsmuur, en volledig autovrij is?</li>
+<li>het 12e-eeuwse kasteel van Óbidos tegenwoordig een luxehotel is — de Pousada Castelo Óbidos, waar jullie zelf verblijven?</li>
+<li>schilderes Josefa de Óbidos, een van de weinige erkende vrouwelijke kunstenaars uit de Portugese barok, werk hangt in de Igreja de Santa Maria?</li>
+<li>Óbidos lid is van Cittaslow, het internationale netwerk van "slow cities" dat rust en kwaliteit van leven boven haast stelt?</li>
+</ul>
+</div>
+</div>
+    <h3 class="rg-subhead">🍽️ Eten</h3>
+    <div class="restaurant-grid">
+      <div class="restaurant-card" id="poco-dos-sabores">
+<div class="restaurant-card-header">
+<span class="restaurant-dag-badge">Dag 7 · Óbidos · Avond</span>
+<h3>Restaurante Poço dos Sabores</h3>
+<span class="restaurant-city-tag">Rua Principal 85B, Usseira (bij Óbidos)</span>
+</div>
+<div class="restaurant-card-body">
+<div class="specialiteit-box">
+<strong>Specialiteit van de dag</strong>
+<p>Polvo à Lagareiro — een van de sterdisgerechten, in de perfecte gaarpunt. Ook de bekroonde chocoladetaart van chef Paula (1e prijs op het Óbidos Chocoladefestival) is een vaste favoriet.</p>
+</div>
+<p class="restaurant-desc">
+        Sfeervol, rustiek restaurant in het dorpje Usseira, op korte rijafstand van Óbidos. Van
+        buiten een eenvoudig stenen huisje, van binnen een knusse eetkamer met hout, steen en
+        keramiek. Traditionele Portugese keuken, gerund door een gastvrij echtpaar, met een
+        opvallend uitgebreide wijnkaart en genereuze porties.
+      </p>
+<div class="tip-box">
+        💡 Reserveer ruim van tevoren — klein en populair. Vraag naar de soep van de dag en
+        vermeld dieetwensen, het team is flexibel met aanpassingen.
+      </div>
+<div class="restaurant-chips">
+<span class="restaurant-chip">🐙 Polvo à Lagareiro</span>
+<span class="restaurant-chip">🍫 Bekroonde chocoladetaart</span>
+<span class="restaurant-chip">📍 Usseira, bij Óbidos</span>
+<span class="restaurant-chip">🍷 Uitgebreide wijnkaart</span>
+<span class="restaurant-chip">📞 Reserveer!</span>
+</div>
+<div class="restaurant-btns">
+<a class="btn btn-sm btn-map" href="https://www.google.com/maps/search/Restaurante+Poço+dos+Sabores+Usseira+Obidos" rel="noopener noreferrer" target="_blank">🗺️ Google Maps</a>
+<a class="btn btn-sm btn-tel" href="tel:+351262950086">📞 +351 262 950 086</a>
+<a class="btn btn-sm btn-review" href="restaurant-poco-dos-sabores.html">📖 Recensies &amp; meer</a>
+</div>
+</div>
+</div>
+      <div class="restaurant-card" id="alcaide">
+<div class="restaurant-card-header">
+<span class="restaurant-dag-badge">Dag 7 · Óbidos · Lunch</span>
+<h3>Alcaide</h3>
+<span class="restaurant-city-tag">Rua Direita, bovenverdieping, Óbidos</span>
+</div>
+<div class="restaurant-card-body">
+<div class="specialiteit-box">
+<strong>Specialiteit van de dag</strong>
+<p>Bacalhau com nozes, maçã e queijo — kabeljauw met walnoten, appel en kaas. Een uniek regionaal gerecht dat de lokale West-Portugal producten combineert. Gegrilde octopus als alternatief.</p>
+</div>
+<p class="restaurant-desc">
+        Terugkerende bezoekers zweren erbij. Retro-eetkamer op de eerste verdieping van de Rua
+        Direita, de hoofdstraat van de middeleeuwse stad. Uitzicht over de velden buiten de
+        kasteelmuren. Eerlijk geprijsd, vriendelijk personeel, comfortabele sfeer. Na de lunch:
+        een ginja in een chocoladekopje kopen op straat — de iconische Óbidos-lekkernij.
+      </p>
+<div class="tip-box">
+        💡 Ga na de lunch een ginja (kersenlikeur) drinken uit een chocoladekopje op straat.
+        Dit is de signature-ervaring van Óbidos. Zoek een kraampje op de Rua Direita.
+      </div>
+<div class="restaurant-chips">
+<span class="restaurant-chip">🐟 Bacalhau com nozes</span>
+<span class="restaurant-chip">🐙 Gegrilde octopus</span>
+<span class="restaurant-chip">📍 Rua Direita, 1e verdiep</span>
+<span class="restaurant-chip">🏰 Uitzicht kasteelmuren</span>
+<span class="restaurant-chip">💰 Betaalbaar</span>
+<span class="restaurant-chip">📞 Reserveren aan te raden (via TheFork)</span>
+</div>
+<div class="restaurant-btns">
+<a class="btn btn-sm btn-map" href="https://www.google.com/maps/search/Alcaide+Obidos+Rua+Direita" rel="noopener noreferrer" target="_blank">🗺️ Google Maps</a>
+<a class="btn btn-sm btn-tel" href="tel:+351262959220">📞 +351 262 959 220</a>
+<a class="btn btn-sm btn-mail" href="mailto:restalcaide@hotmail.com">✉️ E-mail</a>
+<a class="btn btn-sm btn-review" href="restaurant-alcaide.html">📖 Recensies &amp; meer</a>
+</div>
+</div>
+</div>
+    </div>
+  </div>
+</section>
+
+<section class="rg-day-section" id="dag-8" style="--rg-day-color:#a04000">
+  <div class="container">
+    <div class="rg-day-header"><span class="rg-day-badge">Dag 8</span><h2>Mafra & Sintra</h2><span class="rg-day-date">zo 13 sep · dagtrip</span></div>
+    <h3 class="rg-subhead">🏨 Overnachting</h3>
+    <div class="hotel-grid"><div class="hotel-card" id="memmo-principe-real">
+<div class="hotel-card-header">
+<span class="hotel-dag-badge">Dag 8–10</span>
+<h3>Memmo Príncipe Real</h3>
+<span class="hotel-city-tag">Lissabon · zo 13 – di 15 sep · 2 nachten</span>
+</div>
+<div class="hotel-card-body">
+<div class="hotel-highlight">
+        "Verstopt door een smal straatje en een kleine tunnel — en dan opeens spectaculair uitzicht over heel Lissabon."
+      </div>
+<p class="hotel-desc">
+        Het eerste 5-sterren boutique hotel in de Príncipe Real-wijk, nu de trendiest buurt van Lissabon.
+        41 kamers, rooftop pool met panoramisch uitzicht over de stad en de Taag, lid van Design Hotels.
+        Architect Samuel Torres de Carvalho gebruikte Lissabons kalkstee (hetzelfde als in de paleizen)
+        als basis. Café Príncipe Real serveert ontbijt, lichte lunches en cocktails met uitzicht.
+        Loopafstand naar Chiado, Bairro Alto, Miradouro de São Pedro de Alcântara.
+        Terugvlucht KL1586 vertrekt 19:45 op di 15 sep — 15 min naar het vliegveld.
+      </p>
+<div class="hotel-chips">
+<span class="hotel-chip">⭐⭐⭐⭐⭐ Design Hotels</span>
+<span class="hotel-chip">📍 Príncipe Real, Lissabon</span>
+<span class="hotel-chip">🏊 Rooftop pool + panoramauitzicht</span>
+<span class="hotel-chip">🚶 Chiado 5 min</span>
+<span class="hotel-chip">✈️ 15 min vliegveld</span>
+<span class="hotel-chip">🏛️ Rua Dom Pedro V 56J</span>
+</div>
+<div class="hotel-btns">
+<a class="btn btn-sm btn-map" href="https://www.google.com/maps/search/Memmo+Principe+Real+Lisbon" rel="noopener noreferrer" target="_blank">🗺️ Google Maps</a>
+<a class="btn btn-sm btn-web" href="https://www.memmohotels.com/principereal/memmo-principe-real" rel="noopener noreferrer" target="_blank">🌐 Website</a>
+<a class="btn btn-sm btn-video" href="https://www.youtube.com/watch?v=OtrQf6oMJe8" rel="noopener noreferrer" target="_blank">▶️ Video</a>
+</div>
+</div>
+</div></div>
+    <h3 class="rg-subhead">✨ Attracties & tips</h3>
+    <div class="day-detail fade-in" id="day6">
+<div class="day-detail-header">
+<div class="day-detail-info">
+<span class="day-detail-day">Dag 8 · zo 13 sep</span>
+<h2>Mafra &amp; Sintra</h2>
+<p class="day-detail-tagline">Paleizen &amp; Mystiek (dagtrip)</p>
+<p class="day-detail-desc">Onderweg van Óbidos naar Sintra ligt Mafra vrijwel exact halverwege — een natuurlijke tussenstop, geen omweg. Daarna gaat de reis verder naar Sintra, een UNESCO-werelderfgoedstad waar sprookjespaleizen uit de mist rijzen tussen eeuwenoude dennenbossen. Palácio da Pena met zijn felle kleuren, de raadselachtige Quinta da Regaleira met zijn initiatie-put, en de Moorse kastelen zijn elk apart een dag waard. Sintra wordt als dagtrip bezocht op weg naar Lissabon — geen overnachting.</p>
+<div class="day-meta-grid">
+<div class="meta-cell"><div class="meta-label">Rijafstand</div><div class="meta-value">50–55 min van Óbidos (via Mafra) · daarna 30 min Mafra–Sintra</div></div>
+<div class="meta-cell"><div class="meta-label">Onderweg</div><div class="meta-value">Paleisklooster van Mafra (A: fotostop / B: volwaardig)</div></div>
+<div class="meta-cell"><div class="meta-label">Tip</div><div class="meta-value">Kies A/B pas 's ochtends · reserveer Pena online!</div></div>
+<div class="meta-cell"><div class="meta-label">Overnachting</div><div class="meta-value">Geen — door naar Lissabon</div></div>
+<div class="meta-cell"><div class="meta-label">Lunch tip</div><div class="meta-value">Incomum · arroz de marisco</div></div>
+</div>
+</div>
+<div class="day-detail-photo">
+<img alt="Palácio da Pena Sintra" decoding="async" loading="lazy" src="images/dag06-sintra.jpg"/>
+</div>
+</div>
+<div class="extra-tip-card" style="margin-bottom:1.5rem;">
+<span class="extra-tip-label">⚖️ Kies ter plekke: optie A of B</span>
+<p class="attraction-item-desc" style="margin-bottom:1rem;">
+          Deze dag is vol: Mafra volwaardig bezoeken (bibliotheek + rondleiding) laat weinig tijd over
+          voor Sintra, waar Pena en Regaleira normaal elk al 2–3 uur vragen. Kies daarom pas 's ochtends,
+          afhankelijk van hoe vroeg je uit Óbidos vertrekt en hoe het weer in Sintra is:
+        </p>
+<div class="ab-option-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:1rem;">
+<div style="border:1px solid var(--border); border-radius:var(--radius,8px); padding:1rem; background:#fff;">
+<strong style="display:block; margin-bottom:.4rem; color:var(--gold,#c9a227);">Optie A — Sintra voorop</strong>
+<p style="margin:0 0 .6rem; font-size:.9rem; line-height:1.6;">
+              Mafra alleen van buiten bekijken (15–20 min foto-stop op het plein, geen ticket).
+              Je houdt een volledige middag over voor Sintra: <strong>Palácio da Pena + Quinta da
+              Regaleira</strong>, zonder haasten.
+            </p>
+<span class="info-chip">⏱ Mafra: 15–20 min</span>
+<span class="info-chip">✅ Beide Sintra-paleizen goed te doen</span>
+</div>
+<div style="border:1px solid var(--border); border-radius:var(--radius,8px); padding:1rem; background:#fff;">
+<strong style="display:block; margin-bottom:.4rem; color:var(--gold,#c9a227);">Optie B — Mafra voorop</strong>
+<p style="margin:0 0 .6rem; font-size:.9rem; line-height:1.6;">
+              Mafra volwaardig bezoeken inclusief de bibliotheek (1–1,5 uur). In Sintra dan
+              focussen op één hoogtepunt: <strong>Palácio da Pena</strong>. Regaleira en Cabo da
+              Roca worden dan "als er tijd over is".
+            </p>
+<span class="info-chip">⏱ Mafra: 1–1,5 uur</span>
+<span class="info-chip">⚠️ Sintra beperkt tot 1 paleis</span>
+</div>
+</div>
+</div>
+<div class="attractions-list-detail">
+<div class="attraction-item-card">
+<div class="attraction-item-top">
+<div class="attraction-item-name">🏛️ Paleisklooster van Mafra — optie B: volwaardig bezoek</div>
+</div>
+<p class="attraction-item-desc">
+            Een van de grootste en meest ambitieuze bouwwerken van Portugal: paleis, klooster,
+            basiliek en één van de grootste bibliotheken van Europa in één complex, gebouwd in
+            de 18e eeuw onder koning João V naar Italiaans voorbeeld. Vaak onderschat doordat het
+            minder bekend is dan Sintra, maar minstens zo indrukwekkend qua schaal — de bibliotheek
+            met zijn 36.000 boeken (en de vleermuizen die 's nachts de boeken beschermen tegen
+            insecten) is een absoluut hoogtepunt. Ligt vrijwel exact op de route tussen Óbidos en
+            Sintra, dus een logische tussenstop zonder omweg.
+            <em>Bij optie A: alleen het exterieur bekijken vanaf het plein, geen ticket nodig.</em>
+</p>
+<div class="attraction-item-info">
+<span class="info-chip">📍 Mafra, tussen Óbidos en Sintra</span>
+<span class="info-chip">🕐 9:30–17:00 (gesloten di)</span>
+<span class="info-chip">💶 ~€6</span>
+<span class="info-chip">⏱ 1–1,5 uur</span>
+</div>
+<div class="attraction-item-links">
+<a class="btn btn-sm btn-map" href="https://www.google.com/maps/place/Pal%C3%A1cio+Nacional+de+Mafra/@38.9376,-9.3327,16z" rel="noopener noreferrer" target="_blank">🗺️ Google Maps</a>
+<a class="btn btn-sm btn-web" href="https://www.palaciomafra.gov.pt" rel="noopener noreferrer" target="_blank">🌐 Website</a>
+</div>
+</div>
+<div class="attraction-item-card">
+<div class="attraction-item-name">🏰 Palácio da Pena</div>
+<p class="attraction-item-desc">Het meest kleurrijke paleis van Portugal, hoog boven Sintra. Romantisch neo-manueline architectuur in felle geel, rood en terracottakleuren. Reserveer online — het is razend populair. <em>Let op: er lopen op dit moment werkzaamheden aan het claustrum (tot oktober 2026) en herstel van stormschade in het park — het paleis blijft gewoon open, volgens het "Aberto para Obras"-principe van Parques de Sintra.</em></p>
+<div class="attraction-item-info">
+<span class="info-chip">📍 Sintra</span>
+<span class="info-chip">🕐 9:30–18:30</span>
+<span class="info-chip">💶 ~€14</span>
+<span class="info-chip">📞 Online reserveren!</span>
+</div>
+<div class="attraction-item-links">
+<a class="btn btn-sm btn-map" href="https://www.google.com/maps/place/Palácio+da+Pena/@38.7875,-9.3906,16z" rel="noopener noreferrer" target="_blank">🗺️ Google Maps</a>
+<a class="btn btn-sm btn-web" href="https://www.parquesdesintra.pt/parques-monumentos-e-pacos/parque-e-palacio-nacional-da-pena/" rel="noopener noreferrer" target="_blank">🌐 Reserveren</a>
+</div>
+</div>
+<div class="attraction-item-card">
+<div class="attraction-item-name">🌀 Quinta da Regaleira <span style="font-weight:400; font-size:.8rem; color:var(--muted,#7a7a7a);">— vooral bij optie A</span></div>
+<p class="attraction-item-desc">Een mysterieus landgoed vol symbolen van de vrijmetselarij en rozenkruisers. De beroemde initiatie-put (een spiraalvormige trap naar de onderwereld) is iconisch en uiterst fotogeniek. Bij optie B (Mafra volwaardig) is dit de eerste die sneuvelt als de tijd krap wordt.</p>
+<div class="attraction-item-info">
+<span class="info-chip">📍 Sintra centrum</span>
+<span class="info-chip">🕐 9:30–18:00</span>
+<span class="info-chip">💶 ~€8</span>
+</div>
+<div class="attraction-item-links">
+<a class="btn btn-sm btn-map" href="https://www.google.com/maps/place/Quinta+da+Regaleira/@38.7973,-9.3954,17z" rel="noopener noreferrer" target="_blank">🗺️ Google Maps</a>
+<a class="btn btn-sm btn-web" href="https://www.regaleira.pt" rel="noopener noreferrer" target="_blank">🌐 Website</a>
+</div>
+</div>
+<div class="attraction-item-card extra-tip-card">
+<span class="extra-tip-label">⏳ Als je tijd over hebt</span>
+<div class="attraction-item-top">
+<div class="attraction-item-name">🌊 Cabo da Roca</div>
+</div>
+<p class="attraction-item-desc">
+            Het meest westelijke punt van het Europese vasteland — dramatische kliffen van
+            140 meter hoog die recht in de Atlantische Oceaan vallen, met een iconische
+            vuurtoren. Op ~20 minuten van Sintra, maar wel een kleine omweg (heen én terug),
+            dus alleen inplannen als Pena en Regaleira niet de hele dag vullen.
+          </p>
+<div class="attraction-item-info">
+<span class="info-chip">📍 ~20 min van Sintra</span>
+<span class="info-chip">🕐 Altijd open</span>
+<span class="info-chip">💶 Gratis</span>
+<span class="info-chip">⏱ 30–45 min + reistijd</span>
+</div>
+<div class="attraction-item-links">
+<a class="btn btn-sm btn-map" href="https://www.google.com/maps/place/Cabo+da+Roca/@38.7811,-9.4986,15z" rel="noopener noreferrer" target="_blank">🗺️ Google Maps</a>
+</div>
+</div>
+</div>
+</div>
+    <h3 class="rg-subhead">🍽️ Eten</h3>
+    <div class="restaurant-grid">
+      <div class="restaurant-card" id="rua-das-flores">
+<div class="restaurant-card-header">
+<span class="restaurant-dag-badge">Dag 8 · Lissabon · Avond</span>
+<h3>Taberna da Rua das Flores</h3>
+<span class="restaurant-city-tag">Rua das Flores 103, Chiado, Lissabon</span>
+</div>
+<div class="restaurant-card-body">
+<div class="specialiteit-box">
+<strong>Specialiteit van de dag</strong>
+<p>Geen vaste kaart — het menu wisselt dagelijks met wat vers is, opgeschreven op een groot krijtbord. Verse tonijn in sesam en de klassieke chocolademousse met kersen zijn vaste publiekslievelingen.</p>
+</div>
+<p class="restaurant-desc">
+        Kleine, sfeervolle taberna van chef André Magalhães, vlak bij Largo do Chiado. Tegelvloer,
+        marmeren tafeltjes en vitrinekasten vol old-school serviesgoed geven het de sfeer van een
+        ouderwets Portugees huis. Petiscos om te delen, huiswijn in lage glazen — precies de
+        informele, authentieke sfeer die bij de laatste dagen van de reis past.
+      </p>
+<div class="tip-box">
+        💡 Geen reserveringen mogelijk — vroeg komen en eventueel op de wachtlijst zetten.
+        Alleen contant betalen.
+      </div>
+<div class="restaurant-chips">
+<span class="restaurant-chip">🍽️ Dagmenu op krijtbord</span>
+<span class="restaurant-chip">🐟 Verse tonijn sesam</span>
+<span class="restaurant-chip">📍 Chiado, centrum</span>
+<span class="restaurant-chip">💵 Alleen contant</span>
+<span class="restaurant-chip">🚶 Geen reserveren</span>
+</div>
+<div class="restaurant-btns">
+<a class="btn btn-sm btn-map" href="https://www.google.com/maps/search/Taberna+da+Rua+das+Flores+Lisboa" rel="noopener noreferrer" target="_blank">🗺️ Google Maps</a>
+<a class="btn btn-sm btn-tel" href="tel:+351213479418">📞 +351 213 479 418</a>
+<a class="btn btn-sm btn-review" href="restaurant-rua-das-flores.html">📖 Recensies &amp; meer</a>
+</div>
+</div>
+</div>
+      <div class="restaurant-card" id="incomum">
+<div class="restaurant-card-header">
+<span class="restaurant-dag-badge">Dag 8 · Sintra · Lunch</span>
+<h3>Incomum by Luís Santos</h3>
+<span class="restaurant-city-tag">Bij het treinstation, Sintra</span>
+</div>
+<div class="restaurant-card-body">
+<div class="specialiteit-box">
+<strong>Specialiteit van de dag</strong>
+<p>Arroz de marisco, inktvispasta met garnalen, of Iberisch varken. Het lunchemenu (soep/salade, hoofdgerecht, dessert, drankje) voor ±€15 is onverslaanbaar voor deze kwaliteit.</p>
+</div>
+<p class="restaurant-desc">
+        Lokale celebrity chef opende dit restaurant in 2014 — inmiddels het beste adres voor
+        creatieve, gegroeide Portugese keuken in Sintra. Klein en knus (12 tafels), altijd vol.
+        Handtekeninggerechten combineren zeevruchten en regionale ingrediënten met een vleugje
+        moderniteit. Na de lunch: queijadas de Sintra kopen bij Piriquita (bakkerij 1862, om de
+        hoek) — het traditionele Sintra-koekje.
+      </p>
+<div class="tip-box">
+        💡 Altijd van tevoren reserveren — ze zijn snel vol. Na de lunch queijadas de Sintra
+        en travesseiros bij Piriquita halen (loopafstand). Dit zijn de authentieke Sintra-gebakjes.
+      </div>
+<div class="restaurant-chips">
+<span class="restaurant-chip">🦐 Arroz de marisco</span>
+<span class="restaurant-chip">🐷 Iberisch varken</span>
+<span class="restaurant-chip">💶 Lunchemenu ~€15</span>
+<span class="restaurant-chip">📍 Bij treinstation</span>
+<span class="restaurant-chip">📞 Reserveer</span>
+<span class="restaurant-chip">⭐ Lokale chef</span>
+</div>
+<div class="restaurant-btns">
+<a class="btn btn-sm btn-map" href="https://www.google.com/maps/search/Incomum+Luis+Santos+Sintra" rel="noopener noreferrer" target="_blank">🗺️ Google Maps</a>
+<a class="btn btn-sm btn-tel" href="tel:+351219243719">📞 +351 219 243 719</a>
+<a class="btn btn-sm btn-mail" href="mailto:restaurante@incomumbyluissantos.pt">✉️ E-mail</a>
+<a class="btn btn-sm btn-web" href="https://www.incomumbyluissantos.pt" rel="noopener noreferrer" target="_blank">🌐 Reserveren</a>
+<a class="btn btn-sm btn-review" href="restaurant-incomum.html">📖 Recensies &amp; meer</a>
+</div>
+</div>
+</div>
+    </div>
+  </div>
+</section>
+
+<section class="rg-day-section" id="dag-9" style="--rg-day-color:#8e44ad">
+  <div class="container">
+    <div class="rg-day-header"><span class="rg-day-badge">Dag 9</span><h2>Lissabon</h2><span class="rg-day-date">ma 14 sep</span></div>
+    <div class="rg-hotel-note"><span class="rg-hotel-note-icon">🏨</span><span>Overnachting: <strong>Memmo Príncipe Real</strong>, Lissabon — zie Dag 8 voor alle details.</span></div>
+    <h3 class="rg-subhead">✨ Attracties & tips</h3>
+    <div class="day-detail fade-in" id="day7">
+<div class="day-detail-header">
+<div class="day-detail-info">
+<span class="day-detail-day">Dag 8–10 · zo 13–di 15 sep</span>
+<h2>Lissabon</h2>
+<p class="day-detail-tagline">Tijdperk van Ontdekkingen</p>
+<p class="day-detail-desc">Lissabon, de oudste hoofdstad van West-Europa, spreidt zich uit over zeven heuvels langs de Taag. Van de historische Toren van Belém tot de kleurrijke straatjes van Alfama, van het ratelen van tram 28 tot de zoete geur van pastéis — Lissabon is onvergetelijk.</p>
+<div class="day-meta-grid">
+<div class="meta-cell"><div class="meta-label">Rijafstand</div><div class="meta-value">30 min van Sintra</div></div>
+<div class="meta-cell"><div class="meta-label">Parkeren</div><div class="meta-value">P&amp;R buiten centrum</div></div>
+<div class="meta-cell"><div class="meta-label">Tip</div><div class="meta-value">Vroeg bij Pastéis de Belém</div></div>
+<div class="meta-cell"><div class="meta-label">Hotel</div><div class="meta-value">Memmo Príncipe Real · 2 nachten</div></div>
+<div class="meta-cell"><div class="meta-label">Dag 8 avond</div><div class="meta-value">Taberna da Rua das Flores</div></div>
+<div class="meta-cell"><div class="meta-label">Dag 9 ochtend</div><div class="meta-value">Wandeltour met gids (Mijn Lissabon) · 9:30, start Praça Luís de Camões</div></div>
+<div class="meta-cell"><div class="meta-label">Dag 9 lunch</div><div class="meta-value">Cantinho do Aziz · na de wandeltour (alternatief: Cervejaria Trindade)</div></div>
+<div class="meta-cell"><div class="meta-label">Dag 9 avond</div><div class="meta-value">Tágide Wine &amp; Tapas</div></div>
+<div class="meta-cell"><div class="meta-label">Dag 10 lunch</div><div class="meta-value">Enoteca de Belém · afsluiter, houd rekening met extra reistijd naar het vliegveld</div></div>
+<div class="meta-cell"><div class="meta-label">Terugvlucht</div><div class="meta-value">di 15 sep · 19:45u</div></div>
+<div class="meta-cell"><div class="meta-label">Uitchecken hotel</div><div class="meta-value">di 15 sep, meestal 11:00–12:00</div></div>
+<div class="meta-cell"><div class="meta-label">Auto inleveren</div><div class="meta-value">Lissabon-vliegveld, ruim voor de vlucht — reken op 30 min voor inlevering + shuttle naar terminal</div></div>
+<div class="meta-cell"><div class="meta-label">Planning laatste dag</div><div class="meta-value">Check uit en neem de bagage mee in de auto (niet bij het hotel achterlaten — geen reden om terug te rijden). Rij naar Belém voor de lunch bij Enoteca de Belém (±15–20 min vanaf Príncipe Real), en ga van daaruit direct door naar het vliegveld (±20–25 min, iets meer dan rechtstreeks vanaf het hotel) — check-in sluit meestal 45 min voor vertrek</div></div>
+</div>
+</div>
+<div class="day-detail-photo">
+<img alt="Lissabon panorama" decoding="async" loading="lazy" src="images/dag07-lisboa.jpg"/>
+</div>
+</div>
+<div class="attractions-list-detail">
+<div class="attraction-item-card extra-tip-card">
+<span class="extra-tip-label">🧑‍🏫 Programma dag 9 — begeleide wandeling (geboekt)</span>
+<div class="attraction-item-top">
+<div class="attraction-item-name">🇳🇱 Mijn Lissabon — Gino: Chiado, Baixa &amp; Alfama</div>
+</div>
+<p class="attraction-item-desc">
+            Start om <strong>9:30</strong> vanaf het <strong>Praça Luís de Camões</strong>, zo'n 10 minuten
+            lopen vanaf Memmo Príncipe Real. Een privéwandeling van circa 2,5 uur voor 4 personen
+            (€120 totaal) langs zowel de chique buurten als de oudste delen van Lissabon — de tour is
+            op maat te maken, dus laat het vooraf weten als er iets specifieks bekeken moet worden.
+            De tour eindigt in Alfama, met volop restaurants in de buurt voor de lunch erna.
+          </p>
+<div class="attraction-item-info">
+<span class="info-chip">🗣️ Nederlandstalig</span>
+<span class="info-chip">⏱ ±2,5 uur</span>
+<span class="info-chip">👥 Privé, 4 personen · €120</span>
+<span class="info-chip">📍 Start: Praça Luís de Camões</span>
+<span class="info-chip">🏁 Eindpunt: Alfama</span>
+<span class="info-chip">✉️ gino@mijnlissabon.nl</span>
+<span class="info-chip">📱 +351 960 271 656</span>
+</div>
+<div class="attraction-item-links">
+<a class="btn btn-sm btn-map" href="kaart.html#lissabon-detail">🗺️ Bekijk op de Lissabon-detailkaart</a>
+<a class="btn btn-sm btn-map" href="https://www.google.com/maps/search/Pra%C3%A7a+Lu%C3%ADs+de+Cam%C3%B5es+Lisboa" rel="noopener noreferrer" target="_blank">🗺️ Startpunt op Maps</a>
+<a class="btn btn-sm btn-web" href="https://www.mijnlissabon.nl" rel="noopener noreferrer" target="_blank">🌐 Mijn Lissabon</a>
+<a class="btn btn-sm btn-web" href="https://wa.me/+351960271656" rel="noopener noreferrer" target="_blank">💬 WhatsApp</a>
+<a class="btn btn-sm btn-web" href="mailto:gino@mijnlissabon.nl">✉️ E-mail</a>
+</div>
+</div>
+<div class="attraction-item-card">
+<div class="attraction-item-name">🗼 Toren van Belém</div>
+<p class="attraction-item-desc">Het iconische manueline monument aan de Taag, symbool van Portugal's gloriejaren van ontdekkingen. Combineer met het nabijgelegen Monument der Ontdekkingen.</p>
+<div class="attraction-item-info">
+<span class="info-chip">📍 Belém, Lissabon</span>
+<span class="info-chip">🕐 10:00–17:30</span>
+<span class="info-chip">💶 ~€6</span>
+</div>
+<div class="attraction-item-links">
+<a class="btn btn-sm btn-map" href="https://www.google.com/maps/place/Torre+de+Belém/@38.6916,-9.2160,17z" rel="noopener noreferrer" target="_blank">🗺️ Google Maps</a>
+<a class="btn btn-sm btn-web" href="https://www.torrebelem.gov.pt" rel="noopener noreferrer" target="_blank">🌐 Website</a>
+</div>
+</div>
+<div class="attraction-item-card">
+<div class="attraction-item-name">🍮 Pastéis de Belém</div>
+<p class="attraction-item-desc">De originele pastel de nata, gebakken volgens een geheim recept uit 1837. Geniet van verse, warme custardtaartjes met poedersuiker en kaneel direct aan de toonbank. De rij is de wacht waard.</p>
+<div class="attraction-item-info">
+<span class="info-chip">📍 Rua de Belém 84-92</span>
+<span class="info-chip">🕐 8:00–23:00</span>
+<span class="info-chip">💶 ~€1,30 per taartje</span>
+</div>
+<div class="attraction-item-links">
+<a class="btn btn-sm btn-map" href="https://www.google.com/maps/place/Pastéis+de+Belém/@38.6974,-9.2037,17z" rel="noopener noreferrer" target="_blank">🗺️ Google Maps</a>
+<a class="btn btn-sm btn-web" href="https://www.pasteisdebelem.pt" rel="noopener noreferrer" target="_blank">🌐 Website</a>
+</div>
+</div>
+<div class="attraction-item-card">
+<div class="attraction-item-name">🚋 Tram 28 &amp; Alfama</div>
+<p class="attraction-item-desc">Stap op de legendarische gele tram door de steile straatjes van Alfama, de oudste wijk van Lissabon. Eindig bij Miradouro da Graça voor het beste panorama bij zonsondergang.</p>
+<div class="attraction-item-info">
+<span class="info-chip">📍 Vertrek Campo Ourique</span>
+<span class="info-chip">💶 ~€3 per rit</span>
+<span class="info-chip">⚠️ Let op zakkenrollers</span>
+</div>
+<div class="attraction-item-links">
+<a class="btn btn-sm btn-map" href="https://www.google.com/maps/place/Alfama/@38.7139,-9.1290,15z" rel="noopener noreferrer" target="_blank">🗺️ Alfama Maps</a>
+</div>
+</div>
+<div class="attraction-item-card extra-tip-card">
+<span class="extra-tip-label">🚴 Ander idee voor deze dag (optioneel)</span>
+<div class="attraction-item-top">
+<div class="attraction-item-name">🇳🇱 Baja Bikes — fietstour met Nederlandse gids</div>
+</div>
+<p class="attraction-item-desc">
+            Geen wandeling maar een ±3,5 uur durende fietstour met een Nederlandse gids die al
+            jaren in Lissabon woont, langs de grote bezienswaardigheden van het centrum tot Belém
+            (bergafwaarts). Onderweg een pauze met Ginja en pastéis de nata. Leuk alternatief als
+            een dag minder te voet wenselijk is. Groepstour vanaf ~€32,50 p.p.; privétour ook
+            mogelijk. Reserveren verplicht (online, telefonisch, of via WhatsApp) — betalen kan
+            pas ter plekke.
+          </p>
+<div class="attraction-item-info">
+<span class="info-chip">🗣️ Nederlandstalig</span>
+<span class="info-chip">🚴 Fietstour, geen wandeling</span>
+<span class="info-chip">⏱ ±3,5 uur</span>
+<span class="info-chip">✉️ info@bajabikes.eu</span>
+<span class="info-chip">📱 +34 646 252 199</span>
+</div>
+<div class="attraction-item-links">
+<a class="btn btn-sm btn-web" href="https://www.bajabikes.eu/en/bike-tour-lisbon/" rel="noopener noreferrer" target="_blank">🌐 Baja Bikes</a>
+<a class="btn btn-sm btn-web" href="https://wa.me/34646252199" rel="noopener noreferrer" target="_blank">💬 WhatsApp</a>
+<a class="btn btn-sm btn-web" href="mailto:info@bajabikes.eu">✉️ E-mail</a>
+</div>
+</div>
+<div class="attraction-item-card extra-tip-card">
+<span class="extra-tip-label">⏳ Als je tijd over hebt</span>
+<div class="attraction-item-top">
+<div class="attraction-item-name">🎨 LX Factory</div>
+</div>
+<p class="attraction-item-desc">
+            Voormalig industrieterrein onder de 25 de Abril-brug, omgetoverd tot creatieve
+            wijk vol conceptwinkels, galerieën, street art en gezellige cafés — waaronder de
+            beroemde boekhandel Ler Devagar in een oude drukkerijhal. Een heel andere sfeer
+            dan het historische centrum, goed te combineren met Belém (dezelfde kant van de stad).
+          </p>
+<div class="attraction-item-info">
+<span class="info-chip">📍 Alcântara, bij de brug</span>
+<span class="info-chip">🕐 Winkels meestal 11:00–20:00</span>
+<span class="info-chip">💶 Gratis rondlopen</span>
+<span class="info-chip">⏱ 1,5–2 uur</span>
+</div>
+<div class="attraction-item-links">
+<a class="btn btn-sm btn-map" href="https://www.google.com/maps/place/LX+Factory/@38.7043,-9.1786,16z" rel="noopener noreferrer" target="_blank">🗺️ Google Maps</a>
+<a class="btn btn-sm btn-web" href="https://www.lxfactory.com" rel="noopener noreferrer" target="_blank">🌐 Website</a>
+</div>
+</div>
+<div class="attraction-item-card extra-tip-card">
+<span class="extra-tip-label">⏳ Als je tijd over hebt</span>
+<div class="attraction-item-top">
+<div class="attraction-item-name">✝️ Cristo Rei</div>
+</div>
+<p class="attraction-item-desc">
+            Het 110 meter hoge Christusbeeld aan de overkant van de Taag, geïnspireerd op de
+            Christus de Redentor in Rio de Janeiro. Het uitkijkplatform aan de voet van het
+            beeld biedt een van de beste panorama's op Lissabon, de 25 de Abril-brug en de
+            rivier. Bereikbaar per veerboot vanaf Cais do Sodré plus een korte bus, of met de auto.
+          </p>
+<div class="attraction-item-info">
+<span class="info-chip">📍 Almada, overkant van de Taag</span>
+<span class="info-chip">🕐 9:30–18:00</span>
+<span class="info-chip">💶 ~€8 (lift naar platform)</span>
+<span class="info-chip">⏱ 1,5–2 uur incl. veerboot</span>
+</div>
+<div class="attraction-item-links">
+<a class="btn btn-sm btn-map" href="https://www.google.com/maps/place/Cristo+Rei/@38.6786,-9.1725,16z" rel="noopener noreferrer" target="_blank">🗺️ Google Maps</a>
+<a class="btn btn-sm btn-web" href="https://www.cristorei.pt" rel="noopener noreferrer" target="_blank">🌐 Website</a>
+</div>
+</div>
+</div>
+</div>
+    <h3 class="rg-subhead">📰 Actueel</h3>
+    <div class="city-block">
+<h3 style="font-family:var(--serif); color:var(--azul); margin:0 0 .5rem; font-size:1.15rem;">🚋 Lissabon <span style="font-weight:400;color:var(--muted);font-size:.8rem;">— dag 8–10, zo 13 – di 15 sep</span></h3>
+<p><strong>Correctie t.o.v. eerdere versie:</strong> bij het opnieuw uitzoeken bleek de eerder hier genoemde metrostaking van 9 en 11 september 2025 te zijn geweest — een jaar te vroeg gedateerd. Voor september 2026 staat op dit moment (13 augustus) geen nieuwe stakingsdatum gepland, al kende de Lissabonse metro dit jaar al meerdere stakingsrondes door hetzelfde arbeidsconflict (o.a. 9 en 14 april, waarvan de tweede werd afgeblazen, en een landelijke algemene staking op 3 juni). Check dus vlak voor en tijdens het verblijf (13–15 sep) nog even de actuele status via metrolisboa.pt — vakbonden geven aan dat een nieuwe staking er snel kan komen als het overleg vastloopt. Los van stakingen: metrostation Praça de Espanha (Blauwe Lijn) is deels in verbouwing — het perron richting Reboleira is dicht van 3 t/m 28 september, en de zuidelijke stationshal is dicht voor vloerwerkzaamheden van 14 september t/m 12 oktober (dus ook nog op de laatste dag van het verblijf, 15 sep); de noordelijke hal met nieuwe liften blijft gewoon open, en als alternatief gelden Jardim Zoológico of São Sebastião. Bredere achtergrond: heel Portugal kende dit jaar meerdere stakingsgolven in het openbaar vervoer, mede door onrust rond de privatisering van nationale luchtvaartmaatschappij TAP.</p>
+<div class="fun-facts">
+<div class="fun-facts-title">✨ Wist je dat...?</div>
+<ul>
+<li>Lissabon een van de oudste steden van West-Europa is, ouder dan zowel Rome als Londen?</li>
+<li>de stad, net als Rome, op zeven heuvels is gebouwd?</li>
+<li>de 25 de Abril-brug over de Taag zo op de Golden Gate Bridge lijkt omdat hetzelfde bedrijf (American Bridge Company) hem bouwde?</li>
+<li>inwoners van Lissabon in de volksmond "Alfacinhas" (kleine sla-eters) worden genoemd?</li>
+<li>de Santa Justa-lift, het opvallende ijzeren torentje in de Baixa, is gebouwd door een leerling van Gustave Eiffel?</li>
+<li>de Vasco da Gama-brug de langste brug van Europa is, met speciale vogelvriendelijke verlichting om trekvogels niet te verstoren?</li>
+</ul>
+</div>
+</div>
+    <h3 class="rg-subhead">🍽️ Eten</h3>
+    <div class="restaurant-grid">
+      <div class="restaurant-card" id="cantinho-do-aziz">
+<div class="restaurant-card-header">
+<span class="restaurant-dag-badge">Dag 9 · Alfama/Mouraria · Lunch</span>
+<h3>Cantinho do Aziz</h3>
+<span class="restaurant-city-tag">Rua de São Lourenço 5, Mouraria (grenst aan Alfama)</span>
+</div>
+<div class="restaurant-card-body">
+<div class="specialiteit-box">
+<strong>Specialiteit van de dag</strong>
+<p>Mozambikaans-Portugese tasca-keuken: dagelijkse gerechten bij de lunch, met zowel vis/zeevruchten (o.a. ikala — garnalen en krab in kokos-pindasaus) als vleesgerechten zoals lamskoteletten in pittige saus. Voor iedereen wat wils.</p>
+</div>
+<p class="restaurant-desc">
+        Al meer dan 35 jaar een instituut vlak bij Castelo de São Jorge, op loopafstand van waar de
+        ochtendwandeling door Alfama eindigt — een logische, heel lokale lunchstop na de wandeling met
+        gids en vóór de vrije middag. Familierestaurant met Mozambikaanse wortels, drukke maar
+        gemoedelijke tasca-sfeer, mooi terras, met keuze tussen vis en niet-vis.
+      </p>
+<div class="tip-box">
+        💡 Dagelijks open 12:00–23:00, dus flexibel na de wandeling. Geen vaste kaart — vraag naar het
+        gerecht van de dag. Prijzen tot ±€20 p.p. Bel eventueel vooraf voor een tafel op het terras.
+      </div>
+<div class="restaurant-chips">
+<span class="restaurant-chip">🦐 Vis &amp; zeevruchten</span>
+<span class="restaurant-chip">🍖 Ook niet-vis</span>
+<span class="restaurant-chip">📍 Mouraria/Alfama</span>
+<span class="restaurant-chip">👨‍👩‍👧 Heel lokaal</span>
+<span class="restaurant-chip">🕐 Dagelijks 12–23u</span>
+<span class="restaurant-chip">💰 Betaalbaar (±€20 p.p.)</span>
+</div>
+<div class="restaurant-btns">
+<a class="btn btn-sm btn-map" href="https://www.google.com/maps/search/Cantinho+do+Aziz+Rua+de+Sao+Lourenco+5+Lisboa" rel="noopener noreferrer" target="_blank">🗺️ Google Maps</a>
+<a class="btn btn-sm btn-tel" href="tel:+351218876472">📞 +351 218 876 472</a>
+<a class="btn btn-sm btn-web" href="https://cantinhodoaziz.com/en/" rel="noopener noreferrer" target="_blank">🌐 Website</a>
+<a class="btn btn-sm btn-review" href="restaurant-cantinho-do-aziz.html">📖 Recensies &amp; meer</a>
+</div>
+</div>
+</div>
+      <div class="restaurant-card" id="cervejaria-trindade">
+<div class="restaurant-card-header">
+<span class="restaurant-dag-badge">Dag 9 · Chiado · Lunch-alternatief</span>
+<h3>Cervejaria Trindade</h3>
+<span class="restaurant-city-tag">Rua Nova da Trindade 20C, Chiado, Lissabon</span>
+</div>
+<div class="restaurant-card-body">
+<div class="specialiteit-box">
+<strong>Specialiteit van de dag</strong>
+<p>Verse vis van de dag, geserveerd in een unieke setting. Sluit af met de chocolademousse — volgens vaste gasten de lekkerste van de stad.</p>
+</div>
+<p class="restaurant-desc">
+        Gevestigd in een eeuwenoud voormalig klooster, met prachtige azulejo-tegels aan de muren en een
+        serene sfeer, zelfs als het druk is. Vlak bij het Praça Luís de Camões — het startpunt van de
+        wandeltour deze ochtend — en op loopafstand van het Memmo Príncipe Real. Een klassiekere,
+        centralere optie als je liever niet naar Mouraria loopt.
+      </p>
+<div class="tip-box">
+        💡 Reserveer vooraf. Mooie, rustige overgang tussen de ochtendwandeling (eindigt in Alfama)
+        en de rest van de middag — geen haast nodig, de avond bij Tágide is pas 's avonds.
+      </div>
+<div class="restaurant-chips">
+<span class="restaurant-chip">🏛️ Voormalig klooster</span>
+<span class="restaurant-chip">🐟 Verse vis</span>
+<span class="restaurant-chip">🍫 Chocolademousse</span>
+<span class="restaurant-chip">📍 Chiado, centrum</span>
+<span class="restaurant-chip">🚶 Na de ochtendwandeling</span>
+</div>
+<div class="restaurant-btns">
+<a class="btn btn-sm btn-map" href="https://www.google.com/maps/search/Cervejaria+Trindade+Lisboa" rel="noopener noreferrer" target="_blank">🗺️ Google Maps</a>
+<a class="btn btn-sm btn-tel" href="tel:+351213423506">📞 +351 213 423 506</a>
+<a class="btn btn-sm btn-mail" href="mailto:ct.chiado@cervejariatrindade.pt">✉️ E-mail</a>
+<a class="btn btn-sm btn-web" href="http://www.cervejariatrindade.pt/" rel="noopener noreferrer" target="_blank">🌐 Website</a>
+<a class="btn btn-sm btn-review" href="restaurant-cervejaria-trindade.html">📖 Recensies &amp; meer</a>
+</div>
+</div>
+</div>
+      <div class="restaurant-card" id="tagide">
+<div class="restaurant-card-header">
+<span class="restaurant-dag-badge">Dag 9 · Lissabon · Avond</span>
+<h3>Tágide Wine &amp; Tapas</h3>
+<span class="restaurant-city-tag">Largo da Academia Nacional de Belas Artes, Chiado</span>
+</div>
+<div class="restaurant-card-body">
+<div class="specialiteit-box">
+<strong>Specialiteit van de dag</strong>
+<p>Portugese tapas om te delen, met een focus op lokale wijnen. Kleine gerechten met finesse, ideaal voor een ontspannen laatste avond met een glas Portugese bubbels bij zonsondergang.</p>
+</div>
+<p class="restaurant-desc">
+        Stijlvol en sfeervol restaurant in het elegante Chiado, met een prachtig uitzicht over de
+        stad — vooral fraai bij zonsondergang. Op loopafstand van het Memmo Príncipe Real. Een
+        rustige, feestelijke plek om de voorlaatste avond van de reis mee af te sluiten.
+      </p>
+<div class="tip-box">
+        💡 Reserveer een tafel met uitzicht en kom rond zonsondergang voor het mooiste licht.
+      </div>
+<div class="restaurant-chips">
+<span class="restaurant-chip">🍷 Portugese tapas &amp; wijn</span>
+<span class="restaurant-chip">🌇 Uitzicht bij zonsondergang</span>
+<span class="restaurant-chip">📍 Chiado, Lissabon</span>
+<span class="restaurant-chip">🚶 Loopafstand Memmo</span>
+<span class="restaurant-chip">📞 Reserveer</span>
+</div>
+<div class="restaurant-btns">
+<a class="btn btn-sm btn-map" href="https://www.google.com/maps/search/Tagide+Wine+Tapas+Lisboa" rel="noopener noreferrer" target="_blank">🗺️ Google Maps</a>
+<a class="btn btn-sm btn-tel" href="tel:+351213420720">📞 +351 213 420 720</a>
+<a class="btn btn-sm btn-mail" href="mailto:hello@tagidebar.com">✉️ E-mail</a>
+<a class="btn btn-sm btn-web" href="https://www.tagidebar.com/en" rel="noopener noreferrer" target="_blank">🌐 Website</a>
+<a class="btn btn-sm btn-review" href="restaurant-tagide.html">📖 Recensies &amp; meer</a>
+</div>
+</div>
+</div>
+    </div>
+  </div>
+</section>
+
+<section class="rg-day-section" id="dag-10" style="--rg-day-color:#5b2c6f">
+  <div class="container">
+    <div class="rg-day-header"><span class="rg-day-badge">Dag 10</span><h2>Lissabon</h2><span class="rg-day-date">di 15 sep · vertrek</span></div>
+    <h3 class="rg-subhead">✈️ Vlucht</h3>
+    <div class="flights-grid"><div class="flight-card fade-in">
+<div class="flight-card-top">
+<span class="flight-badge">✈️ Terugvlucht</span>
+<span class="flight-date">di 15 sep 2026</span>
+</div>
+<div class="flight-number">KLM · KL1586</div>
+<div class="flight-route">
+<div class="flight-point">
+<span class="flight-code">LIS</span>
+<span class="flight-city">Lissabon</span>
+<span class="flight-time">19:45</span>
+</div>
+<div class="flight-line"><span class="flight-plane">✈</span></div>
+<div class="flight-point">
+<span class="flight-code">AMS</span>
+<span class="flight-city">Amsterdam</span>
+<span class="flight-time">23:40</span>
+</div>
+</div>
+<p class="flight-meta">Non-stop · ±2u55 · na afsluiting in Lissabon</p>
+<div class="flight-btns">
+<a class="btn btn-sm btn-map" href="https://www.flightradar24.com/data/flights/kl1586" rel="noopener noreferrer" target="_blank">📡 Live status</a>
+<a class="btn btn-sm btn-web" href="https://www.schiphol.nl/nl/aankomst/KL1586/" rel="noopener noreferrer" target="_blank">🛬 Schiphol</a>
+</div>
+</div></div>
+    <div class="rg-hotel-note"><span class="rg-hotel-note-icon">🏨</span><span>Overnachting: <strong>Memmo Príncipe Real</strong>, Lissabon — zie Dag 8 voor alle details.</span></div>
+    <h3 class="rg-subhead">🍽️ Eten</h3>
+    <div class="restaurant-grid">
+      <div class="restaurant-card" id="enoteca-de-belem">
+<div class="restaurant-card-header">
+<span class="restaurant-dag-badge">Dag 10 · Lissabon · Lunch · Afsluiter</span>
+<h3>Enoteca de Belém</h3>
+<span class="restaurant-city-tag">Rustig binnenplaatsje bij Jerónimos Klooster, Belém</span>
+</div>
+<div class="restaurant-card-body">
+<div class="specialiteit-box">
+<strong>Specialiteit van de dag</strong>
+<p>Geitenkaas brûlée, octopus carpaccio en eendenborst met vijgen. Kleine, verfijnde gerechten met focus op lokale, biologische ingrediënten, te combineren met een proeverij Portugese wijnen.</p>
+</div>
+<p class="restaurant-desc">
+        Verscholen wijnbar-restaurant op een rustig binnenplaatsje, op loopafstand van het Jerónimos
+        Klooster. Elegante, ontspannen sfeer met een zorgvuldig samengestelde kaart Portugese wijnen.
+        Een mooie, rustige afsluitende lunch op de laatste dag — eventueel te combineren met een
+        laatste blik op de Toren van Belém of Pastéis de Belém, als de tijd het toelaat.
+      </p>
+<div class="tip-box">
+        ⚠️ <strong>Let op de reistijd naar het vliegveld:</strong> Belém ligt verder van het hotel én
+        het vliegveld dan het centrum. Check uit, neem de bagage mee in de auto (niet bij het hotel
+        achterlaten), rij naar Belém voor de lunch, en ga van daaruit direct door naar het vliegveld
+        (±20–25 min, iets meer dan vanuit het hotel) — zo hoef je niet terug te rijden naar Príncipe
+        Real. Reserveren aanbevolen; combineer eventueel met een wijnflight.
+      </div>
+<div class="restaurant-chips">
+<span class="restaurant-chip">🧀 Geitenkaas brûlée</span>
+<span class="restaurant-chip">🐙 Octopus carpaccio</span>
+<span class="restaurant-chip">🍷 Portugese wijnflights</span>
+<span class="restaurant-chip">📍 Bij Jerónimos, Belém</span>
+<span class="restaurant-chip">✈️ Voor de terugvlucht — extra reistijd</span>
+<span class="restaurant-chip">📞 Reserveer</span>
+</div>
+<div class="restaurant-btns">
+<a class="btn btn-sm btn-map" href="https://www.google.com/maps/search/Enoteca+de+Belem+Lisboa" rel="noopener noreferrer" target="_blank">🗺️ Google Maps</a>
+<a class="btn btn-sm btn-tel" href="tel:+351213631511">📞 +351 213 631 511</a>
+<a class="btn btn-sm btn-mail" href="mailto:enoteca@travessadaermida.com">✉️ E-mail</a>
+<a class="btn btn-sm btn-review" href="restaurant-enoteca-de-belem.html">📖 Recensies &amp; meer</a>
+</div>
+</div>
+</div>
+    </div>
+  </div>
+</section>
+
+<section class="rg-algemeen">
+  <div class="container">
+    <h2 class="rg-algemeen-title">Algemeen</h2>
+    <p class="rg-algemeen-sub">Praktische informatie die voor de hele reis geldt</p>
+  </div>
+
+  <div class="rg-algemeen-block">
+    <div class="container">
+      <h3 class="rg-algemeen-block-title">📊 Reisfeiten</h3>
+      <div class="travel-facts fade-in">
+<div class="travel-fact">
+<span class="travel-fact-icon">📅</span>
+<span class="travel-fact-label">Reisduur</span>
+<span class="travel-fact-value">6 – 15 sep 2026 · 10 dagen</span>
+</div>
+<div class="travel-fact">
+<span class="travel-fact-icon">🚗</span>
+<span class="travel-fact-label">Route</span>
+<span class="travel-fact-value">Porto → Lissabon · ±500 km</span>
+</div>
+<div class="travel-fact">
+<span class="travel-fact-icon">🕐</span>
+<span class="travel-fact-label">Tijdzone</span>
+<span class="travel-fact-value">Portugal: 1 uur vroeger dan NL</span>
+</div>
+<div class="travel-fact">
+<span class="travel-fact-icon">💶</span>
+<span class="travel-fact-label">Valuta</span>
+<span class="travel-fact-value">Euro (€) · zoals thuis</span>
+</div>
+<div class="travel-fact">
+<span class="travel-fact-icon">🔌</span>
+<span class="travel-fact-label">Stopcontact</span>
+<span class="travel-fact-value">Type F · geen adapter nodig</span>
+</div>
+<div class="travel-fact">
+<span class="travel-fact-icon">🗣️</span>
+<span class="travel-fact-label">Taal</span>
+<span class="travel-fact-value">Portugees · Engels breed gesproken</span>
+</div>
+</div>
+      <p class="flight-disclaimer">
+      Vluchttijden zijn de geplande tijden. Klik op <strong>Live status</strong> voor actuele vertrek-, gate- en vertragingsinfo (opent Flightradar24).
+    </p>
+    </div>
+  </div>
+
+  <div class="rg-algemeen-block">
+    <div class="container">
+      <h3 class="rg-algemeen-block-title">🌤️ Weer</h3>
+      <div class="actueel-text">
+        <p>September is normaal een droge en zonnige maand in Portugal: dagtemperaturen tussen de 24–30°C, nachten rond 16–19°C, gemiddeld zo'n 9 zonuren per dag. In Lissabon regent het gemiddeld 6 dagen in de maand (±26 mm in totaal).</p><p>Voor september 2026 is er geen specifieke hittegolf voorspeld — de verwachte temperaturen liggen binnen de normale bandbreedte voor het seizoen. Begin september kan nog warm zijn; een korte hittegolf is dus niet uitgesloten.</p><p><strong>5-daagse temperatuurverwachting</strong> (max/min °C), live opgehaald bij elk bezoek — start altijd bij vandaag. Dit dekt zowel de 5 overnachtingsplaatsen (Porto/Gaia, Amarante, Aveiro, Óbidos, Lissabon) als alle dagtrip- en tussenstop-bestemmingen uit het activiteitenoverzicht: Douro-vallei/Pinhão (dag 3-4), Batalha, Alcobaça en Leiria (dag 6, onderweg naar Nazaré/Óbidos), Caldas da Rainha (dag 7), en Mafra, Sintra en Cabo da Roca (dag 8, onderweg naar Lissabon). Dit is de actuele verwachting van dit moment, niet specifiek voor onze reisweek in september. Handig om de trend te volgen, maar check de forecast-links hierboven nog even vlak vóór vertrek voor een betrouwbare septemberverwachting.</p>
+        <div style="overflow-x:auto;">
+<table class="forecast-table" id="forecast-table">
+<thead>
+<tr id="forecast-thead-row">
+<th>Plaats</th>
+<th colspan="5">Voorspelling laden…</th>
+</tr>
+</thead>
+<tbody id="forecast-tbody">
+<tr>
+<td>Porto / Vila Nova de Gaia</td><td colspan="5">…</td>
+</tr>
+<tr>
+<td>Amarante</td><td colspan="5">…</td>
+</tr>
+<tr>
+<td>Douro-vallei / Pinhão</td><td colspan="5">…</td>
+</tr>
+<tr>
+<td>Aveiro</td><td colspan="5">…</td>
+</tr>
+<tr>
+<td>Batalha</td><td colspan="5">…</td>
+</tr>
+<tr>
+<td>Alcobaça</td><td colspan="5">…</td>
+</tr>
+<tr>
+<td>Leiria</td><td colspan="5">…</td>
+</tr>
+<tr>
+<td>Óbidos / Nazaré</td><td colspan="5">…</td>
+</tr>
+<tr>
+<td>Caldas da Rainha</td><td colspan="5">…</td>
+</tr>
+<tr>
+<td>Mafra</td><td colspan="5">…</td>
+</tr>
+<tr>
+<td>Sintra</td><td colspan="5">…</td>
+</tr>
+<tr>
+<td>Cabo da Roca</td><td colspan="5">…</td>
+</tr>
+<tr>
+<td>Lissabon</td><td colspan="5">…</td>
+</tr>
+</tbody>
+</table>
+</div>
+        <div class="disclaimer-box" id="forecast-disclaimer">
+        🌡️ Bron: Open-Meteo — wordt automatisch opgehaald zodra de pagina laadt. Amarante en de Douro-vallei liggen landinwaarts en kunnen flink warmer uitpakken dan de kust — houd daar rekening mee bij het inpakken en plannen van buitenactiviteiten. Sintra, Mafra en Cabo da Roca liggen juist beduidend koeler en mistiger door de heuvels/kust — neem ook daar een extra laag mee.
+      </div>
+      </div>
+      <div class="link-grid">
+<a class="link-card" href="https://www.ipma.pt/pt/" rel="noopener noreferrer" target="_blank">
+<span class="link-tag official">Officieel</span>
+<div class="link-card-title">IPMA — Instituto Português do Mar e da Atmosfera</div>
+<div class="link-card-desc">Het officiële Portugese weerinstituut, met weersverwachtingen per regio.</div>
+</a>
+<a class="link-card" href="https://www.weather2travel.com/portugal/" rel="noopener noreferrer" target="_blank">
+<span class="link-tag blog">Reisblog</span>
+<div class="link-card-title">Weather2Travel — Portugal</div>
+<div class="link-card-desc">Maandoverzichten met gemiddelde temperaturen, zon- en regendagen per bestemming.</div>
+</a>
+</div>
+    </div>
+  </div>
+
+  <div class="rg-algemeen-block">
+    <div class="container">
+      <h3 class="rg-algemeen-block-title">🔥 Bosbranden</h3>
+      <p class="rg-algemeen-block-sub">Stand van zaken 1 september 2026.</p>
+      <div class="actueel-text">
+        <div class="actueel-text">
+<p>Het bosbrandenseizoen 2026 is dit jaar juist zwaarder dan gemiddeld: eind juli/begin augustus was er al zo'n 53.000–58.000 hectare verbrand, ongeveer 58% boven het 10-jaars gemiddelde — het op twee na slechtste jaar sinds 2016. Vooral het binnenland en noorden zijn getroffen (Vila Real, Viseu, Guarda, Bragança); kuststeden als Porto en Lissabon blijven grotendeels buiten schot.</p>
+<p><strong>Positieve update (1 september):</strong> premier Montenegro meldde op 18 augustus dat de tot dusver in 2026 landelijk verbrande oppervlakte ongeveer 4 keer lager ligt dan over heel 2025 — een andere vergelijkingsbasis dan de "58% boven het 10-jaars gemiddelde" hierboven, dus beide cijfers kunnen naast elkaar kloppen. Op 1 september stond er via fogos.pt nog maar 1 lopende brand in heel Portugal (Resende, Viseu-district — niet op de route).</p>
+<p><strong>Relevant voor onze Douro-dagtrip vanuit Amarante:</strong> de gemeente Alijó (Vila Real-district, hart van de wijnstreek) is zwaar getroffen, met gevolgen voor het wijntoerisme in de regio. Half augustus stond vrijwel het hele Vila Real-district op maximaal brandgevaar. Dat speelt vooral ten oosten van onze route (richting Peso da Régua/Pinhão), niet in Amarante zelf, maar zomers kunnen bij droogte en wind snel omslaan — check daarom vlak voor vertrek fogos.pt en de actuele status van de quinta's die je van plan bent te bezoeken.</p>
+<p><strong>Kaart met actuele brandhaarden</strong> — de rode stippen zijn hitte-detecties van NASA-satellieten (VIIRS), meerdere keren per dag bijgewerkt. De blauwe cijfers zijn onze routeplaatsen, ter oriëntatie.</p>
+<div class="fire-map-wrap">
+<div class="fire-map-embed" id="fire-map"></div>
+</div>
+<div class="fire-map-legend">
+<span><span class="dot"></span> Actieve hitte-detectie (laatste ~24-48u, VIIRS-satellieten)</span>
+</div>
+</div>
+      </div>
+      <div class="link-grid">
+<a class="link-card" href="https://fogos.pt/" rel="noopener noreferrer" target="_blank">
+<span class="link-tag official">Officieel</span>
+<div class="link-card-title">Fogos.pt</div>
+<div class="link-card-desc">Actuele kaart van lopende bosbranden in Portugal, met locatie en status.</div>
+</a>
+<a class="link-card" href="https://currentwildfires.com/en/wildfires-portugal/" rel="noopener noreferrer" target="_blank">
+<span class="link-tag blog">Kaart</span>
+<div class="link-card-title">Current Wildfires — Portugal</div>
+<div class="link-card-desc">Engelstalig overzicht van actieve branden en verbrand oppervlak per regio.</div>
+</a>
+</div>
+    </div>
+  </div>
+
+  <div class="rg-algemeen-block">
+    <div class="container">
+      <h3 class="rg-algemeen-block-title">🛂 Reisadvies</h3>
+      <div class="actueel-text">
+        <div class="actueel-text">
+<p>Het Nederlandse reisadvies voor Portugal staat op groen: er zijn geen bijzondere veiligheidsrisico's. Twee aandachtspunten die genoemd worden: zakkenrollerij in de grotere steden zoals Porto en Lissabon, en het jaarlijkse risico op natuurbranden in de zomermaanden.</p>
+</div>
+      </div>
+      <div class="link-grid">
+<a class="link-card" href="https://www.nederlandwereldwijd.nl/reisadvies/portugal" rel="noopener noreferrer" target="_blank">
+<span class="link-tag official">Officieel</span>
+<div class="link-card-title">Reisadvies Portugal — Nederland Wereldwijd</div>
+<div class="link-card-desc">Het officiële reisadvies van het Ministerie van Buitenlandse Zaken.</div>
+</a>
+</div>
+      <div class="disclaimer-box">
+      ℹ️ Deze pagina is samengesteld op 6 augustus 2026, laatst gecontroleerd op 10 september 2026 (surf bijgewerkt; Lissabon aangevuld met een notitie over de metrowerkzaamheden bij Praça de Espanha tijdens het verblijf; Porto, Amarante, Aveiro, Óbidos, bosbranden en reisadvies ongewijzigd). Check de links hierboven nog even vlak vóór Óbidos (11-12 sep) en Lissabon (13-15 sep) voor de laatste stand van zaken.
+    </div>
+    </div>
+  </div>
+
+  <div class="rg-algemeen-block">
+    <div class="container">
+      <h3 class="rg-algemeen-block-title">📰 Nieuwsbronnen</h3>
+      <div class="link-grid">
+<a class="link-card" href="https://www.metrolisboa.pt/" rel="noopener noreferrer" target="_blank">
+<span class="link-tag official">Officieel</span>
+<div class="link-card-title">Metro de Lisboa</div>
+<div class="link-card-desc">Actuele status en eventuele stakingsmeldingen voor de Lissabonse metro.</div>
+</a>
+<a class="link-card" href="https://theportugalpost.com/" rel="noopener noreferrer" target="_blank">
+<span class="link-tag blog">Nieuws</span>
+<div class="link-card-title">The Portugal Post</div>
+<div class="link-card-desc">Engelstalig nieuws over stakingen, verkeer en actuele ontwikkelingen in Portugal.</div>
+</a>
+<a class="link-card" href="https://www.theportugalnews.com/" rel="noopener noreferrer" target="_blank">
+<span class="link-tag blog">Nieuws</span>
+<div class="link-card-title">The Portugal News</div>
+<div class="link-card-desc">Portugees nieuws in het Engels, met ook een Nederlandstalige sectie.</div>
+</a>
+</div>
+      <div class="disclaimer-box">
+      📰 Deze sectie is opnieuw nagetrokken en bijgewerkt op 10 september 2026 (automatische dagelijkse check). Check voor Óbidos (11-12 sep) en Lissabon (13-15 sep) nog even de laatste stand van zaken, met name de metro-status voor Lissabon.
+    </div>
+    </div>
+  </div>
+
+  <div class="rg-algemeen-block">
+    <div class="container">
+      <h3 class="rg-algemeen-block-title">📋 Praktische info</h3>
+      <div class="practical-grid">
+        <div class="practical-card fade-in">
+<h4>📅 Beste reistijd</h4>
+<p>
+<strong>April–mei:</strong> Ideaal — 18–24°C, bloemen, weinig volk.<br/>
+<strong>Sept–okt:</strong> Warm 20–26°C, zonnig, uitstekend.<br/>
+<strong>Juni–aug:</strong> Heet 25–32°C, hoogseizoen, druk.<br/>
+<strong>Nov–mrt:</strong> Frisser, soms regen, rustig en goedkoop.
+        </p>
+</div>
+        <div class="practical-card fade-in">
+<h4>🚗 Vervoer &amp; Navigatie</h4>
+<p>
+<strong>Auto:</strong> Compacte auto is ruim voldoende<br/>
+<strong>Wegen:</strong> Goed onderhouden, rijden rechts<br/>
+<strong>Snelheid:</strong> 50 stad · 90 regionaal · 120 snelweg<br/>
+<strong>Navigatie:</strong> Google Maps offline downloaden
+        </p>
+</div>
+        <div class="practical-card fade-in">
+<h4>🛣️ Tolwegen &amp; Parkeren</h4>
+<p>
+<strong>Tolwegen (Via Verde):</strong> Veel snelwegen (A-wegen) zijn elektronisch
+          tolwegen zonder tolpoortjes — vraag bij de verhuurder om een Via Verde-transponder
+          of tolpakket, anders volgt een boete achteraf via kentekenherkenning.<br/>
+<strong>Parkeren steden:</strong> Porto, Aveiro en Lissabon hebben betaald parkeren
+          in het centrum; Óbidos en Sintra hebben parkeerterreinen net buiten de kern —
+          binnen de muren/oude centra mag vaak niet geparkeerd worden.<br/>
+<strong>Tip:</strong> Reserveer een parkeerplek bij je hotel waar mogelijk (Óbidos,
+          Sintra-dagtrip, Lissabon).
+        </p>
+</div>
+        <div class="practical-card fade-in">
+<h4>🛡️ Verzekering &amp; Documenten</h4>
+<p>
+<strong>Reisverzekering:</strong> Controleer dekking voor huurauto-schade,
+          medische kosten en bagage — een Europese zorgverzekeringskaart (EHIC/Europese
+          zorgpas) dekt alleen basiszorg, geen repatriëring.<br/>
+<strong>Rijbewijs:</strong> Nederlands rijbewijs is geldig in Portugal, geen
+          internationaal rijbewijs nodig.<br/>
+<strong>ID:</strong> Geldig paspoort of ID-kaart (Portugal is Schengen-lid).<br/>
+<strong>Kopieën:</strong> Maak digitale foto's van paspoort, rijbewijs en
+          verzekeringspolis voor onderweg.
+        </p>
+</div>
+        <div class="practical-card fade-in">
+<h4>🚨 Noodnummers</h4>
+<p>
+<strong>Algemeen alarmnummer:</strong> 112 (politie, ambulance, brandweer —
+          zelfde als in Nederland)<br/>
+<strong>Pech onderweg:</strong> Bel het pechhulpnummer van de verhuurder
+          (staat op het huurcontract)<br/>
+<strong>Ziekenhuizen met spoedeisende hulp:</strong> Hospital de Santo António
+          (Porto), Hospital Distrital de Aveiro, Hospital de Santa Maria (Lissabon)<br/>
+<strong>Nederlandse ambassade:</strong> Den Haag-desk bereikbaar via
+          +351 21 391 4900 (Lissabon) voor paspoortverlies of ernstige nood
+        </p>
+</div>
+        <div class="practical-card fade-in">
+<h4>🍷 Eten &amp; Drinken</h4>
+<p>
+<strong>Portwijn:</strong> Proeverijen in Porto/Gaia<br/>
+<strong>Douro-wijnen:</strong> In de quintas<br/>
+<strong>Zeevruchten:</strong> Aveiro en de kust<br/>
+<strong>Ginjinha:</strong> Kerslikeur in Óbidos<br/>
+<strong>Pastéis de nata:</strong> Overal, best in Belém
+        </p>
+</div>
+        <div class="practical-card fade-in">
+<h4>📸 Fotografietips</h4>
+<p>
+<strong>Gouden uur:</strong> 1 uur voor/na zonsopkomst/ondergang<br/>
+<strong>Must-shots:</strong> Dom Luís-brug, Douro-terrassen,<br/>
+          Costa Nova, Pena Paleis, Miradouro Graça<br/>
+<strong>Tipp:</strong> Statiefje mee voor avondopnames
+        </p>
+</div>
+        <div class="practical-card fade-in">
+<h4>💶 Budget</h4>
+<p>
+<strong>Eten:</strong> €15–30/persoon<br/>
+<strong>Attracties:</strong> Meeste €5–15<br/>
+<strong>Benzine:</strong> ~€1,80/liter<br/>
+<strong>Tolwegen:</strong> Via Verde aanbevolen
+        </p>
+</div>
+        <div class="practical-card fade-in">
+<h4>🌐 Handige links</h4>
+<p>
+          Per attractie vind je directe links naar:<br/>
+<strong>🗺️ Google Maps</strong> — Navigatie &amp; routebeschrijving<br/>
+<strong>🌐 Officiële websites</strong> — Info &amp; reserveringen<br/>
+<strong>📧 Boa viagem!</strong> — Goede reis!
+        </p>
+</div>
+        <div class="practical-card fade-in">
+<h4>✅ Checklists</h4>
+<p style="margin-bottom:1rem; color: var(--muted);">
+          Aanvinkbare paklijst en pre-vertrek-checklist — nu op een eigen pagina, met
+          voortgang die per toestel bewaard blijft.
+        </p>
+<a class="btn btn-sm btn-gold" href="checklist.html">✅ Naar de checklists</a>
+</div>
+      </div>
+    </div>
+  </div>
+
+<section class="share-section">
+<h3>Deel Deze Reisroute</h3>
+<p>Help vrienden Portugal te ontdekken met directe links</p>
+<div class="share-buttons">
+<button class="share-btn share-btn-copy" onclick="copyLink()">📋 Kopieer link</button>
+<a class="share-btn share-btn-wa" href="https://wa.me/?text=Bekijk%20deze%20interactieve%20Portugal%20roadtrip!%20https://wierts.github.io/portugal/" rel="noopener noreferrer" target="_blank">💬 WhatsApp</a>
+<a class="share-btn share-btn-email" href="mailto:?subject=Interactieve%20Portugal%20Roadtrip&amp;body=Bekijk%20deze%20handige%20reisroute:%20https://wierts.github.io/portugal/">📧 E-mail</a>
+</div>
+</section>
+</section>
+
+
+<footer>
+  <p><strong>Portugal Roadtrip — Interactieve 10-Daagse Reisroute</strong></p>
+  <p>🗺️ Klik op attracties voor websites &amp; Google Maps &nbsp;|&nbsp; 🇵🇹 Boa viagem!</p>
+  <p style="margin-top:1rem;opacity:.5;">Gemaakt met ❤️ voor reizigers die het echte Portugal willen ontdekken</p>
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin=""></script>
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  const routeStops = [
+    { n: 1, naam: 'Porto',    coords: [41.1579, -8.6291] },
+    { n: 2, naam: 'Douro',    coords: [41.1600, -7.7500] },
+    { n: 3, naam: 'Aveiro',   coords: [40.6405, -8.6538] },
+    { n: 4, naam: 'Nazaré',   coords: [39.6010, -9.0700] },
+    { n: 5, naam: 'Óbidos',   coords: [39.3606, -9.1570] },
+    { n: 6, naam: 'Sintra',   coords: [38.7979, -9.3906] },
+    { n: 7, naam: 'Lissabon', coords: [38.7223, -9.1393] }
+  ];
+
+  const waypointStops = [
+    { naam: 'Alcobaça', dag: 6, coords: [39.5470, -8.9800] },
+    { naam: 'Mafra',    dag: 8, coords: [38.9376, -9.3327] }
+  ];
+
+  function routeMapFallback() {
+    const box = document.getElementById('routeMap');
+    if (!box) return;
+    box.classList.add('route-map-fallback');
+    box.innerHTML =
+      '<div class="route-map-fallback-inner">' +
+        '<span class="route-map-fallback-icon">🗺️</span>' +
+        '<p>De interactieve kaart kon niet laden.</p>' +
+        '<a href="https://www.google.com/maps/dir/Porto,+Portugal/Douro+Valley,+Portugal/Aveiro,+Portugal/Alcoba%C3%A7a,+Portugal/Nazar%C3%A9,+Portugal/%C3%93bidos,+Portugal/Mafra,+Portugal/Sintra,+Portugal/Lisbon,+Portugal" ' +
+        'target="_blank" rel="noopener noreferrer" class="btn btn-map">Bekijk de route in Google Maps</a>' +
+      '</div>';
+  }
+
+  function fitBoundsWhenReady(map, bounds, options) {
+    let settled = false;
+    const ro = ('ResizeObserver' in window) ? new ResizeObserver(() => apply()) : null;
+    function apply() {
+      if (settled) return;
+      const el = map.getContainer();
+      if (!el.clientWidth || !el.clientHeight) return;
+      settled = true;
+      map.invalidateSize({ animate: false, pan: false });
+      try { map.fitBounds(bounds, options); } catch (e) { console.warn('[reisgids] fitBounds:', e && e.message); }
+      if (ro) ro.disconnect();
+      window.removeEventListener('load', apply);
+    }
+    apply();
+    if (settled) return;
+    if (ro) ro.observe(map.getContainer());
+    window.addEventListener('load', apply);
+    setTimeout(apply, 1000);
+  }
+
+  function initRouteMap() {
+    const box = document.getElementById('routeMap');
+    if (!box) return;
+    if (typeof L === 'undefined') { routeMapFallback(); return; }
+
+    const map = L.map(box, { scrollWheelZoom: false }).setView([40.0, -8.5], 7);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 18,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>-bijdragers'
+    }).addTo(map);
+
+    const line = routeStops.map(s => s.coords);
+    L.polyline(line, { color: '#c0392b', weight: 3, opacity: 0.8, dashArray: '6 8' }).addTo(map);
+
+    routeStops.forEach(s => {
+      const icon = L.divIcon({
+        className: 'route-marker',
+        html: '<span>' + s.n + '</span>',
+        iconSize: [30, 30],
+        iconAnchor: [15, 15]
+      });
+      L.marker(s.coords, { icon })
+        .addTo(map)
+        .bindPopup('<strong>Dag ' + s.n + ': ' + s.naam + '</strong>');
+    });
+
+    waypointStops.forEach(w => {
+      const icon = L.divIcon({
+        className: 'route-marker route-marker-waypoint',
+        html: '<span>•</span>',
+        iconSize: [16, 16],
+        iconAnchor: [8, 8]
+      });
+      L.marker(w.coords, { icon })
+        .addTo(map)
+        .bindPopup('<strong>Onderweg (dag ' + w.dag + '): ' + w.naam + '</strong>');
+    });
+
+    const allCoords = line.concat(waypointStops.map(w => w.coords));
+    fitBoundsWhenReady(map, L.latLngBounds(allCoords).pad(0.15));
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initRouteMap);
+  } else {
+    initRouteMap();
+  }
+
+  function copyLink() {
+    navigator.clipboard.writeText(window.location.href).then(() => {
+      alert('Link gekopieerd! Deel met vrienden om Portugal samen te verkennen.');
+    }).catch(() => {
+      prompt('Kopieer deze link:', window.location.href);
+    });
+  }
+
+  document.querySelectorAll('a[href^="#dag-"]').forEach(link => {
+    link.addEventListener('click', function(e) {
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // ─── Bosbrand-hitte-detecties (NASA FIRMS/GIBS, VIIRS) ──────────────
+  (function () {
+    const el = document.getElementById('fire-map');
+    if (!el) return;
+
+    function fireMapFallback() {
+      el.classList.add('fire-map-fallback');
+      el.innerHTML =
+        '<div class="fire-map-fallback-inner">' +
+          '<span class="fire-map-fallback-icon">🗺️</span>' +
+          '<p style="margin:0;font-size:.85rem;">Kaart kon niet laden — check ' +
+          '<a href="https://fogos.pt/" target="_blank" rel="noopener noreferrer">fogos.pt</a> rechtstreeks.</p>' +
+        '</div>';
+    }
+
+    if (typeof L === 'undefined') { fireMapFallback(); return; }
+
+    const routePunten = [
+      { naam: 'Porto', coords: [41.1579, -8.6291] },
+      { naam: 'Amarante', coords: [41.2694, -8.0785] },
+      { naam: 'Aveiro', coords: [40.6405, -8.6538] },
+      { naam: 'Nazaré', coords: [39.6010, -9.0700] },
+      { naam: 'Óbidos', coords: [39.3606, -9.1570] },
+      { naam: 'Sintra', coords: [38.7979, -9.3906] },
+      { naam: 'Lissabon', coords: [38.7223, -9.1393] }
+    ];
+
+    try {
+      const map = L.map(el, { scrollWheelZoom: false }).setView([39.8, -8.3], 7);
+
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 18,
+        attribution: '&copy; OpenStreetMap-bijdragers'
+      }).addTo(map);
+
+      L.tileLayer.wms('https://gibs.earthdata.nasa.gov/wms/epsg3857/best/wms.cgi', {
+        layers: 'VIIRS_SNPP_Thermal_Anomalies_375m_All,VIIRS_NOAA20_Thermal_Anomalies_375m_All',
+        format: 'image/png',
+        transparent: true,
+        attribution: 'Hitte-detecties: NASA FIRMS/GIBS (VIIRS)'
+      }).addTo(map);
+
+      routePunten.forEach((p, i) => {
+        const icon = L.divIcon({
+          className: 'route-waypoint-marker',
+          html: '<span>' + (i + 1) + '</span>',
+          iconSize: [22, 22],
+          iconAnchor: [11, 11]
+        });
+        L.marker(p.coords, { icon }).addTo(map).bindPopup('<strong>' + p.naam + '</strong>');
+      });
+    } catch (e) {
+      console.error('Bosbrand-kaart laden mislukt —', e);
+      fireMapFallback();
+    }
+  })();
+
+</script>
+
+<script src="nav.js" defer></script>
+<script src="weer-forecast.js" defer></script>
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script src="onesignal-init.js" defer></script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => { navigator.serviceWorker.register('sw.js').catch(() => {}); });
+}
+</script>
+<script data-goatcounter="https://wierts.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
